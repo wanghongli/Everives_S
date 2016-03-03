@@ -7,26 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		037F8DC21C8814B00057BF6C /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DC11C8814B00057BF6C /* JKCountDownButton.m */; };
 		037F8DC61C8815F80057BF6C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DC51C8815F80057BF6C /* AppDelegate.m */; };
+		037F8E141C8826750057BF6C /* YRYJFirstClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DEA1C8826750057BF6C /* YRYJFirstClassController.m */; };
+		037F8E151C8826750057BF6C /* YRYJFourthClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DEC1C8826750057BF6C /* YRYJFourthClassController.m */; };
+		037F8E161C8826750057BF6C /* YRYJLearnToDriveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DEE1C8826750057BF6C /* YRYJLearnToDriveController.m */; };
+		037F8E171C8826750057BF6C /* YRYJSecondClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DF01C8826750057BF6C /* YRYJSecondClassController.m */; };
+		037F8E181C8826750057BF6C /* YRYJThirdClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DF21C8826750057BF6C /* YRYJThirdClassController.m */; };
+		037F8E191C8826750057BF6C /* YRYJMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DF51C8826750057BF6C /* YRYJMenuViewController.m */; };
+		037F8E1A1C8826750057BF6C /* YRYJForgetPswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DFF1C8826750057BF6C /* YRYJForgetPswViewController.m */; };
+		037F8E1B1C8826750057BF6C /* YRYJLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E011C8826750057BF6C /* YRYJLoginViewController.m */; };
+		037F8E1C1C8826750057BF6C /* YRYJRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E031C8826750057BF6C /* YRYJRegistViewController.m */; };
+		037F8E1D1C8826750057BF6C /* UIButton+titleFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E061C8826750057BF6C /* UIButton+titleFrame.m */; };
+		037F8E1E1C8826750057BF6C /* UIViewController+CWS.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E081C8826750057BF6C /* UIViewController+CWS.m */; };
+		037F8E1F1C8826750057BF6C /* CWSLoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E0B1C8826750057BF6C /* CWSLoginTextField.m */; };
+		037F8E201C8826750057BF6C /* CWSPublicButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E0D1C8826750057BF6C /* CWSPublicButton.m */; };
+		037F8E211C8826750057BF6C /* CWSReadPolicyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E0F1C8826750057BF6C /* CWSReadPolicyView.m */; };
+		037F8E221C8826750057BF6C /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E111C8826750057BF6C /* JKCountDownButton.m */; };
+		037F8E231C8826750057BF6C /* login_shanchu_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 037F8E121C8826750057BF6C /* login_shanchu_right@2x.png */; };
+		037F8E241C8826750057BF6C /* searchbar_textfield_search_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 037F8E131C8826750057BF6C /* searchbar_textfield_search_icon@2x.png */; };
 		1600EB3B1C87E65D001919EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB3A1C87E65D001919EB /* main.m */; };
 		1600EB461C87E65D001919EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB451C87E65D001919EB /* Assets.xcassets */; };
 		1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB471C87E65D001919EB /* LaunchScreen.storyboard */; };
-		1600EB8F1C87E876001919EB /* YRYJFirstClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB641C87E876001919EB /* YRYJFirstClassController.m */; };
-		1600EB901C87E876001919EB /* YRYJFourthClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB661C87E876001919EB /* YRYJFourthClassController.m */; };
-		1600EB911C87E876001919EB /* YRYJLearnToDriveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB681C87E876001919EB /* YRYJLearnToDriveController.m */; };
-		1600EB921C87E876001919EB /* YRYJSecondClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB6A1C87E876001919EB /* YRYJSecondClassController.m */; };
-		1600EB931C87E876001919EB /* YRYJThirdClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB6C1C87E876001919EB /* YRYJThirdClassController.m */; };
-		1600EB941C87E876001919EB /* YRYJMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB711C87E876001919EB /* YRYJMenuViewController.m */; };
-		1600EB951C87E876001919EB /* YRYJForgetPswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB7E1C87E876001919EB /* YRYJForgetPswViewController.m */; };
-		1600EB961C87E876001919EB /* YRYJLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB801C87E876001919EB /* YRYJLoginViewController.m */; };
-		1600EB971C87E876001919EB /* YRYJRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB821C87E876001919EB /* YRYJRegistViewController.m */; };
-		1600EB981C87E876001919EB /* UIButton+titleFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB851C87E876001919EB /* UIButton+titleFrame.m */; };
-		1600EB991C87E876001919EB /* UIViewController+CWS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB871C87E876001919EB /* UIViewController+CWS.m */; };
-		1600EB9A1C87E876001919EB /* CWSLoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB8A1C87E876001919EB /* CWSLoginTextField.m */; };
-		1600EB9B1C87E876001919EB /* CWSPublicButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB8C1C87E876001919EB /* CWSPublicButton.m */; };
-		1600EB9C1C87E876001919EB /* login_shanchu_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB8D1C87E876001919EB /* login_shanchu_right@2x.png */; };
-		1600EB9D1C87E876001919EB /* searchbar_textfield_search_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB8E1C87E876001919EB /* searchbar_textfield_search_icon@2x.png */; };
 		1600EBA11C87E8A5001919EB /* YRYJNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBA01C87E8A5001919EB /* YRYJNavigationController.m */; };
 		1600EBC11C88087A001919EB /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBA51C88087A001919EB /* RECommonFunctions.m */; };
 		1600EBC21C88087A001919EB /* REFrostedContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBA71C88087A001919EB /* REFrostedContainerViewController.m */; };
@@ -44,43 +45,45 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		037F8DC01C8814B00057BF6C /* JKCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCountDownButton.h; sourceTree = "<group>"; };
-		037F8DC11C8814B00057BF6C /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
 		037F8DC41C8815F80057BF6C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		037F8DC51C8815F80057BF6C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		037F8DE91C8826750057BF6C /* YRYJFirstClassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJFirstClassController.h; sourceTree = "<group>"; };
+		037F8DEA1C8826750057BF6C /* YRYJFirstClassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJFirstClassController.m; sourceTree = "<group>"; };
+		037F8DEB1C8826750057BF6C /* YRYJFourthClassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJFourthClassController.h; sourceTree = "<group>"; };
+		037F8DEC1C8826750057BF6C /* YRYJFourthClassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJFourthClassController.m; sourceTree = "<group>"; };
+		037F8DED1C8826750057BF6C /* YRYJLearnToDriveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJLearnToDriveController.h; sourceTree = "<group>"; };
+		037F8DEE1C8826750057BF6C /* YRYJLearnToDriveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJLearnToDriveController.m; sourceTree = "<group>"; };
+		037F8DEF1C8826750057BF6C /* YRYJSecondClassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJSecondClassController.h; sourceTree = "<group>"; };
+		037F8DF01C8826750057BF6C /* YRYJSecondClassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJSecondClassController.m; sourceTree = "<group>"; };
+		037F8DF11C8826750057BF6C /* YRYJThirdClassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJThirdClassController.h; sourceTree = "<group>"; };
+		037F8DF21C8826750057BF6C /* YRYJThirdClassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJThirdClassController.m; sourceTree = "<group>"; };
+		037F8DF41C8826750057BF6C /* YRYJMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJMenuViewController.h; sourceTree = "<group>"; };
+		037F8DF51C8826750057BF6C /* YRYJMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJMenuViewController.m; sourceTree = "<group>"; };
+		037F8DFE1C8826750057BF6C /* YRYJForgetPswViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJForgetPswViewController.h; sourceTree = "<group>"; };
+		037F8DFF1C8826750057BF6C /* YRYJForgetPswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJForgetPswViewController.m; sourceTree = "<group>"; };
+		037F8E001C8826750057BF6C /* YRYJLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJLoginViewController.h; sourceTree = "<group>"; };
+		037F8E011C8826750057BF6C /* YRYJLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJLoginViewController.m; sourceTree = "<group>"; };
+		037F8E021C8826750057BF6C /* YRYJRegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJRegistViewController.h; sourceTree = "<group>"; };
+		037F8E031C8826750057BF6C /* YRYJRegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJRegistViewController.m; sourceTree = "<group>"; };
+		037F8E051C8826750057BF6C /* UIButton+titleFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+titleFrame.h"; sourceTree = "<group>"; };
+		037F8E061C8826750057BF6C /* UIButton+titleFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+titleFrame.m"; sourceTree = "<group>"; };
+		037F8E071C8826750057BF6C /* UIViewController+CWS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CWS.h"; sourceTree = "<group>"; };
+		037F8E081C8826750057BF6C /* UIViewController+CWS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CWS.m"; sourceTree = "<group>"; };
+		037F8E0A1C8826750057BF6C /* CWSLoginTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWSLoginTextField.h; sourceTree = "<group>"; };
+		037F8E0B1C8826750057BF6C /* CWSLoginTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWSLoginTextField.m; sourceTree = "<group>"; };
+		037F8E0C1C8826750057BF6C /* CWSPublicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWSPublicButton.h; sourceTree = "<group>"; };
+		037F8E0D1C8826750057BF6C /* CWSPublicButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWSPublicButton.m; sourceTree = "<group>"; };
+		037F8E0E1C8826750057BF6C /* CWSReadPolicyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWSReadPolicyView.h; sourceTree = "<group>"; };
+		037F8E0F1C8826750057BF6C /* CWSReadPolicyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWSReadPolicyView.m; sourceTree = "<group>"; };
+		037F8E101C8826750057BF6C /* JKCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCountDownButton.h; sourceTree = "<group>"; };
+		037F8E111C8826750057BF6C /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
+		037F8E121C8826750057BF6C /* login_shanchu_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_shanchu_right@2x.png"; sourceTree = "<group>"; };
+		037F8E131C8826750057BF6C /* searchbar_textfield_search_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchbar_textfield_search_icon@2x.png"; sourceTree = "<group>"; };
 		1600EB361C87E65D001919EB /* Everives_S.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everives_S.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1600EB3A1C87E65D001919EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1600EB451C87E65D001919EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1600EB481C87E65D001919EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1600EB4A1C87E65D001919EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1600EB631C87E876001919EB /* YRYJFirstClassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJFirstClassController.h; sourceTree = "<group>"; };
-		1600EB641C87E876001919EB /* YRYJFirstClassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJFirstClassController.m; sourceTree = "<group>"; };
-		1600EB651C87E876001919EB /* YRYJFourthClassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJFourthClassController.h; sourceTree = "<group>"; };
-		1600EB661C87E876001919EB /* YRYJFourthClassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJFourthClassController.m; sourceTree = "<group>"; };
-		1600EB671C87E876001919EB /* YRYJLearnToDriveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJLearnToDriveController.h; sourceTree = "<group>"; };
-		1600EB681C87E876001919EB /* YRYJLearnToDriveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJLearnToDriveController.m; sourceTree = "<group>"; };
-		1600EB691C87E876001919EB /* YRYJSecondClassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJSecondClassController.h; sourceTree = "<group>"; };
-		1600EB6A1C87E876001919EB /* YRYJSecondClassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJSecondClassController.m; sourceTree = "<group>"; };
-		1600EB6B1C87E876001919EB /* YRYJThirdClassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJThirdClassController.h; sourceTree = "<group>"; };
-		1600EB6C1C87E876001919EB /* YRYJThirdClassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJThirdClassController.m; sourceTree = "<group>"; };
-		1600EB701C87E876001919EB /* YRYJMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJMenuViewController.h; sourceTree = "<group>"; };
-		1600EB711C87E876001919EB /* YRYJMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJMenuViewController.m; sourceTree = "<group>"; };
-		1600EB7D1C87E876001919EB /* YRYJForgetPswViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJForgetPswViewController.h; sourceTree = "<group>"; };
-		1600EB7E1C87E876001919EB /* YRYJForgetPswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJForgetPswViewController.m; sourceTree = "<group>"; };
-		1600EB7F1C87E876001919EB /* YRYJLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJLoginViewController.h; sourceTree = "<group>"; };
-		1600EB801C87E876001919EB /* YRYJLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJLoginViewController.m; sourceTree = "<group>"; };
-		1600EB811C87E876001919EB /* YRYJRegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJRegistViewController.h; sourceTree = "<group>"; };
-		1600EB821C87E876001919EB /* YRYJRegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJRegistViewController.m; sourceTree = "<group>"; };
-		1600EB841C87E876001919EB /* UIButton+titleFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+titleFrame.h"; sourceTree = "<group>"; };
-		1600EB851C87E876001919EB /* UIButton+titleFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+titleFrame.m"; sourceTree = "<group>"; };
-		1600EB861C87E876001919EB /* UIViewController+CWS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CWS.h"; sourceTree = "<group>"; };
-		1600EB871C87E876001919EB /* UIViewController+CWS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CWS.m"; sourceTree = "<group>"; };
-		1600EB891C87E876001919EB /* CWSLoginTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWSLoginTextField.h; sourceTree = "<group>"; };
-		1600EB8A1C87E876001919EB /* CWSLoginTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWSLoginTextField.m; sourceTree = "<group>"; };
-		1600EB8B1C87E876001919EB /* CWSPublicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWSPublicButton.h; sourceTree = "<group>"; };
-		1600EB8C1C87E876001919EB /* CWSPublicButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWSPublicButton.m; sourceTree = "<group>"; };
-		1600EB8D1C87E876001919EB /* login_shanchu_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_shanchu_right@2x.png"; sourceTree = "<group>"; };
-		1600EB8E1C87E876001919EB /* searchbar_textfield_search_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchbar_textfield_search_icon@2x.png"; sourceTree = "<group>"; };
 		1600EB9F1C87E8A5001919EB /* YRYJNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJNavigationController.h; sourceTree = "<group>"; };
 		1600EBA01C87E8A5001919EB /* YRYJNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJNavigationController.m; sourceTree = "<group>"; };
 		1600EBA41C88087A001919EB /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
@@ -135,6 +138,206 @@
 			path = Public;
 			sourceTree = "<group>";
 		};
+		037F8DDF1C8826750057BF6C /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				037F8DE01C8826750057BF6C /* Controller */,
+				037F8DE11C8826750057BF6C /* Model */,
+				037F8DE21C8826750057BF6C /* View */,
+			);
+			name = Friend;
+			path = Controller/Friend;
+			sourceTree = "<group>";
+		};
+		037F8DE01C8826750057BF6C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		037F8DE11C8826750057BF6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		037F8DE21C8826750057BF6C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		037F8DE31C8826750057BF6C /* FriendCircle */ = {
+			isa = PBXGroup;
+			children = (
+				037F8DE41C8826750057BF6C /* Controller */,
+				037F8DE51C8826750057BF6C /* Model */,
+				037F8DE61C8826750057BF6C /* View */,
+			);
+			name = FriendCircle;
+			path = Controller/FriendCircle;
+			sourceTree = "<group>";
+		};
+		037F8DE41C8826750057BF6C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		037F8DE51C8826750057BF6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		037F8DE61C8826750057BF6C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		037F8DE71C8826750057BF6C /* Learn */ = {
+			isa = PBXGroup;
+			children = (
+				037F8DE81C8826750057BF6C /* Controller */,
+			);
+			name = Learn;
+			path = Controller/Learn;
+			sourceTree = "<group>";
+		};
+		037F8DE81C8826750057BF6C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				037F8DE91C8826750057BF6C /* YRYJFirstClassController.h */,
+				037F8DEA1C8826750057BF6C /* YRYJFirstClassController.m */,
+				037F8DEB1C8826750057BF6C /* YRYJFourthClassController.h */,
+				037F8DEC1C8826750057BF6C /* YRYJFourthClassController.m */,
+				037F8DED1C8826750057BF6C /* YRYJLearnToDriveController.h */,
+				037F8DEE1C8826750057BF6C /* YRYJLearnToDriveController.m */,
+				037F8DEF1C8826750057BF6C /* YRYJSecondClassController.h */,
+				037F8DF01C8826750057BF6C /* YRYJSecondClassController.m */,
+				037F8DF11C8826750057BF6C /* YRYJThirdClassController.h */,
+				037F8DF21C8826750057BF6C /* YRYJThirdClassController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		037F8DF31C8826750057BF6C /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				037F8DF41C8826750057BF6C /* YRYJMenuViewController.h */,
+				037F8DF51C8826750057BF6C /* YRYJMenuViewController.m */,
+			);
+			name = Menu;
+			path = Controller/Menu;
+			sourceTree = "<group>";
+		};
+		037F8DF61C8826750057BF6C /* Near */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Near;
+			path = Controller/Near;
+			sourceTree = "<group>";
+		};
+		037F8DF71C8826750057BF6C /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				037F8DF81C8826750057BF6C /* Controller */,
+				037F8DF91C8826750057BF6C /* Model */,
+				037F8DFA1C8826750057BF6C /* View */,
+			);
+			name = Setting;
+			path = Controller/Setting;
+			sourceTree = "<group>";
+		};
+		037F8DF81C8826750057BF6C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		037F8DF91C8826750057BF6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		037F8DFA1C8826750057BF6C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		037F8DFB1C8826750057BF6C /* UserCenter */ = {
+			isa = PBXGroup;
+			children = (
+				037F8DFC1C8826750057BF6C /* Controller */,
+				037F8E041C8826750057BF6C /* Model */,
+				037F8E091C8826750057BF6C /* View */,
+			);
+			name = UserCenter;
+			path = Controller/UserCenter;
+			sourceTree = "<group>";
+		};
+		037F8DFC1C8826750057BF6C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				037F8DFD1C8826750057BF6C /* LoginAndRegist */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		037F8DFD1C8826750057BF6C /* LoginAndRegist */ = {
+			isa = PBXGroup;
+			children = (
+				037F8DFE1C8826750057BF6C /* YRYJForgetPswViewController.h */,
+				037F8DFF1C8826750057BF6C /* YRYJForgetPswViewController.m */,
+				037F8E001C8826750057BF6C /* YRYJLoginViewController.h */,
+				037F8E011C8826750057BF6C /* YRYJLoginViewController.m */,
+				037F8E021C8826750057BF6C /* YRYJRegistViewController.h */,
+				037F8E031C8826750057BF6C /* YRYJRegistViewController.m */,
+			);
+			path = LoginAndRegist;
+			sourceTree = "<group>";
+		};
+		037F8E041C8826750057BF6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				037F8E051C8826750057BF6C /* UIButton+titleFrame.h */,
+				037F8E061C8826750057BF6C /* UIButton+titleFrame.m */,
+				037F8E071C8826750057BF6C /* UIViewController+CWS.h */,
+				037F8E081C8826750057BF6C /* UIViewController+CWS.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		037F8E091C8826750057BF6C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				037F8E0A1C8826750057BF6C /* CWSLoginTextField.h */,
+				037F8E0B1C8826750057BF6C /* CWSLoginTextField.m */,
+				037F8E0C1C8826750057BF6C /* CWSPublicButton.h */,
+				037F8E0D1C8826750057BF6C /* CWSPublicButton.m */,
+				037F8E0E1C8826750057BF6C /* CWSReadPolicyView.h */,
+				037F8E0F1C8826750057BF6C /* CWSReadPolicyView.m */,
+				037F8E101C8826750057BF6C /* JKCountDownButton.h */,
+				037F8E111C8826750057BF6C /* JKCountDownButton.m */,
+				037F8E121C8826750057BF6C /* login_shanchu_right@2x.png */,
+				037F8E131C8826750057BF6C /* searchbar_textfield_search_icon@2x.png */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1600EB2D1C87E65D001919EB = {
 			isa = PBXGroup;
 			children = (
@@ -181,220 +384,15 @@
 		1600EB551C87E7D4001919EB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1600EB5D1C87E876001919EB /* Find */,
-				1600EB611C87E876001919EB /* LearnToDrive */,
-				1600EB6F1C87E876001919EB /* Main */,
-				1600EB721C87E876001919EB /* Near */,
-				1600EB761C87E876001919EB /* Setting */,
-				1600EB7A1C87E876001919EB /* User */,
+				037F8DDF1C8826750057BF6C /* Friend */,
+				037F8DE31C8826750057BF6C /* FriendCircle */,
+				037F8DE71C8826750057BF6C /* Learn */,
+				037F8DF31C8826750057BF6C /* Menu */,
+				037F8DF61C8826750057BF6C /* Near */,
+				037F8DF71C8826750057BF6C /* Setting */,
+				037F8DFB1C8826750057BF6C /* UserCenter */,
 			);
 			name = Controller;
-			sourceTree = "<group>";
-		};
-		1600EB5D1C87E876001919EB /* Find */ = {
-			isa = PBXGroup;
-			children = (
-				1600EB5E1C87E876001919EB /* Controller */,
-				1600EB5F1C87E876001919EB /* Model */,
-				1600EB601C87E876001919EB /* View */,
-			);
-			name = Find;
-			path = Controller/Find;
-			sourceTree = "<group>";
-		};
-		1600EB5E1C87E876001919EB /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1600EB5F1C87E876001919EB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1600EB601C87E876001919EB /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1600EB611C87E876001919EB /* LearnToDrive */ = {
-			isa = PBXGroup;
-			children = (
-				1600EB621C87E876001919EB /* Controller */,
-				1600EB6D1C87E876001919EB /* Model */,
-				1600EB6E1C87E876001919EB /* View */,
-			);
-			name = LearnToDrive;
-			path = Controller/LearnToDrive;
-			sourceTree = "<group>";
-		};
-		1600EB621C87E876001919EB /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1600EB631C87E876001919EB /* YRYJFirstClassController.h */,
-				1600EB641C87E876001919EB /* YRYJFirstClassController.m */,
-				1600EB651C87E876001919EB /* YRYJFourthClassController.h */,
-				1600EB661C87E876001919EB /* YRYJFourthClassController.m */,
-				1600EB671C87E876001919EB /* YRYJLearnToDriveController.h */,
-				1600EB681C87E876001919EB /* YRYJLearnToDriveController.m */,
-				1600EB691C87E876001919EB /* YRYJSecondClassController.h */,
-				1600EB6A1C87E876001919EB /* YRYJSecondClassController.m */,
-				1600EB6B1C87E876001919EB /* YRYJThirdClassController.h */,
-				1600EB6C1C87E876001919EB /* YRYJThirdClassController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1600EB6D1C87E876001919EB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1600EB6E1C87E876001919EB /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1600EB6F1C87E876001919EB /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				1600EB701C87E876001919EB /* YRYJMenuViewController.h */,
-				1600EB711C87E876001919EB /* YRYJMenuViewController.m */,
-			);
-			name = Main;
-			path = Controller/Main;
-			sourceTree = "<group>";
-		};
-		1600EB721C87E876001919EB /* Near */ = {
-			isa = PBXGroup;
-			children = (
-				1600EB731C87E876001919EB /* Controller */,
-				1600EB741C87E876001919EB /* Model */,
-				1600EB751C87E876001919EB /* View */,
-			);
-			name = Near;
-			path = Controller/Near;
-			sourceTree = "<group>";
-		};
-		1600EB731C87E876001919EB /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1600EB741C87E876001919EB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1600EB751C87E876001919EB /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1600EB761C87E876001919EB /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-				1600EB771C87E876001919EB /* Controller */,
-				1600EB781C87E876001919EB /* Model */,
-				1600EB791C87E876001919EB /* View */,
-			);
-			name = Setting;
-			path = Controller/Setting;
-			sourceTree = "<group>";
-		};
-		1600EB771C87E876001919EB /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1600EB781C87E876001919EB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1600EB791C87E876001919EB /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1600EB7A1C87E876001919EB /* User */ = {
-			isa = PBXGroup;
-			children = (
-				1600EB7B1C87E876001919EB /* Controller */,
-				1600EB831C87E876001919EB /* Model */,
-				1600EB881C87E876001919EB /* View */,
-			);
-			name = User;
-			path = Controller/User;
-			sourceTree = "<group>";
-		};
-		1600EB7B1C87E876001919EB /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1600EB7C1C87E876001919EB /* LoginAndRegist */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1600EB7C1C87E876001919EB /* LoginAndRegist */ = {
-			isa = PBXGroup;
-			children = (
-				1600EB7D1C87E876001919EB /* YRYJForgetPswViewController.h */,
-				1600EB7E1C87E876001919EB /* YRYJForgetPswViewController.m */,
-				1600EB7F1C87E876001919EB /* YRYJLoginViewController.h */,
-				1600EB801C87E876001919EB /* YRYJLoginViewController.m */,
-				1600EB811C87E876001919EB /* YRYJRegistViewController.h */,
-				1600EB821C87E876001919EB /* YRYJRegistViewController.m */,
-			);
-			path = LoginAndRegist;
-			sourceTree = "<group>";
-		};
-		1600EB831C87E876001919EB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1600EB841C87E876001919EB /* UIButton+titleFrame.h */,
-				1600EB851C87E876001919EB /* UIButton+titleFrame.m */,
-				1600EB861C87E876001919EB /* UIViewController+CWS.h */,
-				1600EB871C87E876001919EB /* UIViewController+CWS.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1600EB881C87E876001919EB /* View */ = {
-			isa = PBXGroup;
-			children = (
-				037F8DC01C8814B00057BF6C /* JKCountDownButton.h */,
-				037F8DC11C8814B00057BF6C /* JKCountDownButton.m */,
-				1600EB891C87E876001919EB /* CWSLoginTextField.h */,
-				1600EB8A1C87E876001919EB /* CWSLoginTextField.m */,
-				1600EB8B1C87E876001919EB /* CWSPublicButton.h */,
-				1600EB8C1C87E876001919EB /* CWSPublicButton.m */,
-				1600EB8D1C87E876001919EB /* login_shanchu_right@2x.png */,
-				1600EB8E1C87E876001919EB /* searchbar_textfield_search_icon@2x.png */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		1600EB9E1C87E8A5001919EB /* Category */ = {
@@ -562,10 +560,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				037F8E231C8826750057BF6C /* login_shanchu_right@2x.png in Resources */,
 				1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */,
-				1600EB9D1C87E876001919EB /* searchbar_textfield_search_icon@2x.png in Resources */,
 				1600EB461C87E65D001919EB /* Assets.xcassets in Resources */,
-				1600EB9C1C87E876001919EB /* login_shanchu_right@2x.png in Resources */,
+				037F8E241C8826750057BF6C /* searchbar_textfield_search_icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,34 +622,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1600EB901C87E876001919EB /* YRYJFourthClassController.m in Sources */,
 				1600EBC81C88087A001919EB /* XBTagTitleModel.m in Sources */,
 				1600EBC11C88087A001919EB /* RECommonFunctions.m in Sources */,
-				1600EB971C87E876001919EB /* YRYJRegistViewController.m in Sources */,
-				1600EB981C87E876001919EB /* UIButton+titleFrame.m in Sources */,
-				1600EB951C87E876001919EB /* YRYJForgetPswViewController.m in Sources */,
 				1600EBCA1C88087A001919EB /* XBPageCell.m in Sources */,
 				1600EBA11C87E8A5001919EB /* YRYJNavigationController.m in Sources */,
-				1600EB931C87E876001919EB /* YRYJThirdClassController.m in Sources */,
-				1600EB9B1C87E876001919EB /* CWSPublicButton.m in Sources */,
 				1600EBC31C88087A001919EB /* REFrostedViewController.m in Sources */,
-				1600EB921C87E876001919EB /* YRYJSecondClassController.m in Sources */,
-				1600EB961C87E876001919EB /* YRYJLoginViewController.m in Sources */,
+				037F8E1F1C8826750057BF6C /* CWSLoginTextField.m in Sources */,
+				037F8E151C8826750057BF6C /* YRYJFourthClassController.m in Sources */,
+				037F8E161C8826750057BF6C /* YRYJLearnToDriveController.m in Sources */,
+				037F8E141C8826750057BF6C /* YRYJFirstClassController.m in Sources */,
+				037F8E1C1C8826750057BF6C /* YRYJRegistViewController.m in Sources */,
 				037F8DC61C8815F80057BF6C /* AppDelegate.m in Sources */,
-				1600EB911C87E876001919EB /* YRYJLearnToDriveController.m in Sources */,
 				1600EBCC1C88087A001919EB /* XBConst.m in Sources */,
+				037F8E201C8826750057BF6C /* CWSPublicButton.m in Sources */,
+				037F8E211C8826750057BF6C /* CWSReadPolicyView.m in Sources */,
+				037F8E171C8826750057BF6C /* YRYJSecondClassController.m in Sources */,
 				1600EBC51C88087A001919EB /* UIView+REFrostedViewController.m in Sources */,
-				1600EB991C87E876001919EB /* UIViewController+CWS.m in Sources */,
+				037F8E1D1C8826750057BF6C /* UIButton+titleFrame.m in Sources */,
+				037F8E1A1C8826750057BF6C /* YRYJForgetPswViewController.m in Sources */,
+				037F8E181C8826750057BF6C /* YRYJThirdClassController.m in Sources */,
+				037F8E191C8826750057BF6C /* YRYJMenuViewController.m in Sources */,
 				1600EB3B1C87E65D001919EB /* main.m in Sources */,
 				1600EBC41C88087A001919EB /* UIImage+REFrostedViewController.m in Sources */,
-				1600EB941C87E876001919EB /* YRYJMenuViewController.m in Sources */,
-				037F8DC21C8814B00057BF6C /* JKCountDownButton.m in Sources */,
-				1600EB9A1C87E876001919EB /* CWSLoginTextField.m in Sources */,
+				037F8E221C8826750057BF6C /* JKCountDownButton.m in Sources */,
 				1600EBC21C88087A001919EB /* REFrostedContainerViewController.m in Sources */,
+				037F8E1E1C8826750057BF6C /* UIViewController+CWS.m in Sources */,
 				1600EBC91C88087A001919EB /* UIView+XBExtension.m in Sources */,
 				1600EBC71C88087A001919EB /* XBScrollPageController.m in Sources */,
+				037F8E1B1C8826750057BF6C /* YRYJLoginViewController.m in Sources */,
 				1600EBC61C88087A001919EB /* UIViewController+REFrostedViewController.m in Sources */,
-				1600EB8F1C87E876001919EB /* YRYJFirstClassController.m in Sources */,
 				1600EBCB1C88087A001919EB /* XBTagTitleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

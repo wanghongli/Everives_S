@@ -18,6 +18,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"忘记密码?";
+    
 }
 
 - (void)didReceiveMemoryWarning {

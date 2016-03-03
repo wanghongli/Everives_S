@@ -1,0 +1,15 @@
+//
+//  PrefixFile.pch
+//  蚁人约驾(学员)
+//
+//  Created by 李洪攀 on 16/3/3.
+//  Copyright © 2016年 SkyFish. All rights reserved.
+//
+
+#ifndef PrefixFile_pch
+#define PrefixFile_pch
+
+#import "UIViewController+CWS.h"
+#import "UIView+XBExtension.h"
+#import "Define.h"
+#endif /* PrefixFile_pch */

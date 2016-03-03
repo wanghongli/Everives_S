@@ -1,18 +1,20 @@
 //
-//  YRYJRegistViewController.m
+//  YRRegistViewController.m
 //  蚁人约驾(学员)
 //
 //  Created by 李洪攀 on 16/3/2.
 //  Copyright © 2016年 SkyFish. All rights reserved.
 //
 
-#import "YRYJRegistViewController.h"
+#import "YRRegistViewController.h"
 #import "CWSPublicButton.h"
 #import "JKCountDownButton.h"
 #import "CWSReadPolicyView.h"
+#import "YRRegistPswController.h"
+#import "YRProtocolViewController.h"
 #define kDistance 10
 #define kTextFieldHeight 44
-@interface YRYJRegistViewController ()
+@interface YRRegistViewController ()<CWSReadPolicyViewDelegate>
 
 @property (nonatomic, strong) UITextField *tellText;
 @property (nonatomic, strong) UITextField *codeText;
@@ -22,12 +24,11 @@
 
 @end
 
-@implementation YRYJRegistViewController
+@implementation YRRegistViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"注册";
     [self buildUI];
     
 }
@@ -64,14 +65,15 @@
     
     
     self.registBtn = [[CWSPublicButton alloc]initWithFrame:CGRectMake(kDistance, CGRectGetMaxY(self.codeText.frame)+2*kDistance, self.tellText.width, kTextFieldHeight)];
-    [self.registBtn setTitle:@"注册" forState:UIControlStateNormal];
+    [self.registBtn setTitle:@"下一步" forState:UIControlStateNormal];
     [self.registBtn addTarget:self action:@selector(registClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.registBtn];
     
-    _readPolicyView = [[CWSReadPolicyView alloc]initWithFrame:CGRectMake(self.registBtn.x, self.registBtn.y+self.registBtn.height+20, kSizeOfScreen.width-30, 20)];
-    _readPolicyView.delegate = self;
-    [self.view addSubview:_readPolicyView];
-    
+    if ([self.title isEqualToString:@"注册"]) {
+        _readPolicyView = [[CWSReadPolicyView alloc]initWithFrame:CGRectMake(self.registBtn.x, self.registBtn.y+self.registBtn.height+20, kSizeOfScreen.width-30, 20)];
+        _readPolicyView.delegate = self;
+        [self.view addSubview:_readPolicyView];
+    }
 }
 
 #pragma mark - 快速创建输入框
@@ -85,10 +87,27 @@
     return textField;
 }
 
--(void)registClick
+-(void)registClick:(CWSPublicButton *)sender
 {
+    YRRegistPswController *pswVC = [[YRRegistPswController alloc]init];
     
+    [self.navigationController pushViewController:pswVC animated:YES];
 }
+
+#pragma mark - 服务选项代理
+//跳转到服务协议界面
+-(void)readPolicyViewTurnToPolicyVC
+{
+    MyLog(@"%s",__func__);
+    YRProtocolViewController*policyVC = [[YRProtocolViewController alloc]init];
+    [self.navigationController pushViewController:policyVC animated:YES];
+}
+//是否选择协议
+-(void)readPolicyViewTochDown:(BOOL)readOrPolicy
+{
+//    _readSelect = readOrPolicy;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     

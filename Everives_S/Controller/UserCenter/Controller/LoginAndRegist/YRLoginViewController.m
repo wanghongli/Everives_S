@@ -1,23 +1,23 @@
 //
-//  YRYJLoginViewController.m
+//  YRLoginViewController.m
 //  蚁人约驾(学员)
 //
 //  Created by 李洪攀 on 16/3/2.
 //  Copyright © 2016年 SkyFish. All rights reserved.
 //
 
-#import "YRYJLoginViewController.h"
+#import "YRLoginViewController.h"
 #import "CWSLoginTextField.h"
 #import "CWSPublicButton.h"
 #import "UIButton+titleFrame.h"
 
-#import "YRYJForgetPswViewController.h"
-#import "YRYJRegistViewController.h"
+#import "YRForgetPswViewController.h"
+#import "YRRegistViewController.h"
 
 #define CWSPercent 0.53
 #define CWSLeftDistance 15
 #define CWSHeightDistance [[UIScreen mainScreen]applicationFrame].size.height * 0.03961268
-@interface YRYJLoginViewController ()
+@interface YRLoginViewController ()
 
 @property (nonatomic, strong) UIView *iconImgView;//大图片
 @property (nonatomic, strong) UILabel *titleLabel;//标题
@@ -29,7 +29,7 @@
 
 @end
 
-@implementation YRYJLoginViewController
+@implementation YRLoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -94,14 +94,16 @@
 - (void)forgetPassWordClick:(UIButton *)sender
 {
     NSLog(@"%s",__func__);
-    YRYJForgetPswViewController *forgetPasswordVC = [[YRYJForgetPswViewController alloc]init];
-    [self.navigationController pushViewController:forgetPasswordVC animated:YES];
+    YRRegistViewController *registVC = [[YRRegistViewController alloc]init];
+    registVC.title = @"忘记密码";
+    [self.navigationController pushViewController:registVC animated:YES];
 }
 #pragma mark - 注册事件
 - (void)registClick:(UIButton *)sender
 {
     NSLog(@"%s",__func__);
-    YRYJRegistViewController *registVC = [[YRYJRegistViewController alloc]init];
+    YRRegistViewController *registVC = [[YRRegistViewController alloc]init];
+    registVC.title = @"注册";
     [self.navigationController pushViewController:registVC animated:YES];
 }
 -(void)backClick

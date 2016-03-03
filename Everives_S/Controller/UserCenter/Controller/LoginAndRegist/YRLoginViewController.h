@@ -1,5 +1,5 @@
 //
-//  YRYJLoginViewController.h
+//  YRLoginViewController.h
 //  蚁人约驾(学员)
 //  登陆
 //  Created by 李洪攀 on 16/3/2.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YRYJLoginViewController : UIViewController
+@interface YRLoginViewController : UIViewController
 
 @end

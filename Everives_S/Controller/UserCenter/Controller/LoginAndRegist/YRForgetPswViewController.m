@@ -6,13 +6,13 @@
 //  Copyright © 2016年 SkyFish. All rights reserved.
 //
 
-#import "YRYJForgetPswViewController.h"
+#import "YRForgetPswViewController.h"
 
-@interface YRYJForgetPswViewController ()
+@interface YRForgetPswViewController ()
 
 @end
 
-@implementation YRYJForgetPswViewController
+@implementation YRForgetPswViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

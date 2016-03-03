@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YRYJForgetPswViewController : UIViewController
+@interface YRForgetPswViewController : UIViewController
 
 @end

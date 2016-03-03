@@ -11,7 +11,7 @@
 #import "UIViewController+REFrostedViewController.h"
 #import "YRYJLearnToDriveController.h"
 #import "UIView+SDAutoLayout.h"
-#import "YRYJLoginViewController.h"
+#import "YRLoginViewController.h"
 @interface YRYJMenuViewController ()
 
 @end
@@ -64,7 +64,7 @@
 -(void)userClick:(UIButton *)sender
 {
     NSLog(@"%s",__func__);
-    YRYJLoginViewController *loginVC = [[YRYJLoginViewController alloc]init];
+    YRLoginViewController *loginVC = [[YRLoginViewController alloc]init];
     loginVC.title = @"登陆";
     YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:loginVC];
     [self presentViewController:navigationController animated:YES completion:nil];

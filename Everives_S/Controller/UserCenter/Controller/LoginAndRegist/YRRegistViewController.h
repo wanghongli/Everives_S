@@ -1,5 +1,5 @@
 //
-//  YRYJRegistViewController.h
+//  YRRegistViewController.h
 //  蚁人约驾(学员)
 //
 //  Created by 李洪攀 on 16/3/2.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YRYJRegistViewController : UIViewController
+@interface YRRegistViewController : UIViewController
 
 @end

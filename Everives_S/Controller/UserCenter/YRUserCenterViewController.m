@@ -7,6 +7,7 @@
 //
 
 #import "YRUserCenterViewController.h"
+#import "YRReservationViewController.h"
 
 @interface YRUserCenterViewController (){
     NSArray *cellNmaes;
@@ -20,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     cellNmaes = @[@"我的预约",@"我的钱包",@"我的评价",@"我的进度",@"活动通知",@"信息认证"];
-    cellImgs = @[];
+    cellImgs = @[@"home_click2",@"home_click2",@"home_click2",@"home_click2",@"home_click2",@"home_click2"];
     cellClick = @[];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.rowHeight = 54;
@@ -45,9 +46,43 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.textLabel.text = cellNmaes[indexPath.section*4+indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:cellImgs[indexPath.section*4+indexPath.row]];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    NSLog(@"%@",cell);
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.section*4+indexPath.row) {
+        case 0:
+        {
+           [self.navigationController pushViewController: [[YRReservationViewController alloc] init] animated:YES] ;
+           break;
+        }
+        case 1:
+        {
+            break;
+        }
+        case 2:
+        {
+            break;
+        }
+        case 3:
+        {
+            break;
+        }
+        case 4:
+        {
+            break;
+        }
+        case 5:
+        {
+            break;
+        }
+            
+            
+        default:
+            break;
+    }
     
 }
 

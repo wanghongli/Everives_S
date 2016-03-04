@@ -47,6 +47,9 @@
 		1600EBCC1C88087A001919EB /* XBConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBC01C88087A001919EB /* XBConst.m */; };
 		16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096071C89236900FF4A81 /* YRUserCenterViewController.m */; };
 		16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D0960A1C89345D00FF4A81 /* RequestData.m */; };
+		16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096131C89682700FF4A81 /* YRReservationViewController.m */; };
+		16D096181C89699300FF4A81 /* YRReservationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096161C89699300FF4A81 /* YRReservationCell.m */; };
+		16D096191C89699300FF4A81 /* YRReservationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16D096171C89699300FF4A81 /* YRReservationCell.xib */; };
 		3E6442085DEAC8124A5E55C4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F955F842A16D32F98F195A02 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +135,11 @@
 		16D096071C89236900FF4A81 /* YRUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserCenterViewController.m; sourceTree = "<group>"; };
 		16D096091C89345D00FF4A81 /* RequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestData.h; sourceTree = "<group>"; };
 		16D0960A1C89345D00FF4A81 /* RequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestData.m; sourceTree = "<group>"; };
+		16D096121C89682700FF4A81 /* YRReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRReservationViewController.h; sourceTree = "<group>"; };
+		16D096131C89682700FF4A81 /* YRReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationViewController.m; sourceTree = "<group>"; };
+		16D096151C89699300FF4A81 /* YRReservationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRReservationCell.h; sourceTree = "<group>"; };
+		16D096161C89699300FF4A81 /* YRReservationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationCell.m; sourceTree = "<group>"; };
+		16D096171C89699300FF4A81 /* YRReservationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRReservationCell.xib; sourceTree = "<group>"; };
 		7015813C2D65EC7400D8D9EE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D594CBA93F4C6756E23B469B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F955F842A16D32F98F195A02 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,6 +323,12 @@
 			isa = PBXGroup;
 			children = (
 				037F8DFD1C8826750057BF6C /* LoginAndRegist */,
+				16D0960C1C8967DE00FF4A81 /* Activities */,
+				16D0960D1C8967DE00FF4A81 /* Certification */,
+				16D0960E1C8967DE00FF4A81 /* Commemts */,
+				16D0960F1C8967DE00FF4A81 /* Progress */,
+				16D096101C8967DE00FF4A81 /* Reservation */,
+				16D096111C8967DE00FF4A81 /* Wallet */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -533,6 +547,53 @@
 			path = XBConst;
 			sourceTree = "<group>";
 		};
+		16D0960C1C8967DE00FF4A81 /* Activities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Activities;
+			sourceTree = "<group>";
+		};
+		16D0960D1C8967DE00FF4A81 /* Certification */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Certification;
+			sourceTree = "<group>";
+		};
+		16D0960E1C8967DE00FF4A81 /* Commemts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Commemts;
+			sourceTree = "<group>";
+		};
+		16D0960F1C8967DE00FF4A81 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
+		16D096101C8967DE00FF4A81 /* Reservation */ = {
+			isa = PBXGroup;
+			children = (
+				16D096121C89682700FF4A81 /* YRReservationViewController.h */,
+				16D096131C89682700FF4A81 /* YRReservationViewController.m */,
+				16D096151C89699300FF4A81 /* YRReservationCell.h */,
+				16D096161C89699300FF4A81 /* YRReservationCell.m */,
+				16D096171C89699300FF4A81 /* YRReservationCell.xib */,
+			);
+			path = Reservation;
+			sourceTree = "<group>";
+		};
+		16D096111C8967DE00FF4A81 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
 		2CC8B102BCD83EA57176F287 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -614,6 +675,7 @@
 				1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */,
 				037F8E2F1C88407E0057BF6C /* YRPersonalDataController.xib in Resources */,
 				1600EB461C87E65D001919EB /* Assets.xcassets in Resources */,
+				16D096191C89699300FF4A81 /* YRReservationCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,6 +736,7 @@
 			files = (
 				1600EBC81C88087A001919EB /* XBTagTitleModel.m in Sources */,
 				1600EBC11C88087A001919EB /* RECommonFunctions.m in Sources */,
+				16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */,
 				1600EBCA1C88087A001919EB /* XBPageCell.m in Sources */,
 				1600EBA11C87E8A5001919EB /* YRYJNavigationController.m in Sources */,
 				1600EBC31C88087A001919EB /* REFrostedViewController.m in Sources */,
@@ -697,6 +760,7 @@
 				037F8E181C8826750057BF6C /* YRYJThirdClassController.m in Sources */,
 				037F8E191C8826750057BF6C /* YRYJMenuViewController.m in Sources */,
 				1600EB3B1C87E65D001919EB /* main.m in Sources */,
+				16D096181C89699300FF4A81 /* YRReservationCell.m in Sources */,
 				1600EBC41C88087A001919EB /* UIImage+REFrostedViewController.m in Sources */,
 				037F8E321C884DBC0057BF6C /* PublicCheckMsgModel.m in Sources */,
 				037F8E221C8826750057BF6C /* JKCountDownButton.m in Sources */,

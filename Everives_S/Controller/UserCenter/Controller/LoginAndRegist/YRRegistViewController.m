@@ -12,6 +12,8 @@
 #import "CWSReadPolicyView.h"
 #import "YRRegistPswController.h"
 #import "YRProtocolViewController.h"
+#import "PublicCheckMsgModel.h"
+#import "NSString+Tools.h"
 #define kDistance 10
 #define kTextFieldHeight 44
 @interface YRRegistViewController ()<CWSReadPolicyViewDelegate>
@@ -89,9 +91,28 @@
 
 -(void)registClick:(CWSPublicButton *)sender
 {
-    YRRegistPswController *pswVC = [[YRRegistPswController alloc]init];
     
-    [self.navigationController pushViewController:pswVC animated:YES];
+    [PublicCheckMsgModel checkTellWithTellNum:self.tellText.text complete:^(BOOL isSuccess) {
+        
+        if (![self.codeText.text isValid]) {
+            NSLog(@"验证码不能为空");
+            return ;
+        }
+        
+        [RequestData GET:USER_CHECK_TELL parameters:@{@"tel":self.tellText.text,@"kind":@"0"} complete:^(NSDictionary *responseDic) {
+            NSLog(@"%@",responseDic);
+            YRRegistPswController *pswVC = [[YRRegistPswController alloc]init];
+            
+            [self.navigationController pushViewController:pswVC animated:YES];
+            
+        } failed:^(NSError *error) {
+            
+        }];
+        
+    } error:^(NSString *errorMsg) {
+        NSLog(@"%@",errorMsg);
+    }];
+    
 }
 
 #pragma mark - 服务选项代理

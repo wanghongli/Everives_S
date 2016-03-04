@@ -22,5 +22,12 @@
  */
 + (void)loginMsgCheckTell:(NSString *)phoneNum psw:(NSString *)pswMsg complete:(void (^)(BOOL isSuccess))completeBlock error:(void (^)(NSString *errorMsg))errorBlock;
 
-
+/**
+ *  检查手机号码是否注册
+ *
+ *  @param phoneNum      手机号码
+ *  @param completeBlock 完成回调
+ *  @param errorBlock    错误信息
+ */
++ (void)checkTellWithTellNum:(NSString *)phoneNum complete:(void (^)(BOOL isSuccess))completeBlock error:(void (^)(NSString *errorMsg))errorBlock;
 @end

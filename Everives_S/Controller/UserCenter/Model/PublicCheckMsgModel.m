@@ -34,4 +34,19 @@
     
 }
 
++ (void)checkTellWithTellNum:(NSString *)phoneNum complete:(void (^)(BOOL isSuccess))completeBlock error:(void (^)(NSString *errorMsg))errorBlock
+{
+    if (![phoneNum isValid]) {
+        if (errorBlock) {
+            errorBlock(@"手机号码不能为空");
+            return;
+        }
+    }
+    
+    if (completeBlock) {
+        if (completeBlock) {
+            completeBlock(YES);
+        }
+    }
+}
 @end

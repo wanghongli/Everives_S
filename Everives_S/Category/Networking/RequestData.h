@@ -25,6 +25,17 @@
                                 failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
 
 
++ (void)GET:(NSString *)URIString
+parameters:(nullable id)parameters
+   progress:(nullable void (^)(NSProgress *downloadProgress)) downloadProgress
+   complete:(void (^)(NSDictionary *responseDic))complete
+     failed:(void (^)(NSError *error))failed;
+
++ (void)GET:(NSString *)URIString
+ parameters:(nullable id)parameters
+   complete:(void (^)(NSDictionary *responseDic))complete
+     failed:(void (^)(NSError *error))failed;
+
 + (void)POST:(NSString *)URLString
                 parameters:(nullable id)parameters
                 contentProgress:(nullable void (^)(NSProgress *downloadProgress))downloadProgress

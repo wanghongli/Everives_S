@@ -7,77 +7,19 @@
 //
 
 #import "RequestData.h"
-
-
+@interface RequestData()
+@end
 @implementation RequestData
-+(void)requestInfomationWithURI:(NSString *)URI andParameters:(id)theParameters complete:(void (^)(NSDictionary *))complete failed:(void (^)(NSError *))failed{
-    
-    AFHTTPSessionManager *serssionManager = [AFHTTPSessionManager manager];
-    NSString *URL = [NSString stringWithFormat:@"%@%@",SERVER_URL,URI];
-    
-    [serssionManager POST:URL parameters:theParameters progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-    }];
-    
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    [manager POST:URL parameters:theParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        if(complete){
-//            complete(responseObject);
-//        }
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        MyLog(@"Error: %@", error);
-//        if (failed) {
-//            failed(error);
-//        }
-//    }];
++(void)GET:(NSString *)URIString parameters:(id)parameters progress:(void (^)(NSProgress *))downloadProgress success:(void (^)(NSURLSessionDataTask *, id _Nullable))success failure:(void (^)(NSURLSessionDataTask * _Nullable, NSError *))failure{
+    NSString *URLString = [NSString stringWithFormat:@"%@%@",SERVER_URL,URIString];
+    AFHTTPSessionManager *manger = [AFHTTPSessionManager manager];
+    [manger GET:URLString parameters:parameters progress:downloadProgress success:success failure:failure];
 }
-//+(void)requestInfomationContainUserMsgWithURI:(NSString *)URI
-//                                andParameters:(id)theParameters
-//                                     complete:(void (^)(NSDictionary *responseDic))complete failed:(void (^)(NSError *error))failed
-//{
-////    if (!KUserManager.netWorkBool) {
-////        [MBProgressHUD showError:@"" toView:[[UIApplication sharedApplication].delegate window]];
-////        return;
-////    }
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    if (KUserManager.id) {
-//        [manager.requestSerializer setValue:[NSString stringWithFormat:@"%ld",(long)KUserManager.id] forHTTPHeaderField:@"uid"];
-//        [manager.requestSerializer setValue:KUserManager.token forHTTPHeaderField:@"token"];
-//    }
-//    NSString *URL = [NSString stringWithFormat:@"%@%@",SERVER_URL,URI];
-//    [manager POST:URL parameters:theParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        if(complete){
-//            complete(responseObject);
-//        }
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        if (failed) {
-//            failed(error);
-//        }
-//    }];
-//}
-//+(void)requestGetInfomationWithURI:(NSString *)URI
-//                     andParameters:(id)theParameters
-//                          complete:(void (^)(NSDictionary *responseDic))complete failed:(void (^)(NSError *error))failed
-//{
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    if (KUserManager.id) {
-//        [manager.requestSerializer setValue:[NSString stringWithFormat:@"%ld",(long)KUserManager.id] forHTTPHeaderField:@"uid"];
-//        [manager.requestSerializer setValue:KUserManager.token forHTTPHeaderField:@"token"];
-//    }
-//    NSString *URL = [NSString stringWithFormat:@"%@%@",SERVER_URL,URI];
-//    [manager GET:URL parameters:theParameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-//        if(complete){
-//            complete(responseObject);
-//        }
-//    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-//        NSLog(@"Error: %@", error);
-//        if (failed) {
-//            failed(error);
-//        }
-//    }];
-//}
+
++(void)POST:(NSString *)URIString parameters:(id)parameters progress:(void (^)(NSProgress *))uploadProgress success:(void (^)(NSURLSessionDataTask *, id _Nullable))success failure:(void (^)(NSURLSessionDataTask * _Nullable, NSError *))failure{
+    NSString *URLString = [NSString stringWithFormat:@"%@%@",SERVER_URL,URIString];
+    AFHTTPSessionManager *manger = [AFHTTPSessionManager manager];
+    [manger POST:URLString parameters:parameters progress:uploadProgress success:success failure:failure];
+}
+
 @end

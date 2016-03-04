@@ -7,18 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking/AfNetworking.h"
-#import "Http.h"
+#import <AFNetworking/AfNetworking.h>
+#import "http.h"
 
 @interface RequestData : NSObject
-+(void)requestInfomationWithURI:(NSString *)URI
-                    andParameters:(id)theParameters
-                         complete:(void (^)(NSDictionary *responseDic))complete failed:(void (^)(NSError *error))failed;
+#pragma clang diagnostic ignored "-Wnullability-completeness"
++ (void)GET:(NSString *)URIString
+                            parameters:(nullable id)parameters
+                              progress:(nullable void (^)(NSProgress *downloadProgress)) downloadProgress
+                               success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+                               failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
 
-+(void)requestInfomationContainUserMsgWithURI:(NSString *)URI
-                  andParameters:(id)theParameters
-                       complete:(void (^)(NSDictionary *responseDic))complete failed:(void (^)(NSError *error))failed;
-+(void)requestGetInfomationWithURI:(NSString *)URI
-                                andParameters:(id)theParameters
-                                     complete:(void (^)(NSDictionary *responseDic))complete failed:(void (^)(NSError *error))failed;
++ (void)POST:(NSString *)URIString
+                             parameters:(nullable id)parameters
+                               progress:(nullable void (^)(NSProgress *uploadProgress)) uploadProgress
+                                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
 @end

@@ -92,6 +92,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+## RongCloudIMKit
+
+Copyright 2014 Rong Cloud
+
 ## SDAutoLayout
 
 The MIT License (MIT)

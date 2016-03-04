@@ -12,4 +12,5 @@
 #import "UIViewController+CWS.h"
 #import "UIView+XBExtension.h"
 #import "Define.h"
+#import "RequestData.h"
 #endif /* PrefixFile_pch */

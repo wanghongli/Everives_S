@@ -14,6 +14,8 @@
 #import "YRForgetPswViewController.h"
 #import "YRRegistViewController.h"
 #import "PublicCheckMsgModel.h"
+
+#import "MJExtension.h"
 #define CWSPercent 0.53
 #define CWSLeftDistance 15
 #define CWSHeightDistance [[UIScreen mainScreen]applicationFrame].size.height * 0.03961268
@@ -96,9 +98,13 @@
     MyLog(@"%s",__func__);
     
     [PublicCheckMsgModel loginMsgCheckTell:self.phoneTF.text psw:self.passwordTF.text complete:^(BOOL isSuccess) {
-        
+        [RequestData POST:USER_LOGIN parameters:@{@"tel":self.phoneTF.text,@"password":self.passwordTF.text,@"kind":@"0",@"type":@"1"} complete:^(NSDictionary *responseDic) {
+            NSLog(@"%@",responseDic);
+        } failed:^(NSError *error) {
+            NSLog(@"error - %@",[error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONString]);
+                                     }];
     } error:^(NSString *errorMsg) {//账号密码有误
-        MyLog(@"%@",errorMsg);
+        NSLog(@"%@",errorMsg);
     }];
     
 }

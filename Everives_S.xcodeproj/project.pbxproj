@@ -546,6 +546,7 @@
 		1600EB2E1C87E65D001919EB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = YR;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = darkclouds;
 				TargetAttributes = {

@@ -58,6 +58,10 @@
             complete(responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //错误信息描述
+        NSLog(@"error - %@",[error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONString]);
+        //错误编码
+        NSLog(@"errorCode - %ld",(long)error.code);
         if (failed) {
             failed(error);
         }

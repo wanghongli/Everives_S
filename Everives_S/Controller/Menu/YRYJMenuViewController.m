@@ -12,6 +12,7 @@
 #import "YRYJLearnToDriveController.h"
 #import "UIView+SDAutoLayout.h"
 #import "YRLoginViewController.h"
+#import "YRUserCenterViewController.h"
 @interface YRYJMenuViewController ()
 
 @end
@@ -114,8 +115,8 @@
         YRYJLearnToDriveController *homeViewController = [[YRYJLearnToDriveController alloc] init];
         YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:homeViewController];
         self.frostedViewController.contentViewController = navigationController;
-    } else {
-        UIViewController *secondViewController = [[UIViewController alloc] init];
+    } else if(indexPath.section == 1 && indexPath.row == 3){
+        UIViewController *secondViewController = [[YRUserCenterViewController alloc] init];
         YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
         self.frostedViewController.contentViewController = navigationController;
     }

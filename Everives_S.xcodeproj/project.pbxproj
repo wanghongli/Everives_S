@@ -43,6 +43,7 @@
 		1600EBCA1C88087A001919EB /* XBPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBBB1C88087A001919EB /* XBPageCell.m */; };
 		1600EBCB1C88087A001919EB /* XBTagTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBBD1C88087A001919EB /* XBTagTitleCell.m */; };
 		1600EBCC1C88087A001919EB /* XBConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBC01C88087A001919EB /* XBConst.m */; };
+		16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096071C89236900FF4A81 /* YRUserCenterViewController.m */; };
 		3E6442085DEAC8124A5E55C4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F955F842A16D32F98F195A02 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +120,8 @@
 		1600EBC01C88087A001919EB /* XBConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBConst.m; sourceTree = "<group>"; };
 		1600EBCF1C8808D8001919EB /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		1600EBD01C8808D8001919EB /* PrefixFile.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixFile.pch; sourceTree = "<group>"; };
+		16D096061C89236900FF4A81 /* YRUserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserCenterViewController.h; sourceTree = "<group>"; };
+		16D096071C89236900FF4A81 /* YRUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserCenterViewController.m; sourceTree = "<group>"; };
 		7015813C2D65EC7400D8D9EE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D594CBA93F4C6756E23B469B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F955F842A16D32F98F195A02 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,6 +291,8 @@
 		037F8DFB1C8826750057BF6C /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
+				16D096061C89236900FF4A81 /* YRUserCenterViewController.h */,
+				16D096071C89236900FF4A81 /* YRUserCenterViewController.m */,
 				037F8DFC1C8826750057BF6C /* Controller */,
 				037F8E041C8826750057BF6C /* Model */,
 				037F8E091C8826750057BF6C /* View */,
@@ -654,6 +659,7 @@
 				037F8E2A1C883C570057BF6C /* YRProtocolViewController.m in Sources */,
 				037F8E1D1C8826750057BF6C /* UIButton+titleFrame.m in Sources */,
 				037F8E1A1C8826750057BF6C /* YRForgetPswViewController.m in Sources */,
+				16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */,
 				037F8E181C8826750057BF6C /* YRYJThirdClassController.m in Sources */,
 				037F8E191C8826750057BF6C /* YRYJMenuViewController.m in Sources */,
 				1600EB3B1C87E65D001919EB /* main.m in Sources */,

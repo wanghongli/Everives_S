@@ -13,7 +13,7 @@
 
 #import "YRForgetPswViewController.h"
 #import "YRRegistViewController.h"
-
+#import "PublicCheckMsgModel.h"
 #define CWSPercent 0.53
 #define CWSLeftDistance 15
 #define CWSHeightDistance [[UIScreen mainScreen]applicationFrame].size.height * 0.03961268
@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
+    
     //创建视图
     [self setUI];
 }
@@ -42,6 +42,9 @@
 #pragma mark - 创建视图
 - (void)setUI
 {
+    //设置返回按钮
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
+    
     //logo
     CGFloat weight = kSizeOfScreen.height*(1-CWSPercent) > kSizeOfScreen.width ? kSizeOfScreen.width : kSizeOfScreen.height*(1-CWSPercent);
     _iconImgView = [[UIView alloc]init];
@@ -62,11 +65,13 @@
     _phoneTF.leftImage = [UIImage imageNamed:@"searchbar_textfield_search_icon"];
     _phoneTF.placeholder = @"手机号码";
     [self.view addSubview:_phoneTF];
+    
     //密码
     _passwordTF = [[CWSLoginTextField alloc]initWithFrame:CGRectMake(CWSLeftDistance, _phoneTF.y + _phoneTF.height + CWSHeightDistance, kSizeOfScreen.width - 2 * CWSLeftDistance, 44)];
     _passwordTF.leftImage = [UIImage imageNamed:@"searchbar_textfield_search_icon"];
     _passwordTF.placeholder = @"密码";
     [self.view addSubview:_passwordTF];
+    
     //登录按钮
     _sureBtn = [[CWSPublicButton alloc]initWithFrame:CGRectMake(CWSLeftDistance, _passwordTF.y + _passwordTF.height +2*CWSHeightDistance, kSizeOfScreen.width - 2 * CWSLeftDistance, 44)];
     [_sureBtn setTitle:@"登录" forState:UIControlStateNormal];
@@ -77,8 +82,8 @@
     _forgetPassWordBtn = [[UIButton alloc]initWithFrame:CGRectMake(CWSLeftDistance, kSizeOfScreen.height-30 + 20, 80, 30)];
     [_forgetPassWordBtn setFrameWithTitle:@"忘记密码?" forState:UIControlStateNormal];
     [_forgetPassWordBtn addTarget:self action:@selector(forgetPassWordClick:) forControlEvents:UIControlEventTouchUpInside];
-    
     [self.view addSubview:_forgetPassWordBtn];
+    
     //新用户注册
     _registBtn = [[UIButton alloc]initWithFrame:CGRectMake(kSizeOfScreen.width - CWSLeftDistance, _forgetPassWordBtn.y, 0, 30)];
     [_registBtn setFrameWithTitle:@"新用户注册" forState:UIControlStateNormal];
@@ -88,12 +93,19 @@
 #pragma mark - 登录事件
 - (void)loginClick:(CWSPublicButton*)sender
 {
-    NSLog(@"%s",__func__);
+    MyLog(@"%s",__func__);
+    
+    [PublicCheckMsgModel loginMsgCheckTell:self.phoneTF.text psw:self.passwordTF.text complete:^(BOOL isSuccess) {
+        
+    } error:^(NSString *errorMsg) {//账号密码有误
+        MyLog(@"%@",errorMsg);
+    }];
+    
 }
 #pragma mark - 忘记密码事件
 - (void)forgetPassWordClick:(UIButton *)sender
 {
-    NSLog(@"%s",__func__);
+    MyLog(@"%s",__func__);
     YRRegistViewController *registVC = [[YRRegistViewController alloc]init];
     registVC.title = @"忘记密码";
     [self.navigationController pushViewController:registVC animated:YES];
@@ -101,13 +113,15 @@
 #pragma mark - 注册事件
 - (void)registClick:(UIButton *)sender
 {
-    NSLog(@"%s",__func__);
+    MyLog(@"%s",__func__);
     YRRegistViewController *registVC = [[YRRegistViewController alloc]init];
     registVC.title = @"注册";
     [self.navigationController pushViewController:registVC animated:YES];
 }
+#pragma mark - 返回事件
 -(void)backClick
 {
+    MyLog(@"%s",__func__);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)didReceiveMemoryWarning {

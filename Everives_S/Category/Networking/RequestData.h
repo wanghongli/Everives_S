@@ -23,4 +23,16 @@
                                progress:(nullable void (^)(NSProgress *uploadProgress)) uploadProgress
                                 success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                 failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
+
+
++ (void)POST:(NSString *)URLString
+                parameters:(nullable id)parameters
+                contentProgress:(nullable void (^)(NSProgress *downloadProgress))downloadProgress
+                complete:(void (^)(NSDictionary *responseDic))complete
+                failed:(void (^)(NSError *error))failed;
+
++ (void)POST:(NSString *)URLString
+                parameters:(nullable id)parameters
+                complete:(void (^)(NSDictionary *responseDic))complete
+                failed:(void (^)(NSError *error))failed;
 @end

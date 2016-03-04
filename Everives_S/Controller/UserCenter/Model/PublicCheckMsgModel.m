@@ -12,14 +12,14 @@
 
 + (void)loginMsgCheckTell:(NSString *)phoneNum psw:(NSString *)pswMsg complete:(void (^)(BOOL isSuccess))completeBlock error:(void (^)(NSString *errorMsg))errorBlock
 {
-    if ([phoneNum isValid]) {
+    if (![phoneNum isValid]) {
         if (errorBlock) {
             errorBlock(@"手机号码不能为空");
             return;
         }
     }
     
-    if ([pswMsg isValid]) {
+    if (![pswMsg isValid]) {
         if (errorBlock) {
             errorBlock(@"密码不能为空");
             return;

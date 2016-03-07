@@ -10,11 +10,15 @@
 #import "CWSPublicButton.h"
 #import "YRRegistViewController.h"
 #import "YRPersonalDataController.h"
+#import "RequestData.h"
+#import "PublicCheckMsgModel.h"
 #define kDistance 10
 #define kTextFieldHeight 44
 @interface YRRegistPswController ()
 {
     BOOL _pswOrRegistVC;//no 为注册跳转
+    
+    NSMutableDictionary *_bodyDic;
 }
 @property (nonatomic, strong) UITextField *passwordTextField;//密码
 
@@ -30,7 +34,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"确认密码";
-    
+    _bodyDic = [NSMutableDictionary dictionary];
+    [_bodyDic setObject:self.tellNum forKey:@"tel"];
+    [_bodyDic setObject:self.codeNum forKey:@"code"];
+    [_bodyDic setObject:@"0" forKey:@"kind"];
+    [_bodyDic setObject:@"1" forKey:@"type"];
     [self buildUI];
 }
 
@@ -77,14 +85,39 @@
 #pragma  - 注册按钮
 - (void)registClick:(CWSPublicButton *)sender
 {
+    [PublicCheckMsgModel checkPswIsEqualFistPsw:self.passwordTextField.text secondPsw:self.againPasswordTextField.text complete:^(BOOL isSuccess) {
+        if (_pswOrRegistVC) {//忘记密码跳转来
+           
+            [_bodyDic setObject:self.passwordTextField.text forKey:@"password"];
+            
+            [RequestData POST:USER_FIND_PSW parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            } failed:^(NSError *error) {
+                
+            }];
+            
+        }else{//注册界面跳转而来
+            
+            [_bodyDic setObject:self.passwordTextField.text forKey:@"password"];
+            
+            [RequestData POST:USER_REGIST parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+                NSLog(@"%@",responseDic);
+                
+                YRPersonalDataController *personalVC = [[YRPersonalDataController alloc]initWithNibName:@"YRPersonalDataController" bundle:nil];
+                personalVC.title = @"完善个人资料";
+                [self.navigationController pushViewController:personalVC animated:YES];
+                
+            } failed:^(NSError *error) {
+                
+            }];
+            
+        }
+    } error:^(NSString *errorMsg) {
+        NSLog(@"%@",errorMsg);
+    }];
     
-    if (_pswOrRegistVC) {
-        
-    }else{
-        YRPersonalDataController *personalVC = [[YRPersonalDataController alloc]initWithNibName:@"YRPersonalDataController" bundle:nil];
-        personalVC.title = @"完善个人资料";
-        [self.navigationController pushViewController:personalVC animated:YES];
-    }
+    
+    
     
 }
 

@@ -13,4 +13,5 @@
 #import "UIView+XBExtension.h"
 #import "Define.h"
 #import "RequestData.h"
+#import "YRManager.h"
 #endif /* PrefixFile_pch */

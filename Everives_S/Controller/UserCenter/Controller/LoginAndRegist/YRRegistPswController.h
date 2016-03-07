@@ -10,4 +10,7 @@
 
 @interface YRRegistPswController : UIViewController
 
+@property (nonatomic, strong) NSString *tellNum;
+@property (nonatomic, strong) NSString *codeNum;
+
 @end

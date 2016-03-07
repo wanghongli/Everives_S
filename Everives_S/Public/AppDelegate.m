@@ -12,6 +12,7 @@
 #import "YRYJMenuViewController.h"
 #import <RongIMKit/RongIMKit.h>
 #import "RequestData.h"
+#import "YRUserStatus.h"
 @interface AppDelegate ()<RCIMUserInfoDataSource,RCIMGroupInfoDataSource>
 
 @end
@@ -29,11 +30,18 @@
     //连接融云服务器
     [[RCIM sharedRCIM] connectWithToken:@"kRongCloud_IM_User_Token" success:^(NSString *userId) {
         // Connect 成功
-    }
-    error:^(RCConnectErrorCode status) {
-                                  }
-                         tokenIncorrect:^() {
-                         }];
+    NSDictionary* dicUser = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"user"];
+    if (dicUser) {
+        YRUserStatus*status = [YRUserStatus mj_objectWithKeyValues:dicUser];
+        KUserManager = status;
+        
+    }} error:^(RCConnectErrorCode status) {
+                                      }
+       tokenIncorrect:^() {
+                             }];
+        
+    
+    
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];

@@ -94,7 +94,7 @@
 /**
  *  用户设置
  */
-#define KUserManager [UserManager shareUserManagerInfo].user
+#define KUserManager [YRManager shareManagerInfo].user
 #define KUserLocation [UserManager shareUserManagerInfo].userLocation
 /**
  *  视图圆角半径

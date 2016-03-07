@@ -49,4 +49,32 @@
         }
     }
 }
+
++ (void)checkPswIsEqualFistPsw:(NSString *)fistPsw secondPsw:(NSString *)secondPsw complete:(void (^)(BOOL isSuccess))completeBlock error:(void (^)(NSString *errorMsg))errorBlock
+{
+    NSString *backMsg;
+    if (![fistPsw isValid] ||![secondPsw isValid]) {
+        backMsg = @"密码不能为空";
+        if (errorBlock) {
+            errorBlock(backMsg);
+            return;
+        }
+    }
+    
+    if (![fistPsw isEqualToString:secondPsw]) {
+        backMsg = @"两次密码不相同";
+        if (errorBlock) {
+            errorBlock(backMsg);
+            return;
+        }
+    }
+    
+    
+    
+    if (completeBlock) {
+        completeBlock(YES);
+    }
+    
+}
+
 @end

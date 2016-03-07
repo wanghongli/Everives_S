@@ -29,6 +29,8 @@
 		037F8E2F1C88407E0057BF6C /* YRPersonalDataController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037F8E2D1C88407E0057BF6C /* YRPersonalDataController.xib */; };
 		037F8E321C884DBC0057BF6C /* PublicCheckMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E311C884DBC0057BF6C /* PublicCheckMsgModel.m */; };
 		037F8E361C891CE20057BF6C /* NSString+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E351C891CE20057BF6C /* NSString+Tools.m */; };
+		037F8E3E1C8D18D20057BF6C /* YRUserStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E3D1C8D18D20057BF6C /* YRUserStatus.m */; };
+		037F8E411C8D1E8F0057BF6C /* YRManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E401C8D1E8F0057BF6C /* YRManager.m */; };
 		1600EB3B1C87E65D001919EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB3A1C87E65D001919EB /* main.m */; };
 		1600EB461C87E65D001919EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB451C87E65D001919EB /* Assets.xcassets */; };
 		1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB471C87E65D001919EB /* LaunchScreen.storyboard */; };
@@ -98,6 +100,10 @@
 		037F8E341C891CE20057BF6C /* NSString+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Tools.h"; sourceTree = "<group>"; };
 		037F8E351C891CE20057BF6C /* NSString+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Tools.m"; sourceTree = "<group>"; };
 		037F8E381C891FAD0057BF6C /* Http.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Http.h; sourceTree = "<group>"; };
+		037F8E3C1C8D18D20057BF6C /* YRUserStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserStatus.h; sourceTree = "<group>"; };
+		037F8E3D1C8D18D20057BF6C /* YRUserStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserStatus.m; sourceTree = "<group>"; };
+		037F8E3F1C8D1E8F0057BF6C /* YRManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRManager.h; sourceTree = "<group>"; };
+		037F8E401C8D1E8F0057BF6C /* YRManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRManager.m; sourceTree = "<group>"; };
 		1600EB361C87E65D001919EB /* Everives_S.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everives_S.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1600EB3A1C87E65D001919EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1600EB451C87E65D001919EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -362,6 +368,10 @@
 				037F8E081C8826750057BF6C /* UIViewController+CWS.m */,
 				037F8E301C884DBC0057BF6C /* PublicCheckMsgModel.h */,
 				037F8E311C884DBC0057BF6C /* PublicCheckMsgModel.m */,
+				037F8E3C1C8D18D20057BF6C /* YRUserStatus.h */,
+				037F8E3D1C8D18D20057BF6C /* YRUserStatus.m */,
+				037F8E3F1C8D1E8F0057BF6C /* YRManager.h */,
+				037F8E401C8D1E8F0057BF6C /* YRManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -765,11 +775,13 @@
 				037F8E321C884DBC0057BF6C /* PublicCheckMsgModel.m in Sources */,
 				037F8E221C8826750057BF6C /* JKCountDownButton.m in Sources */,
 				1600EBC21C88087A001919EB /* REFrostedContainerViewController.m in Sources */,
+				037F8E3E1C8D18D20057BF6C /* YRUserStatus.m in Sources */,
 				16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */,
 				037F8E1E1C8826750057BF6C /* UIViewController+CWS.m in Sources */,
 				1600EBC91C88087A001919EB /* UIView+XBExtension.m in Sources */,
 				1600EBC71C88087A001919EB /* XBScrollPageController.m in Sources */,
 				037F8E1B1C8826750057BF6C /* YRLoginViewController.m in Sources */,
+				037F8E411C8D1E8F0057BF6C /* YRManager.m in Sources */,
 				037F8E361C891CE20057BF6C /* NSString+Tools.m in Sources */,
 				1600EBC61C88087A001919EB /* UIViewController+REFrostedViewController.m in Sources */,
 				1600EBCB1C88087A001919EB /* XBTagTitleCell.m in Sources */,

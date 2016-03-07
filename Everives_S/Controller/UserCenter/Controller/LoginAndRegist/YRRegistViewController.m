@@ -99,14 +99,27 @@
             return ;
         }
         
+        
         [RequestData GET:USER_CHECK_TELL parameters:@{@"tel":self.tellText.text,@"kind":@"0"} complete:^(NSDictionary *responseDic) {
             NSLog(@"%@",responseDic);
-            YRRegistPswController *pswVC = [[YRRegistPswController alloc]init];
             
+            if ([self.title isEqualToString:@"忘记密码"]) {//忘记密码
+                NSLog(@"手机号码没有注册");
+                return;
+            }
+            YRRegistPswController *pswVC = [[YRRegistPswController alloc]init];
+            pswVC.tellNum = self.tellText.text;
+            pswVC.codeNum = self.codeText.text;
             [self.navigationController pushViewController:pswVC animated:YES];
             
         } failed:^(NSError *error) {
-            
+            if ([self.title isEqualToString:@"忘记密码"]) {//忘记密码
+                YRRegistPswController *pswVC = [[YRRegistPswController alloc]init];
+                pswVC.tellNum = self.tellText.text;
+                pswVC.codeNum = self.codeText.text;
+                [self.navigationController pushViewController:pswVC animated:YES];
+                return;
+            }
         }];
         
     } error:^(NSString *errorMsg) {

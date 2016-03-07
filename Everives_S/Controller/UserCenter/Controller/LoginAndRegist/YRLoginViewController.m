@@ -15,6 +15,8 @@
 #import "YRRegistViewController.h"
 #import "PublicCheckMsgModel.h"
 
+#import <RongIMKit/RongIMKit.h>
+
 #import "MJExtension.h"
 #import "YRUserStatus.h"
 #define CWSPercent 0.53
@@ -102,9 +104,21 @@
         [RequestData POST:USER_LOGIN parameters:@{@"tel":self.phoneTF.text,@"password":self.passwordTF.text,@"kind":@"0",@"type":@"1"} complete:^(NSDictionary *responseDic) {
             NSLog(@"%@",responseDic);
             YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:responseDic];
-            
+            NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];
+            [userDefaults setObject:responseDic forKey:@"user"];
+            [NSUserDefaults resetStandardUserDefaults];
             KUserManager = user;
-            
+            //连接融云服务器
+            [[RCIM sharedRCIM] connectWithToken:KUserManager.rongToken success:^(NSString *userId) {
+                // Connect 成功
+                NSLog(@"融云链接成功");
+            }
+                                          error:^(RCConnectErrorCode status) {
+                                              NSLog(@"error_status = %ld",status);
+                                          }
+                                 tokenIncorrect:^() {
+                                     NSLog(@"token incorrect");
+                                 }];
             
         } failed:^(NSError *error) {
             

@@ -13,6 +13,7 @@
 #import "UIView+SDAutoLayout.h"
 #import "YRLoginViewController.h"
 #import "YRUserCenterViewController.h"
+#import "YRFriendCircleController.h"
 @interface YRYJMenuViewController ()
 
 @end
@@ -111,14 +112,38 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0 && indexPath.row == 0) {
+    if (indexPath.section == 0 ) {
         YRYJLearnToDriveController *homeViewController = [[YRYJLearnToDriveController alloc] init];
         YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:homeViewController];
         self.frostedViewController.contentViewController = navigationController;
-    } else if(indexPath.section == 1 && indexPath.row == 3){
-        UIViewController *secondViewController = [[YRUserCenterViewController alloc] init];
-        YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
-        self.frostedViewController.contentViewController = navigationController;
+    } else if(indexPath.section == 1){
+        if (indexPath.row == 0) {
+            UIViewController *secondViewController = [[YRUserCenterViewController alloc] init];
+            YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
+            self.frostedViewController.contentViewController = navigationController;
+        }else if (indexPath.row == 1) {
+            YRFriendCircleController *secondViewController = [[YRFriendCircleController alloc] init];
+            YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
+            self.frostedViewController.contentViewController = navigationController;
+        }else if (indexPath.row == 2) {
+            UIViewController *secondViewController = [[YRUserCenterViewController alloc] init];
+            YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
+            self.frostedViewController.contentViewController = navigationController;
+        }else if (indexPath.row == 3) {
+            UIViewController *secondViewController = [[YRUserCenterViewController alloc] init];
+            YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
+            self.frostedViewController.contentViewController = navigationController;
+        }
+        
+    }else if(indexPath.section == 2){
+        if (indexPath.row == 0) {
+            UIViewController *secondViewController = [[YRUserCenterViewController alloc] init];
+            YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
+            self.frostedViewController.contentViewController = navigationController;
+        }else if (indexPath.row == 1) {
+            
+        }
+       
     }
     
     [self.frostedViewController hideMenuViewController];

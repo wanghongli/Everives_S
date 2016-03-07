@@ -10,6 +10,9 @@
 #import "YRReservationViewController.h"
 #import "YRMyWalletViewController.h"
 #import "YRMyCommentsTableViewController.h"
+#import "YRMyProgressViewController.h"
+#import "YRNotificationViewController.h"
+#import "YRCertificationViewController.h"
 
 @interface YRUserCenterViewController (){
     NSArray *cellNmaes;
@@ -74,14 +77,20 @@
         }
         case 3:
         {
+            [self.navigationController pushViewController:
+             [[YRMyProgressViewController alloc] init] animated:YES] ;
             break;
         }
         case 4:
         {
+            [self.navigationController pushViewController:
+             [[YRNotificationViewController alloc] init] animated:YES] ;
             break;
         }
         case 5:
         {
+            [self.navigationController pushViewController:
+             [[YRCertificationViewController alloc] init] animated:YES] ;
             break;
         }
             

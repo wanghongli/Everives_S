@@ -11,6 +11,7 @@
 #import "YRYJLearnToDriveController.h"
 #import "YRYJMenuViewController.h"
 #import <RongIMKit/RongIMKit.h>
+#import "RequestData.h"
 #import "YRUserStatus.h"
 @interface AppDelegate ()<RCIMUserInfoDataSource,RCIMGroupInfoDataSource>
 
@@ -26,19 +27,20 @@
     [[RCIM sharedRCIM] setGroupInfoDataSource:self];
     
     
+    //连接融云服务器
+    [[RCIM sharedRCIM] connectWithToken:@"kRongCloud_IM_User_Token" success:^(NSString *userId) {
+        // Connect 成功
     NSDictionary* dicUser = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"user"];
     if (dicUser) {
         YRUserStatus*status = [YRUserStatus mj_objectWithKeyValues:dicUser];
         KUserManager = status;
-        //连接融云服务器
-        [[RCIM sharedRCIM] connectWithToken:KUserManager.rongToken success:^(NSString *userId) {
-            // Connect 成功
-        }
-                                      error:^(RCConnectErrorCode status) {
+        
+    }} error:^(RCConnectErrorCode status) {
                                       }
-                             tokenIncorrect:^() {
+       tokenIncorrect:^() {
                              }];
-    }
+        
+    
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

@@ -112,6 +112,7 @@
             [[RCIM sharedRCIM] connectWithToken:KUserManager.rongToken success:^(NSString *userId) {
                 // Connect 成功
                 NSLog(@"融云链接成功");
+                [self dismissViewControllerAnimated:YES completion:nil];
             }
                                           error:^(RCConnectErrorCode status) {
                                               NSLog(@"error_status = %ld",status);

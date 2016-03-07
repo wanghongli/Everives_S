@@ -17,40 +17,38 @@
    complete:(void (^)(NSDictionary *responseDic))complete
      failed:(void (^)(NSError *error))failed
 {
-    NSString *URLString = [NSString stringWithFormat:@"%@%@",SERVER_URL,URIString];
-    AFHTTPSessionManager *manger = [AFHTTPSessionManager manager];
-    
-    [manger GET:URLString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (complete) {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    if (KUserManager.id) {
+        [manager.requestSerializer setValue:[NSString stringWithFormat:@"%ld",(long)KUserManager.id] forHTTPHeaderField:@"uid"];
+        [manager.requestSerializer setValue:KUserManager.token forHTTPHeaderField:@"token"];
+    }
+    NSString *URL = [NSString stringWithFormat:@"%@%@",SERVER_URL,URIString];
+    [manager GET:URL parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if(complete){
             complete(responseObject);
         }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //错误信息描述
-        NSLog(@"error - %@",[error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONString]);
-        //错误编码
-        NSLog(@"errorCode - %ld",(long)error.code);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error);
         if (failed) {
             failed(error);
         }
     }];
+
 }
 
 + (void)POST:(NSString *)URLString parameters:(id)parameters complete:(void (^)(NSDictionary *))complete failed:(void (^)(NSError *))failed
 {
-    NSString *UrlString = [NSString stringWithFormat:@"%@%@",SERVER_URL,URLString];
-    AFHTTPSessionManager *manger = [AFHTTPSessionManager manager];
-    
-    [manger POST:UrlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (complete) {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    if (KUserManager.id) {
+        [manager.requestSerializer setValue:[NSString stringWithFormat:@"%ld",(long)KUserManager.id] forHTTPHeaderField:@"uid"];
+        [manager.requestSerializer setValue:KUserManager.token forHTTPHeaderField:@"token"];
+    }
+    NSString *URL = [NSString stringWithFormat:@"%@%@",SERVER_URL,URLString];
+    [manager POST:URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if(complete){
             complete(responseObject);
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //错误信息描述
-        NSLog(@"error - %@",error);
-        NSLog(@"error userinfo - %@",[error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONString]);
-        //错误编码
-        NSLog(@"errorCode - %ld",(long)error.code);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (failed) {
             failed(error);
         }

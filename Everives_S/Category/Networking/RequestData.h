@@ -12,35 +12,13 @@
 
 @interface RequestData : NSObject
 #pragma clang diagnostic ignored "-Wnullability-completeness"
-+ (void)GET:(NSString *)URIString
-                            parameters:(nullable id)parameters
-                              progress:(nullable void (^)(NSProgress *downloadProgress)) downloadProgress
-                               success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
-                               failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
 
-+ (void)POST:(NSString *)URIString
-                             parameters:(nullable id)parameters
-                               progress:(nullable void (^)(NSProgress *uploadProgress)) uploadProgress
-                                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
-                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
-
-
-+ (void)GET:(NSString *)URIString
-parameters:(nullable id)parameters
-   progress:(nullable void (^)(NSProgress *downloadProgress)) downloadProgress
-   complete:(void (^)(NSDictionary *responseDic))complete
-     failed:(void (^)(NSError *error))failed;
 
 + (void)GET:(NSString *)URIString
  parameters:(nullable id)parameters
    complete:(void (^)(NSDictionary *responseDic))complete
      failed:(void (^)(NSError *error))failed;
 
-+ (void)POST:(NSString *)URLString
-                parameters:(nullable id)parameters
-                contentProgress:(nullable void (^)(NSProgress *downloadProgress))downloadProgress
-                complete:(void (^)(NSDictionary *responseDic))complete
-                failed:(void (^)(NSError *error))failed;
 
 + (void)POST:(NSString *)URLString
                 parameters:(nullable id)parameters

@@ -9,7 +9,11 @@
 #import "YRAddWeiboController.h"
 #import "JKImagePickerController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "NSString+MKNetworkKitAdditions.h"
 #import "PhotoCell.h"
+#import <QiniuSDK.h>
+#import "NSString+Tools.h"
+
 @interface YRAddWeiboController ()<JKImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UITextViewDelegate>
 {
     NSMutableDictionary *_bodyDic;
@@ -82,15 +86,15 @@
 }
 -(void)publishClick:(UIButton*)sender
 {
-//    [_imgNameArray removeAllObjects];
-//    [_publishImgArray removeAllObjects];
-//    if (!self.textView.text.length) {
-//        [MBProgressHUD showError:@"渔获内容不能为空" toView:self.view];
-//        return;
-//    }else if([self.textView.text isEqualToString:@"说点什么吧"]){
-//        [MBProgressHUD showError:@"渔获内容不能为空" toView:self.view];
-//        return;
-//    }
+    [_imgNameArray removeAllObjects];
+    [_publishImgArray removeAllObjects];
+    if (!self.textView.text.length) {
+        [MBProgressHUD showError:@"内容不能为空" toView:self.view];
+        return;
+    }else if([self.textView.text isEqualToString:@"说点什么吧"]){
+        [MBProgressHUD showError:@"内容不能为空" toView:self.view];
+        return;
+    }
 //    if (KUserLocation.addr!=nil ) {
 //        [_bodyDic setObject:KUserLocation.addr forKey:@"address"];
 //        [_bodyDic setObject:KUserLocation.longitude forKey:@"lng"];
@@ -100,53 +104,53 @@
 //        [_bodyDic setObject:KUserManager.lng forKey:@"lng"];
 //        [_bodyDic setObject:KUserManager.lat forKey:@"lat"];
 //    }
-//    [_bodyDic setObject:self.textView.text forKey:@"content"];
-//    if (!self.assetsArray.count) {
-//        NSString *imgArray = [_publishImgArray mj_JSONString];
-//        [_bodyDic setObject:imgArray forKey:@"images"];
-//        [MBProgressHUD showMessag:@"上传中..." toView:self.view];
-//        [RequestData requestInfomationContainUserMsgWithURI:WEIBO_ADD andParameters:_bodyDic complete:^(NSDictionary *responseDic) {
-//            [self.navigationController popViewControllerAnimated:YES];
-//            [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        } failed:^(NSError *error) {
-//            [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        }];
-//        return;
-//    }
-//    for (int i = 0; i<self.assetsArray.count; i++) {
-//        JKAssets *jkasset = self.assetsArray[i];
-//        ALAssetsLibrary   *lib = [[ALAssetsLibrary alloc] init];
-//        [lib assetForURL:jkasset.assetPropertyURL resultBlock:^(ALAsset *asset) {
-//            if (asset) {
-//                UIImage *img=[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
-//                NSData *uploadData = UIImageJPEGRepresentation(img, 1);
-//                NSString *imageName = [[uploadData.description md5] addString:@".jpg"];
-//                [_imgNameArray addObject:imageName];
-//                [_publishImgArray addObject:[NSString stringWithFormat:@"http://7xn7nj.com2.z0.glb.qiniucdn.com/%@",imageName]];
-//                if (_imgNameArray.count == self.assetsArray.count) {
-//                    NSString *imgArray = [_publishImgArray mj_JSONString];
-//                    [_bodyDic setObject:imgArray forKey:@"images"];
-//                    [self publishImages:_imgNameArray];
-//                    [MBProgressHUD showMessag:@"上传中..." toView:self.view];
-//                    [RequestData requestInfomationContainUserMsgWithURI:WEIBO_ADD andParameters:_bodyDic complete:^(NSDictionary *responseDic) {
-//                        if (_imgNameArray.count) {
-//                            [self performSelector:@selector(goBackVC) withObject:nil afterDelay:5];
-//                        }else{
-//                            [self.navigationController popViewControllerAnimated:YES];
-//                            [MBProgressHUD hideHUDForView:self.view animated:YES];
-//                        }
-//                        
-//                    } failed:^(NSError *error) {
-//                        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//                    }];
-//                }
-//            }
-//        } failureBlock:^(NSError *error) {
-//            
-//        }];
-//        
-//    }
-    
+    [_bodyDic setObject:@"重庆市渝北区光电园麒麟C座" forKey:@"address"];
+
+    [_bodyDic setObject:self.textView.text forKey:@"content"];
+    if (!self.assetsArray.count) {
+        NSString *imgArray = [_publishImgArray mj_JSONString];
+        [_bodyDic setObject:imgArray forKey:@"pics"];
+        [MBProgressHUD showMessag:@"上传中..." toView:self.view];
+        [RequestData POST:WEIBO_ADD parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+            [self.navigationController popViewControllerAnimated:YES];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        } failed:^(NSError *error) {
+             [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
+        return;
+    }
+    for (int i = 0; i<self.assetsArray.count; i++) {
+        JKAssets *jkasset = self.assetsArray[i];
+        ALAssetsLibrary   *lib = [[ALAssetsLibrary alloc] init];
+        [lib assetForURL:jkasset.assetPropertyURL resultBlock:^(ALAsset *asset) {
+            if (asset) {
+                UIImage *img=[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
+                NSData *uploadData = UIImageJPEGRepresentation(img, 1);
+                NSString *imageName = [[uploadData.description md5] addString:@".jpg"];
+                [_imgNameArray addObject:imageName];
+                [_publishImgArray addObject:[NSString stringWithFormat:@"http://7xn7nj.com2.z0.glb.qiniucdn.com/%@",imageName]];
+                if (_imgNameArray.count == self.assetsArray.count) {
+                    NSString *imgArray = [_publishImgArray mj_JSONString];
+                    [_bodyDic setObject:imgArray forKey:@"pics"];
+                    [self publishImages:_imgNameArray];
+                    [MBProgressHUD showMessag:@"上传中..." toView:self.view];
+                    
+                    [RequestData POST:WEIBO_ADD parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+                        if (_imgNameArray.count) {
+                            [self performSelector:@selector(goBackVC) withObject:nil afterDelay:5];
+                        }else{
+                            [self.navigationController popViewControllerAnimated:YES];
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        }
+                    } failed:^(NSError *error) {
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    }];
+                }
+            }
+        } failureBlock:^(NSError *error) {
+            
+        }];
+    }
 }
 -(void)goBackVC
 {
@@ -156,36 +160,36 @@
 }
 -(void)publishImages:(NSArray *)imgName
 {
-//    [RequestData requestGetInfomationWithURI:USER_QINIUTOKEN andParameters:nil complete:^(NSDictionary *responseDic) {
-//        //获取token
-//        NSString *token = responseDic[@"data"][@"token"];
-//        QNUploadManager *upManager = [[QNUploadManager alloc] init];
-//        for (int i = 0; i<self.assetsArray.count; i++) {
-//            JKAssets *jkasset = self.assetsArray[i];
-//            ALAssetsLibrary   *lib = [[ALAssetsLibrary alloc] init];
-//            [lib assetForURL:jkasset.assetPropertyURL resultBlock:^(ALAsset *asset) {
-//                if (asset) {
-//                    UIImage *img=[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
-//                    NSData *uploadData = UIImageJPEGRepresentation(img, 1);
-//                    //上传到七牛
-//                    [upManager putData:uploadData key:imgName[i] token:token
-//                              complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-//                                  if (resp) {
-//                                      if (i == self.assetsArray.count-1) {
-//                                          [MBProgressHUD showSuccess:@"上传成功" toView:self.navigationController.view];
-//                                      }
-//                                  }
-//                                  
-//                              } option:nil];
-//                }
-//            } failureBlock:^(NSError *error) {
-//                
-//            }];
-//        }
-//        
-//    } failed:^(NSError *error) {
-//        
-//    }];
+    [RequestData GET:USER_QINIUTOKEN parameters:nil complete:^(NSDictionary *responseDic) {
+        //获取token
+        NSString *token = responseDic[@"data"][@"token"];
+        QNUploadManager *upManager = [[QNUploadManager alloc] init];
+        for (int i = 0; i<self.assetsArray.count; i++) {
+            JKAssets *jkasset = self.assetsArray[i];
+            ALAssetsLibrary   *lib = [[ALAssetsLibrary alloc] init];
+            [lib assetForURL:jkasset.assetPropertyURL resultBlock:^(ALAsset *asset) {
+                if (asset) {
+                    UIImage *img=[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
+                    NSData *uploadData = UIImageJPEGRepresentation(img, 1);
+                    //上传到七牛
+                    [upManager putData:uploadData key:imgName[i] token:token
+                              complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                                  if (resp) {
+                                      if (i == self.assetsArray.count-1) {
+                                          [MBProgressHUD showSuccess:@"上传成功" toView:self.navigationController.view];
+                                      }
+                                  }
+                                  
+                              } option:nil];
+                }
+            } failureBlock:^(NSError *error) {
+                
+            }];
+        }
+        
+    } failed:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
     
     
 }

@@ -50,6 +50,7 @@
 		037F8E771C8D5FC50057BF6C /* UIView+JKPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E681C8D5FC50057BF6C /* UIView+JKPicker.m */; };
 		037F8E7A1C8D6EE90057BF6C /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E791C8D6EE90057BF6C /* PhotoCell.m */; };
 		037F8E7E1C8D78680057BF6C /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E7D1C8D78680057BF6C /* MBProgressHUD+Add.m */; };
+		037F8E811C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E801C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m */; };
 		1600EB3B1C87E65D001919EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB3A1C87E65D001919EB /* main.m */; };
 		1600EB461C87E65D001919EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB451C87E65D001919EB /* Assets.xcassets */; };
 		1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB471C87E65D001919EB /* LaunchScreen.storyboard */; };
@@ -175,6 +176,8 @@
 		037F8E791C8D6EE90057BF6C /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
 		037F8E7C1C8D78680057BF6C /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
 		037F8E7D1C8D78680057BF6C /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
+		037F8E7F1C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
+		037F8E801C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
 		1600EB361C87E65D001919EB /* Everives_S.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everives_S.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1600EB3A1C87E65D001919EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1600EB451C87E65D001919EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -638,6 +641,8 @@
 		1600EB9E1C87E8A5001919EB /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				037F8E7F1C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.h */,
+				037F8E801C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m */,
 				037F8E371C891F990057BF6C /* Networking */,
 				037F8E331C891CDA0057BF6C /* StringTools */,
 				1600EB9F1C87E8A5001919EB /* YRYJNavigationController.h */,
@@ -1004,6 +1009,7 @@
 				037F8E1B1C8826750057BF6C /* YRLoginViewController.m in Sources */,
 				164A8CA11C8D507A00857638 /* YRChatViewController.m in Sources */,
 				037F8E411C8D1E8F0057BF6C /* YRManager.m in Sources */,
+				037F8E811C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m in Sources */,
 				037F8E361C891CE20057BF6C /* NSString+Tools.m in Sources */,
 				1600EBC61C88087A001919EB /* UIViewController+REFrostedViewController.m in Sources */,
 				037F8E721C8D5FC50057BF6C /* JKPhotoBrowser.m in Sources */,

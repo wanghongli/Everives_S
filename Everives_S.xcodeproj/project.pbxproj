@@ -45,6 +45,11 @@
 		1600EBCA1C88087A001919EB /* XBPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBBB1C88087A001919EB /* XBPageCell.m */; };
 		1600EBCB1C88087A001919EB /* XBTagTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBBD1C88087A001919EB /* XBTagTitleCell.m */; };
 		1600EBCC1C88087A001919EB /* XBConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBC01C88087A001919EB /* XBConst.m */; };
+		164A8C921C8D1DCF00857638 /* YRMyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8C901C8D1DCF00857638 /* YRMyWalletViewController.m */; };
+		164A8C931C8D1DCF00857638 /* YRMyWalletViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8C911C8D1DCF00857638 /* YRMyWalletViewController.xib */; };
+		164A8C961C8D23F600857638 /* YRMyCommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8C951C8D23F600857638 /* YRMyCommentsTableViewController.m */; };
+		164A8C9A1C8D248300857638 /* YRMyCommentCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8C981C8D248300857638 /* YRMyCommentCellTableViewCell.m */; };
+		164A8C9B1C8D248300857638 /* YRMyCommentCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8C991C8D248300857638 /* YRMyCommentCellTableViewCell.xib */; };
 		16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096071C89236900FF4A81 /* YRUserCenterViewController.m */; };
 		16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D0960A1C89345D00FF4A81 /* RequestData.m */; };
 		16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096131C89682700FF4A81 /* YRReservationViewController.m */; };
@@ -131,6 +136,14 @@
 		1600EBC01C88087A001919EB /* XBConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBConst.m; sourceTree = "<group>"; };
 		1600EBCF1C8808D8001919EB /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		1600EBD01C8808D8001919EB /* PrefixFile.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixFile.pch; sourceTree = "<group>"; };
+		164A8C8F1C8D1DCF00857638 /* YRMyWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyWalletViewController.h; sourceTree = "<group>"; };
+		164A8C901C8D1DCF00857638 /* YRMyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyWalletViewController.m; sourceTree = "<group>"; };
+		164A8C911C8D1DCF00857638 /* YRMyWalletViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRMyWalletViewController.xib; sourceTree = "<group>"; };
+		164A8C941C8D23F600857638 /* YRMyCommentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyCommentsTableViewController.h; sourceTree = "<group>"; };
+		164A8C951C8D23F600857638 /* YRMyCommentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyCommentsTableViewController.m; sourceTree = "<group>"; };
+		164A8C971C8D248300857638 /* YRMyCommentCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyCommentCellTableViewCell.h; sourceTree = "<group>"; };
+		164A8C981C8D248300857638 /* YRMyCommentCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyCommentCellTableViewCell.m; sourceTree = "<group>"; };
+		164A8C991C8D248300857638 /* YRMyCommentCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRMyCommentCellTableViewCell.xib; sourceTree = "<group>"; };
 		16D096061C89236900FF4A81 /* YRUserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserCenterViewController.h; sourceTree = "<group>"; };
 		16D096071C89236900FF4A81 /* YRUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserCenterViewController.m; sourceTree = "<group>"; };
 		16D096091C89345D00FF4A81 /* RequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestData.h; sourceTree = "<group>"; };
@@ -564,6 +577,11 @@
 		16D0960E1C8967DE00FF4A81 /* Commemts */ = {
 			isa = PBXGroup;
 			children = (
+				164A8C941C8D23F600857638 /* YRMyCommentsTableViewController.h */,
+				164A8C951C8D23F600857638 /* YRMyCommentsTableViewController.m */,
+				164A8C971C8D248300857638 /* YRMyCommentCellTableViewCell.h */,
+				164A8C981C8D248300857638 /* YRMyCommentCellTableViewCell.m */,
+				164A8C991C8D248300857638 /* YRMyCommentCellTableViewCell.xib */,
 			);
 			path = Commemts;
 			sourceTree = "<group>";
@@ -590,6 +608,9 @@
 		16D096111C8967DE00FF4A81 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				164A8C8F1C8D1DCF00857638 /* YRMyWalletViewController.h */,
+				164A8C901C8D1DCF00857638 /* YRMyWalletViewController.m */,
+				164A8C911C8D1DCF00857638 /* YRMyWalletViewController.xib */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -675,6 +696,8 @@
 				1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */,
 				037F8E2F1C88407E0057BF6C /* YRPersonalDataController.xib in Resources */,
 				1600EB461C87E65D001919EB /* Assets.xcassets in Resources */,
+				164A8C931C8D1DCF00857638 /* YRMyWalletViewController.xib in Resources */,
+				164A8C9B1C8D248300857638 /* YRMyCommentCellTableViewCell.xib in Resources */,
 				16D096191C89699300FF4A81 /* YRReservationCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -756,16 +779,19 @@
 				037F8E2A1C883C570057BF6C /* YRProtocolViewController.m in Sources */,
 				037F8E1D1C8826750057BF6C /* UIButton+titleFrame.m in Sources */,
 				037F8E1A1C8826750057BF6C /* YRForgetPswViewController.m in Sources */,
+				164A8C961C8D23F600857638 /* YRMyCommentsTableViewController.m in Sources */,
 				16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */,
 				037F8E181C8826750057BF6C /* YRYJThirdClassController.m in Sources */,
 				037F8E191C8826750057BF6C /* YRYJMenuViewController.m in Sources */,
 				1600EB3B1C87E65D001919EB /* main.m in Sources */,
 				16D096181C89699300FF4A81 /* YRReservationCell.m in Sources */,
 				1600EBC41C88087A001919EB /* UIImage+REFrostedViewController.m in Sources */,
+				164A8C921C8D1DCF00857638 /* YRMyWalletViewController.m in Sources */,
 				037F8E321C884DBC0057BF6C /* PublicCheckMsgModel.m in Sources */,
 				037F8E221C8826750057BF6C /* JKCountDownButton.m in Sources */,
 				1600EBC21C88087A001919EB /* REFrostedContainerViewController.m in Sources */,
 				16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */,
+				164A8C9A1C8D248300857638 /* YRMyCommentCellTableViewCell.m in Sources */,
 				037F8E1E1C8826750057BF6C /* UIViewController+CWS.m in Sources */,
 				1600EBC91C88087A001919EB /* UIView+XBExtension.m in Sources */,
 				1600EBC71C88087A001919EB /* XBScrollPageController.m in Sources */,

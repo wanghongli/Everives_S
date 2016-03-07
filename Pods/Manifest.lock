@@ -1,22 +1,32 @@
 PODS:
-  - AFNetworking (3.0.4):
-    - AFNetworking/NSURLSession (= 3.0.4)
-    - AFNetworking/Reachability (= 3.0.4)
-    - AFNetworking/Security (= 3.0.4)
-    - AFNetworking/Serialization (= 3.0.4)
-    - AFNetworking/UIKit (= 3.0.4)
-  - AFNetworking/NSURLSession (3.0.4):
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.0.4)
-  - AFNetworking/Security (3.0.4)
-  - AFNetworking/Serialization (3.0.4)
-  - AFNetworking/UIKit (3.0.4):
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - HappyDNS (0.2.3)
   - MBProgressHUD (0.9.2)
   - MJExtension (3.0.8)
   - MJRefresh (3.0.8)
+  - Qiniu (7.0.16):
+    - AFNetworking (~> 2.0)
+    - HappyDNS (~> 0.2)
   - RongCloudIMKit (2.4.3)
   - SDAutoLayout (1.1)
   - SDWebImage (3.7.3):
@@ -28,15 +38,18 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.8)
   - MJExtension
   - MJRefresh
+  - Qiniu (~> 7.0)
   - RongCloudIMKit
   - SDAutoLayout
   - SDWebImage
 
 SPEC CHECKSUMS:
-  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJExtension: 12d2875959b4a0f936ae86b22a1eb6b0251c50ba
   MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
+  Qiniu: 51a8702cddc02b50867e10cef99291b9a8a006b1
   RongCloudIMKit: 45c0482b73d7828aa0fc83f5985ad245bc87cca8
   SDAutoLayout: abfdc9d1ae3e4b2f4eb0dba6cdbe4f6264fa26be
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84

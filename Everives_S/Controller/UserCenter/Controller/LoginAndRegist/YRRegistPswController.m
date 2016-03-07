@@ -103,10 +103,11 @@
             [RequestData POST:USER_REGIST parameters:_bodyDic complete:^(NSDictionary *responseDic) {
                 NSLog(@"%@",responseDic);
                 
-                YRPersonalDataController *personalVC = [[YRPersonalDataController alloc]initWithNibName:@"YRPersonalDataController" bundle:nil];
-                personalVC.title = @"完善个人资料";
-                [self.navigationController pushViewController:personalVC animated:YES];
-                
+//                YRPersonalDataController *personalVC = [[YRPersonalDataController alloc]initWithNibName:@"YRPersonalDataController" bundle:nil];
+//                personalVC.title = @"完善个人资料";
+//                [self.navigationController pushViewController:personalVC animated:YES];
+
+                [self.navigationController popToRootViewControllerAnimated:YES];
             } failed:^(NSError *error) {
                 
             }];

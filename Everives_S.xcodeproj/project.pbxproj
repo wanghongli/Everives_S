@@ -31,6 +31,8 @@
 		037F8E361C891CE20057BF6C /* NSString+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E351C891CE20057BF6C /* NSString+Tools.m */; };
 		037F8E3E1C8D18D20057BF6C /* YRUserStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E3D1C8D18D20057BF6C /* YRUserStatus.m */; };
 		037F8E411C8D1E8F0057BF6C /* YRManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E401C8D1E8F0057BF6C /* YRManager.m */; };
+		037F8E441C8D2DB50057BF6C /* YRFriendCircleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E431C8D2DB50057BF6C /* YRFriendCircleController.m */; };
+		037F8E471C8D2F340057BF6C /* YRAddWeiboController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E461C8D2F340057BF6C /* YRAddWeiboController.m */; };
 		1600EB3B1C87E65D001919EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB3A1C87E65D001919EB /* main.m */; };
 		1600EB461C87E65D001919EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB451C87E65D001919EB /* Assets.xcassets */; };
 		1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB471C87E65D001919EB /* LaunchScreen.storyboard */; };
@@ -109,6 +111,10 @@
 		037F8E3D1C8D18D20057BF6C /* YRUserStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserStatus.m; sourceTree = "<group>"; };
 		037F8E3F1C8D1E8F0057BF6C /* YRManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRManager.h; sourceTree = "<group>"; };
 		037F8E401C8D1E8F0057BF6C /* YRManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRManager.m; sourceTree = "<group>"; };
+		037F8E421C8D2DB50057BF6C /* YRFriendCircleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRFriendCircleController.h; sourceTree = "<group>"; };
+		037F8E431C8D2DB50057BF6C /* YRFriendCircleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRFriendCircleController.m; sourceTree = "<group>"; };
+		037F8E451C8D2F340057BF6C /* YRAddWeiboController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRAddWeiboController.h; sourceTree = "<group>"; };
+		037F8E461C8D2F340057BF6C /* YRAddWeiboController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRAddWeiboController.m; sourceTree = "<group>"; };
 		1600EB361C87E65D001919EB /* Everives_S.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everives_S.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1600EB3A1C87E65D001919EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1600EB451C87E65D001919EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -231,6 +237,10 @@
 		037F8DE41C8826750057BF6C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				037F8E421C8D2DB50057BF6C /* YRFriendCircleController.h */,
+				037F8E431C8D2DB50057BF6C /* YRFriendCircleController.m */,
+				037F8E451C8D2F340057BF6C /* YRAddWeiboController.h */,
+				037F8E461C8D2F340057BF6C /* YRAddWeiboController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -768,6 +778,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1600EBC81C88087A001919EB /* XBTagTitleModel.m in Sources */,
+				037F8E471C8D2F340057BF6C /* YRAddWeiboController.m in Sources */,
 				1600EBC11C88087A001919EB /* RECommonFunctions.m in Sources */,
 				16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */,
 				1600EBCA1C88087A001919EB /* XBPageCell.m in Sources */,
@@ -806,6 +817,7 @@
 				037F8E1E1C8826750057BF6C /* UIViewController+CWS.m in Sources */,
 				1600EBC91C88087A001919EB /* UIView+XBExtension.m in Sources */,
 				1600EBC71C88087A001919EB /* XBScrollPageController.m in Sources */,
+				037F8E441C8D2DB50057BF6C /* YRFriendCircleController.m in Sources */,
 				037F8E1B1C8826750057BF6C /* YRLoginViewController.m in Sources */,
 				037F8E411C8D1E8F0057BF6C /* YRManager.m in Sources */,
 				037F8E361C891CE20057BF6C /* NSString+Tools.m in Sources */,

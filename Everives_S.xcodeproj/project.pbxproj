@@ -49,6 +49,7 @@
 		037F8E761C8D5FC50057BF6C /* PhotoAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E661C8D5FC50057BF6C /* PhotoAlbumManager.m */; };
 		037F8E771C8D5FC50057BF6C /* UIView+JKPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E681C8D5FC50057BF6C /* UIView+JKPicker.m */; };
 		037F8E7A1C8D6EE90057BF6C /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E791C8D6EE90057BF6C /* PhotoCell.m */; };
+		037F8E7E1C8D78680057BF6C /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E7D1C8D78680057BF6C /* MBProgressHUD+Add.m */; };
 		1600EB3B1C87E65D001919EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB3A1C87E65D001919EB /* main.m */; };
 		1600EB461C87E65D001919EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB451C87E65D001919EB /* Assets.xcassets */; };
 		1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB471C87E65D001919EB /* LaunchScreen.storyboard */; };
@@ -164,6 +165,8 @@
 		037F8E681C8D5FC50057BF6C /* UIView+JKPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JKPicker.m"; sourceTree = "<group>"; };
 		037F8E781C8D6EE90057BF6C /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
 		037F8E791C8D6EE90057BF6C /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
+		037F8E7C1C8D78680057BF6C /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
+		037F8E7D1C8D78680057BF6C /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		1600EB361C87E65D001919EB /* Everives_S.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everives_S.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1600EB3A1C87E65D001919EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1600EB451C87E65D001919EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -543,6 +546,15 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		037F8E7B1C8D785C0057BF6C /* MBProgressHUD+ADD */ = {
+			isa = PBXGroup;
+			children = (
+				037F8E7C1C8D78680057BF6C /* MBProgressHUD+Add.h */,
+				037F8E7D1C8D78680057BF6C /* MBProgressHUD+Add.m */,
+			);
+			path = "MBProgressHUD+ADD";
+			sourceTree = "<group>";
+		};
 		1600EB2D1C87E65D001919EB = {
 			isa = PBXGroup;
 			children = (
@@ -614,6 +626,7 @@
 		1600EBA21C88087A001919EB /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				037F8E7B1C8D785C0057BF6C /* MBProgressHUD+ADD */,
 				037F8E481C8D5FC50057BF6C /* ImagePicker */,
 				1600EBA31C88087A001919EB /* REFrostedViewController */,
 				1600EBB01C88087A001919EB /* XBScrollPageController */,
@@ -913,6 +926,7 @@
 				037F8E6B1C8D5FC50057BF6C /* JKAssets.m in Sources */,
 				037F8E1C1C8826750057BF6C /* YRRegistViewController.m in Sources */,
 				037F8DC61C8815F80057BF6C /* AppDelegate.m in Sources */,
+				037F8E7E1C8D78680057BF6C /* MBProgressHUD+Add.m in Sources */,
 				1600EBCC1C88087A001919EB /* XBConst.m in Sources */,
 				037F8E6F1C8D5FC50057BF6C /* JKAssetsThumbnailView.m in Sources */,
 				037F8E201C8826750057BF6C /* CWSPublicButton.m in Sources */,

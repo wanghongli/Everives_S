@@ -14,4 +14,5 @@
 #import "Define.h"
 #import "RequestData.h"
 #import "YRManager.h"
+#import "MBProgressHUD+Add.h"
 #endif /* PrefixFile_pch */

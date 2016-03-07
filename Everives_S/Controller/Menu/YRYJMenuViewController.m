@@ -14,6 +14,7 @@
 #import "YRLoginViewController.h"
 #import "YRUserCenterViewController.h"
 #import "YRFriendCircleController.h"
+#import "YRFriendViewController.h"
 @interface YRYJMenuViewController ()
 
 @end
@@ -118,8 +119,8 @@
         self.frostedViewController.contentViewController = navigationController;
     } else if(indexPath.section == 1){
         if (indexPath.row == 0) {
-            UIViewController *secondViewController = [[YRUserCenterViewController alloc] init];
-            YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
+            YRFriendViewController *friendViewController = [[YRFriendViewController alloc] init];
+            YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:friendViewController];
             self.frostedViewController.contentViewController = navigationController;
         }else if (indexPath.row == 1) {
             YRFriendCircleController *secondViewController = [[YRFriendCircleController alloc] init];

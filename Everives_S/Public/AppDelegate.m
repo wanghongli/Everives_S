@@ -13,6 +13,7 @@
 #import <RongIMKit/RongIMKit.h>
 #import "RequestData.h"
 #import "YRUserStatus.h"
+#import "YRUserStatus.h"
 @interface AppDelegate ()<RCIMUserInfoDataSource,RCIMGroupInfoDataSource>
 
 @end
@@ -98,19 +99,16 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 }
 //融云即时通讯  头像昵称等个人信息
 - (void)getUserInfoWithUserId:(NSString *)userId completion:(void (^)(RCUserInfo *))completion{
-//    NSDictionary *parameters = @{@"id":userId};
-//    [RequestData requestInfomationWithURI:USER_GETUSERINFO andParameters:parameters complete:^(NSDictionary *responseDic) {
-//        KGUserStatus*status = [KGUserStatus mj_objectWithKeyValues:responseDic];
-//        KGUserLoginObject *user = status.data;
-//        
-//        RCUserInfo *rcUser = [[RCUserInfo alloc]init];
-//        rcUser.userId = [NSString stringWithFormat:@"%li",user.id];
-//        rcUser.name = user.name;
-//        rcUser.portraitUri = user.avatar;
-//        return completion(rcUser);
-//    } failed:^(NSError *error) {
-//        MyLog(@"获取用户信息失败");
-//    }];
+    [RequestData GET:[USER_INFO_BYID stringByAppendingString:userId] parameters:nil complete:^(NSDictionary *responseDic) {
+        YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:responseDic];
+        RCUserInfo *rcUser = [[RCUserInfo alloc]init];
+        rcUser.userId = user.id;
+        rcUser.name = user.name;
+        rcUser.portraitUri = user.avatar;
+        return completion(rcUser);
+    } failed:^(NSError *error) {
+        
+    } ];
     return completion(nil);
     
 }

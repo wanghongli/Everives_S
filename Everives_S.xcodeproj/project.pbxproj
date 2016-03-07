@@ -54,6 +54,8 @@
 		164A8C961C8D23F600857638 /* YRMyCommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8C951C8D23F600857638 /* YRMyCommentsTableViewController.m */; };
 		164A8C9A1C8D248300857638 /* YRMyCommentCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8C981C8D248300857638 /* YRMyCommentCellTableViewCell.m */; };
 		164A8C9B1C8D248300857638 /* YRMyCommentCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8C991C8D248300857638 /* YRMyCommentCellTableViewCell.xib */; };
+		164A8C9E1C8D4F9300857638 /* YRFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8C9D1C8D4F9300857638 /* YRFriendViewController.m */; };
+		164A8CA11C8D507A00857638 /* YRChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CA01C8D507A00857638 /* YRChatViewController.m */; };
 		16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096071C89236900FF4A81 /* YRUserCenterViewController.m */; };
 		16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D0960A1C89345D00FF4A81 /* RequestData.m */; };
 		16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096131C89682700FF4A81 /* YRReservationViewController.m */; };
@@ -156,6 +158,10 @@
 		164A8C971C8D248300857638 /* YRMyCommentCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyCommentCellTableViewCell.h; sourceTree = "<group>"; };
 		164A8C981C8D248300857638 /* YRMyCommentCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyCommentCellTableViewCell.m; sourceTree = "<group>"; };
 		164A8C991C8D248300857638 /* YRMyCommentCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRMyCommentCellTableViewCell.xib; sourceTree = "<group>"; };
+		164A8C9C1C8D4F9300857638 /* YRFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YRFriendViewController.h; path = Everives_S/Controller/UserCenter/Controller/Commemts/YRFriendViewController.h; sourceTree = SOURCE_ROOT; };
+		164A8C9D1C8D4F9300857638 /* YRFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YRFriendViewController.m; path = Everives_S/Controller/UserCenter/Controller/Commemts/YRFriendViewController.m; sourceTree = SOURCE_ROOT; };
+		164A8C9F1C8D507A00857638 /* YRChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YRChatViewController.h; path = Everives_S/Controller/UserCenter/Controller/Commemts/YRChatViewController.h; sourceTree = SOURCE_ROOT; };
+		164A8CA01C8D507A00857638 /* YRChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YRChatViewController.m; path = Everives_S/Controller/UserCenter/Controller/Commemts/YRChatViewController.m; sourceTree = SOURCE_ROOT; };
 		16D096061C89236900FF4A81 /* YRUserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserCenterViewController.h; sourceTree = "<group>"; };
 		16D096071C89236900FF4A81 /* YRUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserCenterViewController.m; sourceTree = "<group>"; };
 		16D096091C89345D00FF4A81 /* RequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestData.h; sourceTree = "<group>"; };
@@ -197,6 +203,8 @@
 				037F8DE01C8826750057BF6C /* Controller */,
 				037F8DE11C8826750057BF6C /* Model */,
 				037F8DE21C8826750057BF6C /* View */,
+				164A8C9C1C8D4F9300857638 /* YRFriendViewController.h */,
+				164A8C9D1C8D4F9300857638 /* YRFriendViewController.m */,
 			);
 			name = Friend;
 			path = Controller/Friend;
@@ -205,6 +213,8 @@
 		037F8DE01C8826750057BF6C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				164A8C9F1C8D507A00857638 /* YRChatViewController.h */,
+				164A8CA01C8D507A00857638 /* YRChatViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -779,6 +789,7 @@
 			files = (
 				1600EBC81C88087A001919EB /* XBTagTitleModel.m in Sources */,
 				037F8E471C8D2F340057BF6C /* YRAddWeiboController.m in Sources */,
+				164A8C9E1C8D4F9300857638 /* YRFriendViewController.m in Sources */,
 				1600EBC11C88087A001919EB /* RECommonFunctions.m in Sources */,
 				16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */,
 				1600EBCA1C88087A001919EB /* XBPageCell.m in Sources */,
@@ -819,6 +830,7 @@
 				1600EBC71C88087A001919EB /* XBScrollPageController.m in Sources */,
 				037F8E441C8D2DB50057BF6C /* YRFriendCircleController.m in Sources */,
 				037F8E1B1C8826750057BF6C /* YRLoginViewController.m in Sources */,
+				164A8CA11C8D507A00857638 /* YRChatViewController.m in Sources */,
 				037F8E411C8D1E8F0057BF6C /* YRManager.m in Sources */,
 				037F8E361C891CE20057BF6C /* NSString+Tools.m in Sources */,
 				1600EBC61C88087A001919EB /* UIViewController+REFrostedViewController.m in Sources */,

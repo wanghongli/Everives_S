@@ -54,7 +54,6 @@
     frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
     frostedViewController.liveBlur = YES;
     frostedViewController.delegate = self;
-    
     // Make it a root controller
     //
     self.window.rootViewController = frostedViewController;

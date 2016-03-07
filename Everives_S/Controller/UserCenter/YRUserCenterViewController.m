@@ -8,6 +8,8 @@
 
 #import "YRUserCenterViewController.h"
 #import "YRReservationViewController.h"
+#import "YRMyWalletViewController.h"
+#import "YRMyCommentsTableViewController.h"
 
 @interface YRUserCenterViewController (){
     NSArray *cellNmaes;
@@ -60,10 +62,14 @@
         }
         case 1:
         {
+            [self.navigationController pushViewController:
+             [[YRMyWalletViewController alloc] init] animated:YES] ;
             break;
         }
         case 2:
         {
+            [self.navigationController pushViewController:
+             [[YRMyCommentsTableViewController alloc] init] animated:YES] ;
             break;
         }
         case 3:

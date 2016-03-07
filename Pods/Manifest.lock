@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AMap3DMap (3.2.1)
   - HappyDNS (0.2.3)
   - MBProgressHUD (0.9.2)
   - MJExtension (3.0.8)
@@ -35,6 +36,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - AMap3DMap
   - MBProgressHUD (~> 0.8)
   - MJExtension
   - MJRefresh
@@ -45,6 +47,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  AMap3DMap: 1f179c4fc41a60e42243466eb188e3be946aa163
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJExtension: 12d2875959b4a0f936ae86b22a1eb6b0251c50ba

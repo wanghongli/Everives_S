@@ -58,6 +58,7 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "AMap3DMap/MAMapKit.framework/Versions/3.2.1.94eef6d.752/Resources/AMap.bundle"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_SDK_v2_4_3_stable/RongCloud.bundle"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_SDK_v2_4_3_stable/en.lproj"
@@ -65,6 +66,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_SDK_v2_4_3_stable/Emoji.plist"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "AMap3DMap/MAMapKit.framework/Versions/3.2.1.94eef6d.752/Resources/AMap.bundle"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_SDK_v2_4_3_stable/RongCloud.bundle"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_SDK_v2_4_3_stable/en.lproj"

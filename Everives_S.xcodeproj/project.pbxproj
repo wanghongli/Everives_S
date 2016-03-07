@@ -80,6 +80,7 @@
 		164A8CAE1C8D65EC00857638 /* YRCertificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8CAC1C8D65EC00857638 /* YRCertificationViewController.xib */; };
 		164A8CB21C8D729700857638 /* YRActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CB01C8D729700857638 /* YRActivityTableViewCell.m */; };
 		164A8CB31C8D729700857638 /* YRActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8CB11C8D729700857638 /* YRActivityTableViewCell.xib */; };
+		164A8CB61C8D8D5000857638 /* YRNearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CB51C8D8D5000857638 /* YRNearViewController.m */; };
 		16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096071C89236900FF4A81 /* YRUserCenterViewController.m */; };
 		16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D0960A1C89345D00FF4A81 /* RequestData.m */; };
 		16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096131C89682700FF4A81 /* YRReservationViewController.m */; };
@@ -230,6 +231,8 @@
 		164A8CAF1C8D729700857638 /* YRActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRActivityTableViewCell.h; sourceTree = "<group>"; };
 		164A8CB01C8D729700857638 /* YRActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRActivityTableViewCell.m; sourceTree = "<group>"; };
 		164A8CB11C8D729700857638 /* YRActivityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRActivityTableViewCell.xib; sourceTree = "<group>"; };
+		164A8CB41C8D8D5000857638 /* YRNearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YRNearViewController.h; path = Everives_S/Controller/UserCenter/Controller/Activities/YRNearViewController.h; sourceTree = SOURCE_ROOT; };
+		164A8CB51C8D8D5000857638 /* YRNearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YRNearViewController.m; path = Everives_S/Controller/UserCenter/Controller/Activities/YRNearViewController.m; sourceTree = SOURCE_ROOT; };
 		16D096061C89236900FF4A81 /* YRUserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserCenterViewController.h; sourceTree = "<group>"; };
 		16D096071C89236900FF4A81 /* YRUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserCenterViewController.m; sourceTree = "<group>"; };
 		16D096091C89345D00FF4A81 /* RequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestData.h; sourceTree = "<group>"; };
@@ -378,6 +381,8 @@
 		037F8DF61C8826750057BF6C /* Near */ = {
 			isa = PBXGroup;
 			children = (
+				164A8CB41C8D8D5000857638 /* YRNearViewController.h */,
+				164A8CB51C8D8D5000857638 /* YRNearViewController.m */,
 			);
 			name = Near;
 			path = Controller/Near;
@@ -989,6 +994,7 @@
 				037F8E221C8826750057BF6C /* JKCountDownButton.m in Sources */,
 				1600EBC21C88087A001919EB /* REFrostedContainerViewController.m in Sources */,
 				037F8E3E1C8D18D20057BF6C /* YRUserStatus.m in Sources */,
+				164A8CB61C8D8D5000857638 /* YRNearViewController.m in Sources */,
 				16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */,
 				164A8C9A1C8D248300857638 /* YRMyCommentCellTableViewCell.m in Sources */,
 				037F8E1E1C8826750057BF6C /* UIViewController+CWS.m in Sources */,

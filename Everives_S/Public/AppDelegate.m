@@ -11,6 +11,7 @@
 #import "YRYJLearnToDriveController.h"
 #import "YRYJMenuViewController.h"
 #import <RongIMKit/RongIMKit.h>
+#import <MAMapKit/MAMapKit.h>
 #import "RequestData.h"
 #import "YRUserStatus.h"
 #import "YRUserStatus.h"
@@ -22,6 +23,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //高德地图
+    [MAMapServices sharedServices].apiKey = @"89bb4d69d45261a2a125e558dbf3ebb6";
     //融云即时通讯
     [[RCIM sharedRCIM] initWithAppKey:@"z3v5yqkbvtd30"];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];

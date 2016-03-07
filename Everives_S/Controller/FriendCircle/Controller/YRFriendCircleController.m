@@ -26,7 +26,8 @@
 
 -(void)addWeiboClick:(UIBarButtonItem *)sender
 {
-    
+    YRAddWeiboController *addWeiboVC = [[YRAddWeiboController alloc]init];
+    [self.navigationController pushViewController:addWeiboVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

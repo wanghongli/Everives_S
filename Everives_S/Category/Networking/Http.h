@@ -20,6 +20,14 @@
 #define USER_CHECK_TELL @"/account/checkTel" //检查手机号码
 #define USER_INFO_BYID @"/student/info/" // 通过id获取用户信息
 
-
+//微博模块
+#define WEIBO_ADD @"/seeds/seeds" //添加微博
+#define WEIBO_DELE @"/seeds/seeds/id" //删除微博    method: DELETE
+#define WEIBO_GET_LIST @"/seeds/seeds" //获取微博列表
+#define WEIBO_DETAIL @"/seeds/seeds/id" //获取微博详情
+#define WEIBO_ADD_COMMENT @"/seeds/comment" //添加评论
+#define WEIBO_COMMENT_DELE @"/seeds/comment/id" //删除评论
+#define WEIBO_PRAISE @"/seeds/praise" //点赞
+#define WEIBO_CANCEL_PRAISE @"/seeds/praise" //取消点赞
 
 #endif

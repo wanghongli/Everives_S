@@ -20,6 +20,9 @@
 #define USER_CHECK_TELL @"/account/checkTel" //检查手机号码
 #define USER_INFO_BYID @"/student/info/" // 通过id获取用户信息
 
+//七牛token
+#define USER_QINIUTOKEN @"/common/qiniu" //获取七牛token
+
 //微博模块
 #define WEIBO_ADD @"/seeds/seeds" //添加微博
 #define WEIBO_DELE @"/seeds/seeds/id" //删除微博    method: DELETE

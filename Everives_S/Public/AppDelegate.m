@@ -11,6 +11,7 @@
 #import "YRYJLearnToDriveController.h"
 #import "YRYJMenuViewController.h"
 #import <RongIMKit/RongIMKit.h>
+#import "RequestData.h"
 @interface AppDelegate ()<RCIMUserInfoDataSource,RCIMGroupInfoDataSource>
 
 @end
@@ -23,6 +24,8 @@
     [[RCIM sharedRCIM] initWithAppKey:@"z3v5yqkbvtd30"];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
     [[RCIM sharedRCIM] setGroupInfoDataSource:self];
+    
+    
     //连接融云服务器
     [[RCIM sharedRCIM] connectWithToken:@"kRongCloud_IM_User_Token" success:^(NSString *userId) {
         // Connect 成功

@@ -15,4 +15,5 @@
 #import "RequestData.h"
 #import "YRManager.h"
 #import "MBProgressHUD+Add.h"
+#import "NSString+Tools.h"
 #endif /* PrefixFile_pch */

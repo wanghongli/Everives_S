@@ -8,6 +8,7 @@
 
 #import "YRReservationViewController.h"
 #import "YRReservationCell.h"
+#import "YRReservationDetailVC.h"
 static NSString *cellId = @"YRReservationCellID";
 @interface YRReservationViewController ()
 
@@ -35,5 +36,7 @@ static NSString *cellId = @"YRReservationCellID";
     }
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.navigationController pushViewController:[[YRReservationDetailVC alloc] init] animated:YES];
+}
 @end

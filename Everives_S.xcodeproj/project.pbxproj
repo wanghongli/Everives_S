@@ -31,7 +31,6 @@
 		037F8E361C891CE20057BF6C /* NSString+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E351C891CE20057BF6C /* NSString+Tools.m */; };
 		037F8E3E1C8D18D20057BF6C /* YRUserStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E3D1C8D18D20057BF6C /* YRUserStatus.m */; };
 		037F8E411C8D1E8F0057BF6C /* YRManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E401C8D1E8F0057BF6C /* YRManager.m */; };
-		037F8E441C8D2DB50057BF6C /* YRFriendCircleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E431C8D2DB50057BF6C /* YRFriendCircleController.m */; };
 		037F8E471C8D2F340057BF6C /* YRAddWeiboController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E461C8D2F340057BF6C /* YRAddWeiboController.m */; };
 		037F8E691C8D5FC50057BF6C /* JKImagePickerController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 037F8E4A1C8D5FC50057BF6C /* JKImagePickerController.strings */; };
 		037F8E6A1C8D5FC50057BF6C /* ImagesPicker.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 037F8E4C1C8D5FC50057BF6C /* ImagesPicker.xcassets */; };
@@ -51,6 +50,25 @@
 		037F8E7A1C8D6EE90057BF6C /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E791C8D6EE90057BF6C /* PhotoCell.m */; };
 		037F8E7E1C8D78680057BF6C /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E7D1C8D78680057BF6C /* MBProgressHUD+Add.m */; };
 		037F8E811C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E801C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m */; };
+		037F8E841C8D8FB40057BF6C /* YRWeiboList.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E831C8D8FB40057BF6C /* YRWeiboList.m */; };
+		037F8E871C8D90C70057BF6C /* YRWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E861C8D90C70057BF6C /* YRWeibo.m */; };
+		037F8E8A1C8E63770057BF6C /* YRFriendCircleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E891C8E63770057BF6C /* YRFriendCircleController.m */; };
+		037F8E8D1C8E660C0057BF6C /* YRFriendCircleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E8C1C8E660C0057BF6C /* YRFriendCircleCell.m */; };
+		037F8E9A1C8E68BC0057BF6C /* YRCircleToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E981C8E67250057BF6C /* YRCircleToolBar.m */; };
+		037F8E9D1C8E68D20057BF6C /* YRCirclePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E9C1C8E68D10057BF6C /* YRCirclePhoto.m */; };
+		037F8EA01C8E68E90057BF6C /* YRCircleUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E9F1C8E68E90057BF6C /* YRCircleUser.m */; };
+		037F8EB11C8E6D350057BF6C /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8EA31C8E6D350057BF6C /* MJPhoto.m */; };
+		037F8EB21C8E6D350057BF6C /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 037F8EA41C8E6D350057BF6C /* MJPhotoBrowser.bundle */; };
+		037F8EB31C8E6D350057BF6C /* MJPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8EA61C8E6D350057BF6C /* MJPhotoBrowser.m */; };
+		037F8EB41C8E6D350057BF6C /* MJPhotoLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8EA81C8E6D350057BF6C /* MJPhotoLoadingView.m */; };
+		037F8EB51C8E6D350057BF6C /* MJPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8EAA1C8E6D350057BF6C /* MJPhotoProgressView.m */; };
+		037F8EB61C8E6D350057BF6C /* MJPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8EAC1C8E6D350057BF6C /* MJPhotoToolbar.m */; };
+		037F8EB71C8E6D350057BF6C /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8EAE1C8E6D350057BF6C /* MJPhotoView.m */; };
+		037F8EB81C8E6D350057BF6C /* SDWebImageManager+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8EB01C8E6D350057BF6C /* SDWebImageManager+MJ.m */; };
+		037F8EBB1C8E72490057BF6C /* YRCircleCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8EBA1C8E72490057BF6C /* YRCircleCellViewModel.m */; };
+		03F59B8F1C8EC1FF009D5EA2 /* YRCircleDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F59B8D1C8EC1FF009D5EA2 /* YRCircleDetailController.m */; };
+		03F59B901C8EC1FF009D5EA2 /* YRCircleDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F59B8E1C8EC1FF009D5EA2 /* YRCircleDetailController.xib */; };
+		03F59B931C8ED576009D5EA2 /* YRCircleComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F59B921C8ED576009D5EA2 /* YRCircleComment.m */; };
 		1600EB3B1C87E65D001919EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB3A1C87E65D001919EB /* main.m */; };
 		1600EB461C87E65D001919EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB451C87E65D001919EB /* Assets.xcassets */; };
 		1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB471C87E65D001919EB /* LaunchScreen.storyboard */; };
@@ -138,8 +156,6 @@
 		037F8E3D1C8D18D20057BF6C /* YRUserStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserStatus.m; sourceTree = "<group>"; };
 		037F8E3F1C8D1E8F0057BF6C /* YRManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRManager.h; sourceTree = "<group>"; };
 		037F8E401C8D1E8F0057BF6C /* YRManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRManager.m; sourceTree = "<group>"; };
-		037F8E421C8D2DB50057BF6C /* YRFriendCircleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRFriendCircleController.h; sourceTree = "<group>"; };
-		037F8E431C8D2DB50057BF6C /* YRFriendCircleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRFriendCircleController.m; sourceTree = "<group>"; };
 		037F8E451C8D2F340057BF6C /* YRAddWeiboController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRAddWeiboController.h; sourceTree = "<group>"; };
 		037F8E461C8D2F340057BF6C /* YRAddWeiboController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRAddWeiboController.m; sourceTree = "<group>"; };
 		037F8E4B1C8D5FC50057BF6C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/JKImagePickerController.strings; sourceTree = "<group>"; };
@@ -177,6 +193,42 @@
 		037F8E7D1C8D78680057BF6C /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		037F8E7F1C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
 		037F8E801C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
+		037F8E821C8D8FB40057BF6C /* YRWeiboList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRWeiboList.h; sourceTree = "<group>"; };
+		037F8E831C8D8FB40057BF6C /* YRWeiboList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRWeiboList.m; sourceTree = "<group>"; };
+		037F8E851C8D90C70057BF6C /* YRWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRWeibo.h; sourceTree = "<group>"; };
+		037F8E861C8D90C70057BF6C /* YRWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRWeibo.m; sourceTree = "<group>"; };
+		037F8E881C8E63770057BF6C /* YRFriendCircleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRFriendCircleController.h; sourceTree = "<group>"; };
+		037F8E891C8E63770057BF6C /* YRFriendCircleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRFriendCircleController.m; sourceTree = "<group>"; };
+		037F8E8B1C8E660C0057BF6C /* YRFriendCircleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRFriendCircleCell.h; sourceTree = "<group>"; };
+		037F8E8C1C8E660C0057BF6C /* YRFriendCircleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRFriendCircleCell.m; sourceTree = "<group>"; };
+		037F8E971C8E67250057BF6C /* YRCircleToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleToolBar.h; sourceTree = "<group>"; };
+		037F8E981C8E67250057BF6C /* YRCircleToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCircleToolBar.m; sourceTree = "<group>"; };
+		037F8E9B1C8E68D10057BF6C /* YRCirclePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCirclePhoto.h; sourceTree = "<group>"; };
+		037F8E9C1C8E68D10057BF6C /* YRCirclePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCirclePhoto.m; sourceTree = "<group>"; };
+		037F8E9E1C8E68E90057BF6C /* YRCircleUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleUser.h; sourceTree = "<group>"; };
+		037F8E9F1C8E68E90057BF6C /* YRCircleUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCircleUser.m; sourceTree = "<group>"; };
+		037F8EA21C8E6D350057BF6C /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
+		037F8EA31C8E6D350057BF6C /* MJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhoto.m; sourceTree = "<group>"; };
+		037F8EA41C8E6D350057BF6C /* MJPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJPhotoBrowser.bundle; sourceTree = "<group>"; };
+		037F8EA51C8E6D350057BF6C /* MJPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoBrowser.h; sourceTree = "<group>"; };
+		037F8EA61C8E6D350057BF6C /* MJPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoBrowser.m; sourceTree = "<group>"; };
+		037F8EA71C8E6D350057BF6C /* MJPhotoLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoLoadingView.h; sourceTree = "<group>"; };
+		037F8EA81C8E6D350057BF6C /* MJPhotoLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoLoadingView.m; sourceTree = "<group>"; };
+		037F8EA91C8E6D350057BF6C /* MJPhotoProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoProgressView.h; sourceTree = "<group>"; };
+		037F8EAA1C8E6D350057BF6C /* MJPhotoProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoProgressView.m; sourceTree = "<group>"; };
+		037F8EAB1C8E6D350057BF6C /* MJPhotoToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoToolbar.h; sourceTree = "<group>"; };
+		037F8EAC1C8E6D350057BF6C /* MJPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoToolbar.m; sourceTree = "<group>"; };
+		037F8EAD1C8E6D350057BF6C /* MJPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoView.h; sourceTree = "<group>"; };
+		037F8EAE1C8E6D350057BF6C /* MJPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoView.m; sourceTree = "<group>"; };
+		037F8EAF1C8E6D350057BF6C /* SDWebImageManager+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDWebImageManager+MJ.h"; sourceTree = "<group>"; };
+		037F8EB01C8E6D350057BF6C /* SDWebImageManager+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDWebImageManager+MJ.m"; sourceTree = "<group>"; };
+		037F8EB91C8E72490057BF6C /* YRCircleCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCellViewModel.h; sourceTree = "<group>"; };
+		037F8EBA1C8E72490057BF6C /* YRCircleCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCircleCellViewModel.m; sourceTree = "<group>"; };
+		03F59B8C1C8EC1FF009D5EA2 /* YRCircleDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleDetailController.h; sourceTree = "<group>"; };
+		03F59B8D1C8EC1FF009D5EA2 /* YRCircleDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCircleDetailController.m; sourceTree = "<group>"; };
+		03F59B8E1C8EC1FF009D5EA2 /* YRCircleDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRCircleDetailController.xib; sourceTree = "<group>"; };
+		03F59B911C8ED576009D5EA2 /* YRCircleComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleComment.h; sourceTree = "<group>"; };
+		03F59B921C8ED576009D5EA2 /* YRCircleComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCircleComment.m; sourceTree = "<group>"; };
 		1600EB361C87E65D001919EB /* Everives_S.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everives_S.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1600EB3A1C87E65D001919EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1600EB451C87E65D001919EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -318,10 +370,13 @@
 		037F8DE41C8826750057BF6C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				037F8E421C8D2DB50057BF6C /* YRFriendCircleController.h */,
-				037F8E431C8D2DB50057BF6C /* YRFriendCircleController.m */,
+				037F8E881C8E63770057BF6C /* YRFriendCircleController.h */,
+				037F8E891C8E63770057BF6C /* YRFriendCircleController.m */,
 				037F8E451C8D2F340057BF6C /* YRAddWeiboController.h */,
 				037F8E461C8D2F340057BF6C /* YRAddWeiboController.m */,
+				03F59B8C1C8EC1FF009D5EA2 /* YRCircleDetailController.h */,
+				03F59B8D1C8EC1FF009D5EA2 /* YRCircleDetailController.m */,
+				03F59B8E1C8EC1FF009D5EA2 /* YRCircleDetailController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -329,6 +384,14 @@
 		037F8DE51C8826750057BF6C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				037F8E821C8D8FB40057BF6C /* YRWeiboList.h */,
+				037F8E831C8D8FB40057BF6C /* YRWeiboList.m */,
+				037F8E851C8D90C70057BF6C /* YRWeibo.h */,
+				037F8E861C8D90C70057BF6C /* YRWeibo.m */,
+				037F8EB91C8E72490057BF6C /* YRCircleCellViewModel.h */,
+				037F8EBA1C8E72490057BF6C /* YRCircleCellViewModel.m */,
+				03F59B911C8ED576009D5EA2 /* YRCircleComment.h */,
+				03F59B921C8ED576009D5EA2 /* YRCircleComment.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -338,6 +401,14 @@
 			children = (
 				037F8E781C8D6EE90057BF6C /* PhotoCell.h */,
 				037F8E791C8D6EE90057BF6C /* PhotoCell.m */,
+				037F8E8B1C8E660C0057BF6C /* YRFriendCircleCell.h */,
+				037F8E8C1C8E660C0057BF6C /* YRFriendCircleCell.m */,
+				037F8E9E1C8E68E90057BF6C /* YRCircleUser.h */,
+				037F8E9F1C8E68E90057BF6C /* YRCircleUser.m */,
+				037F8E9B1C8E68D10057BF6C /* YRCirclePhoto.h */,
+				037F8E9C1C8E68D10057BF6C /* YRCirclePhoto.m */,
+				037F8E971C8E67250057BF6C /* YRCircleToolBar.h */,
+				037F8E981C8E67250057BF6C /* YRCircleToolBar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -576,6 +647,28 @@
 			path = "MBProgressHUD+ADD";
 			sourceTree = "<group>";
 		};
+		037F8EA11C8E6D350057BF6C /* MJPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				037F8EA21C8E6D350057BF6C /* MJPhoto.h */,
+				037F8EA31C8E6D350057BF6C /* MJPhoto.m */,
+				037F8EA41C8E6D350057BF6C /* MJPhotoBrowser.bundle */,
+				037F8EA51C8E6D350057BF6C /* MJPhotoBrowser.h */,
+				037F8EA61C8E6D350057BF6C /* MJPhotoBrowser.m */,
+				037F8EA71C8E6D350057BF6C /* MJPhotoLoadingView.h */,
+				037F8EA81C8E6D350057BF6C /* MJPhotoLoadingView.m */,
+				037F8EA91C8E6D350057BF6C /* MJPhotoProgressView.h */,
+				037F8EAA1C8E6D350057BF6C /* MJPhotoProgressView.m */,
+				037F8EAB1C8E6D350057BF6C /* MJPhotoToolbar.h */,
+				037F8EAC1C8E6D350057BF6C /* MJPhotoToolbar.m */,
+				037F8EAD1C8E6D350057BF6C /* MJPhotoView.h */,
+				037F8EAE1C8E6D350057BF6C /* MJPhotoView.m */,
+				037F8EAF1C8E6D350057BF6C /* SDWebImageManager+MJ.h */,
+				037F8EB01C8E6D350057BF6C /* SDWebImageManager+MJ.m */,
+			);
+			path = MJPhotoBrowser;
+			sourceTree = "<group>";
+		};
 		1600EB2D1C87E65D001919EB = {
 			isa = PBXGroup;
 			children = (
@@ -649,6 +742,7 @@
 		1600EBA21C88087A001919EB /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				037F8EA11C8E6D350057BF6C /* MJPhotoBrowser */,
 				037F8E7B1C8D785C0057BF6C /* MBProgressHUD+ADD */,
 				037F8E481C8D5FC50057BF6C /* ImagePicker */,
 				1600EBA31C88087A001919EB /* REFrostedViewController */,
@@ -877,7 +971,9 @@
 				1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */,
 				037F8E2F1C88407E0057BF6C /* YRPersonalDataController.xib in Resources */,
 				1600EB461C87E65D001919EB /* Assets.xcassets in Resources */,
+				03F59B901C8EC1FF009D5EA2 /* YRCircleDetailController.xib in Resources */,
 				037F8E691C8D5FC50057BF6C /* JKImagePickerController.strings in Resources */,
+				037F8EB21C8E6D350057BF6C /* MJPhotoBrowser.bundle in Resources */,
 				164A8C931C8D1DCF00857638 /* YRMyWalletViewController.xib in Resources */,
 				037F8E6A1C8D5FC50057BF6C /* ImagesPicker.xcassets in Resources */,
 				164A8C9B1C8D248300857638 /* YRMyCommentCellTableViewCell.xib in Resources */,
@@ -945,28 +1041,37 @@
 				1600EBC81C88087A001919EB /* XBTagTitleModel.m in Sources */,
 				037F8E471C8D2F340057BF6C /* YRAddWeiboController.m in Sources */,
 				037F8E6D1C8D5FC50057BF6C /* JKAssetsGroupCell.m in Sources */,
+				037F8E8A1C8E63770057BF6C /* YRFriendCircleController.m in Sources */,
 				037F8E731C8D5FC50057BF6C /* JKPhotoBrowserCell.m in Sources */,
 				164A8C9E1C8D4F9300857638 /* YRFriendViewController.m in Sources */,
 				164A8CA51C8D545300857638 /* YRMyProgressViewController.m in Sources */,
 				164A8CA91C8D65A200857638 /* YRNotificationViewController.m in Sources */,
 				1600EBC11C88087A001919EB /* RECommonFunctions.m in Sources */,
+				037F8E8D1C8E660C0057BF6C /* YRFriendCircleCell.m in Sources */,
+				037F8EB81C8E6D350057BF6C /* SDWebImageManager+MJ.m in Sources */,
+				03F59B931C8ED576009D5EA2 /* YRCircleComment.m in Sources */,
 				16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */,
 				037F8E6E1C8D5FC50057BF6C /* JKAssetsGroupsView.m in Sources */,
 				1600EBCA1C88087A001919EB /* XBPageCell.m in Sources */,
 				1600EBA11C87E8A5001919EB /* YRYJNavigationController.m in Sources */,
+				037F8EB51C8E6D350057BF6C /* MJPhotoProgressView.m in Sources */,
 				1600EBC31C88087A001919EB /* REFrostedViewController.m in Sources */,
 				037F8E1F1C8826750057BF6C /* CWSLoginTextField.m in Sources */,
 				037F8E151C8826750057BF6C /* YRYJFourthClassController.m in Sources */,
 				037F8E701C8D5FC50057BF6C /* JKAssetsViewCell.m in Sources */,
+				037F8EB71C8E6D350057BF6C /* MJPhotoView.m in Sources */,
 				037F8E771C8D5FC50057BF6C /* UIView+JKPicker.m in Sources */,
 				037F8E161C8826750057BF6C /* YRYJLearnToDriveController.m in Sources */,
 				037F8E141C8826750057BF6C /* YRYJFirstClassController.m in Sources */,
 				037F8E271C8834160057BF6C /* YRRegistPswController.m in Sources */,
 				037F8E6B1C8D5FC50057BF6C /* JKAssets.m in Sources */,
 				037F8E1C1C8826750057BF6C /* YRRegistViewController.m in Sources */,
+				037F8E871C8D90C70057BF6C /* YRWeibo.m in Sources */,
 				037F8DC61C8815F80057BF6C /* AppDelegate.m in Sources */,
+				037F8EA01C8E68E90057BF6C /* YRCircleUser.m in Sources */,
 				037F8E7E1C8D78680057BF6C /* MBProgressHUD+Add.m in Sources */,
 				1600EBCC1C88087A001919EB /* XBConst.m in Sources */,
+				037F8E9D1C8E68D20057BF6C /* YRCirclePhoto.m in Sources */,
 				037F8E6F1C8D5FC50057BF6C /* JKAssetsThumbnailView.m in Sources */,
 				037F8E201C8826750057BF6C /* CWSPublicButton.m in Sources */,
 				164A8CB21C8D729700857638 /* YRActivityTableViewCell.m in Sources */,
@@ -974,7 +1079,9 @@
 				037F8E211C8826750057BF6C /* CWSReadPolicyView.m in Sources */,
 				037F8E171C8826750057BF6C /* YRYJSecondClassController.m in Sources */,
 				037F8E6C1C8D5FC50057BF6C /* JKAssetsCollectionFooterView.m in Sources */,
+				037F8EBB1C8E72490057BF6C /* YRCircleCellViewModel.m in Sources */,
 				1600EBC51C88087A001919EB /* UIView+REFrostedViewController.m in Sources */,
+				03F59B8F1C8EC1FF009D5EA2 /* YRCircleDetailController.m in Sources */,
 				037F8E2A1C883C570057BF6C /* YRProtocolViewController.m in Sources */,
 				037F8E1D1C8826750057BF6C /* UIButton+titleFrame.m in Sources */,
 				037F8E1A1C8826750057BF6C /* YRForgetPswViewController.m in Sources */,
@@ -982,12 +1089,14 @@
 				16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */,
 				037F8E181C8826750057BF6C /* YRYJThirdClassController.m in Sources */,
 				164A8CAD1C8D65EC00857638 /* YRCertificationViewController.m in Sources */,
+				037F8EB41C8E6D350057BF6C /* MJPhotoLoadingView.m in Sources */,
 				037F8E191C8826750057BF6C /* YRYJMenuViewController.m in Sources */,
 				1600EB3B1C87E65D001919EB /* main.m in Sources */,
 				16D096181C89699300FF4A81 /* YRReservationCell.m in Sources */,
 				037F8E741C8D5FC50057BF6C /* JKPromptView.m in Sources */,
 				037F8E7A1C8D6EE90057BF6C /* PhotoCell.m in Sources */,
 				1600EBC41C88087A001919EB /* UIImage+REFrostedViewController.m in Sources */,
+				037F8E9A1C8E68BC0057BF6C /* YRCircleToolBar.m in Sources */,
 				164A8C921C8D1DCF00857638 /* YRMyWalletViewController.m in Sources */,
 				037F8E711C8D5FC50057BF6C /* JKImagePickerController.m in Sources */,
 				037F8E321C884DBC0057BF6C /* PublicCheckMsgModel.m in Sources */,
@@ -996,18 +1105,21 @@
 				037F8E3E1C8D18D20057BF6C /* YRUserStatus.m in Sources */,
 				16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */,
 				164A8C9A1C8D248300857638 /* YRMyCommentCellTableViewCell.m in Sources */,
+				037F8EB11C8E6D350057BF6C /* MJPhoto.m in Sources */,
 				037F8E1E1C8826750057BF6C /* UIViewController+CWS.m in Sources */,
 				1600EBC91C88087A001919EB /* UIView+XBExtension.m in Sources */,
 				1600EBC71C88087A001919EB /* XBScrollPageController.m in Sources */,
-				037F8E441C8D2DB50057BF6C /* YRFriendCircleController.m in Sources */,
 				037F8E1B1C8826750057BF6C /* YRLoginViewController.m in Sources */,
 				164A8CA11C8D507A00857638 /* YRChatViewController.m in Sources */,
 				037F8E411C8D1E8F0057BF6C /* YRManager.m in Sources */,
 				037F8E811C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m in Sources */,
 				037F8E361C891CE20057BF6C /* NSString+Tools.m in Sources */,
+				037F8EB61C8E6D350057BF6C /* MJPhotoToolbar.m in Sources */,
 				1600EBC61C88087A001919EB /* UIViewController+REFrostedViewController.m in Sources */,
 				037F8E721C8D5FC50057BF6C /* JKPhotoBrowser.m in Sources */,
+				037F8EB31C8E6D350057BF6C /* MJPhotoBrowser.m in Sources */,
 				037F8E751C8D5FC50057BF6C /* JKUtil.m in Sources */,
+				037F8E841C8D8FB40057BF6C /* YRWeiboList.m in Sources */,
 				1600EBCB1C88087A001919EB /* XBTagTitleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -134,17 +134,7 @@
                     [_bodyDic setObject:imgArray forKey:@"pics"];
                     [self publishImages:_imgNameArray];
                     [MBProgressHUD showMessag:@"上传中..." toView:self.view];
-                    
-                    [RequestData POST:WEIBO_ADD parameters:_bodyDic complete:^(NSDictionary *responseDic) {
-                        if (_imgNameArray.count) {
-                            [self performSelector:@selector(goBackVC) withObject:nil afterDelay:5];
-                        }else{
-                            [self.navigationController popViewControllerAnimated:YES];
-                            [MBProgressHUD hideHUDForView:self.view animated:YES];
-                        }
-                    } failed:^(NSError *error) {
-                        [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    }];
+                   
                 }
             }
         } failureBlock:^(NSError *error) {
@@ -174,11 +164,22 @@
                     //上传到七牛
                     [upManager putData:uploadData key:imgName[i] token:token
                               complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-                                  if (resp) {
+                                  NSLog(@"%@\n%@",info,resp);
+//                                  if (resp) {
                                       if (i == self.assetsArray.count-1) {
                                           [MBProgressHUD showSuccess:@"上传成功" toView:self.navigationController.view];
+                                          [RequestData POST:WEIBO_ADD parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+                                              if (_imgNameArray.count) {
+                                                  [self performSelector:@selector(goBackVC) withObject:nil afterDelay:0];
+                                              }else{
+                                                  [self.navigationController popViewControllerAnimated:YES];
+                                                  [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                              }
+                                          } failed:^(NSError *error) {
+                                              [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                          }];
                                       }
-                                  }
+//                                  }
                                   
                               } option:nil];
                 }

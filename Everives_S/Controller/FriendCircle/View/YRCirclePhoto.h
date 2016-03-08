@@ -1,5 +1,5 @@
 //
-//  YRFriendCircleController.h
+//  YRCirclePhoto.h
 //  Everives_S
 //
 //  Created by 李洪攀 on 16/3/8.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YRFriendCircleController : UITableViewController
+@interface YRCirclePhoto : UIImageView
+
+@property (nonatomic, strong) NSArray *pic_urls;
 
 @end

@@ -85,6 +85,10 @@
 		1600EBCA1C88087A001919EB /* XBPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBBB1C88087A001919EB /* XBPageCell.m */; };
 		1600EBCB1C88087A001919EB /* XBTagTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBBD1C88087A001919EB /* XBTagTitleCell.m */; };
 		1600EBCC1C88087A001919EB /* XBConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBC01C88087A001919EB /* XBConst.m */; };
+		1624E2981C8E667B009F4E20 /* YRReservationDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624E2961C8E667B009F4E20 /* YRReservationDetailVC.m */; };
+		1624E2991C8E667B009F4E20 /* YRReservationDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1624E2971C8E667B009F4E20 /* YRReservationDetailVC.xib */; };
+		1624E29D1C8E7543009F4E20 /* YRCommentDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624E29B1C8E7543009F4E20 /* YRCommentDetailVC.m */; };
+		1624E29E1C8E7543009F4E20 /* YRCommentDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1624E29C1C8E7543009F4E20 /* YRCommentDetailVC.xib */; };
 		164A8C921C8D1DCF00857638 /* YRMyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8C901C8D1DCF00857638 /* YRMyWalletViewController.m */; };
 		164A8C931C8D1DCF00857638 /* YRMyWalletViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8C911C8D1DCF00857638 /* YRMyWalletViewController.xib */; };
 		164A8C961C8D23F600857638 /* YRMyCommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8C951C8D23F600857638 /* YRMyCommentsTableViewController.m */; };
@@ -99,6 +103,7 @@
 		164A8CAE1C8D65EC00857638 /* YRCertificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8CAC1C8D65EC00857638 /* YRCertificationViewController.xib */; };
 		164A8CB21C8D729700857638 /* YRActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CB01C8D729700857638 /* YRActivityTableViewCell.m */; };
 		164A8CB31C8D729700857638 /* YRActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8CB11C8D729700857638 /* YRActivityTableViewCell.xib */; };
+		164A8CB61C8D8D5000857638 /* YRNearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CB51C8D8D5000857638 /* YRNearViewController.m */; };
 		16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096071C89236900FF4A81 /* YRUserCenterViewController.m */; };
 		16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D0960A1C89345D00FF4A81 /* RequestData.m */; };
 		16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096131C89682700FF4A81 /* YRReservationViewController.m */; };
@@ -262,6 +267,12 @@
 		1600EBC01C88087A001919EB /* XBConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBConst.m; sourceTree = "<group>"; };
 		1600EBCF1C8808D8001919EB /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		1600EBD01C8808D8001919EB /* PrefixFile.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixFile.pch; sourceTree = "<group>"; };
+		1624E2951C8E667B009F4E20 /* YRReservationDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRReservationDetailVC.h; sourceTree = "<group>"; };
+		1624E2961C8E667B009F4E20 /* YRReservationDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationDetailVC.m; sourceTree = "<group>"; };
+		1624E2971C8E667B009F4E20 /* YRReservationDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRReservationDetailVC.xib; sourceTree = "<group>"; };
+		1624E29A1C8E7543009F4E20 /* YRCommentDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCommentDetailVC.h; sourceTree = "<group>"; };
+		1624E29B1C8E7543009F4E20 /* YRCommentDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCommentDetailVC.m; sourceTree = "<group>"; };
+		1624E29C1C8E7543009F4E20 /* YRCommentDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRCommentDetailVC.xib; sourceTree = "<group>"; };
 		164A8C8F1C8D1DCF00857638 /* YRMyWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyWalletViewController.h; sourceTree = "<group>"; };
 		164A8C901C8D1DCF00857638 /* YRMyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyWalletViewController.m; sourceTree = "<group>"; };
 		164A8C911C8D1DCF00857638 /* YRMyWalletViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRMyWalletViewController.xib; sourceTree = "<group>"; };
@@ -285,6 +296,8 @@
 		164A8CAF1C8D729700857638 /* YRActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRActivityTableViewCell.h; sourceTree = "<group>"; };
 		164A8CB01C8D729700857638 /* YRActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRActivityTableViewCell.m; sourceTree = "<group>"; };
 		164A8CB11C8D729700857638 /* YRActivityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRActivityTableViewCell.xib; sourceTree = "<group>"; };
+		164A8CB41C8D8D5000857638 /* YRNearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YRNearViewController.h; path = Everives_S/Controller/UserCenter/Controller/Activities/YRNearViewController.h; sourceTree = SOURCE_ROOT; };
+		164A8CB51C8D8D5000857638 /* YRNearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YRNearViewController.m; path = Everives_S/Controller/UserCenter/Controller/Activities/YRNearViewController.m; sourceTree = SOURCE_ROOT; };
 		16D096061C89236900FF4A81 /* YRUserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserCenterViewController.h; sourceTree = "<group>"; };
 		16D096071C89236900FF4A81 /* YRUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserCenterViewController.m; sourceTree = "<group>"; };
 		16D096091C89345D00FF4A81 /* RequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestData.h; sourceTree = "<group>"; };
@@ -452,6 +465,8 @@
 		037F8DF61C8826750057BF6C /* Near */ = {
 			isa = PBXGroup;
 			children = (
+				164A8CB41C8D8D5000857638 /* YRNearViewController.h */,
+				164A8CB51C8D8D5000857638 /* YRNearViewController.m */,
 			);
 			name = Near;
 			path = Controller/Near;
@@ -851,6 +866,9 @@
 				164A8C971C8D248300857638 /* YRMyCommentCellTableViewCell.h */,
 				164A8C981C8D248300857638 /* YRMyCommentCellTableViewCell.m */,
 				164A8C991C8D248300857638 /* YRMyCommentCellTableViewCell.xib */,
+				1624E29A1C8E7543009F4E20 /* YRCommentDetailVC.h */,
+				1624E29B1C8E7543009F4E20 /* YRCommentDetailVC.m */,
+				1624E29C1C8E7543009F4E20 /* YRCommentDetailVC.xib */,
 			);
 			path = Commemts;
 			sourceTree = "<group>";
@@ -873,6 +891,9 @@
 				16D096151C89699300FF4A81 /* YRReservationCell.h */,
 				16D096161C89699300FF4A81 /* YRReservationCell.m */,
 				16D096171C89699300FF4A81 /* YRReservationCell.xib */,
+				1624E2951C8E667B009F4E20 /* YRReservationDetailVC.h */,
+				1624E2961C8E667B009F4E20 /* YRReservationDetailVC.m */,
+				1624E2971C8E667B009F4E20 /* YRReservationDetailVC.xib */,
 			);
 			path = Reservation;
 			sourceTree = "<group>";
@@ -976,9 +997,11 @@
 				037F8EB21C8E6D350057BF6C /* MJPhotoBrowser.bundle in Resources */,
 				164A8C931C8D1DCF00857638 /* YRMyWalletViewController.xib in Resources */,
 				037F8E6A1C8D5FC50057BF6C /* ImagesPicker.xcassets in Resources */,
+				1624E29E1C8E7543009F4E20 /* YRCommentDetailVC.xib in Resources */,
 				164A8C9B1C8D248300857638 /* YRMyCommentCellTableViewCell.xib in Resources */,
 				16D096191C89699300FF4A81 /* YRReservationCell.xib in Resources */,
 				164A8CA61C8D545300857638 /* YRMyProgressViewController.xib in Resources */,
+				1624E2991C8E667B009F4E20 /* YRReservationDetailVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1038,6 +1061,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				037F8E761C8D5FC50057BF6C /* PhotoAlbumManager.m in Sources */,
+				1624E2981C8E667B009F4E20 /* YRReservationDetailVC.m in Sources */,
 				1600EBC81C88087A001919EB /* XBTagTitleModel.m in Sources */,
 				037F8E471C8D2F340057BF6C /* YRAddWeiboController.m in Sources */,
 				037F8E6D1C8D5FC50057BF6C /* JKAssetsGroupCell.m in Sources */,
@@ -1103,6 +1127,7 @@
 				037F8E221C8826750057BF6C /* JKCountDownButton.m in Sources */,
 				1600EBC21C88087A001919EB /* REFrostedContainerViewController.m in Sources */,
 				037F8E3E1C8D18D20057BF6C /* YRUserStatus.m in Sources */,
+				164A8CB61C8D8D5000857638 /* YRNearViewController.m in Sources */,
 				16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */,
 				164A8C9A1C8D248300857638 /* YRMyCommentCellTableViewCell.m in Sources */,
 				037F8EB11C8E6D350057BF6C /* MJPhoto.m in Sources */,
@@ -1112,6 +1137,7 @@
 				037F8E1B1C8826750057BF6C /* YRLoginViewController.m in Sources */,
 				164A8CA11C8D507A00857638 /* YRChatViewController.m in Sources */,
 				037F8E411C8D1E8F0057BF6C /* YRManager.m in Sources */,
+				1624E29D1C8E7543009F4E20 /* YRCommentDetailVC.m in Sources */,
 				037F8E811C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m in Sources */,
 				037F8E361C891CE20057BF6C /* NSString+Tools.m in Sources */,
 				037F8EB61C8E6D350057BF6C /* MJPhotoToolbar.m in Sources */,

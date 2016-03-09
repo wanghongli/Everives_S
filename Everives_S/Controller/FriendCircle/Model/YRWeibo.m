@@ -7,7 +7,10 @@
 //
 
 #import "YRWeibo.h"
-
+#import "YRCircleComment.h"
 @implementation YRWeibo
-
++ (NSDictionary *)objectClassInArray
+{
+    return @{@"comment":[YRCircleComment class]};
+}
 @end

@@ -11,6 +11,8 @@
 #import "YRWeibo.h"
 #import "YRFriendCircleCell.h"
 #import "YRCircleComment.h"
+#import "YRCircleCommentCell.h"
+#import "KGFreshCatchDetailCommentView.h"
 @interface YRCircleDetailController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     BOOL _wasKeyboardManagerEnabled;
@@ -136,16 +138,16 @@
 #pragma mark - 评论数据整理
 -(void)getCommentMsgWith:(NSArray *)array
 {
-//    for (int i = 0; i<array.count; i++) {
-//        YRCircleComment *child = array[i];
-//        [_commentArray addObject:child];
-//        
-//        NSMutableArray *branceArray = [NSMutableArray array];
-//        if (child.child.count) {
-//            [self getSecondCommentMsg:child.child withFormatChild:child withBranchArray:branceArray withOneOrSecond:NO];
-//        }
-//        [_branceArray addObject:branceArray];
-//    }
+    for (int i = 0; i<array.count; i++) {
+        YRCircleComment *child = array[i];
+        [_commentArray addObject:child];
+        
+        NSMutableArray *branceArray = [NSMutableArray array];
+        if (child.child.count) {
+            [self getSecondCommentMsg:child.child withFormatChild:child withBranchArray:branceArray withOneOrSecond:NO];
+        }
+        [_branceArray addObject:branceArray];
+    }
 }
 -(void)getSecondCommentMsg:(NSArray*)array withFormatChild:(YRCircleComment*)child withBranchArray:(NSMutableArray *)branchArray withOneOrSecond:(BOOL)oneOrTwo
 {
@@ -177,7 +179,7 @@
     }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 0) {
+    if (indexPath.section == 0) {
         // 创建cell
         YRFriendCircleCell *cell = [YRFriendCircleCell cellWithTableView:tableView];
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
@@ -187,12 +189,12 @@
         // 给cell传递模型
         cell.statusF = statusF;
         return cell;
-//    }else{
-//        
-//        KGFreshCatchDetailCell*cell = [KGFreshCatchDetailCell cellWithTableView:tableView];
-//        cell.backgroundColor = [UIColor whiteColor];
-//        
-//        [cell setUserNameTapClickBlock:^(KGFreshCatchCommentObject *user) {
+    }else{
+        
+        YRCircleCommentCell *cell = [YRCircleCommentCell cellWithTableView:tableView];
+        cell.backgroundColor = [UIColor whiteColor];
+        
+        [cell setUserNameTapClickBlock:^(YRCircleComment *user) {
 //            [RequestData requestInfomationWithURI:USER_GETUSERINFO andParameters:@{@"id":[NSString stringWithFormat:@"%ld",(long)user.uid]} complete:^(NSDictionary *responseDic) {
 //                
 //                KGUserMsgController *msgVC = [[KGUserMsgController alloc]init];
@@ -203,11 +205,11 @@
 //            } failed:^(NSError *error) {
 //                
 //            }];
-//        }];
-//        cell.accessoryType = UITableViewCellAccessoryNone;
-//        cell.array = _branceArray[indexPath.section-1][indexPath.row];
-//        return cell;
-//    }
+        }];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.array = _branceArray[indexPath.section-1][indexPath.row];
+        return cell;
+    }
 }
 // 返回cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -215,8 +217,7 @@
     if (indexPath.section == 0) {
         return _cellFrameMsg.cellHeight;
     }
-    return 50;
-//    return [KGFreshCatchDetailCell detailCommentCellWith:_branceArray[indexPath.section-1][indexPath.row]];
+    return [YRCircleCommentCell detailCommentCellWith:_branceArray[indexPath.section-1][indexPath.row]];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -227,37 +228,36 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-//    if (section == 0) {
+    if (section == 0) {
         return 0.1;
-//    }else{
-//        CGFloat height = [KGFreshCatchDetailCommentView detailCommentViewWith:_commentArray[section - 1]];
-//        return height;
-//    }
+    }else{
+        CGFloat height = [KGFreshCatchDetailCommentView detailCommentViewWith:_commentArray[section - 1]];
+        return height;
+    }
 }
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-//    if (section == 0) {
+    if (section == 0) {
         return [[UIView alloc]init];
-//    }else{
-//        CGFloat height = [KGFreshCatchDetailCommentView detailCommentViewWith:_commentArray[section - 1]];
-//        KGFreshCatchDetailCommentView *zanView = [[KGFreshCatchDetailCommentView alloc]init];
-//        zanView.backgroundColor = [UIColor whiteColor];
-//        [zanView setReplyTapClickBlock:^(KGFreshCatchCommentObject *commentObject) {
-//            [_commentBody setObject:[NSString stringWithFormat:@"%ld",(long)commentObject.id] forKey:@"fid"];
-//            //            [self buildCommentViewWithPlaceHold:[NSString stringWithFormat:@"%@回复:",commentObject.authorName]];
-//            self.commentText.placeholder = [NSString stringWithFormat:@"%@回复:",commentObject.authorName];
-//            [self.commentText becomeFirstResponder];
-//            
-//        }];
-//        zanView.frame = CGRectMake(0, 0, kSizeOfScreen.width, height);
-//        zanView.comment = _commentArray[section - 1];
-//        if (section == 1) {
-//            zanView.topLineHidden = YES;
-//        }else{
-//            zanView.topLineHidden = NO;
-//        }
-//        return zanView;
-//    }
+    }else{
+        CGFloat height = [KGFreshCatchDetailCommentView detailCommentViewWith:_commentArray[section - 1]];
+        KGFreshCatchDetailCommentView *zanView = [[KGFreshCatchDetailCommentView alloc]init];
+        zanView.backgroundColor = [UIColor whiteColor];
+        [zanView setReplyTapClickBlock:^(YRCircleComment *commentObject) {
+            [_commentBody setObject:[NSString stringWithFormat:@"%ld",(long)commentObject.id] forKey:@"fid"];
+            self.commentText.placeholder = [NSString stringWithFormat:@"%@回复:",commentObject.name];
+            [self.commentText becomeFirstResponder];
+            
+        }];
+        zanView.frame = CGRectMake(0, 0, kSizeOfScreen.width, height);
+        zanView.comment = _commentArray[section - 1];
+        if (section == 1) {
+            zanView.topLineHidden = YES;
+        }else{
+            zanView.topLineHidden = NO;
+        }
+        return zanView;
+    }
 }
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
@@ -279,21 +279,21 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-//    if (indexPath.section !=0) {
-//        NSArray *array = _branceArray[indexPath.section-1][indexPath.row];
-//        if (array.count == 1) {
-//            KGFreshCatchCommentObject*commentObject = array[0];
-//            [_commentBody setObject:[NSString stringWithFormat:@"%ld",(long)commentObject.id] forKey:@"fid"];
-//            
-//            self.commentText.placeholder = [NSString stringWithFormat:@"%@回复:",commentObject.authorName];
-//            [self.commentText becomeFirstResponder];
-//        }else{
-//            KGFreshCatchCommentObject*commentObject = array[1];
-//            [_commentBody setObject:[NSString stringWithFormat:@"%ld",(long)commentObject.id] forKey:@"fid"];
-//            self.commentText.placeholder = [NSString stringWithFormat:@"%@回复:",commentObject.authorName];
-//            [self.commentText becomeFirstResponder];
-//        }
-//    }
+    if (indexPath.section !=0) {
+        NSArray *array = _branceArray[indexPath.section-1][indexPath.row];
+        if (array.count == 1) {
+            YRCircleComment*commentObject = array[0];
+            [_commentBody setObject:[NSString stringWithFormat:@"%ld",(long)commentObject.id] forKey:@"fid"];
+            
+            self.commentText.placeholder = [NSString stringWithFormat:@"%@回复:",commentObject.name];
+            [self.commentText becomeFirstResponder];
+        }else{
+            YRCircleComment*commentObject = array[1];
+            [_commentBody setObject:[NSString stringWithFormat:@"%ld",(long)commentObject.id] forKey:@"fid"];
+            self.commentText.placeholder = [NSString stringWithFormat:@"%@回复:",commentObject.name];
+            [self.commentText becomeFirstResponder];
+        }
+    }
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {

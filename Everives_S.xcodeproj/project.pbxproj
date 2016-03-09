@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
+		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
 		037F8DC61C8815F80057BF6C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DC51C8815F80057BF6C /* AppDelegate.m */; };
 		037F8E141C8826750057BF6C /* YRYJFirstClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DEA1C8826750057BF6C /* YRYJFirstClassController.m */; };
 		037F8E151C8826750057BF6C /* YRYJFourthClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DEC1C8826750057BF6C /* YRYJFourthClassController.m */; };
@@ -50,7 +52,6 @@
 		037F8E7A1C8D6EE90057BF6C /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E791C8D6EE90057BF6C /* PhotoCell.m */; };
 		037F8E7E1C8D78680057BF6C /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E7D1C8D78680057BF6C /* MBProgressHUD+Add.m */; };
 		037F8E811C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E801C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m */; };
-		037F8E841C8D8FB40057BF6C /* YRWeiboList.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E831C8D8FB40057BF6C /* YRWeiboList.m */; };
 		037F8E871C8D90C70057BF6C /* YRWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E861C8D90C70057BF6C /* YRWeibo.m */; };
 		037F8E8A1C8E63770057BF6C /* YRFriendCircleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E891C8E63770057BF6C /* YRFriendCircleController.m */; };
 		037F8E8D1C8E660C0057BF6C /* YRFriendCircleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E8C1C8E660C0057BF6C /* YRFriendCircleCell.m */; };
@@ -113,6 +114,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
+		037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCircleCommentCell.m; sourceTree = "<group>"; };
+		037C929A1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGFreshCatchDetailCommentView.h; sourceTree = "<group>"; };
+		037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGFreshCatchDetailCommentView.m; sourceTree = "<group>"; };
 		037F8DC41C8815F80057BF6C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		037F8DC51C8815F80057BF6C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		037F8DE91C8826750057BF6C /* YRYJFirstClassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJFirstClassController.h; sourceTree = "<group>"; };
@@ -198,8 +203,6 @@
 		037F8E7D1C8D78680057BF6C /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		037F8E7F1C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
 		037F8E801C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
-		037F8E821C8D8FB40057BF6C /* YRWeiboList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRWeiboList.h; sourceTree = "<group>"; };
-		037F8E831C8D8FB40057BF6C /* YRWeiboList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRWeiboList.m; sourceTree = "<group>"; };
 		037F8E851C8D90C70057BF6C /* YRWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRWeibo.h; sourceTree = "<group>"; };
 		037F8E861C8D90C70057BF6C /* YRWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRWeibo.m; sourceTree = "<group>"; };
 		037F8E881C8E63770057BF6C /* YRFriendCircleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRFriendCircleController.h; sourceTree = "<group>"; };
@@ -397,8 +400,6 @@
 		037F8DE51C8826750057BF6C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				037F8E821C8D8FB40057BF6C /* YRWeiboList.h */,
-				037F8E831C8D8FB40057BF6C /* YRWeiboList.m */,
 				037F8E851C8D90C70057BF6C /* YRWeibo.h */,
 				037F8E861C8D90C70057BF6C /* YRWeibo.m */,
 				037F8EB91C8E72490057BF6C /* YRCircleCellViewModel.h */,
@@ -422,6 +423,10 @@
 				037F8E9C1C8E68D10057BF6C /* YRCirclePhoto.m */,
 				037F8E971C8E67250057BF6C /* YRCircleToolBar.h */,
 				037F8E981C8E67250057BF6C /* YRCircleToolBar.m */,
+				037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */,
+				037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */,
+				037C929A1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.h */,
+				037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1060,6 +1065,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */,
 				037F8E761C8D5FC50057BF6C /* PhotoAlbumManager.m in Sources */,
 				1624E2981C8E667B009F4E20 /* YRReservationDetailVC.m in Sources */,
 				1600EBC81C88087A001919EB /* XBTagTitleModel.m in Sources */,
@@ -1078,6 +1084,7 @@
 				037F8E6E1C8D5FC50057BF6C /* JKAssetsGroupsView.m in Sources */,
 				1600EBCA1C88087A001919EB /* XBPageCell.m in Sources */,
 				1600EBA11C87E8A5001919EB /* YRYJNavigationController.m in Sources */,
+				037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */,
 				037F8EB51C8E6D350057BF6C /* MJPhotoProgressView.m in Sources */,
 				1600EBC31C88087A001919EB /* REFrostedViewController.m in Sources */,
 				037F8E1F1C8826750057BF6C /* CWSLoginTextField.m in Sources */,
@@ -1145,7 +1152,6 @@
 				037F8E721C8D5FC50057BF6C /* JKPhotoBrowser.m in Sources */,
 				037F8EB31C8E6D350057BF6C /* MJPhotoBrowser.m in Sources */,
 				037F8E751C8D5FC50057BF6C /* JKUtil.m in Sources */,
-				037F8E841C8D8FB40057BF6C /* YRWeiboList.m in Sources */,
 				1600EBCB1C88087A001919EB /* XBTagTitleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

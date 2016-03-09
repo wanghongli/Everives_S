@@ -94,8 +94,6 @@
 		164A8C961C8D23F600857638 /* YRMyCommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8C951C8D23F600857638 /* YRMyCommentsTableViewController.m */; };
 		164A8C9A1C8D248300857638 /* YRMyCommentCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8C981C8D248300857638 /* YRMyCommentCellTableViewCell.m */; };
 		164A8C9B1C8D248300857638 /* YRMyCommentCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8C991C8D248300857638 /* YRMyCommentCellTableViewCell.xib */; };
-		164A8C9E1C8D4F9300857638 /* YRFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8C9D1C8D4F9300857638 /* YRFriendViewController.m */; };
-		164A8CA11C8D507A00857638 /* YRChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CA01C8D507A00857638 /* YRChatViewController.m */; };
 		164A8CA51C8D545300857638 /* YRMyProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CA31C8D545300857638 /* YRMyProgressViewController.m */; };
 		164A8CA61C8D545300857638 /* YRMyProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8CA41C8D545300857638 /* YRMyProgressViewController.xib */; };
 		164A8CA91C8D65A200857638 /* YRNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CA81C8D65A200857638 /* YRNotificationViewController.m */; };
@@ -103,7 +101,9 @@
 		164A8CAE1C8D65EC00857638 /* YRCertificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8CAC1C8D65EC00857638 /* YRCertificationViewController.xib */; };
 		164A8CB21C8D729700857638 /* YRActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CB01C8D729700857638 /* YRActivityTableViewCell.m */; };
 		164A8CB31C8D729700857638 /* YRActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8CB11C8D729700857638 /* YRActivityTableViewCell.xib */; };
-		164A8CB61C8D8D5000857638 /* YRNearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CB51C8D8D5000857638 /* YRNearViewController.m */; };
+		1672A6381C8FBBA700AF6272 /* YRNearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672A6371C8FBBA700AF6272 /* YRNearViewController.m */; };
+		1672A6401C8FBC6200AF6272 /* YRChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672A63B1C8FBC6200AF6272 /* YRChatViewController.m */; };
+		1672A6411C8FBC6200AF6272 /* YRFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672A63F1C8FBC6200AF6272 /* YRFriendViewController.m */; };
 		16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096071C89236900FF4A81 /* YRUserCenterViewController.m */; };
 		16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D0960A1C89345D00FF4A81 /* RequestData.m */; };
 		16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096131C89682700FF4A81 /* YRReservationViewController.m */; };
@@ -281,10 +281,6 @@
 		164A8C971C8D248300857638 /* YRMyCommentCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyCommentCellTableViewCell.h; sourceTree = "<group>"; };
 		164A8C981C8D248300857638 /* YRMyCommentCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyCommentCellTableViewCell.m; sourceTree = "<group>"; };
 		164A8C991C8D248300857638 /* YRMyCommentCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRMyCommentCellTableViewCell.xib; sourceTree = "<group>"; };
-		164A8C9C1C8D4F9300857638 /* YRFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YRFriendViewController.h; path = Everives_S/Controller/UserCenter/Controller/Commemts/YRFriendViewController.h; sourceTree = SOURCE_ROOT; };
-		164A8C9D1C8D4F9300857638 /* YRFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YRFriendViewController.m; path = Everives_S/Controller/UserCenter/Controller/Commemts/YRFriendViewController.m; sourceTree = SOURCE_ROOT; };
-		164A8C9F1C8D507A00857638 /* YRChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YRChatViewController.h; path = Everives_S/Controller/UserCenter/Controller/Commemts/YRChatViewController.h; sourceTree = SOURCE_ROOT; };
-		164A8CA01C8D507A00857638 /* YRChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YRChatViewController.m; path = Everives_S/Controller/UserCenter/Controller/Commemts/YRChatViewController.m; sourceTree = SOURCE_ROOT; };
 		164A8CA21C8D545300857638 /* YRMyProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyProgressViewController.h; sourceTree = "<group>"; };
 		164A8CA31C8D545300857638 /* YRMyProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyProgressViewController.m; sourceTree = "<group>"; };
 		164A8CA41C8D545300857638 /* YRMyProgressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRMyProgressViewController.xib; sourceTree = "<group>"; };
@@ -296,8 +292,12 @@
 		164A8CAF1C8D729700857638 /* YRActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRActivityTableViewCell.h; sourceTree = "<group>"; };
 		164A8CB01C8D729700857638 /* YRActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRActivityTableViewCell.m; sourceTree = "<group>"; };
 		164A8CB11C8D729700857638 /* YRActivityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRActivityTableViewCell.xib; sourceTree = "<group>"; };
-		164A8CB41C8D8D5000857638 /* YRNearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YRNearViewController.h; path = Everives_S/Controller/UserCenter/Controller/Activities/YRNearViewController.h; sourceTree = SOURCE_ROOT; };
-		164A8CB51C8D8D5000857638 /* YRNearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YRNearViewController.m; path = Everives_S/Controller/UserCenter/Controller/Activities/YRNearViewController.m; sourceTree = SOURCE_ROOT; };
+		1672A6361C8FBBA700AF6272 /* YRNearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRNearViewController.h; sourceTree = "<group>"; };
+		1672A6371C8FBBA700AF6272 /* YRNearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRNearViewController.m; sourceTree = "<group>"; };
+		1672A63A1C8FBC6200AF6272 /* YRChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRChatViewController.h; sourceTree = "<group>"; };
+		1672A63B1C8FBC6200AF6272 /* YRChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRChatViewController.m; sourceTree = "<group>"; };
+		1672A63E1C8FBC6200AF6272 /* YRFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRFriendViewController.h; sourceTree = "<group>"; };
+		1672A63F1C8FBC6200AF6272 /* YRFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRFriendViewController.m; sourceTree = "<group>"; };
 		16D096061C89236900FF4A81 /* YRUserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserCenterViewController.h; sourceTree = "<group>"; };
 		16D096071C89236900FF4A81 /* YRUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserCenterViewController.m; sourceTree = "<group>"; };
 		16D096091C89345D00FF4A81 /* RequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestData.h; sourceTree = "<group>"; };
@@ -336,37 +336,14 @@
 		037F8DDF1C8826750057BF6C /* Friend */ = {
 			isa = PBXGroup;
 			children = (
-				037F8DE01C8826750057BF6C /* Controller */,
-				037F8DE11C8826750057BF6C /* Model */,
-				037F8DE21C8826750057BF6C /* View */,
-				164A8C9C1C8D4F9300857638 /* YRFriendViewController.h */,
-				164A8C9D1C8D4F9300857638 /* YRFriendViewController.m */,
+				1672A6391C8FBC6200AF6272 /* Controller */,
+				1672A63C1C8FBC6200AF6272 /* Model */,
+				1672A63D1C8FBC6200AF6272 /* View */,
+				1672A63E1C8FBC6200AF6272 /* YRFriendViewController.h */,
+				1672A63F1C8FBC6200AF6272 /* YRFriendViewController.m */,
 			);
 			name = Friend;
 			path = Controller/Friend;
-			sourceTree = "<group>";
-		};
-		037F8DE01C8826750057BF6C /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				164A8C9F1C8D507A00857638 /* YRChatViewController.h */,
-				164A8CA01C8D507A00857638 /* YRChatViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		037F8DE11C8826750057BF6C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		037F8DE21C8826750057BF6C /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		037F8DE31C8826750057BF6C /* FriendCircle */ = {
@@ -429,6 +406,8 @@
 		037F8DE71C8826750057BF6C /* Learn */ = {
 			isa = PBXGroup;
 			children = (
+				1672A6421C8FBCA100AF6272 /* Model */,
+				1672A6431C8FBCA100AF6272 /* View */,
 				037F8DE81C8826750057BF6C /* Controller */,
 			);
 			name = Learn;
@@ -465,8 +444,8 @@
 		037F8DF61C8826750057BF6C /* Near */ = {
 			isa = PBXGroup;
 			children = (
-				164A8CB41C8D8D5000857638 /* YRNearViewController.h */,
-				164A8CB51C8D8D5000857638 /* YRNearViewController.m */,
+				1672A6361C8FBBA700AF6272 /* YRNearViewController.h */,
+				1672A6371C8FBBA700AF6272 /* YRNearViewController.m */,
 			);
 			name = Near;
 			path = Controller/Near;
@@ -475,33 +454,12 @@
 		037F8DF71C8826750057BF6C /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				037F8DF81C8826750057BF6C /* Controller */,
-				037F8DF91C8826750057BF6C /* Model */,
-				037F8DFA1C8826750057BF6C /* View */,
+				1672A6441C8FBD1300AF6272 /* Controller */,
+				1672A6451C8FBD1300AF6272 /* Model */,
+				1672A6461C8FBD1300AF6272 /* View */,
 			);
 			name = Setting;
 			path = Controller/Setting;
-			sourceTree = "<group>";
-		};
-		037F8DF81C8826750057BF6C /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		037F8DF91C8826750057BF6C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		037F8DFA1C8826750057BF6C /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		037F8DFB1C8826750057BF6C /* UserCenter */ = {
@@ -836,6 +794,64 @@
 			path = XBConst;
 			sourceTree = "<group>";
 		};
+		1672A6391C8FBC6200AF6272 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1672A63A1C8FBC6200AF6272 /* YRChatViewController.h */,
+				1672A63B1C8FBC6200AF6272 /* YRChatViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1672A63C1C8FBC6200AF6272 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1672A63D1C8FBC6200AF6272 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1672A6421C8FBCA100AF6272 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1672A6431C8FBCA100AF6272 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1672A6441C8FBD1300AF6272 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1672A6451C8FBD1300AF6272 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1672A6461C8FBD1300AF6272 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		16D0960C1C8967DE00FF4A81 /* Activities */ = {
 			isa = PBXGroup;
 			children = (
@@ -1062,12 +1078,12 @@
 			files = (
 				037F8E761C8D5FC50057BF6C /* PhotoAlbumManager.m in Sources */,
 				1624E2981C8E667B009F4E20 /* YRReservationDetailVC.m in Sources */,
+				1672A6411C8FBC6200AF6272 /* YRFriendViewController.m in Sources */,
 				1600EBC81C88087A001919EB /* XBTagTitleModel.m in Sources */,
 				037F8E471C8D2F340057BF6C /* YRAddWeiboController.m in Sources */,
 				037F8E6D1C8D5FC50057BF6C /* JKAssetsGroupCell.m in Sources */,
 				037F8E8A1C8E63770057BF6C /* YRFriendCircleController.m in Sources */,
 				037F8E731C8D5FC50057BF6C /* JKPhotoBrowserCell.m in Sources */,
-				164A8C9E1C8D4F9300857638 /* YRFriendViewController.m in Sources */,
 				164A8CA51C8D545300857638 /* YRMyProgressViewController.m in Sources */,
 				164A8CA91C8D65A200857638 /* YRNotificationViewController.m in Sources */,
 				1600EBC11C88087A001919EB /* RECommonFunctions.m in Sources */,
@@ -1118,6 +1134,7 @@
 				1600EB3B1C87E65D001919EB /* main.m in Sources */,
 				16D096181C89699300FF4A81 /* YRReservationCell.m in Sources */,
 				037F8E741C8D5FC50057BF6C /* JKPromptView.m in Sources */,
+				1672A6401C8FBC6200AF6272 /* YRChatViewController.m in Sources */,
 				037F8E7A1C8D6EE90057BF6C /* PhotoCell.m in Sources */,
 				1600EBC41C88087A001919EB /* UIImage+REFrostedViewController.m in Sources */,
 				037F8E9A1C8E68BC0057BF6C /* YRCircleToolBar.m in Sources */,
@@ -1127,15 +1144,14 @@
 				037F8E221C8826750057BF6C /* JKCountDownButton.m in Sources */,
 				1600EBC21C88087A001919EB /* REFrostedContainerViewController.m in Sources */,
 				037F8E3E1C8D18D20057BF6C /* YRUserStatus.m in Sources */,
-				164A8CB61C8D8D5000857638 /* YRNearViewController.m in Sources */,
 				16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */,
 				164A8C9A1C8D248300857638 /* YRMyCommentCellTableViewCell.m in Sources */,
+				1672A6381C8FBBA700AF6272 /* YRNearViewController.m in Sources */,
 				037F8EB11C8E6D350057BF6C /* MJPhoto.m in Sources */,
 				037F8E1E1C8826750057BF6C /* UIViewController+CWS.m in Sources */,
 				1600EBC91C88087A001919EB /* UIView+XBExtension.m in Sources */,
 				1600EBC71C88087A001919EB /* XBScrollPageController.m in Sources */,
 				037F8E1B1C8826750057BF6C /* YRLoginViewController.m in Sources */,
-				164A8CA11C8D507A00857638 /* YRChatViewController.m in Sources */,
 				037F8E411C8D1E8F0057BF6C /* YRManager.m in Sources */,
 				1624E29D1C8E7543009F4E20 /* YRCommentDetailVC.m in Sources */,
 				037F8E811C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m in Sources */,

@@ -104,6 +104,15 @@
 		1672A6381C8FBBA700AF6272 /* YRNearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672A6371C8FBBA700AF6272 /* YRNearViewController.m */; };
 		1672A6401C8FBC6200AF6272 /* YRChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672A63B1C8FBC6200AF6272 /* YRChatViewController.m */; };
 		1672A6411C8FBC6200AF6272 /* YRFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672A63F1C8FBC6200AF6272 /* YRFriendViewController.m */; };
+		1672A64D1C8FBF9100AF6272 /* SharedMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672A64C1C8FBF9100AF6272 /* SharedMapView.m */; };
+		1672A6501C8FC6A600AF6272 /* YRMapSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672A64F1C8FC6A600AF6272 /* YRMapSelectView.m */; };
+		1672A6551C8FE5E200AF6272 /* YRSchoolTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672A6531C8FE5E200AF6272 /* YRSchoolTableCell.m */; };
+		1672A6561C8FE5E200AF6272 /* YRSchoolTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1672A6541C8FE5E200AF6272 /* YRSchoolTableCell.xib */; };
+		1672A65A1C8FE60300AF6272 /* YRCoachTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672A6581C8FE60300AF6272 /* YRCoachTableCell.m */; };
+		1672A65B1C8FE60300AF6272 /* YRCoachTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1672A6591C8FE60300AF6272 /* YRCoachTableCell.xib */; };
+		1672A65F1C8FE61200AF6272 /* YRStudentTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672A65D1C8FE61200AF6272 /* YRStudentTableCell.m */; };
+		1672A6601C8FE61200AF6272 /* YRStudentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1672A65E1C8FE61200AF6272 /* YRStudentTableCell.xib */; };
+		1672A6641C8FE8F400AF6272 /* SchoolDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672A6631C8FE8F400AF6272 /* SchoolDataSource.m */; };
 		16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096071C89236900FF4A81 /* YRUserCenterViewController.m */; };
 		16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D0960A1C89345D00FF4A81 /* RequestData.m */; };
 		16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096131C89682700FF4A81 /* YRReservationViewController.m */; };
@@ -298,6 +307,21 @@
 		1672A63B1C8FBC6200AF6272 /* YRChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRChatViewController.m; sourceTree = "<group>"; };
 		1672A63E1C8FBC6200AF6272 /* YRFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRFriendViewController.h; sourceTree = "<group>"; };
 		1672A63F1C8FBC6200AF6272 /* YRFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRFriendViewController.m; sourceTree = "<group>"; };
+		1672A64B1C8FBF9100AF6272 /* SharedMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedMapView.h; sourceTree = "<group>"; };
+		1672A64C1C8FBF9100AF6272 /* SharedMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedMapView.m; sourceTree = "<group>"; };
+		1672A64E1C8FC6A600AF6272 /* YRMapSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMapSelectView.h; sourceTree = "<group>"; };
+		1672A64F1C8FC6A600AF6272 /* YRMapSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMapSelectView.m; sourceTree = "<group>"; };
+		1672A6521C8FE5E200AF6272 /* YRSchoolTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSchoolTableCell.h; sourceTree = "<group>"; };
+		1672A6531C8FE5E200AF6272 /* YRSchoolTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSchoolTableCell.m; sourceTree = "<group>"; };
+		1672A6541C8FE5E200AF6272 /* YRSchoolTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRSchoolTableCell.xib; sourceTree = "<group>"; };
+		1672A6571C8FE60300AF6272 /* YRCoachTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCoachTableCell.h; sourceTree = "<group>"; };
+		1672A6581C8FE60300AF6272 /* YRCoachTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCoachTableCell.m; sourceTree = "<group>"; };
+		1672A6591C8FE60300AF6272 /* YRCoachTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRCoachTableCell.xib; sourceTree = "<group>"; };
+		1672A65C1C8FE61200AF6272 /* YRStudentTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRStudentTableCell.h; sourceTree = "<group>"; };
+		1672A65D1C8FE61200AF6272 /* YRStudentTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRStudentTableCell.m; sourceTree = "<group>"; };
+		1672A65E1C8FE61200AF6272 /* YRStudentTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRStudentTableCell.xib; sourceTree = "<group>"; };
+		1672A6621C8FE8F400AF6272 /* SchoolDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolDataSource.h; sourceTree = "<group>"; };
+		1672A6631C8FE8F400AF6272 /* SchoolDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolDataSource.m; sourceTree = "<group>"; };
 		16D096061C89236900FF4A81 /* YRUserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserCenterViewController.h; sourceTree = "<group>"; };
 		16D096071C89236900FF4A81 /* YRUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserCenterViewController.m; sourceTree = "<group>"; };
 		16D096091C89345D00FF4A81 /* RequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestData.h; sourceTree = "<group>"; };
@@ -446,6 +470,9 @@
 			children = (
 				1672A6361C8FBBA700AF6272 /* YRNearViewController.h */,
 				1672A6371C8FBBA700AF6272 /* YRNearViewController.m */,
+				1672A6471C8FBF1100AF6272 /* Controller */,
+				1672A6481C8FBF1100AF6272 /* Model */,
+				1672A6491C8FBF1100AF6272 /* View */,
 			);
 			name = Near;
 			path = Controller/Near;
@@ -852,6 +879,66 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1672A6471C8FBF1100AF6272 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1672A6481C8FBF1100AF6272 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1672A6611C8FE8B000AF6272 /* TableDataSource */,
+				1672A64A1C8FBF9100AF6272 /* SharedMap */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1672A6491C8FBF1100AF6272 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1672A6511C8FE5A900AF6272 /* TableCellView */,
+				1672A64E1C8FC6A600AF6272 /* YRMapSelectView.h */,
+				1672A64F1C8FC6A600AF6272 /* YRMapSelectView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1672A64A1C8FBF9100AF6272 /* SharedMap */ = {
+			isa = PBXGroup;
+			children = (
+				1672A64B1C8FBF9100AF6272 /* SharedMapView.h */,
+				1672A64C1C8FBF9100AF6272 /* SharedMapView.m */,
+			);
+			path = SharedMap;
+			sourceTree = "<group>";
+		};
+		1672A6511C8FE5A900AF6272 /* TableCellView */ = {
+			isa = PBXGroup;
+			children = (
+				1672A6521C8FE5E200AF6272 /* YRSchoolTableCell.h */,
+				1672A6531C8FE5E200AF6272 /* YRSchoolTableCell.m */,
+				1672A6541C8FE5E200AF6272 /* YRSchoolTableCell.xib */,
+				1672A6571C8FE60300AF6272 /* YRCoachTableCell.h */,
+				1672A6581C8FE60300AF6272 /* YRCoachTableCell.m */,
+				1672A6591C8FE60300AF6272 /* YRCoachTableCell.xib */,
+				1672A65C1C8FE61200AF6272 /* YRStudentTableCell.h */,
+				1672A65D1C8FE61200AF6272 /* YRStudentTableCell.m */,
+				1672A65E1C8FE61200AF6272 /* YRStudentTableCell.xib */,
+			);
+			path = TableCellView;
+			sourceTree = "<group>";
+		};
+		1672A6611C8FE8B000AF6272 /* TableDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				1672A6621C8FE8F400AF6272 /* SchoolDataSource.h */,
+				1672A6631C8FE8F400AF6272 /* SchoolDataSource.m */,
+			);
+			path = TableDataSource;
+			sourceTree = "<group>";
+		};
 		16D0960C1C8967DE00FF4A81 /* Activities */ = {
 			isa = PBXGroup;
 			children = (
@@ -1004,6 +1091,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				164A8CAE1C8D65EC00857638 /* YRCertificationViewController.xib in Resources */,
+				1672A6561C8FE5E200AF6272 /* YRSchoolTableCell.xib in Resources */,
 				164A8CB31C8D729700857638 /* YRActivityTableViewCell.xib in Resources */,
 				1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */,
 				037F8E2F1C88407E0057BF6C /* YRPersonalDataController.xib in Resources */,
@@ -1015,7 +1103,9 @@
 				037F8E6A1C8D5FC50057BF6C /* ImagesPicker.xcassets in Resources */,
 				1624E29E1C8E7543009F4E20 /* YRCommentDetailVC.xib in Resources */,
 				164A8C9B1C8D248300857638 /* YRMyCommentCellTableViewCell.xib in Resources */,
+				1672A6601C8FE61200AF6272 /* YRStudentTableCell.xib in Resources */,
 				16D096191C89699300FF4A81 /* YRReservationCell.xib in Resources */,
+				1672A65B1C8FE60300AF6272 /* YRCoachTableCell.xib in Resources */,
 				164A8CA61C8D545300857638 /* YRMyProgressViewController.xib in Resources */,
 				1624E2991C8E667B009F4E20 /* YRReservationDetailVC.xib in Resources */,
 			);
@@ -1087,6 +1177,7 @@
 				164A8CA51C8D545300857638 /* YRMyProgressViewController.m in Sources */,
 				164A8CA91C8D65A200857638 /* YRNotificationViewController.m in Sources */,
 				1600EBC11C88087A001919EB /* RECommonFunctions.m in Sources */,
+				1672A6551C8FE5E200AF6272 /* YRSchoolTableCell.m in Sources */,
 				037F8E8D1C8E660C0057BF6C /* YRFriendCircleCell.m in Sources */,
 				037F8EB81C8E6D350057BF6C /* SDWebImageManager+MJ.m in Sources */,
 				03F59B931C8ED576009D5EA2 /* YRCircleComment.m in Sources */,
@@ -1126,19 +1217,23 @@
 				037F8E1D1C8826750057BF6C /* UIButton+titleFrame.m in Sources */,
 				037F8E1A1C8826750057BF6C /* YRForgetPswViewController.m in Sources */,
 				164A8C961C8D23F600857638 /* YRMyCommentsTableViewController.m in Sources */,
+				1672A65A1C8FE60300AF6272 /* YRCoachTableCell.m in Sources */,
 				16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */,
 				037F8E181C8826750057BF6C /* YRYJThirdClassController.m in Sources */,
 				164A8CAD1C8D65EC00857638 /* YRCertificationViewController.m in Sources */,
 				037F8EB41C8E6D350057BF6C /* MJPhotoLoadingView.m in Sources */,
 				037F8E191C8826750057BF6C /* YRYJMenuViewController.m in Sources */,
+				1672A65F1C8FE61200AF6272 /* YRStudentTableCell.m in Sources */,
 				1600EB3B1C87E65D001919EB /* main.m in Sources */,
 				16D096181C89699300FF4A81 /* YRReservationCell.m in Sources */,
 				037F8E741C8D5FC50057BF6C /* JKPromptView.m in Sources */,
 				1672A6401C8FBC6200AF6272 /* YRChatViewController.m in Sources */,
+				1672A6641C8FE8F400AF6272 /* SchoolDataSource.m in Sources */,
 				037F8E7A1C8D6EE90057BF6C /* PhotoCell.m in Sources */,
 				1600EBC41C88087A001919EB /* UIImage+REFrostedViewController.m in Sources */,
 				037F8E9A1C8E68BC0057BF6C /* YRCircleToolBar.m in Sources */,
 				164A8C921C8D1DCF00857638 /* YRMyWalletViewController.m in Sources */,
+				1672A6501C8FC6A600AF6272 /* YRMapSelectView.m in Sources */,
 				037F8E711C8D5FC50057BF6C /* JKImagePickerController.m in Sources */,
 				037F8E321C884DBC0057BF6C /* PublicCheckMsgModel.m in Sources */,
 				037F8E221C8826750057BF6C /* JKCountDownButton.m in Sources */,
@@ -1158,6 +1253,7 @@
 				037F8E361C891CE20057BF6C /* NSString+Tools.m in Sources */,
 				037F8EB61C8E6D350057BF6C /* MJPhotoToolbar.m in Sources */,
 				1600EBC61C88087A001919EB /* UIViewController+REFrostedViewController.m in Sources */,
+				1672A64D1C8FBF9100AF6272 /* SharedMapView.m in Sources */,
 				037F8E721C8D5FC50057BF6C /* JKPhotoBrowser.m in Sources */,
 				037F8EB31C8E6D350057BF6C /* MJPhotoBrowser.m in Sources */,
 				037F8E751C8D5FC50057BF6C /* JKUtil.m in Sources */,

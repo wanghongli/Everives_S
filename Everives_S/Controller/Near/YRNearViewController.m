@@ -11,11 +11,25 @@
 #import "REFrostedViewController.h"
 #import "YRMapSelectView.h"
 #import "SchoolDataSource.h"
+#import "CoachDataSource.h"
+#import "StudentDataSource.h"
+#import "YRSchoolCelldetailVC.h"
+//定义三个table的类型
+typedef NS_ENUM(NSUInteger,NearTableType){
+    NearTableTypeSchool = 1,
+    NearTableTypeCoach,
+    NearTableTypeStudent
+};
 static NSString *schoolCellID = @"YRSchoolTableCellID";
-@interface YRNearViewController ()<YRMapSelectViewDelegate>{
+static NSString *coachCellID = @"YRCoachTableCellID";
+static NSString *studentCellID = @"YRStudentTableCellID";
+
+@interface YRNearViewController ()<YRMapSelectViewDelegate,UITableViewDelegate>{
     MAMapView *_mapView;
     YRMapSelectView *_selectView;
     SchoolDataSource *_schoolData;
+    CoachDataSource *_coachData;
+    StudentDataSource *_studentData;
     BOOL _isMapView;
 }
 @property(nonatomic,strong) UITableView *schoolTable;
@@ -87,15 +101,31 @@ static NSString *schoolCellID = @"YRSchoolTableCellID";
 }
 #pragma mark - YRMapSelectViewDelegate
 -(void)schoolBtnClick:(UIButton *)sender{
+    [self removeLastTable];
     NSLog(@"1");
 }
 -(void)coachBtnClick:(UIButton*)sender{
+    [self removeLastTable];
     NSLog(@"2");
 }
 -(void)studentBtnClick:(UIButton*)sender{
+    [self removeLastTable];
     NSLog(@"3");
 }
-#pragma mark -Getters
+-(void)removeLastTable{
+    [self.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if([obj isKindOfClass:[UITableView class]]){
+            [obj removeFromSuperview];
+        }
+    }];
+}
+#pragma mark - UITableViewDelegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView.tag == NearTableTypeSchool) {
+        [self.navigationController pushViewController:[[YRSchoolCelldetailVC alloc] init] animated:YES];
+    }
+}
+#pragma mark - Getters
 -(UITableView *)schoolTable{
     if (!_schoolTable) {
         _schoolTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight)];
@@ -103,13 +133,33 @@ static NSString *schoolCellID = @"YRSchoolTableCellID";
         _schoolTable.rowHeight = 100;
         _schoolData = [[SchoolDataSource alloc]init];
         _schoolTable.dataSource = _schoolData;
+        _schoolTable.tag = NearTableTypeSchool;
+        _schoolTable.delegate = self;
     }
     return _schoolTable;
 }
 -(UITableView *)coachTable{
+    if (!_coachTable) {
+        _coachTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight)];
+        [_coachTable registerNib:[UINib nibWithNibName:@"YRCoachTableCell" bundle:nil] forCellReuseIdentifier:coachCellID];
+        _coachTable.rowHeight = 100;
+        _coachData = [[CoachDataSource alloc] init];
+        _coachTable.dataSource = _coachData;
+        _coachTable.tag = NearTableTypeCoach;
+        _coachTable.delegate = self;
+    }
     return _coachTable;
 }
 -(UITableView *)studentTable{
+    if (!_studentTable) {
+        _studentTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight)];
+        [_studentTable registerNib:[UINib nibWithNibName:@"YRStudentTableCell" bundle:nil] forCellReuseIdentifier:studentCellID];
+        _studentTable.rowHeight = 100;
+        _studentData = [[StudentDataSource alloc] init];
+        _studentTable.dataSource = _studentData;
+        _studentTable.tag = NearTableTypeStudent;
+        _studentTable.delegate = self;
+    }
     return _studentTable;
 }
 

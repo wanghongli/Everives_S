@@ -16,7 +16,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    //设置需要显示哪些类型的会话
+    [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE),
+                                        @(ConversationType_GROUP),]];
+    //设置需要将哪些类型的会话在会话列表中聚合显示
+    [self setCollectionConversationType:@[@(ConversationType_GROUP)]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,6 +50,8 @@
     [self.conversationListDataSource removeObjectAtIndex:indexPath.row];
     [self.conversationListTableView reloadData];
 }
+
+
 
 
 @end

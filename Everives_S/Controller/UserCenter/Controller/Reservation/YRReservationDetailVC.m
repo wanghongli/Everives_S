@@ -26,8 +26,8 @@
 - (IBAction)MsgOrCommentBtnClick:(UIButton *)sender {
     YRChatViewController *conversationVC = [[YRChatViewController alloc]init];
     conversationVC.conversationType = ConversationType_PRIVATE;
-    conversationVC.targetId = @"1";
-    conversationVC.title = @"想显示的会话标题";
+    conversationVC.targetId = @"16";
+    conversationVC.title = @"王二狗";
     [self.navigationController pushViewController:conversationVC animated:YES];
 }
 

@@ -143,7 +143,6 @@
         _nameView.text = status.name;
     }else
         _nameView.text = @"玉祥驾校";
-
     
     // 时间
     _timeView.text = [NSString intervalSinceNow:status.time];//status.time

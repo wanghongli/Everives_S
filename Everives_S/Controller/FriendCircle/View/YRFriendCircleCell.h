@@ -11,4 +11,7 @@
 @interface YRFriendCircleCell : UITableViewCell
 @property (nonatomic, strong) YRCircleCellViewModel *statusF;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
+
+@property (nonatomic, strong) void (^commentOrAttentClickBlock)(NSInteger comOrAtt);
+
 @end

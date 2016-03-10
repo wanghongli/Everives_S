@@ -14,6 +14,7 @@
 #import "YRCircleCellViewModel.h"
 #import "YRFriendCircleCell.h"
 #import "YRCircleDetailController.h"
+#import "YRCircleHeadView.h"
 @interface YRFriendCircleController ()
 {
     NSInteger _page;
@@ -39,6 +40,8 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self getdata];
     
+    YRCircleHeadView *headView = [[YRCircleHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 0.6*kScreenWidth)];
+    self.tableView.tableHeaderView = headView;
     
 }
 -(void)buildRefreshUI
@@ -106,6 +109,20 @@
     YRFriendCircleCell *cell = [YRFriendCircleCell cellWithTableView:tableView];
     YRCircleCellViewModel *statusF = _blogs[indexPath.section];
     cell.statusF = statusF;
+    
+    [cell setCommentOrAttentClickBlock:^(NSInteger zan) {
+        if (zan == 1){//消息
+            return;
+        }
+        if ([statusF.status.praised boolValue]) {
+            statusF.status.praise = [NSString stringWithFormat:@"%ld",[statusF.status.praise integerValue]-1];
+        }else
+            statusF.status.praise = [NSString stringWithFormat:@"%ld",[statusF.status.praise integerValue]+1];
+        statusF.status.praised = [NSString stringWithFormat:@"%d",![statusF.status.praised boolValue]];
+        [_blogs replaceObjectAtIndex:indexPath.section withObject:statusF];
+        [self.tableView reloadData];
+    }];
+    
     return cell;
 }
 // 返回cell的高度

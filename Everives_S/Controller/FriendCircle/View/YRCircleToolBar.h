@@ -14,6 +14,8 @@
 @class YRWeibo;
 
 @interface YRCircleToolBar : UIImageView
+@property (nonatomic, assign) id<YRCircleToolBarDelegate>delegate;
+
 @property (nonatomic, strong) YRWeibo *status;
 
 @end

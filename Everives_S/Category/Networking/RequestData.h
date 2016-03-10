@@ -29,5 +29,9 @@
   parameters:(nullable id)parameters
     complete:(void (^)(NSDictionary *responseDic))complete
       failed:(void (^)(NSError *error))failed;
++ (void)DELETE:(NSString *)URLString
+ parameters:(nullable id)parameters
+   complete:(void (^)(NSDictionary *responseDic))complete
+     failed:(void (^)(NSError *error))failed;
 
 @end

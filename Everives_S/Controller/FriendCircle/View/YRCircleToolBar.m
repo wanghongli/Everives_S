@@ -8,7 +8,7 @@
 
 #import "YRCircleToolBar.h"
 #import "YRWeibo.h"
-
+#import "RequestData.h"
 #define CZStatusCellMargin 10
 #define CZNameFont [UIFont systemFontOfSize:13]
 #define CZTimeFont [UIFont systemFontOfSize:12]
@@ -119,12 +119,12 @@
     _address.text = status.address;
     
     // 设置评论的标题
-    [self setBtn:_comment title:(int)status.commentCount];
+    [self setBtn:_comment title:[status.commentCount intValue]];
     
     // 设置赞
-    [self setBtn:_unlike title:(int)status.praise];
+    [self setBtn:_unlike title:[status.praise intValue]];
     
-    self.unlike.selected = (BOOL)status.praised;
+    self.unlike.selected = [status.praised boolValue];
 }
 // 设置按钮的标题
 - (void)setBtn:(UIButton *)btn title:(int)count
@@ -142,5 +142,25 @@
     }else{
         [btn setTitle:@"0" forState:UIControlStateNormal];
     }
+}
+-(void)btnClick:(UIButton *)sender
+{
+    if (sender.tag == 22) {
+        if ([_status.praised boolValue]) {
+            [RequestData DELETE:WEIBO_CANCEL_PRAISE parameters:@{@"id":_status.id} complete:^(NSDictionary *responseDic) {
+                [self.delegate commentOrAttentTouch:sender.tag-20];
+            } failed:^(NSError *error) {
+                
+            }];
+        }else{
+            [RequestData POST:WEIBO_PRAISE parameters:@{@"id":_status.id} complete:^(NSDictionary *responseDic) {
+                [self.delegate commentOrAttentTouch:sender.tag-20];
+            } failed:^(NSError *error) {
+                
+            }];
+        }
+        
+    }else
+        [self.delegate commentOrAttentTouch:sender.tag-20];
 }
 @end

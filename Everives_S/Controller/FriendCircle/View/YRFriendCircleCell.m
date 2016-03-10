@@ -11,7 +11,7 @@
 #import "YRCircleToolBar.h"
 #import "YRCircleCellViewModel.h"
 
-@interface YRFriendCircleCell ()
+@interface YRFriendCircleCell ()<YRCircleToolBarDelegate>
 
 @property (nonatomic, weak) YRCircleUser *originalView;
 @property (nonatomic, weak) YRCircleToolBar *toolBar;
@@ -42,7 +42,7 @@
     // 工具条
     YRCircleToolBar *toolBar = [[YRCircleToolBar alloc] init];
     [self addSubview:toolBar];
-//    toolBar.delegate = self;
+    toolBar.delegate = self;
     _toolBar = toolBar;
     
     UIView *down = [[UIView alloc]init];
@@ -75,7 +75,12 @@
     _toolBar.frame = statusF.toolBarFrame;
     _toolBar.status = statusF.status;
 }
-
+-(void)commentOrAttentTouch:(NSInteger)commentOrAttent
+{
+    if (self.commentOrAttentClickBlock) {
+        self.commentOrAttentClickBlock(commentOrAttent);
+    }
+}
 
 - (void)awakeFromNib {
     // Initialization code

@@ -39,7 +39,7 @@
     self.title = @"朋友圈详情";
     
     CGFloat tableHeight;
-    tableHeight = kScreenHeight-24-44-20;
+    tableHeight = kScreenHeight-24;
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, tableHeight) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;

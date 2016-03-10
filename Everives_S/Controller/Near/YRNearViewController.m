@@ -7,24 +7,34 @@
 //
 
 #import "YRNearViewController.h"
-#import <MAMapKit/MAMapKit.h>
-
-@interface YRNearViewController ()<MAMapViewDelegate>{
+#import "SharedMapView.h"
+#import "REFrostedViewController.h"
+#import "YRMapSelectView.h"
+#import "SchoolDataSource.h"
+static NSString *schoolCellID = @"YRSchoolTableCellID";
+@interface YRNearViewController ()<YRMapSelectViewDelegate>{
     MAMapView *_mapView;
+    YRMapSelectView *_selectView;
+    SchoolDataSource *_schoolData;
+    BOOL _isMapView;
 }
+@property(nonatomic,strong) UITableView *schoolTable;
+@property(nonatomic,strong) UITableView *coachTable;
+@property(nonatomic,strong) UITableView *studentTable;
 @end
 
 @implementation YRNearViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
-    _mapView.delegate = self;
-    _mapView.showsUserLocation = YES;//开启定位
-    [_mapView setUserTrackingMode:MAUserTrackingModeNone];//定位不跟随用户移动
-    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"切换" style:UIBarButtonItemStylePlain target:self action:@selector(changeViewClick:)];
+    _isMapView = YES;
+    _mapView = [SharedMapView sharedInstance].mapView;
+    _selectView = [[YRMapSelectView alloc] init];
+    _selectView.delegate = self;
     [self.view addSubview:_mapView];
+    [self.view addSubview:_selectView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,22 +42,76 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation
-updatingLocation:(BOOL)updatingLocation
-{
-    if(updatingLocation)
-    {
-        //取出当前位置的坐标
-        NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
-        CLLocationCoordinate2D center = CLLocationCoordinate2DMake(userLocation.coordinate.latitude,userLocation.coordinate.longitude);
-        //设置地图中心
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            MACoordinateRegion region = MACoordinateRegionMake(center,MACoordinateSpanMake(.25f,.25f));
-            _mapView.region = region;
-            _mapView.centerCoordinate = center;
-        });
+- (void)backBtnClick:(UIBarButtonItem*)sender{
+    [self.frostedViewController presentMenuViewController];
+}
+
+- (void)changeViewClick:(UIBarButtonItem*)sender{
+    if (_isMapView) {
+        _isMapView = NO;
+        switch (_selectView.selectedBtnNum) {
+            case 1:{
+                [self.view addSubview:self.schoolTable];
+                break;
+            }
+            case 2:{
+                [self.view addSubview:self.coachTable];
+                break;
+            }
+            case 3:{
+                [self.view addSubview:self.studentTable];
+                break;
+            }
+            default:
+                break;
+        }
+    }else{
+        _isMapView = YES;
+        switch (_selectView.selectedBtnNum) {
+            case 1:{
+                [self.schoolTable removeFromSuperview];
+                break;
+            }
+            case 2:{
+                [self.coachTable removeFromSuperview];
+                break;
+            }
+            case 3:{
+                [self.studentTable removeFromSuperview];
+                break;
+            }
+            default:
+                break;
+        }
     }
 }
+#pragma mark - YRMapSelectViewDelegate
+-(void)schoolBtnClick:(UIButton *)sender{
+    NSLog(@"1");
+}
+-(void)coachBtnClick:(UIButton*)sender{
+    NSLog(@"2");
+}
+-(void)studentBtnClick:(UIButton*)sender{
+    NSLog(@"3");
+}
+#pragma mark -Getters
+-(UITableView *)schoolTable{
+    if (!_schoolTable) {
+        _schoolTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight)];
+        [_schoolTable registerNib:[UINib nibWithNibName:@"YRSchoolTableCell" bundle:nil] forCellReuseIdentifier:schoolCellID];
+        _schoolTable.rowHeight = 100;
+        _schoolData = [[SchoolDataSource alloc]init];
+        _schoolTable.dataSource = _schoolData;
+    }
+    return _schoolTable;
+}
+-(UITableView *)coachTable{
+    return _coachTable;
+}
+-(UITableView *)studentTable{
+    return _studentTable;
+}
+
 
 @end

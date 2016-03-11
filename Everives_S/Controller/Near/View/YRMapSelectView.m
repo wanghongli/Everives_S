@@ -52,28 +52,28 @@
 }
 -(UIView *)lineView{
     if (!_lineView) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2-160, 44, 80, 1.5)];
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2-160, 42, 80, 2)];
         _lineView.backgroundColor = [UIColor redColor];
     }
     return _lineView;
 }
 -(void)schoolBtnClick:(UIButton*)sender{
     [UIView animateWithDuration:0.4 animations:^{
-        _lineView.frame = CGRectMake(kScreenWidth/2-160, 44, 80, 1.5);
+        _lineView.frame = CGRectMake(kScreenWidth/2-160, 42, 80, 2);
     }];
     _selectedBtnNum = 1;
     [self.delegate schoolBtnClick:sender];
 }
 -(void)coachBtnClick:(UIButton*)sender{
     [UIView animateWithDuration:0.4 animations:^{
-        _lineView.frame = CGRectMake(kScreenWidth/2-40, 44, 80, 1.5);
+        _lineView.frame = CGRectMake(kScreenWidth/2-40, 42, 80, 2);
     }];
     _selectedBtnNum = 2;
     [self.delegate coachBtnClick:sender];
 }
 -(void)studentBtnClick:(UIButton*)sender{
     [UIView animateWithDuration:0.4 animations:^{
-        _lineView.frame = CGRectMake(kScreenWidth/2+80, 44, 80, 1.5);
+        _lineView.frame = CGRectMake(kScreenWidth/2+80, 42, 80, 2);
     }];
     _selectedBtnNum = 3;
     [self.delegate studentBtnClick:sender];

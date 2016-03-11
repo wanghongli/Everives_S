@@ -24,7 +24,7 @@ static NSString *schoolCellID = @"YRSchoolTableCellID";
 static NSString *coachCellID = @"YRCoachTableCellID";
 static NSString *studentCellID = @"YRStudentTableCellID";
 
-@interface YRNearViewController ()<YRMapSelectViewDelegate,UITableViewDelegate>{
+@interface YRNearViewController ()<YRMapSelectViewDelegate,UITableViewDelegate,UISearchBarDelegate>{
     MAMapView *_mapView;
     YRMapSelectView *_selectView;
     SchoolDataSource *_schoolData;
@@ -35,6 +35,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 @property(nonatomic,strong) UITableView *schoolTable;
 @property(nonatomic,strong) UITableView *coachTable;
 @property(nonatomic,strong) UITableView *studentTable;
+@property(nonatomic,strong) UISearchBar *searchBar;
 @end
 
 @implementation YRNearViewController
@@ -49,6 +50,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     _selectView.delegate = self;
     [self.view addSubview:_mapView];
     [self.view addSubview:_selectView];
+    [_mapView addSubview:self.searchBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,12 +120,17 @@ static NSString *studentCellID = @"YRStudentTableCellID";
             [obj removeFromSuperview];
         }
     }];
+    _isMapView = YES;
 }
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView.tag == NearTableTypeSchool) {
         [self.navigationController pushViewController:[[YRSchoolCelldetailVC alloc] init] animated:YES];
     }
+}
+#pragma mark - UISearchBarDelegate
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    
 }
 #pragma mark - Getters
 -(UITableView *)schoolTable{
@@ -162,6 +169,13 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     }
     return _studentTable;
 }
+-(UISearchBar *)searchBar{
+    if (!_searchBar) {
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44)];
+        _searchBar.delegate = self;
+    }
+    return _searchBar;
 
+}
 
 @end

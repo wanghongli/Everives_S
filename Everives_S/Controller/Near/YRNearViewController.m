@@ -14,6 +14,7 @@
 #import "CoachDataSource.h"
 #import "StudentDataSource.h"
 #import "YRSchoolCelldetailVC.h"
+#import "YRFillterBtnView.h"
 //定义三个table的类型
 typedef NS_ENUM(NSUInteger,NearTableType){
     NearTableTypeSchool = 1,
@@ -104,14 +105,17 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 #pragma mark - YRMapSelectViewDelegate
 -(void)schoolBtnClick:(UIButton *)sender{
     [self removeLastTable];
+    [_mapView addSubview:self.searchBar];
     NSLog(@"1");
 }
 -(void)coachBtnClick:(UIButton*)sender{
     [self removeLastTable];
+    [self.searchBar removeFromSuperview];
     NSLog(@"2");
 }
 -(void)studentBtnClick:(UIButton*)sender{
     [self removeLastTable];
+    [self.searchBar removeFromSuperview];
     NSLog(@"3");
 }
 -(void)removeLastTable{
@@ -142,6 +146,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         _schoolTable.dataSource = _schoolData;
         _schoolTable.tag = NearTableTypeSchool;
         _schoolTable.delegate = self;
+        _schoolTable.tableHeaderView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式"]];
     }
     return _schoolTable;
 }

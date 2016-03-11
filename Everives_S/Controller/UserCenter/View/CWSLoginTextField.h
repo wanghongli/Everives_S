@@ -12,5 +12,5 @@
 
 @property (nonatomic, strong) UIImage*leftImage;
 
-@property (nonatomic, strong) NSString*typeModel;
+@property (nonatomic, strong) NSString*leftString;
 @end

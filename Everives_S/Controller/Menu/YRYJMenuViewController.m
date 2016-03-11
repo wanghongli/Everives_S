@@ -16,8 +16,9 @@
 #import "YRFriendCircleController.h"
 #import "YRFriendViewController.h"
 #import "YRNearViewController.h"
-@interface YRYJMenuViewController ()
-
+#import "YRMenuHeadView.h"
+@interface YRYJMenuViewController ()<UIAlertViewDelegate,YRMenuHeadViewDelegate>
+@property (nonatomic, strong) YRMenuHeadView *headView;
 @end
 
 @implementation YRYJMenuViewController
@@ -29,49 +30,26 @@
     self.tableView.dataSource = self;
     self.tableView.opaque = NO;
     self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.tableHeaderView = ({
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 184.0f)];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, 100, 100)];
-        imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-        imageView.image = [UIImage imageNamed:@"avatar.jpg"];
-        imageView.layer.masksToBounds = YES;
-        imageView.layer.cornerRadius = 50.0;
-        imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-        imageView.layer.borderWidth = 3.0f;
-        imageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
-        imageView.layer.shouldRasterize = YES;
-        imageView.clipsToBounds = YES;
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, 0, 24)];
-        label.text = @"Roman Efimov";
-        label.font = [UIFont fontWithName:@"HelveticaNeue" size:21];
-        label.backgroundColor = [UIColor clearColor];
-        label.textColor = [UIColor colorWithRed:62/255.0f green:68/255.0f blue:75/255.0f alpha:1.0f];
-        [label sizeToFit];
-        label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-        
-        [view addSubview:imageView];
-        [view addSubview:label];
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, CGRectGetMaxX(self.tableView.frame), CGRectGetMaxY(view.frame))];
-//        btn.sd_layout
-//        .leftSpaceToView(view,0)
-//        .topSpaceToView(view,0)
-//        .rightSpaceToView(view,0)
-//        .heightIs(CGRectGetMaxY(view.frame));
-        [btn addTarget:self action:@selector(userClick:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:btn];
-        view;
-    });
+    _headView = [[YRMenuHeadView alloc]initWithFrame:CGRectMake(0, 0, 0, 130.0f)];
+    _headView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    _headView.image = [UIImage imageNamed:@"backImg"];
+    _headView.delegate = self;
+    self.tableView.tableHeaderView = _headView;
     self.tableView.tableFooterView = [[UIView alloc]init];
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (KUserManager.id) {
+        _headView.loginBool = YES;
+    }else{
+        _headView.loginBool = NO;
+    }
+}
 -(void)userClick:(UIButton *)sender
 {
     NSLog(@"%s",__func__);
-    YRLoginViewController *loginVC = [[YRLoginViewController alloc]init];
-    loginVC.title = @"登陆";
-    YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:loginVC];
-    [self presentViewController:navigationController animated:YES completion:nil];
+    
 }
 
 #pragma mark -
@@ -142,15 +120,33 @@
             UIViewController *secondViewController = [[YRUserCenterViewController alloc] init];
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
             self.frostedViewController.contentViewController = navigationController;
-        }else if (indexPath.row == 1) {
-            
+        }else if (indexPath.row == 1) {//注销
+            if (KUserManager.id) {
+                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您确定要退出登录吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"注销", nil] show];
+            }else{
+                [MBProgressHUD showError:@"您还未登陆，请先登录？" toView:GET_WINDOW];
+            }
         }
-       
     }
     
     [self.frostedViewController hideMenuViewController];
 }
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        KUserManager.id = 0;
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"USERNAME_PSW"];
+        _headView.loginBool = NO;
 
+        [[RCIM sharedRCIM] disconnect:NO];
+        //注销登录跳到学车界面
+        YRYJLearnToDriveController *homeViewController = [[YRYJLearnToDriveController alloc] init];
+        YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:homeViewController];
+        self.frostedViewController.contentViewController = navigationController;
+        [self.frostedViewController hideMenuViewController];
+    }
+}
 #pragma mark -
 #pragma mark UITableView Datasource
 
@@ -196,6 +192,18 @@
     
     return cell;
 }
+#pragma mark - 消息中心
+-(void)menuHeadViewNotiClick
+{
 
+}
+#pragma mark - 登陆
+-(void)menuHeadViewLoginClick
+{
+    YRLoginViewController *loginVC = [[YRLoginViewController alloc]init];
+    loginVC.title = @"登陆";
+    YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:loginVC];
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
 
 @end

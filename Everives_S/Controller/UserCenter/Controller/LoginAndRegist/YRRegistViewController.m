@@ -39,35 +39,37 @@
     self.view.backgroundColor = kCOLOR(241, 241, 241);
 
     //手机号码输入框
-    self.tellText = [self setTextFieldWithFrame:CGRectMake(kDistance, kDistance*2+64, kSizeOfScreen.width-2*kDistance, kTextFieldHeight) withPlaceholder:@"请输入您的手机号"];
+    self.tellText = [self setTextFieldWithFrame:CGRectMake(kDistance*2, kDistance*2+64, kSizeOfScreen.width-4*kDistance, kTextFieldHeight) withPlaceholder:@"请输入您的手机号"];
     [self.view addSubview:self.tellText];
     
     
     //验证码
-    self.codeText = [self setTextFieldWithFrame:CGRectMake(kDistance, CGRectGetMaxY(self.tellText.frame)+kDistance, (kSizeOfScreen.width-2*kDistance)*0.66, kTextFieldHeight) withPlaceholder:@"请输入验证码"];
+    self.codeText = [self setTextFieldWithFrame:CGRectMake(kDistance*2, CGRectGetMaxY(self.tellText.frame)+kDistance, kSizeOfScreen.width-4*kDistance, kTextFieldHeight) withPlaceholder:@"请输入验证码"];
     [self.view addSubview:self.codeText];
     
-    //添加右侧获取验证码按钮
-    self.getCodeBtn = [[JKCountDownButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.codeText.frame)+kDistance, self.codeText.y, (kSizeOfScreen.width-2*kDistance)*0.36-kDistance, kTextFieldHeight)];
-    self.getCodeBtn.backgroundColor = kMainColor;
-    self.getCodeBtn.layer.masksToBounds = YES;
-    self.getCodeBtn.layer.cornerRadius = 4;
-    self.getCodeBtn.layer.borderColor = [kMainColor CGColor];
-    self.getCodeBtn.layer.borderWidth = 1;
-    [self.getCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
-    self.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    [self.getCodeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    WS(ws);
-    [self.getCodeBtn addToucheHandler:^(JKCountDownButton*sender, NSInteger tag) {
-        
-        
-    }];
-    [self.view addSubview:self.getCodeBtn];
+//    //添加右侧获取验证码按钮
+//    self.getCodeBtn = [[JKCountDownButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.codeText.frame)+kDistance, self.codeText.y, (kSizeOfScreen.width-2*kDistance)*0.36-kDistance, kTextFieldHeight)];
+//    self.getCodeBtn.backgroundColor = kMainColor;
+//    self.getCodeBtn.layer.masksToBounds = YES;
+//    self.getCodeBtn.layer.cornerRadius = 4;
+//    self.getCodeBtn.layer.borderColor = [kMainColor CGColor];
+//    self.getCodeBtn.layer.borderWidth = 1;
+//    [self.getCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+//    self.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+//    [self.getCodeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//
+//    //验证码获取
+////    WS(ws);
+//    [self.getCodeBtn addToucheHandler:^(JKCountDownButton*sender, NSInteger tag) {
+//        
+//        
+//    }];
+//    [self.view addSubview:self.getCodeBtn];
 //    [self.getCodeBtn startWithSecond:59];
     
     
-    self.registBtn = [[CWSPublicButton alloc]initWithFrame:CGRectMake(kDistance, CGRectGetMaxY(self.codeText.frame)+2*kDistance, self.tellText.width, kTextFieldHeight)];
-    [self.registBtn setTitle:@"下一步" forState:UIControlStateNormal];
+    self.registBtn = [[CWSPublicButton alloc]initWithFrame:CGRectMake(kDistance*2, CGRectGetMaxY(self.codeText.frame)+kDistance, self.tellText.width, kTextFieldHeight)];
+    [self.registBtn setTitle:@"完成验证" forState:UIControlStateNormal];
     [self.registBtn addTarget:self action:@selector(registClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.registBtn];
     
@@ -86,6 +88,30 @@
     textField.backgroundColor = [UIColor whiteColor];
     textField.borderStyle = UITextBorderStyleRoundedRect;
     textField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, kTextFieldHeight)];
+    textField.layer.masksToBounds = YES;
+    textField.layer.cornerRadius = textField.height/2;
+    textField.layer.borderWidth = 1;
+    textField.layer.borderColor = [UIColor blackColor].CGColor;
+    textField.leftViewMode = UITextFieldViewModeAlways;
+    UILabel *leftLabel = [[UILabel alloc]initWithFrame:CGRectMake(kDistance, 0, 50, textField.height)];
+    leftLabel.textAlignment = NSTextAlignmentCenter;
+    leftLabel.font = [UIFont systemFontOfSize:14];
+    textField.leftView = leftLabel;
+    if ([placehold isEqualToString:@"请输入您的手机号"]) {
+        leftLabel.text = @"+86";
+
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 90, textField.height)];
+        [btn setTitle:@"获取验证码" forState:UIControlStateNormal];
+        btn.layer.masksToBounds = YES;
+        btn.layer.cornerRadius = btn.height/2;
+        btn.layer.borderWidth = 3;
+        btn.layer.borderColor = [UIColor whiteColor].CGColor;
+        btn.titleLabel.font = [UIFont systemFontOfSize:14];
+        btn.backgroundColor = [UIColor lightGrayColor];
+        textField.rightView = btn;
+        textField.rightViewMode = UITextFieldViewModeAlways;
+    }
+    
     return textField;
 }
 

@@ -16,6 +16,21 @@
 		037C92B41C901A33005B41BF /* YRFirstDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92B31C901A33005B41BF /* YRFirstDownView.m */; };
 		037C92B71C901AF8005B41BF /* YRLeftImgBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92B61C901AF8005B41BF /* YRLeftImgBtn.m */; };
 		037C92BA1C901F7E005B41BF /* YRUpImgBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92B91C901F7E005B41BF /* YRUpImgBtn.m */; };
+		037D7C061C911F4A00273703 /* YRPerfectUserMsgController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037D7C051C911F4A00273703 /* YRPerfectUserMsgController.m */; };
+		037D7C091C914D2200273703 /* YRPerfectHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037D7C081C914D2200273703 /* YRPerfectHeadView.m */; };
+		037D7C0C1C91545200273703 /* YRSexChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = 037D7C0B1C91545200273703 /* YRSexChoose.m */; };
+		037D7C251C916AE600273703 /* CorePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 037D7C0F1C916AE600273703 /* CorePhoto.m */; };
+		037D7C261C916AE600273703 /* CorePhotoPickerVCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 037D7C111C916AE600273703 /* CorePhotoPickerVCManager.m */; };
+		037D7C271C916AE600273703 /* UIImage+UzysExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 037D7C151C916AE600273703 /* UIImage+UzysExtension.m */; };
+		037D7C281C916AE600273703 /* UzysAppearanceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 037D7C171C916AE600273703 /* UzysAppearanceConfig.m */; };
+		037D7C291C916AE600273703 /* UzysAssetPickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 037D7C181C916AE600273703 /* UzysAssetPickerController.bundle */; };
+		037D7C2A1C916AE600273703 /* UzysAssetsPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037D7C1A1C916AE600273703 /* UzysAssetsPickerController.m */; };
+		037D7C2B1C916AE600273703 /* UzysAssetsPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037D7C1B1C916AE600273703 /* UzysAssetsPickerController.xib */; };
+		037D7C2C1C916AE600273703 /* UzysAssetsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037D7C1E1C916AE600273703 /* UzysAssetsViewCell.m */; };
+		037D7C2D1C916AE600273703 /* UzysGroupPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037D7C201C916AE600273703 /* UzysGroupPickerView.m */; };
+		037D7C2E1C916AE600273703 /* UzysGroupViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037D7C221C916AE600273703 /* UzysGroupViewCell.m */; };
+		037D7C2F1C916AE600273703 /* UzysWrapperPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037D7C241C916AE600273703 /* UzysWrapperPickerController.m */; };
+		037D7C321C916B4100273703 /* UIImage+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 037D7C311C916B4100273703 /* UIImage+Tool.m */; };
 		037F8DC61C8815F80057BF6C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DC51C8815F80057BF6C /* AppDelegate.m */; };
 		037F8E141C8826750057BF6C /* YRYJFirstClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DEA1C8826750057BF6C /* YRYJFirstClassController.m */; };
 		037F8E151C8826750057BF6C /* YRYJFourthClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8DEC1C8826750057BF6C /* YRYJFourthClassController.m */; };
@@ -34,8 +49,6 @@
 		037F8E221C8826750057BF6C /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E111C8826750057BF6C /* JKCountDownButton.m */; };
 		037F8E271C8834160057BF6C /* YRRegistPswController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E261C8834160057BF6C /* YRRegistPswController.m */; };
 		037F8E2A1C883C570057BF6C /* YRProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E291C883C570057BF6C /* YRProtocolViewController.m */; };
-		037F8E2E1C88407E0057BF6C /* YRPersonalDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E2C1C88407E0057BF6C /* YRPersonalDataController.m */; };
-		037F8E2F1C88407E0057BF6C /* YRPersonalDataController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037F8E2D1C88407E0057BF6C /* YRPersonalDataController.xib */; };
 		037F8E321C884DBC0057BF6C /* PublicCheckMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E311C884DBC0057BF6C /* PublicCheckMsgModel.m */; };
 		037F8E361C891CE20057BF6C /* NSString+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E351C891CE20057BF6C /* NSString+Tools.m */; };
 		037F8E3E1C8D18D20057BF6C /* YRUserStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E3D1C8D18D20057BF6C /* YRUserStatus.m */; };
@@ -74,6 +87,7 @@
 		037F8EB71C8E6D350057BF6C /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8EAE1C8E6D350057BF6C /* MJPhotoView.m */; };
 		037F8EB81C8E6D350057BF6C /* SDWebImageManager+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8EB01C8E6D350057BF6C /* SDWebImageManager+MJ.m */; };
 		037F8EBB1C8E72490057BF6C /* YRCircleCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8EBA1C8E72490057BF6C /* YRCircleCellViewModel.m */; };
+		03A25F0F1C925848000196A6 /* YRMenuHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A25F0E1C925848000196A6 /* YRMenuHeadView.m */; };
 		03F59B8F1C8EC1FF009D5EA2 /* YRCircleDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F59B8D1C8EC1FF009D5EA2 /* YRCircleDetailController.m */; };
 		03F59B901C8EC1FF009D5EA2 /* YRCircleDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F59B8E1C8EC1FF009D5EA2 /* YRCircleDetailController.xib */; };
 		03F59B931C8ED576009D5EA2 /* YRCircleComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F59B921C8ED576009D5EA2 /* YRCircleComment.m */; };
@@ -148,6 +162,36 @@
 		037C92B61C901AF8005B41BF /* YRLeftImgBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLeftImgBtn.m; sourceTree = "<group>"; };
 		037C92B81C901F7E005B41BF /* YRUpImgBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUpImgBtn.h; sourceTree = "<group>"; };
 		037C92B91C901F7E005B41BF /* YRUpImgBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUpImgBtn.m; sourceTree = "<group>"; };
+		037D7C041C911F4A00273703 /* YRPerfectUserMsgController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRPerfectUserMsgController.h; sourceTree = "<group>"; };
+		037D7C051C911F4A00273703 /* YRPerfectUserMsgController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRPerfectUserMsgController.m; sourceTree = "<group>"; };
+		037D7C071C914D2200273703 /* YRPerfectHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRPerfectHeadView.h; sourceTree = "<group>"; };
+		037D7C081C914D2200273703 /* YRPerfectHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRPerfectHeadView.m; sourceTree = "<group>"; };
+		037D7C0A1C91545200273703 /* YRSexChoose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSexChoose.h; sourceTree = "<group>"; };
+		037D7C0B1C91545200273703 /* YRSexChoose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSexChoose.m; sourceTree = "<group>"; };
+		037D7C0E1C916AE600273703 /* CorePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorePhoto.h; sourceTree = "<group>"; };
+		037D7C0F1C916AE600273703 /* CorePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CorePhoto.m; sourceTree = "<group>"; };
+		037D7C101C916AE600273703 /* CorePhotoPickerVCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorePhotoPickerVCManager.h; sourceTree = "<group>"; };
+		037D7C111C916AE600273703 /* CorePhotoPickerVCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CorePhotoPickerVCManager.m; sourceTree = "<group>"; };
+		037D7C121C916AE600273703 /* HMSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSingleton.h; sourceTree = "<group>"; };
+		037D7C141C916AE600273703 /* UIImage+UzysExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+UzysExtension.h"; sourceTree = "<group>"; };
+		037D7C151C916AE600273703 /* UIImage+UzysExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+UzysExtension.m"; sourceTree = "<group>"; };
+		037D7C161C916AE600273703 /* UzysAppearanceConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAppearanceConfig.h; sourceTree = "<group>"; };
+		037D7C171C916AE600273703 /* UzysAppearanceConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysAppearanceConfig.m; sourceTree = "<group>"; };
+		037D7C181C916AE600273703 /* UzysAssetPickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UzysAssetPickerController.bundle; sourceTree = "<group>"; };
+		037D7C191C916AE600273703 /* UzysAssetsPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAssetsPickerController.h; sourceTree = "<group>"; };
+		037D7C1A1C916AE600273703 /* UzysAssetsPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysAssetsPickerController.m; sourceTree = "<group>"; };
+		037D7C1B1C916AE600273703 /* UzysAssetsPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UzysAssetsPickerController.xib; sourceTree = "<group>"; };
+		037D7C1C1C916AE600273703 /* UzysAssetsPickerController_Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAssetsPickerController_Configuration.h; sourceTree = "<group>"; };
+		037D7C1D1C916AE600273703 /* UzysAssetsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAssetsViewCell.h; sourceTree = "<group>"; };
+		037D7C1E1C916AE600273703 /* UzysAssetsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysAssetsViewCell.m; sourceTree = "<group>"; };
+		037D7C1F1C916AE600273703 /* UzysGroupPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysGroupPickerView.h; sourceTree = "<group>"; };
+		037D7C201C916AE600273703 /* UzysGroupPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysGroupPickerView.m; sourceTree = "<group>"; };
+		037D7C211C916AE600273703 /* UzysGroupViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysGroupViewCell.h; sourceTree = "<group>"; };
+		037D7C221C916AE600273703 /* UzysGroupViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysGroupViewCell.m; sourceTree = "<group>"; };
+		037D7C231C916AE600273703 /* UzysWrapperPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysWrapperPickerController.h; sourceTree = "<group>"; };
+		037D7C241C916AE600273703 /* UzysWrapperPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysWrapperPickerController.m; sourceTree = "<group>"; };
+		037D7C301C916B4100273703 /* UIImage+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tool.h"; sourceTree = "<group>"; };
+		037D7C311C916B4100273703 /* UIImage+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tool.m"; sourceTree = "<group>"; };
 		037F8DC41C8815F80057BF6C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		037F8DC51C8815F80057BF6C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		037F8DE91C8826750057BF6C /* YRYJFirstClassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJFirstClassController.h; sourceTree = "<group>"; };
@@ -184,9 +228,6 @@
 		037F8E261C8834160057BF6C /* YRRegistPswController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRRegistPswController.m; sourceTree = "<group>"; };
 		037F8E281C883C570057BF6C /* YRProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRProtocolViewController.h; sourceTree = "<group>"; };
 		037F8E291C883C570057BF6C /* YRProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRProtocolViewController.m; sourceTree = "<group>"; };
-		037F8E2B1C88407D0057BF6C /* YRPersonalDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRPersonalDataController.h; sourceTree = "<group>"; };
-		037F8E2C1C88407E0057BF6C /* YRPersonalDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRPersonalDataController.m; sourceTree = "<group>"; };
-		037F8E2D1C88407E0057BF6C /* YRPersonalDataController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRPersonalDataController.xib; sourceTree = "<group>"; };
 		037F8E301C884DBC0057BF6C /* PublicCheckMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicCheckMsgModel.h; sourceTree = "<group>"; };
 		037F8E311C884DBC0057BF6C /* PublicCheckMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicCheckMsgModel.m; sourceTree = "<group>"; };
 		037F8E341C891CE20057BF6C /* NSString+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Tools.h"; sourceTree = "<group>"; };
@@ -262,6 +303,8 @@
 		037F8EB01C8E6D350057BF6C /* SDWebImageManager+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDWebImageManager+MJ.m"; sourceTree = "<group>"; };
 		037F8EB91C8E72490057BF6C /* YRCircleCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCellViewModel.h; sourceTree = "<group>"; };
 		037F8EBA1C8E72490057BF6C /* YRCircleCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCircleCellViewModel.m; sourceTree = "<group>"; };
+		03A25F0D1C925848000196A6 /* YRMenuHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMenuHeadView.h; sourceTree = "<group>"; };
+		03A25F0E1C925848000196A6 /* YRMenuHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMenuHeadView.m; sourceTree = "<group>"; };
 		03F59B8C1C8EC1FF009D5EA2 /* YRCircleDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleDetailController.h; sourceTree = "<group>"; };
 		03F59B8D1C8EC1FF009D5EA2 /* YRCircleDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCircleDetailController.m; sourceTree = "<group>"; };
 		03F59B8E1C8EC1FF009D5EA2 /* YRCircleDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRCircleDetailController.xib; sourceTree = "<group>"; };
@@ -430,6 +473,43 @@
 			path = "科目一";
 			sourceTree = "<group>";
 		};
+		037D7C0D1C916AE600273703 /* CorePhotoPickerVCManager */ = {
+			isa = PBXGroup;
+			children = (
+				037D7C0E1C916AE600273703 /* CorePhoto.h */,
+				037D7C0F1C916AE600273703 /* CorePhoto.m */,
+				037D7C101C916AE600273703 /* CorePhotoPickerVCManager.h */,
+				037D7C111C916AE600273703 /* CorePhotoPickerVCManager.m */,
+				037D7C121C916AE600273703 /* HMSingleton.h */,
+				037D7C131C916AE600273703 /* Library */,
+			);
+			path = CorePhotoPickerVCManager;
+			sourceTree = "<group>";
+		};
+		037D7C131C916AE600273703 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				037D7C141C916AE600273703 /* UIImage+UzysExtension.h */,
+				037D7C151C916AE600273703 /* UIImage+UzysExtension.m */,
+				037D7C161C916AE600273703 /* UzysAppearanceConfig.h */,
+				037D7C171C916AE600273703 /* UzysAppearanceConfig.m */,
+				037D7C181C916AE600273703 /* UzysAssetPickerController.bundle */,
+				037D7C191C916AE600273703 /* UzysAssetsPickerController.h */,
+				037D7C1A1C916AE600273703 /* UzysAssetsPickerController.m */,
+				037D7C1B1C916AE600273703 /* UzysAssetsPickerController.xib */,
+				037D7C1C1C916AE600273703 /* UzysAssetsPickerController_Configuration.h */,
+				037D7C1D1C916AE600273703 /* UzysAssetsViewCell.h */,
+				037D7C1E1C916AE600273703 /* UzysAssetsViewCell.m */,
+				037D7C1F1C916AE600273703 /* UzysGroupPickerView.h */,
+				037D7C201C916AE600273703 /* UzysGroupPickerView.m */,
+				037D7C211C916AE600273703 /* UzysGroupViewCell.h */,
+				037D7C221C916AE600273703 /* UzysGroupViewCell.m */,
+				037D7C231C916AE600273703 /* UzysWrapperPickerController.h */,
+				037D7C241C916AE600273703 /* UzysWrapperPickerController.m */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		037F8DC31C8815EE0057BF6C /* Public */ = {
 			isa = PBXGroup;
 			children = (
@@ -544,6 +624,7 @@
 		037F8DF31C8826750057BF6C /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				03A25F0C1C925831000196A6 /* View */,
 				037F8DF41C8826750057BF6C /* YRYJMenuViewController.h */,
 				037F8DF51C8826750057BF6C /* YRYJMenuViewController.m */,
 			);
@@ -615,9 +696,8 @@
 				037F8E261C8834160057BF6C /* YRRegistPswController.m */,
 				037F8E281C883C570057BF6C /* YRProtocolViewController.h */,
 				037F8E291C883C570057BF6C /* YRProtocolViewController.m */,
-				037F8E2B1C88407D0057BF6C /* YRPersonalDataController.h */,
-				037F8E2C1C88407E0057BF6C /* YRPersonalDataController.m */,
-				037F8E2D1C88407E0057BF6C /* YRPersonalDataController.xib */,
+				037D7C041C911F4A00273703 /* YRPerfectUserMsgController.h */,
+				037D7C051C911F4A00273703 /* YRPerfectUserMsgController.m */,
 			);
 			path = LoginAndRegist;
 			sourceTree = "<group>";
@@ -650,6 +730,10 @@
 				037F8E0F1C8826750057BF6C /* CWSReadPolicyView.m */,
 				037F8E101C8826750057BF6C /* JKCountDownButton.h */,
 				037F8E111C8826750057BF6C /* JKCountDownButton.m */,
+				037D7C071C914D2200273703 /* YRPerfectHeadView.h */,
+				037D7C081C914D2200273703 /* YRPerfectHeadView.m */,
+				037D7C0A1C91545200273703 /* YRSexChoose.h */,
+				037D7C0B1C91545200273703 /* YRSexChoose.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -755,6 +839,15 @@
 			path = MJPhotoBrowser;
 			sourceTree = "<group>";
 		};
+		03A25F0C1C925831000196A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				03A25F0D1C925848000196A6 /* YRMenuHeadView.h */,
+				03A25F0E1C925848000196A6 /* YRMenuHeadView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1600EB2D1C87E65D001919EB = {
 			isa = PBXGroup;
 			children = (
@@ -815,6 +908,8 @@
 		1600EB9E1C87E8A5001919EB /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				037D7C301C916B4100273703 /* UIImage+Tool.h */,
+				037D7C311C916B4100273703 /* UIImage+Tool.m */,
 				037F8E7F1C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.h */,
 				037F8E801C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m */,
 				037F8E371C891F990057BF6C /* Networking */,
@@ -828,6 +923,7 @@
 		1600EBA21C88087A001919EB /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				037D7C0D1C916AE600273703 /* CorePhotoPickerVCManager */,
 				037F8EA11C8E6D350057BF6C /* MJPhotoBrowser */,
 				037F8E7B1C8D785C0057BF6C /* MBProgressHUD+ADD */,
 				037F8E481C8D5FC50057BF6C /* ImagePicker */,
@@ -1166,8 +1262,9 @@
 				1672A6561C8FE5E200AF6272 /* YRSchoolTableCell.xib in Resources */,
 				164A8CB31C8D729700857638 /* YRActivityTableViewCell.xib in Resources */,
 				1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */,
-				037F8E2F1C88407E0057BF6C /* YRPersonalDataController.xib in Resources */,
 				1600EB461C87E65D001919EB /* Assets.xcassets in Resources */,
+				037D7C291C916AE600273703 /* UzysAssetPickerController.bundle in Resources */,
+				037D7C2B1C916AE600273703 /* UzysAssetsPickerController.xib in Resources */,
 				03F59B901C8EC1FF009D5EA2 /* YRCircleDetailController.xib in Resources */,
 				037F8E691C8D5FC50057BF6C /* JKImagePickerController.strings in Resources */,
 				037F8EB21C8E6D350057BF6C /* MJPhotoBrowser.bundle in Resources */,
@@ -1239,6 +1336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */,
+				037D7C2E1C916AE600273703 /* UzysGroupViewCell.m in Sources */,
 				037F8E761C8D5FC50057BF6C /* PhotoAlbumManager.m in Sources */,
 				037C92B41C901A33005B41BF /* YRFirstDownView.m in Sources */,
 				1624E2981C8E667B009F4E20 /* YRReservationDetailVC.m in Sources */,
@@ -1249,7 +1347,9 @@
 				037F8E6D1C8D5FC50057BF6C /* JKAssetsGroupCell.m in Sources */,
 				037F8E8A1C8E63770057BF6C /* YRFriendCircleController.m in Sources */,
 				037F8E731C8D5FC50057BF6C /* JKPhotoBrowserCell.m in Sources */,
+				037D7C061C911F4A00273703 /* YRPerfectUserMsgController.m in Sources */,
 				164A8CA51C8D545300857638 /* YRMyProgressViewController.m in Sources */,
+				03A25F0F1C925848000196A6 /* YRMenuHeadView.m in Sources */,
 				164A8CA91C8D65A200857638 /* YRNotificationViewController.m in Sources */,
 				1600EBC11C88087A001919EB /* RECommonFunctions.m in Sources */,
 				1672A6551C8FE5E200AF6272 /* YRSchoolTableCell.m in Sources */,
@@ -1260,12 +1360,14 @@
 				037F8E6E1C8D5FC50057BF6C /* JKAssetsGroupsView.m in Sources */,
 				1600EBCA1C88087A001919EB /* XBPageCell.m in Sources */,
 				1600EBA11C87E8A5001919EB /* YRYJNavigationController.m in Sources */,
+				037D7C2A1C916AE600273703 /* UzysAssetsPickerController.m in Sources */,
 				037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */,
 				037F8EB51C8E6D350057BF6C /* MJPhotoProgressView.m in Sources */,
 				1600EBC31C88087A001919EB /* REFrostedViewController.m in Sources */,
 				037F8E1F1C8826750057BF6C /* CWSLoginTextField.m in Sources */,
 				037F8E151C8826750057BF6C /* YRYJFourthClassController.m in Sources */,
 				037F8E701C8D5FC50057BF6C /* JKAssetsViewCell.m in Sources */,
+				037D7C2C1C916AE600273703 /* UzysAssetsViewCell.m in Sources */,
 				037F8EB71C8E6D350057BF6C /* MJPhotoView.m in Sources */,
 				037F8E771C8D5FC50057BF6C /* UIView+JKPicker.m in Sources */,
 				037F8E161C8826750057BF6C /* YRYJLearnToDriveController.m in Sources */,
@@ -1279,13 +1381,14 @@
 				037C92B11C901931005B41BF /* YRFirstMiddleView.m in Sources */,
 				037F8EA01C8E68E90057BF6C /* YRCircleUser.m in Sources */,
 				037F8E7E1C8D78680057BF6C /* MBProgressHUD+Add.m in Sources */,
+				037D7C321C916B4100273703 /* UIImage+Tool.m in Sources */,
 				037C929F1C8FF274005B41BF /* YRCircleHeadView.m in Sources */,
 				1600EBCC1C88087A001919EB /* XBConst.m in Sources */,
 				037F8E9D1C8E68D20057BF6C /* YRCirclePhoto.m in Sources */,
 				037F8E6F1C8D5FC50057BF6C /* JKAssetsThumbnailView.m in Sources */,
+				037D7C091C914D2200273703 /* YRPerfectHeadView.m in Sources */,
 				037F8E201C8826750057BF6C /* CWSPublicButton.m in Sources */,
 				164A8CB21C8D729700857638 /* YRActivityTableViewCell.m in Sources */,
-				037F8E2E1C88407E0057BF6C /* YRPersonalDataController.m in Sources */,
 				037F8E211C8826750057BF6C /* CWSReadPolicyView.m in Sources */,
 				037F8E171C8826750057BF6C /* YRYJSecondClassController.m in Sources */,
 				037F8E6C1C8D5FC50057BF6C /* JKAssetsCollectionFooterView.m in Sources */,
@@ -1294,8 +1397,10 @@
 				03F59B8F1C8EC1FF009D5EA2 /* YRCircleDetailController.m in Sources */,
 				037F8E2A1C883C570057BF6C /* YRProtocolViewController.m in Sources */,
 				037F8E1D1C8826750057BF6C /* UIButton+titleFrame.m in Sources */,
+				037D7C251C916AE600273703 /* CorePhoto.m in Sources */,
 				037F8E1A1C8826750057BF6C /* YRForgetPswViewController.m in Sources */,
 				164A8C961C8D23F600857638 /* YRMyCommentsTableViewController.m in Sources */,
+				037D7C2D1C916AE600273703 /* UzysGroupPickerView.m in Sources */,
 				1672A65A1C8FE60300AF6272 /* YRCoachTableCell.m in Sources */,
 				16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */,
 				037F8E181C8826750057BF6C /* YRYJThirdClassController.m in Sources */,
@@ -1305,10 +1410,12 @@
 				1672A65F1C8FE61200AF6272 /* YRStudentTableCell.m in Sources */,
 				1600EB3B1C87E65D001919EB /* main.m in Sources */,
 				16D096181C89699300FF4A81 /* YRReservationCell.m in Sources */,
+				037D7C281C916AE600273703 /* UzysAppearanceConfig.m in Sources */,
 				037F8E741C8D5FC50057BF6C /* JKPromptView.m in Sources */,
 				1672A6401C8FBC6200AF6272 /* YRChatViewController.m in Sources */,
 				1672A6641C8FE8F400AF6272 /* SchoolDataSource.m in Sources */,
 				037F8E7A1C8D6EE90057BF6C /* PhotoCell.m in Sources */,
+				037D7C2F1C916AE600273703 /* UzysWrapperPickerController.m in Sources */,
 				1600EBC41C88087A001919EB /* UIImage+REFrostedViewController.m in Sources */,
 				037F8E9A1C8E68BC0057BF6C /* YRCircleToolBar.m in Sources */,
 				164A8C921C8D1DCF00857638 /* YRMyWalletViewController.m in Sources */,
@@ -1333,9 +1440,12 @@
 				037F8E361C891CE20057BF6C /* NSString+Tools.m in Sources */,
 				037C92AB1C900E88005B41BF /* YRCircleBtn.m in Sources */,
 				037F8EB61C8E6D350057BF6C /* MJPhotoToolbar.m in Sources */,
+				037D7C261C916AE600273703 /* CorePhotoPickerVCManager.m in Sources */,
 				1600EBC61C88087A001919EB /* UIViewController+REFrostedViewController.m in Sources */,
 				1672A64D1C8FBF9100AF6272 /* SharedMapView.m in Sources */,
+				037D7C271C916AE600273703 /* UIImage+UzysExtension.m in Sources */,
 				037F8E721C8D5FC50057BF6C /* JKPhotoBrowser.m in Sources */,
+				037D7C0C1C91545200273703 /* YRSexChoose.m in Sources */,
 				037F8EB31C8E6D350057BF6C /* MJPhotoBrowser.m in Sources */,
 				037F8E751C8D5FC50057BF6C /* JKUtil.m in Sources */,
 				1600EBCB1C88087A001919EB /* XBTagTitleCell.m in Sources */,

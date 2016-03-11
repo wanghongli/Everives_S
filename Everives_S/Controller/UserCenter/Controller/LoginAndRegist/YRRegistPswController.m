@@ -9,9 +9,12 @@
 #import "YRRegistPswController.h"
 #import "CWSPublicButton.h"
 #import "YRRegistViewController.h"
-#import "YRPersonalDataController.h"
+//#import "YRPersonalDataController.h"
+#import "YRPerfectUserMsgController.h"
 #import "RequestData.h"
 #import "PublicCheckMsgModel.h"
+#import "CWSLoginTextField.h"
+
 #define kDistance 10
 #define kTextFieldHeight 44
 @interface YRRegistPswController ()
@@ -20,9 +23,9 @@
     
     NSMutableDictionary *_bodyDic;
 }
-@property (nonatomic, strong) UITextField *passwordTextField;//密码
+@property (nonatomic, strong) CWSLoginTextField *passwordTextField;//密码
 
-@property (nonatomic, strong) UITextField *againPasswordTextField;//再次输入密码
+@property (nonatomic, strong) CWSLoginTextField *againPasswordTextField;//再次输入密码
 
 @property (nonatomic, strong) CWSPublicButton *registBtn;//注册按钮
 
@@ -47,12 +50,16 @@
     //密码输入框
     self.passwordTextField = [self setTextFieldWithFrame:CGRectMake(kDistance, kDistance*2+64, kSizeOfScreen.width-2*kDistance, kTextFieldHeight) withPlaceholder:@"请输入您的密码"];
     self.passwordTextField.secureTextEntry = YES;
+    _passwordTextField.leftImage = [UIImage imageNamed:@"searchbar_textfield_search_icon"];
+
     [self.view addSubview:self.passwordTextField];
     
     //再次密码输入
     self.againPasswordTextField = [self setTextFieldWithFrame:CGRectMake(kDistance, CGRectGetMaxY(self.passwordTextField.frame)+kDistance, kSizeOfScreen.width-2*kDistance, kTextFieldHeight) withPlaceholder:@"请再次输入您的密码"];
     self.againPasswordTextField.secureTextEntry = YES;
     [self.view addSubview:self.againPasswordTextField];
+    _againPasswordTextField.leftImage = [UIImage imageNamed:@"searchbar_textfield_search_icon"];
+
     
     self.registBtn = [[CWSPublicButton alloc]initWithFrame:CGRectMake(kDistance, CGRectGetMaxY(self.againPasswordTextField.frame)+2*kDistance, self.againPasswordTextField.width, kTextFieldHeight)];
     
@@ -72,9 +79,9 @@
 }
 
 #pragma mark - 快速创建输入框
--(UITextField *)setTextFieldWithFrame:(CGRect)frame withPlaceholder:(NSString *)placehold
+-(CWSLoginTextField *)setTextFieldWithFrame:(CGRect)frame withPlaceholder:(NSString *)placehold
 {
-    UITextField *textField = [[UITextField alloc]initWithFrame:frame];
+    CWSLoginTextField *textField = [[CWSLoginTextField alloc]initWithFrame:frame];
     textField.placeholder = placehold;
     textField.backgroundColor = [UIColor whiteColor];
     textField.borderStyle = UITextBorderStyleRoundedRect;
@@ -103,11 +110,10 @@
             [RequestData POST:USER_REGIST parameters:_bodyDic complete:^(NSDictionary *responseDic) {
                 NSLog(@"%@",responseDic);
                 
-//                YRPersonalDataController *personalVC = [[YRPersonalDataController alloc]initWithNibName:@"YRPersonalDataController" bundle:nil];
-//                personalVC.title = @"完善个人资料";
-//                [self.navigationController pushViewController:personalVC animated:YES];
+                YRPerfectUserMsgController *personalVC = [[YRPerfectUserMsgController alloc]init];
+                personalVC.title = @"完善个人资料";
+                [self.navigationController pushViewController:personalVC animated:YES];
 
-                [self.navigationController popToRootViewControllerAnimated:YES];
             } failed:^(NSError *error) {
                 
             }];

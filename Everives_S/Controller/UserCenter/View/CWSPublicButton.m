@@ -14,7 +14,7 @@
 {
     if (self == [super initWithFrame:frame]) {
         self.layer.masksToBounds = YES;
-        self.layer.cornerRadius = 4;
+        self.layer.cornerRadius = frame.size.height/2;
         self.backgroundColor = [UIColor colorWithRed:250/255.0 green:86/255.0 blue:85/255.0 alpha:1];
     }
     return self;

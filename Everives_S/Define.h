@@ -54,7 +54,7 @@
  */
 #ifdef DEBUG
 //#define MyLog(...)
-#define MyLog(...)// NSLog(__VA_ARGS__)
+#define MyLog(...) NSLog(__VA_ARGS__)
 #else
 #define MyLog(...)
 #endif
@@ -115,6 +115,11 @@
 #define KNOTIFICATION_LOGINCHANGE @"loginStateChange"
 
 #define CHATVIEWBACKGROUNDCOLOR [UIColor colorWithRed:0.936 green:0.932 blue:0.907 alpha:1]
+
+/**
+ *  获取window
+ */
+#define GET_WINDOW [[UIApplication sharedApplication].delegate window]
 
 /**
  *  距离顶部高度

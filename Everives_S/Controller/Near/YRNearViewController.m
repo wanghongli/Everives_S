@@ -32,6 +32,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     CoachDataSource *_coachData;
     StudentDataSource *_studentData;
     BOOL _isMapView;
+    NSMutableArray *_schoolModels;
 }
 @property(nonatomic,strong) UITableView *schoolTable;
 @property(nonatomic,strong) UITableView *coachTable;
@@ -46,17 +47,31 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"切换" style:UIBarButtonItemStylePlain target:self action:@selector(changeViewClick:)];
     _isMapView = YES;
+    _schoolModels = @[].mutableCopy;
     _mapView = [SharedMapView sharedInstance].mapView;
     _selectView = [[YRMapSelectView alloc] init];
     _selectView.delegate = self;
     [self.view addSubview:_mapView];
     [self.view addSubview:_selectView];
     [_mapView addSubview:self.searchBar];
+    [self addAnnotations];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Private Methods
+-(void) addAnnotations{
+    MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+    //106.483097,29.607267
+    pointAnnotation.coordinate = CLLocationCoordinate2DMake(29.607267, 106.483097);
+    pointAnnotation.title = @"金科十年城";
+    pointAnnotation.subtitle = @"王二狗烧饼斜对面";
+    [_schoolModels addObject:pointAnnotation];
+    [_mapView addAnnotation:pointAnnotation];
 }
 
 - (void)backBtnClick:(UIBarButtonItem*)sender{
@@ -111,6 +126,14 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 -(void)coachBtnClick:(UIButton*)sender{
     [self removeLastTable];
     [self.searchBar removeFromSuperview];
+    [_mapView removeAnnotations:_schoolModels.copy];
+    
+    MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+    //106.535454,29.613983
+    pointAnnotation.coordinate = CLLocationCoordinate2DMake(29.613983, 106.535454);
+    pointAnnotation.title = @"天上人间";
+    pointAnnotation.subtitle = @"我们是正规洗脚城";
+    [_mapView addAnnotation:pointAnnotation];
     NSLog(@"2");
 }
 -(void)studentBtnClick:(UIButton*)sender{

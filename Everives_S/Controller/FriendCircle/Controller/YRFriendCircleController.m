@@ -15,6 +15,8 @@
 #import "YRFriendCircleCell.h"
 #import "YRCircleDetailController.h"
 #import "YRCircleHeadView.h"
+#import "YRYJNavigationController.h"
+
 @interface YRFriendCircleController ()
 {
     NSInteger _page;
@@ -43,6 +45,10 @@
     YRCircleHeadView *headView = [[YRCircleHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 0.6*kScreenWidth)];
     self.tableView.tableHeaderView = headView;
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:(YRYJNavigationController *)self.navigationController
+                                                                            action:@selector(showMenu)];
 }
 -(void)buildRefreshUI
 {

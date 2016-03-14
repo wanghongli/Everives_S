@@ -8,6 +8,7 @@
 
 #import "YRCircleHeadView.h"
 #import "UIView+SDAutoLayout.h"
+#import "UIImageView+WebCache.h"
 
 #define kImgWHPercent 0.24
 #define kDistance 5
@@ -24,7 +25,7 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.image = [UIImage imageNamed:@"timeline_image_placeholder"];
+        self.image = [UIImage imageNamed:@"backImg"];
         [self buildUI];
     }
     return self;
@@ -39,7 +40,8 @@
     _imgView = [[UIImageView alloc]initWithFrame:CGRectMake(x, y, w, h)];
     [self addSubview:_imgView];
     _imgView.center = CGPointMake(kScreenWidth/2, (self.frame.size.height-w)/3+w/2);
-    _imgView.image = [UIImage imageNamed:@"timeline_image_placeholder"];
+//    _imgView.image = [UIImage imageNamed:@"timeline_image_placeholder"];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
     _imgView.layer.masksToBounds = YES;
     _imgView.layer.cornerRadius = w/2;
     
@@ -47,7 +49,7 @@
     _nameLabel.textAlignment = NSTextAlignmentCenter;
     _nameLabel.font = [UIFont systemFontOfSize:12];
     [self addSubview:_nameLabel];
-    _nameLabel.text = @"玉祥驾校";
+    _nameLabel.text = KUserManager.name;
     
     _signLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_nameLabel.frame)+kDistance, kScreenWidth, 20)];
     _signLabel.text = @"玉祥驾校学车就是好，有实惠又快又好。";

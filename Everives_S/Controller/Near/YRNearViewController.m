@@ -125,7 +125,6 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(void)coachBtnClick:(UIButton*)sender{
     [self removeLastTable];
-    [self.searchBar removeFromSuperview];
     [_mapView removeAnnotations:_schoolModels.copy];
     
     MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];

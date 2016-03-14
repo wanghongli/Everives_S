@@ -40,9 +40,17 @@
         [circleBtn setTitle:array[i] forState:UIControlStateNormal];
         [circleBtn setImage:[UIImage imageNamed:@"timeline_image_placeholder"] forState:UIControlStateNormal];
         [circleBtn setTitleColor:[UIColor colorWithRed:145/255.0 green:146/255.0 blue:147/255.0 alpha:1] forState:UIControlStateNormal];
+        [circleBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        circleBtn.tag = i;
         [circleBtn initCircleRangeFloat:[percentArray[i] floatValue]];
         [self addSubview:circleBtn];
         
     }
 }
+
+-(void)btnClick:(YRCircleBtn*)sender
+{
+    [self.delegate firstHeadViewBtnClick:sender.tag];
+}
+
 @end

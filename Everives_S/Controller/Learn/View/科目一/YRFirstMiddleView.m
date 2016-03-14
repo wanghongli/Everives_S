@@ -40,8 +40,15 @@
         [leftBtn setTitle:array[i] forState:UIControlStateNormal];
         [leftBtn setImage:[UIImage imageNamed:@"timeline_image_placeholder"] forState:UIControlStateNormal];
         [leftBtn setTitleColor:[UIColor colorWithRed:145/255.0 green:146/255.0 blue:147/255.0 alpha:1] forState:UIControlStateNormal];
+        [leftBtn addTarget:self action:@selector(btnCLick:) forControlEvents:UIControlEventTouchUpInside];
+        leftBtn.tag = i;
         [self addSubview:leftBtn];
     }
+}
+
+-(void)btnCLick:(YRLeftImgBtn *)sender
+{
+    [self.delegate firstMiddleViewBtnClick:sender.tag];
 }
 
 @end

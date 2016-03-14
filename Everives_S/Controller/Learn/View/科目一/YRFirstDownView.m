@@ -39,9 +39,16 @@
         [upimgBtn setTitle:array[i] forState:UIControlStateNormal];
         [upimgBtn setImage:[UIImage imageNamed:@"timeline_image_placeholder"] forState:UIControlStateNormal];
         [upimgBtn setTitleColor:[UIColor colorWithRed:145/255.0 green:146/255.0 blue:147/255.0 alpha:1] forState:UIControlStateNormal];
+        [upimgBtn addTarget:self action:@selector(downClick:) forControlEvents:UIControlEventTouchUpInside];
+        upimgBtn.tag = i;
         [self addSubview:upimgBtn];
         
     }
+}
+
+-(void)downClick:(YRUpImgBtn *)sender
+{
+    [self.delegate firstDownBtnClick:sender.tag];
 }
 
 @end

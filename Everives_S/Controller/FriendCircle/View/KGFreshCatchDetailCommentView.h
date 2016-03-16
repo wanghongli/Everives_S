@@ -10,9 +10,9 @@
 #import "YRCircleComment.h"
 @interface KGFreshCatchDetailCommentView : UIView
 @property (strong, nonatomic) YRCircleComment *comment;
-@property (nonatomic, assign) BOOL topLineHidden;
+@property (nonatomic, assign) BOOL leftImgHidden;
 //回复被点击
-@property (nonatomic, strong) void (^replyTapClickBlock)(YRCircleComment *user);
+@property (nonatomic, strong) void (^replyTapClickBlock)(BOOL iconBool,YRCircleComment *user);
 
 +(CGFloat)detailCommentViewWith:(YRCircleComment*)comment;
 @end

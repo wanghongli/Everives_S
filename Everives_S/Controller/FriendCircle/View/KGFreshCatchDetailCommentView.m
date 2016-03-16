@@ -69,6 +69,12 @@
     [self addSubview:iconView];
     _iconView = iconView;
     
+    // 添加点按手势
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    [iconView addGestureRecognizer:tap];
+    [self addSubview:iconView];
+    _iconView = iconView;
+    
     // 昵称
     UILabel *nameView = [[UILabel alloc] init];
     nameView.font = CZNameFont;
@@ -101,7 +107,12 @@
     
     
 }
-
+-(void)tap:(UITapGestureRecognizer *)sender
+{
+    if (self.replyTapClickBlock) {
+        self.replyTapClickBlock(YES,_comment);
+    }
+}
 - (void)setComment:(YRCircleComment *)comment
 {
     _comment = comment;
@@ -191,15 +202,15 @@
     
     return height;
 }
--(void)setTopLineHidden:(BOOL)topLineHidden
+-(void)setLeftImgHidden:(BOOL)leftImgHidden
 {
-    _topLineHidden = topLineHidden;
-    _topLine.hidden = topLineHidden;
+    _leftImgHidden = leftImgHidden;
+    _leftImg.hidden = leftImgHidden;
 }
 -(void)replyClick:(UIButton *)sender
 {
     if (self.replyTapClickBlock) {
-        self.replyTapClickBlock(_comment);
+        self.replyTapClickBlock(NO,_comment);
     }
 }
 @end

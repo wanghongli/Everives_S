@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YRCircleHeadView : UIImageView
-
+-(void)setUserMsgWithName:(NSString *)name gender:(BOOL)gender sign:(NSString *)sign;
 @end

@@ -7,11 +7,13 @@
 //
 
 #import "YRSearchFriendVC.h"
-
+#import "RequestData.h"
+#import "YRUserStatus.h"
+#import <UIImageView+WebCache.h>
 @interface YRSearchFriendVC ()<UISearchBarDelegate>{
-    NSArray *searchRes;
+    NSArray *_searchRes;
 }
-@property(nonatomic,strong)UISearchBar *searBar;
+@property(nonatomic,strong)UISearchBar *searchBar;
 @end
 
 @implementation YRSearchFriendVC
@@ -21,9 +23,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.clearsSelectionOnViewWillAppear = NO;
     self.tableView.rowHeight = 50;
-    self.tableView.tableHeaderView = self.searBar;
+    self.tableView.tableHeaderView = self.searchBar;
+    self.tableView.tableFooterView = [[UIView alloc] init];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -36,7 +38,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return _searchRes.count;
 }
 
 
@@ -46,19 +48,29 @@
     if (cellID) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    cell.textLabel.text = @"test";
+    cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.layer.cornerRadius = 25;
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[_searchRes[indexPath.row] avatar]]];
+    cell.textLabel.text = [_searchRes[indexPath.row] name];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
--(UISearchBar *)searBar{
-    if (!_searBar) {
-        _searBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)];
-        _searBar.delegate = self;
+-(UISearchBar *)searchBar{
+    if (!_searchBar) {
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
+        _searchBar.delegate = self;
+        _searchBar.searchBarStyle = UISearchBarStyleMinimal;
     }
-    return _searBar;
+    return _searchBar;
 }
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    
+    [RequestData GET:STUDENT_FRIENDS parameters:nil complete:^(NSDictionary *responseDic) {
+        _searchRes = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
+        [self.tableView reloadData];
+    } failed:^(NSError *error) {
+        
+    }];
 }
 @end

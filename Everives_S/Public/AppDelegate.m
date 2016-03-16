@@ -103,7 +103,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 //融云即时通讯  头像昵称等个人信息
 - (void)getUserInfoWithUserId:(NSString *)userId completion:(void (^)(RCUserInfo *))completion{
     [RequestData GET:[USER_INFO_BYID stringByAppendingString:userId] parameters:nil complete:^(NSDictionary *responseDic) {
-        NSLog(@"userId  %@",userId);
         YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:responseDic];
         RCUserInfo *rcUser = [[RCUserInfo alloc]init];
         rcUser.userId = user.id;

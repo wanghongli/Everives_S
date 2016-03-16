@@ -62,7 +62,7 @@
     UIBarButtonItem *findItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Friend_Search"] style:UIBarButtonItemStylePlain target:self action:@selector(findBtnClick:)];
     UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Friend_AddFri"] style:UIBarButtonItemStylePlain target:self action:@selector(addBtnClick:)];
     UIBarButtonItem *contactItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Friend_PhoneBook"] style:UIBarButtonItemStylePlain target:self action:@selector(contactBtnClick:)];
-    self.navigationItem.rightBarButtonItems = @[contactItem,findItem,addItem];
+    self.navigationItem.rightBarButtonItems = @[contactItem,addItem,findItem];
 
 }
 - (void)backBtnClick:(UIBarButtonItem*)sender{

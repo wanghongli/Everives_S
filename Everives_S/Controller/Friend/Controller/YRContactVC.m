@@ -11,6 +11,11 @@
 @interface YRContactVC ()<UISearchBarDelegate>
 
 @property(nonatomic,strong)UISearchBar *searBar;
+
+@property (nonatomic, strong) NSMutableArray *nameAry;           // 未排序的通讯录
+@property (nonatomic, strong) NSMutableArray *phoneNameAry;      // 排序后的通讯录
+@property (nonatomic, strong) NSMutableDictionary *dataDic;      // 整理后的通讯录dic
+@property (nonatomic, strong) NSMutableArray *listAry;           // 索引数组
 @end
 
 @implementation YRContactVC
@@ -18,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.clearsSelectionOnViewWillAppear = NO;
     self.tableView.rowHeight = 50;
     self.tableView.tableHeaderView = self.searBar;

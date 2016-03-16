@@ -1582,7 +1582,6 @@
 				1600EBC21C88087A001919EB /* REFrostedContainerViewController.m in Sources */,
 				037F8E3E1C8D18D20057BF6C /* YRUserStatus.m in Sources */,
 				03019D141C98F02000895C77 /* YRNameSexView.m in Sources */,
-				161B1C061C9125520047182D /* YRCoachCellDetailVC.m in Sources */,
 				16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */,
 				164A8C9A1C8D248300857638 /* YRMyCommentCellTableViewCell.m in Sources */,
 				16B75DED1C92B1EC004DC928 /* YRFillterBtnView.m in Sources */,

@@ -13,12 +13,16 @@
 #import "YRMyProgressViewController.h"
 #import "YRNotificationViewController.h"
 #import "YRCertificationViewController.h"
+#import <UIImageView+WebCache.h>
+#import "RequestData.h"
+#import "REFrostedViewController.h"
 
 @interface YRUserCenterViewController (){
     NSArray *cellNmaes;
     NSArray *cellImgs;
     NSArray *cellClick;
 }
+@property(nonatomic,strong) UIView *tableHeader;
 @end
 
 @implementation YRUserCenterViewController
@@ -26,23 +30,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     cellNmaes = @[@"我的预约",@"我的钱包",@"我的评价",@"我的进度",@"活动通知",@"信息认证"];
-    cellImgs = @[@"home_click2",@"home_click2",@"home_click2",@"home_click2",@"home_click2",@"home_click2"];
-    cellClick = @[];
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    self.tableView.rowHeight = 54;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick:)];
+}
+- (void)backBtnClick:(UIBarButtonItem*)sender{
+    [self.frostedViewController presentMenuViewController];
 }
 
+#pragma mark - UITableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 3;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return section == 0?4:2;
+    switch (section) {
+        case 0:{
+            return 1;
+        }
+        case 1:{
+            return 4;
+        }
+        case 2:{
+            return 2;
+        }
+            
+        default:
+            return 0;
+    }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 40;
+    return section?5:0;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return indexPath.section?54:90;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    return [[UIView alloc] init];
+    UIView *line = [[UIView alloc] init];
+    line.backgroundColor = [UIColor colorWithWhite:0.726 alpha:1.000];
+    return line;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cellID";
@@ -50,14 +73,39 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    cell.textLabel.text = cellNmaes[indexPath.section*4+indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:cellImgs[indexPath.section*4+indexPath.row]];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //个人资料
+    if (indexPath.section == 0) {
+        UIImageView *avatar = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 74, 74)];
+        avatar.layer.masksToBounds = YES;
+        avatar.layer.cornerRadius = 37;
+        [avatar sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar]];
+        
+        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(95, 12, 150, 30)];
+        name.text = KUserManager.name;
+        name.font = [UIFont systemFontOfSize:16];
+        
+        UILabel *sign = [[UILabel alloc] initWithFrame:CGRectMake(95, 50, kScreenWidth-110, 30)];
+        sign.text = KUserManager.sign;
+        sign.font = [UIFont systemFontOfSize:14];
+        sign.textColor = [UIColor lightGrayColor];
+        
+        [cell addSubview:avatar];
+        [cell addSubview:name];
+        [cell addSubview:sign];
+        return cell;
+    }
+    cell.textLabel.text = cellNmaes[(indexPath.section-1)*4+indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSLog(@"%@",cell);
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    switch (indexPath.section*4+indexPath.row) {
+    if (indexPath.section == 0) {
+        return;
+    }
+    switch ((indexPath.section-1)*4+indexPath.row) {
         case 0:
         {
            [self.navigationController pushViewController: [[YRReservationViewController alloc] init] animated:YES] ;
@@ -100,5 +148,4 @@
     }
     
 }
-
 @end

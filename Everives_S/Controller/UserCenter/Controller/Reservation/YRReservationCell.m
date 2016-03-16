@@ -8,18 +8,15 @@
 
 #import "YRReservationCell.h"
 @interface YRReservationCell()
-@property (weak, nonatomic) IBOutlet UILabel *time;
-@property (weak, nonatomic) IBOutlet UILabel *dayPart;
-@property (weak, nonatomic) IBOutlet UILabel *place;
-@property (weak, nonatomic) IBOutlet UILabel *coach;
-@property (weak, nonatomic) IBOutlet UILabel *price;
-@property (weak, nonatomic) IBOutlet UIButton *comment;
+
+@property (weak, nonatomic) IBOutlet UIImageView *avatar;
 
 @end
 @implementation YRReservationCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    _avatar.layer.masksToBounds = YES;
+    _avatar.layer.cornerRadius = 45;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

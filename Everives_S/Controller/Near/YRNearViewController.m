@@ -203,6 +203,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     if (!_searchBar) {
         _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44)];
         _searchBar.delegate = self;
+        _searchBar.searchBarStyle = UISearchBarStyleProminent;
     }
     return _searchBar;
 

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YRFriendCircleController : UITableViewController
-
+@property (nonatomic, strong) NSString *userID;
 @end

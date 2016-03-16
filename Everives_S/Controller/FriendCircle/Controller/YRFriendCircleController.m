@@ -17,6 +17,7 @@
 #import "YRCircleHeadView.h"
 #import "YRYJNavigationController.h"
 #import "YRUserDetailController.h"
+
 @interface YRFriendCircleController ()
 {
     NSInteger _page;

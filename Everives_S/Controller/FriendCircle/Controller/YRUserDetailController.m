@@ -13,6 +13,8 @@
 #import "YRCircleHeadView.h"
 #import "YRUserDownView.h"
 #import "YRFriendCircleController.h"
+#import "YRUserDetailCell.h"
+#import "YRFriendCircleController.h"
 @interface YRUserDetailController ()<UITableViewDelegate,UITableViewDataSource,YRUserDownViewDelegate>
 {
     YRUserStatus *_userMsg;
@@ -30,7 +32,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"驾友资料";
-    _msgArray = @[@[@"年龄",@"进度",@"介绍"],@[@"TA的驾友圈"]];
+    if (self.userID) {
+        _msgArray = @[@[@"年龄",@"进度",@"介绍"],@[@"TA的驾友圈"]];
+    }else{
+        _msgArray = @[@[@"年龄",@"进度",@"介绍"],@[@"我的驾友圈"]];
+
+    }
     [self buildUI];
     [self getData];
 }
@@ -46,7 +53,7 @@
         _userMsg = [YRUserStatus mj_objectWithKeyValues:responseDic];
         [_headView sd_setImageWithURL:[NSURL URLWithString:_userMsg.bg] placeholderImage:[UIImage imageNamed:@"backImg"]];
         [_headView setUserMsgWithName:_userMsg.name gender:[_userMsg.gender boolValue] sign:_userMsg.sign];
-        _userArray = @[_userMsg.age,@"科目二",_userMsg.sign];
+        _userArray = @[@[_userMsg.age,@"科目二",_userMsg.sign],@[@""]];
         [_tableView reloadData];
     } failed:^(NSError *error) {
         
@@ -77,17 +84,21 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID = @"userdetail";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    YRUserDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+        cell = [[YRUserDetailCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     }
-    
-    cell.textLabel.text = _msgArray[indexPath.section][indexPath.row];
     if (indexPath.section == 0) {
-        cell.detailTextLabel.text = _userArray[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    cell.titleString = _msgArray[indexPath.section][indexPath.row];
+    cell.descriString = _userArray[indexPath.section][indexPath.row];
     return cell;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [YRUserDetailCell userDetailCellGetHeightWith:_userArray[indexPath.section][indexPath.row]];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -102,7 +113,9 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.section == 1) {//进入他的驾友圈
-//        YRFriendCircleController *circleVC = [[YRFriendCircleController alloc]init];
+        YRFriendCircleController *circleVC = [[YRFriendCircleController alloc]init];
+        circleVC.userID = _userMsg.id;
+        [self.navigationController pushViewController:circleVC animated:YES];
     }
 }
 -(void)viewWillAppear:(BOOL)animated

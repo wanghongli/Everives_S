@@ -16,6 +16,7 @@
 - (UIImage *)applyTintEffectWithColor:(UIColor *)tintColor;
 
 - (UIImage *)applyBlurWithRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage;
+-(UIImage *)transformtoSize:(CGSize)Newsize;
 
 + (UIImage *)imageWithColor:(UIColor *)color;
 + (UIImage *)convertViewToImage;

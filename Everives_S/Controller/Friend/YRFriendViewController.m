@@ -8,6 +8,10 @@
 
 #import "YRFriendViewController.h"
 #import "YRChatViewController.h"
+#import "REFrostedViewController.h"
+#import "YRSearchFriendVC.h"
+#import "YRAddFriendVC.h"
+#import "YRContactVC.h"
 @interface YRFriendViewController ()
 
 @end
@@ -21,6 +25,8 @@
                                         @(ConversationType_GROUP),]];
     //设置需要将哪些类型的会话在会话列表中聚合显示
     [self setCollectionConversationType:@[@(ConversationType_GROUP)]];
+    [self addNavItem];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,7 +57,25 @@
     [self.conversationListTableView reloadData];
 }
 
+-(void)addNavItem{
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick:)];
+    UIBarButtonItem *findItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Friend_Search"] style:UIBarButtonItemStylePlain target:self action:@selector(findBtnClick:)];
+    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Friend_AddFri"] style:UIBarButtonItemStylePlain target:self action:@selector(addBtnClick:)];
+    UIBarButtonItem *contactItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Friend_PhoneBook"] style:UIBarButtonItemStylePlain target:self action:@selector(contactBtnClick:)];
+    self.navigationItem.rightBarButtonItems = @[contactItem,findItem,addItem];
 
-
+}
+- (void)backBtnClick:(UIBarButtonItem*)sender{
+    [self.frostedViewController presentMenuViewController];
+}
+-(void)addBtnClick:(UIBarButtonItem*)sender{
+    [self.navigationController pushViewController:[[YRAddFriendVC alloc] init] animated:YES];
+}
+-(void)findBtnClick:(UIBarButtonItem*)sender{
+    [self.navigationController pushViewController:[[YRSearchFriendVC alloc] init] animated:YES];
+}
+-(void)contactBtnClick:(UIBarButtonItem*)sender{
+    [self.navigationController pushViewController:[[YRContactVC alloc] init] animated:YES];
+}
 
 @end

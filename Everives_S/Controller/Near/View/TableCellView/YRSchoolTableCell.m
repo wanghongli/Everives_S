@@ -7,20 +7,12 @@
 //
 
 #import "YRSchoolTableCell.h"
-
+#import "YRStarsView.h"
 @implementation YRSchoolTableCell
 
 - (void)awakeFromNib {
-    // Initialization code
-    for (NSInteger i = 0; i<5; i++) {
-        UIImageView *star = [[UIImageView alloc] initWithFrame:CGRectMake(95+35*i, 30, 30, 30)];
-        if (i<4) {
-            star.image = [UIImage imageNamed:@"Neig_Coach_StaOrg"];
-        }else{
-            star.image = [UIImage imageNamed:@"Neig_Coach_StaGre"];
-        }
-        [self addSubview:star];
-    }
+    YRStarsView *star = [[YRStarsView alloc] initWithFrame:CGRectMake(95, 30, 120, 30) score:4 starWidth:20 intervel:3 needLabel:YES];
+    [self addSubview:star];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

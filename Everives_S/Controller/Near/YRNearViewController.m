@@ -14,6 +14,7 @@
 #import "CoachDataSource.h"
 #import "StudentDataSource.h"
 #import "YRSchoolCelldetailVC.h"
+#import "YRCoachCellDetailVC.h"
 #import "YRFillterBtnView.h"
 //定义三个table的类型
 typedef NS_ENUM(NSUInteger,NearTableType){
@@ -152,6 +153,8 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView.tag == NearTableTypeSchool) {
         [self.navigationController pushViewController:[[YRSchoolCelldetailVC alloc] init] animated:YES];
+    }else if(tableView.tag == NearTableTypeCoach){
+        [self.navigationController pushViewController:[[YRCoachCellDetailVC alloc] init] animated:YES];
     }
 }
 #pragma mark - UISearchBarDelegate

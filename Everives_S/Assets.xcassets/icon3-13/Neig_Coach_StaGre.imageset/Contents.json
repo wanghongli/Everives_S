@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Neig_Coach_StaGre.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "Neig_Coach_StaGre.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "Neig_Coach_StaGre@2x.png"
     },
     {
       "idiom" : "universal",
+      "filename" : "Neig_Coach_StaGre@3x.png",
       "scale" : "3x"
     }
   ],

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YRSchoolTableCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *image;
 
 @end

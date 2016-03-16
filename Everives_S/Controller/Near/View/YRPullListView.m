@@ -9,7 +9,8 @@
 #import "YRPullListView.h"
 @interface YRPullListView()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong) NSMutableArray *tables;
-@property(nonatomic,strong) NSArray *itemArrays;//这个数组的每个元素是数组
+//这个数组的每个元素是数组
+@property(nonatomic,strong) NSArray *itemArrays;
 @property(nonatomic,assign) NSInteger tableNum;
 @property(nonatomic,assign) CGFloat tableWidth;
 @property(nonatomic,assign) CGFloat tableHeight;

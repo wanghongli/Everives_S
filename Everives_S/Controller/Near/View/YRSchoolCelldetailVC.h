@@ -8,6 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YRSchoolCelldetailVC : UIViewController
-
+@interface YRSchoolCelldetailVC : UITableViewController
 @end

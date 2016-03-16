@@ -10,6 +10,7 @@
 
 @interface YRPullListView : UIView
 @property(nonatomic,assign) CGFloat cellHeight;
+//返回选择后的结果，没有选择对应元素返回-1
 @property(nonatomic,strong,readonly) NSMutableArray *selectedArray;
 -(instancetype)initWithFrame:(CGRect)frame itemArray:(NSArray*) array;
 @end

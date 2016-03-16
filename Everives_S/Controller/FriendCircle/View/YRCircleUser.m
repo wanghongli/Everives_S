@@ -60,13 +60,14 @@
     // 昵称
     UILabel *nameView = [[UILabel alloc] init];
     nameView.font = CZNameFont;
+    nameView.textColor = kCOLOR(47, 50, 50);
     [self addSubview:nameView];
     _nameView = nameView;
     
     // 时间
     UILabel *timeView = [[UILabel alloc] init];
     timeView.font = CZTimeFont;
-    timeView.textColor = [UIColor orangeColor];
+    timeView.textColor = [UIColor colorWithRed:154/255.0 green:155/255.0 blue:156/255.0 alpha:1];
     [self addSubview:timeView];
     _timeView = timeView;
     
@@ -80,6 +81,7 @@
     UILabel *textView = [[UILabel alloc] init];
     textView.font = CZTextFont;
     textView.numberOfLines = 0;
+    textView.textColor = kCOLOR(28, 28, 28);
     [self addSubview:textView];
     _textView = textView;
     
@@ -116,7 +118,7 @@
     CGFloat timeX = _nameView.frame.origin.x;
     CGFloat timeY = CGRectGetMaxY( _nameView.frame) + CZStatusCellMargin * 0.5;
     //    CGSize timeSize = [status.time sizeWithFont:CZTimeFont];
-    CGSize timeSize = [status.time sizeWithFont:CZTimeFont maxSize:CGSizeMake(kScreenWidth, MAXFLOAT)];
+    CGSize timeSize = [[NSString intervalSinceNow:status.time] sizeWithFont:CZTimeFont maxSize:CGSizeMake(kScreenWidth, MAXFLOAT)];
     _timeView.frame = (CGRect){{timeX,timeY},timeSize};
     
     
@@ -130,12 +132,19 @@
     
     _iconView.layer.masksToBounds = YES;
     _iconView.layer.cornerRadius = 17.5;
+    _iconView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    _iconView.layer.borderWidth = 1;
+}
+-(void)setLineBool:(BOOL)lineBool
+{
+    _lineBool = lineBool;
+    _seperaterLine.hidden = lineBool;
 }
 - (void)setUpData
 {
     YRWeibo *status = _statusF.status;
     // 头像
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:status.avatar] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:status.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
     
     // 昵称
     _nameView.textColor = [UIColor blackColor];

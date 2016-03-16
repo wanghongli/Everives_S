@@ -92,7 +92,7 @@
             }
             self.image = nil;
             imageV.hidden = NO;
-            [imageV sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
+            [imageV sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
         }else{
             imageV.hidden = YES;
         }
@@ -100,7 +100,7 @@
     
     CGFloat x = 0;
     CGFloat y = 0;
-    CGFloat margin = 10;
+    CGFloat margin = 5;
     int col = 0;
     int rol = 0;
     int cols;

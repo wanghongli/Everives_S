@@ -189,7 +189,7 @@
          timeString = [timeString substringWithRange:NSMakeRange(5, [timeString length]-5)];
          */
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
-        [formatter setDateFormat:@"MM月dd日 HH:mm"];
+        [formatter setDateFormat:@"MM-dd HH:mm"];
         timeString = [formatter stringFromDate:d];
     }
     return timeString;

@@ -10,6 +10,7 @@
 @class YRCircleCellViewModel;
 @interface YRFriendCircleCell : UITableViewCell
 @property (nonatomic, strong) YRCircleCellViewModel *statusF;
+@property (nonatomic, assign) BOOL lineBool;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @property (nonatomic, strong) void (^commentOrAttentClickBlock)(NSInteger comOrAtt);

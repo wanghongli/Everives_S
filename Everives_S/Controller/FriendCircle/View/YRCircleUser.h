@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 @class YRCircleCellViewModel;
 @interface YRCircleUser : UIImageView
+@property (nonatomic, assign) BOOL lineBool;
 @property (nonatomic, strong) YRCircleCellViewModel *statusF;
 @end

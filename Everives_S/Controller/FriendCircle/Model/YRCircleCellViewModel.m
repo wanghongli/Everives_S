@@ -55,6 +55,8 @@
 
     _originalNameFrame = (CGRect){{nameX,nameY},nameSize};
     
+    
+    
     // 正文
     CGFloat textX = imageX;
     CGFloat textY = CGRectGetMaxY(_originalIconFrame) + CZStatusCellMargin;

@@ -12,6 +12,7 @@
 #import "YRFirstDownView.h"
 #import "YRMyCollectionController.h"
 #import "YRDriveLawController.h"
+#import "YRLearnPracticeController.h"
 #define kDistance 10
 @interface YRYJFirstClassController ()<YRFirstHeadViewDelegate,YRFirstMiddleViewDelegate,YRFirstDownViewDelegate>
 
@@ -60,13 +61,16 @@
 #pragma mark - 顺序、随机、专题等点击事件
 -(void)firstHeadViewBtnClick:(NSInteger)btnTag
 {
+    YRLearnPracticeController *learnVC = [[YRLearnPracticeController alloc]init];
     if (btnTag == 0) {//顺序练习
-        
+        learnVC.title = @"顺序练习";
     }else if (btnTag == 1){//随机练习
-    
+        learnVC.title = @"随机练习";
     }else{//专题练习
-    
+        learnVC.title = @"专题练习";
     }
+    [self.navigationController pushViewController:learnVC animated:YES];
+
 }
 #pragma mark - 驾考法规、考试技巧等点击事件
 -(void)firstMiddleViewBtnClick:(NSInteger)btnTag

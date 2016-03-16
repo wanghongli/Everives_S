@@ -133,3 +133,8 @@
 #define kUMNEG_KEY @"55f2be4667e58e610800112f"
 
 #define kPICTURE_HW (kSizeOfScreen.width-80)/3
+
+/**
+ *  占位图
+ */
+#define kPLACEHHOLD_IMG @"timeline_image_placeholder"

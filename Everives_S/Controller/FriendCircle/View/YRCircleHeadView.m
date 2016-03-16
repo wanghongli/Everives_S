@@ -9,13 +9,14 @@
 #import "YRCircleHeadView.h"
 #import "UIView+SDAutoLayout.h"
 #import "UIImageView+WebCache.h"
-
+#import "YRNameSexView.h"
+#import "NSString+Tools.h"
 #define kImgWHPercent 0.24
 #define kDistance 5
 @interface YRCircleHeadView ()
 @property (nonatomic, strong) UIImageView *imgView;
 
-@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) YRNameSexView *nameSexView;
 @property (nonatomic, strong) UILabel *signLabel;
 @property (nonatomic, strong) UIImageView *sexImg;
 @end
@@ -40,18 +41,15 @@
     _imgView = [[UIImageView alloc]initWithFrame:CGRectMake(x, y, w, h)];
     [self addSubview:_imgView];
     _imgView.center = CGPointMake(kScreenWidth/2, (self.frame.size.height-w)/3+w/2);
-//    _imgView.image = [UIImage imageNamed:@"timeline_image_placeholder"];
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
     _imgView.layer.masksToBounds = YES;
     _imgView.layer.cornerRadius = w/2;
     
-    _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_imgView.frame)+kDistance, kScreenWidth, 20)];
-    _nameLabel.textAlignment = NSTextAlignmentCenter;
-    _nameLabel.font = [UIFont systemFontOfSize:12];
-    [self addSubview:_nameLabel];
-    _nameLabel.text = KUserManager.name;
+    _nameSexView = [[YRNameSexView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_imgView.frame)+kDistance, kScreenWidth, [KUserManager.name sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(kScreenWidth/2, MAXFLOAT)].height)];
+    [self addSubview:_nameSexView];
+    [_nameSexView nameWith:KUserManager.name sex:[KUserManager.gender boolValue]];
     
-    _signLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_nameLabel.frame)+kDistance, kScreenWidth, 20)];
+    _signLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_nameSexView.frame)+kDistance, kScreenWidth, 20)];
     _signLabel.text = @"玉祥驾校学车就是好，有实惠又快又好。";
     _signLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_signLabel];

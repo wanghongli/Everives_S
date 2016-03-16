@@ -16,7 +16,6 @@
 #import "YRCircleDetailController.h"
 #import "YRCircleHeadView.h"
 #import "YRYJNavigationController.h"
-
 @interface YRFriendCircleController ()
 {
     NSInteger _page;
@@ -32,7 +31,7 @@
     self.title = @"驾友圈";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(addWeiboClick:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addWeiboClick:)];
     
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.tableFooterView = [[UIView alloc]init];
@@ -79,7 +78,6 @@
             statusF.status = status;
             [_blogs addObject:statusF];
         }
-        NSLog(@"%@",_blogs);
         [self.tableView reloadData];
         
         // 结束刷新
@@ -100,7 +98,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -115,7 +112,7 @@
     YRFriendCircleCell *cell = [YRFriendCircleCell cellWithTableView:tableView];
     YRCircleCellViewModel *statusF = _blogs[indexPath.section];
     cell.statusF = statusF;
-    
+    cell.lineBool = NO;
     [cell setCommentOrAttentClickBlock:^(NSInteger zan) {
         if (zan == 1){//消息
             return;
@@ -153,7 +150,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *footerSectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
-    footerSectionView.backgroundColor = kCOLOR(241, 241, 241);
+    footerSectionView.backgroundColor = kCOLOR(250, 250, 250);
     return footerSectionView;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

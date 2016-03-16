@@ -81,7 +81,11 @@
         self.commentOrAttentClickBlock(commentOrAttent);
     }
 }
-
+-(void)setLineBool:(BOOL)lineBool
+{
+    _lineBool = lineBool;
+    _originalView.lineBool = lineBool;
+}
 - (void)awakeFromNib {
     // Initialization code
 }

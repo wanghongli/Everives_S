@@ -62,18 +62,19 @@
     // 转发
     UILabel *address = [[UILabel alloc] init];
     address.font = CZNameFont;
+    address.textColor = kCOLOR(153, 153, 153);
     [self addSubview:address];
     _address = address;
     
     // 评论
-    UIButton *comment = [self setUpOneButtonWithTitle:@"评论" image:[UIImage imageNamed:@"ic_comment_gray"]];
+    UIButton *comment = [self setUpOneButtonWithTitle:@"评论" image:[UIImage imageNamed:@"SNS_Comment"]];
     [comment addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     comment.tag = 21;
     _comment = comment;
     
     // 赞
-    UIButton *unlike = [self setUpOneButtonWithTitle:@"赞" image:[UIImage imageNamed:@"ic_collect_unfocus"]];
-    [unlike setImage:[UIImage imageNamed:@"ic_collect_focus"] forState:UIControlStateSelected];
+    UIButton *unlike = [self setUpOneButtonWithTitle:@"赞" image:[UIImage imageNamed:@"SNS_unLike"]];
+    [unlike setImage:[UIImage imageNamed:@"SNS_Likes"] forState:UIControlStateSelected];
     [unlike addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     unlike.tag = 22;
     _unlike = unlike;
@@ -84,7 +85,7 @@
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setImage:image forState:UIControlStateNormal];
     
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn setTitleColor:kCOLOR(153, 153, 153) forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:12];
     btn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
     
@@ -147,7 +148,7 @@
 {
     if (sender.tag == 22) {
         if ([_status.praised boolValue]) {
-            [RequestData DELETE:WEIBO_CANCEL_PRAISE parameters:@{@"id":_status.id} complete:^(NSDictionary *responseDic) {
+            [RequestData DELETE:[NSString stringWithFormat:@"/seeds/praise/%@",_status.id] parameters:nil complete:^(NSDictionary *responseDic) {
                 [self.delegate commentOrAttentTouch:sender.tag-20];
             } failed:^(NSError *error) {
                 

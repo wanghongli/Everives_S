@@ -11,7 +11,6 @@
 #import "CWSPublicButton.h"
 #import "UIButton+titleFrame.h"
 
-#import "YRForgetPswViewController.h"
 #import "YRRegistViewController.h"
 #import "PublicCheckMsgModel.h"
 #import "YRPerfectUserMsgController.h"
@@ -56,7 +55,7 @@
     [self.view addSubview:_iconImgView];
     _iconImgView.frame = CGRectMake(0,CWSHeightDistance,weight*0.3, weight*0.3);
     _iconImgView.center = CGPointMake(kSizeOfScreen.width/2, kSizeOfScreen.height*(1-CWSPercent)/2+20);
-    _iconImgView.image = [UIImage imageNamed:@"timeline_image_placeholder"];
+    _iconImgView.image = [UIImage imageNamed:kPLACEHHOLD_IMG];
     
     //标题
     _titleLabel = [[UILabel alloc]init];
@@ -67,14 +66,15 @@
     
     //手机号码
     _phoneTF = [[CWSLoginTextField alloc]initWithFrame:CGRectMake(CWSLeftDistance, kSizeOfScreen.height*CWSPercent, kSizeOfScreen.width - 2 * CWSLeftDistance, 44)];
-    _phoneTF.leftImage = [UIImage imageNamed:@"searchbar_textfield_search_icon"];
+    _phoneTF.leftImage = [UIImage imageNamed:@"Login_UsernameGray"];
     _phoneTF.placeholder = @"手机号码";
     [self.view addSubview:_phoneTF];
     
     //密码
     _passwordTF = [[CWSLoginTextField alloc]initWithFrame:CGRectMake(CWSLeftDistance, _phoneTF.y + _phoneTF.height + CWSHeightDistance, kSizeOfScreen.width - 2 * CWSLeftDistance, 44)];
-    _passwordTF.leftImage = [UIImage imageNamed:@"searchbar_textfield_search_icon"];
+    _passwordTF.leftImage = [UIImage imageNamed:@"Login_PasswordGray"];
     _passwordTF.placeholder = @"密码";
+    _passwordTF.secureTextEntry = YES;
     [self.view addSubview:_passwordTF];
     
     //登录按钮

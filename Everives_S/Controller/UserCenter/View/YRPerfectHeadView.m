@@ -32,7 +32,7 @@
     _headImg = [[UIImageView alloc]init];
     _headImg.frame = CGRectMake(0, 0    ,self.height*0.4, self.height*0.4);
     _headImg.center = CGPointMake(self.width/2, self.height/2+10);
-    _headImg.image = [UIImage imageNamed:@"timeline_image_placeholder"];
+    _headImg.image = [UIImage imageNamed:kPLACEHHOLD_IMG];
     _headImg.layer.masksToBounds = YES;
     _headImg.layer.cornerRadius = _headImg.width/2;
     [self addSubview:_headImg];

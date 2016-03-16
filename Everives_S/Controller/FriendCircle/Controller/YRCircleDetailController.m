@@ -13,7 +13,8 @@
 #import "YRCircleComment.h"
 #import "YRCircleCommentCell.h"
 #import "KGFreshCatchDetailCommentView.h"
-@interface YRCircleDetailController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+#import "KGFreshCatchDetailZanView.h"
+@interface YRCircleDetailController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,KGFreshCatchDetailZanViewDelegate>
 {
     BOOL _wasKeyboardManagerEnabled;
     
@@ -188,6 +189,7 @@
         YRCircleCellViewModel *statusF = _cellFrameMsg;
         // 给cell传递模型
         cell.statusF = statusF;
+        cell.lineBool = YES;
         return cell;
     }else{
         
@@ -261,20 +263,19 @@
 }
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-//    if (section == 0) {
-//        KGFreshCatchDetailZanView *zanView = [[KGFreshCatchDetailZanView alloc]init];
-//        
-//        zanView.frame = CGRectMake(0, 0, kSizeOfScreen.width, 44);
-//        zanView.statusArray = _cellFrameMsg.status.data.praiseMember;
-//        zanView.delegate = self;
-//        //        zanView.backgroundColor = [UIColor redColor];
-//        return zanView;
-//        
-//    }else{
+    if (section == 0) {
+        KGFreshCatchDetailZanView *zanView = [[KGFreshCatchDetailZanView alloc]init];
+        
+        zanView.frame = CGRectMake(0, 0, kSizeOfScreen.width, 44);
+        zanView.statusArray = _cellFrameMsg.status.praiseMem;
+        zanView.delegate = self;
+        return zanView;
+        
+    }else{
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kSizeOfScreen.width, 1)];
         view.backgroundColor = kCOLOR(230, 230, 230);
         return view;
-//    }
+    }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

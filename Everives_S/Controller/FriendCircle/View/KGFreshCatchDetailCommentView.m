@@ -10,8 +10,10 @@
 #import "YRCircleComment.h"
 #import "UIImageView+WebCache.h"
 #import "NSString+Tools.h"
+
+
 #define CZStatusCellMargin 10
-#define CZNameFont [UIFont systemFontOfSize:13]
+#define CZNameFont [UIFont systemFontOfSize:15]
 #define CZTimeFont [UIFont systemFontOfSize:12]
 #define CZSourceFont CZTimeFont
 #define CZTextFont [UIFont systemFontOfSize:15]
@@ -19,6 +21,8 @@
 
 #define KLABELCOLOR kCOLOR(99, 99, 99)
 @interface KGFreshCatchDetailCommentView ()
+//左侧评论图片
+@property (nonatomic, weak) UIImageView *leftImg;
 // 头像
 @property (nonatomic, weak) UIImageView *iconView;
 
@@ -49,10 +53,16 @@
 // 添加所有子控件
 - (void)setUpAllChildView
 {
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kSizeOfScreen.width, 1)];
-    view.backgroundColor = kCOLOR(230, 230, 230);
-    _topLine = view;
-    [self addSubview:_topLine];
+    //左侧评论图片
+    UIImageView *leftimg = [[UIImageView alloc]init];
+    leftimg.image = [UIImage imageNamed:@"SNS_Detail_Comment"];
+    [self addSubview:leftimg];
+    _leftImg = leftimg;
+    
+//    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kSizeOfScreen.width, 1)];
+//    view.backgroundColor = kCOLOR(230, 230, 230);
+//    _topLine = view;
+//    [self addSubview:_topLine];
     
     // 头像
     UIImageView *iconView = [[UIImageView alloc] init];
@@ -62,7 +72,7 @@
     // 昵称
     UILabel *nameView = [[UILabel alloc] init];
     nameView.font = CZNameFont;
-    nameView.textColor = KLABELCOLOR;
+    nameView.textColor = kCOLOR(31, 158, 240);
     [self addSubview:nameView];
     _nameView = nameView;
     
@@ -75,7 +85,6 @@
     
     //回复按钮
     UIButton *reply = [[UIButton alloc]init];
-    [reply setTitle:@"回复" forState:UIControlStateNormal];
     [reply addTarget:self action:@selector(replyClick:) forControlEvents:UIControlEventTouchUpInside];
     reply.titleLabel.font = CZNameFont;
     [reply setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
@@ -85,10 +94,12 @@
     // 正文
     UILabel *textView = [[UILabel alloc] init];
     textView.font = CZTextFont;
-    textView.textColor = KLABELCOLOR;
+    textView.textColor = kCOLOR(51, 51, 51);
     textView.numberOfLines = 0;
     [self addSubview:textView];
     _textView = textView;
+    
+    
 }
 
 - (void)setComment:(YRCircleComment *)comment
@@ -104,7 +115,7 @@
 - (void)setUpData
 {
     // 头像
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:_comment.avatar] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:_comment.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
     
     // 昵称
     _nameView.text = _comment.name;
@@ -118,11 +129,16 @@
 
 - (void)setUpFrame
 {
+    //左侧评论图片
+    _leftImg.frame = CGRectMake(CZStatusCellMargin, 0, 15, 15);
+    
     // 头像
-    CGFloat imageX = CZStatusCellMargin;
-    CGFloat imageY = imageX;
+    CGFloat imageX = CGRectGetMaxX(_leftImg.frame)+CZStatusCellMargin/2;
+    CGFloat imageY = CZStatusCellMargin;
     CGFloat imageWH = 35;
     _iconView.frame = CGRectMake(imageX, imageY, imageWH, imageWH);
+    
+    _leftImg.center = CGPointMake(CZStatusCellMargin+15/2, _iconView.center.y);
     
     // 昵称
     CGFloat nameX = CGRectGetMaxX(_iconView.frame) + CZStatusCellMargin;
@@ -130,24 +146,20 @@
     CGSize nameSize = [_comment.name sizeWithFont:CZNameFont maxSize:CGSizeMake(kSizeOfScreen.width-2*nameX, MAXFLOAT)];
     _nameView.frame = (CGRect){{nameX,nameY},nameSize};
     
-    //回复
-    CGFloat replyY = 0;
-    CGSize replySize = [@"回复" sizeWithFont:CZNameFont maxSize:CGSizeMake(kSizeOfScreen.width-2*nameX, MAXFLOAT)];
-    CGFloat replyX = kSizeOfScreen.width-CZStatusCellMargin - replySize.width;
-    _replyBtn.frame = CGRectMake(replyX, replyY, replySize.width, 35);
-    
-    
     // 正文
-    CGFloat textY = CGRectGetMaxY(_iconView.frame) + CZStatusCellMargin;
     CGFloat textW = CZScreenW - CZStatusCellMargin - _nameView.x;
     CGSize textSize = [_comment.content sizeWithFont:CZTextFont maxSize:CGSizeMake(textW, MAXFLOAT)];
-    _textView.frame = (CGRect){{_nameView.x,textY},textSize};
+    _textView.frame = (CGRect){{_nameView.x,CGRectGetMaxY( _nameView.frame)},textSize};
     
+    _replyBtn.frame = CGRectMake(_textView.x, _textView.y, textW, textSize.height);
+
     
     // 时间 每次有新的时间都需要计算时间frame
-    CGFloat timeX = _nameView.frame.origin.x;
-    CGFloat timeY = CGRectGetMaxY( _nameView.frame) + CZStatusCellMargin * 0.5;
+    CGFloat timeY = _nameView.y;
     CGSize timeSize = [_comment.time sizeWithFont:CZTimeFont maxSize:CGSizeMake(kScreenWidth, MAXFLOAT)];
+    _timeView.textAlignment = NSTextAlignmentCenter;
+    CGFloat timeX = kScreenWidth - 10-timeSize.width;
+    
     _timeView.frame = (CGRect){{timeX,timeY},timeSize};
     
     _iconView.layer.masksToBounds = YES;
@@ -161,16 +173,21 @@
     CGFloat imageX = CZStatusCellMargin;
     CGFloat imageY = imageX;
     CGFloat imageWH = 35;
-    CGRect frame1 = CGRectMake(imageX, imageY, imageWH, imageWH);
+    
+    // 昵称
+    CGFloat nameX = imageX+imageWH + CZStatusCellMargin;
+    CGFloat nameY = imageY;
+    CGSize nameSize = [comment.name sizeWithFont:CZNameFont maxSize:CGSizeMake(kSizeOfScreen.width-2*nameX, MAXFLOAT)];
+
     // 正文
     CGFloat textX = imageX;
-    CGFloat textY = CGRectGetMaxY(frame1) + CZStatusCellMargin;
+    CGFloat textY = nameY+nameSize.height;
     
     CGFloat textW = CZScreenW - 2 * CZStatusCellMargin;
     CGSize textSize = [comment.content sizeWithFont:CZTextFont maxSize:CGSizeMake(textW, MAXFLOAT)];
     CGRect frame3 = (CGRect){{textX,textY},textSize};
     
-    height = CGRectGetMaxY(frame3) + CZStatusCellMargin;
+    height = CGRectGetMaxY(frame3) + CZStatusCellMargin/2;
     
     return height;
 }

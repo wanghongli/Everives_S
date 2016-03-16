@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Login_PasswordGray.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "Login_PasswordGray.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "Login_PasswordGray@2x.png"
     },
     {
       "idiom" : "universal",
+      "filename" : "Login_PasswordGray@3x.png",
       "scale" : "3x"
     }
   ],

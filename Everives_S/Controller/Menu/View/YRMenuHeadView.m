@@ -48,7 +48,7 @@
     
     _notiBtn = [[UIButton alloc]init];
     [_notiBtn addTarget:self action:@selector(notiClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_notiBtn setImage:[UIImage imageNamed:@"timeline_image_placeholder"] forState:UIControlStateNormal];
+    [_notiBtn setImage:[UIImage imageNamed:kPLACEHHOLD_IMG] forState:UIControlStateNormal];
     [self addSubview:_notiBtn];
     
     UIButton *loginbtn = [[UIButton alloc]init];
@@ -63,7 +63,7 @@
     _headImg.frame = CGRectMake(kDistace, wh/4+20, wh, wh);
     _headImg.layer.masksToBounds = YES;
     _headImg.layer.cornerRadius = wh/2;
-    _headImg.image = [UIImage imageNamed:@"timeline_image_placeholder"];
+    _headImg.image = [UIImage imageNamed:kPLACEHHOLD_IMG];
     
     NSString *nameString = @"玉祥驾校";
     CGSize nameSize = [nameString sizeWithFont:[UIFont systemFontOfSize:18] maxSize:CGSizeMake(self.width/2, wh/2)];

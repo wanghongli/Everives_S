@@ -102,6 +102,10 @@
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:friendViewController];
             self.frostedViewController.contentViewController = navigationController;
         }else if (indexPath.row == 1) {
+            if (!KUserManager.id) {//登陆
+                [self menuHeadViewLoginClick];
+                return;
+            }
             YRFriendCircleController *secondViewController = [[YRFriendCircleController alloc] init];
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
             self.frostedViewController.contentViewController = navigationController;

@@ -38,7 +38,7 @@
         CGFloat h = w/0.78;
         YRCircleBtn *circleBtn = [[YRCircleBtn alloc]initWithFrame:CGRectMake(x, y, w, h)];
         [circleBtn setTitle:array[i] forState:UIControlStateNormal];
-        [circleBtn setImage:[UIImage imageNamed:@"timeline_image_placeholder"] forState:UIControlStateNormal];
+        [circleBtn setImage:[UIImage imageNamed:kPLACEHHOLD_IMG] forState:UIControlStateNormal];
         [circleBtn setTitleColor:[UIColor colorWithRed:145/255.0 green:146/255.0 blue:147/255.0 alpha:1] forState:UIControlStateNormal];
         [circleBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         circleBtn.tag = i;

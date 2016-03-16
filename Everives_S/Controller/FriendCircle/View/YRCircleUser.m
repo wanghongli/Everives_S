@@ -93,7 +93,7 @@
 #pragma mark - 头像被点击
 -(void)tap:(UITapGestureRecognizer*)sender
 {
-//    [self.delegate userIconClick];
+    [self.delegate userIconClick];
 }
 -(void)setStatusF:(YRCircleCellViewModel *)statusF
 {

@@ -28,5 +28,8 @@
 @property (nonatomic, strong) NSString *tel;
 @property (nonatomic, strong) NSString *token;
 @property (nonatomic, strong) NSString *type;
+@property (nonatomic, strong) NSString *sign;
 
+//好友属性
+@property (nonatomic, assign) BOOL relation;
 @end

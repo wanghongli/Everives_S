@@ -10,8 +10,8 @@
 #import "YRCircleUser.h"
 #import "YRCircleToolBar.h"
 #import "YRCircleCellViewModel.h"
-
-@interface YRFriendCircleCell ()<YRCircleToolBarDelegate>
+#import "YRWeibo.h"
+@interface YRFriendCircleCell ()<YRCircleToolBarDelegate,YRCircleUserDelegate>
 
 @property (nonatomic, weak) YRCircleUser *originalView;
 @property (nonatomic, weak) YRCircleToolBar *toolBar;
@@ -36,7 +36,7 @@
     // 内容部分
     YRCircleUser *originalView = [[YRCircleUser alloc] init];
     [self addSubview:originalView];
-//    originalView.delegate = self;
+    originalView.delegate = self;
     _originalView = originalView;
     
     // 工具条
@@ -49,9 +49,13 @@
     down.backgroundColor = kCOLOR(241, 241, 241);
     [self addSubview:down];
     _downLine = down;
-
 }
-
+-(void)userIconClick
+{
+    if (self.iconClickBlock) {
+        self.iconClickBlock([KUserManager.id isEqualToString:_statusF.status.uid]);
+    }
+}
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
     static NSString *ID = @"cell";

@@ -11,6 +11,8 @@
 		03019D141C98F02000895C77 /* YRNameSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03019D131C98F02000895C77 /* YRNameSexView.m */; };
 		03019D171C98F57700895C77 /* YRPraiseMem.m in Sources */ = {isa = PBXBuildFile; fileRef = 03019D161C98F57700895C77 /* YRPraiseMem.m */; };
 		03019D1A1C98F6D200895C77 /* KGFreshCatchDetailZanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03019D191C98F6D200895C77 /* KGFreshCatchDetailZanView.m */; };
+		03019D1D1C993C5D00895C77 /* YRUserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03019D1C1C993C5D00895C77 /* YRUserDetailController.m */; };
+		03019D201C994E6300895C77 /* YRUserDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03019D1F1C994E6300895C77 /* YRUserDownView.m */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -175,6 +177,10 @@
 		03019D161C98F57700895C77 /* YRPraiseMem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRPraiseMem.m; sourceTree = "<group>"; };
 		03019D181C98F6D200895C77 /* KGFreshCatchDetailZanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGFreshCatchDetailZanView.h; sourceTree = "<group>"; };
 		03019D191C98F6D200895C77 /* KGFreshCatchDetailZanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGFreshCatchDetailZanView.m; sourceTree = "<group>"; };
+		03019D1B1C993C5D00895C77 /* YRUserDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserDetailController.h; sourceTree = "<group>"; };
+		03019D1C1C993C5D00895C77 /* YRUserDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserDetailController.m; sourceTree = "<group>"; };
+		03019D1E1C994E6300895C77 /* YRUserDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserDownView.h; sourceTree = "<group>"; };
+		03019D1F1C994E6300895C77 /* YRUserDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserDownView.m; sourceTree = "<group>"; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -625,6 +631,8 @@
 				03F59B8C1C8EC1FF009D5EA2 /* YRCircleDetailController.h */,
 				03F59B8D1C8EC1FF009D5EA2 /* YRCircleDetailController.m */,
 				03F59B8E1C8EC1FF009D5EA2 /* YRCircleDetailController.xib */,
+				03019D1B1C993C5D00895C77 /* YRUserDetailController.h */,
+				03019D1C1C993C5D00895C77 /* YRUserDetailController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -667,6 +675,8 @@
 				03019D131C98F02000895C77 /* YRNameSexView.m */,
 				03019D181C98F6D200895C77 /* KGFreshCatchDetailZanView.h */,
 				03019D191C98F6D200895C77 /* KGFreshCatchDetailZanView.m */,
+				03019D1E1C994E6300895C77 /* YRUserDownView.h */,
+				03019D1F1C994E6300895C77 /* YRUserDownView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1476,6 +1486,7 @@
 			files = (
 				037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */,
 				0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */,
+				03019D201C994E6300895C77 /* YRUserDownView.m in Sources */,
 				03A25F161C928891000196A6 /* YRYJSecondClassController.m in Sources */,
 				037D7C2E1C916AE600273703 /* UzysGroupViewCell.m in Sources */,
 				037F8E761C8D5FC50057BF6C /* PhotoAlbumManager.m in Sources */,
@@ -1582,7 +1593,6 @@
 				1600EBC21C88087A001919EB /* REFrostedContainerViewController.m in Sources */,
 				037F8E3E1C8D18D20057BF6C /* YRUserStatus.m in Sources */,
 				03019D141C98F02000895C77 /* YRNameSexView.m in Sources */,
-				161B1C061C9125520047182D /* YRCoachCellDetailVC.m in Sources */,
 				16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */,
 				164A8C9A1C8D248300857638 /* YRMyCommentCellTableViewCell.m in Sources */,
 				16B75DED1C92B1EC004DC928 /* YRFillterBtnView.m in Sources */,
@@ -1591,6 +1601,7 @@
 				037F8EB11C8E6D350057BF6C /* MJPhoto.m in Sources */,
 				037F8E1E1C8826750057BF6C /* UIViewController+CWS.m in Sources */,
 				1600EBC91C88087A001919EB /* UIView+XBExtension.m in Sources */,
+				03019D1D1C993C5D00895C77 /* YRUserDetailController.m in Sources */,
 				1600EBC71C88087A001919EB /* XBScrollPageController.m in Sources */,
 				037F8E1B1C8826750057BF6C /* YRLoginViewController.m in Sources */,
 				037F8E411C8D1E8F0057BF6C /* YRManager.m in Sources */,

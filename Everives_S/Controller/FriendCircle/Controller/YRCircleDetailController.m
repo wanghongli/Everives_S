@@ -14,6 +14,7 @@
 #import "YRCircleCommentCell.h"
 #import "KGFreshCatchDetailCommentView.h"
 #import "KGFreshCatchDetailZanView.h"
+#import "YRPraiseMem.h"
 @interface YRCircleDetailController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,KGFreshCatchDetailZanViewDelegate>
 {
     BOOL _wasKeyboardManagerEnabled;
@@ -190,12 +191,35 @@
         // 给cell传递模型
         cell.statusF = statusF;
         cell.lineBool = YES;
+        [cell setCommentOrAttentClickBlock:^(NSInteger zan) {//点赞和消息
+            if (zan == 1){//消息
+                return;
+            }
+            if ([statusF.status.praised boolValue]) {//取消点赞
+                statusF.status.praise = [NSString stringWithFormat:@"%ld",[statusF.status.praise integerValue]-1];
+            }else//点赞
+                statusF.status.praise = [NSString stringWithFormat:@"%ld",[statusF.status.praise integerValue]+1];
+            //更新数据源
+            statusF.status.praised = [NSString stringWithFormat:@"%d",![statusF.status.praised boolValue]];
+            _cellFrameMsg = statusF;
+            [self.tableView reloadData];
+        }];
+        //点击头像事件
+        [cell setIconClickBlock:^(BOOL userBool) {
+            MyLog(@"%s  %d",__func__,userBool);
+            if (userBool) {//用户自己
+                
+            }else{//别人
+                
+            }
+        }];
         return cell;
     }else{
         
         YRCircleCommentCell *cell = [YRCircleCommentCell cellWithTableView:tableView];
         cell.backgroundColor = [UIColor whiteColor];
         
+        //评论中名字被点击
         [cell setUserNameTapClickBlock:^(YRCircleComment *user) {
 //            [RequestData requestInfomationWithURI:USER_GETUSERINFO andParameters:@{@"id":[NSString stringWithFormat:@"%ld",(long)user.uid]} complete:^(NSDictionary *responseDic) {
 //                
@@ -245,19 +269,19 @@
         CGFloat height = [KGFreshCatchDetailCommentView detailCommentViewWith:_commentArray[section - 1]];
         KGFreshCatchDetailCommentView *zanView = [[KGFreshCatchDetailCommentView alloc]init];
         zanView.backgroundColor = [UIColor whiteColor];
-        [zanView setReplyTapClickBlock:^(YRCircleComment *commentObject) {
-            [_commentBody setObject:[NSString stringWithFormat:@"%ld",(long)commentObject.id] forKey:@"fid"];
-            self.commentText.placeholder = [NSString stringWithFormat:@"%@回复:",commentObject.name];
-            [self.commentText becomeFirstResponder];
+        [zanView setReplyTapClickBlock:^(BOOL iconBool,YRCircleComment *commentObject) {
+            if (iconBool) {//头像被点击
+                MyLog(@"头像被点击 %s   %d",__func__,iconBool);
+            }else{//点击评论内容评论
+                [_commentBody setObject:[NSString stringWithFormat:@"%ld",(long)commentObject.id] forKey:@"fid"];
+                self.commentText.placeholder = [NSString stringWithFormat:@"%@回复:",commentObject.name];
+                [self.commentText becomeFirstResponder];
+            }
             
         }];
         zanView.frame = CGRectMake(0, 0, kSizeOfScreen.width, height);
         zanView.comment = _commentArray[section - 1];
-        if (section == 1) {
-            zanView.topLineHidden = YES;
-        }else{
-            zanView.topLineHidden = NO;
-        }
+        zanView.leftImgHidden = section-1;
         return zanView;
     }
 }
@@ -273,7 +297,11 @@
         
     }else{
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kSizeOfScreen.width, 1)];
-        view.backgroundColor = kCOLOR(230, 230, 230);
+        if (section != _commentArray.count) {
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(30, 0, kScreenWidth-60, 1)];
+            line.backgroundColor = kCOLOR(230, 230, 230);
+            [view addSubview:line];
+        }
         return view;
     }
 }
@@ -308,5 +336,10 @@
     [_commentBody setObject:self.commentText.text forKey:@"content"];
     [self takeCommentWith];
 }
-
+#pragma mark - 赞列表中具体那个人被头像被点击
+-(void)zanViewWhichUserClick:(NSInteger)nubInt
+{
+    YRPraiseMem *praiseObject = _cellFrameMsg.status.praiseMem[nubInt];//
+    MyLog(@"%s   id=%@,avatar=%@",__func__,praiseObject.id,praiseObject.avatar);
+}
 @end

@@ -16,6 +16,7 @@
 #import "YRCircleDetailController.h"
 #import "YRCircleHeadView.h"
 #import "YRYJNavigationController.h"
+#import "YRUserDetailController.h"
 @interface YRFriendCircleController ()
 {
     NSInteger _page;
@@ -43,6 +44,8 @@
     
     YRCircleHeadView *headView = [[YRCircleHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 0.6*kScreenWidth)];
     self.tableView.tableHeaderView = headView;
+    [headView setUserMsgWithName:KUserManager.name gender:[KUserManager.gender boolValue] sign:KUserManager.sign];
+    headView.image=[UIImage imageNamed:@"backImg"];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
                                                                              style:UIBarButtonItemStylePlain
@@ -66,6 +69,7 @@
         [self getdata];
     }];
 }
+#pragma mark - 获取数据源
 -(void)getdata
 {
     [RequestData GET:WEIBO_GET_LIST parameters:@{@"page":[NSString stringWithFormat:@"%ld",_page]} complete:^(NSDictionary *responseDic) {
@@ -90,6 +94,7 @@
         [self.tableView.mj_footer endRefreshing];
     }];
 }
+#pragma mark - 添加微博
 -(void)addWeiboClick:(UIBarButtonItem *)sender
 {
     YRAddWeiboController *addWeiboVC = [[YRAddWeiboController alloc]init];
@@ -99,33 +104,43 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
+#pragma mark - UITableViewDataDelegate
+//分组数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return _blogs.count;
 }
-
+//行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
-
+//uitableviewcell定义
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     YRFriendCircleCell *cell = [YRFriendCircleCell cellWithTableView:tableView];
     YRCircleCellViewModel *statusF = _blogs[indexPath.section];
     cell.statusF = statusF;
     cell.lineBool = NO;
-    [cell setCommentOrAttentClickBlock:^(NSInteger zan) {
+    [cell setCommentOrAttentClickBlock:^(NSInteger zan) {//点赞和消息
         if (zan == 1){//消息
             return;
         }
-        if ([statusF.status.praised boolValue]) {
+        if ([statusF.status.praised boolValue]) {//取消点赞
             statusF.status.praise = [NSString stringWithFormat:@"%ld",[statusF.status.praise integerValue]-1];
-        }else
+        }else//点赞
             statusF.status.praise = [NSString stringWithFormat:@"%ld",[statusF.status.praise integerValue]+1];
+        //更新数据源
         statusF.status.praised = [NSString stringWithFormat:@"%d",![statusF.status.praised boolValue]];
         [_blogs replaceObjectAtIndex:indexPath.section withObject:statusF];
         [self.tableView reloadData];
     }];
-    
+    //点击头像事件
+    [cell setIconClickBlock:^(BOOL userBool) {
+        MyLog(@"%s  %d",__func__,userBool);
+        YRUserDetailController *userVC = [[YRUserDetailController alloc]init];
+//        if (!userBool) {//用户自己
+            userVC.userID = @"13";
+//        }
+        [self.navigationController pushViewController:userVC animated:YES];
+    }];
     return cell;
 }
 // 返回cell的高度
@@ -136,10 +151,12 @@
     
     return statusF.cellHeight;
 }
+//footer的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 10;
 }
+//header的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
@@ -147,12 +164,14 @@
     }
     return 0.1;
 }
+//footerview
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *footerSectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
     footerSectionView.backgroundColor = kCOLOR(250, 250, 250);
     return footerSectionView;
 }
+//cell选中事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

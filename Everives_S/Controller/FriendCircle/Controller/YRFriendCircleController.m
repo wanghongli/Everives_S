@@ -17,6 +17,7 @@
 #import "YRCircleHeadView.h"
 #import "YRYJNavigationController.h"
 #import "YRUserDetailController.h"
+
 @interface YRFriendCircleController ()
 {
     NSInteger _page;
@@ -136,9 +137,9 @@
     [cell setIconClickBlock:^(BOOL userBool) {
         MyLog(@"%s  %d",__func__,userBool);
         YRUserDetailController *userVC = [[YRUserDetailController alloc]init];
-//        if (!userBool) {//用户自己
+        if (!userBool) {//用户自己
             userVC.userID = @"13";
-//        }
+        }
         [self.navigationController pushViewController:userVC animated:YES];
     }];
     return cell;

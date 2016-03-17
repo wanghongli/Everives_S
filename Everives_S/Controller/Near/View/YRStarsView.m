@@ -13,7 +13,7 @@
     if (self = [super initWithFrame:frame]) {
         for (NSInteger i = 0; i<5; i++) {
             UIImageView *star = [[UIImageView alloc] initWithFrame:CGRectMake(starWidth*i+(i!=0?intervel:0), (frame.size.height-starWidth)/2, starWidth, starWidth)];
-            if (i<4) {
+            if (i<score) {
                 star.image = [UIImage imageNamed:@"Neig_Coach_StaOrg"];
             }else{
                 star.image = [UIImage imageNamed:@"Neig_Coach_StaGre"];

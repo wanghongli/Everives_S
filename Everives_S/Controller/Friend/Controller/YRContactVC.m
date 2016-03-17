@@ -9,6 +9,7 @@
 #import "YRContactVC.h"
 #import "YRSearchFriendCell.h"
 #import "ChineseString.h"
+#import "YRUserDetailController.h"
 static NSString *cellID = @"cellID";
 @interface YRContactVC ()<UISearchBarDelegate>{
     NSArray *_ret;//服务器返回的好友列表
@@ -108,8 +109,12 @@ static NSString *cellID = @"cellID";
     return cell;
 }
 
-
-
+#pragma mark - Table view delegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YRUserDetailController *userDetailVC = [[YRUserDetailController alloc] init];
+    userDetailVC.userID = [[[self.letterResultArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row] id];
+    [self.navigationController pushViewController:userDetailVC animated:YES];
+}
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     

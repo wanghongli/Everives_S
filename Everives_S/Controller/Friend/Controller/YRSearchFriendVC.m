@@ -11,6 +11,7 @@
 #import "YRUserStatus.h"
 #import <UIImageView+WebCache.h>
 #import "YRSearchFriendCell.h"
+#import "YRUserDetailController.h"
 static NSString *cellID = @"cellID";
 @interface YRSearchFriendVC ()<UISearchBarDelegate>{
     NSArray *_searchRes;
@@ -34,7 +35,7 @@ static NSString *cellID = @"cellID";
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table view
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -56,14 +57,18 @@ static NSString *cellID = @"cellID";
     return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YRUserDetailController *userDetailVC = [[YRUserDetailController alloc] init];
+    userDetailVC.userID = [_searchRes[indexPath.row] id];
+    [self.navigationController pushViewController:userDetailVC animated:YES];
+}
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [RequestData GET:STUDENT_FRIENDS parameters:nil complete:^(NSDictionary *responseDic) {
         _searchRes = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
         [self.tableView reloadData];
     } failed:^(NSError *error) {
-        
+        NSLog(@"%@",error);
     }];
 }
 #pragma mark - Getters

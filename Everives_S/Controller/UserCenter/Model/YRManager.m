@@ -26,6 +26,7 @@ static YRManager* shareManagerInfo;
     self = [super init];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notification:) name:@"getUser" object:nil];
+        _userLocation = [[YRUserLocation alloc] init];
     }
     return self;
 }

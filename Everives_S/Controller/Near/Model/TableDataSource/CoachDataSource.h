@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface CoachDataSource : NSObject<UITableViewDataSource>
-
+@property(nonatomic,strong) UITableView *table;
+-(void)getData;
 @end

@@ -108,6 +108,8 @@ updatingLocation:(BOOL)updatingLocation
         //取出当前位置的坐标
         NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
         CLLocationCoordinate2D center = CLLocationCoordinate2DMake(userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+        KUserLocation.longitude = [NSString stringWithFormat:@"%f",userLocation.coordinate.longitude];
+        KUserLocation.latitude = [NSString stringWithFormat:@"%f",userLocation.coordinate.latitude];
         //设置地图中心
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{

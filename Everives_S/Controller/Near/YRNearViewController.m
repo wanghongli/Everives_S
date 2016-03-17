@@ -168,10 +168,13 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         [_schoolTable registerNib:[UINib nibWithNibName:@"YRSchoolTableCell" bundle:nil] forCellReuseIdentifier:schoolCellID];
         _schoolTable.rowHeight = 100;
         _schoolData = [[SchoolDataSource alloc]init];
+        _schoolData.table = _schoolTable;
         _schoolTable.dataSource = _schoolData;
+        [_schoolData getData];
         _schoolTable.tag = NearTableTypeSchool;
         _schoolTable.delegate = self;
         _schoolTable.tableHeaderView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式"]];
+        _schoolTable.tableFooterView = [[UIView alloc]init];
     }
     return _schoolTable;
 }
@@ -181,9 +184,12 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         [_coachTable registerNib:[UINib nibWithNibName:@"YRCoachTableCell" bundle:nil] forCellReuseIdentifier:coachCellID];
         _coachTable.rowHeight = 100;
         _coachData = [[CoachDataSource alloc] init];
+        _coachData.table = _coachTable;
         _coachTable.dataSource = _coachData;
+        [_coachData getData];
         _coachTable.tag = NearTableTypeCoach;
         _coachTable.delegate = self;
+        _coachTable.tableFooterView = [[UIView alloc]init];
     }
     return _coachTable;
 }
@@ -193,9 +199,12 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         [_studentTable registerNib:[UINib nibWithNibName:@"YRStudentTableCell" bundle:nil] forCellReuseIdentifier:studentCellID];
         _studentTable.rowHeight = 100;
         _studentData = [[StudentDataSource alloc] init];
+        _studentData.table = _studentTable;
         _studentTable.dataSource = _studentData;
+        [_studentData getData];
         _studentTable.tag = NearTableTypeStudent;
         _studentTable.delegate = self;
+        _studentTable.tableFooterView = [[UIView alloc]init];
     }
     return _studentTable;
 }

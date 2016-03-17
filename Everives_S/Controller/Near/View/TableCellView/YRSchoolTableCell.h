@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class YRSchoolModel;
 @interface YRSchoolTableCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *addr;
+@property (weak, nonatomic) IBOutlet UILabel *intro;
+@property (weak, nonatomic) IBOutlet UILabel *distance;
 
+@property (nonatomic,strong) YRSchoolModel *model;
 @end

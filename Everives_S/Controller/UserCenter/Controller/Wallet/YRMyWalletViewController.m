@@ -9,6 +9,12 @@
 #import "YRMyWalletViewController.h"
 
 @interface YRMyWalletViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *money;
+
+@property (weak, nonatomic) IBOutlet UIButton *recharge;
+@property (weak, nonatomic) IBOutlet UIButton *withDrawal;
+
+@property (weak, nonatomic) IBOutlet UIButton *detail;
 
 @end
 
@@ -16,7 +22,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    _recharge.layer.borderWidth = 0.5;
+    _recharge.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    _recharge.layer.cornerRadius = 10;
+    _withDrawal.layer.borderWidth = 0.5;
+    _withDrawal.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    _withDrawal.layer.cornerRadius = 10;
+    
 
 }
 

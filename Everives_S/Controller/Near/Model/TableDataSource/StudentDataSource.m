@@ -8,13 +8,19 @@
 
 #import "StudentDataSource.h"
 #import "YRStudentTableCell.h"
+#import "YRUserStatus.h"
 static NSString * studentCellID = @"YRStudentTableCellID";
+@interface StudentDataSource (){
+    NSArray *_stuArray;
+}
+
+@end
 @implementation StudentDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return _stuArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YRStudentTableCell *cell = [tableView dequeueReusableCellWithIdentifier:studentCellID];
@@ -22,5 +28,16 @@ static NSString * studentCellID = @"YRStudentTableCellID";
         cell = [[YRStudentTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentCellID];
     }
     return cell;
+}
+-(void)getData{
+    [MBProgressHUD showHUDAddedTo:self.table animated:YES];
+    [RequestData GET:@"" parameters:nil complete:^(NSDictionary *responseDic) {
+        _stuArray = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
+        [self.table reloadData];
+        [MBProgressHUD hideHUDForView:self.table animated:YES];
+    } failed:^(NSError *error) {
+        NSLog(@"%@",error);
+        [MBProgressHUD hideHUDForView:self.table animated:YES];
+    }];
 }
 @end

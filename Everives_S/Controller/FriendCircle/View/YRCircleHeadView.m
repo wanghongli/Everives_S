@@ -60,11 +60,13 @@
 {
     CGFloat w = kImgWHPercent*kScreenWidth;
     CGFloat x = 0;
-    CGFloat y = self.height/2;
+    CGFloat y = self.height*0.3;
     CGFloat h = w;
     _imgView = [[UIImageView alloc]initWithFrame:CGRectMake(x, y, w, h)];
     [self addSubview:_imgView];
-    _imgView.center = CGPointMake(kScreenWidth/2, (self.frame.size.height-w)/3+w/2);
+//    _imgView.center = CGPointMake(kScreenWidth/2, (self.frame.size.height-w)/3+w/2);
+    _imgView.center = CGPointMake(kScreenWidth/2, _imgView.center.y);
+
     [_imgView sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
     _imgView.layer.masksToBounds = YES;
     _imgView.layer.cornerRadius = w/2;

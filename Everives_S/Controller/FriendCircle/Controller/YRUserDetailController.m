@@ -15,6 +15,7 @@
 #import "YRFriendCircleController.h"
 #import "YRUserDetailCell.h"
 #import "YRFriendCircleController.h"
+#import "YREditUserController.h"
 @interface YRUserDetailController ()<UITableViewDelegate,UITableViewDataSource,YRUserDownViewDelegate>
 {
     YRUserStatus *_userMsg;
@@ -36,10 +37,15 @@
         _msgArray = @[@[@"年龄",@"进度",@"介绍"],@[@"TA的驾友圈"]];
     }else{
         _msgArray = @[@[@"年龄",@"进度",@"介绍"],@[@"我的驾友圈"]];
-
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(editClick:)];
     }
     [self buildUI];
     [self getData];
+}
+-(void)editClick:(UIBarButtonItem *)sender
+{
+    YREditUserController *editVC = [[YREditUserController alloc]init];
+    [self.navigationController pushViewController:editVC animated:YES];
 }
 -(void)getData
 {

@@ -14,6 +14,8 @@
 		03019D1D1C993C5D00895C77 /* YRUserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03019D1C1C993C5D00895C77 /* YRUserDetailController.m */; };
 		03019D201C994E6300895C77 /* YRUserDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03019D1F1C994E6300895C77 /* YRUserDownView.m */; };
 		03019D231C9954B900895C77 /* YRUserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03019D221C9954B900895C77 /* YRUserDetailCell.m */; };
+		031515371C9A3D7400A2A2F1 /* YREditUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031515351C9A3D7400A2A2F1 /* YREditUserController.m */; };
+		031515381C9A3D7400A2A2F1 /* YREditUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031515361C9A3D7400A2A2F1 /* YREditUserController.xib */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -184,6 +186,9 @@
 		03019D1F1C994E6300895C77 /* YRUserDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserDownView.m; sourceTree = "<group>"; };
 		03019D211C9954B900895C77 /* YRUserDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserDetailCell.h; sourceTree = "<group>"; };
 		03019D221C9954B900895C77 /* YRUserDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserDetailCell.m; sourceTree = "<group>"; };
+		031515341C9A3D7400A2A2F1 /* YREditUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YREditUserController.h; sourceTree = "<group>"; };
+		031515351C9A3D7400A2A2F1 /* YREditUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YREditUserController.m; sourceTree = "<group>"; };
+		031515361C9A3D7400A2A2F1 /* YREditUserController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YREditUserController.xib; sourceTree = "<group>"; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -636,6 +641,9 @@
 				03F59B8E1C8EC1FF009D5EA2 /* YRCircleDetailController.xib */,
 				03019D1B1C993C5D00895C77 /* YRUserDetailController.h */,
 				03019D1C1C993C5D00895C77 /* YRUserDetailController.m */,
+				031515341C9A3D7400A2A2F1 /* YREditUserController.h */,
+				031515351C9A3D7400A2A2F1 /* YREditUserController.m */,
+				031515361C9A3D7400A2A2F1 /* YREditUserController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1419,6 +1427,7 @@
 				037D7C291C916AE600273703 /* UzysAssetPickerController.bundle in Resources */,
 				037D7C2B1C916AE600273703 /* UzysAssetsPickerController.xib in Resources */,
 				1600EB461C87E65D001919EB /* Assets.xcassets in Resources */,
+				031515381C9A3D7400A2A2F1 /* YREditUserController.xib in Resources */,
 				03F59B901C8EC1FF009D5EA2 /* YRCircleDetailController.xib in Resources */,
 				037F8E691C8D5FC50057BF6C /* JKImagePickerController.strings in Resources */,
 				037F8EB21C8E6D350057BF6C /* MJPhotoBrowser.bundle in Resources */,
@@ -1529,6 +1538,7 @@
 				1600EBC31C88087A001919EB /* REFrostedViewController.m in Sources */,
 				161B1BFF1C910FF80047182D /* CoachDataSource.m in Sources */,
 				1645D89A1C9511DD0058D480 /* DistanceToolFuc.m in Sources */,
+				031515371C9A3D7400A2A2F1 /* YREditUserController.m in Sources */,
 				1645D8971C9511420058D480 /* YRMapAnnotaionModel.m in Sources */,
 				168132B51C97B946008F3090 /* YRCoachCellDetailVC.m in Sources */,
 				037F8E1F1C8826750057BF6C /* CWSLoginTextField.m in Sources */,

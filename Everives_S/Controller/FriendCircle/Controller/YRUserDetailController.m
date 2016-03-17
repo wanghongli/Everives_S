@@ -16,6 +16,7 @@
 #import "YRUserDetailCell.h"
 #import "YRFriendCircleController.h"
 #import "YREditUserController.h"
+#import "YRChatViewController.h"
 @interface YRUserDetailController ()<UITableViewDelegate,UITableViewDataSource,YRUserDownViewDelegate>
 {
     YRUserStatus *_userMsg;
@@ -134,6 +135,13 @@
 -(void)userDownViewBtnTag:(NSInteger)btnTag
 {
     if (btnTag == 0) {//发送消息
+        YRChatViewController *conversationVC = [[YRChatViewController alloc]init];
+        conversationVC.conversationType = ConversationType_PRIVATE;
+        conversationVC.targetId = [NSString stringWithFormat:@"stu%@",_userMsg.id];
+        conversationVC.title = _userMsg.name;
+        conversationVC.enableNewComingMessageIcon=YES;//开启消息提醒
+        conversationVC.enableUnreadMessageIcon=YES;
+        [self.navigationController pushViewController:conversationVC animated:YES];
         
     }else{//拼教练
     

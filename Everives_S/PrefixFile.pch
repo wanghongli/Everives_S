@@ -9,6 +9,9 @@
 #ifndef PrefixFile_pch
 #define PrefixFile_pch
 
+
+
+#ifdef __OBJC__
 #import "UIViewController+CWS.h"
 #import "UIView+XBExtension.h"
 #import "Define.h"
@@ -16,4 +19,7 @@
 #import "YRManager.h"
 #import "MBProgressHUD+Add.h"
 #import "NSString+Tools.h"
+#endif
+
+
 #endif /* PrefixFile_pch */

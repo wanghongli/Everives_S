@@ -12,6 +12,11 @@
 #import <MJExtension.h>
 #import <UIImageView+WebCache.h>
 #import <SDImageCache.h>
+#import "YRUserDetailController.h"
+#import "YRSearchFriendCell.h"
+#import <AddressBook/AddressBook.h>
+#import "RequestData.h"
+static NSString *cellID = @"cellID";
 @interface YRAddFriendVC ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>{
     NSArray *_resArray;
 }
@@ -31,9 +36,80 @@
 
 }
 -(void)phoneContactBtnClick:(UIButton*)sender{
-    
+    [self loadPerson];
 }
 
+- (void)loadPerson
+{
+    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
+    
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined) {
+        ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error){
+            CFErrorRef *error1 = NULL;
+            ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, error1);
+            [self copyAddressBook:addressBook];
+        });
+    }
+    else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized){
+        CFErrorRef *error = NULL;
+        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, error);
+        [self copyAddressBook:addressBook];
+    }
+    else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+        });
+    }
+}
+
+- (void)copyAddressBook:(ABAddressBookRef)addressBook
+{
+    NSMutableArray *parameterVlaue = [NSMutableArray array];
+    CFIndex numberOfPeople = ABAddressBookGetPersonCount(addressBook);
+    CFArrayRef people = ABAddressBookCopyArrayOfAllPeople(addressBook);
+    for ( int i = 0; i < numberOfPeople; i++){
+        
+        ABRecordRef person = CFArrayGetValueAtIndex(people, i);
+        
+        NSString *firstName = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonFirstNameProperty));
+        NSString *lastName = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonLastNameProperty));
+        
+        //读取电话多值
+        NSString * personPhoneLabel;
+        NSString * personPhone;
+        ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
+        for (int k = 0; k<ABMultiValueGetCount(phone); k++)
+        {
+            //获取电话Label
+            personPhoneLabel = (__bridge NSString*)ABAddressBookCopyLocalizedLabel(ABMultiValueCopyLabelAtIndex(phone, k));
+            //获取該Label下的电话值
+            personPhone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phone, k);
+        }
+        if ([personPhone containsString:@"+86"]) {
+            personPhone = [personPhone stringByReplacingOccurrencesOfString:@"+86" withString:@""];
+        }
+        if ([personPhone containsString:@"-"]) {
+            personPhone = [personPhone stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        }
+        if ([personPhone containsString:@" "]) {
+            personPhone = [personPhone stringByReplacingOccurrencesOfString:@" " withString:@""];
+        }
+        NSString *phoneName = [NSString stringWithFormat:@"%@%@",firstName?:@"",lastName?:@""];
+        if ([phoneName isEqualToString:@""] || !personPhone) {
+            continue;
+        }
+        [parameterVlaue addObject:personPhone];
+    }
+    NSDictionary *parameters = @{@"data":[parameterVlaue mj_JSONString]};
+    [MBProgressHUD showMessag:@"数据请求中..." toView:self.view];
+    [RequestData POST:STUDENT_CONTACT parameters:parameters complete:^(NSDictionary *responseDic) {
+        _resArray = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
+        [_resTable reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    } failed:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
+    
+}
 
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
@@ -53,17 +129,18 @@
     return _resArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID ];
+    YRSearchFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID ];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[YRSearchFriendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    cell.imageView.layer.masksToBounds = YES;
-    cell.imageView.layer.cornerRadius = 25;
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[_resArray[indexPath.row] avatar]]];
-    cell.textLabel.text = [_resArray[indexPath.row] name];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.avatar sd_setImageWithURL:[NSURL URLWithString:[_resArray[indexPath.row] avatar]]placeholderImage:[UIImage imageNamed:@"Identification_NameGray"]];
+    cell.name.text = [_resArray[indexPath.row] name];
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YRUserDetailController *userDetailVC = [[YRUserDetailController alloc] init];
+    userDetailVC.userID = [_resArray[indexPath.row] id];
+    [self.navigationController pushViewController:userDetailVC animated:YES];
 }
 #pragma mark - Getters
 -(UISearchBar *)searchBar{
@@ -92,9 +169,10 @@
     if (!_resTable) {
         _resTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 175, kScreenWidth, kScreenHeight)];
         _resTable.tableFooterView = [[UIView alloc] init];
-        _resTable.rowHeight = 50;
+        _resTable.rowHeight = 60;
         _resTable.delegate = self;
         _resTable.dataSource = self;
+        [_resTable registerNib:[UINib nibWithNibName:@"YRSearchFriendCell" bundle:nil] forCellReuseIdentifier:cellID];
     }
     return _resTable;
 }

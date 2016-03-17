@@ -49,7 +49,11 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="addr" destination="j93-pi-GfN" id="vWe-KO-woS"/>
+                <outlet property="distance" destination="rZl-wf-uyu" id="wR2-7i-x8Z"/>
                 <outlet property="image" destination="CUH-de-ndN" id="PMK-6O-c53"/>
+                <outlet property="intro" destination="PKs-GX-ssL" id="Kp0-bp-H3I"/>
+                <outlet property="name" destination="L2D-Aw-9Ws" id="Wtf-R2-CIA"/>
             </connections>
             <point key="canvasLocation" x="379" y="252"/>
         </tableViewCell>

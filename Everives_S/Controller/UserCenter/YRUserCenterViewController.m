@@ -16,6 +16,7 @@
 #import <UIImageView+WebCache.h>
 #import "RequestData.h"
 #import "REFrostedViewController.h"
+#import "YRUserDetailController.h"
 
 @interface YRUserCenterViewController (){
     NSArray *cellNmaes;
@@ -103,6 +104,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
+        [self.navigationController pushViewController:[[YRUserDetailController alloc] init] animated:YES];
         return;
     }
     switch ((indexPath.section-1)*4+indexPath.row) {

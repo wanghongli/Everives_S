@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "YRUserStatus.h"
+#import "YRUserLocation.h"
 @interface YRManager : NSObject
 
 @property (nonatomic, strong) YRUserStatus *user;
+@property (nonatomic,strong) YRUserLocation *userLocation;
 
 +(YRManager *)shareManagerInfo;
 

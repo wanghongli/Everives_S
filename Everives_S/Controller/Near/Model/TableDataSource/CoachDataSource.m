@@ -8,13 +8,19 @@
 
 #import "CoachDataSource.h"
 #import "YRCoachTableCell.h"
+#import "YRCoachModel.h"
 static NSString * coachCellID = @"YRCoachTableCellID";
+@interface CoachDataSource (){
+    NSArray *_coachArray;
+}
+
+@end
 @implementation CoachDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return _coachArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YRCoachTableCell *cell = [tableView dequeueReusableCellWithIdentifier:coachCellID];
@@ -22,5 +28,16 @@ static NSString * coachCellID = @"YRCoachTableCellID";
         cell = [[YRCoachTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:coachCellID];
     }
     return cell;
+}
+-(void)getData{
+    [MBProgressHUD showHUDAddedTo:self.table animated:YES];
+    [RequestData GET:@"" parameters:nil complete:^(NSDictionary *responseDic) {
+        _coachArray = [YRCoachModel mj_objectArrayWithKeyValuesArray:responseDic];
+        [self.table reloadData];
+        [MBProgressHUD hideHUDForView:self.table animated:YES];
+    } failed:^(NSError *error) {
+        NSLog(@"%@",error);
+        [MBProgressHUD hideHUDForView:self.table animated:YES];
+    }];
 }
 @end

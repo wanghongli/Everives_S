@@ -8,6 +8,7 @@
 
 #import "YRLearnPracticeController.h"
 #import "YRLearnCollectionCell.h"
+#import "YRQuestionObject.h"
 @interface YRLearnPracticeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *msgArray;
@@ -19,9 +20,6 @@
     [super viewDidLoad];
     _msgArray = [NSMutableArray array];
     
-    for (int i = 0; i<2000; i++) {
-        [_msgArray addObject:@" 为32位的无符号整型数(unsigned int),打印使用数字0-9的十六进制,小写a-f; 为32位的无符号整型数(unsigned int),打印使用数字0-9的十六进制,小写a-f; 为32位的无符号整型数(unsigned int),打印使用数字0-9的十六进制,小写a-f; 为32位的无符号整型数(unsigned int),打印使用数字0-9的十六进制,小写a-f; 为32位的无符号整型数(unsigned int),打印使用数字0-9的十六进制,小写a-f; 为32位的无符号整型数(unsigned int),打印使用数字0-9的十六进制,小写a-f;"];
-    }
     self.view.backgroundColor = [UIColor whiteColor];
     
     UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc]init];
@@ -35,12 +33,24 @@
     [self.view addSubview:self.collectionView];
     [self.collectionView registerClass:[YRLearnCollectionCell class] forCellWithReuseIdentifier:@"UIColletionViewCell"];
     
+    [self getData];
+}
+-(void)getData
+{
+    [RequestData GET:@"/question/question/2" parameters:nil complete:^(NSDictionary *responseDic) {
+        MyLog(@"%@",responseDic);
+        YRQuestionObject *questionOB = [YRQuestionObject mj_objectWithKeyValues:responseDic];
+        [_msgArray addObject:questionOB];
+        [self.collectionView reloadData];
+    } failed:^(NSError *error) {
+        
+    }];
 }
 #pragma mark - UIColletionViewDataSource
 //定义展示的UIColletionViewCell的个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return _msgArray.count;
 }
 //定义展示的section的个数
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -52,17 +62,8 @@
 {
     static NSString *CellIdentifier = @"UIColletionViewCell";
     YRLearnCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    cell.backgroundColor = [UIColor colorWithRed:((10 * indexPath.row) / 255.0) green:((20 * indexPath.row)/255.0) blue:((30 * indexPath.row)/255.0) alpha:1.0f];
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
-    label.textColor = [UIColor redColor];
-    label.backgroundColor = [UIColor whiteColor];
-    label.text = [NSString stringWithFormat:@"%ld",indexPath.row];
-    for (id subView in cell.contentView.subviews) {
-        [subView removeFromSuperview];
-    }
-    [cell.contentView addSubview:label];
-    NSLog(@"%p",cell);
+    YRQuestionObject *ques = _msgArray[indexPath.row];
+    cell.questionOb = ques;
     return cell;
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YRQuestionObject.h"
 @interface YRLearnCollectionCell : UICollectionViewCell
-
+@property (nonatomic, strong) YRQuestionObject *questionOb;
 @end

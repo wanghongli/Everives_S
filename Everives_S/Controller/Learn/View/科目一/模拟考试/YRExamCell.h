@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YRQuestionObject.h"
 @interface YRExamCell : UITableViewCell
-
+@property (nonatomic, strong) YRQuestionObject *quest;
+@property (nonatomic, strong) NSString *msgString;
+@property (nonatomic, assign) NSInteger menuString;
 @end

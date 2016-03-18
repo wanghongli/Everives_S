@@ -20,4 +20,5 @@
 @property (nonatomic, strong) NSArray *pics;
 @property (nonatomic, assign) NSInteger type;
 
+@property (nonatomic, strong) NSString *chooseAnswer;
 @end

@@ -10,6 +10,9 @@
 #import "YRLearnCollectionCell.h"
 #import "YRQuestionObject.h"
 @interface YRLearnPracticeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+{
+    NSInteger currentID;
+}
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *msgArray;
 @end
@@ -32,12 +35,12 @@
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:self.collectionView];
     [self.collectionView registerClass:[YRLearnCollectionCell class] forCellWithReuseIdentifier:@"UIColletionViewCell"];
-    
+    currentID = 1;
     [self getData];
 }
 -(void)getData
 {
-    [RequestData GET:@"/question/question/2" parameters:nil complete:^(NSDictionary *responseDic) {
+    [RequestData GET:[NSString stringWithFormat:@"/question/question/%ld",currentID] parameters:nil complete:^(NSDictionary *responseDic) {
         MyLog(@"%@",responseDic);
         YRQuestionObject *questionOB = [YRQuestionObject mj_objectWithKeyValues:responseDic];
         [_msgArray addObject:questionOB];
@@ -61,9 +64,18 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"UIColletionViewCell";
+    
     YRLearnCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     YRQuestionObject *ques = _msgArray[indexPath.row];
     cell.questionOb = ques;
+    [cell setAnswerIsClickBlock:^(YRQuestionObject *currentQues) {
+        [_msgArray replaceObjectAtIndex:indexPath.row withObject:currentQues];
+        [self.collectionView reloadData];
+    }];
+    if (indexPath.row == _msgArray.count-1) {
+        currentID++;
+        [self getData];
+    }
     return cell;
 }
 

@@ -21,6 +21,7 @@
 		031515431C9A912100A2A2F1 /* YRQuestionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 031515421C9A912100A2A2F1 /* YRQuestionObject.m */; };
 		031515461C9A9B1600A2A2F1 /* YRExamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 031515451C9A9B1600A2A2F1 /* YRExamCell.m */; };
 		031515491C9A9D3F00A2A2F1 /* YRExamHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031515481C9A9D3F00A2A2F1 /* YRExamHeadView.m */; };
+		0315154C1C9BA60900A2A2F1 /* YRExamDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0315154B1C9BA60900A2A2F1 /* YRExamDownView.m */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -212,6 +213,8 @@
 		031515451C9A9B1600A2A2F1 /* YRExamCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRExamCell.m; sourceTree = "<group>"; };
 		031515471C9A9D3F00A2A2F1 /* YRExamHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRExamHeadView.h; sourceTree = "<group>"; };
 		031515481C9A9D3F00A2A2F1 /* YRExamHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRExamHeadView.m; sourceTree = "<group>"; };
+		0315154A1C9BA60900A2A2F1 /* YRExamDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRExamDownView.h; sourceTree = "<group>"; };
+		0315154B1C9BA60900A2A2F1 /* YRExamDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRExamDownView.m; sourceTree = "<group>"; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -541,6 +544,8 @@
 				031515451C9A9B1600A2A2F1 /* YRExamCell.m */,
 				031515471C9A9D3F00A2A2F1 /* YRExamHeadView.h */,
 				031515481C9A9D3F00A2A2F1 /* YRExamHeadView.m */,
+				0315154A1C9BA60900A2A2F1 /* YRExamDownView.h */,
+				0315154B1C9BA60900A2A2F1 /* YRExamDownView.m */,
 			);
 			path = "模拟考试";
 			sourceTree = "<group>";
@@ -1638,6 +1643,7 @@
 				037F8E6B1C8D5FC50057BF6C /* JKAssets.m in Sources */,
 				037F8E1C1C8826750057BF6C /* YRRegistViewController.m in Sources */,
 				037F8E871C8D90C70057BF6C /* YRWeibo.m in Sources */,
+				0315154C1C9BA60900A2A2F1 /* YRExamDownView.m in Sources */,
 				037F8DC61C8815F80057BF6C /* AppDelegate.m in Sources */,
 				037C92B71C901AF8005B41BF /* YRLeftImgBtn.m in Sources */,
 				037C92B11C901931005B41BF /* YRFirstMiddleView.m in Sources */,

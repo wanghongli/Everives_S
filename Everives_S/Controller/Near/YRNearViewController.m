@@ -55,17 +55,18 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [self.view addSubview:_mapView];
     [self.view addSubview:_selectView];
     [_mapView addSubview:self.searchBar];
+    [self getSchoolDataForMap];
     [self addAnnotations];
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Private Methods
--(void) addAnnotations{
+-(void)getSchoolDataForMap{
+    
+}
+
+-(void)addAnnotations{
     MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
     //106.483097,29.607267
     pointAnnotation.coordinate = CLLocationCoordinate2DMake(29.607267, 106.483097);
@@ -169,8 +170,8 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         _schoolTable.rowHeight = 100;
         _schoolData = [[SchoolDataSource alloc]init];
         _schoolData.table = _schoolTable;
-        _schoolTable.dataSource = _schoolData;
         [_schoolData getData];
+        _schoolTable.dataSource = _schoolData;
         _schoolTable.tag = NearTableTypeSchool;
         _schoolTable.delegate = self;
         _schoolTable.tableHeaderView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式"]];

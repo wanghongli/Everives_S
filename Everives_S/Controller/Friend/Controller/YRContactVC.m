@@ -144,7 +144,7 @@ static NSString *cellID = @"cellID";
 }
 -(UIButton *)myCoach{
     if (!_myCoach) {
-        _myCoach = [[UIButton alloc] initWithFrame:CGRectMake(8, 104, kScreenWidth - 23, 50)];
+        _myCoach = [[UIButton alloc] initWithFrame:CGRectMake(8, 108, kScreenWidth - 23, 50)];
         [_myCoach setTitle:@"我的教练" forState:UIControlStateNormal];
         [_myCoach setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_myCoach addTarget:self action:@selector(myCoachBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -159,7 +159,7 @@ static NSString *cellID = @"cellID";
 
 -(UIView *)headerView{
     if (!_headerView) {
-        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 154)];
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 158)];
         [_headerView addSubview:self.searchBar];
         [_headerView addSubview:self.myGroup];
         [_headerView addSubview:self.myCoach];

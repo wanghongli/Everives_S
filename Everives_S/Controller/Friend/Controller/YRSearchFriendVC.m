@@ -74,7 +74,7 @@ static NSString *cellID = @"cellID";
 #pragma mark - Getters
 -(UISearchBar *)searchBar{
     if (!_searchBar) {
-        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 80)];
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
         _searchBar.delegate = self;
         _searchBar.searchBarStyle = UISearchBarStyleMinimal;
         _searchBar.placeholder = @"请输入驾友用户名或手机号码";

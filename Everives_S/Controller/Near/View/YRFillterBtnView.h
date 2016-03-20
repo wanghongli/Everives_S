@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YRFillterBtnView : UIView
+@property(nonatomic,strong) NSArray *itemArrs;
 -(instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray*)titles;
 @end

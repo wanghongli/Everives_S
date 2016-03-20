@@ -47,18 +47,18 @@
 - (void)initSubViews
 {
     /*
-    // 添加钓点图片
+    // 添加图片
     self.fishingPointImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kPortraitMargin, kPortraitMargin, kPortraitWidth, kPortraitHeight)];
     [self.fishingPointImageView sd_setImageWithURL:[NSURL URLWithString:self.model.preview]];
     [self addSubview:self.fishingPointImageView];
-    // 添加钓点名
+    // 添加名称
     self.fishingPointNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPortraitMargin * 2 + kPortraitWidth, kPortraitMargin+2, kTitleWidth, kTitleHeight)];
     self.fishingPointNameLabel.text = self.model.name;
     self.fishingPointNameLabel.font = [UIFont boldSystemFontOfSize:10];
     self.fishingPointNameLabel.textColor = [UIColor blackColor];
     [self addSubview:self.fishingPointNameLabel];
     
-    // 添加钓点分数
+    // 添加分数和星星
     self.fishingPointScoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPortraitMargin * 2 + kPortraitWidth+5*kStarWidth+kPortraitMargin, kPortraitMargin+kLineMargin+kTitleHeight, kStarWidth*2, kStarWidth)];
     self.fishingPointScoreLabel.font = [UIFont systemFontOfSize:13];
     self.fishingPointScoreLabel.textColor = [UIColor blackColor];
@@ -76,7 +76,7 @@
         [self addSubview:star];
     }
     
-    // 添加钓点距离和花费
+    // 添加地理位置
     self.fishingPointDistanceAndCostLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPortraitMargin * 2 + kPortraitWidth, kPortraitMargin + kTitleHeight+kLineMargin*2+kStarWidth, kTitleWidth, kTitleHeight)];
     self.fishingPointDistanceAndCostLabel.font = [UIFont systemFontOfSize:10];
     self.fishingPointDistanceAndCostLabel.textColor = [UIColor blackColor];
@@ -88,6 +88,7 @@
     self.fishingPointDistanceAndCostLabel.text = [NSString stringWithFormat:@"%.2fkm,%@￥",distance,self.model.cost];
     [self addSubview:self.fishingPointDistanceAndCostLabel];
     
+     //添加简介
     */
 }
 

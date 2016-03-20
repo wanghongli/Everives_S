@@ -8,7 +8,11 @@
 
 #import "YRLearnPracticeController.h"
 #import "YRLearnCollectionCell.h"
+#import "YRQuestionObject.h"
 @interface YRLearnPracticeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+{
+    NSInteger currentID;
+}
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *msgArray;
 @end
@@ -19,9 +23,6 @@
     [super viewDidLoad];
     _msgArray = [NSMutableArray array];
     
-    for (int i = 0; i<2000; i++) {
-        [_msgArray addObject:@" 为32位的无符号整型数(unsigned int),打印使用数字0-9的十六进制,小写a-f; 为32位的无符号整型数(unsigned int),打印使用数字0-9的十六进制,小写a-f; 为32位的无符号整型数(unsigned int),打印使用数字0-9的十六进制,小写a-f; 为32位的无符号整型数(unsigned int),打印使用数字0-9的十六进制,小写a-f; 为32位的无符号整型数(unsigned int),打印使用数字0-9的十六进制,小写a-f; 为32位的无符号整型数(unsigned int),打印使用数字0-9的十六进制,小写a-f;"];
-    }
     self.view.backgroundColor = [UIColor whiteColor];
     
     UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc]init];
@@ -34,13 +35,25 @@
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:self.collectionView];
     [self.collectionView registerClass:[YRLearnCollectionCell class] forCellWithReuseIdentifier:@"UIColletionViewCell"];
-    
+    currentID = 1;
+    [self getData];
+}
+-(void)getData
+{
+    [RequestData GET:[NSString stringWithFormat:@"/question/question/%ld",currentID] parameters:nil complete:^(NSDictionary *responseDic) {
+        MyLog(@"%@",responseDic);
+        YRQuestionObject *questionOB = [YRQuestionObject mj_objectWithKeyValues:responseDic];
+        [_msgArray addObject:questionOB];
+        [self.collectionView reloadData];
+    } failed:^(NSError *error) {
+        
+    }];
 }
 #pragma mark - UIColletionViewDataSource
 //定义展示的UIColletionViewCell的个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return _msgArray.count;
 }
 //定义展示的section的个数
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -51,18 +64,18 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"UIColletionViewCell";
-    YRLearnCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.backgroundColor = [UIColor colorWithRed:((10 * indexPath.row) / 255.0) green:((20 * indexPath.row)/255.0) blue:((30 * indexPath.row)/255.0) alpha:1.0f];
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
-    label.textColor = [UIColor redColor];
-    label.backgroundColor = [UIColor whiteColor];
-    label.text = [NSString stringWithFormat:@"%ld",indexPath.row];
-    for (id subView in cell.contentView.subviews) {
-        [subView removeFromSuperview];
+    YRLearnCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    YRQuestionObject *ques = _msgArray[indexPath.row];
+    cell.questionOb = ques;
+    [cell setAnswerIsClickBlock:^(YRQuestionObject *currentQues) {
+        [_msgArray replaceObjectAtIndex:indexPath.row withObject:currentQues];
+        [self.collectionView reloadData];
+    }];
+    if (indexPath.row == _msgArray.count-1) {
+        currentID++;
+        [self getData];
     }
-    [cell.contentView addSubview:label];
-    NSLog(@"%p",cell);
     return cell;
 }
 

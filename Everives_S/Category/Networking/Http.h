@@ -50,4 +50,11 @@
 #define WEIBO_PRAISE @"/seeds/praise" //点赞
 #define WEIBO_CANCEL_PRAISE @"/seeds/praise" //取消点赞
 
+//驾考问题
+#define JK_SX_PRACTICE @"/question/question/id" //顺序练习
+#define JK_SJ_PRACTICE @"/question/question/" //随机练习
+#define JK_ZJ_PRACTICE @"/question/zhuanti/kid" //专题练习
+#define JK_MN_PRACTICE @"/question/test" //模拟考试
+
+
 #endif

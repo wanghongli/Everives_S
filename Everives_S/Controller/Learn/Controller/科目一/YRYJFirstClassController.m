@@ -13,6 +13,8 @@
 #import "YRMyCollectionController.h"
 #import "YRDriveLawController.h"
 #import "YRLearnPracticeController.h"
+#import "YRLearnExamController.h"//进入模拟考试
+#import "YRSequencePracticeController.h"
 #define kDistance 10
 @interface YRYJFirstClassController ()<YRFirstHeadViewDelegate,YRFirstMiddleViewDelegate,YRFirstDownViewDelegate>
 
@@ -57,13 +59,17 @@
 -(void)gotoExamClick:(UIButton *)sender
 {
     MyLog(@"进入模拟考试");
+    YRLearnExamController *examVC = [[YRLearnExamController alloc]init];
+    [self.navigationController pushViewController:examVC animated:YES];
 }
 #pragma mark - 顺序、随机、专题等点击事件
 -(void)firstHeadViewBtnClick:(NSInteger)btnTag
 {
     YRLearnPracticeController *learnVC = [[YRLearnPracticeController alloc]init];
     if (btnTag == 0) {//顺序练习
-        learnVC.title = @"顺序练习";
+        YRSequencePracticeController *sequenceVC = [[YRSequencePracticeController alloc]init];
+        [self.navigationController pushViewController:sequenceVC animated:YES];
+        return;
     }else if (btnTag == 1){//随机练习
         learnVC.title = @"随机练习";
     }else{//专题练习

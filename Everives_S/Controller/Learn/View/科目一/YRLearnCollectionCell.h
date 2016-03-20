@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YRQuestionObject.h"
 @interface YRLearnCollectionCell : UICollectionViewCell
+@property (nonatomic, strong) YRQuestionObject *questionOb;
+@property (nonatomic, strong) void (^answerIsClickBlock)(YRQuestionObject *answerQues);
 
 @end

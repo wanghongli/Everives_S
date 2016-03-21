@@ -15,6 +15,7 @@
 #import "YRLearnPracticeController.h"
 #import "YRLearnExamController.h"//进入模拟考试
 #import "YRSequencePracticeController.h"
+#import "YRLearnOrderController.h"
 #define kDistance 10
 @interface YRYJFirstClassController ()<YRFirstHeadViewDelegate,YRFirstMiddleViewDelegate,YRFirstDownViewDelegate>
 
@@ -67,15 +68,16 @@
 {
     YRLearnPracticeController *learnVC = [[YRLearnPracticeController alloc]init];
     if (btnTag == 0) {//顺序练习
-        YRSequencePracticeController *sequenceVC = [[YRSequencePracticeController alloc]init];
+        YRLearnOrderController *sequenceVC = [[YRLearnOrderController alloc]init];
         [self.navigationController pushViewController:sequenceVC animated:YES];
         return;
     }else if (btnTag == 1){//随机练习
         learnVC.title = @"随机练习";
+        learnVC.menuTag = 2;
+        [self.navigationController pushViewController:learnVC animated:YES];
     }else{//专题练习
         learnVC.title = @"专题练习";
     }
-    [self.navigationController pushViewController:learnVC animated:YES];
 
 }
 #pragma mark - 驾考法规、考试技巧等点击事件

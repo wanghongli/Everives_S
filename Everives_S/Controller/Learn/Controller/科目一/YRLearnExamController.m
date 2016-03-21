@@ -41,16 +41,16 @@
 {
     YRLearnPracticeController *learnVC = [[YRLearnPracticeController alloc]init];
     learnVC.title = @"模拟考试";
+    learnVC.currentID = 1;
+    learnVC.menuTag = 0;
     [self.navigationController pushViewController:learnVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }

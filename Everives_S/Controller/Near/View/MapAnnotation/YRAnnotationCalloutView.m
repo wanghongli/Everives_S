@@ -8,91 +8,33 @@
 #import "UIImageView+WebCache.h"
 #import "YRAnnotationCalloutView.h"
 #import "DistanceToolFuc.h"
-#import "YRMapAnnotaionModel.h"
-#define kPortraitMargin     7
-#define kLineMargin         5
-#define kPortraitWidth      70
-#define kPortraitHeight     50
-
-#define kStarWidth          15
-#define kTitleWidth         100
-#define kTitleHeight        10
+#import "YRSchoolModel.h"
+#import "YRPictureModel.h"
+#import "YRStarsView.h"
 #define kArrorHeight        10
 
 @interface YRAnnotationCalloutView ()
-
-@property(nonatomic,strong) UIImageView *fishingPointImageView;
-@property(nonatomic,strong) UILabel *fishingPointNameLabel;
-@property(nonatomic,strong) UILabel *fishingPointScoreLabel;
-@property(nonatomic,strong) UILabel *fishingPointDistanceAndCostLabel;
-
+@property(nonatomic,strong) UIImageView *imageView;
+@property(nonatomic,strong) UILabel *name;
+@property(nonatomic,strong) YRStarsView *stars;
+@property(nonatomic,strong) UILabel *address;
+@property(nonatomic,strong) UILabel *distance;
 
 @end
-
 @implementation YRAnnotationCalloutView
-
-- (id)initWithFrame:(CGRect)frame model:(YRMapAnnotaionModel*)model
-{
-    self = [super initWithFrame:frame];
-    if (self)
-    {
+-(instancetype)initWithFrame:(CGRect)frame{
+    if(self = [super initWithFrame:frame]){
         self.backgroundColor = [UIColor clearColor];
-        self.model =model;
-        [self initSubViews];
     }
     return self;
 }
-
-//calloutView的布局
-- (void)initSubViews
-{
-    /*
-    // 添加图片
-    self.fishingPointImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kPortraitMargin, kPortraitMargin, kPortraitWidth, kPortraitHeight)];
-    [self.fishingPointImageView sd_setImageWithURL:[NSURL URLWithString:self.model.preview]];
-    [self addSubview:self.fishingPointImageView];
-    // 添加名称
-    self.fishingPointNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPortraitMargin * 2 + kPortraitWidth, kPortraitMargin+2, kTitleWidth, kTitleHeight)];
-    self.fishingPointNameLabel.text = self.model.name;
-    self.fishingPointNameLabel.font = [UIFont boldSystemFontOfSize:10];
-    self.fishingPointNameLabel.textColor = [UIColor blackColor];
-    [self addSubview:self.fishingPointNameLabel];
-    
-    // 添加分数和星星
-    self.fishingPointScoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPortraitMargin * 2 + kPortraitWidth+5*kStarWidth+kPortraitMargin, kPortraitMargin+kLineMargin+kTitleHeight, kStarWidth*2, kStarWidth)];
-    self.fishingPointScoreLabel.font = [UIFont systemFontOfSize:13];
-    self.fishingPointScoreLabel.textColor = [UIColor blackColor];
-    self.fishingPointScoreLabel.text = [NSString stringWithFormat:@"%@.0",self.model.score];
-    [self addSubview:self.fishingPointScoreLabel];
-    
-    // 添加钓点星级
-    for(int i = 0;i<5;i++){
-        UIImageView *star = [[UIImageView alloc] initWithFrame:CGRectMake(kPortraitMargin * 2 + kPortraitWidth+kStarWidth*i, kPortraitMargin+kLineMargin+kTitleHeight, kStarWidth, kStarWidth)];
-        if(i<[self.model.score intValue] ){
-            star.image = [UIImage imageNamed:@"ic_score_focus"];
-        }else{
-            star.image = [UIImage imageNamed:@"ic_score_unfocus"];
-        }
-        [self addSubview:star];
-    }
-    
-    // 添加地理位置
-    self.fishingPointDistanceAndCostLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPortraitMargin * 2 + kPortraitWidth, kPortraitMargin + kTitleHeight+kLineMargin*2+kStarWidth, kTitleWidth, kTitleHeight)];
-    self.fishingPointDistanceAndCostLabel.font = [UIFont systemFontOfSize:10];
-    self.fishingPointDistanceAndCostLabel.textColor = [UIColor blackColor];
-    double lat1 = [KUserLocation.latitude doubleValue];
-    double lng1 = [KUserLocation.longitude doubleValue];
-    double lat2 = [self.model.lat doubleValue];
-    double lng2 = [self.model.lng doubleValue];
-    double distance = [ToolFuc calculateDistanceWithLongitude1:lng1 Laititude1:lat1 Longitude2:lng2 Laititude2:lat2]/1000;
-    self.fishingPointDistanceAndCostLabel.text = [NSString stringWithFormat:@"%.2fkm,%@￥",distance,self.model.cost];
-    [self addSubview:self.fishingPointDistanceAndCostLabel];
-    
-     //添加简介
-    */
+-(void)buildUI{
+    [self addSubview:self.imageView];
+    [self addSubview:self.name];
+    [self addSubview:self.stars];
+    [self addSubview:self.address];
+    [self addSubview:self.distance];
 }
-
-
 //绘制calloutView的背景
 - (void)drawRect:(CGRect)rect
 {
@@ -110,7 +52,6 @@
     
     CGContextSetLineWidth(context, 2.0);
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-    
     [self getDrawPath:context];
     CGContextFillPath(context);
     
@@ -135,6 +76,45 @@
     CGContextAddArcToPoint(context, maxx, miny, maxx, maxx, radius);
     CGContextAddArcToPoint(context, maxx, maxy, midx, maxy, radius);
     CGContextClosePath(context);
+}
+
+#pragma mark  - Getters
+-(UIImageView *)imageView{
+    if (!_imageView) {
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(4, 4, 90, 90)];
+        [_imageView sd_setImageWithURL:[NSURL URLWithString:_imageurl]];
+    }
+    return _imageView;
+}
+-(UILabel *)name{
+    if (!_name) {
+        _name = [[UILabel alloc] initWithFrame:CGRectMake(94, 4, 100, 20)];
+        _name.font = [UIFont systemFontOfSize:17];
+        _name.text = _namestr;
+    }
+    return _name;
+}
+-(YRStarsView *)stars{
+    if (!_stars) {
+        _stars = [[YRStarsView alloc] initWithFrame:CGRectMake(94, 26, 100, 30) score:[_scorestr integerValue] starWidth:16 intervel:3 needLabel:YES];
+    }
+    return _stars;
+}
+-(UILabel *)address{
+    if (!_address) {
+        _address = [[UILabel alloc] initWithFrame:CGRectMake(94, 58, 100, 20)];
+        _address.font = [UIFont systemFontOfSize:17];
+        _address.text = _addrstr;
+    }
+    return _address;
+}
+-(UILabel *)distance{
+    if (!_distance) {
+        _distance = [[UILabel alloc] initWithFrame:CGRectMake(94, 4, 100, 20)];
+        _distance.font = [UIFont systemFontOfSize:15];
+        _distance.text = _distancestr;
+    }
+    return _distance;
 }
 
 @end

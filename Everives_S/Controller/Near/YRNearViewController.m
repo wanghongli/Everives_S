@@ -16,6 +16,8 @@
 #import "YRSchoolCelldetailVC.h"
 #import "YRCoachCellDetailVC.h"
 #import "YRFillterBtnView.h"
+#import "YRSchoolModel.h"
+#import "YRPictureModel.h"
 //定义三个table的类型
 typedef NS_ENUM(NSUInteger,NearTableType){
     NearTableTypeSchool = 1,
@@ -33,7 +35,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     CoachDataSource *_coachData;
     StudentDataSource *_studentData;
     BOOL _isMapView;
-    NSMutableArray *_schoolModels;
+    NSArray *_schoolForMap;
 }
 @property(nonatomic,strong) UITableView *schoolTable;
 @property(nonatomic,strong) UITableView *coachTable;
@@ -48,7 +50,6 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"切换" style:UIBarButtonItemStylePlain target:self action:@selector(changeViewClick:)];
     _isMapView = YES;
-    _schoolModels = @[].mutableCopy;
     _mapView = [SharedMapView sharedInstance].mapView;
     _selectView = [[YRMapSelectView alloc] init];
     _selectView.delegate = self;
@@ -56,24 +57,29 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [self.view addSubview:_selectView];
     [_mapView addSubview:self.searchBar];
     [self getSchoolDataForMap];
-    [self addAnnotations];
+    
     
 }
 
 
 #pragma mark - Private Methods
 -(void)getSchoolDataForMap{
-    
+    [RequestData GET:SYUDENT_NEARBYPOINT parameters:@{@"kind":@1,@"lat":KUserLocation.latitude?:KUserManager.lat,@"lng":KUserLocation.longitude?:KUserManager.lng} complete:^(NSDictionary *responseDic) {
+        _schoolForMap = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];
+        [_schoolForMap enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj setCoordinate:CLLocationCoordinate2DMake([[obj lat] doubleValue],[[obj lng] doubleValue])];
+            if ([obj pics].count) {
+                [obj setImaageurl:((YRPictureModel*)([obj pics][0])).url];
+            }
+        }];
+        [self addAnnotations];
+    } failed:^(NSError *error) {
+        
+    }];
 }
 
 -(void)addAnnotations{
-    MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
-    //106.483097,29.607267
-    pointAnnotation.coordinate = CLLocationCoordinate2DMake(29.607267, 106.483097);
-    pointAnnotation.title = @"金科十年城";
-    pointAnnotation.subtitle = @"王二狗烧饼斜对面";
-    [_schoolModels addObject:pointAnnotation];
-    [_mapView addAnnotation:pointAnnotation];
+    [_mapView addAnnotations:_schoolForMap];
 }
 
 - (void)backBtnClick:(UIBarButtonItem*)sender{
@@ -127,7 +133,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(void)coachBtnClick:(UIButton*)sender{
     [self removeLastTable];
-    [_mapView removeAnnotations:_schoolModels.copy];
+    [_mapView removeAnnotations:_schoolForMap.copy];
     
     MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
     //106.535454,29.613983
@@ -190,6 +196,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         [_coachData getData];
         _coachTable.tag = NearTableTypeCoach;
         _coachTable.delegate = self;
+        _coachTable.tableHeaderView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式"]];
         _coachTable.tableFooterView = [[UIView alloc]init];
     }
     return _coachTable;

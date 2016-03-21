@@ -7,7 +7,9 @@
 //
 
 #import "YRMapAnnotationView.h"
-#import "YRMapAnnotaionModel.h"
+#import <UIImageView+WebCache.h>
+#import "YRSchoolModel.h"
+#import "YRPictureModel.h"
 @interface YRMapAnnotationView ()
 
 @end
@@ -15,7 +17,7 @@
 @implementation YRMapAnnotationView
 
 #define kCalloutWidth       200.0
-#define kCalloutHeight      75.0
+#define kCalloutHeight      98.0
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
@@ -37,12 +39,19 @@
 }
 
 -(YRAnnotationCalloutView *)calloutView{
-    if (_calloutView == nil)
+    if (!_calloutView)
     {
-        self.calloutView = [[YRAnnotationCalloutView alloc] initWithFrame:CGRectMake(0, 0, kCalloutWidth, kCalloutHeight) model:(YRMapAnnotaionModel*)(self.annotation)] ;
-        self.calloutView.center = CGPointMake(CGRectGetWidth(self.bounds) / 2.f + self.calloutOffset.x,
+        _calloutView = [[YRAnnotationCalloutView alloc] initWithFrame:CGRectMake(0, 0, kCalloutWidth, kCalloutHeight)] ;
+        _calloutView.center = CGPointMake(CGRectGetWidth(self.bounds) / 2.f + self.calloutOffset.x,
                                               -CGRectGetHeight(self.calloutView.bounds) / 2.f + self.calloutOffset.y);
+        
     }
+    _calloutView.imageurl = ((YRSchoolModel*)(self.annotation)).imaageurl;
+    _calloutView.namestr = ((YRSchoolModel*)(self.annotation)).name;
+    _calloutView.scorestr = ((YRSchoolModel*)(self.annotation)).grade;
+    _calloutView.addrstr = ((YRSchoolModel*)(self.annotation)).address;
+    _calloutView.distancestr = ((YRSchoolModel*)(self.annotation)).distance;
+    [_calloutView buildUI];
     return _calloutView;
 }
 

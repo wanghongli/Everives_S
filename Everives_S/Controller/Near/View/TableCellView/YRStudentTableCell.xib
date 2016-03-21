@@ -26,25 +26,27 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNd-zJ-YSr">
-                        <rect key="frame" x="221" y="18" width="36" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="科目"/>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="越努力的人越幸运越努力的人越幸运越努力的人越幸运" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFP-N8-d1x">
                         <rect key="frame" x="106" y="52" width="199" height="32"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="距离" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUu-df-7Bm">
-                        <rect key="frame" x="278" y="18" width="34" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="距离" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUu-df-7Bm">
+                        <rect key="frame" x="252" y="18" width="60" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="avatar" destination="WPF-5I-ZAC" id="EZ4-gs-vH6"/>
+                <outlet property="distance" destination="HUu-df-7Bm" id="2Xj-LZ-BNg"/>
+                <outlet property="gender" destination="yXA-b6-OFa" id="soW-Sf-eZR"/>
+                <outlet property="name" destination="oPv-5b-H10" id="r0b-Pt-VML"/>
+                <outlet property="sign" destination="sFP-N8-d1x" id="BiJ-NZ-qm8"/>
+            </connections>
             <point key="canvasLocation" x="93" y="270"/>
         </tableViewCell>
     </objects>

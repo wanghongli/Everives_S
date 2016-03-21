@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <NSObject+MJKeyValue.h>
-@interface YRSchoolModel : NSObject<MJKeyValue>
+#import <MAMapKit/MAMapKit.h>
+@interface YRSchoolModel : MAPointAnnotation<MJKeyValue>
 /**
  *  "id": "1",
  "uid": "0",
@@ -59,4 +60,6 @@
 @property(nonatomic,strong) NSString *zjzw;
 @property(nonatomic,strong) NSString *qxxs;
 @property(nonatomic,strong) NSString *dcrk;
+@property(nonatomic,strong) NSString *distance;
+@property(nonatomic,strong) NSString *imaageurl;
 @end

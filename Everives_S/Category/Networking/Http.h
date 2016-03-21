@@ -36,6 +36,8 @@
 #define STUDENT_NEARBY @"/student/nearby" //搜索附近学员
 #define STUDENT_PLACES @"/student/place" //场地列表
 #define STUDENT_CONTACT @"/student/contact"  //手机通讯录
+#define STUDENT_TEACHERS @"/student/teachers"  //关注的教练
+#define SYUDENT_NEARBYPOINT @"/student/nearbyPoint" //获取地图描点
 
 //七牛token
 #define USER_QINIUTOKEN @"/common/qiniu" //获取七牛token

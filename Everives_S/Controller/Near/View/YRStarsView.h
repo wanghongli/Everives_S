@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface YRStarsView : UIView
+@property(nonatomic,strong) UILabel *label;
 -(instancetype)initWithFrame:(CGRect)frame score:(NSInteger) score starWidth:(CGFloat)starWidth intervel:(CGFloat)intervel needLabel:(BOOL) needL;
+-(void)setScore:(NSInteger)score;
 @end

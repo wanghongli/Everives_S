@@ -124,15 +124,10 @@ static BOOL addViewIsHidden = YES;
     addViewIsHidden = YES;
 }
 -(void)addGroupBtnClick:(UIButton*)sender{
-    //新建一个聊天会话View Controller对象
-    YRChatViewController *chat = [[YRChatViewController alloc]init];
-    //设置会话的类型，如单聊、讨论组、群聊、聊天室、客服、公众服务会话等
-    chat.conversationType = ConversationType_GROUP;
-    //设置会话的目标会话ID。（单聊、客服、公众服务会话为对方的ID，讨论组、群聊、聊天室为会话的ID）
-    chat.targetId = @"targetIdYouWillChatIn";
-    //设置聊天会话界面要显示的标题
-    chat.title = @"想显示的会话标题";
-    //显示聊天会话界面
-    [self.navigationController pushViewController:chat animated:YES];
+    YRContactVC *contact = [[YRContactVC alloc] init];
+    contact.isAllowSelected = YES;
+    [self.navigationController pushViewController:contact animated:YES];
+    [self.addView removeFromSuperview];
+    addViewIsHidden = YES;
 }
 @end

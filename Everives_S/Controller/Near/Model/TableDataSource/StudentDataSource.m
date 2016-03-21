@@ -27,6 +27,7 @@ static NSString * studentCellID = @"YRStudentTableCellID";
     if (!cell) {
         cell = [[YRStudentTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentCellID];
     }
+    cell.model =_stuArray[indexPath.row];
     return cell;
 }
 -(void)getData{

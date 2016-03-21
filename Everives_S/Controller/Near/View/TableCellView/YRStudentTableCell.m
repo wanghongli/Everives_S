@@ -7,7 +7,8 @@
 //
 
 #import "YRStudentTableCell.h"
-
+#import "YRUserStatus.h"
+#import <UIImageView+WebCache.h>
 @implementation YRStudentTableCell
 
 - (void)awakeFromNib {
@@ -20,4 +21,15 @@
     // Configure the view for the selected state
 }
 
+-(void)setModel:(YRUserStatus *)model{
+    [_avatar sd_setImageWithURL:[NSURL URLWithString:model.avatar]];
+    _name.text = model.name;
+    _sign.text = model.sign;
+    _distance.text = model.sign;
+    if ([model.gender isEqualToString:@"0"]) {
+        _gender.image = [UIImage imageNamed:@"Neighborhood_Coach_male"];
+    }else{
+        _gender.image = [UIImage imageNamed:@"Neighborhood_Coach_Female"];
+    }
+}
 @end

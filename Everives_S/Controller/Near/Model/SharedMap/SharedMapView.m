@@ -8,6 +8,8 @@
 
 #import "SharedMapView.h"
 #import "CoreLocation/CoreLocation.h"
+#import "YRMapAnnotationView.h"
+#import "YRSchoolModel.h"
 @interface SharedMapView ()
 
 @property (nonatomic, readwrite) MAMapView *mapView;
@@ -57,45 +59,21 @@
 #pragma mark - MapView Dlegate
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation
 {
-    /*
-    if ([annotation isKindOfClass:[MAPointAnnotation class]])
+    
+    static NSString *reuseIndetifier = @"annotationReuseIndetifier";
+    YRMapAnnotationView *annotationView = (YRMapAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+    if (annotationView == nil)
     {
-        static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-        KGFishingPointAnnotationView *annotationView = (KGFishingPointAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
-        if (annotationView == nil)
-        {
-            annotationView = [[KGFishingPointAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
-        }
-        if([((KGFishingPointModel*)annotation).costType isEqualToString:@"0"]){
-            annotationView.image = [UIImage imageNamed:@"location_point_green"];
-        }else{
-            annotationView.image = [UIImage imageNamed:@"location_point_red"];
-        }
-        
-        
-        // 设置为NO，用以调用自定义的calloutView
-        annotationView.canShowCallout = NO;
-        
-        // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
-        annotationView.centerOffset = CGPointMake(0, -18);
-        return annotationView;
+        annotationView = [[YRMapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
     }
-  */
-    if ([annotation isKindOfClass:[MAPointAnnotation class]])
-    {
-        static NSString *pointReuseIndentifier = @"pointReuseIndentifier";
-        MAPinAnnotationView*annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
-        if (annotationView == nil)
-        {
-            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndentifier];
-        }
-        annotationView.canShowCallout= YES;       //设置气泡可以弹出，默认为NO
-        annotationView.animatesDrop = YES;        //设置标注动画显示，默认为NO
-        annotationView.draggable = YES;        //设置标注可以拖动，默认为NO
-        annotationView.pinColor = MAPinAnnotationColorPurple;
-        return annotationView;
-    }
-    return nil;
+    annotationView.image = [UIImage imageNamed:@"Drawer_Navigation_Neighborhood"];
+    
+    // 设置为NO，用以调用自定义的calloutView
+    annotationView.canShowCallout = NO;
+    
+    // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
+    annotationView.centerOffset = CGPointMake(0, -18);
+    return annotationView;
 }
 
 //更新用户地址后的回调函数

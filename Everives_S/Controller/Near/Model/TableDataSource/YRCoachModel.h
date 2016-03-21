@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface YRCoachModel : NSObject
+#import <MAMapKit/MAMapKit.h>
+@interface YRCoachModel : MAPointAnnotation
 @property(nonatomic,strong) NSString *id;
 @property(nonatomic,strong) NSString *name;
 @property(nonatomic,strong) NSString *avatar;
+@property(nonatomic,strong) NSString *lat;
+@property(nonatomic,strong) NSString *lng;
 @end

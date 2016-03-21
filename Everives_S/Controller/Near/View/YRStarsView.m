@@ -7,10 +7,17 @@
 //
 
 #import "YRStarsView.h"
+@interface YRStarsView(){
+    CGFloat _starWidth;
+    CGFloat _intervel;
+}
+@end
 @implementation YRStarsView
 
 -(instancetype)initWithFrame:(CGRect)frame score:(NSInteger)score starWidth:(CGFloat)starWidth intervel:(CGFloat)intervel needLabel:(BOOL)needL{
     if (self = [super initWithFrame:frame]) {
+        _starWidth = starWidth;
+        _intervel = intervel;
         for (NSInteger i = 0; i<5; i++) {
             UIImageView *star = [[UIImageView alloc] initWithFrame:CGRectMake(starWidth*i+(i!=0?intervel:0), (frame.size.height-starWidth)/2, starWidth, starWidth)];
             if (i<score) {
@@ -22,12 +29,28 @@
         }
     }
     if (needL) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake((starWidth+intervel)*5, (frame.size.height-starWidth)/2, 2*starWidth, starWidth)];
-        label.font = [UIFont systemFontOfSize:13];
-        label.text = [NSString stringWithFormat:@"%li.0",score];
-        [self addSubview:label];
+        _label = [[UILabel alloc] initWithFrame:CGRectMake((starWidth+intervel)*5, (frame.size.height-starWidth)/2, 2*starWidth, starWidth)];
+        _label.font = [UIFont systemFontOfSize:13];
+        _label.text = [NSString stringWithFormat:@"%li.0",score];
+        [self addSubview:_label];
     }
     return self;
 }
 
+-(void)setScore:(NSInteger)score{
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if([obj isKindOfClass:[UIImageView class]]){
+            [obj removeFromSuperview];
+        }
+    }];
+    for (NSInteger i = 0; i<5; i++) {
+        UIImageView *star = [[UIImageView alloc] initWithFrame:CGRectMake(_starWidth*i+(i!=0?_intervel:0), (self.frame.size.height-_starWidth)/2, _starWidth, _starWidth)];
+        if (i<score) {
+            star.image = [UIImage imageNamed:@"Neig_Coach_StaOrg"];
+        }else{
+            star.image = [UIImage imageNamed:@"Neig_Coach_StaGre"];
+        }
+        [self addSubview:star];
+    }
+}
 @end

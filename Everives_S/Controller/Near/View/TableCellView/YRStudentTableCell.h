@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class YRUserStatus;
 
 @interface YRStudentTableCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *avatar;
+@property (weak, nonatomic) IBOutlet UIImageView *gender;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *sign;
+@property (weak, nonatomic) IBOutlet UILabel *distance;
 
+@property(nonatomic,strong) YRUserStatus *model;
 @end

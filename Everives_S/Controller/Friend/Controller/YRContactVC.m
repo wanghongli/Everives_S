@@ -10,6 +10,7 @@
 #import "YRSearchFriendCell.h"
 #import "ChineseString.h"
 #import "YRUserDetailController.h"
+#import "YRMyCoachVC.h"
 static NSString *cellID = @"cellID";
 @interface YRContactVC ()<UISearchBarDelegate>{
     NSArray *_ret;//服务器返回的好友列表
@@ -33,6 +34,11 @@ static NSString *cellID = @"cellID";
     self.tableView.rowHeight = 50;
     self.tableView.tableHeaderView = self.headerView;
     [self.tableView registerNib:[UINib nibWithNibName:@"YRSearchFriendCell" bundle:nil] forCellReuseIdentifier:cellID];
+    if (_isAllowSelected) {
+        [self.tableView setEditing:YES];
+        self.tableView.allowsMultipleSelectionDuringEditing = YES;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(completeBtnClickWhenEditing)];
+    }
     
     YRUserStatus *user1 = [YRUserStatus new];
     user1.name = @"叶良辰";
@@ -73,6 +79,13 @@ static NSString *cellID = @"cellID";
     
 }
 -(void)myCoachBtnClick:(UIButton*)sender{
+    YRMyCoachVC *coachVC = [[YRMyCoachVC alloc]init];
+    if (_isAllowSelected) {
+        coachVC.isAllowSelected = YES;
+    }
+    [self.navigationController pushViewController:coachVC animated:YES];
+}
+-(void)completeBtnClickWhenEditing{
     
 }
 #pragma mark - Table view data source
@@ -111,9 +124,16 @@ static NSString *cellID = @"cellID";
 
 #pragma mark - Table view delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (_isAllowSelected) {
+        return;
+    }
     YRUserDetailController *userDetailVC = [[YRUserDetailController alloc] init];
     userDetailVC.userID = [[[self.letterResultArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row] id];
     [self.navigationController pushViewController:userDetailVC animated:YES];
+}
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
 }
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
@@ -144,7 +164,7 @@ static NSString *cellID = @"cellID";
 }
 -(UIButton *)myCoach{
     if (!_myCoach) {
-        _myCoach = [[UIButton alloc] initWithFrame:CGRectMake(8, 104, kScreenWidth - 23, 50)];
+        _myCoach = [[UIButton alloc] initWithFrame:CGRectMake(8, 108, kScreenWidth - 23, 50)];
         [_myCoach setTitle:@"我的教练" forState:UIControlStateNormal];
         [_myCoach setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_myCoach addTarget:self action:@selector(myCoachBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -159,7 +179,7 @@ static NSString *cellID = @"cellID";
 
 -(UIView *)headerView{
     if (!_headerView) {
-        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 154)];
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 158)];
         [_headerView addSubview:self.searchBar];
         [_headerView addSubview:self.myGroup];
         [_headerView addSubview:self.myCoach];

@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-@class YRMapAnnotaionModel;
 @interface YRAnnotationCalloutView : UIView
-@property(nonatomic,strong) YRMapAnnotaionModel * model;
-- (id)initWithFrame:(CGRect)frame model:(YRMapAnnotaionModel*)model;
+@property(nonatomic,strong) NSString *imageurl;
+@property(nonatomic,strong) NSString *namestr;
+@property(nonatomic,strong) NSString *scorestr;
+@property(nonatomic,strong) NSString *addrstr;
+@property(nonatomic,strong) NSString *distancestr;
+-(void)buildUI;
 @end

@@ -11,7 +11,6 @@
 @interface YRFillterBtnView(){
     CGFloat _btnWidth;
     NSInteger _btnNum;
-    NSArray *_itemArrs;
     NSInteger _whichBtnClicked;
     NSMutableArray *_pullViews;
 }

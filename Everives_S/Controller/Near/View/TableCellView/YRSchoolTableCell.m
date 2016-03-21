@@ -9,6 +9,8 @@
 #import "YRSchoolTableCell.h"
 #import "YRStarsView.h"
 #import "YRSchoolModel.h"
+#import <UIImageView+WebCache.h>
+#import "YRPictureModel.h"
 @implementation YRSchoolTableCell
 
 - (void)awakeFromNib {
@@ -21,10 +23,12 @@
     // Configure the view for the selected state
 }
 -(void)setModel:(YRSchoolModel *)model{
+    [_image sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)(model.pics[0])).url]];
     _name.text = model.name;
     _addr.text = model.address;
     _intro.text = model.intro;
-    YRStarsView *star = [[YRStarsView alloc] initWithFrame:CGRectMake(_name.frame.origin.x, 28, 100, 30) score:[model.grade integerValue] starWidth:16 intervel:3 needLabel:YES];
+    _distance.text = [NSString stringWithFormat:@"%.2f%@",([model.distance integerValue]/1000.0),@"km"];
+    YRStarsView *star = [[YRStarsView alloc] initWithFrame:CGRectMake(_name.frame.origin.x, 26, 100, 30) score:[model.grade integerValue] starWidth:16 intervel:3 needLabel:YES];
     [self addSubview:star];
 }
 @end

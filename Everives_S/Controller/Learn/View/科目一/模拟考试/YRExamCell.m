@@ -61,7 +61,7 @@
     _centerView.center = CGPointMake(_backView.height/2, _backView.height/2);
     _centerView.layer.masksToBounds = YES;
     _centerView.layer.cornerRadius = _centerView.height/2;
-    _centerView.backgroundColor = [UIColor blueColor];
+//    _centerView.backgroundColor = [UIColor blueColor];
     
     _menuLabel.frame = _backView.frame;
     _menuLabel.layer.masksToBounds = YES;
@@ -103,17 +103,12 @@
 {
     _quest = quest;
     
-    if (quest.option.count) {//单选题
-
+    if (quest.option.count && [quest.option[0] length]) {//单选题
         if (quest.chooseAnswer) {
             if ([quest.option[quest.answer] isEqualToString:_msgLabel.text]) {//选项正确
-//                if ([quest.chooseAnswer integerValue] == quest.answer) {
                     _menuLabel.textColor = [UIColor greenColor];
-//                }else{
-//                    _menuLabel.textColor = [UIColor redColor];
-//                }
             }else {//选项错误
-                if ([quest.option[[quest.chooseAnswer integerValue]-1] isEqualToString:_msgLabel.text] ) {
+                if ([quest.option[[quest.chooseAnswer integerValue]] isEqualToString:_msgLabel.text] ) {
                     _menuLabel.textColor = [UIColor redColor];
                 }else
                     _menuLabel.textColor = [UIColor blackColor];
@@ -122,10 +117,25 @@
             _menuLabel.textColor = [UIColor blackColor];
         }
     }else{//判断题
-        if (quest.chooseAnswer) {
-            
-        }else{
-            
+        if (quest.chooseAnswer) {//选择了
+            NSInteger chooseInt = quest.chooseAnswer.integerValue;
+            _centerView.hidden = NO;
+
+            if (chooseInt == quest.answer) {//选择正确
+                if ([_msgLabel.text isEqualToString:@"正确"]) {
+                    _centerView.backgroundColor = [UIColor greenColor];
+                }else{
+                    _centerView.hidden = YES;
+                }
+            }else{//选错了
+                if ([_msgLabel.text isEqualToString:@"正确"]) {
+                    _centerView.backgroundColor = [UIColor greenColor];
+                }else{
+                    _centerView.backgroundColor = [UIColor redColor];
+                }
+            }
+        }else{//新题
+            _centerView.hidden = YES;
         }
         
     }

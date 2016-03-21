@@ -43,8 +43,9 @@
         if ( [_questionOb.chooseAnswer integerValue] == _questionOb.answer) {
             _tableview.tableFooterView = [[UIView alloc]init];
         }else{
-            _downView.frame = CGRectMake(0, 0, kScreenWidth, [YRExamDownView examDownViewGetHeight:_questionOb.analy]);
-            _downView.anayString = _questionOb.analy;
+            _downView.frame = CGRectMake(0, 0, kScreenWidth, [YRExamDownView examDownViewHeight:_questionOb]);
+            _downView.questOb = _questionOb;
+
             _tableview.tableFooterView = _downView;
         }
     }else{
@@ -58,7 +59,10 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (_questionOb.option.count) {
-        return _questionOb.option.count;
+        if ([_questionOb.option[0] length]) {
+            return _questionOb.option.count;
+        }
+        return 2;
     }else
         return 2;
 }
@@ -70,11 +74,17 @@
         cell = [[YRExamCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     }
     if (_questionOb.option.count) {
-        NSString *stringMsg = _questionOb.option[indexPath.row];
-        cell.msgString = stringMsg;
-        if (_questionOb.option.count == 4) {
-            cell.menuString = indexPath.row;
+        if ([_questionOb.option[0] length]) {
+            NSString *stringMsg = _questionOb.option[indexPath.row];
+            cell.msgString = stringMsg;
+            if (_questionOb.option.count == 4) {
+                cell.menuString = indexPath.row;
+            }
+        }else{
+            cell.msgString = indexPath.row ? @"错误":@"正确";
         }
+
+        
     }else{
         cell.msgString = indexPath.row ? @"错误":@"正确";
     }
@@ -88,17 +98,16 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    _questionOb.chooseAnswer = [NSString stringWithFormat:@"%ld",indexPath.row];
     if (_questionOb.answer == indexPath.row) {
         MyLog(@"答对了");
         _tableview.tableFooterView = [[UIView alloc]init];
     }else{
         MyLog(@"答错了");
-        _downView.frame = CGRectMake(0, 0, kScreenWidth, [YRExamDownView examDownViewGetHeight:_questionOb.analy]);
-        _downView.anayString = _questionOb.analy;
+        _downView.frame = CGRectMake(0, 0, kScreenWidth, [YRExamDownView examDownViewHeight:_questionOb]);
+        _downView.questOb = _questionOb;
         _tableview.tableFooterView = _downView;
     }
-    _questionOb.chooseAnswer = [NSString stringWithFormat:@"%ld",indexPath.row+1];
     if (self.answerIsClickBlock) {
         self.answerIsClickBlock(_questionOb);
     }

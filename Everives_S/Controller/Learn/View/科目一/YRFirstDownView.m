@@ -37,7 +37,7 @@
         CGFloat h = self.frame.size.height-2*kDistance;
         YRUpImgBtn *upimgBtn = [[YRUpImgBtn alloc]initWithFrame:CGRectMake(x, y, w, h)];
         [upimgBtn setTitle:array[i] forState:UIControlStateNormal];
-        [upimgBtn setImage:[UIImage imageNamed:kPLACEHHOLD_IMG] forState:UIControlStateNormal];
+        [upimgBtn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"pd%d",i+1]] forState:UIControlStateNormal];
         [upimgBtn setTitleColor:[UIColor colorWithRed:145/255.0 green:146/255.0 blue:147/255.0 alpha:1] forState:UIControlStateNormal];
         [upimgBtn addTarget:self action:@selector(downClick:) forControlEvents:UIControlEventTouchUpInside];
         upimgBtn.tag = i;

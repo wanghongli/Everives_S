@@ -12,9 +12,7 @@
 #import <MJExtension.h>
 #import "YRSchoolModel.h"
 static NSString * schoolCellID = @"YRSchoolTableCellID";
-@interface SchoolDataSource (){
-    NSArray *_placeArray;
-}
+@interface SchoolDataSource ()
 
 @end
 @implementation SchoolDataSource
@@ -34,7 +32,7 @@ static NSString * schoolCellID = @"YRSchoolTableCellID";
 }
 -(void)getData{
     [MBProgressHUD showHUDAddedTo:self.table animated:YES];
-    NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude,@"lng":KUserLocation.latitude,@"sort":@0,@"address":@"",@"key":@""};
+    NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude,@"lng":KUserLocation.longitude,@"sort":@0,@"address":@"",@"key":@""};
     [RequestData GET:STUDENT_PLACES parameters:parameters complete:^(NSDictionary *responseDic) {
         _placeArray = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];
         [self.table reloadData];

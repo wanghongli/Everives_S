@@ -34,6 +34,7 @@
 #define STUDENT_FRIENDS @"/student/friends" //我的好友
 #define STUDENT_DELETE_FRIENDS @"/student/friends/id" //删除好友
 #define STUDENT_NEARBY @"/student/nearby" //搜索附近学员
+#define STUDENT_NEARTEACHER @"/student/nearTeacher" //教练列表
 #define STUDENT_PLACES @"/student/place" //场地列表
 #define STUDENT_CONTACT @"/student/contact"  //手机通讯录
 #define STUDENT_TEACHERS @"/student/teachers"  //关注的教练

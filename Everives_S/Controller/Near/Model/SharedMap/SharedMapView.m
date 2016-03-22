@@ -78,15 +78,15 @@
         return annotationView;
     }
     if ([annotation isKindOfClass:[YRUserStatus class]]||[annotation isKindOfClass:[YRCoachModel class]]) {
-        YRMapAnnotationView *annotationView = (YRMapAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        MAAnnotationView *annotationView = (MAAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
         if (annotationView == nil)
         {
-            annotationView = [[YRMapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+            annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
         }
         annotationView.image = [UIImage imageNamed:@"Drawer_Navigation_Neighborhood"];
         
         // 设置为NO，用以调用自定义的calloutView
-        annotationView.canShowCallout = YES;
+        annotationView.canShowCallout = NO;
         
         // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
         annotationView.centerOffset = CGPointMake(0, -18);

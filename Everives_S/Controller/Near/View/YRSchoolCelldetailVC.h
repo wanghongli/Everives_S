@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YRSchoolCelldetailVC : UITableViewController
+@property(nonatomic,strong) NSString *placeID;
 @end

@@ -19,6 +19,7 @@
 #import "YRSchoolModel.h"
 #import "YRPictureModel.h"
 #import "YRCoachModel.h"
+#import "YRUserDetailController.h"
 //定义三个table的类型
 typedef NS_ENUM(NSUInteger,NearTableType){
     NearTableTypeSchool = 1,
@@ -67,7 +68,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 
 #pragma mark - Private Methods
 -(void)getDataForMap:(NSInteger) kind{
-    [RequestData GET:SYUDENT_NEARBYPOINT parameters:@{@"kind":[NSNumber numberWithInteger:kind],@"lat":KUserLocation.latitude?:KUserManager.lat,@"lng":KUserLocation.longitude?:KUserManager.lng} complete:^(NSDictionary *responseDic) {
+    [RequestData GET:SYUDENT_NEARBYPOINT parameters:@{@"kind":[NSNumber numberWithInteger:kind],@"lat":KUserLocation.latitude?:KUserManager.lat,@"lng":KUserLocation.longitude?:KUserManager.lng,@"time":@""} complete:^(NSDictionary *responseDic) {
         switch (kind) {
             case 1:{
                 _schoolForMap = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];
@@ -209,9 +210,15 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView.tag == NearTableTypeSchool) {
-        [self.navigationController pushViewController:[[YRSchoolCelldetailVC alloc] init] animated:YES];
+        YRSchoolCelldetailVC *schoolDetail = [[YRSchoolCelldetailVC alloc] init];
+        schoolDetail.placeID = [_schoolData.placeArray[indexPath.row] id];
+        [self.navigationController pushViewController:schoolDetail animated:YES];
     }else if(tableView.tag == NearTableTypeCoach){
         [self.navigationController pushViewController:[[YRCoachCellDetailVC alloc] init] animated:YES];
+    }else{
+        YRUserDetailController *userDetail = [[YRUserDetailController alloc] init];
+        userDetail.userID = [_studentData.stuArray[indexPath.row] id];
+        [self.navigationController pushViewController:userDetail animated:YES];
     }
 }
 #pragma mark - UISearchBarDelegate

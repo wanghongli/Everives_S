@@ -10,9 +10,7 @@
 #import "YRCoachTableCell.h"
 #import "YRCoachModel.h"
 static NSString * coachCellID = @"YRCoachTableCellID";
-@interface CoachDataSource (){
-    NSArray *_coachArray;
-}
+@interface CoachDataSource ()
 
 @end
 @implementation CoachDataSource
@@ -27,11 +25,13 @@ static NSString * coachCellID = @"YRCoachTableCellID";
     if (!cell) {
         cell = [[YRCoachTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:coachCellID];
     }
+    cell.model = _coachArray[indexPath.row];
     return cell;
 }
 -(void)getData{
+    NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude,@"lng":KUserLocation.longitude,@"sort":@0,@"address":@"",@"key":@""};
     [MBProgressHUD showHUDAddedTo:self.table animated:YES];
-    [RequestData GET:@"" parameters:nil complete:^(NSDictionary *responseDic) {
+    [RequestData GET:STUDENT_NEARTEACHER parameters:parameters complete:^(NSDictionary *responseDic) {
         _coachArray = [YRCoachModel mj_objectArrayWithKeyValuesArray:responseDic];
         [self.table reloadData];
         [MBProgressHUD hideHUDForView:self.table animated:YES];

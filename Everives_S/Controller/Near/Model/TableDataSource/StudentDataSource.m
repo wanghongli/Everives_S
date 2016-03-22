@@ -10,9 +10,7 @@
 #import "YRStudentTableCell.h"
 #import "YRUserStatus.h"
 static NSString * studentCellID = @"YRStudentTableCellID";
-@interface StudentDataSource (){
-    NSArray *_stuArray;
-}
+@interface StudentDataSource ()
 
 @end
 @implementation StudentDataSource

@@ -7,7 +7,9 @@
 //
 
 #import "YRCoachTableCell.h"
-
+#import "YRCoachModel.h"
+#import <UIImageView+WebCache.h>
+#import "YRStarsView.h"
 @implementation YRCoachTableCell
 
 - (void)awakeFromNib {
@@ -20,4 +22,14 @@
     // Configure the view for the selected state
 }
 
+-(void)setModel:(YRCoachModel *)model{
+    [_avatar sd_setImageWithURL:[NSURL URLWithString:model.avatar]];
+    _name.text = model.name;
+    _teachAge.text = model.year;
+    _stuNum.text = model.student;
+    _distance.text = [NSString stringWithFormat:@"%.2f%@",([model.distance integerValue]/1000.0),@"km"];
+    _course.text = [model.kind isEqualToString:@"0"]?@"科目二":@"科目三";
+    YRStarsView *star = [[YRStarsView alloc] initWithFrame:CGRectMake(_name.frame.origin.x, 26, 100, 30) score:[model.grade integerValue] starWidth:16 intervel:3 needLabel:YES];
+    [self addSubview:star];
+}
 @end

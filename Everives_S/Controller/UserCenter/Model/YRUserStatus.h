@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "MJExtension.h"
-
-@interface YRUserStatus : NSObject
+#import <MAMapKit/MAMapKit.h>
+@interface YRUserStatus : MAPointAnnotation
 
 @property (nonatomic, strong) NSString *addrTime;
 @property (nonatomic, strong) NSString *address;

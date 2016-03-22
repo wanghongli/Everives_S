@@ -7,12 +7,17 @@
 //
 
 #import "YRSchoolCelldetailVC.h"
-
+#import "RequestData.h"
+#import <UIImageView+WebCache.h>
+#import "YRSchoolModel.h"
+#import <MJExtension.h>
+#import "YRPictureModel.h"
 static CGFloat headerHeight = 213;
 static CGFloat cellHeight = 60;
 @interface YRSchoolCelldetailVC (){
     NSArray *_icons;
 }
+@property(nonatomic,strong) YRSchoolModel *model;
 @property(nonatomic,strong)UIImageView *headerView;
 @end
 
@@ -21,12 +26,18 @@ static CGFloat cellHeight = 60;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableHeaderView = self.headerView;
+    [self getData];
     _icons = @[@"Neighborhood_Field_DriSch",@"Neighborhood_Field_Add",@"Neig_Coach_Bespeak",@"Neighborhood_Field_Contacts",@"Neighborhood_Field_Area",@"neighborhood_Field_Facility",@"Neighborhood_Field_Coach"];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)getData{
+    [RequestData GET:[NSString stringWithFormat:@"%@/%@",STUDENT_PLACES,_placeID] parameters:nil complete:^(NSDictionary *responseDic) {
+        _model = [YRSchoolModel mj_objectWithKeyValues:responseDic];
+        [self.tableView reloadData];
+        [_headerView sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)(_model.pics[0])).url]];
+    } failed:^(NSError *error) {
+        
+    }];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -46,27 +57,34 @@ static CGFloat cellHeight = 60;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    }switch (indexPath.row) {
+    }
+    switch (indexPath.row) {
         case 0:{
-            cell.textLabel.text = @"所属驾校";
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"所属驾校:",_model.school];
             break;
         }
         case 1:{
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"地址:",_model.address];
             break;
         }
         case 2:{
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"联系方式:",_model.tel];
             break;
         }
         case 3:{
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"场地联系人:",_model.admin];
             break;
         }
         case 4:{
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"面积:",_model.area];
             break;
         }
         case 5:{
+            cell.textLabel.text = [NSString stringWithFormat:@"%@",@"场地设施"];
             break;
         }
         case 6:{
+            cell.textLabel.text = [NSString stringWithFormat:@"%@",@"金牌教练"];
             break;
         }
         default:

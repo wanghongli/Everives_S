@@ -18,6 +18,8 @@
 #import "YRFillterBtnView.h"
 #import "YRSchoolModel.h"
 #import "YRPictureModel.h"
+#import "YRCoachModel.h"
+#import "YRUserDetailController.h"
 //定义三个table的类型
 typedef NS_ENUM(NSUInteger,NearTableType){
     NearTableTypeSchool = 1,
@@ -36,6 +38,8 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     StudentDataSource *_studentData;
     BOOL _isMapView;
     NSArray *_schoolForMap;
+    NSArray *_coachForMap;
+    NSArray *_stuForMap;
 }
 @property(nonatomic,strong) UITableView *schoolTable;
 @property(nonatomic,strong) UITableView *coachTable;
@@ -56,30 +60,69 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [self.view addSubview:_mapView];
     [self.view addSubview:_selectView];
     [_mapView addSubview:self.searchBar];
-    [self getSchoolDataForMap];
+    [self getDataForMap:1];
     
     
 }
 
 
 #pragma mark - Private Methods
--(void)getSchoolDataForMap{
-    [RequestData GET:SYUDENT_NEARBYPOINT parameters:@{@"kind":@1,@"lat":KUserLocation.latitude?:KUserManager.lat,@"lng":KUserLocation.longitude?:KUserManager.lng} complete:^(NSDictionary *responseDic) {
-        _schoolForMap = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];
-        [_schoolForMap enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [obj setCoordinate:CLLocationCoordinate2DMake([[obj lat] doubleValue],[[obj lng] doubleValue])];
-            if ([obj pics].count) {
-                [obj setImaageurl:((YRPictureModel*)([obj pics][0])).url];
+-(void)getDataForMap:(NSInteger) kind{
+    [RequestData GET:SYUDENT_NEARBYPOINT parameters:@{@"kind":[NSNumber numberWithInteger:kind],@"lat":KUserLocation.latitude?:KUserManager.lat,@"lng":KUserLocation.longitude?:KUserManager.lng,@"time":@""} complete:^(NSDictionary *responseDic) {
+        switch (kind) {
+            case 1:{
+                _schoolForMap = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];
+                [_schoolForMap enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [obj setCoordinate:CLLocationCoordinate2DMake([[obj lat] doubleValue],[[obj lng] doubleValue])];
+                    if ([obj pics].count) {
+                        [obj setImaageurl:((YRPictureModel*)([obj pics][0])).url];
+                    }
+                }];
+                break;
             }
-        }];
-        [self addAnnotations];
+            case 2:{
+                _coachForMap = [YRCoachModel mj_objectArrayWithKeyValuesArray:responseDic];
+                [_coachForMap enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [obj setCoordinate:CLLocationCoordinate2DMake([[obj lat] doubleValue],[[obj lng] doubleValue])];
+//                    [obj setImaageurl:[obj avatar]];
+                }];
+                break;
+            }
+            case 3:{
+                _stuForMap = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
+                [_stuForMap enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [obj setCoordinate:CLLocationCoordinate2DMake([[obj lat] doubleValue],[[obj lng] doubleValue])];
+//                    [obj setImaageurl:[obj avatar]];
+                }];
+                break;
+            }
+            default:
+                break;
+        }
+        [self addAnnotationswithType:kind];
     } failed:^(NSError *error) {
         
     }];
 }
 
--(void)addAnnotations{
-    [_mapView addAnnotations:_schoolForMap];
+-(void)addAnnotationswithType:(NSInteger) kind{
+    
+    switch (kind) {
+        case 1:{
+            [_mapView addAnnotations:_schoolForMap];
+            break;
+        }
+        case 2:{
+            [_mapView addAnnotations:_coachForMap];
+            break;
+        }
+        case 3:{
+            [_mapView addAnnotations:_stuForMap];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 - (void)backBtnClick:(UIBarButtonItem*)sender{
@@ -127,26 +170,34 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 #pragma mark - YRMapSelectViewDelegate
 -(void)schoolBtnClick:(UIButton *)sender{
+    if (sender.tag == _selectView.selectedBtnNum) {
+        return;
+    }
     [self removeLastTable];
-    [_mapView addSubview:self.searchBar];
-    NSLog(@"1");
+    _searchBar.hidden = NO;
+    [_mapView removeAnnotations:_coachForMap];
+    [_mapView removeAnnotations:_stuForMap];
+    [self addAnnotationswithType:1];
 }
 -(void)coachBtnClick:(UIButton*)sender{
+    if (sender.tag == _selectView.selectedBtnNum) {
+        return;
+    }
     [self removeLastTable];
-    [_mapView removeAnnotations:_schoolForMap.copy];
-    
-    MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
-    //106.535454,29.613983
-    pointAnnotation.coordinate = CLLocationCoordinate2DMake(29.613983, 106.535454);
-    pointAnnotation.title = @"天上人间";
-    pointAnnotation.subtitle = @"我们是正规洗脚城";
-    [_mapView addAnnotation:pointAnnotation];
-    NSLog(@"2");
+    _searchBar.hidden = NO;
+    [_mapView removeAnnotations:_schoolForMap];
+    [_mapView removeAnnotations:_stuForMap];
+    [self getDataForMap:2];
 }
 -(void)studentBtnClick:(UIButton*)sender{
+    if (sender.tag == _selectView.selectedBtnNum) {
+        return;
+    }
     [self removeLastTable];
-    [self.searchBar removeFromSuperview];
-    NSLog(@"3");
+    _searchBar.hidden = YES;
+    [_mapView removeAnnotations:_schoolForMap];
+    [_mapView removeAnnotations:_coachForMap];
+    [self getDataForMap:3];
 }
 -(void)removeLastTable{
     [self.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -159,9 +210,15 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView.tag == NearTableTypeSchool) {
-        [self.navigationController pushViewController:[[YRSchoolCelldetailVC alloc] init] animated:YES];
+        YRSchoolCelldetailVC *schoolDetail = [[YRSchoolCelldetailVC alloc] init];
+        schoolDetail.placeID = [_schoolData.placeArray[indexPath.row] id];
+        [self.navigationController pushViewController:schoolDetail animated:YES];
     }else if(tableView.tag == NearTableTypeCoach){
         [self.navigationController pushViewController:[[YRCoachCellDetailVC alloc] init] animated:YES];
+    }else{
+        YRUserDetailController *userDetail = [[YRUserDetailController alloc] init];
+        userDetail.userID = [_studentData.stuArray[indexPath.row] id];
+        [self.navigationController pushViewController:userDetail animated:YES];
     }
 }
 #pragma mark - UISearchBarDelegate

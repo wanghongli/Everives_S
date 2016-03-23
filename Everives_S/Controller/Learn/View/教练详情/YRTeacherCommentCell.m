@@ -1,0 +1,142 @@
+//
+//  YRTeacherCommentCell.m
+//  Everives_S
+//
+//  Created by 李洪攀 on 16/3/23.
+//  Copyright © 2016年 darkclouds. All rights reserved.
+//
+
+
+#import "YRTeacherCommentCell.h"
+
+
+#define kImgHW 44
+#define kDistance 10
+@interface YRTeacherCommentCell ()
+@property (nonatomic, weak) UIImageView *headImg;
+
+@property (nonatomic, weak) UILabel *nameLabel;
+
+@property (nonatomic, weak) UILabel *commentLabel;
+
+@property (nonatomic, weak) UIView *commentBackView;
+
+@property (nonatomic, weak) UILabel *timeAddressLabel;
+@end
+
+@implementation YRTeacherCommentCell
+
++ (instancetype)cellWithTableView:(UITableView *)tableView
+{
+    static NSString *ID = @"cell";
+    id cell = [tableView dequeueReusableCellWithIdentifier:ID ];
+    
+    if (cell == nil) {
+        cell = [[self alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+    }
+    return cell;
+}
+
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+        [self buildUI];
+        
+    }
+    return self;
+}
+- (void)buildUI
+{
+    UIImageView *headimg = [[UIImageView alloc]init];
+    [self addSubview:headimg];
+    _headImg = headimg;
+    
+    UILabel *namelabel = [[UILabel alloc]init];
+    namelabel.font = kFontOfLetterMedium;
+    namelabel.textColor = kCOLOR(79, 79, 79);
+    namelabel.textAlignment = NSTextAlignmentLeft;
+    [self addSubview:namelabel];
+    _nameLabel = namelabel;
+    
+    UIView *commentbackview = [[UIView alloc]init];
+    commentbackview.backgroundColor = kCOLOR(246, 246, 246);
+    [self addSubview:commentbackview];
+    _commentBackView = commentbackview;
+    
+    UILabel *commentlabel = [[UILabel alloc]init];
+    commentlabel.font = kFontOfLetterBig;
+    commentlabel.textAlignment = NSTextAlignmentLeft;
+    commentlabel.numberOfLines = 0;
+    commentlabel.textColor = kCOLOR(79, 79, 79);
+    [_commentBackView addSubview:commentlabel];
+    _commentLabel = commentlabel;
+    
+    
+    UILabel *timeaddresslabel = [[UILabel alloc]init];
+    timeaddresslabel.font = kFontOfLetterSmall;
+    timeaddresslabel.textColor = kCOLOR(79, 79, 79);
+    timeaddresslabel.textAlignment = NSTextAlignmentLeft;
+    [self addSubview:timeaddresslabel];
+    _timeAddressLabel = timeaddresslabel;
+}
+
+- (void)setIntroduce:(NSString *)introduce
+{
+    _introduce = introduce;
+    
+    _headImg.frame = CGRectMake(kDistance, kDistance, kImgHW, kImgHW);
+    _headImg.image = [UIImage imageNamed:@"head_jiaolian"];
+    _headImg.layer.masksToBounds = YES;
+    _headImg.layer.cornerRadius = kImgHW/2;
+    
+    CGSize nameSize = [@"小王" sizeWithFont:kFontOfLetterMedium maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+    _nameLabel.frame = CGRectMake(_headImg.x, CGRectGetMaxY(_headImg.frame)+kDistance, kImgHW, nameSize.height);
+    _nameLabel.text = @"Eunice";
+    
+    
+    CGFloat commentX = CGRectGetMaxX(_headImg.frame)+kDistance;
+    CGFloat commentY = _headImg.y;
+    CGFloat commentW = kScreenWidth - 3*kDistance - kImgHW - kDistance;
+    CGSize commentSize = [introduce sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(commentW, MAXFLOAT)];
+    CGFloat commentH = commentSize.height;
+    _commentLabel.frame = CGRectMake(kDistance/2, kDistance/2, commentW, commentH);
+    _commentLabel.text = introduce;
+    
+    _commentBackView.frame = CGRectMake(commentX, commentY, kScreenWidth - 3*kDistance - kImgHW, commentH+kDistance);
+    _commentBackView.layer.masksToBounds = YES;
+    _commentBackView.layer.cornerRadius = 8;
+    
+    CGFloat timeY;
+    if (CGRectGetMaxY(_nameLabel.frame)>=CGRectGetMaxY(_commentBackView.frame)) {
+        timeY = CGRectGetMaxY(_nameLabel.frame)+kDistance;
+    }else
+        timeY = CGRectGetMaxY(_commentBackView.frame)+kDistance;
+    _timeAddressLabel.frame = CGRectMake(kDistance, timeY, kScreenWidth-2*kDistance, nameSize.height);
+    _timeAddressLabel.text = @"2016-03-03 13:30 南山场地一";
+    
+}
+
++ (CGFloat) getTeacherCommentCellHeightWith:(NSString *)introduce
+{
+    CGFloat height;
+    height+=kDistance;
+    
+    
+    CGSize nameSize = [@"小王" sizeWithFont:kFontOfLetterMedium maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+    
+    CGFloat commentW = kScreenWidth - 3*kDistance - kImgHW;
+    CGSize commentSize = [introduce sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(commentW, MAXFLOAT)];
+    
+    if (nameSize.height+kDistance+kImgHW>=commentSize.height) {
+        height+=(nameSize.height+kDistance+kImgHW+kDistance);
+    }else
+        height+=commentSize.height+kDistance;
+    
+    height+=nameSize.height;
+    height+=kDistance;
+    
+    return height;
+}
+
+@end

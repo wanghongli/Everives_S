@@ -9,7 +9,6 @@
 #import "KGFreshCatchDetailCommentView.h"
 #import "YRCircleComment.h"
 #import "UIImageView+WebCache.h"
-#import "NSString+Tools.h"
 
 
 #define CZStatusCellMargin 10

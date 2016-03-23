@@ -8,7 +8,7 @@
 
 #import "YRYJSecondClassController.h"
 #import "YRLearnSecondCell.h"
-#import "YRSecoDetailController.h"
+#import "YRAppointmentDetailController.h"
 @interface YRYJSecondClassController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -54,7 +54,8 @@
     if (cell == nil) {
         cell = [[YRLearnSecondCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    
+    cell.testNum = indexPath.section;
+    cell.timeString = @"14:00-16:00";
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -72,7 +73,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    YRSecoDetailController *detailVC = [[YRSecoDetailController alloc]init];
+    YRAppointmentDetailController *detailVC = [[YRAppointmentDetailController alloc]initWithNibName:@"YRAppointmentDetailController" bundle:nil];
     detailVC.title = @"预约详情";
     [self.navigationController pushViewController:detailVC animated:YES];
 }

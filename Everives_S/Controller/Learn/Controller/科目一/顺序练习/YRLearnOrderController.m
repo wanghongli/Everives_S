@@ -7,7 +7,6 @@
 //
 
 #import "YRLearnOrderController.h"
-#import "NSString+Tools.h"
 #import "YRLearnPracticeController.h"
 @interface YRLearnOrderController ()
 

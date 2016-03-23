@@ -7,7 +7,6 @@
 //
 
 #import "PublicCheckMsgModel.h"
-#import "NSString+Tools.h"
 @implementation PublicCheckMsgModel
 
 + (void)loginMsgCheckTell:(NSString *)phoneNum psw:(NSString *)pswMsg complete:(void (^)(BOOL isSuccess))completeBlock error:(void (^)(NSString *errorMsg))errorBlock

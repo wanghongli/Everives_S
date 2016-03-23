@@ -7,7 +7,6 @@
 //
 
 #import "YRExamDownView.h"
-#import "NSString+Tools.h"
 
 #define  kDistance 10
 @interface YRExamDownView ()

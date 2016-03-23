@@ -13,7 +13,6 @@
 #import "YRRegistPswController.h"
 #import "YRProtocolViewController.h"
 #import "PublicCheckMsgModel.h"
-#import "NSString+Tools.h"
 #define kDistance 10
 #define kTextFieldHeight 44
 @interface YRRegistViewController ()<CWSReadPolicyViewDelegate>

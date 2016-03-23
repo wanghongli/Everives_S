@@ -12,7 +12,6 @@
 #import "NSString+MKNetworkKitAdditions.h"
 #import "PhotoCell.h"
 #import <QiniuSDK.h>
-#import "NSString+Tools.h"
 
 @interface YRAddWeiboController ()<JKImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UITextViewDelegate>
 {

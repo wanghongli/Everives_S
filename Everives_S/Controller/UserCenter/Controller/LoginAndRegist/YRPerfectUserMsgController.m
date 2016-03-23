@@ -15,7 +15,6 @@
 #import "CWSPublicButton.h"
 #import "UIImage+Tool.h"
 #import <QiniuSDK.h>
-#import "NSString+Tools.h"
 #import "NSString+MKNetworkKitAdditions.h"
 #import <RongIMKit/RongIMKit.h>
 #import "YRUserStatus.h"

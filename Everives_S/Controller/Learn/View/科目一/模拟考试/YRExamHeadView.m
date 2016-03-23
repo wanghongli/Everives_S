@@ -7,7 +7,6 @@
 //
 
 #import "YRExamHeadView.h"
-#import "NSString+Tools.h"
 #import "UIImageView+WebCache.h"
 
 #define kDistance 20

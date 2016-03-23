@@ -12,11 +12,11 @@
 #import "YRUserDetailController.h"
 #import "YRMyCoachVC.h"
 static NSString *cellID = @"cellID";
-@interface YRContactVC ()<UISearchBarDelegate>{
+@interface YRContactVC (){
     NSArray *_ret;//服务器返回的好友列表
 }
 
-@property(nonatomic,strong)UISearchBar *searchBar;
+//@property(nonatomic,strong)UISearchBar *searchBar;
 @property(nonatomic,strong)UIButton *myGroup;
 @property(nonatomic,strong)UIButton *myCoach;
 @property(nonatomic,strong)UIView *headerView;
@@ -140,17 +140,17 @@ static NSString *cellID = @"cellID";
     
 }
 #pragma mark - Getters
--(UISearchBar *)searchBar{
-    if (!_searchBar) {
-        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-15, 50)];
-        _searchBar.delegate = self;
-        _searchBar.placeholder = @"请输入驾友用户名或手机号码";
-    }
-    return _searchBar;
-}
+//-(UISearchBar *)searchBar{
+//    if (!_searchBar) {
+//        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-15, 50)];
+//        _searchBar.delegate = self;
+//        _searchBar.placeholder = @"请输入驾友用户名或手机号码";
+//    }
+//    return _searchBar;
+//}
 -(UIButton *)myGroup{
     if (!_myGroup) {
-        _myGroup = [[UIButton alloc] initWithFrame:CGRectMake(8, 54, kScreenWidth - 23, 50)];
+        _myGroup = [[UIButton alloc] initWithFrame:CGRectMake(8, 4, kScreenWidth - 23, 50)];
         [_myGroup setTitle:@"我的群组" forState:UIControlStateNormal];
         [_myGroup setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_myGroup addTarget:self action:@selector(myGroupBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -164,7 +164,7 @@ static NSString *cellID = @"cellID";
 }
 -(UIButton *)myCoach{
     if (!_myCoach) {
-        _myCoach = [[UIButton alloc] initWithFrame:CGRectMake(8, 108, kScreenWidth - 23, 50)];
+        _myCoach = [[UIButton alloc] initWithFrame:CGRectMake(8, 58, kScreenWidth - 23, 50)];
         [_myCoach setTitle:@"我的教练" forState:UIControlStateNormal];
         [_myCoach setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_myCoach addTarget:self action:@selector(myCoachBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -179,8 +179,8 @@ static NSString *cellID = @"cellID";
 
 -(UIView *)headerView{
     if (!_headerView) {
-        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 158)];
-        [_headerView addSubview:self.searchBar];
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 112)];
+//        [_headerView addSubview:self.searchBar];
         [_headerView addSubview:self.myGroup];
         [_headerView addSubview:self.myCoach];
     }

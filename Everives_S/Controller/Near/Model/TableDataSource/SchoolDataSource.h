@@ -10,5 +10,5 @@
 @interface SchoolDataSource : NSObject<UITableViewDataSource>
 @property(nonatomic,strong) UITableView *table;
 @property(nonatomic,strong) NSArray *placeArray;
--(void)getData;
+-(void)getDataWithParameters:(NSDictionary*)parameters;
 @end

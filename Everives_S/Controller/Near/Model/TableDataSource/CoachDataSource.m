@@ -28,8 +28,7 @@ static NSString * coachCellID = @"YRCoachTableCellID";
     cell.model = _coachArray[indexPath.row];
     return cell;
 }
--(void)getData{
-    NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude,@"lng":KUserLocation.longitude,@"sort":@0,@"address":@"",@"key":@""};
+-(void)getDataWithParameters:(NSDictionary*)parameters{
     [MBProgressHUD showHUDAddedTo:self.table animated:YES];
     [RequestData GET:STUDENT_NEARTEACHER parameters:parameters complete:^(NSDictionary *responseDic) {
         _coachArray = [YRCoachModel mj_objectArrayWithKeyValuesArray:responseDic];

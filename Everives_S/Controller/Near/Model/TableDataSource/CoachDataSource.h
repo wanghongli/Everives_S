@@ -11,5 +11,5 @@
 @interface CoachDataSource : NSObject<UITableViewDataSource>
 @property(nonatomic,strong) UITableView *table;
 @property(nonatomic,strong)  NSArray *coachArray;
--(void)getData;
+-(void)getDataWithParameters:(NSDictionary*)parameters;
 @end

@@ -33,7 +33,7 @@
         }
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
         self.layer.borderWidth = 1;
-        _itemArrs = @[@[@[@"重庆",@"上海",@"北京"],@[@"南岸",@"江北",@"渝北",@"渝中"]],
+        _itemArrs = @[@[@[@"重庆",@"上海",@"北京"],@[@"南岸",@"江北",@"渝北",@"渝中",@"北碚",@"巴南",@"沙坪坝"]],
                         @[@[@"人气最高",@"长得最帅",@"评分最高"]]];
     }
     return self;
@@ -54,6 +54,7 @@
 //显示、隐藏下拉列表
 -(void)btnClick:(UIButton*)sender{
     static BOOL ishiden = YES;
+    //-1表示没有选择
     if (_whichBtnClicked != -1 && _whichBtnClicked != sender.tag) {
         [self.pullView removeFromSuperview];
         ishiden = YES;

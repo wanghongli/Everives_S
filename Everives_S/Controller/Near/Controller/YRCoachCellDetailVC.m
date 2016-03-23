@@ -73,6 +73,7 @@
 }
 -(void)reservationBtnClick{
     YRReservationDateVC *datePicker = [[YRReservationDateVC alloc]init];
+    datePicker.coachID = _coachID;
     [self.navigationController pushViewController:datePicker animated:YES];
 }
 @end

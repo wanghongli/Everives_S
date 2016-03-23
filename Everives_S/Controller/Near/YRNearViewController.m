@@ -218,7 +218,9 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         schoolDetail.placeID = [_schoolData.placeArray[indexPath.row] id];
         [self.navigationController pushViewController:schoolDetail animated:YES];
     }else if(tableView.tag == NearTableTypeCoach){
-        [self.navigationController pushViewController:[[YRCoachCellDetailVC alloc] init] animated:YES];
+        YRCoachCellDetailVC *coachDetail = [[YRCoachCellDetailVC alloc] init];
+        coachDetail.coachID = [_coachData.coachArray[indexPath.row] id];
+        [self.navigationController pushViewController:coachDetail animated:YES];
     }else{
         YRUserDetailController *userDetail = [[YRUserDetailController alloc] init];
         userDetail.userID = [_studentData.stuArray[indexPath.row] id];

@@ -59,5 +59,9 @@
 #define JK_ZJ_PRACTICE @"/question/zhuanti/kid" //专题练习
 #define JK_MN_PRACTICE @"/question/test" //模拟考试
 
+//预约部分
+#define STUDENT_AVAILTIME @"/order/availTime/"  //查看可预约时间
+#define STUDENT_AVAILPLACE @"/order/avaliPlace/"  //查看某时段可选场地
+
 
 #endif

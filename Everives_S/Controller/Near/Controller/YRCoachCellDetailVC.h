@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YRCoachCellDetailVC : UIViewController
-
+@property(nonatomic,strong) NSString *coachID;
 @end

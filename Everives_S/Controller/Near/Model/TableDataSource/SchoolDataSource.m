@@ -30,9 +30,8 @@ static NSString * schoolCellID = @"YRSchoolTableCellID";
     cell.model =_placeArray[indexPath.row];
     return cell;
 }
--(void)getData{
+-(void)getDataWithParameters:(NSDictionary*)parameters{
     [MBProgressHUD showHUDAddedTo:self.table animated:YES];
-    NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude,@"lng":KUserLocation.longitude,@"sort":@0,@"address":@"",@"key":@""};
     [RequestData GET:STUDENT_PLACES parameters:parameters complete:^(NSDictionary *responseDic) {
         _placeArray = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];
         [self.table reloadData];

@@ -8,6 +8,7 @@
 
 #import "YRCoachCellDetailVC.h"
 #import "UIImage+Tool.h"
+#import "YRReservationDateVC.h"
 @interface YRCoachCellDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
@@ -71,6 +72,8 @@
     self.toolBar.items = @[barButton1,barButton2];
 }
 -(void)reservationBtnClick{
-    
+    YRReservationDateVC *datePicker = [[YRReservationDateVC alloc]init];
+    datePicker.coachID = _coachID;
+    [self.navigationController pushViewController:datePicker animated:YES];
 }
 @end

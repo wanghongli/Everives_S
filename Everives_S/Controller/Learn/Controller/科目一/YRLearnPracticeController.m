@@ -59,13 +59,14 @@
     }else if (self.menuTag == 2){
         
     }
-        
-
 }
 -(void)addPlace
-{}
+{
+}
 -(void)searchPlace
-{}
+{
+    
+}
 -(void)getDataWithInsert:(BOOL)insert
 {
     if (self.menuTag == 2) {
@@ -88,7 +89,6 @@
 //        }else{
             [_msgArray addObject:questionOB];
             [self.collectionView reloadData];
-           
 //        }
     } failed:^(NSError *error) {
         

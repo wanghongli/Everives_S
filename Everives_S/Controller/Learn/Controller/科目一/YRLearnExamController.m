@@ -8,23 +8,36 @@
 
 #import "YRLearnExamController.h"
 #import "YRLearnPracticeController.h"
-@interface YRLearnExamController ()
+#import "YRExamUserHeadView.h"
+
+#import "YRLearnNoMsgView.h"
+@interface YRLearnExamController ()<YRLearnNoMsgViewDelegate>
 {
     NSArray *_titleArray;
     NSArray *_menuArray;
 }
+@property (nonatomic, strong) YRExamUserHeadView *headView;
+
+@property (nonatomic, strong) YRLearnNoMsgView *noMsgView;
 @end
 
 @implementation YRLearnExamController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _titleArray = @[@"考试科目",@"考试题库",@"考试标准",@"合格标准"];
-    _menuArray = @[@"科目一理论考试",@"重庆市科目一理论考试题库",@"30分钟，50题",@"满分100分，90分及格"];
+    
     self.title = @"模拟考试";
     
-    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth/2)];
-    self.tableView.tableHeaderView = headView;
+    [self buildUI];
+}
+
+-(void)buildUI
+{
+    _titleArray = @[@"考试科目",@"考试题库",@"考试标准",@"合格标准"];
+    _menuArray = @[@"科目一理论考试",@"重庆市科目一理论考试题库",@"30分钟，50题",@"满分100分，90分及格"];
+    
+    _headView = [[YRExamUserHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth/2)];
+    self.tableView.tableHeaderView = _headView;
     
     UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 80)];
     UIButton *startBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, footView.height-40, kScreenWidth-40, 40)];
@@ -36,7 +49,11 @@
     startBtn.layer.cornerRadius = startBtn.height/2;
     [footView addSubview:startBtn];
     self.tableView.tableFooterView = footView;
+    
+    
+    [self.view bringSubviewToFront:self.noMsgView];
 }
+
 -(void)sartClick:(UIButton *)sender
 {
     YRLearnPracticeController *learnVC = [[YRLearnPracticeController alloc]init];
@@ -69,7 +86,19 @@
     cell.detailTextLabel.text = _menuArray[indexPath.row];
     return cell;
 }
-
-
+#pragma mark - YRLearnNoMsgViewDelegate 去认证
+-(void)learnNoMsgViewAttestationClick
+{
+    MyLog(@"%s",__func__);
+}
+-(YRLearnNoMsgView *)noMsgView
+{
+    if (!_noMsgView) {
+        _noMsgView = [[YRLearnNoMsgView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-64)];
+        _noMsgView.delegate = self;
+        [self.view addSubview:_noMsgView];
+    }
+    return _noMsgView;
+}
 
 @end

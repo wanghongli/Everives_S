@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Identification_IDcardGray.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "Identification_IDcardGray.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "Identification_IDcardGray@2x.png"
     },
     {
       "idiom" : "universal",
+      "filename" : "Identification_IDcardGray@3x.png",
       "scale" : "3x"
     }
   ],

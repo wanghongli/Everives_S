@@ -9,12 +9,16 @@
 #import "YRYJSecondClassController.h"
 #import "YRLearnSecondCell.h"
 #import "YRAppointmentDetailController.h"
-@interface YRYJSecondClassController ()<UITableViewDelegate,UITableViewDataSource>
+#import "YRLearnNoMsgView.h"//没认证界面
+
+#import "YRCertificationController.h" //信息认证
+@interface YRYJSecondClassController ()<UITableViewDelegate,UITableViewDataSource,YRLearnNoMsgViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayTable;
 @property (nonatomic, strong) UILabel *topView;
 
+@property (nonatomic, strong) YRLearnNoMsgView *noMsgView;
 @end
 
 @implementation YRYJSecondClassController
@@ -27,7 +31,7 @@
 }
 -(void)buildUI
 {
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -38,6 +42,8 @@
     _topView.text = @"你最近的科目二考试安排";
     _topView.textAlignment = NSTextAlignmentCenter;
     self.tableView.tableHeaderView = _topView;
+    
+    [self.view bringSubviewToFront:self.noMsgView];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -77,9 +83,23 @@
     detailVC.title = @"预约详情";
     [self.navigationController pushViewController:detailVC animated:YES];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
+#pragma mark - YRLearnNoMsgViewDelegate
+-(void)learnNoMsgViewAttestationClick
+{
+    MyLog(@"%s",__func__);
+    YRCertificationController *certificationVC = [[YRCertificationController alloc]init];
+    [self.navigationController pushViewController:certificationVC animated:YES];
+}
+
+-(YRLearnNoMsgView *)noMsgView
+{
+    if (!_noMsgView) {
+        
+        _noMsgView = [[YRLearnNoMsgView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, self.tableView.height)];
+        _noMsgView.delegate = self;
+        [self.view addSubview:_noMsgView];
+    }
+    return _noMsgView;
 }
 
 @end

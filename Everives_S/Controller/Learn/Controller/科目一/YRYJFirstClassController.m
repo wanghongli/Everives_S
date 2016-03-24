@@ -23,6 +23,7 @@
 @property (nonatomic, strong) YRFirstHeadView *headView;
 @property (nonatomic, strong) YRFirstMiddleView *middleView;
 @property (nonatomic, strong) YRFirstDownView *downView;
+@property (nonatomic, strong) UIScrollView *scrollView;
 @end
 
 @implementation YRYJFirstClassController
@@ -35,26 +36,35 @@
 }
 -(void)buildUI
 {
-    _examBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, kDistance, kScreenWidth, 44)];
-    [_examBtn setTitle:@" 进入模拟考试" forState:UIControlStateNormal];
-    [_examBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_examBtn setImage:[UIImage imageNamed:@"home_click2"] forState:UIControlStateNormal];
-    [self.view addSubview:_examBtn];
+    MyLog(@"%lf",kScreenHeight);
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-64-50)];
+    [self.view addSubview:_scrollView];
+    _examBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, kDistance, kScreenWidth, kScreenWidth/2)];
+//    [_examBtn setTitle:@" 进入模拟考试" forState:UIControlStateNormal];
+//    [_examBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [_examBtn setImage:[UIImage imageNamed:@"home_click2"] forState:UIControlStateNormal];
+    [_examBtn setBackgroundImage:[UIImage imageNamed:@"topImg"] forState:UIControlStateNormal];
+    [_scrollView addSubview:_examBtn];
     [_examBtn addTarget:self action:@selector(gotoExamClick:) forControlEvents:UIControlEventTouchUpInside];
     _examBtn.backgroundColor = [UIColor whiteColor];
     
     _headView = [[YRFirstHeadView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_examBtn.frame)+kDistance, kSizeOfScreen.width, kSizeOfScreen.width*0.25/0.78+30)];
     _headView.delegate = self;
-    [self.view addSubview:_headView];
+    [_scrollView addSubview:_headView];
     
     _middleView = [[YRFirstMiddleView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headView.frame)+kDistance, kSizeOfScreen.width, _headView.frame.size.height/2)];
     _middleView.delegate = self;
-    [self.view addSubview:_middleView];
+    [_scrollView addSubview:_middleView];
     
     _downView = [[YRFirstDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_middleView.frame)+kDistance, kSizeOfScreen.width, _headView.frame.size.height*2/3)];
     _downView.delegate = self;
-    [self.view addSubview:_downView];
+    [_scrollView addSubview:_downView];
     
+    if (CGRectGetMaxY(_downView.frame)>=self.scrollView.height) {
+        _scrollView.contentSize = CGSizeMake(kScreenWidth, CGRectGetMaxY(_downView.frame));
+    }else{
+        _scrollView.contentSize = CGSizeMake(kScreenWidth,self.scrollView.height);
+    }
 }
 #pragma mark - 进入模拟考试
 -(void)gotoExamClick:(UIButton *)sender

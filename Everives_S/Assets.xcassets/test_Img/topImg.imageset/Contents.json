@@ -3,16 +3,16 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "Login_UsernameBlack.png"
+      "filename" : "topImg.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Login_UsernameBlack@2x.png"
+      "filename" : "topImg@2x.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "Login_UsernameBlack@3x.png",
+      "filename" : "topImg@3x.png",
       "scale" : "3x"
     }
   ],

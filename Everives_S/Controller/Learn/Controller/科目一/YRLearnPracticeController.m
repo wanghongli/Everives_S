@@ -19,6 +19,11 @@
 @property (nonatomic, strong) NSMutableArray *msgArray;
 @property (nonatomic, strong) YRPracticeDownView *downView;
 
+/*
+*   模拟考试倒计时
+*/
+@property (nonatomic, strong) UIBarButtonItem *countDownBar;
+
 @end
 
 @implementation YRLearnPracticeController
@@ -31,9 +36,9 @@
 
     [self buildUI];
 }
+#pragma mark - 创建视图
 -(void)buildUI
 {
-    
     UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc]init];
     [flowlayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     CGFloat collectHeight = self.menuTag ? 0:30;
@@ -49,27 +54,34 @@
     [self getDataWithInsert:NO];
     
     if (self.menuTag == 1) {//顺序练习
-        UIBarButtonItem *addPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_Cue"] style:UIBarButtonItemStyleBordered target:self action:@selector(addPlace)];
-        UIBarButtonItem *searchPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_CollectionHollow"] style:UIBarButtonItemStyleBordered target:self action:@selector(searchPlace)];
+        //显示答案
+        UIBarButtonItem *addPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_Cue"] style:UIBarButtonItemStyleBordered target:self action:@selector(showAnswer)];
+        //收藏
+        UIBarButtonItem *searchPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_CollectionHollow"] style:UIBarButtonItemStyleBordered target:self action:@selector(collectionClick)];
         self.navigationItem.rightBarButtonItems = @[addPlaceBtn,searchPlaceBtn];
     }else if (self.menuTag == 0){//模拟考试
         _downView = [[YRPracticeDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.collectionView.frame), kScreenWidth, 44)];
-        _downView.numbString = @"12/1234";
         [self.view addSubview:_downView];
+//        _countDownBar = [UIBarButtonItem alloc]initWithTitle:<#(nullable NSString *)#> style:<#(UIBarButtonItemStyle)#> target:<#(nullable id)#> action:<#(nullable SEL)#>
     }else if (self.menuTag == 2){
         
     }
 }
--(void)addPlace
+
+#pragma mark - 显示答案
+-(void)showAnswer
 {
 }
--(void)searchPlace
+
+#pragma mark - 收藏
+-(void)collectionClick
 {
     
 }
+#pragma mark - 请求数据
 -(void)getDataWithInsert:(BOOL)insert
 {
-    if (self.menuTag == 2) {
+    if (self.menuTag == 2) {//随机练习
         [RequestData GET:JK_SJ_PRACTICE parameters:@{@"type":@"0"} complete:^(NSDictionary *responseDic) {
             MyLog(@"%@",responseDic);
             YRQuestionObject *questionOB = [YRQuestionObject mj_objectWithKeyValues:responseDic];
@@ -78,21 +90,29 @@
         } failed:^(NSError *error) {
             
         }];
+    }else if (self.menuTag == 0){//模拟考试
+    
+        [RequestData GET:JK_MN_PRACTICE parameters:@{@"type":@"0"} complete:^(NSDictionary *responseDic) {
+            NSArray *user = [YRQuestionObject mj_objectArrayWithKeyValuesArray:(NSArray *)responseDic];
+            MyLog(@"%@",user);
+            _msgArray = [NSMutableArray arrayWithArray:user];
+            _downView.numbString = [NSString stringWithFormat:@"1/%ld",_msgArray.count];;
+
+            [self.collectionView reloadData];
+        } failed:^(NSError *error) {
+            
+        }];
+        
     }else{
-    [RequestData GET:[NSString stringWithFormat:@"/question/question/%ld",_currentID] parameters:nil complete:^(NSDictionary *responseDic) {
-        MyLog(@"%@",responseDic);
-        YRQuestionObject *questionOB = [YRQuestionObject mj_objectWithKeyValues:responseDic];
-//        if (insert) {
-//            [_msgArray insertObject:questionOB atIndex:0];
-//            [self.collectionView reloadData];
-//            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-//        }else{
+        [RequestData GET:[NSString stringWithFormat:@"/question/question/%ld",_currentID] parameters:nil complete:^(NSDictionary *responseDic) {
+            MyLog(@"%@",responseDic);
+            YRQuestionObject *questionOB = [YRQuestionObject mj_objectWithKeyValues:responseDic];
             [_msgArray addObject:questionOB];
             [self.collectionView reloadData];
-//        }
-    } failed:^(NSError *error) {
-        
-    }];
+            //        }
+        } failed:^(NSError *error) {
+            
+        }];
     }
 }
 #pragma mark - UIColletionViewDataSource
@@ -118,23 +138,17 @@
         [_msgArray replaceObjectAtIndex:indexPath.row withObject:currentQues];
         [self.collectionView reloadData];
     }];
-    if (indexPath.row == _msgArray.count-1) {
-        _currentID++;
-        [self getDataWithInsert:NO];
-    }
-//    if (_msgArray.count) {
-//        if (indexPath.row == 0 ) {
-//            
-//            if (ques.id>1) {
-//                _currentID--;
-//                [self getDataWithInsert:YES];
-//            }
-//        }
-//    }
+    
+    
     if (self.menuTag == 1) {
+        if (indexPath.row == _msgArray.count-1) {
+            _currentID++;
+            [self getDataWithInsert:NO];
+        }
         self.title = [NSString stringWithFormat:@"%ld/1234",ques.id];
     }else if(self.menuTag == 0){
-        _downView.numbString = [NSString stringWithFormat:@"%ld/1234",ques.id];
+        _downView.numbString = [NSString stringWithFormat:@"%ld/%ld",ques.id,_msgArray.count];
+        cell.MNCurrentID = indexPath.row+1;
     }
     return cell;
 }

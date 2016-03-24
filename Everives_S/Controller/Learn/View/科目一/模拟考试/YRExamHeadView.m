@@ -44,6 +44,12 @@
     [self addSubview:topline];
     _topLine = topline;
 }
+-(void)setMNCurrentID:(NSInteger)MNCurrentID
+{
+    _MNCurrentID = MNCurrentID;
+    NSString *titleString = [NSString stringWithFormat:@"%ld、%@",MNCurrentID,_ques.content];
+    _titleLabel.text = titleString;
+}
 -(void)setQues:(YRQuestionObject *)ques
 {
     _ques = ques;

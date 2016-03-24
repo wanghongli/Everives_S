@@ -59,6 +59,6 @@
 }
 -(void)downViewBtnClick:(UIButton *)sender
 {
-
+    [self.delegate teacherDownViewBtnClick:sender.tag-10];
 }
 @end

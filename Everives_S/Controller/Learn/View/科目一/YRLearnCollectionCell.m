@@ -52,6 +52,12 @@
         _tableview.tableFooterView = [[UIView alloc]init];
     }
 }
+- (void)setMNCurrentID:(NSInteger)MNCurrentID
+{
+    _MNCurrentID = MNCurrentID;
+    _headView.MNCurrentID = MNCurrentID;
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;

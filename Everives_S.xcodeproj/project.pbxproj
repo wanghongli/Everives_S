@@ -188,8 +188,6 @@
 		1672A6601C8FE61200AF6272 /* YRStudentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1672A65E1C8FE61200AF6272 /* YRStudentTableCell.xib */; };
 		1672A6641C8FE8F400AF6272 /* SchoolDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672A6631C8FE8F400AF6272 /* SchoolDataSource.m */; };
 		168132AC1C97B012008F3090 /* YRStarsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 168132AB1C97B012008F3090 /* YRStarsView.m */; };
-		168132B51C97B946008F3090 /* YRCoachCellDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 168132B31C97B946008F3090 /* YRCoachCellDetailVC.m */; };
-		168132B61C97B946008F3090 /* YRCoachCellDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 168132B41C97B946008F3090 /* YRCoachCellDetailVC.xib */; };
 		1694F57D1CA234A6009A4C21 /* YRReservationDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694F57C1CA234A6009A4C21 /* YRReservationDateVC.m */; };
 		1694F5801CA23DED009A4C21 /* YRDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694F57F1CA23DED009A4C21 /* YRDateCell.m */; };
 		1694F5831CA25DF4009A4C21 /* YRReservationChoosePlaceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694F5821CA25DF4009A4C21 /* YRReservationChoosePlaceVC.m */; };
@@ -557,9 +555,6 @@
 		1672A6631C8FE8F400AF6272 /* SchoolDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolDataSource.m; sourceTree = "<group>"; };
 		168132AA1C97B012008F3090 /* YRStarsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRStarsView.h; sourceTree = "<group>"; };
 		168132AB1C97B012008F3090 /* YRStarsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRStarsView.m; sourceTree = "<group>"; };
-		168132B21C97B946008F3090 /* YRCoachCellDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCoachCellDetailVC.h; sourceTree = "<group>"; };
-		168132B31C97B946008F3090 /* YRCoachCellDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCoachCellDetailVC.m; sourceTree = "<group>"; };
-		168132B41C97B946008F3090 /* YRCoachCellDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRCoachCellDetailVC.xib; sourceTree = "<group>"; };
 		1694F57B1CA234A6009A4C21 /* YRReservationDateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRReservationDateVC.h; sourceTree = "<group>"; };
 		1694F57C1CA234A6009A4C21 /* YRReservationDateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationDateVC.m; sourceTree = "<group>"; };
 		1694F57E1CA23DED009A4C21 /* YRDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDateCell.h; sourceTree = "<group>"; };
@@ -1403,9 +1398,6 @@
 			children = (
 				1694F5841CA25E3B009A4C21 /* YRSchoolCelldetailVC.h */,
 				1694F5851CA25E3B009A4C21 /* YRSchoolCelldetailVC.m */,
-				168132B21C97B946008F3090 /* YRCoachCellDetailVC.h */,
-				168132B31C97B946008F3090 /* YRCoachCellDetailVC.m */,
-				168132B41C97B946008F3090 /* YRCoachCellDetailVC.xib */,
 				1694F57B1CA234A6009A4C21 /* YRReservationDateVC.h */,
 				1694F57C1CA234A6009A4C21 /* YRReservationDateVC.m */,
 				1694F5811CA25DF4009A4C21 /* YRReservationChoosePlaceVC.h */,
@@ -1649,7 +1641,6 @@
 				164A8CB31C8D729700857638 /* YRActivityTableViewCell.xib in Resources */,
 				1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */,
 				1600EB461C87E65D001919EB /* Assets.xcassets in Resources */,
-				168132B61C97B946008F3090 /* YRCoachCellDetailVC.xib in Resources */,
 				03A25F251C92AF17000196A6 /* YRDriveLawCell.xib in Resources */,
 				037D7C291C916AE600273703 /* UzysAssetPickerController.bundle in Resources */,
 				16C5459E1C995A6400AE5152 /* YRSearchFriendCell.xib in Resources */,
@@ -1783,7 +1774,6 @@
 				1645D89A1C9511DD0058D480 /* DistanceToolFuc.m in Sources */,
 				031515371C9A3D7400A2A2F1 /* YREditUserController.m in Sources */,
 				1645D8971C9511420058D480 /* YRMapAnnotaionModel.m in Sources */,
-				168132B51C97B946008F3090 /* YRCoachCellDetailVC.m in Sources */,
 				037F8E1F1C8826750057BF6C /* CWSLoginTextField.m in Sources */,
 				037F8E151C8826750057BF6C /* YRYJFourthClassController.m in Sources */,
 				037F8E701C8D5FC50057BF6C /* JKAssetsViewCell.m in Sources */,

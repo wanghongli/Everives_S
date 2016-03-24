@@ -20,7 +20,6 @@
 #import "YRCoachModel.h"
 #import "YRUserDetailController.h"
 #import "YRTeacherDetailController.h"
-#import "YRCoachCellDetailVC.h"
 //定义三个table的类型
 typedef NS_ENUM(NSUInteger,NearTableType){
     NearTableTypeSchool = 1,
@@ -230,12 +229,9 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         schoolDetail.placeID = [_schoolData.placeArray[indexPath.row] id];
         [self.navigationController pushViewController:schoolDetail animated:YES];
     }else if(tableView.tag == NearTableTypeCoach){
-        YRCoachCellDetailVC *coachDetail = [[YRCoachCellDetailVC alloc] init];
-        coachDetail.coachID = [_coachData.coachArray[indexPath.row] id];
+        YRTeacherDetailController *coachDetail = [[YRTeacherDetailController alloc] init];
+        coachDetail.teacherID = [_coachData.coachArray[indexPath.row] id];
         [self.navigationController pushViewController:coachDetail animated:YES];
-//        YRTeacherDetailController *coachDetail = [[YRTeacherDetailController alloc] init];
-//        coachDetail.coachID = [_coachData.coachArray[indexPath.row] id];
-//        [self.navigationController pushViewController:coachDetail animated:YES];
     }else{
         YRUserDetailController *userDetail = [[YRUserDetailController alloc] init];
         userDetail.userID = [_studentData.stuArray[indexPath.row] id];
@@ -257,7 +253,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         
         _schoolData = [[SchoolDataSource alloc]init];
         _schoolData.table = _schoolTable;
-        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude,@"lng":KUserLocation.longitude,@"sort":@"0",@"address":@"",@"key":@""};
+        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"29.559123",@"lng":KUserLocation.longitude?:@"106.555023",@"sort":@"0",@"address":@"",@"key":@""};
         [_schoolData getDataWithParameters:parameters];
         _schoolTable.dataSource = _schoolData;
         _schoolTable.tag = NearTableTypeSchool;
@@ -276,7 +272,8 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         _coachData = [[CoachDataSource alloc] init];
         _coachData.table = _coachTable;
         _coachTable.dataSource = _coachData;
-        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude,@"lng":KUserLocation.longitude,@"sort":@"0",@"address":@"",@"key":@""};
+        //106.555023,29.559123
+        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"29.559123",@"lng":KUserLocation.longitude?:@"106.555023",@"sort":@"0",@"address":@"",@"key":@""};
         [_coachData getDataWithParameters:parameters];
         _coachTable.tag = NearTableTypeCoach;
         _coachTable.delegate = self;

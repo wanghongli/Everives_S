@@ -12,15 +12,16 @@
 #import "NSString+Tools.h"
 #import "RequestData.h"
 #import "YRReservationModel.h"
-static NSInteger sectionNum = 8;//一列的横数  时段
-static NSInteger rowNum = 8; //一横的列数  日期
+static NSInteger sectionNum = 8;//竖着的那种
+static NSInteger rowNum = 8; //横着的那种
 @interface YRReservationDateVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
     NSArray *_dateArray;//显示在顶部不带年份
-    NSArray *_dateAyyayWithYear;//用于返回数据,带年份
+    NSArray *_dateAyyayWithYear;//带年份
     NSArray *_timeStartArray;
     NSArray *_timeEndArray;
     NSArray *_modelArray;
     NSMutableArray *_result;
+    NSMutableArray *_cannotSelected;
     
 }
 @property(nonatomic,strong) UICollectionView *collectionView;
@@ -30,15 +31,16 @@ static NSInteger rowNum = 8; //一横的列数  日期
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(commitBtnClick:)];
     [self.view addSubview:self.collectionView];
-    [self initTime];
+    [self initSome];
     [self getData];
     
 }
--(void)initTime{
+-(void)initSome{
     _result = @[].mutableCopy;
+    _cannotSelected = @[].mutableCopy;
     NSMutableArray *days = @[].mutableCopy;
     NSMutableArray *days2 = @[].mutableCopy;
-    for (NSInteger i = 0; i<rowNum; i++) {
+    for (NSInteger i = 0; i<sectionNum; i++) {
         NSDate *firstDay = [[NSDate date] dateByAddingTimeInterval:3600*24*i];
         NSString *dayStr = [NSString dateStringWithInterval:[NSString stringWithFormat:@"%f",firstDay.timeIntervalSince1970]];
         [days2 addObject:dayStr];
@@ -52,15 +54,19 @@ static NSInteger rowNum = 8; //一横的列数  日期
     _timeEndArray = @[@"10:00",@"11:00",@"12:00",@"15:00",@"16:00",@"17:00",@"18:00"];
 }
 -(void)commitBtnClick:(UIBarButtonItem*)sender{
-    NSLog(@"%@",[_result mj_JSONString]);
-    [_result removeAllObjects];
+    NSMutableArray *resultDate=@[].mutableCopy;
+    [_result enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSDictionary *dic = @{@"date":_dateAyyayWithYear[((NSIndexPath*)obj).section-1],@"time":[NSString stringWithFormat:@"%li",((NSIndexPath*)obj).row]};
+        [resultDate addObject:dic];
+    }];
+    NSLog(@"%@",[resultDate mj_JSONString]);
     YRReservationChoosePlaceVC *choosePlace = [[YRReservationChoosePlaceVC alloc]init];
     [self.navigationController pushViewController:choosePlace animated:YES];
 }
 -(void)getData{
     [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_AVAILTIME,_coachID] parameters:nil complete:^(NSDictionary *responseDic) {
-        NSLog(@"%@",responseDic);
         _modelArray = [YRReservationModel mj_objectArrayWithKeyValuesArray:responseDic];
+        [_cannotSelected removeAllObjects];
         [self.collectionView reloadData];
     } failed:^(NSError *error) {
         NSLog(@"%@",error);
@@ -91,32 +97,37 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     }else{
         [_modelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YRReservationModel *model = (YRReservationModel*)obj;
-            if([model.date isEqualToString:_dateAyyayWithYear[indexPath.row-1]]){
-                if ([model.time integerValue] == indexPath.section) {
+            if([model.date isEqualToString:_dateAyyayWithYear[indexPath.section-1]]){
+                if ([model.time integerValue] == indexPath.row) {
                     cell.priceLabel.text = [model.price isEqualToString:@"-1"]?@"已被预约":[NSString stringWithFormat:@"￥%@",model.price];
                 }
             }
         }];
     }
+    if (([cell.priceLabel.text isEqualToString:@""] ||[cell.priceLabel.text isEqualToString:@"-1"])
+        ||(indexPath.section == 0||indexPath.row == 0)) {
+        [_cannotSelected addObject:indexPath];
+    }
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0 ||indexPath.section == 0) {
+    if ([_cannotSelected containsObject:indexPath]) {
         return;
     }
-    YRDateCell *cell = (YRDateCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    if ([cell.priceLabel.text isEqualToString:@""]||!cell.priceLabel.text||[cell.priceLabel.text isEqualToString:@"-1"]) {
+    [_result addObject:indexPath];
+    
+}
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if ([_cannotSelected containsObject:indexPath]) {
         return;
     }
-    NSDictionary *dic = @{@"date":_dateAyyayWithYear[indexPath.row-1],@"time":[NSString stringWithFormat:@"%li",indexPath.section]};
-    if ([_result containsObject:dic]) {
-        [_result removeObject:dic];
-    }
-    [_result addObject:dic];
+    [_result removeObject:indexPath];
 }
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if ([_cannotSelected containsObject:indexPath]) {
+        return NO;
+    }
     return YES;
 }
 #pragma mark - Getters
@@ -126,7 +137,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        layout.itemSize = CGSizeMake(kScreenWidth/6, ([[UIScreen mainScreen]bounds].size.height-64)/rowNum);
+        layout.itemSize = CGSizeMake(kScreenWidth/6, ([[UIScreen mainScreen]bounds].size.height-64)/sectionNum);
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, [[UIScreen mainScreen]bounds].size.height) collectionViewLayout:layout];
         [_collectionView registerClass:[YRDateCell class] forCellWithReuseIdentifier:kCellIdentifier];
         _collectionView.backgroundColor = [UIColor whiteColor];

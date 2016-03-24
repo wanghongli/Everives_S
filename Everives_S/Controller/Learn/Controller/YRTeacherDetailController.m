@@ -13,7 +13,7 @@
 #import "YRTeacherImageCell.h"
 #import "YRTeacherHeadView.h"
 #import "YRTeacherSectionSecoView.h"
-
+#import "YRReservationDateVC.h"
 #import "YRTeacherDownView.h"
 @interface YRTeacherDetailController () <UITableViewDelegate,UITableViewDataSource,YRTeacherDownViewDelegate>
 
@@ -124,7 +124,9 @@
     if (btnTag == 1) {//关注
         
     }else{//预约
-    
+        YRReservationDateVC *vc = [[YRReservationDateVC alloc] init];
+        vc.coachID = _teacherID;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

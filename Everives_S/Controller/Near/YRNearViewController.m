@@ -14,12 +14,12 @@
 #import "CoachDataSource.h"
 #import "StudentDataSource.h"
 #import "YRSchoolCelldetailVC.h"
-#import "YRCoachCellDetailVC.h"
 #import "YRFillterBtnView.h"
 #import "YRSchoolModel.h"
 #import "YRPictureModel.h"
 #import "YRCoachModel.h"
 #import "YRUserDetailController.h"
+#import "YRTeacherDetailController.h"
 //定义三个table的类型
 typedef NS_ENUM(NSUInteger,NearTableType){
     NearTableTypeSchool = 1,
@@ -66,11 +66,22 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [_mapView addSubview:self.searchBar];
     [self getDataForMap:1];
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tablewViewReloadData:) name:@"FillterNotification" object:nil];
 }
 
 
 #pragma mark - Private Methods
+//收到筛选信息之后的通知处理
+-(void)tablewViewReloadData:(NSNotification*)notification{
+    NSDictionary *dic = notification.userInfo;
+    if ([dic[@"tabletag"] integerValue] == NearTableTypeSchool) {
+        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude,@"lng":KUserLocation.longitude,@"sort":_schoolFillterView.sort?:@"0",@"address":_schoolFillterView.addr?:@"",@"key":@""};
+        [_schoolData getDataWithParameters:parameters];
+    }else{
+        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude,@"lng":KUserLocation.longitude,@"sort":_coachFillterView.sort?:@"0",@"address":_coachFillterView.addr?:@"",@"key":@""};
+        [_coachData getDataWithParameters:parameters];
+    }
+}
 -(void)getDataForMap:(NSInteger) kind{
     [RequestData GET:SYUDENT_NEARBYPOINT parameters:@{@"kind":[NSNumber numberWithInteger:kind],@"lat":KUserLocation.latitude?:KUserManager.lat,@"lng":KUserLocation.longitude?:KUserManager.lng,@"time":@""} complete:^(NSDictionary *responseDic) {
         switch (kind) {
@@ -218,8 +229,8 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         schoolDetail.placeID = [_schoolData.placeArray[indexPath.row] id];
         [self.navigationController pushViewController:schoolDetail animated:YES];
     }else if(tableView.tag == NearTableTypeCoach){
-        YRCoachCellDetailVC *coachDetail = [[YRCoachCellDetailVC alloc] init];
-        coachDetail.coachID = [_coachData.coachArray[indexPath.row] id];
+        YRTeacherDetailController *coachDetail = [[YRTeacherDetailController alloc] init];
+        coachDetail.teacherID = [_coachData.coachArray[indexPath.row] id];
         [self.navigationController pushViewController:coachDetail animated:YES];
     }else{
         YRUserDetailController *userDetail = [[YRUserDetailController alloc] init];
@@ -242,7 +253,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         
         _schoolData = [[SchoolDataSource alloc]init];
         _schoolData.table = _schoolTable;
-        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude,@"lng":KUserLocation.longitude,@"sort":@0,@"address":@"",@"key":@""};
+        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"29.559123",@"lng":KUserLocation.longitude?:@"106.555023",@"sort":@"0",@"address":@"",@"key":@""};
         [_schoolData getDataWithParameters:parameters];
         _schoolTable.dataSource = _schoolData;
         _schoolTable.tag = NearTableTypeSchool;
@@ -261,7 +272,8 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         _coachData = [[CoachDataSource alloc] init];
         _coachData.table = _coachTable;
         _coachTable.dataSource = _coachData;
-        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:KUserManager.lat,@"lng":KUserLocation.longitude?:KUserManager.lng,@"sort":@0,@"address":@"",@"key":@""};
+        //106.555023,29.559123
+        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"29.559123",@"lng":KUserLocation.longitude?:@"106.555023",@"sort":@"0",@"address":@"",@"key":@""};
         [_coachData getDataWithParameters:parameters];
         _coachTable.tag = NearTableTypeCoach;
         _coachTable.delegate = self;
@@ -295,12 +307,14 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 -(YRFillterBtnView *)schoolFillterView{
     if (!_schoolFillterView) {
         _schoolFillterView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式"]];
+        _schoolFillterView.tag = 1;
     }
     return _schoolFillterView;
 }
 -(YRFillterBtnView *)coachFillterView{
     if (!_coachFillterView) {
         _coachFillterView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式"]];
+        _coachFillterView.tag = 2;
     }
     return _coachFillterView;
 }

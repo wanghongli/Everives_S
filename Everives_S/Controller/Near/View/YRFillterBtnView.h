@@ -11,6 +11,6 @@
 @interface YRFillterBtnView : UIView
 @property(nonatomic,strong) NSArray *itemArrs;
 @property(nonatomic,strong) NSString *addr;//返回选择后的地址
-@property(nonatomic,assign) NSInteger sort;//返回选择后的排序方式
+@property(nonatomic,assign) NSString *sort;//返回选择后的排序方式
 -(instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray*)titles;
 @end

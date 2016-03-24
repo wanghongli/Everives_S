@@ -33,7 +33,7 @@
         }
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
         self.layer.borderWidth = 1;
-        _itemArrs = @[@[@[@"重庆",@"上海",@"北京"],@[@"南岸",@"江北",@"渝北",@"渝中",@"北碚",@"巴南",@"沙坪坝"]],
+        _itemArrs = @[@[@[@"重庆"],@[@"南岸",@"江北",@"渝北",@"渝中",@"北碚",@"巴南",@"沙坪坝"]],
                         @[@[@"人气最高",@"长得最帅",@"评分最高"]]];
     }
     return self;
@@ -65,12 +65,16 @@
         [self.superview addSubview:self.pullView];
     }else{
         ishiden = YES;
+        //如果全部选择了有效数据
         if (![self.pullView.selectedArray containsObject:@-1]) {
             NSString *title = [NSString string];
             for (NSInteger i =0; i<self.pullView.selectedArray.count; i++) {
                 title = [title stringByAppendingString:_itemArrs[_whichBtnClicked][i][[self.pullView.selectedArray[i] integerValue]]];
             }
+            _addr = [title substringFromIndex:2];
+            _sort = [_pullView.selectedArray lastObject];
             [sender setTitle:title forState:UIControlStateNormal];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"FillterNotification" object:nil userInfo:@{@"tabletag":[NSNumber numberWithInteger:self.tag]}];
         }
         [self.pullView removeFromSuperview];
     }

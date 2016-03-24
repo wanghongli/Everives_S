@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YRTeacherDetailController : UIViewController
-
+@property(nonatomic,strong) NSString *coachID;
 @end

@@ -10,7 +10,6 @@
 #import "UIView+SDAutoLayout.h"
 #import "UIImageView+WebCache.h"
 #import "YRNameSexView.h"
-#import "NSString+Tools.h"
 #define kImgWHPercent 0.24
 #define kDistance 5
 @interface YRCircleHeadView ()

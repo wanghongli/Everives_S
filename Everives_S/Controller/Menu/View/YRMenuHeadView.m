@@ -8,7 +8,6 @@
 
 #import "YRMenuHeadView.h"
 #import "UIView+SDAutoLayout.h"
-#import "NSString+Tools.h"
 #define kDistace 10
 @interface YRMenuHeadView ()
 @property (nonatomic, strong) UIImageView *headImg;

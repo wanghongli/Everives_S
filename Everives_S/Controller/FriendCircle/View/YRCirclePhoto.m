@@ -10,7 +10,6 @@
 #import "UIImageView+WebCache.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
-#import "NSString+Tools.h"
 #define kQiniuThumbnailParam(scale) ([NSString stringWithFormat:@"?imageMogr2/thumbnail/!%dp", scale])
 
 @implementation YRCirclePhoto

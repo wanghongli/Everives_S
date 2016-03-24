@@ -14,36 +14,45 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="108.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backImg" id="hhb-Mz-vDB">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head_jiaolian" id="hhb-Mz-vDB">
                         <rect key="frame" x="17" y="15" width="80" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016年3月4日 星期五" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="y60-yy-iah">
-                        <rect key="frame" x="116" y="15" width="166" height="21"/>
+                        <rect key="frame" x="116" y="15" width="166" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14：00-16：00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e1z-a4-aGf">
-                        <rect key="frame" x="116" y="35" width="119" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14:00-16:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e1z-a4-aGf">
+                        <rect key="frame" x="116" y="35" width="98" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.79607843137254897" green="0.80000000000000004" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="玉祥驾校南山校区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="90f-gh-d6B">
-                        <rect key="frame" x="116" y="55" width="136" height="21"/>
+                        <rect key="frame" x="116" y="60" width="136" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head_1" id="nGt-Io-Dqw">
+                        <rect key="frame" x="14" y="65" width="35" height="35"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head_2" id="LTm-Fg-0wQ">
+                        <rect key="frame" x="66" y="65" width="35" height="35"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="罗拉尔多" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SRI-Gc-Xeh">
-                        <rect key="frame" x="116" y="74" width="68" height="21"/>
+                        <rect key="frame" x="116" y="78" width="68" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.16470588235294117" green="0.17254901960784313" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -52,13 +61,17 @@
                 <outlet property="addressLabel" destination="90f-gh-d6B" id="JJO-x7-S2W"/>
                 <outlet property="calendarLabel" destination="y60-yy-iah" id="eKK-cM-CNV"/>
                 <outlet property="firstImg" destination="hhb-Mz-vDB" id="rrk-nJ-nVj"/>
+                <outlet property="leftImg" destination="nGt-Io-Dqw" id="tPj-9Y-PMY"/>
                 <outlet property="nameLabel" destination="SRI-Gc-Xeh" id="OwG-Gk-tfJ"/>
+                <outlet property="rightImg" destination="LTm-Fg-0wQ" id="cux-JN-679"/>
                 <outlet property="timeLabel" destination="e1z-a4-aGf" id="NPw-1A-AjK"/>
             </connections>
             <point key="canvasLocation" x="166" y="221.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="backImg" width="280" height="244"/>
+        <image name="head_1" width="33" height="33"/>
+        <image name="head_2" width="33" height="33"/>
+        <image name="head_jiaolian" width="33" height="33"/>
     </resources>
 </document>

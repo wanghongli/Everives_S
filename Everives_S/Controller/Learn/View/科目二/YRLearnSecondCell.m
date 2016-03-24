@@ -7,7 +7,6 @@
 //
 
 #import "YRLearnSecondCell.h"
-
 @implementation YRLearnSecondCell
 
 
@@ -24,10 +23,37 @@
 #pragma mark - 创建视图
 -(void)buildUI
 {
-    self.firstImg.layer.masksToBounds = YES;
-    self.firstImg.layer.cornerRadius = self.firstImg.height/2;
+   
 }
-
+-(void)setTestNum:(NSInteger)testNum
+{
+    [self setCornerRadiusWith:self.firstImg];
+    [self setCornerRadiusWith:self.leftImg];
+    [self setCornerRadiusWith:self.rightImg];
+    
+    if (testNum%2) {
+        self.leftImg.hidden = YES;
+        self.rightImg.hidden = YES;
+    }else{
+        self.leftImg.hidden = NO;
+        self.rightImg.hidden = NO;
+    }
+    
+}
+-(void)setTimeString:(NSString *)timeString
+{
+    _timeString = timeString;
+    CGSize timeSize = [timeString sizeWithFont:self.timeLabel.font maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+    self.timeLabel.frame = CGRectMake(self.timeLabel.x, self.timeLabel.y, timeSize.width+10, self.timeLabel.height);
+    [self setCornerRadiusWith:self.timeLabel];
+}
+-(void)setCornerRadiusWith:(UIView *)corView
+{
+    corView.layer.masksToBounds = YES;
+    corView.layer.cornerRadius = corView.height/2;
+    corView.layer.borderWidth = 1;
+    corView.layer.borderColor = kCOLOR(203, 204, 205).CGColor;
+}
 - (void)awakeFromNib {
     // Initialization code
 }

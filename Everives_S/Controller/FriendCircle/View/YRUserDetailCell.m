@@ -7,7 +7,6 @@
 //
 
 #import "YRUserDetailCell.h"
-#import "NSString+Tools.h"
 
 #define  kTitleColor kCOLOR(118, 118, 118)
 #define kdistance 10

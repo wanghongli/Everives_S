@@ -11,7 +11,6 @@
 #import "UIImageView+WebCache.h"
 #import "YRCircleCellViewModel.h"
 #import "YRWeibo.h"
-#import "NSString+Tools.h"
 #define CZStatusCellMargin 10
 #define CZNameFont [UIFont systemFontOfSize:13]
 #define CZTimeFont [UIFont systemFontOfSize:12]

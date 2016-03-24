@@ -7,7 +7,6 @@
 //
 
 #import "YRNameSexView.h"
-#import "NSString+Tools.h"
 @interface YRNameSexView ()
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UIImageView *sexImg;

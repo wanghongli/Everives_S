@@ -12,4 +12,6 @@
 @property (nonatomic, strong) YRQuestionObject *questionOb;
 @property (nonatomic, strong) void (^answerIsClickBlock)(YRQuestionObject *answerQues);
 
+@property (nonatomic, assign) NSInteger MNCurrentID;
+
 @end

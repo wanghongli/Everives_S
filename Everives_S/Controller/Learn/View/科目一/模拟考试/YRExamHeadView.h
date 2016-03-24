@@ -11,4 +11,7 @@
 @interface YRExamHeadView : UIView
 @property (nonatomic, strong) YRQuestionObject *ques;
 + (CGFloat)examHeadViewHeight:(YRQuestionObject *)ques;
+
+@property (nonatomic, assign) NSInteger MNCurrentID;
+
 @end

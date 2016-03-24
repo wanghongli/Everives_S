@@ -15,7 +15,7 @@
 #import "YRTeacherSectionSecoView.h"
 
 #import "YRTeacherDownView.h"
-@interface YRTeacherDetailController () <UITableViewDelegate,UITableViewDataSource>
+@interface YRTeacherDetailController () <UITableViewDelegate,UITableViewDataSource,YRTeacherDownViewDelegate>
 
 @property (nonatomic ,strong) UITableView *tableView;
 
@@ -36,6 +36,7 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     
     _downView = [[YRTeacherDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), kScreenWidth, 44)];
+    _downView.delegate = self;
     [self.view addSubview:_downView];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -116,15 +117,28 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+#pragma mark - teacherDownView代理
+-(void)teacherDownViewBtnClick:(NSInteger)btnTag
+{
+    if (btnTag == 1) {//关注
+        
+    }else{//预约
+    
+    }
+}
+
 -(UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-24)];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-44)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [self.view addSubview:_tableView];
     }
     return _tableView;
 }
+
+
 
 @end

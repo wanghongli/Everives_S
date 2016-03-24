@@ -61,7 +61,7 @@
 
 //预约部分
 #define STUDENT_AVAILTIME @"/order/availTime/"  //查看可预约时间
-#define STUDENT_AVAILPLACE @"/order/avaliPlace/"  //查看某时段可选场地
-
+#define STUDENT_AVAILPLACE @"/order/availPlace/"  //查看某时段可选场地
+#define STUDENT_ORDER @"/order/order" //提交订单
 
 #endif

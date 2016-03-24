@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YRReservationChoosePlaceVC : UITableViewController
-
+@property(nonatomic,strong) NSArray *timeArray;
+@property(nonatomic,strong) NSString *coachID;
 @end

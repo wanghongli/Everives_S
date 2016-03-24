@@ -20,8 +20,8 @@ static NSInteger rowNum = 8; //横着的那种
     NSArray *_timeStartArray;
     NSArray *_timeEndArray;
     NSArray *_modelArray;
-    NSMutableArray *_result;
-    NSMutableArray *_cannotSelected;
+    NSMutableArray *_result;//元素是indexpath
+    NSMutableArray *_cannotSelected;////元素是indexpath
     
 }
 @property(nonatomic,strong) UICollectionView *collectionView;
@@ -59,8 +59,9 @@ static NSInteger rowNum = 8; //横着的那种
             NSDictionary *dic = @{@"date":_dateAyyayWithYear[((NSIndexPath*)obj).section-1],@"time":[NSString stringWithFormat:@"%li",((NSIndexPath*)obj).row]};
         [resultDate addObject:dic];
     }];
-    NSLog(@"%@",[resultDate mj_JSONString]);
     YRReservationChoosePlaceVC *choosePlace = [[YRReservationChoosePlaceVC alloc]init];
+    choosePlace.timeArray = resultDate;
+    choosePlace.coachID = _coachID;
     [self.navigationController pushViewController:choosePlace animated:YES];
 }
 -(void)getData{

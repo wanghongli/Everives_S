@@ -206,10 +206,9 @@
         self.blockTouchCell(indexPath.row);
 }
 
-
 -(CGFloat)height{
     
-    return [[UIApplication sharedApplication].windows.firstObject bounds].size.height;
+    return kScreenHeight;
 }
 
 

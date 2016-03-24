@@ -12,14 +12,15 @@
 #import "NSString+Tools.h"
 #import "RequestData.h"
 #import "YRReservationModel.h"
-static NSInteger sectionNum = 7;
-static NSInteger rowNum = 6;
-@interface YRReservationDateVC ()<UICollectionViewDelegate,UICollectionViewDataSource>{
+static NSInteger sectionNum = 8;//一列的横数  时段
+static NSInteger rowNum = 8; //一横的列数  日期
+@interface YRReservationDateVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
     NSArray *_dateArray;//显示在顶部不带年份
     NSArray *_dateAyyayWithYear;//用于返回数据,带年份
     NSArray *_timeStartArray;
     NSArray *_timeEndArray;
     NSArray *_modelArray;
+    NSMutableArray *_result;
     
 }
 @property(nonatomic,strong) UICollectionView *collectionView;
@@ -31,24 +32,28 @@ static NSInteger rowNum = 6;
     [self.view addSubview:self.collectionView];
     [self initTime];
     [self getData];
+    
 }
 -(void)initTime{
+    _result = @[].mutableCopy;
     NSMutableArray *days = @[].mutableCopy;
     NSMutableArray *days2 = @[].mutableCopy;
     for (NSInteger i = 0; i<rowNum; i++) {
-        NSDate *firstDay = [[NSDate date] dateByAddingTimeInterval:3600*24*(i-1)];
+        NSDate *firstDay = [[NSDate date] dateByAddingTimeInterval:3600*24*i];
         NSString *dayStr = [NSString dateStringWithInterval:[NSString stringWithFormat:@"%f",firstDay.timeIntervalSince1970]];
         [days2 addObject:dayStr];
         dayStr = [dayStr substringFromIndex:5];
         [days addObject:dayStr];
     }
-    days[1] = @"今天";
+    days[0] = @"今天";
     _dateArray = days.copy;
     _dateAyyayWithYear = days2.copy;
     _timeStartArray = @[@"09:00-",@"10:00-",@"11:00-",@"14:00-",@"15:00-",@"16:00-",@"17:00-"];
     _timeEndArray = @[@"10:00",@"11:00",@"12:00",@"15:00",@"16:00",@"17:00",@"18:00"];
 }
 -(void)commitBtnClick:(UIBarButtonItem*)sender{
+    NSLog(@"%@",[_result mj_JSONString]);
+    [_result removeAllObjects];
     YRReservationChoosePlaceVC *choosePlace = [[YRReservationChoosePlaceVC alloc]init];
     [self.navigationController pushViewController:choosePlace animated:YES];
 }
@@ -70,36 +75,49 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return sectionNum;
 }
-static NSInteger x=0;
+
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     YRDateCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
     cell.priceLabel.text = @"";
     cell.timeStart.text = @"";
     cell.timeEnd.text = @"";
-    if (indexPath.section == 0) { //第一行
-        if (indexPath.row != 0) {
-            cell.priceLabel.text = _dateArray[indexPath.row-1];
+    if (indexPath.row == 0) { //第一行
+        if (indexPath.section != 0) {
+            cell.priceLabel.text = _dateArray[indexPath.section-1];
         }
-    }else if (indexPath.row == 0) {  //第一列
-        cell.timeStart.text = _timeStartArray[indexPath.section-1];
-        cell.timeEnd.text = _timeEndArray[indexPath.section-1];
+    }else if (indexPath.section == 0) {  //第一列
+        cell.timeStart.text = _timeStartArray[indexPath.row-1];
+        cell.timeEnd.text = _timeEndArray[indexPath.row-1];
     }else{
         [_modelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YRReservationModel *model = (YRReservationModel*)obj;
             if([model.date isEqualToString:_dateAyyayWithYear[indexPath.row-1]]){
                 if ([model.time integerValue] == indexPath.section) {
-                    cell.priceLabel.text = model.price;
+                    cell.priceLabel.text = [model.price isEqualToString:@"-1"]?@"已被预约":[NSString stringWithFormat:@"￥%@",model.price];
                 }
             }
-            x++;
-            NSLog(@"%li",x);
         }];
     }
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0 ||indexPath.section == 0) {
+        return;
+    }
+    YRDateCell *cell = (YRDateCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    if ([cell.priceLabel.text isEqualToString:@""]||!cell.priceLabel.text||[cell.priceLabel.text isEqualToString:@"-1"]) {
+        return;
+    }
+    NSDictionary *dic = @{@"date":_dateAyyayWithYear[indexPath.row-1],@"time":[NSString stringWithFormat:@"%li",indexPath.section]};
+    if ([_result containsObject:dic]) {
+        [_result removeObject:dic];
+    }
+    [_result addObject:dic];
+}
+-(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    return YES;
 }
 #pragma mark - Getters
 -(UICollectionView *)collectionView{
@@ -107,15 +125,15 @@ static NSInteger x=0;
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.itemSize = CGSizeMake(kScreenWidth/rowNum, (kScreenHeight-30)/sectionNum);
-        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        layout.itemSize = CGSizeMake(kScreenWidth/6, ([[UIScreen mainScreen]bounds].size.height-64)/rowNum);
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, [[UIScreen mainScreen]bounds].size.height) collectionViewLayout:layout];
         [_collectionView registerClass:[YRDateCell class] forCellWithReuseIdentifier:kCellIdentifier];
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.allowsMultipleSelection = YES;
+        
     }
     return _collectionView;
 }

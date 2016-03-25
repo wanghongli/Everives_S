@@ -51,7 +51,7 @@
     self.tableView.tableFooterView = footView;
     
     
-    [self.view bringSubviewToFront:self.noMsgView];
+//    [self.view bringSubviewToFront:self.noMsgView];
 }
 
 -(void)sartClick:(UIButton *)sender
@@ -63,9 +63,6 @@
     [self.navigationController pushViewController:learnVC animated:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

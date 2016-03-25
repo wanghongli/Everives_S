@@ -10,7 +10,9 @@
 #import "YRLearnCollectionCell.h"
 #import "YRQuestionObject.h"
 #include "YRPracticeDownView.h"
-@interface YRLearnPracticeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+//#import "YRAchievementDetailController.h"
+#import "YRGotScoreController.h"
+@interface YRLearnPracticeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,YRPracticeDownViewDelegate>
 {
     NSInteger _currentID;
 }
@@ -61,6 +63,7 @@
         self.navigationItem.rightBarButtonItems = @[addPlaceBtn,searchPlaceBtn];
     }else if (self.menuTag == 0){//模拟考试
         _downView = [[YRPracticeDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.collectionView.frame), kScreenWidth, 44)];
+        _downView.delegate = self;
         [self.view addSubview:_downView];
 //        _countDownBar = [UIBarButtonItem alloc]initWithTitle:<#(nullable NSString *)#> style:<#(UIBarButtonItemStyle)#> target:<#(nullable id)#> action:<#(nullable SEL)#>
     }else if (self.menuTag == 2){
@@ -175,8 +178,15 @@
     return YES;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+#pragma mark - 模拟考试底部收藏和交卷代理方法
+-(void)praciceDownViewBtnClick:(NSInteger)btnTag
+{
+    if (btnTag == 1) {//收藏
+        
+    }else{//交卷
+        YRGotScoreController *adv = [[YRGotScoreController alloc]init];
+        [self.navigationController pushViewController:adv animated:YES];
+    }
 }
 
 @end

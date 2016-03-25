@@ -93,12 +93,14 @@
 #pragma mark - 驾考法规、考试技巧等点击事件
 -(void)firstMiddleViewBtnClick:(NSInteger)btnTag
 {
+    YRDriveLawController *lawVC = [[YRDriveLawController alloc]init];
+
     if (btnTag == 0) {//驾考法规
-        YRDriveLawController *lawVC = [[YRDriveLawController alloc]init];
-        [self.navigationController pushViewController:lawVC animated:YES];
+        lawVC.title = @"驾考法规";
     }else if (btnTag == 1){//考试技巧
-        
+        lawVC.title = @"考试技巧";
     }
+    [self.navigationController pushViewController:lawVC animated:YES];
 }
 #pragma mark - 我的错题、我的收藏、练习统计、我的成绩等点击事件
 -(void)firstDownBtnClick:(NSInteger)btnTag

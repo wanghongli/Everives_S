@@ -8,6 +8,8 @@
 
 #import "YRDriveLawController.h"
 #import "YRDriveLawCell.h"
+
+#import "YRDriveLawDetailController.h"
 @interface YRDriveLawController ()
 
 @end
@@ -17,7 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"驾考法规";
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"YRDriveLawCell" bundle:nil] forCellReuseIdentifier:@"lawID"];
@@ -60,8 +61,11 @@
     return 60;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    YRDriveLawDetailController *ddc = [[YRDriveLawDetailController alloc]init];
+    [self.navigationController pushViewController:ddc animated:YES];
 }
 
 @end

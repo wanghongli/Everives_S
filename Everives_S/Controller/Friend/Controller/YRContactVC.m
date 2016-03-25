@@ -11,17 +11,21 @@
 #import "ChineseString.h"
 #import "YRUserDetailController.h"
 #import "YRMyCoachVC.h"
+#import "RequestData.h"
+#import "YRChatViewController.h"
 static NSString *cellID = @"cellID";
-@interface YRContactVC (){
+
+@interface YRContactVC(){
     NSArray *_ret;//服务器返回的好友列表
+    NSMutableArray *_selectedArray;
 }
 
-//@property(nonatomic,strong)UISearchBar *searchBar;
 @property(nonatomic,strong)UIButton *myGroup;
 @property(nonatomic,strong)UIButton *myCoach;
 @property(nonatomic,strong)UIView *headerView;
 @property(nonatomic,strong)NSMutableArray *indexArray;//去重后的首字母，右侧导航
 @property(nonatomic,strong)NSMutableArray *letterResultArr;//按照首字母排序后的集合
+@property(nonatomic,strong)YRMyCoachVC *myCoachVC;
 
 @end
 
@@ -29,64 +33,81 @@ static NSString *cellID = @"cellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _selectedArray = @[].mutableCopy;
     self.view.backgroundColor = [UIColor whiteColor];
-    self.clearsSelectionOnViewWillAppear = NO;
-    self.tableView.rowHeight = 50;
+    self.tableView.rowHeight = 60;
     self.tableView.tableHeaderView = self.headerView;
+    self.tableView.tableFooterView = [[UIView alloc] init];
     [self.tableView registerNib:[UINib nibWithNibName:@"YRSearchFriendCell" bundle:nil] forCellReuseIdentifier:cellID];
     if (_isAllowSelected) {
-        [self.tableView setEditing:YES];
+        self.tableView.editing = YES;
         self.tableView.allowsMultipleSelectionDuringEditing = YES;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(completeBtnClickWhenEditing)];
+        self.navigationItem.rightBarButtonItem.enabled = NO;
     }
+    [self getContacts];
     
-    YRUserStatus *user1 = [YRUserStatus new];
-    user1.name = @"叶良辰";
-    YRUserStatus *user2 = [YRUserStatus new];
-    user2.name = @"王尼玛";
-    YRUserStatus *user3 = [YRUserStatus new];
-    user3.name = @"张日天";
-    YRUserStatus *user4 = [YRUserStatus new];
-    user4.name = @"王二狗";
-    YRUserStatus *user5 = [YRUserStatus new];
-    user5.name = @"赵铁柱";
-    YRUserStatus *user6 = [YRUserStatus new];
-    user6.name = @"安鸡啦逼逼";
-    YRUserStatus *user7 = [YRUserStatus new];
-    user7.name = @"林立屌";
-    YRUserStatus *user8 = [YRUserStatus new];
-    user8.name = @"蒙多";
-    YRUserStatus *user9 = [YRUserStatus new];
-    user9.name = @"曹操";
-    YRUserStatus *user10 = [YRUserStatus new];
-    user10.name = @"福尔康";
-    YRUserStatus *user11 = [YRUserStatus new];
-    user11.name = @"艾薇儿";
-    YRUserStatus *user12 = [YRUserStatus new];
-    user12.name = @"泰勒儿";
-    YRUserStatus *user13 = [YRUserStatus new];
-    user13.name = @"天海翼";
-    _ret = @[user1,user2,user3,user4,user5,user6,user7,user8,user9,user10,user11,user12,user13];
-    if (_ret) {
-        self.indexArray = [ChineseString IndexArray:_ret];
-        self.letterResultArr = [ChineseString LetterSortArray:_ret];
-        [self.tableView  reloadData];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (_myCoachVC.selectedCoachName) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
     }
 }
-
+-(void)getContacts{
+    [RequestData GET:STUDENT_FRIENDS parameters:nil complete:^(NSDictionary *responseDic) {
+        _ret = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
+        if (_ret) {
+            self.indexArray = [ChineseString IndexArray:_ret];
+            self.letterResultArr = [ChineseString LetterSortArray:_ret];
+            [self.tableView  reloadData];
+        }
+    } failed:^(NSError *error) {
+        
+    }];
+}
 
 -(void)myGroupBtnClick:(UIButton*)sender{
     
 }
 -(void)myCoachBtnClick:(UIButton*)sender{
-    YRMyCoachVC *coachVC = [[YRMyCoachVC alloc]init];
+    _myCoachVC = [[YRMyCoachVC alloc]init];
     if (_isAllowSelected) {
-        coachVC.isAllowSelected = YES;
+        _myCoachVC.isAllowSelected = YES;
     }
-    [self.navigationController pushViewController:coachVC animated:YES];
+    [self.navigationController pushViewController:_myCoachVC animated:YES];
 }
 -(void)completeBtnClickWhenEditing{
-    
+    NSMutableArray *selectedUserIds = @[].mutableCopy;
+    [_selectedArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *userID = [[[self.letterResultArr objectAtIndex:[obj section]]objectAtIndex:[obj row]] id];
+        [selectedUserIds addObject:@{@"id":userID}];
+    }];
+    NSInteger selectedNum = _selectedArray.count+_myCoachVC.selectedCoachIDArray.count;
+    if (selectedNum == 1) {
+        YRChatViewController *Chat = [[YRChatViewController alloc]init];
+        Chat.conversationType = ConversationType_PRIVATE;
+        Chat.targetId = selectedUserIds.count?[NSString stringWithFormat:@"stu%@",selectedUserIds[0]]:[NSString stringWithFormat:@"tea%@",_myCoachVC.selectedCoachIDArray[0]];
+        Chat.title = _myCoachVC.selectedCoachName?:[[[self.letterResultArr objectAtIndex:[_selectedArray[0] section]] objectAtIndex:[_selectedArray[0] row]] name];
+        //显示聊天会话界面
+        [self.navigationController pushViewController:Chat animated:YES];
+    }else{
+        NSDictionary *dic = @{@"tea":selectedUserIds,@"stu":_myCoachVC.selectedCoachIDArray?:@[]};
+        [RequestData POST:GROUP_GROUP parameters:@{@"data":[dic mj_JSONString]} complete:^(NSDictionary *responseDic) {
+            NSLog(@"%@",responseDic);
+            
+            YRChatViewController *groupChat = [[YRChatViewController alloc]init];
+            groupChat.conversationType = ConversationType_GROUP;
+            groupChat.targetId = responseDic[@"id"];
+            groupChat.title = responseDic[@"name"];
+            
+            //显示聊天会话界面
+            [self.navigationController pushViewController:groupChat animated:YES];
+        } failed:^(NSError *error) {
+            
+        }];
+    }
+    [_selectedArray removeAllObjects];
 }
 #pragma mark - Table view data source
 
@@ -115,23 +136,39 @@ static NSString *cellID = @"cellID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     YRSearchFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cellID) {
+    if (!cell) {
         cell = [[YRSearchFriendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    cell.textLabel.text = [[[self.letterResultArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row] name];
+//    cell.textLabel.text = [[[self.letterResultArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row] name];
+    NSString *avatar = [[[self.letterResultArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row] avatar];
+    NSString *name = [[[self.letterResultArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row] name];
+    [cell configureCellWithAvatar:avatar name:name];
     return cell;
 }
 
 #pragma mark - Table view delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (_isAllowSelected) {
+        if (![_selectedArray containsObject:indexPath]) {
+            [_selectedArray addObject:indexPath];
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        }
         return;
     }
     YRUserDetailController *userDetailVC = [[YRUserDetailController alloc] init];
     userDetailVC.userID = [[[self.letterResultArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row] id];
     [self.navigationController pushViewController:userDetailVC animated:YES];
 }
-
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (_isAllowSelected) {
+        if ([_selectedArray containsObject:indexPath]) {
+            [_selectedArray removeObject:indexPath];
+            if (_selectedArray.count == 0) {
+                self.navigationItem.rightBarButtonItem.enabled = NO;
+            }
+        }
+    }
+}
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
 }
@@ -139,15 +176,7 @@ static NSString *cellID = @"cellID";
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     
 }
-#pragma mark - Getters
-//-(UISearchBar *)searchBar{
-//    if (!_searchBar) {
-//        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth-15, 50)];
-//        _searchBar.delegate = self;
-//        _searchBar.placeholder = @"请输入驾友用户名或手机号码";
-//    }
-//    return _searchBar;
-//}
+
 -(UIButton *)myGroup{
     if (!_myGroup) {
         _myGroup = [[UIButton alloc] initWithFrame:CGRectMake(8, 4, kScreenWidth - 23, 50)];
@@ -180,7 +209,6 @@ static NSString *cellID = @"cellID";
 -(UIView *)headerView{
     if (!_headerView) {
         _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 112)];
-//        [_headerView addSubview:self.searchBar];
         [_headerView addSubview:self.myGroup];
         [_headerView addSubview:self.myCoach];
     }

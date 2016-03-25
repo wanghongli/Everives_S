@@ -13,7 +13,6 @@
 #import "YRAddFriendVC.h"
 #import "YRContactVC.h"
 #import "YRChatViewController.h"
-
 static BOOL addViewIsHidden = YES;
 
 @interface YRFriendViewController ()
@@ -24,12 +23,14 @@ static BOOL addViewIsHidden = YES;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.frostedViewController.panGestureEnabled = NO;
     //设置需要显示哪些类型的会话
     [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE),
                                         @(ConversationType_GROUP),]];
     //设置需要将哪些类型的会话在会话列表中聚合显示
-    [self setCollectionConversationType:@[@(ConversationType_GROUP)]];
+//    [self setCollectionConversationType:@[@(ConversationType_GROUP)]];
     [self addNavItem];
+    
     
 }
 
@@ -42,7 +43,7 @@ static BOOL addViewIsHidden = YES;
 -(void)onSelectedTableRow:(RCConversationModelType)conversationModelType conversationModel:(RCConversationModel *)model atIndexPath:(NSIndexPath *)indexPath
 {
     YRChatViewController *conversationVC = [[YRChatViewController alloc]init];
-    conversationVC.conversationType = ConversationType_PRIVATE;
+    conversationVC.conversationType = model.conversationType;
     conversationVC.targetId = model.targetId;
     conversationVC.title = model.conversationTitle;
     conversationVC.unReadMessage = model.unreadMessageCount;

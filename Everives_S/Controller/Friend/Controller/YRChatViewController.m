@@ -8,6 +8,7 @@
 
 #import "YRChatViewController.h"
 #import "YRUserDetailController.h"
+#import "YRContactVC.h"
 @interface YRChatViewController ()
 
 @end
@@ -17,6 +18,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.navigationController.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[YRContactVC class]]) {
+            NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray: self.navigationController.viewControllers];
+            [allViewControllers removeObjectIdenticalTo: obj];
+            self.navigationController.viewControllers = allViewControllers;
+        }
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

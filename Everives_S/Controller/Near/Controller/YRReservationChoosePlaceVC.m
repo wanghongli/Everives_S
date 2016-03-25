@@ -10,10 +10,14 @@
 #import "RequestData.h"
 #import "YRBriefPlaceModel.h"
 #import "YRChoosePlaceCell.h"
+#import "NSString+Tools.h"
+static NSString *HeaderID = @"headerID";
+
 @interface YRReservationChoosePlaceVC (){
     NSMutableArray *_modelArrays;//元素是对应时段的场地数组
     NSMutableDictionary *_selectedDic;//元素是indexpath
-    NSMutableArray *_parameterArr;
+    NSMutableArray *_parameterArr;//提交给服务器的数组
+    NSArray *_times;
 }
 @end
 
@@ -24,6 +28,7 @@
     _selectedDic = @{}.mutableCopy;
     _modelArrays = @[].mutableCopy;
     _parameterArr = @[].mutableCopy;
+    _times = @[@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"14:00-15:00",@"15:00-16:00",@"16:00-17:00",@"17:00-18:00"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(commitBtnClick:)];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     self.tableView.tableFooterView = [[UIView alloc] init];
@@ -72,15 +77,26 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 20;
+    return 80;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    static NSString *HeaderID = @"headerID";
+    
     UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderID];
     if (!header) {
         header = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:HeaderID];
     }
-    header.textLabel.text = [NSString stringWithFormat:@"%@  %@",_timeArray[section][@"date"],_timeArray[section][@"time"]];
+    NSString *date = _timeArray[section][@"date"];
+    NSString *time = _times[[_timeArray[section][@"time"] integerValue]];
+    NSString *str =[NSString stringWithFormat:@"您已预约%@教练 科目二，时间%@,%@,请选择本次学车场地",_coachName?:@"罗纳尔多",date,time];
+    UIFont *font = [UIFont systemFontOfSize:17];
+    CGSize size = [str sizeWithFont:font maxSize:CGSizeMake(kScreenWidth-16, 100)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(8, (80-size.height)/2, kScreenWidth-16, size.height)];
+    label.font = font;
+    label.text = str;
+    label.lineBreakMode = NSLineBreakByCharWrapping;
+    label.numberOfLines = 0;
+    
+    [header.contentView addSubview:label];
     return header;
 }
 static NSString *reuseID = @"reuseIdentifier";

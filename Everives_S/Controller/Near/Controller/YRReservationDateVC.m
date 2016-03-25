@@ -105,8 +105,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
             }
         }];
     }
-    if (([cell.priceLabel.text isEqualToString:@""] ||[cell.priceLabel.text isEqualToString:@"-1"])
-        ||(indexPath.section == 0||indexPath.row == 0)) {
+    if (indexPath.section == 0||indexPath.row == 0||[cell.priceLabel.text isEqualToString:@"已被预约"]||[cell.priceLabel.text isEqualToString:@""]) {
         [_cannotSelected addObject:indexPath];
     }
     return cell;

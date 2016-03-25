@@ -83,7 +83,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     }
 }
 -(void)getDataForMap:(NSInteger) kind{
-    [RequestData GET:SYUDENT_NEARBYPOINT parameters:@{@"kind":[NSNumber numberWithInteger:kind],@"lat":KUserLocation.latitude?:KUserManager.lat,@"lng":KUserLocation.longitude?:KUserManager.lng,@"time":@""} complete:^(NSDictionary *responseDic) {
+    [RequestData GET:STUDENT_NEARBYPOINT parameters:@{@"kind":[NSNumber numberWithInteger:kind],@"lat":KUserLocation.latitude?:KUserManager.lat,@"lng":KUserLocation.longitude?:KUserManager.lng,@"time":@""} complete:^(NSDictionary *responseDic) {
         switch (kind) {
             case 1:{
                 _schoolForMap = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];

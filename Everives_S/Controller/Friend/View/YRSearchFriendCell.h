@@ -11,5 +11,5 @@
 @interface YRSearchFriendCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UILabel *name;
-
+-(void) configureCellWithAvatar:(NSString*) avatar name:(NSString*)name;
 @end

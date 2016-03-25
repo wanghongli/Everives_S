@@ -11,4 +11,5 @@
 @interface YRReservationChoosePlaceVC : UITableViewController
 @property(nonatomic,strong) NSArray *timeArray;
 @property(nonatomic,strong) NSString *coachID;
+@property(nonatomic,strong) NSString *coachName;
 @end

@@ -7,16 +7,18 @@
 //
 
 #import "YRSearchFriendCell.h"
-
+#import <UIImageView+WebCache.h>
 @implementation YRSearchFriendCell
 
 - (void)awakeFromNib {
     // Initialization code
     _avatar.layer.masksToBounds = YES;
     _avatar.layer.cornerRadius = 25;
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
-
+-(void)configureCellWithAvatar:(NSString *)avatar name:(NSString *)name{
+    [_avatar sd_setImageWithURL:[NSURL URLWithString:avatar]];
+    _name.text = name;
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

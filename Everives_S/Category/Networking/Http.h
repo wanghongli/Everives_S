@@ -38,7 +38,7 @@
 #define STUDENT_PLACES @"/student/place" //场地列表
 #define STUDENT_CONTACT @"/student/contact"  //手机通讯录
 #define STUDENT_TEACHERS @"/student/teachers"  //关注的教练
-#define SYUDENT_NEARBYPOINT @"/student/nearbyPoint" //获取地图描点
+#define STUDENT_NEARBYPOINT @"/student/nearbyPoint" //获取地图描点
 
 //七牛token
 #define USER_QINIUTOKEN @"/common/qiniu" //获取七牛token
@@ -63,5 +63,8 @@
 #define STUDENT_AVAILTIME @"/order/availTime/"  //查看可预约时间
 #define STUDENT_AVAILPLACE @"/order/availPlace/"  //查看某时段可选场地
 #define STUDENT_ORDER @"/order/order" //提交订单
+
+//群聊部分
+#define GROUP_GROUP @"/group/group" // 创建群
 
 #endif

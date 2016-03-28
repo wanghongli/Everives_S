@@ -11,6 +11,7 @@
 #import "YRBriefPlaceModel.h"
 #import "YRChoosePlaceCell.h"
 #import "NSString+Tools.h"
+#import "YRReservationDateVC.h"
 static NSString *HeaderID = @"headerID";
 
 @interface YRReservationChoosePlaceVC (){
@@ -61,6 +62,16 @@ static NSString *HeaderID = @"headerID";
     NSLog(@"%@",_selectedDic);
     [RequestData POST:STUDENT_ORDER parameters:parameters complete:^(NSDictionary *responseDic) {
         NSLog(@"%@",responseDic);
+        [MBProgressHUD showSuccess:@"预约成功" toView:self.view];
+        NSMutableArray *array = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+        [self.navigationController.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isKindOfClass:[YRReservationDateVC class]]) {
+                [array removeObject:obj];
+            }
+            
+        }];
+        self.navigationController.viewControllers = array;
+        [self.navigationController popViewControllerAnimated:YES];
     } failed:^(NSError *error) {
         
     }];

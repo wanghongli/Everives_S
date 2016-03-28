@@ -34,6 +34,10 @@
     cellNmaes = @[@"我的预约",@"我的钱包",@"我的评价",@"活动通知",@"信息认证"];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick:)];
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear: animated];
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+}
 - (void)backBtnClick:(UIBarButtonItem*)sender{
     [self.frostedViewController presentMenuViewController];
 }
@@ -103,7 +107,6 @@
     }
     cell.textLabel.text = cellNmaes[(indexPath.section-1)*3+indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSLog(@"%@",cell);
     return cell;
 }
 

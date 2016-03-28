@@ -10,6 +10,7 @@
 #import "YRMoneyDetailModel.h"
 #import "RequestData.h"
 #import "YRMoneyDetailCell.h"
+static NSString *cellID = @"cellID";
 @interface YRStudentMoneyDetailVC (){
     NSArray *_models;
 }
@@ -23,19 +24,19 @@
     self.clearsSelectionOnViewWillAppear = NO;
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.rowHeight = 50;
+    [self.tableView registerNib:[UINib nibWithNibName:@"YRMoneyDetailCell" bundle:nil] forCellReuseIdentifier:cellID];
     [self getData];
 }
 
 -(void)getData{
     [RequestData GET:STUDENT_MONEY parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
-        NSLog(@"%@",responseDic);
         _models = [YRMoneyDetailModel mj_objectArrayWithKeyValuesArray:responseDic];
         [self.tableView reloadData];
     } failed:^(NSError *error) {
         
     }];
 }
-static NSString *cellID = @"cellID";
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YRMoneyDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {

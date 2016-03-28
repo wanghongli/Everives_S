@@ -248,6 +248,8 @@
     
     [RequestData PUT:STUDENT_INFO parameters:_bodyDic complete:^(NSDictionary *responseDic) {
         MyLog(@"%@",responseDic);
+        KUserManager.name = _nickNameText.text;
+        KUserManager.sign = _signText.text;
         [MBProgressHUD showSuccess:@"修改成功" toView:GET_WINDOW];
         [self.navigationController popViewControllerAnimated:YES];
     } failed:^(NSError *error) {

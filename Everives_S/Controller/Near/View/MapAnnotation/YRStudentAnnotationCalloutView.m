@@ -1,27 +1,27 @@
 //
-//  KGFishingPointCalloutView.m
+// YRStudentAnnotationCalloutView.m
 //  SkyFish
 //
 //  Created by darkclouds on 15/11/20.
 //  Copyright © 2015年 SkyFish. All rights reserved.
 //
 #import "UIImageView+WebCache.h"
-#import "YRAnnotationCalloutView.h"
+#import "YRStudentAnnotationCalloutView.h"
 #import "DistanceToolFuc.h"
 #import "YRSchoolModel.h"
 #import "YRPictureModel.h"
-#import "YRStarsView.h"
+#import "NSString+Tools.h"
 #define kArrorHeight        10
 
-@interface YRAnnotationCalloutView ()
+@interface YRStudentAnnotationCalloutView ()
 @property(nonatomic,strong) UIImageView *imageView;
 @property(nonatomic,strong) UILabel *name;
-@property(nonatomic,strong) YRStarsView *stars;
 @property(nonatomic,strong) UILabel *address;
 @property(nonatomic,strong) UILabel *distance;
+@property(nonatomic,strong) UILabel *introLabel;
 
 @end
-@implementation YRAnnotationCalloutView
+@implementation YRStudentAnnotationCalloutView
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
         self.backgroundColor = [UIColor clearColor];
@@ -31,9 +31,9 @@
 -(void)buildUI{
     [self addSubview:self.imageView];
     [self addSubview:self.name];
-    [self addSubview:self.stars];
-    [self addSubview:self.address];
-    [self addSubview:self.distance];
+    [self addSubview:self.introLabel];
+//    [self addSubview:self.address];
+//    [self addSubview:self.distance];
 }
 //绘制calloutView的背景
 - (void)drawRect:(CGRect)rect
@@ -88,18 +88,28 @@
 }
 -(UILabel *)name{
     if (!_name) {
-        _name = [[UILabel alloc] initWithFrame:CGRectMake(94, 4, 100, 20)];
+        _name = [[UILabel alloc] initWithFrame:CGRectMake(94, 24, 100, 20)];
         _name.font = [UIFont systemFontOfSize:17];
         _name.text = _namestr;
     }
     return _name;
 }
--(YRStarsView *)stars{
-    if (!_stars) {
-        _stars = [[YRStarsView alloc] initWithFrame:CGRectMake(94, 26, 100, 30) score:[_scorestr integerValue] starWidth:16 intervel:3 needLabel:YES];
+
+
+-(UILabel *)introLabel{
+    if (!_introLabel) {
+        _introLabel = [[UILabel alloc] init];
+        UIFont *font = [UIFont systemFontOfSize:13];
+        CGSize size = [_intro sizeWithFont:font maxSize:CGSizeMake(kScreenWidth - 98, 100)];
+        _introLabel.font = font;
+        _introLabel.text = _intro;
+        _introLabel.numberOfLines = 0;
+        _introLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        _introLabel.frame = CGRectMake(94, 50, size.width, size.height);
     }
-    return _stars;
+    return _introLabel;
 }
+/*
 -(UILabel *)address{
     if (!_address) {
         _address = [[UILabel alloc] initWithFrame:CGRectMake(94, 58, 100, 20)];
@@ -115,6 +125,5 @@
         _distance.text = _distancestr;
     }
     return _distance;
-}
-
+}*/
 @end

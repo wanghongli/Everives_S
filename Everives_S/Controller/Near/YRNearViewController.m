@@ -99,7 +99,6 @@ static NSString *studentCellID = @"YRStudentTableCellID";
                 _coachForMap = [YRCoachModel mj_objectArrayWithKeyValuesArray:responseDic];
                 [_coachForMap enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     [obj setCoordinate:CLLocationCoordinate2DMake([[obj lat] doubleValue],[[obj lng] doubleValue])];
-//                    [obj setImaageurl:[obj avatar]];
                 }];
                 break;
             }
@@ -107,7 +106,6 @@ static NSString *studentCellID = @"YRStudentTableCellID";
                 _stuForMap = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
                 [_stuForMap enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     [obj setCoordinate:CLLocationCoordinate2DMake([[obj lat] doubleValue],[[obj lng] doubleValue])];
-//                    [obj setImaageurl:[obj avatar]];
                 }];
                 break;
             }
@@ -116,7 +114,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         }
         [self addAnnotationswithType:kind];
     } failed:^(NSError *error) {
-        
+        NSLog(@"%@",error);
     }];
 }
 

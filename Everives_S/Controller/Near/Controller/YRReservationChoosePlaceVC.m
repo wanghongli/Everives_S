@@ -57,7 +57,7 @@ static NSString *HeaderID = @"headerID";
         NSDictionary *dic = @{@"date":obj[@"date"],@"time":obj[@"time"],@"place":placeID};
         [_parameterArr addObject:dic];
     }];
-    NSDictionary *parameters = @{@"id":_coachID,@"partner":@"0",@"info":[_parameterArr mj_JSONString]};
+    NSDictionary *parameters = @{@"id":_coachID,@"partner":@"0",@"info":[_parameterArr mj_JSONString],@"kind":@"0"};
     NSLog(@"%@",_selectedDic);
     [RequestData POST:STUDENT_ORDER parameters:parameters complete:^(NSDictionary *responseDic) {
         NSLog(@"%@",responseDic);

@@ -47,7 +47,7 @@
     
     _notiBtn = [[UIButton alloc]init];
     [_notiBtn addTarget:self action:@selector(notiClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_notiBtn setImage:[UIImage imageNamed:kPLACEHHOLD_IMG] forState:UIControlStateNormal];
+    [_notiBtn setImage:[UIImage imageNamed:@"alarm_img"] forState:UIControlStateNormal];
     [self addSubview:_notiBtn];
     
     UIButton *loginbtn = [[UIButton alloc]init];

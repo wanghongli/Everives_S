@@ -185,13 +185,15 @@
 		164A8C961C8D23F600857638 /* YRMyCommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8C951C8D23F600857638 /* YRMyCommentsTableViewController.m */; };
 		164A8C9A1C8D248300857638 /* YRMyCommentCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8C981C8D248300857638 /* YRMyCommentCellTableViewCell.m */; };
 		164A8C9B1C8D248300857638 /* YRMyCommentCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8C991C8D248300857638 /* YRMyCommentCellTableViewCell.xib */; };
-		164A8CA51C8D545300857638 /* YRMyProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CA31C8D545300857638 /* YRMyProgressViewController.m */; };
-		164A8CA61C8D545300857638 /* YRMyProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8CA41C8D545300857638 /* YRMyProgressViewController.xib */; };
 		164A8CA91C8D65A200857638 /* YRNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CA81C8D65A200857638 /* YRNotificationViewController.m */; };
 		164A8CAD1C8D65EC00857638 /* YRCertificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CAB1C8D65EC00857638 /* YRCertificationViewController.m */; };
 		164A8CAE1C8D65EC00857638 /* YRCertificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8CAC1C8D65EC00857638 /* YRCertificationViewController.xib */; };
 		164A8CB21C8D729700857638 /* YRActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CB01C8D729700857638 /* YRActivityTableViewCell.m */; };
 		164A8CB31C8D729700857638 /* YRActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8CB11C8D729700857638 /* YRActivityTableViewCell.xib */; };
+		1665D0E61CA8C9030064A103 /* YRStudentMoneyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1665D0E51CA8C9030064A103 /* YRStudentMoneyDetailVC.m */; };
+		1665D0E91CA8C94E0064A103 /* YRMoneyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1665D0E81CA8C94E0064A103 /* YRMoneyDetailModel.m */; };
+		1665D0ED1CA8CCED0064A103 /* YRMoneyDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1665D0EB1CA8CCED0064A103 /* YRMoneyDetailCell.m */; };
+		1665D0EE1CA8CCED0064A103 /* YRMoneyDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1665D0EC1CA8CCED0064A103 /* YRMoneyDetailCell.xib */; };
 		166939FA1C9A3EAC00C7ECF2 /* Pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 166939F81C9A3EAC00C7ECF2 /* Pinyin.c */; };
 		166939FD1C9A3F1D00C7ECF2 /* ChineseString.m in Sources */ = {isa = PBXBuildFile; fileRef = 166939FC1C9A3F1D00C7ECF2 /* ChineseString.m */; };
 		16693A001C9A89AB00C7ECF2 /* YRSchoolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 166939FF1C9A89AB00C7ECF2 /* YRSchoolModel.m */; };
@@ -578,9 +580,6 @@
 		164A8C971C8D248300857638 /* YRMyCommentCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyCommentCellTableViewCell.h; sourceTree = "<group>"; };
 		164A8C981C8D248300857638 /* YRMyCommentCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyCommentCellTableViewCell.m; sourceTree = "<group>"; };
 		164A8C991C8D248300857638 /* YRMyCommentCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRMyCommentCellTableViewCell.xib; sourceTree = "<group>"; };
-		164A8CA21C8D545300857638 /* YRMyProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyProgressViewController.h; sourceTree = "<group>"; };
-		164A8CA31C8D545300857638 /* YRMyProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyProgressViewController.m; sourceTree = "<group>"; };
-		164A8CA41C8D545300857638 /* YRMyProgressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRMyProgressViewController.xib; sourceTree = "<group>"; };
 		164A8CA71C8D65A200857638 /* YRNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRNotificationViewController.h; sourceTree = "<group>"; };
 		164A8CA81C8D65A200857638 /* YRNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRNotificationViewController.m; sourceTree = "<group>"; };
 		164A8CAA1C8D65EC00857638 /* YRCertificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCertificationViewController.h; sourceTree = "<group>"; };
@@ -589,6 +588,13 @@
 		164A8CAF1C8D729700857638 /* YRActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRActivityTableViewCell.h; sourceTree = "<group>"; };
 		164A8CB01C8D729700857638 /* YRActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRActivityTableViewCell.m; sourceTree = "<group>"; };
 		164A8CB11C8D729700857638 /* YRActivityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRActivityTableViewCell.xib; sourceTree = "<group>"; };
+		1665D0E41CA8C9030064A103 /* YRStudentMoneyDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRStudentMoneyDetailVC.h; sourceTree = "<group>"; };
+		1665D0E51CA8C9030064A103 /* YRStudentMoneyDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRStudentMoneyDetailVC.m; sourceTree = "<group>"; };
+		1665D0E71CA8C94E0064A103 /* YRMoneyDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMoneyDetailModel.h; sourceTree = "<group>"; };
+		1665D0E81CA8C94E0064A103 /* YRMoneyDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMoneyDetailModel.m; sourceTree = "<group>"; };
+		1665D0EA1CA8CCED0064A103 /* YRMoneyDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMoneyDetailCell.h; sourceTree = "<group>"; };
+		1665D0EB1CA8CCED0064A103 /* YRMoneyDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMoneyDetailCell.m; sourceTree = "<group>"; };
+		1665D0EC1CA8CCED0064A103 /* YRMoneyDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRMoneyDetailCell.xib; sourceTree = "<group>"; };
 		166939F81C9A3EAC00C7ECF2 /* Pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Pinyin.c; sourceTree = "<group>"; };
 		166939F91C9A3EAC00C7ECF2 /* Pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pinyin.h; sourceTree = "<group>"; };
 		166939FB1C9A3F1D00C7ECF2 /* ChineseString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseString.h; sourceTree = "<group>"; };
@@ -1063,7 +1069,6 @@
 				16D0960C1C8967DE00FF4A81 /* Activities */,
 				16D0960D1C8967DE00FF4A81 /* Certification */,
 				16D0960E1C8967DE00FF4A81 /* Commemts */,
-				16D0960F1C8967DE00FF4A81 /* Progress */,
 				16D096101C8967DE00FF4A81 /* Reservation */,
 				16D096111C8967DE00FF4A81 /* Wallet */,
 			);
@@ -1676,16 +1681,6 @@
 			path = Commemts;
 			sourceTree = "<group>";
 		};
-		16D0960F1C8967DE00FF4A81 /* Progress */ = {
-			isa = PBXGroup;
-			children = (
-				164A8CA21C8D545300857638 /* YRMyProgressViewController.h */,
-				164A8CA31C8D545300857638 /* YRMyProgressViewController.m */,
-				164A8CA41C8D545300857638 /* YRMyProgressViewController.xib */,
-			);
-			path = Progress;
-			sourceTree = "<group>";
-		};
 		16D096101C8967DE00FF4A81 /* Reservation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1707,6 +1702,13 @@
 				164A8C8F1C8D1DCF00857638 /* YRMyWalletViewController.h */,
 				164A8C901C8D1DCF00857638 /* YRMyWalletViewController.m */,
 				164A8C911C8D1DCF00857638 /* YRMyWalletViewController.xib */,
+				1665D0E41CA8C9030064A103 /* YRStudentMoneyDetailVC.h */,
+				1665D0E51CA8C9030064A103 /* YRStudentMoneyDetailVC.m */,
+				1665D0E71CA8C94E0064A103 /* YRMoneyDetailModel.h */,
+				1665D0E81CA8C94E0064A103 /* YRMoneyDetailModel.m */,
+				1665D0EA1CA8CCED0064A103 /* YRMoneyDetailCell.h */,
+				1665D0EB1CA8CCED0064A103 /* YRMoneyDetailCell.m */,
+				1665D0EC1CA8CCED0064A103 /* YRMoneyDetailCell.xib */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -1794,6 +1796,7 @@
 				164A8CAE1C8D65EC00857638 /* YRCertificationViewController.xib in Resources */,
 				1672A6561C8FE5E200AF6272 /* YRSchoolTableCell.xib in Resources */,
 				164A8CB31C8D729700857638 /* YRActivityTableViewCell.xib in Resources */,
+				1665D0EE1CA8CCED0064A103 /* YRMoneyDetailCell.xib in Resources */,
 				1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */,
 				1600EB461C87E65D001919EB /* Assets.xcassets in Resources */,
 				03A25F251C92AF17000196A6 /* YRDriveLawCell.xib in Resources */,
@@ -1816,7 +1819,6 @@
 				16D096191C89699300FF4A81 /* YRReservationCell.xib in Resources */,
 				1672A65B1C8FE60300AF6272 /* YRCoachTableCell.xib in Resources */,
 				031D50361CA1374D000E1303 /* YRAppointmentDetailController.xib in Resources */,
-				164A8CA61C8D545300857638 /* YRMyProgressViewController.xib in Resources */,
 				1624E2991C8E667B009F4E20 /* YRReservationDetailVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1876,6 +1878,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1665D0ED1CA8CCED0064A103 /* YRMoneyDetailCell.m in Sources */,
 				037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */,
 				0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */,
 				03019D201C994E6300895C77 /* YRUserDownView.m in Sources */,
@@ -1910,7 +1913,6 @@
 				1694F5831CA25DF4009A4C21 /* YRReservationChoosePlaceVC.m in Sources */,
 				037D7C061C911F4A00273703 /* YRPerfectUserMsgController.m in Sources */,
 				03A25F241C92AF17000196A6 /* YRDriveLawCell.m in Sources */,
-				164A8CA51C8D545300857638 /* YRMyProgressViewController.m in Sources */,
 				03A8CA5D1CA29B79007AB152 /* YRTeacherDownView.m in Sources */,
 				03228D331CA4D38700890DC6 /* SDLoopProgressView.m in Sources */,
 				03A8CA511CA272F4007AB152 /* YRTeacherSectionSecoView.m in Sources */,
@@ -1946,8 +1948,10 @@
 				1645D8971C9511420058D480 /* YRMapAnnotaionModel.m in Sources */,
 				037F8E1F1C8826750057BF6C /* CWSLoginTextField.m in Sources */,
 				037F8E151C8826750057BF6C /* YRYJFourthClassController.m in Sources */,
+				1665D0E91CA8C94E0064A103 /* YRMoneyDetailModel.m in Sources */,
 				037F8E701C8D5FC50057BF6C /* JKAssetsViewCell.m in Sources */,
 				037D7C2C1C916AE600273703 /* UzysAssetsViewCell.m in Sources */,
+				1665D0E61CA8C9030064A103 /* YRStudentMoneyDetailVC.m in Sources */,
 				16C5458E1C98F20700AE5152 /* YRSearchFriendVC.m in Sources */,
 				037F8EB71C8E6D350057BF6C /* MJPhotoView.m in Sources */,
 				037F8E771C8D5FC50057BF6C /* UIView+JKPicker.m in Sources */,

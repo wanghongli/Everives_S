@@ -122,11 +122,14 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 //融云即时通讯  群组信息
 -(void)getGroupInfoWithGroupId:(NSString *)groupId completion:(void (^)(RCGroup *))completion{
     [RequestData GET:[NSString stringWithFormat:@"%@/%@",GROUP_GROUP,groupId] parameters:nil complete:^(NSDictionary *responseDic) {
-        RCGroup *group= [[RCGroup alloc] init];
-        group.groupId = responseDic[@"id"];
-        group.groupName = responseDic[@"name"];
-        group.portraitUri = responseDic[@"avatar"];
-        return completion(group);
+        if (responseDic.count>0) {
+            RCGroup *group= [[RCGroup alloc] init];
+            group.groupId = responseDic[@"id"];
+            group.groupName = responseDic[@"name"];
+            group.portraitUri = responseDic[@"avatar"];
+            return completion(group);
+        }
+        
     } failed:^(NSError *error) {
     }];
     return completion(nil);

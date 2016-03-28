@@ -10,7 +10,6 @@
 #import "YRReservationViewController.h"
 #import "YRMyWalletViewController.h"
 #import "YRMyCommentsTableViewController.h"
-#import "YRMyProgressViewController.h"
 #import "YRNotificationViewController.h"
 #import "YRCertificationViewController.h"
 #import <UIImageView+WebCache.h>
@@ -30,7 +29,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    cellNmaes = @[@"我的预约",@"我的钱包",@"我的评价",@"我的进度",@"活动通知",@"信息认证"];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    cellNmaes = @[@"我的预约",@"我的钱包",@"我的评价",@"活动通知",@"信息认证"];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick:)];
 }
 - (void)backBtnClick:(UIBarButtonItem*)sender{
@@ -47,7 +48,7 @@
             return 1;
         }
         case 1:{
-            return 4;
+            return 3;
         }
         case 2:{
             return 2;
@@ -65,7 +66,7 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *line = [[UIView alloc] init];
-    line.backgroundColor = [UIColor colorWithWhite:0.726 alpha:1.000];
+    line.backgroundColor = [UIColor colorWithWhite:0.946 alpha:1.000];
     return line;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -75,18 +76,22 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.indentationLevel = 1.5;
+    cell.indentationWidth = 10;
     //个人资料
     if (indexPath.section == 0) {
-        UIImageView *avatar = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 74, 74)];
+        UIImageView *avatar = [[UIImageView alloc] initWithFrame:CGRectMake(18, 8, 74, 74)];
         avatar.layer.masksToBounds = YES;
         avatar.layer.cornerRadius = 37;
+        avatar.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        avatar.layer.borderWidth = 0.5;
         [avatar sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar]];
         
-        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(95, 12, 150, 30)];
+        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(105, 12, 150, 30)];
         name.text = KUserManager.name;
         name.font = [UIFont systemFontOfSize:16];
         
-        UILabel *sign = [[UILabel alloc] initWithFrame:CGRectMake(95, 50, kScreenWidth-110, 30)];
+        UILabel *sign = [[UILabel alloc] initWithFrame:CGRectMake(105, 50, kScreenWidth-110, 30)];
         sign.text = KUserManager.sign;
         sign.font = [UIFont systemFontOfSize:14];
         sign.textColor = [UIColor lightGrayColor];
@@ -96,7 +101,7 @@
         [cell addSubview:sign];
         return cell;
     }
-    cell.textLabel.text = cellNmaes[(indexPath.section-1)*4+indexPath.row];
+    cell.textLabel.text = cellNmaes[(indexPath.section-1)*3+indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSLog(@"%@",cell);
     return cell;
@@ -104,10 +109,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        [self.navigationController pushViewController:[[YRUserDetailController alloc] init] animated:YES];
+        YRUserDetailController *detail = [[YRUserDetailController alloc] init];
+        [self.navigationController pushViewController:detail animated:YES];
         return;
     }
-    switch ((indexPath.section-1)*4+indexPath.row) {
+    switch ((indexPath.section-1)*3+indexPath.row) {
         case 0:
         {
            [self.navigationController pushViewController: [[YRReservationViewController alloc] init] animated:YES] ;
@@ -128,16 +134,10 @@
         case 3:
         {
             [self.navigationController pushViewController:
-             [[YRMyProgressViewController alloc] init] animated:YES] ;
-            break;
-        }
-        case 4:
-        {
-            [self.navigationController pushViewController:
              [[YRNotificationViewController alloc] init] animated:YES] ;
             break;
         }
-        case 5:
+        case 4:
         {
             [self.navigationController pushViewController:
              [[YRCertificationViewController alloc] init] animated:YES] ;

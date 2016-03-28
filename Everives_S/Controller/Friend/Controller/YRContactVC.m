@@ -172,6 +172,27 @@ static NSString *cellID = @"cellID";
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
 }
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除好友";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 从数据源中删除
+    [_letterResultArr removeObject:[[self.letterResultArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row]];
+    // 从列表中删除
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    NSString *friendID = [[[self.letterResultArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row] id];
+    [RequestData DELETE:[NSString stringWithFormat:@"%@/%@",STUDENT_DELETE_FRIENDS,friendID] parameters:nil complete:^(NSDictionary *responseDic) {
+        
+    } failed:^(NSError *error) {
+        
+    }];
+    
+}
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     

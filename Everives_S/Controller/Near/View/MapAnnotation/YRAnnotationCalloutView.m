@@ -103,7 +103,7 @@
 -(UILabel *)address{
     if (!_address) {
         _address = [[UILabel alloc] initWithFrame:CGRectMake(94, 58, 100, 20)];
-        _address.font = [UIFont systemFontOfSize:17];
+        _address.font = [UIFont systemFontOfSize:13];
         _address.text = _addrstr;
     }
     return _address;

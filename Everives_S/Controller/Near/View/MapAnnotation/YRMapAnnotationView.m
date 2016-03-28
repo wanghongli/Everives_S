@@ -16,7 +16,7 @@
 
 @implementation YRMapAnnotationView
 
-#define kCalloutWidth       200.0
+#define kCalloutWidth       210.0
 #define kCalloutHeight      98.0
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

@@ -15,6 +15,8 @@
 @interface YRLearnPracticeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,YRPracticeDownViewDelegate>
 {
     NSInteger _currentID;
+    NSInteger timeInt;
+    NSTimer *timer;
 }
 
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -65,12 +67,48 @@
         _downView = [[YRPracticeDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.collectionView.frame), kScreenWidth, 44)];
         _downView.delegate = self;
         [self.view addSubview:_downView];
-//        _countDownBar = [UIBarButtonItem alloc]initWithTitle:<#(nullable NSString *)#> style:<#(UIBarButtonItemStyle)#> target:<#(nullable id)#> action:<#(nullable SEL)#>
+        _countDownBar = [[UIBarButtonItem alloc]initWithTitle:@"30:00" style:UIBarButtonItemStylePlain target:self action:@selector(downBarBtn)];
+        self.navigationItem.rightBarButtonItem = _countDownBar;
+        timeInt = 30*60;
+        [self getTime];
     }else if (self.menuTag == 2){
         
     }
 }
-
+-(void)getTime
+{
+    timer =  [NSTimer scheduledTimerWithTimeInterval:1.0
+                                              target:self
+                                            selector:@selector(handleMaxShowTimer:)
+                                            userInfo:nil
+                                             repeats:YES];
+    [timer fire];
+}
+-(void)handleMaxShowTimer:(NSTimer *)time
+{
+    timeInt--;
+    int hour = (int)timeInt/3600;
+    NSString *hourString = hour>9 ? [NSString stringWithFormat:@"%d",hour] : [NSString stringWithFormat:@"0%d",hour];
+    int minute = timeInt%3600/60;
+    NSString *minuteString = minute>9 ? [NSString stringWithFormat:@"%d",minute] : [NSString stringWithFormat:@"0%d",minute];
+    int second = timeInt%60%60;
+    NSString *secondString = minute>9 ? [NSString stringWithFormat:@"%d",second] : [NSString stringWithFormat:@"0%d",second];
+    NSString *textString;
+    if (hour<1) {
+        if (minute<1) {
+            textString = [NSString stringWithFormat:@"%@",secondString];
+        }else
+            textString = [NSString stringWithFormat:@"%@:%@",minuteString,secondString];
+    }else{
+        textString = [NSString stringWithFormat:@"%@:%@:%@",hourString,minuteString,secondString];
+    }
+    [_countDownBar setTitle:textString];
+    if (timeInt == 0) {
+        [time invalidate];
+    }
+}
+#pragma mark - 倒计时
+-(void)downBarBtn{}
 #pragma mark - 显示答案
 -(void)showAnswer
 {
@@ -150,7 +188,7 @@
         }
         self.title = [NSString stringWithFormat:@"%ld/1234",ques.id];
     }else if(self.menuTag == 0){
-        _downView.numbString = [NSString stringWithFormat:@"%ld/%ld",ques.id,_msgArray.count];
+        _downView.numbString = [NSString stringWithFormat:@"%ld/%ld",indexPath.row+1,_msgArray.count];
         cell.MNCurrentID = indexPath.row+1;
     }
     return cell;

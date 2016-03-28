@@ -53,6 +53,15 @@
     _getTeacherBtn.layer.masksToBounds = YES;
     _getTeacherBtn.layer.cornerRadius = _getTeacherBtn.height/2;
 }
+-(void)setUserStatus:(YRUserStatus *)userStatus
+{
+    _userStatus = userStatus;
+    if (userStatus.relation) {//好友
+        [_sendMsgBtn setTitle:@"发消息" forState:UIControlStateNormal];
+    }else{//不是好友
+        [_sendMsgBtn setTitle:@"添加好友" forState:UIControlStateNormal];
+    }
+}
 -(void)btnClick:(UIButton *)sender
 {
     [self.delegate userDownViewBtnTag:sender.tag-10];

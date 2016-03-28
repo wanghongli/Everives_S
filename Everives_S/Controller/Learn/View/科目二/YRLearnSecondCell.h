@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *leftImg;
 @property (weak, nonatomic) IBOutlet UIImageView *rightImg;
+@property (weak, nonatomic) IBOutlet UIImageView *changeImg;
 
 @property (nonatomic, assign) NSInteger testNum;
 @property (nonatomic, strong) NSString *timeString;

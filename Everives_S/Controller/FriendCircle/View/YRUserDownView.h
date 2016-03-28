@@ -11,7 +11,8 @@
 
 @end
 #import <UIKit/UIKit.h>
-
+#import "YRUserStatus.h"
 @interface YRUserDownView : UIView
 @property (nonatomic, assign) id<YRUserDownViewDelegate>delegate;
+@property (nonatomic, strong) YRUserStatus *userStatus;
 @end

@@ -17,7 +17,8 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayTable;
 @property (nonatomic, strong) UILabel *topView;
-
+@property (nonatomic, strong) UIView *downView;
+@property (nonatomic, strong) UIButton *goOnBtn;
 @property (nonatomic, strong) YRLearnNoMsgView *noMsgView;
 @end
 
@@ -25,26 +26,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blueColor];
     
     [self buildUI];
 }
 -(void)buildUI
 {
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64)];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64-48-44)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     [self.tableView registerNib:[UINib nibWithNibName:@"YRLearnSecondCell" bundle:nil] forCellReuseIdentifier:@"cellID"];
-    self.tableView.tableFooterView = [[UIView alloc]init];
     
     _topView = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)];
     _topView.text = @"你最近的科目二考试安排";
     _topView.textAlignment = NSTextAlignmentCenter;
     self.tableView.tableHeaderView = _topView;
     
-    [self.view bringSubviewToFront:self.noMsgView];
+    _downView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), kScreenWidth, 44)];
+    _downView.backgroundColor = kCOLOR(246, 247, 248);
+    _goOnBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 4, kScreenWidth-40, 36)];
+    [_goOnBtn setTitle:@"继续安排学车计划" forState:UIControlStateNormal];
+    [_goOnBtn setTitleColor:kCOLOR(51, 51, 51) forState:UIControlStateNormal];
+    [_downView addSubview:_goOnBtn];
+    _goOnBtn.layer.masksToBounds = YES;
+    _goOnBtn.layer.cornerRadius = _goOnBtn.height/2;
+    _goOnBtn.layer.borderWidth = 1;
+    _goOnBtn.layer.borderColor = kCOLOR(51, 51, 51).CGColor;
+    [_goOnBtn addTarget:self action:@selector(goOnLearnCar) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_downView];
+    [self.view bringSubviewToFront:_downView];
+//    [self.view bringSubviewToFront:self.noMsgView];
 }
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 4;
@@ -90,7 +103,11 @@
     YRCertificationController *certificationVC = [[YRCertificationController alloc]init];
     [self.navigationController pushViewController:certificationVC animated:YES];
 }
-
+#pragma mark - 继续安排学车计划
+-(void)goOnLearnCar
+{
+    MyLog(@"%s",__func__);
+}
 -(YRLearnNoMsgView *)noMsgView
 {
     if (!_noMsgView) {

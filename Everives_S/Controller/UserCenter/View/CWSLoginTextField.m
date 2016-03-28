@@ -18,7 +18,7 @@
         // 一定要设置，想要显示搜索框左边的视图，一定要设置左边视图的模式
         self.leftViewMode = UITextFieldViewModeAlways;
         self.backgroundColor = self.superview.backgroundColor;
-        
+        self.delegate = self;
         self.layer.masksToBounds = YES;
         self.layer.cornerRadius = frame.size.height/2;
         self.layer.borderColor = [UIColor colorWithRed:168/255.0 green:168/255.0 blue:168/255.0 alpha:1].CGColor;

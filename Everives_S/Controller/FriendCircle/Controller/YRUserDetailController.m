@@ -22,6 +22,7 @@
     YRUserStatus *_userMsg;
     NSArray *_msgArray;
     NSArray *_userArray;
+    
 }
 @property (nonatomic, strong) YRCircleHeadView *headView;
 @property (nonatomic, strong) YRUserDownView *downView;
@@ -61,6 +62,9 @@
         [_headView sd_setImageWithURL:[NSURL URLWithString:_userMsg.bg] placeholderImage:[UIImage imageNamed:@"backImg"]];
         [_headView setUserMsgWithName:_userMsg.name gender:[_userMsg.gender boolValue] sign:_userMsg.sign];
         _userArray = @[@[_userMsg.age,@"科目二",_userMsg.sign],@[@""]];
+        if (self.userID) {
+            _downView.userStatus = _userMsg;
+        }
         [_tableView reloadData];
     } failed:^(NSError *error) {
         
@@ -134,7 +138,17 @@
 }
 -(void)userDownViewBtnTag:(NSInteger)btnTag
 {
-    if (btnTag == 0) {//发送消息
+    if (btnTag == 0) {
+        if (!_userMsg.relation) {//添加好友
+            [RequestData POST:@"/student/friend" parameters:@{@"id":_userMsg.id} complete:^(NSDictionary *responseDic) {
+                MyLog(@"%@",responseDic);
+                [MBProgressHUD showSuccess:@"请求已发送" toView:GET_WINDOW];
+            } failed:^(NSError *error) {
+                
+            }];
+            return;
+        }
+        //发送消息
         YRChatViewController *conversationVC = [[YRChatViewController alloc]init];
         conversationVC.conversationType = ConversationType_PRIVATE;
         conversationVC.targetId = [NSString stringWithFormat:@"stu%@",_userMsg.id];

@@ -102,20 +102,25 @@
 - (void)loginClick:(CWSPublicButton*)sender
 {
     MyLog(@"%s",__func__);
-    
     [PublicCheckMsgModel loginMsgCheckTell:self.phoneTF.text psw:self.passwordTF.text complete:^(BOOL isSuccess) {
         [RequestData POST:USER_LOGIN parameters:@{@"tel":self.phoneTF.text,@"password":self.passwordTF.text,@"kind":@"0",@"type":@"1"} complete:^(NSDictionary *responseDic) {
             NSLog(@"%@",responseDic);
             YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:responseDic];
             NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];
             [userDefaults setObject:responseDic forKey:@"user"];
+            [userDefaults setObject:@{@"tel":self.phoneTF.text,@"psw":self.passwordTF.text} forKey:@"loginCount"];
             [NSUserDefaults resetStandardUserDefaults];
+        
+            
             KUserManager = user;
             //连接融云服务器
             [[RCIM sharedRCIM] connectWithToken:KUserManager.rongToken success:^(NSString *userId) {
                 // Connect 成功
                 NSLog(@"融云链接成功");
-                [self dismissViewControllerAnimated:YES completion:nil];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [MBProgressHUD showSuccess:@"登陆成功" toView:GET_WINDOW];
+                });
             }
                                           error:^(RCConnectErrorCode status) {
                                               NSLog(@"error_status = %ld",status);

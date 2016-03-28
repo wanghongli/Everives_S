@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Neighborhood_Here.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "Neighborhood_Here.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "Neighborhood_Here@2x.png"
     },
     {
       "idiom" : "universal",
+      "filename" : "Neighborhood_Here@3x.png",
       "scale" : "3x"
     }
   ],

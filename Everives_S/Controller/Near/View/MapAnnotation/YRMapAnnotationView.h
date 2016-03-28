@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <AMap3DMap/MAMapKit/MAAnnotationView.h>
-#import "YRAnnotationCalloutView.h"
 @interface YRMapAnnotationView : MAAnnotationView
-@property (nonatomic, strong) YRAnnotationCalloutView *calloutView;
+@property (nonatomic, strong) UIView *calloutView;
 @end

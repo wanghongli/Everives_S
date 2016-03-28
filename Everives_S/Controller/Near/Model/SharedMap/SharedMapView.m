@@ -62,28 +62,15 @@
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation
 {
     static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-    if ([annotation isKindOfClass:[YRSchoolModel class]]) {
+    if ([annotation isKindOfClass:[YRSchoolModel class]]
+        || [annotation isKindOfClass:[YRUserStatus class]]
+        ||[annotation isKindOfClass:[YRCoachModel class]]) {
         YRMapAnnotationView *annotationView = (YRMapAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
         if (annotationView == nil)
         {
             annotationView = [[YRMapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
         }
-        annotationView.image = [UIImage imageNamed:@"Drawer_Navigation_Neighborhood"];
-        
-        // 设置为NO，用以调用自定义的calloutView
-        annotationView.canShowCallout = NO;
-        
-        // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
-        annotationView.centerOffset = CGPointMake(0, -18);
-        return annotationView;
-    }
-    if ([annotation isKindOfClass:[YRUserStatus class]]||[annotation isKindOfClass:[YRCoachModel class]]) {
-        MAAnnotationView *annotationView = (MAAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
-        if (annotationView == nil)
-        {
-            annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
-        }
-        annotationView.image = [UIImage imageNamed:@"Drawer_Navigation_Neighborhood"];
+        annotationView.image = [UIImage imageNamed:@"Neighborhood_Here"];
         
         // 设置为NO，用以调用自定义的calloutView
         annotationView.canShowCallout = NO;
@@ -110,7 +97,7 @@ updatingLocation:(BOOL)updatingLocation
         //设置地图中心
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            MACoordinateRegion region = MACoordinateRegionMake(center,MACoordinateSpanMake(.25f,.25f));
+            MACoordinateRegion region = MACoordinateRegionMake(center,MACoordinateSpanMake(.15f,.15f));
             _mapView.region = region;
             _mapView.centerCoordinate = center;
         });

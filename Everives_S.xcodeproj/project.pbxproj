@@ -16,7 +16,6 @@
 		03019D231C9954B900895C77 /* YRUserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03019D221C9954B900895C77 /* YRUserDetailCell.m */; };
 		031515371C9A3D7400A2A2F1 /* YREditUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031515351C9A3D7400A2A2F1 /* YREditUserController.m */; };
 		031515381C9A3D7400A2A2F1 /* YREditUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031515361C9A3D7400A2A2F1 /* YREditUserController.xib */; };
-		0315153B1C9A687500A2A2F1 /* YRLearnExamController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0315153A1C9A687500A2A2F1 /* YRLearnExamController.m */; };
 		0315153F1C9A71FC00A2A2F1 /* YRSequencePracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0315153E1C9A71FC00A2A2F1 /* YRSequencePracticeController.m */; };
 		031515431C9A912100A2A2F1 /* YRQuestionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 031515421C9A912100A2A2F1 /* YRQuestionObject.m */; };
 		031515461C9A9B1600A2A2F1 /* YRExamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 031515451C9A9B1600A2A2F1 /* YRExamCell.m */; };
@@ -31,6 +30,22 @@
 		031D50491CA23992000E1303 /* YRTeacherCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 031D50481CA23992000E1303 /* YRTeacherCommentCell.m */; };
 		03228D1D1CA3D51300890DC6 /* YRExamUserHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D1C1CA3D51300890DC6 /* YRExamUserHeadView.m */; };
 		03228D201CA3EF5800890DC6 /* YRCertificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D1F1CA3EF5800890DC6 /* YRCertificationController.m */; };
+		03228D311CA4D38700890DC6 /* SDBallProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D231CA4D38700890DC6 /* SDBallProgressView.m */; };
+		03228D321CA4D38700890DC6 /* SDBaseProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D251CA4D38700890DC6 /* SDBaseProgressView.m */; };
+		03228D331CA4D38700890DC6 /* SDLoopProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D271CA4D38700890DC6 /* SDLoopProgressView.m */; };
+		03228D341CA4D38700890DC6 /* SDPieLoopProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D291CA4D38700890DC6 /* SDPieLoopProgressView.m */; };
+		03228D351CA4D38700890DC6 /* SDPieProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D2B1CA4D38700890DC6 /* SDPieProgressView.m */; };
+		03228D361CA4D38700890DC6 /* SDRotationLoopProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D2E1CA4D38700890DC6 /* SDRotationLoopProgressView.m */; };
+		03228D371CA4D38700890DC6 /* SDTransparentPieProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D301CA4D38700890DC6 /* SDTransparentPieProgressView.m */; };
+		03228D3A1CA4D3A000890DC6 /* SDDemoItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D391CA4D3A000890DC6 /* SDDemoItemView.m */; };
+		03228D3E1CA4DB6500890DC6 /* YRAchievementDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D3D1CA4DB6500890DC6 /* YRAchievementDetailController.m */; };
+		03228D411CA4DBBE00890DC6 /* YRLearnExamController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D401CA4DBBE00890DC6 /* YRLearnExamController.m */; };
+		03228D441CA4E08D00890DC6 /* YRScoreDetailDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D431CA4E08D00890DC6 /* YRScoreDetailDownView.m */; };
+		03228D4A1CA4E92D00890DC6 /* YRScoreDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D491CA4E92D00890DC6 /* YRScoreDetailHeadView.m */; };
+		03228D521CA5251D00890DC6 /* YRGotScoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D511CA5251D00890DC6 /* YRGotScoreController.m */; };
+		03228D551CA52E6300890DC6 /* YRExamScorePercentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D541CA52E6300890DC6 /* YRExamScorePercentView.m */; };
+		03228D591CA5424C00890DC6 /* YRDriveLawController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D581CA5424C00890DC6 /* YRDriveLawController.m */; };
+		03228D5C1CA5427000890DC6 /* YRDriveLawDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D5B1CA5427000890DC6 /* YRDriveLawDetailController.m */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -112,7 +127,6 @@
 		03A25F0F1C925848000196A6 /* YRMenuHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A25F0E1C925848000196A6 /* YRMenuHeadView.m */; };
 		03A25F161C928891000196A6 /* YRYJSecondClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A25F121C928891000196A6 /* YRYJSecondClassController.m */; };
 		03A25F171C928891000196A6 /* YRYJFirstClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A25F151C928891000196A6 /* YRYJFirstClassController.m */; };
-		03A25F201C92ADF8000196A6 /* YRDriveLawController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A25F1F1C92ADF8000196A6 /* YRDriveLawController.m */; };
 		03A25F241C92AF17000196A6 /* YRDriveLawCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A25F221C92AF17000196A6 /* YRDriveLawCell.m */; };
 		03A25F251C92AF17000196A6 /* YRDriveLawCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A25F231C92AF17000196A6 /* YRDriveLawCell.xib */; };
 		03A8CA4B1CA25463007AB152 /* YRTeacherPlaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A8CA4A1CA25463007AB152 /* YRTeacherPlaceCell.m */; };
@@ -232,8 +246,6 @@
 		031515341C9A3D7400A2A2F1 /* YREditUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YREditUserController.h; sourceTree = "<group>"; };
 		031515351C9A3D7400A2A2F1 /* YREditUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YREditUserController.m; sourceTree = "<group>"; };
 		031515361C9A3D7400A2A2F1 /* YREditUserController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YREditUserController.xib; sourceTree = "<group>"; };
-		031515391C9A687500A2A2F1 /* YRLearnExamController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnExamController.h; sourceTree = "<group>"; };
-		0315153A1C9A687500A2A2F1 /* YRLearnExamController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnExamController.m; sourceTree = "<group>"; };
 		0315153D1C9A71FC00A2A2F1 /* YRSequencePracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSequencePracticeController.h; sourceTree = "<group>"; };
 		0315153E1C9A71FC00A2A2F1 /* YRSequencePracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSequencePracticeController.m; sourceTree = "<group>"; };
 		031515411C9A912100A2A2F1 /* YRQuestionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRQuestionObject.h; sourceTree = "<group>"; };
@@ -261,6 +273,39 @@
 		03228D1C1CA3D51300890DC6 /* YRExamUserHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRExamUserHeadView.m; sourceTree = "<group>"; };
 		03228D1E1CA3EF5800890DC6 /* YRCertificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCertificationController.h; sourceTree = "<group>"; };
 		03228D1F1CA3EF5800890DC6 /* YRCertificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCertificationController.m; sourceTree = "<group>"; };
+		03228D221CA4D38700890DC6 /* SDBallProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBallProgressView.h; sourceTree = "<group>"; };
+		03228D231CA4D38700890DC6 /* SDBallProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBallProgressView.m; sourceTree = "<group>"; };
+		03228D241CA4D38700890DC6 /* SDBaseProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseProgressView.h; sourceTree = "<group>"; };
+		03228D251CA4D38700890DC6 /* SDBaseProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseProgressView.m; sourceTree = "<group>"; };
+		03228D261CA4D38700890DC6 /* SDLoopProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLoopProgressView.h; sourceTree = "<group>"; };
+		03228D271CA4D38700890DC6 /* SDLoopProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLoopProgressView.m; sourceTree = "<group>"; };
+		03228D281CA4D38700890DC6 /* SDPieLoopProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPieLoopProgressView.h; sourceTree = "<group>"; };
+		03228D291CA4D38700890DC6 /* SDPieLoopProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPieLoopProgressView.m; sourceTree = "<group>"; };
+		03228D2A1CA4D38700890DC6 /* SDPieProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPieProgressView.h; sourceTree = "<group>"; };
+		03228D2B1CA4D38700890DC6 /* SDPieProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPieProgressView.m; sourceTree = "<group>"; };
+		03228D2C1CA4D38700890DC6 /* SDProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDProgressView.h; sourceTree = "<group>"; };
+		03228D2D1CA4D38700890DC6 /* SDRotationLoopProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRotationLoopProgressView.h; sourceTree = "<group>"; };
+		03228D2E1CA4D38700890DC6 /* SDRotationLoopProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRotationLoopProgressView.m; sourceTree = "<group>"; };
+		03228D2F1CA4D38700890DC6 /* SDTransparentPieProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTransparentPieProgressView.h; sourceTree = "<group>"; };
+		03228D301CA4D38700890DC6 /* SDTransparentPieProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTransparentPieProgressView.m; sourceTree = "<group>"; };
+		03228D381CA4D3A000890DC6 /* SDDemoItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDemoItemView.h; sourceTree = "<group>"; };
+		03228D391CA4D3A000890DC6 /* SDDemoItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDemoItemView.m; sourceTree = "<group>"; };
+		03228D3C1CA4DB6500890DC6 /* YRAchievementDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRAchievementDetailController.h; sourceTree = "<group>"; };
+		03228D3D1CA4DB6500890DC6 /* YRAchievementDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRAchievementDetailController.m; sourceTree = "<group>"; };
+		03228D3F1CA4DBBE00890DC6 /* YRLearnExamController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnExamController.h; sourceTree = "<group>"; };
+		03228D401CA4DBBE00890DC6 /* YRLearnExamController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnExamController.m; sourceTree = "<group>"; };
+		03228D421CA4E08D00890DC6 /* YRScoreDetailDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRScoreDetailDownView.h; sourceTree = "<group>"; };
+		03228D431CA4E08D00890DC6 /* YRScoreDetailDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRScoreDetailDownView.m; sourceTree = "<group>"; };
+		03228D481CA4E92D00890DC6 /* YRScoreDetailHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRScoreDetailHeadView.h; sourceTree = "<group>"; };
+		03228D491CA4E92D00890DC6 /* YRScoreDetailHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRScoreDetailHeadView.m; sourceTree = "<group>"; };
+		03228D501CA5251D00890DC6 /* YRGotScoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRGotScoreController.h; sourceTree = "<group>"; };
+		03228D511CA5251D00890DC6 /* YRGotScoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRGotScoreController.m; sourceTree = "<group>"; };
+		03228D531CA52E6300890DC6 /* YRExamScorePercentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRExamScorePercentView.h; sourceTree = "<group>"; };
+		03228D541CA52E6300890DC6 /* YRExamScorePercentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRExamScorePercentView.m; sourceTree = "<group>"; };
+		03228D571CA5424C00890DC6 /* YRDriveLawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDriveLawController.h; sourceTree = "<group>"; };
+		03228D581CA5424C00890DC6 /* YRDriveLawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRDriveLawController.m; sourceTree = "<group>"; };
+		03228D5A1CA5427000890DC6 /* YRDriveLawDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDriveLawDetailController.h; sourceTree = "<group>"; };
+		03228D5B1CA5427000890DC6 /* YRDriveLawDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRDriveLawDetailController.m; sourceTree = "<group>"; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -422,8 +467,6 @@
 		03A25F121C928891000196A6 /* YRYJSecondClassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJSecondClassController.m; sourceTree = "<group>"; };
 		03A25F141C928891000196A6 /* YRYJFirstClassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJFirstClassController.h; sourceTree = "<group>"; };
 		03A25F151C928891000196A6 /* YRYJFirstClassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJFirstClassController.m; sourceTree = "<group>"; };
-		03A25F1E1C92ADF8000196A6 /* YRDriveLawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDriveLawController.h; sourceTree = "<group>"; };
-		03A25F1F1C92ADF8000196A6 /* YRDriveLawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRDriveLawController.m; sourceTree = "<group>"; };
 		03A25F211C92AF17000196A6 /* YRDriveLawCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDriveLawCell.h; sourceTree = "<group>"; };
 		03A25F221C92AF17000196A6 /* YRDriveLawCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRDriveLawCell.m; sourceTree = "<group>"; };
 		03A25F231C92AF17000196A6 /* YRDriveLawCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRDriveLawCell.xib; sourceTree = "<group>"; };
@@ -635,6 +678,12 @@
 				03FF14771C9FCA0900AEBB75 /* YRPracticeDownView.m */,
 				03228D1B1CA3D51300890DC6 /* YRExamUserHeadView.h */,
 				03228D1C1CA3D51300890DC6 /* YRExamUserHeadView.m */,
+				03228D421CA4E08D00890DC6 /* YRScoreDetailDownView.h */,
+				03228D431CA4E08D00890DC6 /* YRScoreDetailDownView.m */,
+				03228D481CA4E92D00890DC6 /* YRScoreDetailHeadView.h */,
+				03228D491CA4E92D00890DC6 /* YRScoreDetailHeadView.m */,
+				03228D531CA52E6300890DC6 /* YRExamScorePercentView.h */,
+				03228D541CA52E6300890DC6 /* YRExamScorePercentView.m */,
 			);
 			path = "模拟考试";
 			sourceTree = "<group>";
@@ -662,6 +711,54 @@
 				03A8CA5C1CA29B79007AB152 /* YRTeacherDownView.m */,
 			);
 			path = "教练详情";
+			sourceTree = "<group>";
+		};
+		03228D211CA4D38700890DC6 /* SDLoopProgress */ = {
+			isa = PBXGroup;
+			children = (
+				03228D381CA4D3A000890DC6 /* SDDemoItemView.h */,
+				03228D391CA4D3A000890DC6 /* SDDemoItemView.m */,
+				03228D221CA4D38700890DC6 /* SDBallProgressView.h */,
+				03228D231CA4D38700890DC6 /* SDBallProgressView.m */,
+				03228D241CA4D38700890DC6 /* SDBaseProgressView.h */,
+				03228D251CA4D38700890DC6 /* SDBaseProgressView.m */,
+				03228D261CA4D38700890DC6 /* SDLoopProgressView.h */,
+				03228D271CA4D38700890DC6 /* SDLoopProgressView.m */,
+				03228D281CA4D38700890DC6 /* SDPieLoopProgressView.h */,
+				03228D291CA4D38700890DC6 /* SDPieLoopProgressView.m */,
+				03228D2A1CA4D38700890DC6 /* SDPieProgressView.h */,
+				03228D2B1CA4D38700890DC6 /* SDPieProgressView.m */,
+				03228D2C1CA4D38700890DC6 /* SDProgressView.h */,
+				03228D2D1CA4D38700890DC6 /* SDRotationLoopProgressView.h */,
+				03228D2E1CA4D38700890DC6 /* SDRotationLoopProgressView.m */,
+				03228D2F1CA4D38700890DC6 /* SDTransparentPieProgressView.h */,
+				03228D301CA4D38700890DC6 /* SDTransparentPieProgressView.m */,
+			);
+			path = SDLoopProgress;
+			sourceTree = "<group>";
+		};
+		03228D3B1CA4DB1D00890DC6 /* 模拟考试 */ = {
+			isa = PBXGroup;
+			children = (
+				03228D3F1CA4DBBE00890DC6 /* YRLearnExamController.h */,
+				03228D401CA4DBBE00890DC6 /* YRLearnExamController.m */,
+				03228D3C1CA4DB6500890DC6 /* YRAchievementDetailController.h */,
+				03228D3D1CA4DB6500890DC6 /* YRAchievementDetailController.m */,
+				03228D501CA5251D00890DC6 /* YRGotScoreController.h */,
+				03228D511CA5251D00890DC6 /* YRGotScoreController.m */,
+			);
+			path = "模拟考试";
+			sourceTree = "<group>";
+		};
+		03228D561CA5424C00890DC6 /* 法规 */ = {
+			isa = PBXGroup;
+			children = (
+				03228D571CA5424C00890DC6 /* YRDriveLawController.h */,
+				03228D581CA5424C00890DC6 /* YRDriveLawController.m */,
+				03228D5A1CA5427000890DC6 /* YRDriveLawDetailController.h */,
+				03228D5B1CA5427000890DC6 /* YRDriveLawDetailController.m */,
+			);
+			path = "法规";
 			sourceTree = "<group>";
 		};
 		037C92A01C8FFDED005B41BF /* Model */ = {
@@ -1144,16 +1241,14 @@
 		03A25F131C928891000196A6 /* 科目一 */ = {
 			isa = PBXGroup;
 			children = (
+				03228D561CA5424C00890DC6 /* 法规 */,
+				03228D3B1CA4DB1D00890DC6 /* 模拟考试 */,
 				03FF14721C9F866100AEBB75 /* 收藏 */,
 				03FF146C1C9F85CB00AEBB75 /* 顺序练习 */,
 				03A25F141C928891000196A6 /* YRYJFirstClassController.h */,
 				03A25F151C928891000196A6 /* YRYJFirstClassController.m */,
-				03A25F1E1C92ADF8000196A6 /* YRDriveLawController.h */,
-				03A25F1F1C92ADF8000196A6 /* YRDriveLawController.m */,
 				0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */,
 				0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */,
-				031515391C9A687500A2A2F1 /* YRLearnExamController.h */,
-				0315153A1C9A687500A2A2F1 /* YRLearnExamController.m */,
 				0315153D1C9A71FC00A2A2F1 /* YRSequencePracticeController.h */,
 				0315153E1C9A71FC00A2A2F1 /* YRSequencePracticeController.m */,
 			);
@@ -1257,6 +1352,7 @@
 		1600EBA21C88087A001919EB /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				03228D211CA4D38700890DC6 /* SDLoopProgress */,
 				037D7C0D1C916AE600273703 /* CorePhotoPickerVCManager */,
 				037F8EA11C8E6D350057BF6C /* MJPhotoBrowser */,
 				037F8E7B1C8D785C0057BF6C /* MBProgressHUD+ADD */,
@@ -1747,16 +1843,21 @@
 				0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */,
 				03019D201C994E6300895C77 /* YRUserDownView.m in Sources */,
 				16C41B321CA27855004C4F80 /* YRReservationModel.m in Sources */,
+				03228D5C1CA5427000890DC6 /* YRDriveLawDetailController.m in Sources */,
 				16693A031C9A8ACD00C7ECF2 /* YRPictureModel.m in Sources */,
 				162E28621CA3C29600533880 /* YRBriefPlaceModel.m in Sources */,
 				03A25F161C928891000196A6 /* YRYJSecondClassController.m in Sources */,
 				03019D231C9954B900895C77 /* YRUserDetailCell.m in Sources */,
+				03228D371CA4D38700890DC6 /* SDTransparentPieProgressView.m in Sources */,
+				03228D4A1CA4E92D00890DC6 /* YRScoreDetailHeadView.m in Sources */,
 				031515431C9A912100A2A2F1 /* YRQuestionObject.m in Sources */,
 				037D7C2E1C916AE600273703 /* UzysGroupViewCell.m in Sources */,
 				037F8E761C8D5FC50057BF6C /* PhotoAlbumManager.m in Sources */,
 				031D503C1CA14B8A000E1303 /* YRLearnNoMsgView.m in Sources */,
+				03228D521CA5251D00890DC6 /* YRGotScoreController.m in Sources */,
 				037C92B41C901A33005B41BF /* YRFirstDownView.m in Sources */,
 				1624E2981C8E667B009F4E20 /* YRReservationDetailVC.m in Sources */,
+				03228D551CA52E6300890DC6 /* YRExamScorePercentView.m in Sources */,
 				16693A091C9A96C700C7ECF2 /* YRUserLocation.m in Sources */,
 				1672A6411C8FBC6200AF6272 /* YRFriendViewController.m in Sources */,
 				1600EBC81C88087A001919EB /* XBTagTitleModel.m in Sources */,
@@ -1764,12 +1865,14 @@
 				037F8E471C8D2F340057BF6C /* YRAddWeiboController.m in Sources */,
 				031D50461CA23394000E1303 /* YRTeacherDetailCell.m in Sources */,
 				037F8E6D1C8D5FC50057BF6C /* JKAssetsGroupCell.m in Sources */,
+				03228D351CA4D38700890DC6 /* SDPieProgressView.m in Sources */,
 				037F8E8A1C8E63770057BF6C /* YRFriendCircleController.m in Sources */,
 				037F8E731C8D5FC50057BF6C /* JKPhotoBrowserCell.m in Sources */,
 				1694F5831CA25DF4009A4C21 /* YRReservationChoosePlaceVC.m in Sources */,
 				037D7C061C911F4A00273703 /* YRPerfectUserMsgController.m in Sources */,
 				03A25F241C92AF17000196A6 /* YRDriveLawCell.m in Sources */,
 				03A8CA5D1CA29B79007AB152 /* YRTeacherDownView.m in Sources */,
+				03228D331CA4D38700890DC6 /* SDLoopProgressView.m in Sources */,
 				03A8CA511CA272F4007AB152 /* YRTeacherSectionSecoView.m in Sources */,
 				031D50391CA13A56000E1303 /* YRAppointmentHeadView.m in Sources */,
 				03A25F0F1C925848000196A6 /* YRMenuHeadView.m in Sources */,
@@ -1790,10 +1893,13 @@
 				037D7C2A1C916AE600273703 /* UzysAssetsPickerController.m in Sources */,
 				03A8CA4E1CA25D39007AB152 /* YRTeacherImageCell.m in Sources */,
 				0315153F1C9A71FC00A2A2F1 /* YRSequencePracticeController.m in Sources */,
+				03228D361CA4D38700890DC6 /* SDRotationLoopProgressView.m in Sources */,
 				037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */,
+				03228D321CA4D38700890DC6 /* SDBaseProgressView.m in Sources */,
 				037F8EB51C8E6D350057BF6C /* MJPhotoProgressView.m in Sources */,
 				1600EBC31C88087A001919EB /* REFrostedViewController.m in Sources */,
 				161B1BFF1C910FF80047182D /* CoachDataSource.m in Sources */,
+				03228D441CA4E08D00890DC6 /* YRScoreDetailDownView.m in Sources */,
 				1645D89A1C9511DD0058D480 /* DistanceToolFuc.m in Sources */,
 				031515371C9A3D7400A2A2F1 /* YREditUserController.m in Sources */,
 				1645D8971C9511420058D480 /* YRMapAnnotaionModel.m in Sources */,
@@ -1822,17 +1928,22 @@
 				037F8E7E1C8D78680057BF6C /* MBProgressHUD+Add.m in Sources */,
 				037D7C321C916B4100273703 /* UIImage+Tool.m in Sources */,
 				037C929F1C8FF274005B41BF /* YRCircleHeadView.m in Sources */,
+				03228D3E1CA4DB6500890DC6 /* YRAchievementDetailController.m in Sources */,
 				03A8CA5A1CA289F8007AB152 /* YRMenuView.m in Sources */,
 				03FF14801C9FFDE100AEBB75 /* YRSecoDetailController.m in Sources */,
+				03228D411CA4DBBE00890DC6 /* YRLearnExamController.m in Sources */,
 				1600EBCC1C88087A001919EB /* XBConst.m in Sources */,
 				168132AC1C97B012008F3090 /* YRStarsView.m in Sources */,
 				037F8E9D1C8E68D20057BF6C /* YRCirclePhoto.m in Sources */,
 				03A8CA571CA28265007AB152 /* YRStarView.m in Sources */,
+				03228D591CA5424C00890DC6 /* YRDriveLawController.m in Sources */,
 				037F8E6F1C8D5FC50057BF6C /* JKAssetsThumbnailView.m in Sources */,
 				037D7C091C914D2200273703 /* YRPerfectHeadView.m in Sources */,
 				162E28651CA3C7DB00533880 /* YRChoosePlaceCell.m in Sources */,
 				037F8E201C8826750057BF6C /* CWSPublicButton.m in Sources */,
+				03228D3A1CA4D3A000890DC6 /* SDDemoItemView.m in Sources */,
 				16C545951C98F8D400AE5152 /* YRAddFriendVC.m in Sources */,
+				03228D341CA4D38700890DC6 /* SDPieLoopProgressView.m in Sources */,
 				164A8CB21C8D729700857638 /* YRActivityTableViewCell.m in Sources */,
 				03228D1D1CA3D51300890DC6 /* YRExamUserHeadView.m in Sources */,
 				037F8E211C8826750057BF6C /* CWSReadPolicyView.m in Sources */,
@@ -1853,12 +1964,11 @@
 				166939FA1C9A3EAC00C7ECF2 /* Pinyin.c in Sources */,
 				03A25F171C928891000196A6 /* YRYJFirstClassController.m in Sources */,
 				1672A65A1C8FE60300AF6272 /* YRCoachTableCell.m in Sources */,
-				03A25F201C92ADF8000196A6 /* YRDriveLawController.m in Sources */,
 				1694F57D1CA234A6009A4C21 /* YRReservationDateVC.m in Sources */,
 				16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */,
-				0315153B1C9A687500A2A2F1 /* YRLearnExamController.m in Sources */,
 				037F8E181C8826750057BF6C /* YRYJThirdClassController.m in Sources */,
 				03FF14781C9FCA0900AEBB75 /* YRPracticeDownView.m in Sources */,
+				03228D311CA4D38700890DC6 /* SDBallProgressView.m in Sources */,
 				03FF14701C9F861600AEBB75 /* YRLearnOrderController.m in Sources */,
 				164A8CAD1C8D65EC00857638 /* YRCertificationViewController.m in Sources */,
 				03A8CA4B1CA25463007AB152 /* YRTeacherPlaceCell.m in Sources */,

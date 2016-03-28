@@ -40,4 +40,14 @@
  *  @param errorBlock    错误信息
  */
 + (void)checkPswIsEqualFistPsw:(NSString *)fistPsw secondPsw:(NSString *)secondPsw complete:(void (^)(BOOL isSuccess))completeBlock error:(void (^)(NSString *errorMsg))errorBlock;
+
+/**
+ *  检查姓名是否为空，身份证是否正确
+ *
+ *  @param name          姓名
+ *  @param idCard        身份证号码
+ *  @param completeBlock 完成回调
+ *  @param errorBlock    返回错误信息
+ */
++ (void)checkName:(NSString *)name idCard:(NSString *)idCard complete:(void (^)(BOOL isSuccess))completeBlock error:(void (^)(NSString *errorMsg))errorBlock;
 @end

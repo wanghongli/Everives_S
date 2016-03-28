@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *goOnBtn;
 @property (weak, nonatomic) IBOutlet UIButton *replyBtn;
 - (IBAction)btnClick:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIView *headView;
 
 @end

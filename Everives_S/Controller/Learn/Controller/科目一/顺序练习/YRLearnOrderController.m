@@ -8,8 +8,12 @@
 
 #import "YRLearnOrderController.h"
 #import "YRLearnPracticeController.h"
-@interface YRLearnOrderController ()
 
+#import "SDProgressView.h"
+#import "SDDemoItemView.h"
+@interface YRLearnOrderController ()
+@property (nonatomic ,strong) SDDemoItemView *itemView;
+@property (nonatomic, strong) UILabel *currentProgress;
 @end
 
 @implementation YRLearnOrderController
@@ -34,6 +38,28 @@
     self.replyBtn.layer.borderWidth = 1;
     self.replyBtn.layer.borderColor = kCOLOR(51, 51, 51).CGColor;
     
+    self.itemView = [SDDemoItemView demoItemViewWithClass:[SDLoopProgressView class]];
+    self.itemView.frame = CGRectMake(0, 0, self.headView.height*0.6, self.headView.height*0.6);
+    self.itemView.center = CGPointMake(kScreenWidth/2, self.headView.height/2+20);
+    [self.headView addSubview:self.itemView];
+    
+    self.currentProgress = [[UILabel alloc]initWithFrame:CGRectMake(0, self.itemView.y-20, kScreenWidth, 20)];
+    self.currentProgress.textAlignment = NSTextAlignmentCenter;
+    self.currentProgress.text = @"当前进度";
+    self.currentProgress.font = kFontOfLetterMedium;
+    [self.headView addSubview:self.currentProgress];
+    
+    // 模拟下载进度
+    [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(progressSimulation) userInfo:self repeats:YES];
+}
+- (void)progressSimulation
+{
+    static CGFloat progress = 0;
+    
+    if (progress < 0.8) {
+        progress += 0.01;
+        self.itemView.progressView.progress = progress;
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

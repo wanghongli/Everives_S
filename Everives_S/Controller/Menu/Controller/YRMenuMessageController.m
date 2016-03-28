@@ -11,6 +11,7 @@
 #import "YRMessageObject.h"
 #import "YRMessageViewCell.h"
 #import "YRMyFriendsObject.h"
+#import "YRYJNavigationController.h"
 @interface YRMenuMessageController ()
 {
     NSInteger _page;
@@ -29,7 +30,10 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"YRMessageViewCell" bundle:nil] forCellReuseIdentifier:@"notiCell"];
     self.tableView.tableFooterView = [[UIView alloc]init];
     [self buildRefreshUI];
-    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:(YRYJNavigationController *)self.navigationController
+                                                                            action:@selector(showMenu)];
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshUserNotiMsg) name:@"USER_NOTIVC_REFRESH" object:self];
 //}
 //-(void)refreshUserNotiMsg

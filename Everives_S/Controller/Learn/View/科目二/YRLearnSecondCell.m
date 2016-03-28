@@ -34,11 +34,12 @@
     if (testNum%2) {
         self.leftImg.hidden = YES;
         self.rightImg.hidden = YES;
+        self.changeImg.hidden = YES;
     }else{
+        self.changeImg.hidden = NO;
         self.leftImg.hidden = NO;
         self.rightImg.hidden = NO;
     }
-    
 }
 -(void)setTimeString:(NSString *)timeString
 {

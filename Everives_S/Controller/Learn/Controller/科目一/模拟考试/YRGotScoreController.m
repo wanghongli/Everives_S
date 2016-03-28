@@ -8,6 +8,8 @@
 
 #import "YRGotScoreController.h"
 #import "YRExamScorePercentView.h"
+#import "YRMyErrorController.h"
+
 #define kImgW 120
 #define kImgH 160
 #define kToTopDestace 20
@@ -39,7 +41,8 @@
 -(void)btnClick:(UIButton *)sender
 {
     if (sender.tag == 11) {//错题
-        
+        YRMyErrorController *errorVC = [[YRMyErrorController alloc]init];
+        [self.navigationController pushViewController:errorVC animated:YES];
     }else{//分享
     
     }

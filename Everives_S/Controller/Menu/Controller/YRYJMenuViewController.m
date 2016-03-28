@@ -18,6 +18,7 @@
 #import "YRNearViewController.h"
 #import "YRMenuHeadView.h"
 #import "YRMenuMessageController.h"
+#import "YRSettingController.h"
 @interface YRYJMenuViewController ()<UIAlertViewDelegate,YRMenuHeadViewDelegate>
 @property (nonatomic, strong) YRMenuHeadView *headView;
 @end
@@ -122,7 +123,7 @@
         
     }else if(indexPath.section == 2){
         if (indexPath.row == 0) {
-            UIViewController *secondViewController = [[YRUserCenterViewController alloc] init];
+            YRSettingController *secondViewController = [[YRSettingController alloc] init];
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
             self.frostedViewController.contentViewController = navigationController;
         }else if (indexPath.row == 1) {//注销
@@ -141,7 +142,7 @@
     if (buttonIndex == 1) {
         KUserManager.id = 0;
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"USERNAME_PSW"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"loginCount"];
         _headView.loginBool = NO;
 
         [[RCIM sharedRCIM] disconnect:NO];

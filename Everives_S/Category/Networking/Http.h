@@ -39,6 +39,7 @@
 #define STUDENT_CONTACT @"/student/contact"  //手机通讯录
 #define STUDENT_TEACHERS @"/student/teachers"  //关注的教练
 #define STUDENT_NEARBYPOINT @"/student/nearbyPoint" //获取地图描点
+#define STUDENT_MONEY @"/student/money"  //资金记录
 
 //七牛token
 #define USER_QINIUTOKEN @"/common/qiniu" //获取七牛token

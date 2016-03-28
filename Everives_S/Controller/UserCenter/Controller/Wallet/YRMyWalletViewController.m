@@ -7,6 +7,7 @@
 //
 
 #import "YRMyWalletViewController.h"
+#import "YRStudentMoneyDetailVC.h"
 
 @interface YRMyWalletViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *money;
@@ -29,6 +30,8 @@
     _withDrawal.layer.borderColor = [UIColor lightGrayColor].CGColor;
     _withDrawal.layer.cornerRadius = 10;
     
+    _money.text = KUserManager.money;
+    
 
 }
 
@@ -36,15 +39,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)moneyDetailCilck:(UIButton *)sender {
+    [self.navigationController pushViewController:[[YRStudentMoneyDetailVC alloc] init] animated:YES];
 }
-*/
+- (IBAction)rechageBtnClick:(UIButton *)sender {
+}
+- (IBAction)withDrawalBtnClick:(UIButton *)sender {
+}
+
+
 
 @end

@@ -17,6 +17,7 @@
 #import "YRFriendViewController.h"
 #import "YRNearViewController.h"
 #import "YRMenuHeadView.h"
+#import "YRMenuMessageController.h"
 @interface YRYJMenuViewController ()<UIAlertViewDelegate,YRMenuHeadViewDelegate>
 @property (nonatomic, strong) YRMenuHeadView *headView;
 @end
@@ -199,7 +200,10 @@
 #pragma mark - 消息中心
 -(void)menuHeadViewNotiClick
 {
-
+    YRMenuMessageController *messageVC = [[YRMenuMessageController alloc]init];
+    YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:messageVC];
+    self.frostedViewController.contentViewController = navigationController;
+    [self.frostedViewController hideMenuViewController];
 }
 #pragma mark - 登陆
 -(void)menuHeadViewLoginClick

@@ -25,7 +25,7 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.image = [UIImage imageNamed:@"backImg"];
+        self.image = [UIImage imageNamed:@"background_1"];
         [self buildUI];
         
     }

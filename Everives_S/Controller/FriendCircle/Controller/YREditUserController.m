@@ -194,6 +194,7 @@
                       //提交用户数据
                       [RequestData PUT:STUDENT_AVATAR parameters:@{@"avatar":[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]} complete:^(NSDictionary *responseDic) {
                           NSLog(@"%@",responseDic);
+                          KUserManager.avatar = [NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName];
                           [MBProgressHUD showSuccess:@"头像修改成功" toView:GET_WINDOW];
                       } failed:^(NSError *error) {
                           
@@ -250,6 +251,8 @@
         MyLog(@"%@",responseDic);
         KUserManager.name = _nickNameText.text;
         KUserManager.sign = _signText.text;
+        KUserManager.age = self.ageText.text;
+        KUserManager.gender = _sexString;
         [MBProgressHUD showSuccess:@"修改成功" toView:GET_WINDOW];
         [self.navigationController popViewControllerAnimated:YES];
     } failed:^(NSError *error) {

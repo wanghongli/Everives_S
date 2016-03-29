@@ -138,3 +138,5 @@
  *  占位图
  */
 #define kPLACEHHOLD_IMG @"timeline_image_placeholder"
+
+#define KUSER_HEAD_IMG @"Login_addAvatar"

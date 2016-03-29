@@ -34,7 +34,7 @@
     self.tableView.backgroundColor = [UIColor clearColor];
     _headView = [[YRMenuHeadView alloc]initWithFrame:CGRectMake(0, 0, 0, 130.0f)];
     _headView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    _headView.image = [UIImage imageNamed:@"backImg"];
+    _headView.image = [UIImage imageNamed:@"Drawer_Background"];
     _headView.delegate = self;
     self.tableView.tableHeaderView = _headView;
     self.tableView.tableFooterView = [[UIView alloc]init];
@@ -69,17 +69,8 @@
     if (sectionIndex == 0)
         return nil;
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 34)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 2)];
     view.backgroundColor = [UIColor colorWithRed:167/255.0f green:167/255.0f blue:167/255.0f alpha:0.6f];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, 0, 0)];
-    label.text = @"Friends Online";
-    label.font = [UIFont systemFontOfSize:15];
-    label.textColor = [UIColor whiteColor];
-    label.backgroundColor = [UIColor clearColor];
-    [label sizeToFit];
-    [view addSubview:label];
-    
     return view;
 }
 
@@ -88,7 +79,7 @@
     if (sectionIndex == 0)
         return 0;
     
-    return 34;
+    return 2;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -197,7 +188,7 @@
         NSArray *titles = @[@"设置", @"注销"];
         cell.textLabel.text = titles[indexPath.row];
     }
-    
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     return cell;
 }
 #pragma mark - 消息中心

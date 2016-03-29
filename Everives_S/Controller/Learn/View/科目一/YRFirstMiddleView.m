@@ -38,7 +38,7 @@
         CGFloat h = self.frame.size.height;
         YRLeftImgBtn *leftBtn = [[YRLeftImgBtn alloc]initWithFrame:CGRectMake(x, y, w, h)];
         [leftBtn setTitle:array[i] forState:UIControlStateNormal];
-        [leftBtn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"ps%d",i+1]] forState:UIControlStateNormal];
+        [leftBtn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Learn_Home_ps%d",i+1]] forState:UIControlStateNormal];
         [leftBtn setTitleColor:[UIColor colorWithRed:145/255.0 green:146/255.0 blue:147/255.0 alpha:1] forState:UIControlStateNormal];
         [leftBtn addTarget:self action:@selector(btnCLick:) forControlEvents:UIControlEventTouchUpInside];
         leftBtn.tag = i;

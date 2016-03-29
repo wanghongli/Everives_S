@@ -264,7 +264,7 @@
             MyLog(@"%@",responseDic);
         } failed:^(NSError *error) {
             
-        }];
+        }]; 
         
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"确认提交" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"提交", nil];
         [alert show];

@@ -8,6 +8,8 @@
 
 #import "YRMenuHeadView.h"
 #import "UIView+SDAutoLayout.h"
+#import "UIImageView+WebCache.h"
+
 #define kDistace 10
 @interface YRMenuHeadView ()
 @property (nonatomic, strong) UIImageView *headImg;
@@ -62,7 +64,7 @@
     _headImg.frame = CGRectMake(kDistace, wh/4+20, wh, wh);
     _headImg.layer.masksToBounds = YES;
     _headImg.layer.cornerRadius = wh/2;
-    _headImg.image = [UIImage imageNamed:kPLACEHHOLD_IMG];
+    _headImg.image = [UIImage imageNamed:KUSER_HEAD_IMG];
     
     NSString *nameString = @"玉祥驾校";
     CGSize nameSize = [nameString sizeWithFont:[UIFont systemFontOfSize:18] maxSize:CGSizeMake(self.width/2, wh/2)];
@@ -91,11 +93,13 @@
         _signLabel.hidden = NO;
         _nameLabel.hidden = NO;
         _notiBtn.hidden = NO;
+        [_headImg sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:KUSER_HEAD_IMG]];
     }else{//没有登陆
         _loginBtn.hidden = NO;
         _nameLabel.hidden = YES;
         _signLabel.hidden = YES;
         _notiBtn.hidden = YES;
+        _headImg.image = [UIImage imageNamed:KUSER_HEAD_IMG];
     }
 }
 -(void)loginClick:(UIButton *)sender

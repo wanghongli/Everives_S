@@ -7,15 +7,16 @@
 //
 @protocol YRPracticeDownViewDelegate <NSObject>
 
-- (void)praciceDownViewBtnClick:(NSInteger)btnTag;
+- (void)praciceDownViewBtnClick:(NSInteger)btnTag with:(NSString *)quesID;
 
 @end
 #import <UIKit/UIKit.h>
-
+#import "YRQuestionObject.h"
 @interface YRPracticeDownView : UIView
 
 @property (nonatomic, assign) id<YRPracticeDownViewDelegate>delegate;
 
 @property (nonatomic, strong) NSString *numbString;
 
+@property (nonatomic, strong) YRQuestionObject *questObj;
 @end

@@ -10,7 +10,6 @@
 #import "YRLearnSecondCell.h"
 #import "YRAppointmentDetailController.h"
 #import "YRLearnNoMsgView.h"//没认证界面
-
 #import "YRCertificationController.h" //信息认证
 @interface YRYJSecondClassController ()<UITableViewDelegate,UITableViewDataSource,YRLearnNoMsgViewDelegate>
 
@@ -55,9 +54,19 @@
     [_goOnBtn addTarget:self action:@selector(goOnLearnCar) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_downView];
     [self.view bringSubviewToFront:_downView];
+    //无数据的时候展示
 //    [self.view bringSubviewToFront:self.noMsgView];
+    //获取数据
+    [self getData];
 }
-
+-(void)getData
+{
+    [RequestData GET:STUDENT_ORDER parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
+        MyLog(@"%@",responseDic);
+    } failed:^(NSError *error) {
+        
+    }];
+}
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 4;

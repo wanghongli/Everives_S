@@ -10,6 +10,6 @@
 
 @interface YRGotScoreController : UIViewController
 
-
+@property (nonatomic, assign) NSInteger scroe;
 
 @end

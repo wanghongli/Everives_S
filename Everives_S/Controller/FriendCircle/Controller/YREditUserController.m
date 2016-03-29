@@ -188,11 +188,11 @@
         //        NSString *imgName = [NSString stringWithFormat:@"face%f",[[NSDate date] timeIntervalSince1970]];
         NSString *imageName = [[uploadData.description md5] addString:@".jpg"];
         
-        //上传到七牛
+        //上传到七牛http://7xn7nj.com2.z0.glb.qiniucdn.com/
         [upManager putData:uploadData key:imageName token:token
                   complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                       //提交用户数据
-                      [RequestData PUT:STUDENT_AVATAR parameters:@{@"avatar":[NSString stringWithFormat:@"http://7xn7nj.com2.z0.glb.qiniucdn.com/%@",imageName]} complete:^(NSDictionary *responseDic) {
+                      [RequestData PUT:STUDENT_AVATAR parameters:@{@"avatar":[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]} complete:^(NSDictionary *responseDic) {
                           NSLog(@"%@",responseDic);
                           [MBProgressHUD showSuccess:@"头像修改成功" toView:GET_WINDOW];
                       } failed:^(NSError *error) {

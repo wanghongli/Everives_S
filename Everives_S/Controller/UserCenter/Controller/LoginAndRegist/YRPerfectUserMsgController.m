@@ -192,7 +192,7 @@
                   complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                       //提交用户数据
                       
-                          [RequestData PUT:STUDENT_AVATAR parameters:@{@"avatar":[NSString stringWithFormat:@"http://7xn7nj.com2.z0.glb.qiniucdn.com/%@",imageName]} complete:^(NSDictionary *responseDic) {
+                          [RequestData PUT:STUDENT_AVATAR parameters:@{@"avatar":[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]} complete:^(NSDictionary *responseDic) {
                               NSLog(@"%@",responseDic);
                           } failed:^(NSError *error) {
                               

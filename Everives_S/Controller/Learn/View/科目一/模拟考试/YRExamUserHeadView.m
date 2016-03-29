@@ -7,6 +7,8 @@
 //
 
 #import "YRExamUserHeadView.h"
+#import "UIImageView+WebCache.h"
+
 @interface YRExamUserHeadView ()
 
 @property (nonatomic, weak) UIImageView *headImg;
@@ -61,6 +63,11 @@
     
     _headImg.layer.masksToBounds = YES;
     _headImg.layer.cornerRadius = _headImg.height/2;
+    
+    if (KUserManager.id) {
+        _nameLabel.text = KUserManager.name;
+        [_headImg sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:@"head_jiaolian"]];
+    }
 }
 
 @end

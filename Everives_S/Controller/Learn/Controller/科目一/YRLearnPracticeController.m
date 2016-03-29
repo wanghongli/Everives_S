@@ -12,13 +12,16 @@
 #include "YRPracticeDownView.h"
 //#import "YRAchievementDetailController.h"
 #import "YRGotScoreController.h"
-@interface YRLearnPracticeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,YRPracticeDownViewDelegate>
+@interface YRLearnPracticeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,YRPracticeDownViewDelegate,UIAlertViewDelegate>
 {
     NSInteger _currentID;
     NSInteger timeInt;
     NSTimer *timer;
+    
+    
 }
-
+@property (nonatomic, strong) NSMutableArray *errorArray;//错题
+@property (nonatomic, strong) NSMutableArray *rightArray;//正确题
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *msgArray;
 @property (nonatomic, strong) YRPracticeDownView *downView;
@@ -31,6 +34,19 @@
 @end
 
 @implementation YRLearnPracticeController
+-(NSMutableArray *)errorArray
+{
+    if (_errorArray == nil) {
+        _errorArray = [NSMutableArray array];
+    }
+    return _errorArray;
+}
+-(NSMutableArray *)rightArray{
+    if (_rightArray == nil) {
+        _rightArray = [NSMutableArray array];
+    }
+    return _rightArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -176,10 +192,25 @@
     YRQuestionObject *ques = _msgArray[indexPath.row];
     cell.questionOb = ques;
     [cell setAnswerIsClickBlock:^(YRQuestionObject *currentQues) {
+        if (currentQues.chooseAnswer.integerValue == currentQues.answer) {//正确
+            if (![self.rightArray containsObject:[NSString stringWithFormat:@"%ld",currentQues.id]]) {
+                if ([self.errorArray containsObject:[NSString stringWithFormat:@"%ld",currentQues.id]]) {
+                    [self.errorArray removeObject:[NSString stringWithFormat:@"%ld",currentQues.id]];
+                }
+                [self.rightArray addObject:[NSString stringWithFormat:@"%ld",currentQues.id]];
+            }
+        }else{//错误
+            if (![self.errorArray containsObject:[NSString stringWithFormat:@"%ld",currentQues.id]]) {
+                //先移除争取里面的
+                if ([self.rightArray containsObject:[NSString stringWithFormat:@"%ld",currentQues.id]]) {
+                    [self.rightArray removeObject:[NSString stringWithFormat:@"%ld",currentQues.id]];
+                }
+                [self.errorArray addObject:[NSString stringWithFormat:@"%ld",currentQues.id]];
+            }
+        }
         [_msgArray replaceObjectAtIndex:indexPath.row withObject:currentQues];
         [self.collectionView reloadData];
     }];
-    
     
     if (self.menuTag == 1) {
         if (indexPath.row == _msgArray.count-1) {
@@ -189,6 +220,7 @@
         self.title = [NSString stringWithFormat:@"%ld/1234",ques.id];
     }else if(self.menuTag == 0){
         _downView.numbString = [NSString stringWithFormat:@"%ld/%ld",indexPath.row+1,_msgArray.count];
+        _downView.questObj = ques;
         cell.MNCurrentID = indexPath.row+1;
     }
     return cell;
@@ -217,14 +249,35 @@
 }
 
 #pragma mark - 模拟考试底部收藏和交卷代理方法
--(void)praciceDownViewBtnClick:(NSInteger)btnTag
+-(void)praciceDownViewBtnClick:(NSInteger)btnTag with:(NSString *)quesID
 {
     if (btnTag == 1) {//收藏
-        
+        NSString *quesid = [@[quesID] mj_JSONString];
+        [RequestData POST:JK_Get_COLLECT parameters:@{@"id":quesid} complete:^(NSDictionary *responseDic) {
+            MyLog(@"%@",responseDic);
+        } failed:^(NSError *error) {
+            
+        }];
     }else{//交卷
+        //提交错题
+        [RequestData POST:JK_POST_WRONG parameters:@{@"id":[self.errorArray mj_JSONString]} complete:^(NSDictionary *responseDic) {
+            MyLog(@"%@",responseDic);
+        } failed:^(NSError *error) {
+            
+        }];
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"确认提交" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"提交", nil];
+        [alert show];
+        
+    }
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
         YRGotScoreController *adv = [[YRGotScoreController alloc]init];
+        CGFloat fenshu = (CGFloat)self.rightArray.count/(CGFloat)self.msgArray.count;
+        adv.scroe = fenshu*100;
         [self.navigationController pushViewController:adv animated:YES];
     }
 }
-
 @end

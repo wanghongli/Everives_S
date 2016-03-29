@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YRTeacherDetailObject.h"
 @interface YRTeacherHeadView : UIImageView
+
+@property (nonatomic, strong) YRTeacherDetailObject *teacherObj;
 
 @end

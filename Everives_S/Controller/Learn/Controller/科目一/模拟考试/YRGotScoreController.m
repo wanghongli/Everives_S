@@ -32,7 +32,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.scoreBackImg.image = [UIImage imageNamed:@"Learn_Grade-1_Score"];
-    self.scoreLabel.text = @"99";
+    self.scoreLabel.text = [NSString stringWithFormat:@"%ld",self.scroe];
     self.descriLabel.text = @"恭喜您达到合格标准!";
     self.scorePercentView.scoreString = @"88";
     [self.errorBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];

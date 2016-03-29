@@ -150,6 +150,7 @@
 		03F59B8F1C8EC1FF009D5EA2 /* YRCircleDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F59B8D1C8EC1FF009D5EA2 /* YRCircleDetailController.m */; };
 		03F59B901C8EC1FF009D5EA2 /* YRCircleDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F59B8E1C8EC1FF009D5EA2 /* YRCircleDetailController.xib */; };
 		03F59B931C8ED576009D5EA2 /* YRCircleComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F59B921C8ED576009D5EA2 /* YRCircleComment.m */; };
+		03FE5B7D1CAA0FF5009F0ED7 /* YRTeacherDetailObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FE5B7C1CAA0FF5009F0ED7 /* YRTeacherDetailObject.m */; };
 		03FF14701C9F861600AEBB75 /* YRLearnOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF146E1C9F861600AEBB75 /* YRLearnOrderController.m */; };
 		03FF14711C9F861600AEBB75 /* YRLearnOrderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FF146F1C9F861600AEBB75 /* YRLearnOrderController.xib */; };
 		03FF14751C9F866100AEBB75 /* YRMyCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF14741C9F866100AEBB75 /* YRMyCollectionController.m */; };
@@ -523,6 +524,8 @@
 		03F59B8E1C8EC1FF009D5EA2 /* YRCircleDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRCircleDetailController.xib; sourceTree = "<group>"; };
 		03F59B911C8ED576009D5EA2 /* YRCircleComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleComment.h; sourceTree = "<group>"; };
 		03F59B921C8ED576009D5EA2 /* YRCircleComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCircleComment.m; sourceTree = "<group>"; };
+		03FE5B7B1CAA0FF5009F0ED7 /* YRTeacherDetailObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRTeacherDetailObject.h; sourceTree = "<group>"; };
+		03FE5B7C1CAA0FF5009F0ED7 /* YRTeacherDetailObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRTeacherDetailObject.m; sourceTree = "<group>"; };
 		03FF146D1C9F861600AEBB75 /* YRLearnOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnOrderController.h; sourceTree = "<group>"; };
 		03FF146E1C9F861600AEBB75 /* YRLearnOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnOrderController.m; sourceTree = "<group>"; };
 		03FF146F1C9F861600AEBB75 /* YRLearnOrderController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRLearnOrderController.xib; sourceTree = "<group>"; };
@@ -804,6 +807,8 @@
 			children = (
 				031515411C9A912100A2A2F1 /* YRQuestionObject.h */,
 				031515421C9A912100A2A2F1 /* YRQuestionObject.m */,
+				03FE5B7B1CAA0FF5009F0ED7 /* YRTeacherDetailObject.h */,
+				03FE5B7C1CAA0FF5009F0ED7 /* YRTeacherDetailObject.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2115,6 +2120,7 @@
 				1600EBC91C88087A001919EB /* UIView+XBExtension.m in Sources */,
 				03019D1D1C993C5D00895C77 /* YRUserDetailController.m in Sources */,
 				1600EBC71C88087A001919EB /* XBScrollPageController.m in Sources */,
+				03FE5B7D1CAA0FF5009F0ED7 /* YRTeacherDetailObject.m in Sources */,
 				037F8E1B1C8826750057BF6C /* YRLoginViewController.m in Sources */,
 				031515491C9A9D3F00A2A2F1 /* YRExamHeadView.m in Sources */,
 				03C651C21CA8C509005FFC71 /* YRMessageViewCell.m in Sources */,

@@ -9,7 +9,7 @@
 #ifndef CQSQ_Http_h
 #define CQSQ_Http_h
 
-#define QINIU_SERVER_URL @"http://7xn7nj.com2.z0.glb.qiniucdn.com/"  //七牛服务器地址
+#define QINIU_SERVER_URL @"http://7xr6ql.com1.z0.glb.clouddn.com/"  //七牛服务器地址
 
 #define SERVER_URL @"http://120.27.55.225/drive.php" // 正式服务器 114.215.86.90
 
@@ -19,6 +19,7 @@
 #define USER_FIND_PSW @"/account/Password" //找回密码
 #define USER_CHECK_TELL @"/account/checkTel" //检查手机号码
 #define USER_INFO_BYID @"/student/info/" // 通过id获取用户信息
+#define USER_TEACHER_DETAIL @"/account/teacher/" //获取教练详情
 
 //学员模块
 #define STUDENT_INFO @"/student/info"  //修改个人信息
@@ -59,6 +60,9 @@
 #define JK_SJ_PRACTICE @"/question/question/" //随机练习
 #define JK_ZJ_PRACTICE @"/question/zhuanti/kid" //专题练习
 #define JK_MN_PRACTICE @"/question/test" //模拟考试
+#define JK_WRONG_PRACTICE @"/question/wrong/kid" //错题集练习
+#define JK_Get_COLLECT @"/question/Collect" //收藏考题
+#define JK_POST_WRONG @"/question/wrong" //添加错题
 
 //预约部分
 #define STUDENT_AVAILTIME @"/order/availTime/"  //查看可预约时间

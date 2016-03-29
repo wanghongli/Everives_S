@@ -15,8 +15,15 @@
 #import "YRTeacherSectionSecoView.h"
 #import "YRReservationDateVC.h"
 #import "YRTeacherDownView.h"
-@interface YRTeacherDetailController () <UITableViewDelegate,UITableViewDataSource,YRTeacherDownViewDelegate>
+#import "YRTeacherDetailObject.h"
+#import "YRSchoolModel.h"
+#import <MJExtension.h>
 
+@interface YRTeacherDetailController () <UITableViewDelegate,UITableViewDataSource,YRTeacherDownViewDelegate>
+{
+    YRTeacherDetailObject *_teacherObj;
+}
+@property (nonatomic, strong) NSArray *placeArray;
 @property (nonatomic ,strong) UITableView *tableView;
 
 @property (nonatomic, strong) YRTeacherHeadView *headView;
@@ -38,6 +45,28 @@
     _downView = [[YRTeacherDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), kScreenWidth, 44)];
     _downView.delegate = self;
     [self.view addSubview:_downView];
+    //获取数据
+    [self getData];
+}
+#pragma mark - 获取数据
+-(void)getData
+{
+    //获取教练详情
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",USER_TEACHER_DETAIL,self.teacherID];
+    [RequestData GET:urlString parameters:nil complete:^(NSDictionary *responseDic) {
+        _teacherObj = [YRTeacherDetailObject mj_objectWithKeyValues:responseDic];
+        _headView.teacherObj = _teacherObj;
+    } failed:^(NSError *error) {
+        
+    }];
+    
+    //获取练车场地
+    [RequestData GET:STUDENT_PLACES parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
+//        _placeArray = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];
+//        [self.tableView reloadData];
+    } failed:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -47,6 +76,7 @@
 {
     NSInteger numbRow;
     if (section == 2) {
+//        numbRow = _placeArray.count;
         numbRow = 4;
     }else
         numbRow = 1;
@@ -65,6 +95,9 @@
         return cell;
     }else if (indexPath.section == 2){
         YRTeacherPlaceCell *cell = [YRTeacherPlaceCell cellWithTableView:tableView];
+//        YRSchoolModel *schoolModel = _placeArray[indexPath.row];
+//        [cell teacherPlaceGetSchoolName:schoolModel.name address:schoolModel.address];
+
         [cell teacherPlaceGetSchoolName:@"希望小学驾校" address:@"南岸/黄角丫"];
         return cell;
     }else{

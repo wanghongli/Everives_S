@@ -86,7 +86,10 @@
 -(void)downViewBtnClick:(UIButton *)sender
 {
     MyLog(@"%s",__func__);
-    [self.delegate praciceDownViewBtnClick:sender.tag-10];
+    [self.delegate praciceDownViewBtnClick:sender.tag-10 with:[NSString stringWithFormat:@"%ld",_questObj.id]];
 }
-
+-(void)setQuestObj:(YRQuestionObject *)questObj
+{
+    _questObj = questObj;
+}
 @end

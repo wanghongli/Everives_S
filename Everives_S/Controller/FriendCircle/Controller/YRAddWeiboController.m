@@ -127,13 +127,22 @@
                 NSData *uploadData = UIImageJPEGRepresentation(img, 1);
                 NSString *imageName = [[uploadData.description md5] addString:@".jpg"];
                 [_imgNameArray addObject:imageName];
-                [_publishImgArray addObject:[NSString stringWithFormat:@"http://7xn7nj.com2.z0.glb.qiniucdn.com/%@",imageName]];
+                [_publishImgArray addObject:[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]];
                 if (_imgNameArray.count == self.assetsArray.count) {
                     NSString *imgArray = [_publishImgArray mj_JSONString];
                     [_bodyDic setObject:imgArray forKey:@"pics"];
                     [self publishImages:_imgNameArray];
                     [MBProgressHUD showMessag:@"上传中..." toView:self.view];
-                   
+                    [RequestData POST:WEIBO_ADD parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+                        if (_imgNameArray.count) {
+                            [self performSelector:@selector(goBackVC) withObject:nil afterDelay:0];
+                        }else{
+                            [self.navigationController popViewControllerAnimated:YES];
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        }
+                    } failed:^(NSError *error) {
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    }];
                 }
             }
         } failureBlock:^(NSError *error) {
@@ -151,7 +160,8 @@
 {
     [RequestData GET:USER_QINIUTOKEN parameters:nil complete:^(NSDictionary *responseDic) {
         //获取token
-        NSString *token = responseDic[@"data"][@"token"];
+        MyLog(@"%@",responseDic);
+        NSString *token = responseDic[@"token"];
         QNUploadManager *upManager = [[QNUploadManager alloc] init];
         for (int i = 0; i<self.assetsArray.count; i++) {
             JKAssets *jkasset = self.assetsArray[i];
@@ -159,26 +169,17 @@
             [lib assetForURL:jkasset.assetPropertyURL resultBlock:^(ALAsset *asset) {
                 if (asset) {
                     UIImage *img=[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
-                    NSData *uploadData = UIImageJPEGRepresentation(img, 1);
+                    NSData *uploadData = UIImageJPEGRepresentation(img, 0.5);
                     //上传到七牛
                     [upManager putData:uploadData key:imgName[i] token:token
                               complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-                                  NSLog(@"%@\n%@",info,resp);
-//                                  if (resp) {
+                                  NSLog(@"%@\n---%@\n %@",info,resp,key);
+                                  if (resp) {
                                       if (i == self.assetsArray.count-1) {
                                           [MBProgressHUD showSuccess:@"上传成功" toView:self.navigationController.view];
-                                          [RequestData POST:WEIBO_ADD parameters:_bodyDic complete:^(NSDictionary *responseDic) {
-                                              if (_imgNameArray.count) {
-                                                  [self performSelector:@selector(goBackVC) withObject:nil afterDelay:0];
-                                              }else{
-                                                  [self.navigationController popViewControllerAnimated:YES];
-                                                  [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                              }
-                                          } failed:^(NSError *error) {
-                                              [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                          }];
+                                          
                                       }
-//                                  }
+                                  }
                                   
                               } option:nil];
                 }

@@ -169,7 +169,7 @@
             [lib assetForURL:jkasset.assetPropertyURL resultBlock:^(ALAsset *asset) {
                 if (asset) {
                     UIImage *img=[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
-                    NSData *uploadData = UIImageJPEGRepresentation(img, 0.5);
+                    NSData *uploadData = UIImageJPEGRepresentation(img, 1);
                     //上传到七牛
                     [upManager putData:uploadData key:imgName[i] token:token
                               complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {

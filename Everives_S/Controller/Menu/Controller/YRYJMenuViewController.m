@@ -129,6 +129,7 @@
         }else if (indexPath.row == 1) {//注销
             if (KUserManager.id) {
                 [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您确定要退出登录吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"注销", nil] show];
+                return;
             }else{
                 [MBProgressHUD showError:@"您还未登陆，请先登录？" toView:GET_WINDOW];
             }
@@ -141,16 +142,17 @@
 {
     if (buttonIndex == 1) {
         KUserManager.id = 0;
+        YRYJLearnToDriveController *homeViewController = [[YRYJLearnToDriveController alloc] init];
+        YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:homeViewController];
+        [self.frostedViewController hideMenuViewController];
+
+        self.frostedViewController.contentViewController = navigationController;
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"loginCount"];
         _headView.loginBool = NO;
 
         [[RCIM sharedRCIM] disconnect:NO];
-        //注销登录跳到学车界面
-        YRYJLearnToDriveController *homeViewController = [[YRYJLearnToDriveController alloc] init];
-        YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:homeViewController];
-        self.frostedViewController.contentViewController = navigationController;
-        [self.frostedViewController hideMenuViewController];
+        
     }
 }
 #pragma mark -

@@ -9,6 +9,7 @@
 #import "YRSettingController.h"
 #import "YRSettingCell.h"
 #import "YRYJNavigationController.h"
+#import "YRPrivacySettingController.h"
 @interface YRSettingController ()
 {
     NSArray *_menuArray;
@@ -78,5 +79,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        YRPrivacySettingController *spVC = [[YRPrivacySettingController alloc]init];
+        [self.navigationController pushViewController:spVC animated:YES];
+    }
 }
 @end

@@ -21,8 +21,16 @@ static NSString *cellId = @"YRReservationCellID";
     // Do any additional setup after loading the view.
     [self.tableView registerNib:[UINib nibWithNibName:@"YRReservationCell" bundle:nil] forCellReuseIdentifier:cellId];
     self.tableView.rowHeight = 108;
+    [self getData];
 }
 
+-(void)getData{
+    [RequestData GET:STUDENT_ORDER parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
+        NSLog(@"%@",responseDic);
+    } failed:^(NSError *error) {
+        
+    }];
+}
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }

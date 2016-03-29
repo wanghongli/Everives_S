@@ -7,6 +7,7 @@
 //
 
 #import "YRMoneyDetailCell.h"
+#import "NSString+Tools.h"
 
 @implementation YRMoneyDetailCell
 
@@ -22,6 +23,7 @@
 }
 -(void)configCellWithContent:(NSString *)content time:(NSString *)time{
     _contentLabel.text = content;
-    _timeLabel.text = time;
+    NSString *timeStr =[NSString dateStringWithInterval:time];
+    _timeLabel.text = timeStr;
 }
 @end

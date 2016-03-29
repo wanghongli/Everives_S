@@ -26,6 +26,8 @@
     _name.text = model.name;
     _sign.text = model.sign;
     _distance.text = model.sign;
+    _distance.textColor = kTextlightGrayColor;
+    _sign.textColor = kTextlightGrayColor;
     if ([model.gender isEqualToString:@"0"]) {
         _gender.image = [UIImage imageNamed:@"Neighborhood_Coach_male"];
     }else{

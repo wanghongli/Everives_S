@@ -44,7 +44,12 @@
             UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(_btnWidth*i, 0, _btnWidth, self.frame.size.height)];
             btn.tag = i;
             [btn setTitle:_titles[i] forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            if (i==0) {
+                [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            }else{
+                [btn setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];
+            }
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
             [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
             [_btns addObject:btn];
         }
@@ -54,6 +59,12 @@
 //显示、隐藏下拉列表
 -(void)btnClick:(UIButton*)sender{
     static BOOL ishiden = YES;
+    [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_btns enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj tag] != sender.tag) {
+            [obj setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];
+        }
+    }];
     //-1表示没有选择
     if (_whichBtnClicked != -1 && _whichBtnClicked != sender.tag) {
         [self.pullView removeFromSuperview];

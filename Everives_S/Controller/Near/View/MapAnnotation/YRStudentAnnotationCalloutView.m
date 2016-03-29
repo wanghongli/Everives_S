@@ -88,8 +88,8 @@
 }
 -(UILabel *)name{
     if (!_name) {
-        _name = [[UILabel alloc] initWithFrame:CGRectMake(94, 24, 100, 20)];
-        _name.font = [UIFont systemFontOfSize:17];
+        _name = [[UILabel alloc] initWithFrame:CGRectMake(98, 24, 110, 20)];
+        _name.font = kFontOfLetterBig;
         _name.text = _namestr;
     }
     return _name;
@@ -99,20 +99,20 @@
 -(UILabel *)introLabel{
     if (!_introLabel) {
         _introLabel = [[UILabel alloc] init];
-        UIFont *font = [UIFont systemFontOfSize:13];
-        CGSize size = [_intro sizeWithFont:font maxSize:CGSizeMake(kScreenWidth - 98, 100)];
+        UIFont *font = kFontOfLetterMedium;
+        CGSize size = [_intro sizeWithFont:font maxSize:CGSizeMake(kScreenWidth - 112, 100)];
         _introLabel.font = font;
         _introLabel.text = _intro;
         _introLabel.numberOfLines = 0;
         _introLabel.lineBreakMode = NSLineBreakByCharWrapping;
-        _introLabel.frame = CGRectMake(94, 50, size.width, size.height);
+        _introLabel.frame = CGRectMake(98, 50, size.width, size.height);
     }
     return _introLabel;
 }
 /*
 -(UILabel *)address{
     if (!_address) {
-        _address = [[UILabel alloc] initWithFrame:CGRectMake(94, 58, 100, 20)];
+        _address = [[UILabel alloc] initWithFrame:CGRectMake(98, 58, 100, 20)];
         _address.font = [UIFont systemFontOfSize:13];
         _address.text = _addrstr;
     }
@@ -120,7 +120,7 @@
 }
 -(UILabel *)distance{
     if (!_distance) {
-        _distance = [[UILabel alloc] initWithFrame:CGRectMake(94, 4, 100, 20)];
+        _distance = [[UILabel alloc] initWithFrame:CGRectMake(98, 4, 100, 20)];
         _distance.font = [UIFont systemFontOfSize:15];
         _distance.text = _distancestr;
     }

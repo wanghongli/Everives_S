@@ -90,29 +90,30 @@
 }
 -(UILabel *)name{
     if (!_name) {
-        _name = [[UILabel alloc] initWithFrame:CGRectMake(94, 24, 100, 20)];
-        _name.font = [UIFont systemFontOfSize:17];
+        _name = [[UILabel alloc] initWithFrame:CGRectMake(98, 24, 110, 20)];
+        _name.font = kFontOfLetterBig;
         _name.text = _namestr;
     }
     return _name;
 }
 -(YRStarsView *)stars{
     if (!_stars) {
-        _stars = [[YRStarsView alloc] initWithFrame:CGRectMake(94, 50, 100, 30) score:[_scorestr integerValue] starWidth:16 intervel:3 needLabel:YES];
+        _stars = [[YRStarsView alloc] initWithFrame:CGRectMake(98, 50, 100, 30) score:[_scorestr integerValue] starWidth:16 intervel:3 needLabel:YES];
     }
     return _stars;
 }
 -(UILabel *)memberOfTeachAgeLabel:(NSString *)object{
     if (!_teachAgeLabel) {
-        _teachAgeLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 56, 100, 20)];
+        _teachAgeLabel = [[UILabel alloc] initWithFrame:CGRectMake(98, 56, 110, 20)];
         _teachAgeLabel.text = [NSString stringWithFormat:@"%@年",_teachAge];
+        _teachAgeLabel.font = kFontOfLetterMedium;
     }
     return _teachAgeLabel;
 }
 /*
 -(UILabel *)address{
     if (!_address) {
-        _address = [[UILabel alloc] initWithFrame:CGRectMake(94, 58, 100, 20)];
+        _address = [[UILabel alloc] initWithFrame:CGRectMake(98, 58, 100, 20)];
         _address.font = [UIFont systemFontOfSize:13];
         _address.text = _addrstr;
     }
@@ -120,7 +121,7 @@
 }
 -(UILabel *)distance{
     if (!_distance) {
-        _distance = [[UILabel alloc] initWithFrame:CGRectMake(94, 4, 100, 20)];
+        _distance = [[UILabel alloc] initWithFrame:CGRectMake(98, 4, 100, 20)];
         _distance.font = [UIFont systemFontOfSize:15];
         _distance.text = _distancestr;
     }

@@ -156,6 +156,7 @@ static NSString *cellID = @"cellID";
     if (!_phoneContact) {
         _phoneContact = [[UIButton alloc] initWithFrame:CGRectMake(8, 128, kScreenWidth-16, 44)];
         [_phoneContact setTitle:@"关注手机联系人" forState:UIControlStateNormal];
+        [_phoneContact setImage:[UIImage imageNamed:@"Friend_AddFri_Contacts"] forState:UIControlStateNormal];
         [_phoneContact setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_phoneContact addTarget:self action:@selector(phoneContactBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         _phoneContact.layer.masksToBounds = YES;

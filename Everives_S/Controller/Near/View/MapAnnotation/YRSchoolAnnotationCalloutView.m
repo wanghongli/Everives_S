@@ -88,31 +88,32 @@
 }
 -(UILabel *)name{
     if (!_name) {
-        _name = [[UILabel alloc] initWithFrame:CGRectMake(94, 4, 100, 20)];
-        _name.font = [UIFont systemFontOfSize:17];
+        _name = [[UILabel alloc] initWithFrame:CGRectMake(98, 4, 110, 20)];
+        _name.font = kFontOfLetterBig;
         _name.text = _namestr;
     }
     return _name;
 }
 -(YRStarsView *)stars{
     if (!_stars) {
-        _stars = [[YRStarsView alloc] initWithFrame:CGRectMake(94, 26, 100, 30) score:[_scorestr integerValue] starWidth:16 intervel:3 needLabel:YES];
+        _stars = [[YRStarsView alloc] initWithFrame:CGRectMake(98, 24, 100, 30) score:[_scorestr integerValue] starWidth:16 intervel:3 needLabel:YES];
     }
     return _stars;
 }
 -(UILabel *)address{
     if (!_address) {
-        _address = [[UILabel alloc] initWithFrame:CGRectMake(94, 58, 100, 20)];
-        _address.font = [UIFont systemFontOfSize:13];
+        _address = [[UILabel alloc] initWithFrame:CGRectMake(98, 54, 110, 20)];
+        _address.font = kFontOfLetterMedium;
         _address.text = _addrstr;
     }
     return _address;
 }
 -(UILabel *)distance{
     if (!_distance) {
-        _distance = [[UILabel alloc] initWithFrame:CGRectMake(94, 4, 100, 20)];
-        _distance.font = [UIFont systemFontOfSize:15];
-        _distance.text = _distancestr;
+        _distance = [[UILabel alloc] initWithFrame:CGRectMake(98, 74, 110, 20)];
+        _distance.font = kFontOfLetterMedium;
+        _distance.text = _distancestr?:@"12345km";
+        _distance.textColor = kTextlightGrayColor;
     }
     return _distance;
 }

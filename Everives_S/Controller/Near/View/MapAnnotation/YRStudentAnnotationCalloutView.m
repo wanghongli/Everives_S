@@ -100,12 +100,13 @@
     if (!_introLabel) {
         _introLabel = [[UILabel alloc] init];
         UIFont *font = kFontOfLetterMedium;
-        CGSize size = [_intro sizeWithFont:font maxSize:CGSizeMake(kScreenWidth - 112, 100)];
+        CGSize size = [_intro sizeWithFont:font maxSize:CGSizeMake(216 - 112, 100)];
         _introLabel.font = font;
         _introLabel.text = _intro;
         _introLabel.numberOfLines = 0;
         _introLabel.lineBreakMode = NSLineBreakByCharWrapping;
-        _introLabel.frame = CGRectMake(98, 50, size.width, size.height);
+        _introLabel.frame = CGRectMake(98, 50, size.width, 40);
+        _introLabel.textColor = kTextlightGrayColor;
     }
     return _introLabel;
 }

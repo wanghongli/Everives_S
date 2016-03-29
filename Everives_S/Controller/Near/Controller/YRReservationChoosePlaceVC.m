@@ -26,6 +26,7 @@ static NSString *HeaderID = @"headerID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"预约场地";
     _selectedDic = @{}.mutableCopy;
     _modelArrays = @[].mutableCopy;
     _parameterArr = @[].mutableCopy;

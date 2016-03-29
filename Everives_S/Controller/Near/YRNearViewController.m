@@ -55,6 +55,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"附近";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"切换" style:UIBarButtonItemStylePlain target:self action:@selector(changeViewClick:)];
     _isMapView = YES;
@@ -75,15 +76,15 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 -(void)tablewViewReloadData:(NSNotification*)notification{
     NSDictionary *dic = notification.userInfo;
     if ([dic[@"tabletag"] integerValue] == NearTableTypeSchool) {
-        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude,@"lng":KUserLocation.longitude,@"sort":_schoolFillterView.sort?:@"0",@"address":_schoolFillterView.addr?:@"",@"key":@""};
+        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":_schoolFillterView.sort?:@"0",@"address":_schoolFillterView.addr?:@"",@"key":@""};
         [_schoolData getDataWithParameters:parameters];
     }else{
-        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude,@"lng":KUserLocation.longitude,@"sort":_coachFillterView.sort?:@"0",@"address":_coachFillterView.addr?:@"",@"key":@""};
+        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":_coachFillterView.sort?:@"0",@"address":_coachFillterView.addr?:@"",@"key":@""};
         [_coachData getDataWithParameters:parameters];
     }
 }
 -(void)getDataForMap:(NSInteger) kind{
-    [RequestData GET:STUDENT_NEARBYPOINT parameters:@{@"kind":[NSNumber numberWithInteger:kind],@"lat":KUserLocation.latitude?:KUserManager.lat,@"lng":KUserLocation.longitude?:KUserManager.lng,@"time":@""} complete:^(NSDictionary *responseDic) {
+    [RequestData GET:STUDENT_NEARBYPOINT parameters:@{@"kind":[NSNumber numberWithInteger:kind],@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"time":@""} complete:^(NSDictionary *responseDic) {
         switch (kind) {
             case 1:{
                 _schoolForMap = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];
@@ -235,6 +236,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         userDetail.userID = [_studentData.stuArray[indexPath.row] id];
         [self.navigationController pushViewController:userDetail animated:YES];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
@@ -251,7 +253,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         
         _schoolData = [[SchoolDataSource alloc]init];
         _schoolData.table = _schoolTable;
-        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"29.559123",@"lng":KUserLocation.longitude?:@"106.555023",@"sort":@"0",@"address":@"",@"key":@""};
+        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":@"0",@"address":@"",@"key":@""};
         [_schoolData getDataWithParameters:parameters];
         _schoolTable.dataSource = _schoolData;
         _schoolTable.tag = NearTableTypeSchool;
@@ -271,7 +273,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         _coachData.table = _coachTable;
         _coachTable.dataSource = _coachData;
         //106.555023,29.559123
-        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"29.559123",@"lng":KUserLocation.longitude?:@"106.555023",@"sort":@"0",@"address":@"",@"key":@""};
+        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":@"0",@"address":@"",@"key":@""};
         [_coachData getDataWithParameters:parameters];
         _coachTable.tag = NearTableTypeCoach;
         _coachTable.delegate = self;

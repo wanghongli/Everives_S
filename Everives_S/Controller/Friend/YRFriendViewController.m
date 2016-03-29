@@ -65,7 +65,7 @@ static BOOL addViewIsHidden = YES;
 -(void)addNavItem{
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick:)];
     UIBarButtonItem *findItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Friend_Search"] style:UIBarButtonItemStylePlain target:self action:@selector(findBtnClick:)];
-    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Friend_AddFri"] style:UIBarButtonItemStylePlain target:self action:@selector(addBtnClick:)];
+    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Friend_AddFri-1"] style:UIBarButtonItemStylePlain target:self action:@selector(addBtnClick:)];
     UIBarButtonItem *contactItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Friend_PhoneBook"] style:UIBarButtonItemStylePlain target:self action:@selector(contactBtnClick:)];
     self.navigationItem.rightBarButtonItems = @[contactItem,addItem,findItem];
 

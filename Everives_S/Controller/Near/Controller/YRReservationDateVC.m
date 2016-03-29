@@ -28,8 +28,11 @@ static NSInteger rowNum = 8; //横着的那种
 @end
 @implementation YRReservationDateVC
 -(void)viewDidLoad{
+    [super viewDidLoad];
+    self.title = @"预约时间";
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(commitBtnClick:)];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     [self.view addSubview:self.collectionView];
     [self initSome];
     [self getData];
@@ -116,6 +119,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         return;
     }
     [_result addObject:indexPath];
+    self.navigationItem.rightBarButtonItem.enabled = YES;
     
 }
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -123,6 +127,9 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         return;
     }
     [_result removeObject:indexPath];
+    if (_result.count == 0) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if ([_cannotSelected containsObject:indexPath]) {

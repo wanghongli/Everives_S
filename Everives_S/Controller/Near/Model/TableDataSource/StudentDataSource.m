@@ -29,7 +29,7 @@ static NSString * studentCellID = @"YRStudentTableCellID";
     return cell;
 }
 -(void)getData{
-    NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude,@"lng":KUserLocation.longitude};
+    NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0"};
     [MBProgressHUD showHUDAddedTo:self.table animated:YES];
     [RequestData GET:STUDENT_NEARBY parameters:parameters complete:^(NSDictionary *responseDic) {
         _stuArray = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];

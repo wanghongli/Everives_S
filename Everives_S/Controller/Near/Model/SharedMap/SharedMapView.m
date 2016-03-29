@@ -53,6 +53,11 @@
         _mapView.delegate = self;
         _mapView.showsUserLocation = YES;
         [_mapView setUserTrackingMode:MAUserTrackingModeNone];//定位不跟随用户移动
+        //默认坐标 106.494427,29.608909
+        CLLocationCoordinate2D center = CLLocationCoordinate2DMake(29.608909,106.494427);
+        MACoordinateRegion region = MACoordinateRegionMake(center,MACoordinateSpanMake(.15f,.15f));
+        _mapView.region = region;
+        _mapView.centerCoordinate = center;
     }
 }
 

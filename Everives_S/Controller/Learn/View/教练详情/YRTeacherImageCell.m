@@ -44,7 +44,7 @@
         imageV.userInteractionEnabled = YES;
         // 裁剪图片，超出控件的部分裁剪掉
         imageV.clipsToBounds = YES;
-        imageV.image = [UIImage imageNamed:@"backImg"];
+        imageV.image = [UIImage imageNamed:@"Login_addAvatar"];
         imageV.tag = i+10;
         // 添加点按手势
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTap:)];
@@ -66,7 +66,7 @@
         CGFloat imgX = kDistace + (kDistace + imgW) * i;
 
         imageV.frame = CGRectMake(imgX, imgY, imgW, imgH);
-        imageV.image = [UIImage imageNamed:@"backImg"];
+        imageV.image = [UIImage imageNamed:@"Login_addAvatar"];
     }
 }
 

@@ -217,7 +217,7 @@
             _currentID++;
             [self getDataWithInsert:NO];
         }
-        self.title = [NSString stringWithFormat:@"%ld/1234",ques.id];
+        self.title = [NSString stringWithFormat:@"%ld/10",ques.id];
     }else if(self.menuTag == 0){
         _downView.numbString = [NSString stringWithFormat:@"%ld/%ld",indexPath.row+1,_msgArray.count];
         _downView.questObj = ques;
@@ -252,9 +252,10 @@
 -(void)praciceDownViewBtnClick:(NSInteger)btnTag with:(NSString *)quesID
 {
     if (btnTag == 1) {//收藏
-        NSString *quesid = [@[quesID] mj_JSONString];
-        [RequestData POST:JK_Get_COLLECT parameters:@{@"id":quesid} complete:^(NSDictionary *responseDic) {
+//        NSString *quesid = [@[quesID] mj_JSONString];
+        [RequestData POST:JK_Get_COLLECT parameters:@{@"id":quesID} complete:^(NSDictionary *responseDic) {
             MyLog(@"%@",responseDic);
+            [MBProgressHUD showSuccess:@"收藏成功" toView:GET_WINDOW];
         } failed:^(NSError *error) {
             
         }];

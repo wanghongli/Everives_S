@@ -42,8 +42,8 @@
     MyLog(@"%lf",kScreenHeight);
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-64-50)];
     [self.view addSubview:_scrollView];
-    _examBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, kDistance, kScreenWidth, kScreenWidth/2)];
-    [_examBtn setBackgroundImage:[UIImage imageNamed:@"topImg"] forState:UIControlStateNormal];
+    _examBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, kDistance, kScreenWidth, kScreenWidth*0.435)];
+    [_examBtn setBackgroundImage:[UIImage imageNamed:@"Learn_Home_Exam"] forState:UIControlStateNormal];
     [_scrollView addSubview:_examBtn];
     [_examBtn addTarget:self action:@selector(gotoExamClick:) forControlEvents:UIControlEventTouchUpInside];
     _examBtn.backgroundColor = [UIColor whiteColor];

@@ -100,6 +100,7 @@
                 return;
             }
             YRFriendCircleController *secondViewController = [[YRFriendCircleController alloc] init];
+            secondViewController.title = @"驾友圈";
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
             self.frostedViewController.contentViewController = navigationController;
         }else if (indexPath.row == 2) {

@@ -30,10 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _blogs = [NSMutableArray array];
-    self.title = @"驾友圈";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addWeiboClick:)];
     
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.tableFooterView = [[UIView alloc]init];
@@ -41,17 +39,28 @@
     [self buildRefreshUI];
     self.tableView.backgroundColor = kCOLOR(241, 241, 241);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self getdata];
     
     YRCircleHeadView *headView = [[YRCircleHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 0.6*kScreenWidth)];
     self.tableView.tableHeaderView = headView;
-    [headView setUserMsgWithName:KUserManager.name gender:[KUserManager.gender boolValue] sign:KUserManager.sign];
-    headView.image=[UIImage imageNamed:@"backImg"];
+    if (!self.userStatus) {
+        [headView setUserMsgWithName:KUserManager.name gender:[KUserManager.gender boolValue] sign:KUserManager.sign];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addWeiboClick:)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu_icon"] style:UIBarButtonItemStylePlain target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu)];
+    }else{
+        [headView setUserMsgWithName:self.userStatus.name gender:[self.userStatus.gender boolValue] sign:self.userStatus.sign];
+    }
+    headView.image=[UIImage imageNamed:@"background_1"];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
-                                                                             style:UIBarButtonItemStylePlain
-                                                                            target:(YRYJNavigationController *)self.navigationController
-                                                                            action:@selector(showMenu)];
+    [self getdata];
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.refreshMsg) {
+        self.refreshMsg = nil;
+        _page = 0;
+        [self getdata];
+    }
 }
 -(void)buildRefreshUI
 {
@@ -73,7 +82,12 @@
 #pragma mark - 获取数据源
 -(void)getdata
 {
-    [RequestData GET:WEIBO_GET_LIST parameters:@{@"page":[NSString stringWithFormat:@"%ld",_page]} complete:^(NSDictionary *responseDic) {
+    NSString *urlString;
+    if (self.userStatus) {
+        urlString = [NSString stringWithFormat:@"%@%@",WEIBO_GET_OTHER,self.userStatus.id];
+    }else
+        urlString = WEIBO_GET_LIST;
+    [RequestData GET:urlString parameters:@{@"page":[NSString stringWithFormat:@"%ld",_page]} complete:^(NSDictionary *responseDic) {
         if (_page == 0) {
             [_blogs removeAllObjects];
         }
@@ -136,9 +150,12 @@
     //点击头像事件
     [cell setIconClickBlock:^(BOOL userBool) {
         MyLog(@"%s  %d",__func__,userBool);
+        if (self.userStatus) {
+            return;
+        }
         YRUserDetailController *userVC = [[YRUserDetailController alloc]init];
         if (!userBool) {//用户自己
-            userVC.userID = @"13";
+            userVC.userID = statusF.status.uid;
         }
         [self.navigationController pushViewController:userVC animated:YES];
     }];

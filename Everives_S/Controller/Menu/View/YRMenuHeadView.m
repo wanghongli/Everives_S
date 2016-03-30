@@ -82,6 +82,13 @@
     _loginBtn.frame = CGRectMake(CGRectGetMaxX(_headImg.frame)+kDistace, _headImg.y, 60, _headImg.height);
     [_loginBtn setTitle:@"登陆" forState:UIControlStateNormal];
     _loginBtn.titleLabel.textColor = [UIColor blackColor];
+    
+    
+    if (KUserManager.id) {
+        _nameLabel.text = KUserManager.name;
+        [_headImg sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:KUSER_HEAD_IMG]];
+        _signLabel.text = KUserManager.sign;
+    }
 }
 -(void)setLoginBool:(BOOL)loginBool
 {

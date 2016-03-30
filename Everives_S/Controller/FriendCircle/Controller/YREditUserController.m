@@ -56,7 +56,7 @@
         MyLog(@"%@",responseDic);
         _userMsg = [YRUserStatus mj_objectWithKeyValues:responseDic];
         //头像
-        [_headImg sd_setImageWithURL:[NSURL URLWithString:_userMsg.avatar] placeholderImage:[UIImage imageNamed:@"backImg"]];
+        [_headImg sd_setImageWithURL:[NSURL URLWithString:_userMsg.avatar] placeholderImage:[UIImage imageNamed:@"Login_addAvatar"]];
         //昵称
         _nickNameText.text = _userMsg.name;
         //性别

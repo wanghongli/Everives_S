@@ -81,4 +81,10 @@
     [self addSubview:_signLabel];
     _signLabel.font = [UIFont systemFontOfSize:12];
 }
+-(void)setHeadImgUrl:(NSString *)headImgUrl
+{
+    _headImgUrl = headImgUrl;
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:headImgUrl] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
+
+}
 @end

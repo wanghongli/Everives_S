@@ -43,11 +43,17 @@
                             @"科目四",
                             ];
     
+//    NSArray *classNames = @[
+//                            [YRYJFirstClassController class],
+//                            [YRYJSecondClassController class],
+//                            [YRYJThirdClassController class],
+//                            [YRYJFourthClassController class]
+//                            ];
     NSArray *classNames = @[
                             [YRYJFirstClassController class],
                             [YRYJSecondClassController class],
-                            [YRYJThirdClassController class],
-                            [YRYJFourthClassController class]
+                            [YRYJSecondClassController class],
+                            [YRYJFirstClassController class]
                             ];
     
     NSArray *params = @[

@@ -77,8 +77,8 @@
         //显示答案
         UIBarButtonItem *addPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_Cue"] style:UIBarButtonItemStyleBordered target:self action:@selector(showAnswer)];
         //收藏
-        UIBarButtonItem *searchPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_CollectionHollow"] style:UIBarButtonItemStyleBordered target:self action:@selector(collectionClick)];
-        self.navigationItem.rightBarButtonItems = @[addPlaceBtn,searchPlaceBtn];
+//        UIBarButtonItem *searchPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_CollectionHollow"] style:UIBarButtonItemStyleBordered target:self action:@selector(collectionClick)];
+        self.navigationItem.rightBarButtonItems = @[addPlaceBtn];
     }else if (self.menuTag == 0){//模拟考试
         _downView = [[YRPracticeDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.collectionView.frame), kScreenWidth, 44)];
         _downView.delegate = self;
@@ -87,8 +87,14 @@
         self.navigationItem.rightBarButtonItem = _countDownBar;
         timeInt = 30*60;
         [self getTime];
-    }else if (self.menuTag == 2){
-        
+    }else if (self.menuTag == 2){//随机练习
+        //显示答案
+        UIBarButtonItem *addPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_Cue"] style:UIBarButtonItemStyleBordered target:self action:@selector(showAnswer)];
+        //收藏
+//        UIBarButtonItem *searchPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_CollectionHollow"] style:UIBarButtonItemStyleBordered target:self action:@selector(collectionClick)];
+//        self.navigationItem.rightBarButtonItems = @[addPlaceBtn,searchPlaceBtn];
+        self.navigationItem.rightBarButtonItems = @[addPlaceBtn];
+
     }
 }
 -(void)getTime
@@ -128,6 +134,7 @@
 #pragma mark - 显示答案
 -(void)showAnswer
 {
+    
 }
 
 #pragma mark - 收藏
@@ -212,7 +219,7 @@
         [self.collectionView reloadData];
     }];
     
-    if (self.menuTag == 1) {
+    if (self.menuTag == 1 || self.menuTag == 2) {
         if (indexPath.row == _msgArray.count-1) {
             _currentID++;
             [self getDataWithInsert:NO];

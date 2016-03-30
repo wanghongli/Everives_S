@@ -1,42 +1,54 @@
 //
-//  YRMyCollectionController.m
+//  YRExamCollectController.m
 //  Everives_S
 //
-//  Created by 李洪攀 on 16/3/11.
+//  Created by 李洪攀 on 16/3/30.
 //  Copyright © 2016年 darkclouds. All rights reserved.
 //
 
-#import "YRMyCollectionController.h"
 #import "YRExamCollectController.h"
-@interface YRMyCollectionController ()
+#import "YRExamTypeCollect.h"
+@interface YRExamCollectController ()
 {
-    NSArray *tableArray;
+    NSArray *typeArray;
 }
 @end
 
-@implementation YRMyCollectionController
+@implementation YRExamCollectController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的收藏";
-    self.view.backgroundColor = [UIColor whiteColor];
-    tableArray = @[@[@"我收藏的题目"],@[@"驾考法规收藏",@"考试技巧收藏"]];
-    self.tableView.tableFooterView = [[UIView alloc] init];
+    self.title = @"收藏";
     self.tableView.backgroundColor = kCOLOR(241, 241, 241);
-
+    [self getData];
 }
+-(void)getData
+{
+    [RequestData GET:JK_GET_COLLECT parameters:@{@"type":@"0"} complete:^(NSDictionary *responseDic) {
+        typeArray = [YRExamTypeCollect mj_objectArrayWithKeyValuesArray:responseDic];
+        [self.tableView reloadData];
+    } failed:^(NSError *error) {
+        
+    }];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1+(BOOL)typeArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [tableArray[section] count];
+    if (section == 0) {
+        return 1;
+    }else{
+        return typeArray.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -47,11 +59,14 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = tableArray[indexPath.section][indexPath.row];
-    
+    if (indexPath.section == 0) {
+        cell.textLabel.text = @"我的收藏";
+    }else{
+        YRExamTypeCollect *etcObj = typeArray[indexPath.row];
+        cell.textLabel.text = etcObj.name;
+    }
     return cell;
 }
-
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForFooterInSection:(NSInteger)section
 {
     return 10;
@@ -69,9 +84,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0) {
-        YRExamCollectController *eVC = [[YRExamCollectController alloc]init];
-        [self.navigationController pushViewController:eVC animated:YES];
-    }
+    
+}
+-(void)getDataWithRow:(NSString *)row
+{
+//    RequestData GET:<#(NSString *)#> parameters:<#(nullable id)#> complete:<#^(NSDictionary *responseDic)complete#> failed:<#^(NSError *error)failed#>
 }
 @end

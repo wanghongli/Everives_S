@@ -12,7 +12,7 @@
 #import "NSString+MKNetworkKitAdditions.h"
 #import "PhotoCell.h"
 #import <QiniuSDK.h>
-
+#import "YRFriendCircleController.h"
 @interface YRAddWeiboController ()<JKImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UITextViewDelegate>
 {
     NSMutableDictionary *_bodyDic;
@@ -111,8 +111,9 @@
         [_bodyDic setObject:imgArray forKey:@"pics"];
         [MBProgressHUD showMessag:@"上传中..." toView:self.view];
         [RequestData POST:WEIBO_ADD parameters:_bodyDic complete:^(NSDictionary *responseDic) {
-            [self.navigationController popViewControllerAnimated:YES];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+//            [self.navigationController popViewControllerAnimated:YES];
+//            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self goBackVC];
         } failed:^(NSError *error) {
              [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
@@ -137,8 +138,7 @@
                         if (_imgNameArray.count) {
                             [self performSelector:@selector(goBackVC) withObject:nil afterDelay:0];
                         }else{
-                            [self.navigationController popViewControllerAnimated:YES];
-                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                            [self goBackVC];
                         }
                     } failed:^(NSError *error) {
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -152,7 +152,10 @@
 }
 -(void)goBackVC
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    YRFriendCircleController *fcVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+    fcVC.refreshMsg = @"刷新数据";
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToViewController:fcVC animated:YES];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
 }

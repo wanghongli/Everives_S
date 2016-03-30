@@ -32,10 +32,8 @@
     [super viewDidLoad];
     self.tagItemSize = CGSizeMake(self.view.frame.size.width/4, 49);
     self.title = @"蚁人学车";
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
-                                                                             style:UIBarButtonItemStylePlain
-                                                                            target:(YRYJNavigationController *)self.navigationController
-                                                                            action:@selector(showMenu)];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu_icon"] style:UIBarButtonItemStylePlain target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu)];
     self.backgroundColor = [UIColor whiteColor];
     
     NSArray *titleArray = @[

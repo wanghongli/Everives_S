@@ -36,19 +36,23 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"驾友资料";
     if (self.userID) {
-        _msgArray = @[@[@"年龄",@"进度",@"介绍"],@[@"TA的驾友圈"]];
+//        _msgArray = @[@[@"年龄",@"进度",@"介绍"],@[@"TA的驾友圈"]];
+        _msgArray = @[@[@"年龄",@"介绍"],@[@"TA的驾友圈"]];
+
     }else{
-        _msgArray = @[@[@"年龄",@"进度",@"介绍"],@[@"我的驾友圈"]];
+        _msgArray = @[@[@"年龄",@"介绍"],@[@"我的驾友圈"]];
+//        _msgArray = @[@[@"年龄",@"进度",@"介绍"],@[@"我的驾友圈"]];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(editClick:)];
     }
     [self buildUI];
-    [self getData];
+//    [self getData];
 }
 -(void)editClick:(UIBarButtonItem *)sender
 {
     YREditUserController *editVC = [[YREditUserController alloc]init];
     [self.navigationController pushViewController:editVC animated:YES];
 }
+
 -(void)getData
 {
     NSString *urlString;
@@ -59,9 +63,12 @@
     [RequestData GET:urlString parameters:nil complete:^(NSDictionary *responseDic) {
         MyLog(@"%@",responseDic);
         _userMsg = [YRUserStatus mj_objectWithKeyValues:responseDic];
-        [_headView sd_setImageWithURL:[NSURL URLWithString:_userMsg.bg] placeholderImage:[UIImage imageNamed:@"backImg"]];
+        [_headView sd_setImageWithURL:[NSURL URLWithString:_userMsg.bg] placeholderImage:[UIImage imageNamed:@"background_1"]];
         [_headView setUserMsgWithName:_userMsg.name gender:[_userMsg.gender boolValue] sign:_userMsg.sign];
-        _userArray = @[@[_userMsg.age,@"科目二",_userMsg.sign],@[@""]];
+        _headView.headImgUrl = _userMsg.avatar;
+//        _userArray = @[@[_userMsg.age,@"科目二",_userMsg.sign],@[@""]];
+        _userArray = @[@[_userMsg.age,_userMsg.sign],@[@""]];
+
         if (self.userID) {
             _downView.userStatus = _userMsg;
         }
@@ -125,16 +132,15 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.section == 1) {//进入他的驾友圈
         YRFriendCircleController *circleVC = [[YRFriendCircleController alloc]init];
-        circleVC.userID = _userMsg.id;
+        circleVC.userStatus = _userMsg;
+        circleVC.title = [NSString stringWithFormat:@"%@的驾友圈",_userMsg.name];
         [self.navigationController pushViewController:circleVC animated:YES];
     }
 }
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+    [self getData];
 }
 -(void)userDownViewBtnTag:(NSInteger)btnTag
 {

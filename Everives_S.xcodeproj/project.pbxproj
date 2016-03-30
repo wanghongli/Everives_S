@@ -152,6 +152,8 @@
 		03FE5B7D1CAA0FF5009F0ED7 /* YRTeacherDetailObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FE5B7C1CAA0FF5009F0ED7 /* YRTeacherDetailObject.m */; };
 		03FE5B801CAA4172009F0ED7 /* YRSettingPrivacyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FE5B7F1CAA4172009F0ED7 /* YRSettingPrivacyCell.m */; };
 		03FE5B831CAA4668009F0ED7 /* YRPrivacySettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FE5B821CAA4668009F0ED7 /* YRPrivacySettingController.m */; };
+		03FE5B861CAB7F09009F0ED7 /* YRExamCollectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FE5B851CAB7F09009F0ED7 /* YRExamCollectController.m */; };
+		03FE5B891CAB7F76009F0ED7 /* YRExamTypeCollect.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FE5B881CAB7F76009F0ED7 /* YRExamTypeCollect.m */; };
 		03FF14701C9F861600AEBB75 /* YRLearnOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF146E1C9F861600AEBB75 /* YRLearnOrderController.m */; };
 		03FF14711C9F861600AEBB75 /* YRLearnOrderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FF146F1C9F861600AEBB75 /* YRLearnOrderController.xib */; };
 		03FF14751C9F866100AEBB75 /* YRMyCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF14741C9F866100AEBB75 /* YRMyCollectionController.m */; };
@@ -529,6 +531,10 @@
 		03FE5B7F1CAA4172009F0ED7 /* YRSettingPrivacyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSettingPrivacyCell.m; sourceTree = "<group>"; };
 		03FE5B811CAA4668009F0ED7 /* YRPrivacySettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRPrivacySettingController.h; sourceTree = "<group>"; };
 		03FE5B821CAA4668009F0ED7 /* YRPrivacySettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRPrivacySettingController.m; sourceTree = "<group>"; };
+		03FE5B841CAB7F09009F0ED7 /* YRExamCollectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRExamCollectController.h; sourceTree = "<group>"; };
+		03FE5B851CAB7F09009F0ED7 /* YRExamCollectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRExamCollectController.m; sourceTree = "<group>"; };
+		03FE5B871CAB7F76009F0ED7 /* YRExamTypeCollect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRExamTypeCollect.h; sourceTree = "<group>"; };
+		03FE5B881CAB7F76009F0ED7 /* YRExamTypeCollect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRExamTypeCollect.m; sourceTree = "<group>"; };
 		03FF146D1C9F861600AEBB75 /* YRLearnOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnOrderController.h; sourceTree = "<group>"; };
 		03FF146E1C9F861600AEBB75 /* YRLearnOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnOrderController.m; sourceTree = "<group>"; };
 		03FF146F1C9F861600AEBB75 /* YRLearnOrderController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRLearnOrderController.xib; sourceTree = "<group>"; };
@@ -812,6 +818,8 @@
 				031515421C9A912100A2A2F1 /* YRQuestionObject.m */,
 				03FE5B7B1CAA0FF5009F0ED7 /* YRTeacherDetailObject.h */,
 				03FE5B7C1CAA0FF5009F0ED7 /* YRTeacherDetailObject.m */,
+				03FE5B871CAB7F76009F0ED7 /* YRExamTypeCollect.h */,
+				03FE5B881CAB7F76009F0ED7 /* YRExamTypeCollect.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1363,6 +1371,8 @@
 			children = (
 				03FF14731C9F866100AEBB75 /* YRMyCollectionController.h */,
 				03FF14741C9F866100AEBB75 /* YRMyCollectionController.m */,
+				03FE5B841CAB7F09009F0ED7 /* YRExamCollectController.h */,
+				03FE5B851CAB7F09009F0ED7 /* YRExamCollectController.m */,
 			);
 			path = "收藏";
 			sourceTree = "<group>";
@@ -2076,6 +2086,7 @@
 				164A8C961C8D23F600857638 /* YRMyCommentsTableViewController.m in Sources */,
 				16693A061C9A92BD00C7ECF2 /* YRCoachModel.m in Sources */,
 				031D50351CA1374D000E1303 /* YRAppointmentDetailController.m in Sources */,
+				03FE5B891CAB7F76009F0ED7 /* YRExamTypeCollect.m in Sources */,
 				037D7C2D1C916AE600273703 /* UzysGroupPickerView.m in Sources */,
 				166939FA1C9A3EAC00C7ECF2 /* Pinyin.c in Sources */,
 				03A25F171C928891000196A6 /* YRYJFirstClassController.m in Sources */,
@@ -2092,6 +2103,7 @@
 				1600EB3B1C87E65D001919EB /* main.m in Sources */,
 				03228D201CA3EF5800890DC6 /* YRCertificationController.m in Sources */,
 				16C163FF1CA8EFBC00804222 /* YRStudentAnnotationCalloutView.m in Sources */,
+				03FE5B861CAB7F09009F0ED7 /* YRExamCollectController.m in Sources */,
 				16D096181C89699300FF4A81 /* YRReservationCell.m in Sources */,
 				037D7C281C916AE600273703 /* UzysAppearanceConfig.m in Sources */,
 				16C5459D1C995A6400AE5152 /* YRSearchFriendCell.m in Sources */,

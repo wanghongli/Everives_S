@@ -55,7 +55,7 @@
     [self.view addSubview:_iconImgView];
     _iconImgView.frame = CGRectMake(0,CWSHeightDistance,weight*0.3, weight*0.3);
     _iconImgView.center = CGPointMake(kSizeOfScreen.width/2, kSizeOfScreen.height*(1-CWSPercent)/2+20);
-    _iconImgView.image = [UIImage imageNamed:kPLACEHHOLD_IMG];
+    _iconImgView.image = [UIImage imageNamed:@"logo圆角版1"];
     
     //标题
     _titleLabel = [[UILabel alloc]init];

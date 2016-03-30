@@ -3,16 +3,16 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "Learn_Home_Rules.png"
+      "filename" : "Learn_Home_ps1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Learn_Home_Rules@2x.png"
+      "filename" : "Learn_Home_ps1@2x.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "Learn_Home_Rules@3x.png",
+      "filename" : "Learn_Home_ps1@3x.png",
       "scale" : "3x"
     }
   ],

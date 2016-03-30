@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YRUserStatus.h"
 @interface YRFriendCircleController : UITableViewController
-@property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) YRUserStatus *userStatus;
+
+@property (nonatomic, strong) NSString *refreshMsg;
 @end

@@ -52,7 +52,7 @@
 {
     _headView = [[YRPerfectHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth*0.6)];
     _headView.delegate = self;
-    _headView.image = [UIImage imageNamed:@"backImg"];
+    _headView.image = [UIImage imageNamed:@"Login_addAvatar"];
     [self.view addSubview:_headView];
     
     _nickName = [[CWSLoginTextField alloc]initWithFrame:CGRectMake(kDistace*2, CGRectGetMaxY(_headView.frame)+kDistace, self.view.width-4*kDistace, 44)];

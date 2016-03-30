@@ -54,6 +54,7 @@
 #define WEIBO_COMMENT_DELE @"/seeds/comment/id" //删除评论
 #define WEIBO_PRAISE @"/seeds/praise" //点赞
 #define WEIBO_CANCEL_PRAISE @"/seeds/praise" //取消点赞
+#define WEIBO_GET_OTHER @"/seeds/onesSeeds/" //获取他人微博
 
 //驾考问题
 #define JK_SX_PRACTICE @"/question/question/id" //顺序练习
@@ -63,6 +64,7 @@
 #define JK_WRONG_PRACTICE @"/question/wrong/kid" //错题集练习
 #define JK_Get_COLLECT @"/question/Collect" //收藏考题
 #define JK_POST_WRONG @"/question/wrong" //添加错题
+#define JK_GET_COLLECT @"/question/Collect" //收藏的专题列表
 
 //预约部分
 #define STUDENT_AVAILTIME @"/order/availTime/"  //查看可预约时间

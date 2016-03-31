@@ -48,10 +48,7 @@ static NSString *cellID = @"cellID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    YRSearchFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cellID) {
-        cell = [[YRSearchFriendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    }
+    YRSearchFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     [cell configureCellWithAvatar:[_searchRes[indexPath.row] avatar] name:[_searchRes[indexPath.row] name]];
     return cell;
 }

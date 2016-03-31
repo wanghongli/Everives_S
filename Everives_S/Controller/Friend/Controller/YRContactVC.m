@@ -13,6 +13,7 @@
 #import "YRMyCoachVC.h"
 #import "RequestData.h"
 #import "YRChatViewController.h"
+#import "YRMyGroupVC.h"
 static NSString *cellID = @"cellID";
 
 @interface YRContactVC(){
@@ -68,7 +69,8 @@ static NSString *cellID = @"cellID";
 }
 
 -(void)myGroupBtnClick:(UIButton*)sender{
-    
+    YRMyGroupVC *myGroupVC = [[YRMyGroupVC alloc] init];
+    [self.navigationController pushViewController:myGroupVC animated:YES];
 }
 -(void)myCoachBtnClick:(UIButton*)sender{
     _myCoachVC = [[YRMyCoachVC alloc]init];

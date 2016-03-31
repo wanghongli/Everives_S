@@ -234,6 +234,8 @@
 		1694F5801CA23DED009A4C21 /* YRDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694F57F1CA23DED009A4C21 /* YRDateCell.m */; };
 		1694F5831CA25DF4009A4C21 /* YRReservationChoosePlaceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694F5821CA25DF4009A4C21 /* YRReservationChoosePlaceVC.m */; };
 		1694F5861CA25E3B009A4C21 /* YRSchoolCelldetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694F5851CA25E3B009A4C21 /* YRSchoolCelldetailVC.m */; };
+		16988C361CACCDF100B082E0 /* YRMyGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16988C351CACCDF100B082E0 /* YRMyGroupVC.m */; };
+		16988C3A1CACCFE300B082E0 /* YRGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16988C391CACCFE300B082E0 /* YRGroupModel.m */; };
 		16A821FF1CA973BE0036CEDF /* YRSchoolAnnotationCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A821FE1CA973BE0036CEDF /* YRSchoolAnnotationCalloutView.m */; };
 		16B75DEA1C92A627004DC928 /* YRPullListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B75DE91C92A627004DC928 /* YRPullListView.m */; };
 		16B75DED1C92B1EC004DC928 /* YRFillterBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B75DEC1C92B1EC004DC928 /* YRFillterBtnView.m */; };
@@ -685,6 +687,10 @@
 		1694F5821CA25DF4009A4C21 /* YRReservationChoosePlaceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationChoosePlaceVC.m; sourceTree = "<group>"; };
 		1694F5841CA25E3B009A4C21 /* YRSchoolCelldetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSchoolCelldetailVC.h; sourceTree = "<group>"; };
 		1694F5851CA25E3B009A4C21 /* YRSchoolCelldetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSchoolCelldetailVC.m; sourceTree = "<group>"; };
+		16988C341CACCDF100B082E0 /* YRMyGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyGroupVC.h; sourceTree = "<group>"; };
+		16988C351CACCDF100B082E0 /* YRMyGroupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyGroupVC.m; sourceTree = "<group>"; };
+		16988C381CACCFE300B082E0 /* YRGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRGroupModel.h; sourceTree = "<group>"; };
+		16988C391CACCFE300B082E0 /* YRGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRGroupModel.m; sourceTree = "<group>"; };
 		16A821FD1CA973BE0036CEDF /* YRSchoolAnnotationCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSchoolAnnotationCalloutView.h; sourceTree = "<group>"; };
 		16A821FE1CA973BE0036CEDF /* YRSchoolAnnotationCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSchoolAnnotationCalloutView.m; sourceTree = "<group>"; };
 		16B75DE81C92A627004DC928 /* YRPullListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRPullListView.h; sourceTree = "<group>"; };
@@ -974,7 +980,7 @@
 			isa = PBXGroup;
 			children = (
 				1672A6391C8FBC6200AF6272 /* Controller */,
-				1672A63C1C8FBC6200AF6272 /* Model */,
+				16988C371CACCFC900B082E0 /* Model */,
 				1672A63D1C8FBC6200AF6272 /* View */,
 				1672A63E1C8FBC6200AF6272 /* YRFriendViewController.h */,
 				1672A63F1C8FBC6200AF6272 /* YRFriendViewController.m */,
@@ -1611,15 +1617,10 @@
 				16C545931C98F8D400AE5152 /* YRAddFriendVC.m */,
 				16399E221C9B96D400841C03 /* YRMyCoachVC.h */,
 				16399E231C9B96D400841C03 /* YRMyCoachVC.m */,
+				16988C341CACCDF100B082E0 /* YRMyGroupVC.h */,
+				16988C351CACCDF100B082E0 /* YRMyGroupVC.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		1672A63C1C8FBC6200AF6272 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		1672A63D1C8FBC6200AF6272 /* View */ = {
@@ -1754,6 +1755,15 @@
 				16693A081C9A96C700C7ECF2 /* YRUserLocation.m */,
 			);
 			path = TableDataSource;
+			sourceTree = "<group>";
+		};
+		16988C371CACCFC900B082E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				16988C381CACCFE300B082E0 /* YRGroupModel.h */,
+				16988C391CACCFE300B082E0 /* YRGroupModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		16D0960C1C8967DE00FF4A81 /* Activities */ = {
@@ -2028,6 +2038,7 @@
 				031D50461CA23394000E1303 /* YRTeacherDetailCell.m in Sources */,
 				037F8E6D1C8D5FC50057BF6C /* JKAssetsGroupCell.m in Sources */,
 				03228D351CA4D38700890DC6 /* SDPieProgressView.m in Sources */,
+				16988C361CACCDF100B082E0 /* YRMyGroupVC.m in Sources */,
 				037F8E8A1C8E63770057BF6C /* YRFriendCircleController.m in Sources */,
 				032C43E01CABBFD40022C2F9 /* YRTeacherOrder.m in Sources */,
 				037F8E731C8D5FC50057BF6C /* JKPhotoBrowserCell.m in Sources */,
@@ -2172,6 +2183,7 @@
 				16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */,
 				164A8C9A1C8D248300857638 /* YRMyCommentCellTableViewCell.m in Sources */,
 				16B75DED1C92B1EC004DC928 /* YRFillterBtnView.m in Sources */,
+				16988C3A1CACCFE300B082E0 /* YRGroupModel.m in Sources */,
 				03C6521C1CA92446005FFC71 /* YRSettingController.m in Sources */,
 				1672A6381C8FBBA700AF6272 /* YRNearViewController.m in Sources */,
 				037F8EB11C8E6D350057BF6C /* MJPhoto.m in Sources */,

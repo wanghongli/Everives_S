@@ -194,9 +194,6 @@ static NSString *cellID = @"cellID";
     
 }
 #pragma mark - UISearchBarDelegate
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    
-}
 
 -(UIButton *)myGroup{
     if (!_myGroup) {

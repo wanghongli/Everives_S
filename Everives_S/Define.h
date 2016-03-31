@@ -140,3 +140,10 @@
 #define kPLACEHHOLD_IMG @"timeline_image_placeholder"
 
 #define KUSER_HEAD_IMG @"Login_addAvatar"
+
+/**
+ *  通知
+ */
+
+#define kNearViewControlerReloadTable  @"nearViewControlerReloadTable" //筛选之后重新加载table的数据
+#define kFillterBtnRemovePullView @"fillterBtnRemovePullView"  //下拉选项被选择后自动收缩

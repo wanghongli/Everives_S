@@ -39,23 +39,7 @@
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    switch (tableView.tag) {
-        case 0:
-        {
-            return [_itemArrays[0] count];
-        }
-        case 1:
-        {
-            return [_itemArrays[1] count];
-        }
-        case 2:
-        {
-            return [_itemArrays[2] count];
-        }
-        default:
-            return 0;
-    }
-    return 0;
+    return [_itemArrays[tableView.tag] count];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cellID";
@@ -69,6 +53,9 @@
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _selectedArray[tableView.tag] = [NSNumber numberWithInteger:indexPath.row];
+    if(![_selectedArray containsObject:@-1]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:kFillterBtnRemovePullView object:nil];
+    }
 }
 #pragma mark - Getters
 -(NSArray *)tables{
@@ -79,6 +66,7 @@
             table.tag = i;
             table.dataSource = self;
             table.delegate = self;
+            table.tableFooterView = [[UIView alloc] init];
             [_tables addObject:table];
         }
     }

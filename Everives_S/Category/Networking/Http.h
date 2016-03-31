@@ -72,6 +72,5 @@
 #define STUDENT_ORDER @"/order/order" //提交订单post  获取预约记录列表get
 
 //群聊部分
-#define GROUP_GROUP @"/group/group" // 创建群
-
+#define GROUP_GROUP @"/group/group" // 创建群post  我加入的群get
 #endif

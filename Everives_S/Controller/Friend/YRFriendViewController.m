@@ -32,6 +32,8 @@ static BOOL addViewIsHidden = YES;
                                         @(ConversationType_GROUP),]];
     //设置需要将哪些类型的会话在会话列表中聚合显示
 //    [self setCollectionConversationType:@[@(ConversationType_GROUP)]];
+    
+    self.conversationListTableView.tableFooterView = [[UIView alloc] init];
     [self addNavItem];
     
     

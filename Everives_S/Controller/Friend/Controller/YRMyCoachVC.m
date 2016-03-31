@@ -8,7 +8,6 @@
 
 #import "YRMyCoachVC.h"
 #import "YRSearchFriendCell.h"
-#import <MJExtension.h>
 #import "YRCoachModel.h"
 #import "YRTeacherDetailController.h"
 static NSString *cellID = @"cellID";
@@ -61,10 +60,7 @@ static NSString *cellID = @"cellID";
     return _coaches.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    YRSearchFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[YRSearchFriendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    }
+    YRSearchFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     [cell configureCellWithAvatar:[_coaches[indexPath.row] avatar] name:[_coaches[indexPath.row] name]];
     return cell;
 }

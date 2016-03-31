@@ -86,6 +86,7 @@
 }
 -(void)publishClick:(UIButton*)sender
 {
+    sender.userInteractionEnabled = NO;
     [_imgNameArray removeAllObjects];
     [_publishImgArray removeAllObjects];
     if (!self.textView.text.length) {
@@ -95,31 +96,23 @@
         [MBProgressHUD showError:@"内容不能为空" toView:self.view];
         return;
     }
-//    if (KUserLocation.addr!=nil ) {
-//        [_bodyDic setObject:KUserLocation.addr forKey:@"address"];
-//        [_bodyDic setObject:KUserLocation.longitude forKey:@"lng"];
-//        [_bodyDic setObject:KUserLocation.latitude forKey:@"lat"];
-//    }else{
-//        [_bodyDic setObject:KUserManager.address forKey:@"address"];
-//        [_bodyDic setObject:KUserManager.lng forKey:@"lng"];
-//        [_bodyDic setObject:KUserManager.lat forKey:@"lat"];
-//    }
     [_bodyDic setObject:@"重庆市渝北区光电园麒麟C座" forKey:@"address"];
 
     [_bodyDic setObject:self.textView.text forKey:@"content"];
+    
+    [MBProgressHUD showMessag:@"上传中..." toView:self.view];
     if (!self.assetsArray.count) {
         NSString *imgArray = [_publishImgArray mj_JSONString];
         [_bodyDic setObject:imgArray forKey:@"pics"];
-        [MBProgressHUD showMessag:@"上传中..." toView:self.view];
         [RequestData POST:WEIBO_ADD parameters:_bodyDic complete:^(NSDictionary *responseDic) {
-//            [self.navigationController popViewControllerAnimated:YES];
-//            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self goBackVC];
         } failed:^(NSError *error) {
+            sender.userInteractionEnabled = YES;
              [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
         return;
     }
+
     for (int i = 0; i<self.assetsArray.count; i++) {
         JKAssets *jkasset = self.assetsArray[i];
         ALAssetsLibrary   *lib = [[ALAssetsLibrary alloc] init];
@@ -130,19 +123,20 @@
                 NSString *imageName = [[uploadData.description md5] addString:@".jpg"];
                 [_imgNameArray addObject:imageName];
                 [_publishImgArray addObject:[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]];
-                [[SDImageCache sharedImageCache] storeImage:img forKey:imageName];
+                [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName];
                 if (_imgNameArray.count == self.assetsArray.count) {
                     NSString *imgArray = [_publishImgArray mj_JSONString];
                     [_bodyDic setObject:imgArray forKey:@"pics"];
                     [self publishImages:_imgNameArray];
-                    [MBProgressHUD showMessag:@"上传中..." toView:self.view];
                     [RequestData POST:WEIBO_ADD parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+                        sender.userInteractionEnabled = YES;
                         if (_imgNameArray.count) {
                             [self performSelector:@selector(goBackVC) withObject:nil afterDelay:0];
                         }else{
                             [self goBackVC];
                         }
                     } failed:^(NSError *error) {
+                        sender.userInteractionEnabled = YES;
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                     }];
                 }
@@ -156,7 +150,6 @@
 {
     YRFriendCircleController *fcVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
     fcVC.refreshMsg = @"刷新数据";
-//    [self.navigationController popViewControllerAnimated:YES];
     [self.navigationController popToViewController:fcVC animated:YES];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     

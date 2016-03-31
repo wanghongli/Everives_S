@@ -74,17 +74,91 @@
 {
     // 4
     _pic_urls = pic_urls;
+//    int count = (int)self.subviews.count;
+//    for (int i = 0; i < count; i++) {
+//        
+//        UIImageView *imageV = self.subviews[i];
+//        
+//        if (i < _pic_urls.count) { // 显示
+//            // 获取图片链接
+//            NSString *photo = _pic_urls[i];
+//            
+//            UIImage *imgMsg = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:photo];
+//            if ([photo containsString:@"qiniucdn"]) {
+//                if (_pic_urls.count == 1) {
+//                    photo = [photo addString:kQiniuThumbnailParam(60)];
+//                }else{
+//                    photo = [photo addString:kQiniuThumbnailParam(30)];
+//                }
+//            }
+//            self.image = nil;
+//            imageV.hidden = NO;
+//            if (imgMsg) {
+//                NSData *fData;
+//                if (_pic_urls.count == 1) {//图片压缩处理
+//                    fData = UIImageJPEGRepresentation(imgMsg, 0.6);
+//                }else
+//                    fData = UIImageJPEGRepresentation(imgMsg, 0.3);
+//
+//                imageV.image = [UIImage imageWithData:fData];
+//                imageV = nil;
+//                fData = nil;
+//            }else
+//                [imageV sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
+//        }else{
+//            imageV.hidden = YES;
+//        }
+//    }
+//    
+//    CGFloat x = 0;
+//    CGFloat y = 0;
+//    CGFloat margin = 5;
+//    int col = 0;
+//    int rol = 0;
+//    int cols;
+//    int count1 = (int)_pic_urls.count;
+//    CGFloat photoWH;
+//    if (count1 ==1) {
+//        cols = 1;
+//        photoWH = kPICTURE_HW*3+20;
+//    }else if (count1 == 2 || count1 ==4){
+//        cols = 2;
+//        photoWH = (kPICTURE_HW*3+10)/2;
+//    }else{
+//        cols = 3;
+//        photoWH = kPICTURE_HW;
+//    }
+//    
+//    // 计算显示出来的imageView
+//    for (int i = 0; i < _pic_urls.count; i++) {
+//        col = i % cols;
+//        rol = i / cols;
+//        UIImageView *imageV = self.subviews[i];
+//        x = col * (photoWH + margin);
+//        y = rol * (photoWH + margin);
+//        imageV.frame = CGRectMake(x, y, photoWH, photoWH);
+//    }
+}
+-(void)setCircleModel:(YRWeibo *)circleModel
+{
+    _circleModel = circleModel;
+    
+    MyLog(@"");
+    NSArray *pic_urls = [NSArray arrayWithArray:circleModel.pics];
     int count = (int)self.subviews.count;
     for (int i = 0; i < count; i++) {
         
         UIImageView *imageV = self.subviews[i];
         
-        if (i < _pic_urls.count) { // 显示
+        if (i < pic_urls.count) { // 显示
             // 获取图片链接
-            NSString *photo = _pic_urls[i];
-            
+            NSString *photo = pic_urls[i];
+            UIImage *imgMsg;
+            if ([self intervalSinceNow:circleModel.time]) {
+               imgMsg = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:photo];
+            }
             if ([photo containsString:@"qiniucdn"]) {
-                if (_pic_urls.count == 1) {
+                if (pic_urls.count == 1) {
                     photo = [photo addString:kQiniuThumbnailParam(60)];
                 }else{
                     photo = [photo addString:kQiniuThumbnailParam(30)];
@@ -92,10 +166,16 @@
             }
             self.image = nil;
             imageV.hidden = NO;
-//            UIImage *myCachedImage = [[SDImageCache sharedImageCache] imageFromKey:photo];
-            UIImage *imgMsg = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:photo];
             if (imgMsg) {
-                imageV.image = imgMsg;
+                NSData *fData;
+                if (pic_urls.count == 1) {//图片压缩处理
+                    fData = UIImageJPEGRepresentation(imgMsg, 0.6);
+                }else
+                    fData = UIImageJPEGRepresentation(imgMsg, 0.3);
+                
+                imageV.image = [UIImage imageWithData:fData];
+                imageV = nil;
+                fData = nil;
             }else
                 [imageV sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
         }else{
@@ -109,7 +189,7 @@
     int col = 0;
     int rol = 0;
     int cols;
-    int count1 = (int)_pic_urls.count;
+    int count1 = (int)pic_urls.count;
     CGFloat photoWH;
     if (count1 ==1) {
         cols = 1;
@@ -123,7 +203,7 @@
     }
     
     // 计算显示出来的imageView
-    for (int i = 0; i < _pic_urls.count; i++) {
+    for (int i = 0; i < pic_urls.count; i++) {
         col = i % cols;
         rol = i / cols;
         UIImageView *imageV = self.subviews[i];
@@ -131,5 +211,34 @@
         y = rol * (photoWH + margin);
         imageV.frame = CGRectMake(x, y, photoWH, photoWH);
     }
+}
+- (BOOL)intervalSinceNow:(NSString*) theDate
+{
+    BOOL imgBool;
+    NSDate *d=[NSDate dateWithTimeIntervalSince1970:[theDate floatValue]];
+    NSTimeInterval late=[d timeIntervalSince1970]*1;
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval now=[dat timeIntervalSince1970]*1;
+    NSString *timeString=@"";
+    NSTimeInterval cha= now-late;
+    
+    //发表在一小时之内
+    if(cha/3600<1) {
+        if(cha/60<1) {
+            timeString = @"1";
+        }
+        else
+        {
+            timeString = [NSString stringWithFormat:@"%f", cha/60];
+            timeString = [timeString substringToIndex:timeString.length-7];
+        }
+        if ([timeString integerValue]<4) {
+            imgBool = YES;
+        }else
+            imgBool = NO;
+    }else
+        imgBool = NO;
+    return imgBool;
+
 }
 @end

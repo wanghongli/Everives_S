@@ -160,5 +160,6 @@
     
     // 配图
     _photosView.pic_urls = status.pics;
+    _photosView.circleModel = status;
 }
 @end

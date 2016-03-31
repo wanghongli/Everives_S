@@ -16,7 +16,7 @@
 #import "YRUserStatus.h"
 #import <SMS_SDK/SMSSDK.h>
 #import <SMS_SDK/Extend/SMSSDK+AddressBookMethods.h>
-
+#import "SDWebImageManager.h"
 //SMSSDK官网公共key
 #define appkey @"f3fc6baa9ac4"
 #define app_secrect @"7f3dedcb36d92deebcb373af921d635a"
@@ -112,6 +112,15 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+}
+#pragma mark - 当内存警告时SDWebimage清除换成
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    // 停止下载图片
+    [[SDWebImageManager sharedManager] cancelAll];
+    
+    // 清除内存缓存图片
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
 }
 /**
  * 融云推送处理

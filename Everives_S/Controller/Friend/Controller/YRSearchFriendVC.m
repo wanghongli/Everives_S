@@ -52,8 +52,7 @@ static NSString *cellID = @"cellID";
     if (cellID) {
         cell = [[YRSearchFriendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    [cell.avatar sd_setImageWithURL:[NSURL URLWithString:[_searchRes[indexPath.row] avatar]]];
-    cell.name.text = [_searchRes[indexPath.row] name];
+    [cell configureCellWithAvatar:[_searchRes[indexPath.row] avatar] name:[_searchRes[indexPath.row] name]];
     return cell;
 }
 

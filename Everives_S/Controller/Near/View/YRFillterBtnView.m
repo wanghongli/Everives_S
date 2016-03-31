@@ -8,11 +8,13 @@
 
 #import "YRFillterBtnView.h"
 #import "YRPullListView.h"
+
 @interface YRFillterBtnView(){
     CGFloat _btnWidth;
     NSInteger _btnNum;
     NSInteger _whichBtnClicked;
     NSMutableArray *_pullViews;
+    BOOL _ishiden;
 }
 @property(nonatomic,strong) NSArray *titles;
 @property(nonatomic,strong) NSMutableArray *btns;
@@ -28,16 +30,36 @@
         _btnNum = _titles.count;
         _btnWidth = frame.size.width/_btnNum;
         _whichBtnClicked = -1;
+        _ishiden = YES;
         for (NSInteger i = 0; i<_btnNum; i++) {
             [self addSubview:self.btns[i]];
         }
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
         self.layer.borderWidth = 1;
         _itemArrs = @[@[@[@"重庆"],@[@"南岸",@"江北",@"渝北",@"渝中",@"北碚",@"巴南",@"沙坪坝"]],
-                        @[@[@"人气最高",@"长得最帅",@"评分最高"]]];
+                        @[@[@"综合排序",@"人气最高",@"距离最近",@"评价最好"]]];
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePullView:) name:kFillterBtnRemovePullView object:nil];
     return self;
 }
+
+-(void)removePullView:(NSNotification*)notification{
+    
+    NSString *title = [NSString string];
+    for (NSInteger i =0; i<self.pullView.selectedArray.count; i++) {
+        title = [title stringByAppendingString:_itemArrs[_whichBtnClicked][i][[self.pullView.selectedArray[i] integerValue]]];
+    }
+    if (self.pullView.tag == 0) {
+        _addr = [title substringFromIndex:2];
+    }else{
+        _sort = [self.pullView.selectedArray lastObject];
+    }
+    [_btns[_whichBtnClicked] setTitle:title forState:UIControlStateNormal];
+    _ishiden = YES;
+    [self.pullView removeFromSuperview];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNearViewControlerReloadTable object:nil];
+}
+
 -(NSMutableArray *)btns{
     if (!_btns.count) {
         for (NSInteger i = 0; i<_titles.count; i++) {
@@ -58,36 +80,46 @@
 }
 //显示、隐藏下拉列表
 -(void)btnClick:(UIButton*)sender{
-    static BOOL ishiden = YES;
+    
     [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_btns enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj tag] != sender.tag) {
             [obj setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];
         }
     }];
-    //-1表示没有选择
+    //不是第一次选择 并且点击了另外的按钮
     if (_whichBtnClicked != -1 && _whichBtnClicked != sender.tag) {
         [self.pullView removeFromSuperview];
-        ishiden = YES;
+        _ishiden = YES;
     }
     _whichBtnClicked = sender.tag;
-    if (ishiden) {
-        ishiden = NO;
+    if (_ishiden) {
+        _ishiden = NO;
         [self.superview addSubview:self.pullView];
     }else{
-        ishiden = YES;
+        _ishiden = YES;
         //如果全部选择了有效数据
+        [self.pullView removeFromSuperview];
         if (![self.pullView.selectedArray containsObject:@-1]) {
             NSString *title = [NSString string];
             for (NSInteger i =0; i<self.pullView.selectedArray.count; i++) {
                 title = [title stringByAppendingString:_itemArrs[_whichBtnClicked][i][[self.pullView.selectedArray[i] integerValue]]];
             }
-            _addr = [title substringFromIndex:2];
-            _sort = [_pullView.selectedArray lastObject];
+            if (sender.tag == 0) {
+                if ([_addr isEqualToString:[title substringFromIndex:2]]) {
+                    return;
+                }
+                _addr = [title substringFromIndex:2];
+                
+            }else{
+                if ([_sort isEqualToString:[_pullView.selectedArray lastObject]]) {
+                    return;
+                }
+                _sort = [_pullView.selectedArray lastObject];
+            }
             [sender setTitle:title forState:UIControlStateNormal];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"FillterNotification" object:nil userInfo:@{@"tabletag":[NSNumber numberWithInteger:self.tag]}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNearViewControlerReloadTable object:nil];
         }
-        [self.pullView removeFromSuperview];
     }
    
 }
@@ -95,6 +127,7 @@
     if (!_pullView) {
         for (NSInteger i = 0; i<_titles.count; i++) {
             YRPullListView *pullView = [[YRPullListView alloc] initWithFrame:CGRectMake(0, 45, kScreenWidth, kScreenHeight/4) itemArray:_itemArrs[i]];
+            pullView.tag = i;
             [_pullViews addObject:pullView];
         }
     }

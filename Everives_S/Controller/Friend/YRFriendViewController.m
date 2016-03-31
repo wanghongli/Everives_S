@@ -17,12 +17,15 @@ static BOOL addViewIsHidden = YES;
 
 @interface YRFriendViewController ()
 @property(nonatomic,strong) UIView *addView;
+@property(nonatomic,strong) UIView *emptyView;
 @end
 
 @implementation YRFriendViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.emptyConversationView = self.emptyView;
     self.frostedViewController.panGestureEnabled = NO;
     //设置需要显示哪些类型的会话
     [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE),
@@ -39,6 +42,18 @@ static BOOL addViewIsHidden = YES;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)addFriendBtnClick:(UIButton*)sender{
+    [self.navigationController pushViewController:[[YRAddFriendVC alloc] init] animated:YES];
+    [self.addView removeFromSuperview];
+    addViewIsHidden = YES;
+}
+-(void)addGroupBtnClick:(UIButton*)sender{
+    YRContactVC *contact = [[YRContactVC alloc] init];
+    contact.isAllowSelected = YES;
+    [self.navigationController pushViewController:contact animated:YES];
+    [self.addView removeFromSuperview];
+    addViewIsHidden = YES;
+}
 //重载函数，onSelectedTableRow 是选择会话列表之后的事件
 -(void)onSelectedTableRow:(RCConversationModelType)conversationModelType conversationModel:(RCConversationModel *)model atIndexPath:(NSIndexPath *)indexPath
 {
@@ -119,16 +134,17 @@ static BOOL addViewIsHidden = YES;
     }
     return _addView;
 }
--(void)addFriendBtnClick:(UIButton*)sender{
-    [self.navigationController pushViewController:[[YRAddFriendVC alloc] init] animated:YES];
-    [self.addView removeFromSuperview];
-    addViewIsHidden = YES;
+-(UIView *)emptyView{
+    if (!_emptyView) {
+        _emptyView = [[UIView alloc] initWithFrame:self.view.frame];
+        _emptyView.backgroundColor = [UIColor whiteColor];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, kScreenHeight/2, kScreenWidth, 20)];
+        label.text = @"当前还没有消息哦~";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = kFontOfLetterMedium;
+        [_emptyView addSubview:label];
+    }
+    return _emptyView;
 }
--(void)addGroupBtnClick:(UIButton*)sender{
-    YRContactVC *contact = [[YRContactVC alloc] init];
-    contact.isAllowSelected = YES;
-    [self.navigationController pushViewController:contact animated:YES];
-    [self.addView removeFromSuperview];
-    addViewIsHidden = YES;
-}
+
 @end

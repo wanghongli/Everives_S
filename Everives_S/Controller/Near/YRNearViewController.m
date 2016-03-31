@@ -67,15 +67,14 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [_mapView addSubview:self.searchBar];
     [self getDataForMap:1];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tablewViewReloadData:) name:@"FillterNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tablewViewReloadData:) name:kNearViewControlerReloadTable object:nil];
 }
 
 
 #pragma mark - Private Methods
 //收到筛选信息之后的通知处理
 -(void)tablewViewReloadData:(NSNotification*)notification{
-    NSDictionary *dic = notification.userInfo;
-    if ([dic[@"tabletag"] integerValue] == NearTableTypeSchool) {
+    if (_selectView.selectedBtnNum == NearTableTypeSchool) {
         NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":_schoolFillterView.sort?:@"0",@"address":_schoolFillterView.addr?:@"",@"key":@""};
         [_schoolData getDataWithParameters:parameters];
     }else{

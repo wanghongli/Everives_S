@@ -98,7 +98,6 @@
             
         }];
     }
-
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
 }

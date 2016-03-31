@@ -102,6 +102,7 @@
 -(void)btnClick:(CWSPublicButton *)sender
 {
     if (sender.tag == 10) {//填写完成
+        [MBProgressHUD showMessag:@"提交中..." toView:self.view];
         [_bodyDic setObject:self.nickName.text forKey:@"name"];
         [_bodyDic setObject:self.ageText.text forKey:@"age"];
         [_bodyDic setObject:@"主人太懒，什么都没有留下" forKey:@"sign"];
@@ -110,9 +111,12 @@
             KUserManager.name = self.nickName.text;
             KUserManager.gender = _bodyDic[@"gender"];
             KUserManager.sign = _bodyDic[@"sign"];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self dismissViewControllerAnimated:YES completion:nil];
+            [MBProgressHUD showSuccess:@"提交成功" toView:GET_WINDOW];
         } failed:^(NSError *error) {
-            
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [MBProgressHUD showSuccess:@"提交失败" toView:GET_WINDOW];
         }];
     }else{//暂时不想填写
         [self dismissViewControllerAnimated:YES completion:nil];

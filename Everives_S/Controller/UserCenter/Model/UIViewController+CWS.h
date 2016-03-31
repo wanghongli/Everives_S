@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YRLoginViewController.h"
 @interface UIViewController (CWS)
+
 
 
 @end

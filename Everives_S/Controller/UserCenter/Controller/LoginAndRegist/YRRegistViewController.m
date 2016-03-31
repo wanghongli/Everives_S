@@ -134,6 +134,8 @@
 #pragma mark - 注册事件
 -(void)registClick:(CWSPublicButton *)sender
 {
+    sender.userInteractionEnabled = NO;
+    [MBProgressHUD showMessag:@"提交中..." toView:self.view];
     [PublicCheckMsgModel checkTellWithTellNum:self.tellText.text complete:^(BOOL isSuccess) {
         if (![self.codeText.text isValid]) {
             NSLog(@"验证码不能为空");
@@ -146,7 +148,8 @@
                 //检查手机号码是否注册
                 [RequestData GET:USER_CHECK_TELL parameters:@{@"tel":self.tellText.text,@"kind":@"0"} complete:^(NSDictionary *responseDic) {
                     NSLog(@"%@",responseDic);
-                    
+                    sender.userInteractionEnabled = YES;
+                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                     if ([self.title isEqualToString:@"忘记密码"]) {//忘记密码
                         NSLog(@"手机号码没有注册");
                         return;
@@ -157,6 +160,8 @@
                     [self.navigationController pushViewController:pswVC animated:YES];
                     
                 } failed:^(NSError *error) {
+                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                    sender.userInteractionEnabled = YES;
                     if ([self.title isEqualToString:@"忘记密码"]) {//忘记密码
                         YRRegistPswController *pswVC = [[YRRegistPswController alloc]init];
                         pswVC.tellNum = self.tellText.text;
@@ -164,6 +169,7 @@
                         [self.navigationController pushViewController:pswVC animated:YES];
                         return;
                     }
+                    [MBProgressHUD showError:@"手机号码已注册" toView:GET_WINDOW];
                 }];
             }
             else

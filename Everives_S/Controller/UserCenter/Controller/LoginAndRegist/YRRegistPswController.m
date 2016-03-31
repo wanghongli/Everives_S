@@ -95,27 +95,31 @@
 {
     [PublicCheckMsgModel checkPswIsEqualFistPsw:self.passwordTextField.text secondPsw:self.againPasswordTextField.text complete:^(BOOL isSuccess) {
         if (_pswOrRegistVC) {//忘记密码跳转来
-           
+            [MBProgressHUD showMessag:@"修改中..." toView:self.view];
+
             [_bodyDic setObject:self.passwordTextField.text forKey:@"password"];
             
             [RequestData POST:USER_FIND_PSW parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                 [MBProgressHUD showSuccess:@"密码修改成功" toView:GET_WINDOW];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             } failed:^(NSError *error) {
-                
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [MBProgressHUD showSuccess:@"密码修改失败" toView:GET_WINDOW];
             }];
             
         }else{//注册界面跳转而来
+            [MBProgressHUD showMessag:@"注册中..." toView:self.view];
             
             [_bodyDic setObject:self.passwordTextField.text forKey:@"password"];
             
             [RequestData POST:USER_REGIST parameters:_bodyDic complete:^(NSDictionary *responseDic) {
                 MyLog(@"%@",responseDic);
-                
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                 [self saveMsg:responseDic];
-
             } failed:^(NSError *error) {
-                
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [MBProgressHUD showSuccess:@"注册失败" toView:GET_WINDOW];
             }];
             
         }

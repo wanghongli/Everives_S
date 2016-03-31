@@ -12,6 +12,7 @@
 #import "YRLearnNoMsgView.h"//没认证界面
 #import "YRCertificationController.h" //信息认证
 #import "YRTeacherOrder.h"
+#import "UIViewController+YRCommonController.h"
 @interface YRYJSecondClassController ()<UITableViewDelegate,UITableViewDataSource,YRLearnNoMsgViewDelegate>
 {
     NSArray *msgArray;
@@ -29,8 +30,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self buildUI];
+    if (!KUserManager.id) {
+        [self goToLoginVC];
+        return;
+    }else{
+        [self buildUI];
+    }
+    
 }
+
 -(void)buildUI
 {
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64-48-44)];
@@ -64,6 +72,7 @@
 }
 -(void)getData
 {
+    
     [RequestData GET:STUDENT_ORDER parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
         MyLog(@"%@",responseDic);
         msgArray = [YRTeacherOrder mj_objectArrayWithKeyValuesArray:responseDic];

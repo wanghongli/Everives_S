@@ -91,6 +91,10 @@
         self.frostedViewController.contentViewController = navigationController;
     } else if(indexPath.section == 1){
         if (indexPath.row == 0) {
+            if (!KUserManager.id) {//登陆
+                [self menuHeadViewLoginClick];
+                return;
+            }
             YRFriendViewController *friendViewController = [[YRFriendViewController alloc] init];
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:friendViewController];
             self.frostedViewController.contentViewController = navigationController;
@@ -203,6 +207,7 @@
 #pragma mark - 登陆
 -(void)menuHeadViewLoginClick
 {
+    [MBProgressHUD showError:@"请登陆" toView:GET_WINDOW];
     YRLoginViewController *loginVC = [[YRLoginViewController alloc]init];
     loginVC.title = @"登陆";
     YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:loginVC];

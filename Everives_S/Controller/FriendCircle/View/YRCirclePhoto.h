@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YRWeibo.h"
 @interface YRCirclePhoto : UIImageView
 
 @property (nonatomic, strong) NSArray *pic_urls;
+
+@property (nonatomic, strong) YRWeibo *circleModel;
 
 @end

@@ -102,6 +102,7 @@
 - (void)loginClick:(CWSPublicButton*)sender
 {
     MyLog(@"%s",__func__);
+    [MBProgressHUD showMessag:@"正在登陆" toView:self.view];
     [PublicCheckMsgModel loginMsgCheckTell:self.phoneTF.text psw:self.passwordTF.text complete:^(BOOL isSuccess) {
         [RequestData POST:USER_LOGIN parameters:@{@"tel":self.phoneTF.text,@"password":self.passwordTF.text,@"kind":@"0",@"type":@"1"} complete:^(NSDictionary *responseDic) {
             NSLog(@"%@",responseDic);
@@ -110,7 +111,7 @@
             [userDefaults setObject:responseDic forKey:@"user"];
             [userDefaults setObject:@{@"tel":self.phoneTF.text,@"psw":self.passwordTF.text} forKey:@"loginCount"];
             [NSUserDefaults resetStandardUserDefaults];
-        
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             
             KUserManager = user;
             //连接融云服务器
@@ -132,10 +133,11 @@
         } failed:^(NSError *error) {
             
             NSLog(@"error - %@",[error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONString]);
-            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
     } error:^(NSString *errorMsg) {//账号密码有误
         NSLog(@"%@",errorMsg);
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
     
 }

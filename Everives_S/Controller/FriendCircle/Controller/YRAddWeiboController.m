@@ -13,6 +13,7 @@
 #import "PhotoCell.h"
 #import <QiniuSDK.h>
 #import "YRFriendCircleController.h"
+#import "SDImageCache.h"
 @interface YRAddWeiboController ()<JKImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UITextViewDelegate>
 {
     NSMutableDictionary *_bodyDic;
@@ -129,6 +130,7 @@
                 NSString *imageName = [[uploadData.description md5] addString:@".jpg"];
                 [_imgNameArray addObject:imageName];
                 [_publishImgArray addObject:[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]];
+                [[SDImageCache sharedImageCache] storeImage:img forKey:imageName];
                 if (_imgNameArray.count == self.assetsArray.count) {
                     NSString *imgArray = [_publishImgArray mj_JSONString];
                     [_bodyDic setObject:imgArray forKey:@"pics"];
@@ -179,7 +181,7 @@
                                   NSLog(@"%@\n---%@\n %@",info,resp,key);
                                   if (resp) {
                                       if (i == self.assetsArray.count-1) {
-                                          [MBProgressHUD showSuccess:@"上传成功" toView:self.navigationController.view];
+//                                          [MBProgressHUD showSuccess:@"上传成功" toView:self.navigationController.view];
                                           
                                       }
                                   }

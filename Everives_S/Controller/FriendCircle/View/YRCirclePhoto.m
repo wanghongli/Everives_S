@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
+#import "SDImageCache.h"
 #define kQiniuThumbnailParam(scale) ([NSString stringWithFormat:@"?imageMogr2/thumbnail/!%dp", scale])
 
 @implementation YRCirclePhoto
@@ -91,7 +92,12 @@
             }
             self.image = nil;
             imageV.hidden = NO;
-            [imageV sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
+//            UIImage *myCachedImage = [[SDImageCache sharedImageCache] imageFromKey:photo];
+            UIImage *imgMsg = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:photo];
+            if (imgMsg) {
+                imageV.image = imgMsg;
+            }else
+                [imageV sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
         }else{
             imageV.hidden = YES;
         }

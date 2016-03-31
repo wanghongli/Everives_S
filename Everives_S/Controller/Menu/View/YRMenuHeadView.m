@@ -88,6 +88,7 @@
         _nameLabel.text = KUserManager.name;
         [_headImg sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:KUSER_HEAD_IMG]];
         _signLabel.text = KUserManager.sign;
+        
     }
 }
 -(void)setLoginBool:(BOOL)loginBool
@@ -101,6 +102,7 @@
         _nameLabel.hidden = NO;
         _notiBtn.hidden = NO;
         [_headImg sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:KUSER_HEAD_IMG]];
+        
     }else{//没有登陆
         _loginBtn.hidden = NO;
         _nameLabel.hidden = YES;

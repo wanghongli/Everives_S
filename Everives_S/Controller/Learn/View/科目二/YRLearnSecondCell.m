@@ -7,6 +7,8 @@
 //
 
 #import "YRLearnSecondCell.h"
+#import "UIImageView+WebCache.h"
+
 @implementation YRLearnSecondCell
 
 
@@ -48,6 +50,8 @@
     self.timeLabel.frame = CGRectMake(self.timeLabel.x, self.timeLabel.y, timeSize.width+10, self.timeLabel.height);
     [self setCornerRadiusWith:self.timeLabel];
 }
+
+
 -(void)setCornerRadiusWith:(UIView *)corView
 {
     corView.layer.masksToBounds = YES;
@@ -55,14 +59,31 @@
     corView.layer.borderWidth = 1;
     corView.layer.borderColor = kCOLOR(203, 204, 205).CGColor;
 }
-- (void)awakeFromNib {
-    // Initialization code
+-(void)setTeacherOrder:(YRTeacherOrder *)teacherOrder
+{
+    _teacherOrder = teacherOrder;
+    self.nameLabel.text = KUserManager.name;
+    self.calendarLabel.text = teacherOrder.date;
+    self.timeLabel.text = teacherOrder.time;
+    self.addressLabel.text = teacherOrder.pname;
+    [self.firstImg sd_setImageWithURL:[NSURL URLWithString:teacherOrder.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
+    
+    [self setImgWith:1];
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)setImgWith:(NSInteger)testNum
+{
+    [self setCornerRadiusWith:self.firstImg];
+    [self setCornerRadiusWith:self.leftImg];
+    [self setCornerRadiusWith:self.rightImg];
+    
+    if (testNum%2) {
+        self.leftImg.hidden = YES;
+        self.rightImg.hidden = YES;
+        self.changeImg.hidden = YES;
+    }else{
+        self.changeImg.hidden = NO;
+        self.leftImg.hidden = NO;
+        self.rightImg.hidden = NO;
+    }
 }
-
 @end

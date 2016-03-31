@@ -72,7 +72,6 @@
         [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@",KUserManager.id] forHTTPHeaderField:@"uid"];
         [manager.requestSerializer setValue:KUserManager.token forHTTPHeaderField:@"token"];
         [manager.requestSerializer setValue:@"0" forHTTPHeaderField:@"kind"];
-        //        NSLog(@"")
     }
     NSString *URL = [NSString stringWithFormat:@"%@%@",SERVER_URL,URLString];
     [manager PUT:URL parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {

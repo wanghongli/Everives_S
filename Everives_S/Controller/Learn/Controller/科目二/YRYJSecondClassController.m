@@ -11,8 +11,11 @@
 #import "YRAppointmentDetailController.h"
 #import "YRLearnNoMsgView.h"//没认证界面
 #import "YRCertificationController.h" //信息认证
+#import "YRTeacherOrder.h"
 @interface YRYJSecondClassController ()<UITableViewDelegate,UITableViewDataSource,YRLearnNoMsgViewDelegate>
-
+{
+    NSArray *msgArray;
+}
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayTable;
 @property (nonatomic, strong) UILabel *topView;
@@ -63,13 +66,18 @@
 {
     [RequestData GET:STUDENT_ORDER parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
         MyLog(@"%@",responseDic);
+        msgArray = [YRTeacherOrder mj_objectArrayWithKeyValuesArray:responseDic];
+        if (msgArray.count) {
+            [self.tableView reloadData];
+        }else
+            [MBProgressHUD showError:@"暂无数据" toView:GET_WINDOW];
     } failed:^(NSError *error) {
         
     }];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return msgArray.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -82,8 +90,10 @@
     if (cell == nil) {
         cell = [[YRLearnSecondCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    cell.testNum = indexPath.section;
-    cell.timeString = @"14:00-16:00";
+//    cell.testNum = indexPath.section;
+//    cell.timeString = @"14:00-16:00";
+    YRTeacherOrder *teacherOrder = msgArray[indexPath.row];
+    cell.teacherOrder = teacherOrder;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

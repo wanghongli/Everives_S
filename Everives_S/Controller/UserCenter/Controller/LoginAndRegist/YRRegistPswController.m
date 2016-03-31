@@ -14,6 +14,7 @@
 #import "RequestData.h"
 #import "PublicCheckMsgModel.h"
 #import "CWSLoginTextField.h"
+#import <RongIMKit/RongIMKit.h>
 
 #define kDistance 10
 #define kTextFieldHeight 44
@@ -98,6 +99,7 @@
             [_bodyDic setObject:self.passwordTextField.text forKey:@"password"];
             
             [RequestData POST:USER_FIND_PSW parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+                [MBProgressHUD showSuccess:@"密码修改成功" toView:GET_WINDOW];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             } failed:^(NSError *error) {
                 
@@ -108,11 +110,9 @@
             [_bodyDic setObject:self.passwordTextField.text forKey:@"password"];
             
             [RequestData POST:USER_REGIST parameters:_bodyDic complete:^(NSDictionary *responseDic) {
-                NSLog(@"%@",responseDic);
+                MyLog(@"%@",responseDic);
                 
-                YRPerfectUserMsgController *personalVC = [[YRPerfectUserMsgController alloc]init];
-                personalVC.title = @"完善个人资料";
-                [self.navigationController pushViewController:personalVC animated:YES];
+                [self saveMsg:responseDic];
 
             } failed:^(NSError *error) {
                 
@@ -124,7 +124,34 @@
     }];
     
 }
-
+-(void)saveMsg:(NSDictionary *)responseDic
+{
+    YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:responseDic];
+    NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];
+    [userDefaults setObject:responseDic forKey:@"user"];
+    [userDefaults setObject:@{@"tel":self.tellNum,@"psw":self.passwordTextField.text} forKey:@"loginCount"];
+    [NSUserDefaults resetStandardUserDefaults];
+    
+    
+    KUserManager = user;
+    //连接融云服务器
+    [[RCIM sharedRCIM] connectWithToken:KUserManager.rongToken success:^(NSString *userId) {
+        // Connect 成功
+        NSLog(@"融云链接成功");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            YRPerfectUserMsgController *personalVC = [[YRPerfectUserMsgController alloc]init];
+            personalVC.title = @"完善个人资料";
+            [self.navigationController pushViewController:personalVC animated:YES];
+            [MBProgressHUD showSuccess:@"注册成功" toView:GET_WINDOW];
+        });
+    }
+                                  error:^(RCConnectErrorCode status) {
+                                      NSLog(@"error_status = %ld",status);
+                                  }
+                         tokenIncorrect:^() {
+                             NSLog(@"token incorrect");
+                         }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

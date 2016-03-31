@@ -52,7 +52,7 @@
 {
     _headView = [[YRPerfectHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth*0.6)];
     _headView.delegate = self;
-    _headView.image = [UIImage imageNamed:@"Login_addAvatar"];
+    _headView.image = [UIImage imageNamed:@"background_1"];
     [self.view addSubview:_headView];
     
     _nickName = [[CWSLoginTextField alloc]initWithFrame:CGRectMake(kDistace*2, CGRectGetMaxY(_headView.frame)+kDistace, self.view.width-4*kDistace, 44)];
@@ -104,25 +104,12 @@
     if (sender.tag == 10) {//填写完成
         [_bodyDic setObject:self.nickName.text forKey:@"name"];
         [_bodyDic setObject:self.ageText.text forKey:@"age"];
+        [_bodyDic setObject:@"主人太懒，什么都没有留下" forKey:@"sign"];
         [RequestData PUT:STUDENT_INFO parameters:_bodyDic complete:^(NSDictionary *responseDic) {
-//            NSLog(@"%@",responseDic);
-            YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:responseDic];
-            NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];
-            [userDefaults setObject:responseDic forKey:@"user"];
-            [NSUserDefaults resetStandardUserDefaults];
-            KUserManager = user;
-            //连接融云服务器
-            [[RCIM sharedRCIM] connectWithToken:KUserManager.rongToken success:^(NSString *userId) {
-                // Connect 成功
-                NSLog(@"融云链接成功");
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
-                                          error:^(RCConnectErrorCode status) {
-                                              NSLog(@"error_status = %ld",status);
-                                          }
-                                 tokenIncorrect:^() {
-                                     NSLog(@"token incorrect");
-                                 }];
+            KUserManager.age = self.ageText.text;
+            KUserManager.name = self.nickName.text;
+            KUserManager.gender = _bodyDic[@"gender"];
+            KUserManager.sign = _bodyDic[@"sign"];
             [self dismissViewControllerAnimated:YES completion:nil];
         } failed:^(NSError *error) {
             
@@ -181,10 +168,9 @@
 {
     [RequestData GET:USER_QINIUTOKEN parameters:nil complete:^(NSDictionary *responseDic) {
         //获取token
-        NSString *token = responseDic[@"data"][@"token"];
+        NSString *token = responseDic[@"token"];
         QNUploadManager *upManager = [[QNUploadManager alloc] init];
         NSData *uploadData = UIImagePNGRepresentation([self OriginImage:img scaleToSize:CGSizeMake(200, 200)]);
-        //        NSString *imgName = [NSString stringWithFormat:@"face%f",[[NSDate date] timeIntervalSince1970]];
         NSString *imageName = [[uploadData.description md5] addString:@".jpg"];
         
         //上传到七牛
@@ -193,7 +179,8 @@
                       //提交用户数据
                       
                           [RequestData PUT:STUDENT_AVATAR parameters:@{@"avatar":[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]} complete:^(NSDictionary *responseDic) {
-                              NSLog(@"%@",responseDic);
+                              KUserManager.avatar = [NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName];
+                              [MBProgressHUD showSuccess:@"头像修改成功" toView:GET_WINDOW];
                           } failed:^(NSError *error) {
                               
                           }];

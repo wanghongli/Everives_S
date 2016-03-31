@@ -25,7 +25,7 @@ static NSString *cellID = @"cellID";
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.clearsSelectionOnViewWillAppear = NO;
-    self.tableView.rowHeight = 50;
+    self.tableView.rowHeight = 60;
     self.tableView.tableHeaderView = self.searchBar;
     self.tableView.tableFooterView = [[UIView alloc] init];
     [self.tableView registerNib:[UINib nibWithNibName:@"YRSearchFriendCell" bundle:nil] forCellReuseIdentifier:cellID];
@@ -60,11 +60,15 @@ static NSString *cellID = @"cellID";
 }
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    [RequestData GET:STUDENT_FRIENDS parameters:nil complete:^(NSDictionary *responseDic) {
+    [searchBar resignFirstResponder];
+    [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_SEARCH_USER,[_searchBar.text  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] parameters:@{@"relation":@"1"} complete:^(NSDictionary *responseDic) {
         _searchRes = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
-        [self.tableView reloadData];
+        if (_searchRes.count == 0) {
+            [MBProgressHUD showSuccess:@"没有找到符合条件的用户~" toView:self.view];
+        }else{
+            [self.tableView reloadData];
+        }
     } failed:^(NSError *error) {
-        NSLog(@"%@",error);
     }];
 }
 #pragma mark - Getters

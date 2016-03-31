@@ -46,6 +46,14 @@
 		03228D551CA52E6300890DC6 /* YRExamScorePercentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D541CA52E6300890DC6 /* YRExamScorePercentView.m */; };
 		03228D591CA5424C00890DC6 /* YRDriveLawController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D581CA5424C00890DC6 /* YRDriveLawController.m */; };
 		03228D5C1CA5427000890DC6 /* YRDriveLawDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D5B1CA5427000890DC6 /* YRDriveLawDetailController.m */; };
+		032C43E01CABBFD40022C2F9 /* YRTeacherOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C43DF1CABBFD40022C2F9 /* YRTeacherOrder.m */; };
+		032C43E61CACB51D0022C2F9 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C43E41CACB51D0022C2F9 /* SMS_SDK.framework */; };
+		032C43E81CACB7130022C2F9 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C43E71CACB7130022C2F9 /* MOBFoundation.framework */; };
+		032C43EA1CACB7350022C2F9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C43E91CACB7350022C2F9 /* libz.tbd */; };
+		032C43EC1CACB73D0022C2F9 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C43EB1CACB73C0022C2F9 /* libicucore.tbd */; };
+		032C43EE1CACB7480022C2F9 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C43ED1CACB7480022C2F9 /* MessageUI.framework */; };
+		032C43F01CACB7500022C2F9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C43EF1CACB7500022C2F9 /* JavaScriptCore.framework */; };
+		032C43F21CACB7580022C2F9 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C43F11CACB7580022C2F9 /* libstdc++.tbd */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -323,6 +331,15 @@
 		03228D581CA5424C00890DC6 /* YRDriveLawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRDriveLawController.m; sourceTree = "<group>"; };
 		03228D5A1CA5427000890DC6 /* YRDriveLawDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDriveLawDetailController.h; sourceTree = "<group>"; };
 		03228D5B1CA5427000890DC6 /* YRDriveLawDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRDriveLawDetailController.m; sourceTree = "<group>"; };
+		032C43DE1CABBFD40022C2F9 /* YRTeacherOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRTeacherOrder.h; sourceTree = "<group>"; };
+		032C43DF1CABBFD40022C2F9 /* YRTeacherOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRTeacherOrder.m; sourceTree = "<group>"; };
+		032C43E41CACB51D0022C2F9 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
+		032C43E71CACB7130022C2F9 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
+		032C43E91CACB7350022C2F9 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		032C43EB1CACB73C0022C2F9 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		032C43ED1CACB7480022C2F9 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		032C43EF1CACB7500022C2F9 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		032C43F11CACB7580022C2F9 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -708,6 +725,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				032C43F21CACB7580022C2F9 /* libstdc++.tbd in Frameworks */,
+				032C43F01CACB7500022C2F9 /* JavaScriptCore.framework in Frameworks */,
+				032C43EE1CACB7480022C2F9 /* MessageUI.framework in Frameworks */,
+				032C43EC1CACB73D0022C2F9 /* libicucore.tbd in Frameworks */,
+				032C43EA1CACB7350022C2F9 /* libz.tbd in Frameworks */,
+				032C43E81CACB7130022C2F9 /* MOBFoundation.framework in Frameworks */,
+				032C43E61CACB51D0022C2F9 /* SMS_SDK.framework in Frameworks */,
 				3E6442085DEAC8124A5E55C4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -811,6 +835,15 @@
 			path = "法规";
 			sourceTree = "<group>";
 		};
+		032C43E21CACB51D0022C2F9 /* SMS_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				032C43E71CACB7130022C2F9 /* MOBFoundation.framework */,
+				032C43E41CACB51D0022C2F9 /* SMS_SDK.framework */,
+			);
+			path = SMS_SDK;
+			sourceTree = "<group>";
+		};
 		037C92A01C8FFDED005B41BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -820,6 +853,8 @@
 				03FE5B7C1CAA0FF5009F0ED7 /* YRTeacherDetailObject.m */,
 				03FE5B871CAB7F76009F0ED7 /* YRExamTypeCollect.h */,
 				03FE5B881CAB7F76009F0ED7 /* YRExamTypeCollect.m */,
+				032C43DE1CABBFD40022C2F9 /* YRTeacherOrder.h */,
+				032C43DF1CABBFD40022C2F9 /* YRTeacherOrder.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1455,6 +1490,7 @@
 		1600EBA21C88087A001919EB /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				032C43E21CACB51D0022C2F9 /* SMS_SDK */,
 				03228D211CA4D38700890DC6 /* SDLoopProgress */,
 				037D7C0D1C916AE600273703 /* CorePhotoPickerVCManager */,
 				037F8EA11C8E6D350057BF6C /* MJPhotoBrowser */,
@@ -1792,6 +1828,11 @@
 		2CC8B102BCD83EA57176F287 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				032C43F11CACB7580022C2F9 /* libstdc++.tbd */,
+				032C43EF1CACB7500022C2F9 /* JavaScriptCore.framework */,
+				032C43ED1CACB7480022C2F9 /* MessageUI.framework */,
+				032C43EB1CACB73C0022C2F9 /* libicucore.tbd */,
+				032C43E91CACB7350022C2F9 /* libz.tbd */,
 				F955F842A16D32F98F195A02 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -1988,6 +2029,7 @@
 				037F8E6D1C8D5FC50057BF6C /* JKAssetsGroupCell.m in Sources */,
 				03228D351CA4D38700890DC6 /* SDPieProgressView.m in Sources */,
 				037F8E8A1C8E63770057BF6C /* YRFriendCircleController.m in Sources */,
+				032C43E01CABBFD40022C2F9 /* YRTeacherOrder.m in Sources */,
 				037F8E731C8D5FC50057BF6C /* JKPhotoBrowserCell.m in Sources */,
 				1694F5831CA25DF4009A4C21 /* YRReservationChoosePlaceVC.m in Sources */,
 				037D7C061C911F4A00273703 /* YRPerfectUserMsgController.m in Sources */,
@@ -2277,6 +2319,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Everives_S/ThirdLib/SMS_SDK",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Everives_S/PrefixFile.pch;
 				INFOPLIST_FILE = Everives_S/Info.plist;
@@ -2296,6 +2342,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Everives_S/ThirdLib/SMS_SDK",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Everives_S/PrefixFile.pch;
 				INFOPLIST_FILE = Everives_S/Info.plist;

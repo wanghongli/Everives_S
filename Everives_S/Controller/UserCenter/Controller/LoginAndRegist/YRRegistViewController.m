@@ -13,6 +13,9 @@
 #import "YRRegistPswController.h"
 #import "YRProtocolViewController.h"
 #import "PublicCheckMsgModel.h"
+
+#import <SMS_SDK/SMSSDK.h>
+
 #define kDistance 10
 #define kTextFieldHeight 44
 @interface YRRegistViewController ()<CWSReadPolicyViewDelegate>
@@ -46,27 +49,6 @@
     self.codeText = [self setTextFieldWithFrame:CGRectMake(kDistance*2, CGRectGetMaxY(self.tellText.frame)+kDistance, kSizeOfScreen.width-4*kDistance, kTextFieldHeight) withPlaceholder:@"请输入验证码"];
     [self.view addSubview:self.codeText];
     
-//    //添加右侧获取验证码按钮
-//    self.getCodeBtn = [[JKCountDownButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.codeText.frame)+kDistance, self.codeText.y, (kSizeOfScreen.width-2*kDistance)*0.36-kDistance, kTextFieldHeight)];
-//    self.getCodeBtn.backgroundColor = kMainColor;
-//    self.getCodeBtn.layer.masksToBounds = YES;
-//    self.getCodeBtn.layer.cornerRadius = 4;
-//    self.getCodeBtn.layer.borderColor = [kMainColor CGColor];
-//    self.getCodeBtn.layer.borderWidth = 1;
-//    [self.getCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
-//    self.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-//    [self.getCodeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//
-//    //验证码获取
-////    WS(ws);
-//    [self.getCodeBtn addToucheHandler:^(JKCountDownButton*sender, NSInteger tag) {
-//        
-//        
-//    }];
-//    [self.view addSubview:self.getCodeBtn];
-//    [self.getCodeBtn startWithSecond:59];
-    
-    
     self.registBtn = [[CWSPublicButton alloc]initWithFrame:CGRectMake(kDistance*2, CGRectGetMaxY(self.codeText.frame)+kDistance, self.tellText.width, kTextFieldHeight)];
     [self.registBtn setTitle:@"完成验证" forState:UIControlStateNormal];
     [self.registBtn addTarget:self action:@selector(registClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -99,58 +81,101 @@
     if ([placehold isEqualToString:@"请输入您的手机号"]) {
         leftLabel.text = @"+86";
 
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 90, textField.height)];
-        [btn setTitle:@"获取验证码" forState:UIControlStateNormal];
-        btn.layer.masksToBounds = YES;
-        btn.layer.cornerRadius = btn.height/2;
-        btn.layer.borderWidth = 3;
-        btn.layer.borderColor = [UIColor whiteColor].CGColor;
-        btn.titleLabel.font = [UIFont systemFontOfSize:14];
-        btn.backgroundColor = [UIColor lightGrayColor];
-        textField.rightView = btn;
+        //添加右侧获取验证码按钮
+        self.getCodeBtn = [[JKCountDownButton alloc]initWithFrame:CGRectMake(0, 0, 90, textField.height)];
+        self.getCodeBtn.backgroundColor = kMainColor;
+        self.getCodeBtn.layer.masksToBounds = YES;
+        self.getCodeBtn.layer.cornerRadius = self.getCodeBtn.height/2;
+        self.getCodeBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.getCodeBtn.layer.borderWidth = 3;
+        self.getCodeBtn.backgroundColor = [UIColor lightGrayColor];
+        [self.getCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+        self.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        [self.getCodeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        textField.rightView = self.getCodeBtn;
+        //验证码获取
+        WS(ws);
+        [self.getCodeBtn addToucheHandler:^(JKCountDownButton*sender, NSInteger tag) {
+            if (![ws.tellText.text isVAlidPhoneNumber]) {
+                [MBProgressHUD showError:@"手机号码有误" toView:GET_WINDOW];
+                return;
+            }
+            [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:ws.tellText.text zone:@"86" customIdentifier:@"空钩的验证码" result:^(NSError *error) {
+                if (!error)
+                {
+                    MyLog(@"验证码发送成功");
+                    [MBProgressHUD showSuccess:@"验证码发送成功" toView:GET_WINDOW];
+                    sender.enabled = NO;
+                    [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                    [sender startWithSecond:60];
+                    
+                    [sender didChange:^NSString *(JKCountDownButton *countDownButton,int second) {
+                        NSString *title = [NSString stringWithFormat:@"重新发送(%d)",second];
+                        return title;
+                    }];
+                    [sender didFinished:^NSString *(JKCountDownButton *countDownButton, int second) {
+                        countDownButton.enabled = YES;
+                        [countDownButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                        return @"重新发送";
+                    }];
+                }
+                else
+                {
+                    [MBProgressHUD showError:@"验证码发送失败" toView:GET_WINDOW];
+                }
+            }];
+            
+        }];
         textField.rightViewMode = UITextFieldViewModeAlways;
     }
     
     return textField;
 }
-
+#pragma mark - 注册事件
 -(void)registClick:(CWSPublicButton *)sender
 {
-    
     [PublicCheckMsgModel checkTellWithTellNum:self.tellText.text complete:^(BOOL isSuccess) {
-        
         if (![self.codeText.text isValid]) {
             NSLog(@"验证码不能为空");
             return ;
         }
-        
-        
-        [RequestData GET:USER_CHECK_TELL parameters:@{@"tel":self.tellText.text,@"kind":@"0"} complete:^(NSDictionary *responseDic) {
-            NSLog(@"%@",responseDic);
+        [SMSSDK commitVerificationCode:self.codeText.text phoneNumber:self.tellText.text zone:@"86" result:^(NSError *error) {
             
-            if ([self.title isEqualToString:@"忘记密码"]) {//忘记密码
-                NSLog(@"手机号码没有注册");
-                return;
+            if (!error) {
+                MyLog(@"短信验证成功");
+                //检查手机号码是否注册
+                [RequestData GET:USER_CHECK_TELL parameters:@{@"tel":self.tellText.text,@"kind":@"0"} complete:^(NSDictionary *responseDic) {
+                    NSLog(@"%@",responseDic);
+                    
+                    if ([self.title isEqualToString:@"忘记密码"]) {//忘记密码
+                        NSLog(@"手机号码没有注册");
+                        return;
+                    }
+                    YRRegistPswController *pswVC = [[YRRegistPswController alloc]init];
+                    pswVC.tellNum = self.tellText.text;
+                    pswVC.codeNum = self.codeText.text;
+                    [self.navigationController pushViewController:pswVC animated:YES];
+                    
+                } failed:^(NSError *error) {
+                    if ([self.title isEqualToString:@"忘记密码"]) {//忘记密码
+                        YRRegistPswController *pswVC = [[YRRegistPswController alloc]init];
+                        pswVC.tellNum = self.tellText.text;
+                        pswVC.codeNum = self.codeText.text;
+                        [self.navigationController pushViewController:pswVC animated:YES];
+                        return;
+                    }
+                }];
             }
-            YRRegistPswController *pswVC = [[YRRegistPswController alloc]init];
-            pswVC.tellNum = self.tellText.text;
-            pswVC.codeNum = self.codeText.text;
-            [self.navigationController pushViewController:pswVC animated:YES];
-            
-        } failed:^(NSError *error) {
-            if ([self.title isEqualToString:@"忘记密码"]) {//忘记密码
-                YRRegistPswController *pswVC = [[YRRegistPswController alloc]init];
-                pswVC.tellNum = self.tellText.text;
-                pswVC.codeNum = self.codeText.text;
-                [self.navigationController pushViewController:pswVC animated:YES];
-                return;
+            else
+            {
+                MyLog(@"验证失败");
+                sender.userInteractionEnabled = YES;
+                [MBProgressHUD hideAllHUDsForView:self.view animated:self.view];
             }
         }];
-        
     } error:^(NSString *errorMsg) {
         NSLog(@"%@",errorMsg);
     }];
-    
 }
 
 #pragma mark - 服务选项代理
@@ -165,11 +190,7 @@
 -(void)readPolicyViewTochDown:(BOOL)readOrPolicy
 {
 //    _readSelect = readOrPolicy;
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
 }
 
 

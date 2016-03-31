@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YRTeacherOrder.h"
 @interface YRLearnSecondCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *firstImg;
@@ -21,4 +21,6 @@
 
 @property (nonatomic, assign) NSInteger testNum;
 @property (nonatomic, strong) NSString *timeString;
+
+@property (nonatomic, strong) YRTeacherOrder *teacherOrder;
 @end

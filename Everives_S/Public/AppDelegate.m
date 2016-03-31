@@ -14,7 +14,13 @@
 #import <MAMapKit/MAMapKit.h>
 #import "RequestData.h"
 #import "YRUserStatus.h"
-#import "YRUserStatus.h"
+#import <SMS_SDK/SMSSDK.h>
+#import <SMS_SDK/Extend/SMSSDK+AddressBookMethods.h>
+
+//SMSSDK官网公共key
+#define appkey @"f3fc6baa9ac4"
+#define app_secrect @"7f3dedcb36d92deebcb373af921d635a"
+
 @interface AppDelegate ()<RCIMUserInfoDataSource,RCIMGroupInfoDataSource>
 
 @end
@@ -23,13 +29,21 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     //高德地图
     [MAMapServices sharedServices].apiKey = @"89bb4d69d45261a2a125e558dbf3ebb6";
+    
     //融云即时通讯
     [[RCIM sharedRCIM] initWithAppKey:@"z3v5yqkbvtd30"];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
     [[RCIM sharedRCIM] setGroupInfoDataSource:self];
     
+    //短信验证码注册
+    [SMSSDK registerApp:appkey
+             withSecret:app_secrect];
+    [SMSSDK enableAppContactFriends:NO];//不访问通讯录
+
+    //获取登陆信息
     [self loginClick];
  
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -52,6 +66,7 @@
     [self.window makeKeyAndVisible];
     return YES;
 }
+#pragma mark - 获取登陆信息
 -(void)loginClick
 {
     NSDictionary* dicUser = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"loginCount"];
@@ -63,7 +78,6 @@
             [userDefaults setObject:responseDic forKey:@"user"];
             [userDefaults setObject:dicUser forKey:@"loginCount"];
             [NSUserDefaults resetStandardUserDefaults];
-            
             
             KUserManager = user;
             //连接融云服务器

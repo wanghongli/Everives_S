@@ -75,10 +75,10 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 //收到筛选信息之后的通知处理
 -(void)tablewViewReloadData:(NSNotification*)notification{
     if (_selectView.selectedBtnNum == NearTableTypeSchool) {
-        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":_schoolFillterView.sort?:@"0",@"address":_schoolFillterView.addr?:@"",@"key":@""};
+        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":_schoolFillterView.sort?:@"0",@"address":(_schoolFillterView.addr && ![_schoolFillterView.addr isEqualToString:@"不限"])?_schoolFillterView.addr:@"",@"key":@""};
         [_schoolData getDataWithParameters:parameters];
     }else{
-        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":_coachFillterView.sort?:@"0",@"address":_coachFillterView.addr?:@"",@"key":@""};
+        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":_coachFillterView.sort?:@"0",@"address":(_coachFillterView.addr && ![_coachFillterView.addr isEqualToString:@"不限"])?_coachFillterView.addr:@"",@"key":@""};
         [_coachData getDataWithParameters:parameters];
     }
 }

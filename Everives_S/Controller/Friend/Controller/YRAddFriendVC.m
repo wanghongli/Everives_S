@@ -113,9 +113,14 @@ static NSString *cellID = @"cellID";
 
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_SEARCH_USER,_searchBar.text]  parameters:nil complete:^(NSDictionary *responseDic) {
+    [searchBar resignFirstResponder];
+    [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_SEARCH_USER,[_searchBar.text  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]  parameters:@{@"relation":@"0"} complete:^(NSDictionary *responseDic) {
         _resArray = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
-        [_resTable reloadData];
+        if (_resArray.count == 0) {
+            [MBProgressHUD showSuccess:@"没有找到符合条件的用户~" toView:self.view];
+        }else{
+            [_resTable reloadData];
+        }
     } failed:^(NSError *error) {
         
     }];

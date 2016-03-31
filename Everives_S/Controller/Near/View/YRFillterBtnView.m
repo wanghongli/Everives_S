@@ -36,7 +36,7 @@
         }
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
         self.layer.borderWidth = 1;
-        _itemArrs = @[@[@[@"重庆"],@[@"南岸",@"江北",@"渝北",@"渝中",@"北碚",@"巴南",@"沙坪坝"]],
+        _itemArrs = @[@[@[@"重庆"],@[@"不限",@"南岸",@"江北",@"渝北",@"渝中",@"北碚",@"巴南",@"沙坪坝"]],
                         @[@[@"综合排序",@"人气最高",@"距离最近",@"评价最好"]]];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePullView:) name:kFillterBtnRemovePullView object:nil];
@@ -44,19 +44,25 @@
 }
 
 -(void)removePullView:(NSNotification*)notification{
-    
+    _ishiden = YES;
+    [self.pullView removeFromSuperview];
     NSString *title = [NSString string];
     for (NSInteger i =0; i<self.pullView.selectedArray.count; i++) {
         title = [title stringByAppendingString:_itemArrs[_whichBtnClicked][i][[self.pullView.selectedArray[i] integerValue]]];
     }
     if (self.pullView.tag == 0) {
+        if ([_addr isEqualToString:[title substringFromIndex:2]]) {
+            return;
+        }
         _addr = [title substringFromIndex:2];
     }else{
-        _sort = [self.pullView.selectedArray lastObject];
+        if ([_sort integerValue] == [[self.pullView.selectedArray lastObject] integerValue]) {
+            return;
+        }
+        _sort = [NSString stringWithFormat:@"%@",[self.pullView.selectedArray lastObject]];
     }
     [_btns[_whichBtnClicked] setTitle:title forState:UIControlStateNormal];
-    _ishiden = YES;
-    [self.pullView removeFromSuperview];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:kNearViewControlerReloadTable object:nil];
 }
 
@@ -112,10 +118,10 @@
                 _addr = [title substringFromIndex:2];
                 
             }else{
-                if ([_sort isEqualToString:[_pullView.selectedArray lastObject]]) {
+                if ([_sort integerValue] == [[self.pullView.selectedArray lastObject] integerValue]) {
                     return;
                 }
-                _sort = [_pullView.selectedArray lastObject];
+                _sort = [NSString stringWithFormat:@"%@",[self.pullView.selectedArray lastObject]];
             }
             [sender setTitle:title forState:UIControlStateNormal];
             [[NSNotificationCenter defaultCenter] postNotificationName:kNearViewControlerReloadTable object:nil];

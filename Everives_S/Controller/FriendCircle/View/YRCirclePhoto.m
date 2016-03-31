@@ -154,6 +154,7 @@
             // 获取图片链接
             NSString *photo = pic_urls[i];
             UIImage *imgMsg;
+            //四分钟以内的进行加载
             if ([self intervalSinceNow:circleModel.time]) {
                imgMsg = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:photo];
             }

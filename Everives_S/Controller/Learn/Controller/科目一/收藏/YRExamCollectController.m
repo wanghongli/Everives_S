@@ -84,10 +84,21 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    NSString *urlString;
+    if (indexPath.section == 0) {
+        urlString = @"/question/Collect/0";
+    }else{
+        YRExamTypeCollect *etcObj = typeArray[indexPath.row];
+        urlString = [NSString stringWithFormat:@"%@%@",@"/question/Collect/",etcObj.id];
+    }
+    [self getDataWithRow:urlString];
 }
 -(void)getDataWithRow:(NSString *)row
 {
-//    RequestData GET:<#(NSString *)#> parameters:<#(nullable id)#> complete:<#^(NSDictionary *responseDic)complete#> failed:<#^(NSError *error)failed#>
+    [RequestData GET:row parameters:@{@"type":@"0",@"id":@"0"} complete:^(NSDictionary *responseDic) {
+        MyLog(@"%@",responseDic);
+    } failed:^(NSError *error) {
+        
+    }];
 }
 @end

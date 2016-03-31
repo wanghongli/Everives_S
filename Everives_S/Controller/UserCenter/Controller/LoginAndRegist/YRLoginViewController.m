@@ -68,6 +68,7 @@
     _phoneTF = [[CWSLoginTextField alloc]initWithFrame:CGRectMake(CWSLeftDistance, kSizeOfScreen.height*CWSPercent, kSizeOfScreen.width - 2 * CWSLeftDistance, 44)];
     _phoneTF.leftImage = [UIImage imageNamed:@"Login_UsernameGray"];
     _phoneTF.placeholder = @"手机号码";
+    _phoneTF.keyboardType = UIKeyboardTypeNumberPad;
     [self.view addSubview:_phoneTF];
     
     //密码

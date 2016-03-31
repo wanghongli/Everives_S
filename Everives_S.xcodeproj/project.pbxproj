@@ -55,6 +55,7 @@
 		032C43F01CACB7500022C2F9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C43EF1CACB7500022C2F9 /* JavaScriptCore.framework */; };
 		032C43F21CACB7580022C2F9 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C43F11CACB7580022C2F9 /* libstdc++.tbd */; };
 		032C43F71CACE2F40022C2F9 /* UIViewController+YRCommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C43F61CACE2F40022C2F9 /* UIViewController+YRCommonController.m */; };
+		032C43FA1CACFEBF0022C2F9 /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C43F91CACFEBF0022C2F9 /* XYPieChart.m */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -345,6 +346,8 @@
 		032C43F11CACB7580022C2F9 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		032C43F51CACE2F40022C2F9 /* UIViewController+YRCommonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+YRCommonController.h"; sourceTree = "<group>"; };
 		032C43F61CACE2F40022C2F9 /* UIViewController+YRCommonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YRCommonController.m"; sourceTree = "<group>"; };
+		032C43F81CACFEBF0022C2F9 /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
+		032C43F91CACFEBF0022C2F9 /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -856,6 +859,8 @@
 		037C92A01C8FFDED005B41BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				032C43F81CACFEBF0022C2F9 /* XYPieChart.h */,
+				032C43F91CACFEBF0022C2F9 /* XYPieChart.m */,
 				031515411C9A912100A2A2F1 /* YRQuestionObject.h */,
 				031515421C9A912100A2A2F1 /* YRQuestionObject.m */,
 				03FE5B7B1CAA0FF5009F0ED7 /* YRTeacherDetailObject.h */,
@@ -2052,6 +2057,7 @@
 				03A25F241C92AF17000196A6 /* YRDriveLawCell.m in Sources */,
 				03A8CA5D1CA29B79007AB152 /* YRTeacherDownView.m in Sources */,
 				03228D331CA4D38700890DC6 /* SDLoopProgressView.m in Sources */,
+				032C43FA1CACFEBF0022C2F9 /* XYPieChart.m in Sources */,
 				03A8CA511CA272F4007AB152 /* YRTeacherSectionSecoView.m in Sources */,
 				031D50391CA13A56000E1303 /* YRAppointmentHeadView.m in Sources */,
 				03A25F0F1C925848000196A6 /* YRMenuHeadView.m in Sources */,

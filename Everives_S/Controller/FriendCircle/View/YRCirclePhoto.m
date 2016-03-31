@@ -143,7 +143,6 @@
 {
     _circleModel = circleModel;
     
-    MyLog(@"");
     NSArray *pic_urls = [NSArray arrayWithArray:circleModel.pics];
     int count = (int)self.subviews.count;
     for (int i = 0; i < count; i++) {
@@ -158,6 +157,10 @@
             if ([self intervalSinceNow:circleModel.time]) {
                imgMsg = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:photo];
             }
+                
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                
+            MyLog(@"%@",[paths objectAtIndex:0]);
             if ([photo containsString:@"qiniucdn"]) {
                 if (pic_urls.count == 1) {
                     photo = [photo addString:kQiniuThumbnailParam(60)];
@@ -165,20 +168,12 @@
                     photo = [photo addString:kQiniuThumbnailParam(30)];
                 }
             }
-            self.image = nil;
             imageV.hidden = NO;
-            if (imgMsg) {
-                NSData *fData;
-                if (pic_urls.count == 1) {//图片压缩处理
-                    fData = UIImageJPEGRepresentation(imgMsg, 0.6);
-                }else
-                    fData = UIImageJPEGRepresentation(imgMsg, 0.3);
-                
-                imageV.image = [UIImage imageWithData:fData];
-                imageV = nil;
-                fData = nil;
-            }else
+            if (imgMsg!=nil) {
+                imageV.image =imgMsg;
+            }else{
                 [imageV sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
+            }
         }else{
             imageV.hidden = YES;
         }

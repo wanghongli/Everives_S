@@ -100,7 +100,6 @@
 
     [_bodyDic setObject:self.textView.text forKey:@"content"];
     
-    [MBProgressHUD showMessag:@"上传中..." toView:self.view];
     if (!self.assetsArray.count) {
         NSString *imgArray = [_publishImgArray mj_JSONString];
         [_bodyDic setObject:imgArray forKey:@"pics"];
@@ -123,22 +122,16 @@
                 NSString *imageName = [[uploadData.description md5] addString:@".jpg"];
                 [_imgNameArray addObject:imageName];
                 [_publishImgArray addObject:[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]];
+                
+                
                 [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName];
+                
+                
                 if (_imgNameArray.count == self.assetsArray.count) {
                     NSString *imgArray = [_publishImgArray mj_JSONString];
                     [_bodyDic setObject:imgArray forKey:@"pics"];
                     [self publishImages:_imgNameArray];
-                    [RequestData POST:WEIBO_ADD parameters:_bodyDic complete:^(NSDictionary *responseDic) {
-                        sender.userInteractionEnabled = YES;
-                        if (_imgNameArray.count) {
-                            [self performSelector:@selector(goBackVC) withObject:nil afterDelay:0];
-                        }else{
-                            [self goBackVC];
-                        }
-                    } failed:^(NSError *error) {
-                        sender.userInteractionEnabled = YES;
-                        [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    }];
+                    [self goBackVC];
                 }
             }
         } failureBlock:^(NSError *error) {
@@ -174,8 +167,17 @@
                                   NSLog(@"%@\n---%@\n %@",info,resp,key);
                                   if (resp) {
                                       if (i == self.assetsArray.count-1) {
-//                                          [MBProgressHUD showSuccess:@"上传成功" toView:self.navigationController.view];
-                                          
+                                          [RequestData POST:WEIBO_ADD parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+//                                              if (_imgNameArray.count) {
+//                                                  [self performSelector:@selector(goBackVC) withObject:nil afterDelay:0];
+//                                              }else{
+//                                                  [self goBackVC];
+//                                              }
+                                              [MBProgressHUD showSuccess:@"上传成功" toView:self.navigationController.view];
+
+                                          } failed:^(NSError *error) {
+                                              [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                          }];
                                       }
                                   }
                                   

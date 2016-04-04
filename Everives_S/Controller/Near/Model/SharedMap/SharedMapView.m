@@ -115,10 +115,14 @@ updatingLocation:(BOOL)updatingLocation
     NSLog(@"Error: %@",[error localizedDescription]);
     switch([error code]) {
         case kCLErrorDenied:
+        {
             //Access denied by user
             errorString = @"请打“开定位服”务来允许Everives确定您的位置";
             //Do something...
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"设置" otherButtonTitles:@"取消", nil];
+            [alert show];
             break;
+        }
         case kCLErrorLocationUnknown:
             //Probably temporary...
             errorString = @"定位信息不可用";
@@ -129,8 +133,7 @@ updatingLocation:(BOOL)updatingLocation
             break;
     }
 
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"设置" otherButtonTitles:@"取消", nil];
-    [alert show];
+    
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

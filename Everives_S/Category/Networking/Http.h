@@ -69,7 +69,7 @@
 //预约部分
 #define STUDENT_AVAILTIME @"/order/availTime/"  //查看可预约时间
 #define STUDENT_AVAILPLACE @"/order/availPlace/"  //查看某时段可选场地
-#define STUDENT_ORDER @"/order/order" //提交订单post  获取预约记录列表get
+#define STUDENT_ORDER @"/order/order" //提交订单post  获取预约记录列表get 获取详情get+id
 
 //群聊部分
 #define GROUP_GROUP @"/group/group" // 创建群post  我加入的群get

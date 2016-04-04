@@ -23,5 +23,7 @@
 
 + (NSString *)dateStringWithInterval:(NSString *)interval;
 + (NSString *)dateStringWithAllInterval:(NSString *)interval;
++(NSString*)getTheDayInWeek:(NSString*) dateyyyyMMdd;
 -(CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize;
+
 @end

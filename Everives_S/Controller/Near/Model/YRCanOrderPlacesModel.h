@@ -1,5 +1,5 @@
 //
-//  YRReservationModel.h
+//  YRCanOrderPlacesModel
 //  Everives_S
 //
 //  Created by darkclouds on 16/3/23.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface YRReservationModel : NSObject
+@interface YRCanOrderPlacesModel : NSObject
 /**
  *  "date": "2016-03-27",
  "time": "2",

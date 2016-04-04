@@ -8,8 +8,15 @@
 
 #import "YRReservationDetailVC.h"
 #import "YRChatViewController.h"
-@interface YRReservationDetailVC ()
-@property (weak, nonatomic) IBOutlet UIButton *MsgOrCommentBtn;
+#import "YROrderedPlaceDetailModel.h"
+#import <UIImageView+WebCache.h>
+#import "YROrderItemCell.h"
+
+static NSString *cellID = @"cellID";
+@interface YRReservationDetailVC (){
+    NSArray *_statusArr;
+    YROrderedPlaceDetailModel *_model;
+}
 
 @end
 
@@ -17,18 +24,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _statusArr = @[@"未支付" ,@"已支付",@"等待同伴一起拼",@"已支付",@"等待去练车", @"待评价" ,@"已评价" ,@"已取消"];
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    [self.tableView registerNib:[UINib nibWithNibName:@"YROrderItemCell" bundle:nil] forCellReuseIdentifier:cellID];
+    self.tableView.rowHeight = 90;
+    [self getData];
+}
+-(void)getData{
+    [RequestData GET:[NSString stringWithFormat:@"%@/%@",STUDENT_ORDER,_orderID] parameters:nil complete:^(NSDictionary *responseDic) {
+        _model = [YROrderedPlaceDetailModel mj_objectWithKeyValues:responseDic];
+        [self.tableView reloadData];
+    } failed:^(NSError *error) {
+        
+    }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - uitableView
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
 }
-- (IBAction)MsgOrCommentBtnClick:(UIButton *)sender {
-    YRChatViewController *conversationVC = [[YRChatViewController alloc]init];
-    conversationVC.conversationType = ConversationType_PRIVATE;
-    conversationVC.targetId = @"stu16";
-    conversationVC.title = @"王二狗";
-    [self.navigationController pushViewController:conversationVC animated:YES];
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return _model.info.count;
 }
-
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    YROrderItemCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    [cell configCellWithModel:_model.info[indexPath.row]];
+    return cell;
+}
 @end

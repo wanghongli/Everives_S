@@ -72,7 +72,6 @@
 		032C45991CB2D5250022C2F9 /* CYVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45941CB2D5250022C2F9 /* CYVideoPlayerView.m */; };
 		032C459A1CB2D5250022C2F9 /* CYVideoToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45961CB2D5250022C2F9 /* CYVideoToolBar.m */; };
 		032C459B1CB2D5250022C2F9 /* CYFullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45981CB2D5250022C2F9 /* CYFullViewController.m */; };
-		032C45B71CB2D5800022C2F9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 032C459C1CB2D5800022C2F9 /* Info.plist */; };
 		032C45B81CB2D5800022C2F9 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C459E1CB2D5800022C2F9 /* MASCompositeConstraint.m */; };
 		032C45B91CB2D5800022C2F9 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45A11CB2D5800022C2F9 /* MASConstraint.m */; };
 		032C45BA1CB2D5800022C2F9 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45A31CB2D5800022C2F9 /* MASConstraintMaker.m */; };
@@ -409,7 +408,6 @@
 		032C45961CB2D5250022C2F9 /* CYVideoToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYVideoToolBar.m; sourceTree = "<group>"; };
 		032C45971CB2D5250022C2F9 /* CYFullViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYFullViewController.h; sourceTree = "<group>"; };
 		032C45981CB2D5250022C2F9 /* CYFullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYFullViewController.m; sourceTree = "<group>"; };
-		032C459C1CB2D5800022C2F9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		032C459D1CB2D5800022C2F9 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		032C459E1CB2D5800022C2F9 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
 		032C459F1CB2D5800022C2F9 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -1009,7 +1007,6 @@
 		032C45B61CB2D5800022C2F9 /* Masonry */ = {
 			isa = PBXGroup;
 			children = (
-				032C459C1CB2D5800022C2F9 /* Info.plist */,
 				032C459D1CB2D5800022C2F9 /* MASCompositeConstraint.h */,
 				032C459E1CB2D5800022C2F9 /* MASCompositeConstraint.m */,
 				032C459F1CB2D5800022C2F9 /* MASConstraint+Private.h */,
@@ -2177,7 +2174,6 @@
 				164A8C931C8D1DCF00857638 /* YRMyWalletViewController.xib in Resources */,
 				03FF147D1C9FEB9F00AEBB75 /* YRLearnSecondCell.xib in Resources */,
 				037F8E6A1C8D5FC50057BF6C /* ImagesPicker.xcassets in Resources */,
-				032C45B71CB2D5800022C2F9 /* Info.plist in Resources */,
 				1624E29E1C8E7543009F4E20 /* YRCommentDetailVC.xib in Resources */,
 				164A8C9B1C8D248300857638 /* YRMyCommentCellTableViewCell.xib in Resources */,
 				1672A6601C8FE61200AF6272 /* YRStudentTableCell.xib in Resources */,

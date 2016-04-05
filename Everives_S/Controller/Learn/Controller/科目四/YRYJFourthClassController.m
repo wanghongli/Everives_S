@@ -91,9 +91,9 @@
     }else{//专题练习
         YRLearnProfessionalController *learnVC = [[YRLearnProfessionalController alloc]init];
         learnVC.title = @"专题练习";
+        learnVC.objFour = YES;
         [self.navigationController pushViewController:learnVC animated:YES];
     }
-    
 }
 #pragma mark - 驾考法规、考试技巧等点击事件
 -(void)firstMiddleViewBtnClick:(NSInteger)btnTag

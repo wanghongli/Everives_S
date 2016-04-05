@@ -186,22 +186,22 @@
         _downView.numbString = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
         
     }else if(self.menuTag == 1){//顺序练习
-        _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getShunXuPracticeWithType:self.menuType withFMDB:self.db]];
+        _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getShunXuPracticeWithType:self.objectFour withFMDB:self.db]];
         self.title = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
     }else if(self.menuTag == 3){//专题练习
-        _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:[NSString stringWithFormat:@"kind = %ld",self.perfisonalKind] withFMDB:self.db]];
+        _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.objectFour withSearchMsg:[NSString stringWithFormat:@"kind = %ld",self.perfisonalKind] withFMDB:self.db]];
         self.title = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
     }else if (self.menuTag == 4){//错题
         if (self.perfisonalKind == 1) {//全部错题
             _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:@"error = 1" withFMDB:self.db]];
         }else//专项错题
-            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:[NSString stringWithFormat:@"kind = %ld and error = 1",self.perfisonalKind] withFMDB:self.db]];
+            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.objectFour withSearchMsg:[NSString stringWithFormat:@"kind = %ld and error = 1",self.perfisonalKind] withFMDB:self.db]];
         self.title = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
     }else if (self.menuTag == 5){//收藏
         if (self.perfisonalKind == 1) {//全部错题
-            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:@"collect = 1" withFMDB:self.db]];
+            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.objectFour withSearchMsg:@"collect = 1" withFMDB:self.db]];
         }else//专项错题
-            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:[NSString stringWithFormat:@"kind = %ld and collect = 1",self.perfisonalKind] withFMDB:self.db]];
+            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.objectFour withSearchMsg:[NSString stringWithFormat:@"kind = %ld and collect = 1",self.perfisonalKind] withFMDB:self.db]];
         self.title = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
     }
 }

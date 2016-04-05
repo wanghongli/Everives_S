@@ -70,13 +70,13 @@ FMDatabase *db;
     
     
     [self reloadDataWith:titleArray andSubViewdisplayClasses:classNames withParams:params];
+
+    
     
     
     NSString *currentVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
-    
     // 2.获取上一次的版本号
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:CZVersionKey];
-    
     // v1.0
     // 判断当前是否有新的版本
 //    WS(ws)
@@ -93,26 +93,6 @@ FMDatabase *db;
         // 保持当前的版本，用偏好设置
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:CZVersionKey];
     }
-//    //1.获得数据库文件的路径
-//    NSString *doc =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES)  lastObject];
-//    
-//    NSString *fileName = [doc stringByAppendingPathComponent:@"question.sqlite"];
-//    
-//    //2.获得数据库
-//    db = [FMDatabase databaseWithPath:fileName];
-//    
-//    //3.使用如下语句，如果打开失败，可能是权限不足或者资源不足。通常打开完操作操作后，需要调用 close 方法来关闭数据库。在和数据库交互 之前，数据库必须是打开的。如果资源或权限不足无法打开或创建数据库，都会导致打开失败。
-//    if ([db open])
-//    {
-//        //4.创表
-//        BOOL result = [db executeUpdate:@"CREATE TABLE if not exists t_question (analy text, content text,option text,pics text,answer integer,kind integer,type integer,id integer primary key,collect integer,error integer,already integer,chooseAnswer integer);"];
-//        if (result)
-//        {
-//            NSLog(@"创建表成功");
-//        }else{
-//            NSLog(@"创建表失败");
-//        }
-//    }
     //查询
 //    [self checkMsg];
     //修改数据
@@ -142,6 +122,7 @@ FMDatabase *db;
 }
 -(void)getData
 {
+    //获取题库数据
     [RequestData GETQuestionBank:@"data/index.json" complete:^(NSDictionary *responseDic) {
         MyLog(@"%@",responseDic);
         //读取plist
@@ -167,6 +148,14 @@ FMDatabase *db;
                 
             }];
         }
+    } failed:^(NSError *error) {
+        
+    }];
+    [RequestData GETQuestionBank:@"data/ques_kind.json" complete:^(NSDictionary *responseDic) {
+        MyLog(@"%@",responseDic);
+        NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];
+        [userDefaults setObject:responseDic forKey:@"ques_kind"];
+        [NSUserDefaults resetStandardUserDefaults];
     } failed:^(NSError *error) {
         
     }];

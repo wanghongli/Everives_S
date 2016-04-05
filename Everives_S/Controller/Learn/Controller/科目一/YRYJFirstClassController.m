@@ -92,6 +92,7 @@
     }else{//专题练习
         YRLearnProfessionalController *learnVC = [[YRLearnProfessionalController alloc]init];
         learnVC.title = @"专题练习";
+        learnVC.objFour = NO;
         [self.navigationController pushViewController:learnVC animated:YES];
     }
 

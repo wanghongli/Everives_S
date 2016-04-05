@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YRLearnProfessionalController : UITableViewController
-
+@property (nonatomic, assign) BOOL objFour;
 @end

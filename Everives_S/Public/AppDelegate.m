@@ -123,9 +123,6 @@
             
         }];
     }
-    
-    
-   
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
 }

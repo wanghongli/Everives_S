@@ -106,6 +106,23 @@
 {
     return 40;
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if ([menuArray containsObject:[NSString stringWithFormat:@"%ld",_questionOb.answer]]) {
+        return 0.1;
+    }
+    return 40;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
+    if ([menuArray containsObject:[NSString stringWithFormat:@"%ld",_questionOb.answer]]) {
+        view.backgroundColor = [UIColor clearColor];
+    }else
+        view.backgroundColor = [UIColor redColor];
+
+    return view;
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

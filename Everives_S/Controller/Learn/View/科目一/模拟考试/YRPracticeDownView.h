@@ -11,12 +11,12 @@
 
 @end
 #import <UIKit/UIKit.h>
-#import "YRQuestionObject.h"
+#import "YRQuestionObj.h"
 @interface YRPracticeDownView : UIView
 
 @property (nonatomic, assign) id<YRPracticeDownViewDelegate>delegate;
 
 @property (nonatomic, strong) NSString *numbString;
 
-@property (nonatomic, strong) YRQuestionObject *questObj;
+@property (nonatomic, strong) YRQuestionObj *questObj;
 @end

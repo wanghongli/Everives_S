@@ -10,6 +10,9 @@
 
 #define  kDistance 10
 @interface YRExamDownView ()
+{
+    NSDictionary *answerDic;
+}
 @property (nonatomic, weak) UIView *backView;
 @property (nonatomic, weak) UILabel *anayLabel;
 @property (nonatomic, weak) UILabel *answerLabel;
@@ -19,6 +22,22 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        answerDic = @{@"1":@"A",// A
+                      @"2":@"B",// B
+                      @"3":@"A,B",//A,B
+                      @"4":@"C",//C
+                      @"5":@"A,C",//A,C
+                      @"6":@"B,C",//B,C
+                      @"7":@"A,B,C",//A,B,C
+                      @"8":@"D",//D
+                      @"9":@"A,D",//A,D
+                      @"10":@"B,D",//B,D
+                      @"11":@"A,B,D",//A,B,D
+                      @"12":@"C,D",//C,D
+                      @"13":@"A,C,D",//A,C,D
+                      @"14":@"B,C,D",//B,C,D
+                      @"15":@"A,B,C,D",//A,B,C,D
+                      };
         [self buildUI];
     }
     return self;
@@ -72,14 +91,14 @@
     
     return height;
 }
--(void)setQuestOb:(YRQuestionObject *)questOb
+-(void)setQuestOb:(YRQuestionObj *)questOb
 {
     _questOb = questOb;
     NSString *anserString;
-    if (questOb.option.count && [questOb.option[0] length]) {
-        anserString = [NSString stringWithFormat:@"答案：%@",[@[@"A",@"B",@"C",@"D"] objectAtIndex:questOb.answer]];
+    if (questOb.option.count ==4 ) {//选择题
+        anserString = [NSString stringWithFormat:@"答案：%@",answerDic[[NSString stringWithFormat:@"%ld",questOb.answer]]];
     }else{
-        anserString = questOb.answer ? @"答案：错误":@"答案：正确";
+        anserString = questOb.answer-1 ? @"答案：错误":@"答案：正确";
     }
     CGSize answerSize = [anserString sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(self.width-2*kDistance, MAXFLOAT)];
     _answerLabel.frame = CGRectMake(kDistance, kDistance, self.width-4*kDistance, answerSize.height);
@@ -97,7 +116,7 @@
     
     
 }
-+(CGFloat)examDownViewHeight:(YRQuestionObject *)analyseString
++(CGFloat)examDownViewHeight:(YRQuestionObj *)analyseString
 {
     CGFloat height = kDistance;
     

@@ -19,6 +19,7 @@
 #import "YRMyErrorController.h"
 #import "YRMyAchievementController.h"
 #import "YRMyPracticeController.h"
+#import "YRLearnProfessionalController.h"
 #define kDistance 10
 @interface YRYJFirstClassController ()<YRFirstHeadViewDelegate,YRFirstMiddleViewDelegate,YRFirstDownViewDelegate>
 
@@ -71,6 +72,7 @@
 {
     MyLog(@"进入模拟考试");
     YRLearnExamController *examVC = [[YRLearnExamController alloc]init];
+    examVC.objectFour = NO;
     [self.navigationController pushViewController:examVC animated:YES];
 }
 #pragma mark - 顺序、随机、专题等点击事件
@@ -79,14 +81,18 @@
     YRLearnPracticeController *learnVC = [[YRLearnPracticeController alloc]init];
     if (btnTag == 0) {//顺序练习
         YRLearnOrderController *sequenceVC = [[YRLearnOrderController alloc]init];
+        sequenceVC.objectFour = NO;
         [self.navigationController pushViewController:sequenceVC animated:YES];
         return;
     }else if (btnTag == 1){//随机练习
         learnVC.title = @"随机练习";
         learnVC.menuTag = 2;
+        learnVC.objectFour = NO;
         [self.navigationController pushViewController:learnVC animated:YES];
     }else{//专题练习
+        YRLearnProfessionalController *learnVC = [[YRLearnProfessionalController alloc]init];
         learnVC.title = @"专题练习";
+        [self.navigationController pushViewController:learnVC animated:YES];
     }
 
 }

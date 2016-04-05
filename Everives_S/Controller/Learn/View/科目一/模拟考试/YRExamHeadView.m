@@ -8,10 +8,12 @@
 
 #import "YRExamHeadView.h"
 #import "UIImageView+WebCache.h"
-
+#import "CYVideoPlayerView.h"
+#import <AVFoundation/AVFoundation.h>
 #define kDistance 20
 @interface YRExamHeadView ()
 @property (nonatomic, weak) UILabel *titleLabel;
+@property (nonatomic, weak) CYVideoPlayerView *playerView;
 @property (nonatomic, weak) UIImageView *imgView;
 @property (nonatomic, weak) UIView *topLine;
 @end
@@ -43,6 +45,10 @@
     topline.backgroundColor = kCOLOR(241, 241, 241);
     [self addSubview:topline];
     _topLine = topline;
+    
+    CYVideoPlayerView *playerview = [[CYVideoPlayerView alloc]init];
+    [self addSubview:playerview];
+    _playerView = playerview;
 }
 -(void)setMNCurrentID:(NSInteger)MNCurrentID
 {
@@ -50,7 +56,7 @@
     NSString *titleString = [NSString stringWithFormat:@"%ld、%@",MNCurrentID,_ques.content];
     _titleLabel.text = titleString;
 }
--(void)setQues:(YRQuestionObject *)ques
+-(void)setQues:(YRQuestionObj *)ques
 {
     _ques = ques;
     NSString *titleString = [NSString stringWithFormat:@"%ld、%@",ques.id,ques.content];
@@ -58,23 +64,33 @@
     _titleLabel.frame = CGRectMake(kDistance, kDistance, titleSize.width, titleSize.height);
     _titleLabel.text = titleString;
     
-    if (ques.pics.count) {
-        _imgView.frame = CGRectMake(kDistance*2, CGRectGetMaxY(_titleLabel.frame)+kDistance, kScreenWidth-4*kDistance, (kScreenWidth-4*kDistance)/2);
-        [_imgView sd_setImageWithURL:ques.pics[0] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
-        _topLine.frame = CGRectMake(0, CGRectGetMaxY(_imgView.frame)+kDistance-1, kScreenWidth, 1);
-        _imgView.hidden = NO;
+    if (ques.pics.length) {
+        if ([ques.pics containsString:@"mp4"]) {//视频播放
+            _playerView.frame = CGRectMake(kDistance*2, CGRectGetMaxY(_titleLabel.frame)+kDistance, kScreenWidth-4*kDistance, (kScreenWidth-4*kDistance)/2);
+            [_playerView replaceAVPlayerItem:[[AVPlayerItem alloc] initWithURL:[NSURL URLWithString:ques.pics]]];
+            _playerView.hidden = NO;
+            _topLine.frame = CGRectMake(0, CGRectGetMaxY(_playerView.frame)+kDistance-1, kScreenWidth, 1);
+        }else{
+            _imgView.frame = CGRectMake(kDistance*2, CGRectGetMaxY(_titleLabel.frame)+kDistance, kScreenWidth-4*kDistance, (kScreenWidth-4*kDistance)/2);
+            [_imgView sd_setImageWithURL:[NSURL URLWithString:ques.pics] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
+            _imgView.hidden = NO;
+            _topLine.frame = CGRectMake(0, CGRectGetMaxY(_imgView.frame)+kDistance-1, kScreenWidth, 1);
+
+        }
     }else{
+        _playerView.hidden = YES;
+        [_playerView removeVideo];
         _imgView.hidden = YES;
         _topLine.frame = CGRectMake(0, CGRectGetMaxY(_titleLabel.frame)+kDistance-1, kScreenWidth, 1);
     }
 }
-+(CGFloat)examHeadViewHeight:(YRQuestionObject *)ques
++(CGFloat)examHeadViewHeight:(YRQuestionObj *)ques
 {
     CGFloat height;
     height = kDistance*2;
     NSString *titleString = [NSString stringWithFormat:@"%ld、%@",ques.id,ques.content];
     CGSize titleSize = [titleString sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(kScreenWidth-2*kDistance, MAXFLOAT)];
-    if (ques.pics.count) {
+    if (ques.pics.length) {
         height+= (kScreenWidth-4*kDistance)/2;
         height+=kDistance;
     }

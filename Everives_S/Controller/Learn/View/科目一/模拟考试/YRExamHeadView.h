@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YRQuestionObject.h"
+#import "YRQuestionObj.h"
 @interface YRExamHeadView : UIView
-@property (nonatomic, strong) YRQuestionObject *ques;
-+ (CGFloat)examHeadViewHeight:(YRQuestionObject *)ques;
+@property (nonatomic, strong) YRQuestionObj *ques;
++ (CGFloat)examHeadViewHeight:(YRQuestionObj *)ques;
 
 @property (nonatomic, assign) NSInteger MNCurrentID;
 

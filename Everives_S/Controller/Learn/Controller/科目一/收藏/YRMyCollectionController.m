@@ -7,7 +7,8 @@
 //
 
 #import "YRMyCollectionController.h"
-#import "YRExamCollectController.h"
+#import "YRLearnPracticeController.h"
+#import "YRFMDBObj.h"
 @interface YRMyCollectionController ()
 {
     NSArray *tableArray;
@@ -20,7 +21,7 @@
     [super viewDidLoad];
     self.title = @"我的收藏";
     self.view.backgroundColor = [UIColor whiteColor];
-    tableArray = @[@[@"我收藏的题目"],@[@"驾考法规收藏",@"考试技巧收藏"]];
+    tableArray = @[@"交通法规",@"交通信号灯",@"路况环境",@"机动车驾驶操作"];
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.backgroundColor = kCOLOR(241, 241, 241);
 
@@ -36,7 +37,10 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [tableArray[section] count];
+    if (section == 0) {
+        return 1;
+    }
+    return [tableArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -47,7 +51,10 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = tableArray[indexPath.section][indexPath.row];
+    if (indexPath.section == 0) {
+        cell.textLabel.text = @"所有收藏";
+    }else
+        cell.textLabel.text = tableArray[indexPath.row];
     
     return cell;
 }
@@ -69,9 +76,27 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    YRLearnPracticeController *practiceVC = [[YRLearnPracticeController alloc]init];
     if (indexPath.section == 0) {
-        YRExamCollectController *eVC = [[YRExamCollectController alloc]init];
-        [self.navigationController pushViewController:eVC animated:YES];
+        NSArray *array = [NSArray arrayWithArray:[YRFMDBObj getPracticeWithType:0 withSearchMsg:@"collect = 1" withFMDB:[YRFMDBObj initFmdb]]];
+        if (!array.count) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"暂无收藏" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            return;
+        }else{
+            practiceVC.perfisonalKind = 1;
+        }
+    }else{
+        NSArray *array = [NSArray arrayWithArray:[YRFMDBObj getPracticeWithType:0 withSearchMsg:[NSString stringWithFormat:@"kind = %ld and collect = 1",121+indexPath.row] withFMDB:[YRFMDBObj initFmdb]]];
+        if (!array.count) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"暂无此项收藏" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            return;
+        }else{
+            practiceVC.perfisonalKind = 121+indexPath.row;
+        }
     }
+    practiceVC.menuTag = 5;
+    [self.navigationController pushViewController:practiceVC animated:YES];
 }
 @end

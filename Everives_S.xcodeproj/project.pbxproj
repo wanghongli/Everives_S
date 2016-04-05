@@ -56,6 +56,33 @@
 		032C43F21CACB7580022C2F9 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C43F11CACB7580022C2F9 /* libstdc++.tbd */; };
 		032C43F71CACE2F40022C2F9 /* UIViewController+YRCommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C43F61CACE2F40022C2F9 /* UIViewController+YRCommonController.m */; };
 		032C43FA1CACFEBF0022C2F9 /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C43F91CACFEBF0022C2F9 /* XYPieChart.m */; };
+		032C43FD1CAD242B0022C2F9 /* YRShaHeObjct.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C43FC1CAD242B0022C2F9 /* YRShaHeObjct.m */; };
+		032C44021CAE51AB0022C2F9 /* YRQuestionObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C44011CAE51AB0022C2F9 /* YRQuestionObj.m */; };
+		032C44101CAE58440022C2F9 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C44051CAE58440022C2F9 /* FMDatabase.m */; };
+		032C44111CAE58440022C2F9 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C44071CAE58440022C2F9 /* FMDatabaseAdditions.m */; };
+		032C44121CAE58440022C2F9 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C44091CAE58440022C2F9 /* FMDatabasePool.m */; };
+		032C44131CAE58440022C2F9 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C440B1CAE58440022C2F9 /* FMDatabaseQueue.m */; };
+		032C44141CAE58440022C2F9 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C440E1CAE58440022C2F9 /* FMResultSet.m */; };
+		032C44171CAE58630022C2F9 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C44161CAE58630022C2F9 /* libsqlite3.tbd */; };
+		032C441A1CAE73490022C2F9 /* YRFMDBObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C44191CAE73490022C2F9 /* YRFMDBObj.m */; };
+		032C44211CB260D70022C2F9 /* YRLearnProfessionalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C44201CB260D70022C2F9 /* YRLearnProfessionalController.m */; };
+		032C44251CB272650022C2F9 /* YRMyErrorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C44241CB272650022C2F9 /* YRMyErrorController.m */; };
+		032C44291CB2981E0022C2F9 /* YRMyPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C44281CB2981E0022C2F9 /* YRMyPracticeController.m */; };
+		032C442C1CB29BBE0022C2F9 /* YRMyPracticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C442B1CB29BBE0022C2F9 /* YRMyPracticeView.m */; };
+		032C45991CB2D5250022C2F9 /* CYVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45941CB2D5250022C2F9 /* CYVideoPlayerView.m */; };
+		032C459A1CB2D5250022C2F9 /* CYVideoToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45961CB2D5250022C2F9 /* CYVideoToolBar.m */; };
+		032C459B1CB2D5250022C2F9 /* CYFullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45981CB2D5250022C2F9 /* CYFullViewController.m */; };
+		032C45B71CB2D5800022C2F9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 032C459C1CB2D5800022C2F9 /* Info.plist */; };
+		032C45B81CB2D5800022C2F9 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C459E1CB2D5800022C2F9 /* MASCompositeConstraint.m */; };
+		032C45B91CB2D5800022C2F9 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45A11CB2D5800022C2F9 /* MASConstraint.m */; };
+		032C45BA1CB2D5800022C2F9 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45A31CB2D5800022C2F9 /* MASConstraintMaker.m */; };
+		032C45BB1CB2D5800022C2F9 /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45A51CB2D5800022C2F9 /* MASLayoutConstraint.m */; };
+		032C45BC1CB2D5800022C2F9 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45A91CB2D5800022C2F9 /* MASViewAttribute.m */; };
+		032C45BD1CB2D5800022C2F9 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45AB1CB2D5800022C2F9 /* MASViewConstraint.m */; };
+		032C45BE1CB2D5800022C2F9 /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45AD1CB2D5800022C2F9 /* NSArray+MASAdditions.m */; };
+		032C45BF1CB2D5800022C2F9 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45B01CB2D5800022C2F9 /* NSLayoutConstraint+MASDebugAdditions.m */; };
+		032C45C01CB2D5800022C2F9 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45B21CB2D5800022C2F9 /* View+MASAdditions.m */; };
+		032C45C11CB2D5800022C2F9 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C45B51CB2D5800022C2F9 /* ViewController+MASAdditions.m */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -151,9 +178,7 @@
 		03C651C61CA8CBEE005FFC71 /* YRMyFriendsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C651C51CA8CBEE005FFC71 /* YRMyFriendsObject.m */; };
 		03C651CD1CA8DB43005FFC71 /* YRYJThirdClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C651C91CA8DB43005FFC71 /* YRYJThirdClassController.m */; };
 		03C651CE1CA8DB43005FFC71 /* YRYJFourthClassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C651CC1CA8DB43005FFC71 /* YRYJFourthClassController.m */; };
-		03C652101CA921CD005FFC71 /* YRMyErrorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C6520F1CA921CD005FFC71 /* YRMyErrorController.m */; };
 		03C652161CA92290005FFC71 /* YRMyAchievementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C652151CA92290005FFC71 /* YRMyAchievementController.m */; };
-		03C652191CA92311005FFC71 /* YRMyPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C652181CA92311005FFC71 /* YRMyPracticeController.m */; };
 		03C6521C1CA92446005FFC71 /* YRSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C6521B1CA92446005FFC71 /* YRSettingController.m */; };
 		03C6521F1CA92512005FFC71 /* YRSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C6521E1CA92512005FFC71 /* YRSettingCell.m */; };
 		03F59B8F1C8EC1FF009D5EA2 /* YRCircleDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F59B8D1C8EC1FF009D5EA2 /* YRCircleDetailController.m */; };
@@ -348,6 +373,64 @@
 		032C43F61CACE2F40022C2F9 /* UIViewController+YRCommonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YRCommonController.m"; sourceTree = "<group>"; };
 		032C43F81CACFEBF0022C2F9 /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
 		032C43F91CACFEBF0022C2F9 /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
+		032C43FB1CAD242B0022C2F9 /* YRShaHeObjct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRShaHeObjct.h; sourceTree = "<group>"; };
+		032C43FC1CAD242B0022C2F9 /* YRShaHeObjct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRShaHeObjct.m; sourceTree = "<group>"; };
+		032C44001CAE51AB0022C2F9 /* YRQuestionObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRQuestionObj.h; sourceTree = "<group>"; };
+		032C44011CAE51AB0022C2F9 /* YRQuestionObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRQuestionObj.m; sourceTree = "<group>"; };
+		032C44041CAE58440022C2F9 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		032C44051CAE58440022C2F9 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		032C44061CAE58440022C2F9 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		032C44071CAE58440022C2F9 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		032C44081CAE58440022C2F9 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		032C44091CAE58440022C2F9 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		032C440A1CAE58440022C2F9 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		032C440B1CAE58440022C2F9 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		032C440C1CAE58440022C2F9 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		032C440D1CAE58440022C2F9 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		032C440E1CAE58440022C2F9 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		032C44161CAE58630022C2F9 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		032C44181CAE73490022C2F9 /* YRFMDBObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRFMDBObj.h; sourceTree = "<group>"; };
+		032C44191CAE73490022C2F9 /* YRFMDBObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRFMDBObj.m; sourceTree = "<group>"; };
+		032C441F1CB260D70022C2F9 /* YRLearnProfessionalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnProfessionalController.h; sourceTree = "<group>"; };
+		032C44201CB260D70022C2F9 /* YRLearnProfessionalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnProfessionalController.m; sourceTree = "<group>"; };
+		032C44231CB272650022C2F9 /* YRMyErrorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyErrorController.h; sourceTree = "<group>"; };
+		032C44241CB272650022C2F9 /* YRMyErrorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyErrorController.m; sourceTree = "<group>"; };
+		032C44271CB2981E0022C2F9 /* YRMyPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyPracticeController.h; sourceTree = "<group>"; };
+		032C44281CB2981E0022C2F9 /* YRMyPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyPracticeController.m; sourceTree = "<group>"; };
+		032C442A1CB29BBE0022C2F9 /* YRMyPracticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyPracticeView.h; sourceTree = "<group>"; };
+		032C442B1CB29BBE0022C2F9 /* YRMyPracticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyPracticeView.m; sourceTree = "<group>"; };
+		032C45931CB2D5250022C2F9 /* CYVideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYVideoPlayerView.h; sourceTree = "<group>"; };
+		032C45941CB2D5250022C2F9 /* CYVideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYVideoPlayerView.m; sourceTree = "<group>"; };
+		032C45951CB2D5250022C2F9 /* CYVideoToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYVideoToolBar.h; sourceTree = "<group>"; };
+		032C45961CB2D5250022C2F9 /* CYVideoToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYVideoToolBar.m; sourceTree = "<group>"; };
+		032C45971CB2D5250022C2F9 /* CYFullViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYFullViewController.h; sourceTree = "<group>"; };
+		032C45981CB2D5250022C2F9 /* CYFullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYFullViewController.m; sourceTree = "<group>"; };
+		032C459C1CB2D5800022C2F9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		032C459D1CB2D5800022C2F9 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
+		032C459E1CB2D5800022C2F9 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
+		032C459F1CB2D5800022C2F9 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
+		032C45A01CB2D5800022C2F9 /* MASConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraint.h; sourceTree = "<group>"; };
+		032C45A11CB2D5800022C2F9 /* MASConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraint.m; sourceTree = "<group>"; };
+		032C45A21CB2D5800022C2F9 /* MASConstraintMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraintMaker.h; sourceTree = "<group>"; };
+		032C45A31CB2D5800022C2F9 /* MASConstraintMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraintMaker.m; sourceTree = "<group>"; };
+		032C45A41CB2D5800022C2F9 /* MASLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASLayoutConstraint.h; sourceTree = "<group>"; };
+		032C45A51CB2D5800022C2F9 /* MASLayoutConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASLayoutConstraint.m; sourceTree = "<group>"; };
+		032C45A61CB2D5800022C2F9 /* Masonry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Masonry.h; sourceTree = "<group>"; };
+		032C45A71CB2D5800022C2F9 /* MASUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASUtilities.h; sourceTree = "<group>"; };
+		032C45A81CB2D5800022C2F9 /* MASViewAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewAttribute.h; sourceTree = "<group>"; };
+		032C45A91CB2D5800022C2F9 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
+		032C45AA1CB2D5800022C2F9 /* MASViewConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewConstraint.h; sourceTree = "<group>"; };
+		032C45AB1CB2D5800022C2F9 /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
+		032C45AC1CB2D5800022C2F9 /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASAdditions.h"; sourceTree = "<group>"; };
+		032C45AD1CB2D5800022C2F9 /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MASAdditions.m"; sourceTree = "<group>"; };
+		032C45AE1CB2D5800022C2F9 /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		032C45AF1CB2D5800022C2F9 /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
+		032C45B01CB2D5800022C2F9 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
+		032C45B11CB2D5800022C2F9 /* View+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASAdditions.h"; sourceTree = "<group>"; };
+		032C45B21CB2D5800022C2F9 /* View+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+MASAdditions.m"; sourceTree = "<group>"; };
+		032C45B31CB2D5800022C2F9 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		032C45B41CB2D5800022C2F9 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
+		032C45B51CB2D5800022C2F9 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -535,12 +618,8 @@
 		03C651C91CA8DB43005FFC71 /* YRYJThirdClassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJThirdClassController.m; sourceTree = "<group>"; };
 		03C651CB1CA8DB43005FFC71 /* YRYJFourthClassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRYJFourthClassController.h; sourceTree = "<group>"; };
 		03C651CC1CA8DB43005FFC71 /* YRYJFourthClassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRYJFourthClassController.m; sourceTree = "<group>"; };
-		03C6520E1CA921CD005FFC71 /* YRMyErrorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyErrorController.h; sourceTree = "<group>"; };
-		03C6520F1CA921CD005FFC71 /* YRMyErrorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyErrorController.m; sourceTree = "<group>"; };
 		03C652141CA92290005FFC71 /* YRMyAchievementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyAchievementController.h; sourceTree = "<group>"; };
 		03C652151CA92290005FFC71 /* YRMyAchievementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyAchievementController.m; sourceTree = "<group>"; };
-		03C652171CA92311005FFC71 /* YRMyPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyPracticeController.h; sourceTree = "<group>"; };
-		03C652181CA92311005FFC71 /* YRMyPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyPracticeController.m; sourceTree = "<group>"; };
 		03C6521A1CA92446005FFC71 /* YRSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSettingController.h; sourceTree = "<group>"; };
 		03C6521B1CA92446005FFC71 /* YRSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSettingController.m; sourceTree = "<group>"; };
 		03C6521D1CA92512005FFC71 /* YRSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSettingCell.h; sourceTree = "<group>"; };
@@ -737,6 +816,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				032C44171CAE58630022C2F9 /* libsqlite3.tbd in Frameworks */,
 				032C43F21CACB7580022C2F9 /* libstdc++.tbd in Frameworks */,
 				032C43F01CACB7500022C2F9 /* JavaScriptCore.framework in Frameworks */,
 				032C43EE1CACB7480022C2F9 /* MessageUI.framework in Frameworks */,
@@ -856,6 +936,98 @@
 			path = SMS_SDK;
 			sourceTree = "<group>";
 		};
+		032C44031CAE58440022C2F9 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				032C44041CAE58440022C2F9 /* FMDatabase.h */,
+				032C44051CAE58440022C2F9 /* FMDatabase.m */,
+				032C44061CAE58440022C2F9 /* FMDatabaseAdditions.h */,
+				032C44071CAE58440022C2F9 /* FMDatabaseAdditions.m */,
+				032C44081CAE58440022C2F9 /* FMDatabasePool.h */,
+				032C44091CAE58440022C2F9 /* FMDatabasePool.m */,
+				032C440A1CAE58440022C2F9 /* FMDatabaseQueue.h */,
+				032C440B1CAE58440022C2F9 /* FMDatabaseQueue.m */,
+				032C440C1CAE58440022C2F9 /* FMDB.h */,
+				032C440D1CAE58440022C2F9 /* FMResultSet.h */,
+				032C440E1CAE58440022C2F9 /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		032C441B1CB260470022C2F9 /* 专题练习 */ = {
+			isa = PBXGroup;
+			children = (
+				032C441F1CB260D70022C2F9 /* YRLearnProfessionalController.h */,
+				032C44201CB260D70022C2F9 /* YRLearnProfessionalController.m */,
+			);
+			path = "专题练习";
+			sourceTree = "<group>";
+		};
+		032C44221CB272650022C2F9 /* 错题 */ = {
+			isa = PBXGroup;
+			children = (
+				032C44231CB272650022C2F9 /* YRMyErrorController.h */,
+				032C44241CB272650022C2F9 /* YRMyErrorController.m */,
+			);
+			path = "错题";
+			sourceTree = "<group>";
+		};
+		032C44261CB2981E0022C2F9 /* 练习统计 */ = {
+			isa = PBXGroup;
+			children = (
+				032C44271CB2981E0022C2F9 /* YRMyPracticeController.h */,
+				032C44281CB2981E0022C2F9 /* YRMyPracticeController.m */,
+			);
+			path = "练习统计";
+			sourceTree = "<group>";
+		};
+		032C45921CB2D51A0022C2F9 /* playVideo */ = {
+			isa = PBXGroup;
+			children = (
+				032C45931CB2D5250022C2F9 /* CYVideoPlayerView.h */,
+				032C45941CB2D5250022C2F9 /* CYVideoPlayerView.m */,
+				032C45951CB2D5250022C2F9 /* CYVideoToolBar.h */,
+				032C45961CB2D5250022C2F9 /* CYVideoToolBar.m */,
+				032C45971CB2D5250022C2F9 /* CYFullViewController.h */,
+				032C45981CB2D5250022C2F9 /* CYFullViewController.m */,
+			);
+			path = playVideo;
+			sourceTree = "<group>";
+		};
+		032C45B61CB2D5800022C2F9 /* Masonry */ = {
+			isa = PBXGroup;
+			children = (
+				032C459C1CB2D5800022C2F9 /* Info.plist */,
+				032C459D1CB2D5800022C2F9 /* MASCompositeConstraint.h */,
+				032C459E1CB2D5800022C2F9 /* MASCompositeConstraint.m */,
+				032C459F1CB2D5800022C2F9 /* MASConstraint+Private.h */,
+				032C45A01CB2D5800022C2F9 /* MASConstraint.h */,
+				032C45A11CB2D5800022C2F9 /* MASConstraint.m */,
+				032C45A21CB2D5800022C2F9 /* MASConstraintMaker.h */,
+				032C45A31CB2D5800022C2F9 /* MASConstraintMaker.m */,
+				032C45A41CB2D5800022C2F9 /* MASLayoutConstraint.h */,
+				032C45A51CB2D5800022C2F9 /* MASLayoutConstraint.m */,
+				032C45A61CB2D5800022C2F9 /* Masonry.h */,
+				032C45A71CB2D5800022C2F9 /* MASUtilities.h */,
+				032C45A81CB2D5800022C2F9 /* MASViewAttribute.h */,
+				032C45A91CB2D5800022C2F9 /* MASViewAttribute.m */,
+				032C45AA1CB2D5800022C2F9 /* MASViewConstraint.h */,
+				032C45AB1CB2D5800022C2F9 /* MASViewConstraint.m */,
+				032C45AC1CB2D5800022C2F9 /* NSArray+MASAdditions.h */,
+				032C45AD1CB2D5800022C2F9 /* NSArray+MASAdditions.m */,
+				032C45AE1CB2D5800022C2F9 /* NSArray+MASShorthandAdditions.h */,
+				032C45AF1CB2D5800022C2F9 /* NSLayoutConstraint+MASDebugAdditions.h */,
+				032C45B01CB2D5800022C2F9 /* NSLayoutConstraint+MASDebugAdditions.m */,
+				032C45B11CB2D5800022C2F9 /* View+MASAdditions.h */,
+				032C45B21CB2D5800022C2F9 /* View+MASAdditions.m */,
+				032C45B31CB2D5800022C2F9 /* View+MASShorthandAdditions.h */,
+				032C45B41CB2D5800022C2F9 /* ViewController+MASAdditions.h */,
+				032C45B51CB2D5800022C2F9 /* ViewController+MASAdditions.m */,
+			);
+			name = Masonry;
+			path = ../../../Desktop/video_test/video_test/Masonry;
+			sourceTree = "<group>";
+		};
 		037C92A01C8FFDED005B41BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -869,6 +1041,8 @@
 				03FE5B881CAB7F76009F0ED7 /* YRExamTypeCollect.m */,
 				032C43DE1CABBFD40022C2F9 /* YRTeacherOrder.h */,
 				032C43DF1CABBFD40022C2F9 /* YRTeacherOrder.m */,
+				032C44181CAE73490022C2F9 /* YRFMDBObj.h */,
+				032C44191CAE73490022C2F9 /* YRFMDBObj.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -934,6 +1108,8 @@
 				03A25F231C92AF17000196A6 /* YRDriveLawCell.xib */,
 				03019D0F1C97FF0000895C77 /* YRLearnCollectionCell.h */,
 				03019D101C97FF0000895C77 /* YRLearnCollectionCell.m */,
+				032C442A1CB29BBE0022C2F9 /* YRMyPracticeView.h */,
+				032C442B1CB29BBE0022C2F9 /* YRMyPracticeView.m */,
 			);
 			path = "科目一";
 			sourceTree = "<group>";
@@ -980,6 +1156,8 @@
 			children = (
 				037F8DC41C8815F80057BF6C /* AppDelegate.h */,
 				037F8DC51C8815F80057BF6C /* AppDelegate.m */,
+				032C44001CAE51AB0022C2F9 /* YRQuestionObj.h */,
+				032C44011CAE51AB0022C2F9 /* YRQuestionObj.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -1038,6 +1216,8 @@
 				037F8EBA1C8E72490057BF6C /* YRCircleCellViewModel.m */,
 				03F59B911C8ED576009D5EA2 /* YRCircleComment.h */,
 				03F59B921C8ED576009D5EA2 /* YRCircleComment.m */,
+				032C43FB1CAD242B0022C2F9 /* YRShaHeObjct.h */,
+				032C43FC1CAD242B0022C2F9 /* YRShaHeObjct.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1345,6 +1525,9 @@
 		03A25F131C928891000196A6 /* 科目一 */ = {
 			isa = PBXGroup;
 			children = (
+				032C44261CB2981E0022C2F9 /* 练习统计 */,
+				032C44221CB272650022C2F9 /* 错题 */,
+				032C441B1CB260470022C2F9 /* 专题练习 */,
 				03228D561CA5424C00890DC6 /* 法规 */,
 				03228D3B1CA4DB1D00890DC6 /* 模拟考试 */,
 				03FF14721C9F866100AEBB75 /* 收藏 */,
@@ -1355,10 +1538,6 @@
 				0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */,
 				0315153D1C9A71FC00A2A2F1 /* YRSequencePracticeController.h */,
 				0315153E1C9A71FC00A2A2F1 /* YRSequencePracticeController.m */,
-				03C6520E1CA921CD005FFC71 /* YRMyErrorController.h */,
-				03C6520F1CA921CD005FFC71 /* YRMyErrorController.m */,
-				03C652171CA92311005FFC71 /* YRMyPracticeController.h */,
-				03C652181CA92311005FFC71 /* YRMyPracticeController.m */,
 				03C652141CA92290005FFC71 /* YRMyAchievementController.h */,
 				03C652151CA92290005FFC71 /* YRMyAchievementController.m */,
 			);
@@ -1506,6 +1685,9 @@
 		1600EBA21C88087A001919EB /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				032C45B61CB2D5800022C2F9 /* Masonry */,
+				032C45921CB2D51A0022C2F9 /* playVideo */,
+				032C44031CAE58440022C2F9 /* fmdb */,
 				032C43E21CACB51D0022C2F9 /* SMS_SDK */,
 				03228D211CA4D38700890DC6 /* SDLoopProgress */,
 				037D7C0D1C916AE600273703 /* CorePhotoPickerVCManager */,
@@ -1848,6 +2030,7 @@
 		2CC8B102BCD83EA57176F287 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				032C44161CAE58630022C2F9 /* libsqlite3.tbd */,
 				032C43F11CACB7580022C2F9 /* libstdc++.tbd */,
 				032C43EF1CACB7500022C2F9 /* JavaScriptCore.framework */,
 				032C43ED1CACB7480022C2F9 /* MessageUI.framework */,
@@ -1950,6 +2133,7 @@
 				164A8C931C8D1DCF00857638 /* YRMyWalletViewController.xib in Resources */,
 				03FF147D1C9FEB9F00AEBB75 /* YRLearnSecondCell.xib in Resources */,
 				037F8E6A1C8D5FC50057BF6C /* ImagesPicker.xcassets in Resources */,
+				032C45B71CB2D5800022C2F9 /* Info.plist in Resources */,
 				1624E29E1C8E7543009F4E20 /* YRCommentDetailVC.xib in Resources */,
 				164A8C9B1C8D248300857638 /* YRMyCommentCellTableViewCell.xib in Resources */,
 				1672A6601C8FE61200AF6272 /* YRStudentTableCell.xib in Resources */,
@@ -2032,6 +2216,7 @@
 				03228D371CA4D38700890DC6 /* SDTransparentPieProgressView.m in Sources */,
 				03228D4A1CA4E92D00890DC6 /* YRScoreDetailHeadView.m in Sources */,
 				031515431C9A912100A2A2F1 /* YRQuestionObject.m in Sources */,
+				032C44211CB260D70022C2F9 /* YRLearnProfessionalController.m in Sources */,
 				037D7C2E1C916AE600273703 /* UzysGroupViewCell.m in Sources */,
 				037F8E761C8D5FC50057BF6C /* PhotoAlbumManager.m in Sources */,
 				16C164021CA8EFC300804222 /* YRCoachAnnotationCalloutView.m in Sources */,
@@ -2056,6 +2241,7 @@
 				037D7C061C911F4A00273703 /* YRPerfectUserMsgController.m in Sources */,
 				03A25F241C92AF17000196A6 /* YRDriveLawCell.m in Sources */,
 				03A8CA5D1CA29B79007AB152 /* YRTeacherDownView.m in Sources */,
+				032C441A1CAE73490022C2F9 /* YRFMDBObj.m in Sources */,
 				03228D331CA4D38700890DC6 /* SDLoopProgressView.m in Sources */,
 				032C43FA1CACFEBF0022C2F9 /* XYPieChart.m in Sources */,
 				03A8CA511CA272F4007AB152 /* YRTeacherSectionSecoView.m in Sources */,
@@ -2063,6 +2249,7 @@
 				03A25F0F1C925848000196A6 /* YRMenuHeadView.m in Sources */,
 				164A8CA91C8D65A200857638 /* YRNotificationViewController.m in Sources */,
 				16B75DEA1C92A627004DC928 /* YRPullListView.m in Sources */,
+				032C43FD1CAD242B0022C2F9 /* YRShaHeObjct.m in Sources */,
 				1600EBC11C88087A001919EB /* RECommonFunctions.m in Sources */,
 				1672A6551C8FE5E200AF6272 /* YRSchoolTableCell.m in Sources */,
 				037F8E8D1C8E660C0057BF6C /* YRFriendCircleCell.m in Sources */,
@@ -2075,6 +2262,7 @@
 				031D503F1CA22985000E1303 /* YRTeacherDetailController.m in Sources */,
 				03F59B931C8ED576009D5EA2 /* YRCircleComment.m in Sources */,
 				16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */,
+				032C44111CAE58440022C2F9 /* FMDatabaseAdditions.m in Sources */,
 				037F8E6E1C8D5FC50057BF6C /* JKAssetsGroupsView.m in Sources */,
 				1600EBCA1C88087A001919EB /* XBPageCell.m in Sources */,
 				1600EBA11C87E8A5001919EB /* YRYJNavigationController.m in Sources */,
@@ -2084,6 +2272,7 @@
 				03228D361CA4D38700890DC6 /* SDRotationLoopProgressView.m in Sources */,
 				037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */,
 				03228D321CA4D38700890DC6 /* SDBaseProgressView.m in Sources */,
+				032C45BB1CB2D5800022C2F9 /* MASLayoutConstraint.m in Sources */,
 				037F8EB51C8E6D350057BF6C /* MJPhotoProgressView.m in Sources */,
 				1600EBC31C88087A001919EB /* REFrostedViewController.m in Sources */,
 				161B1BFF1C910FF80047182D /* CoachDataSource.m in Sources */,
@@ -2098,9 +2287,11 @@
 				1665D0E61CA8C9030064A103 /* YRStudentMoneyDetailVC.m in Sources */,
 				16C5458E1C98F20700AE5152 /* YRSearchFriendVC.m in Sources */,
 				037F8EB71C8E6D350057BF6C /* MJPhotoView.m in Sources */,
+				032C44131CAE58440022C2F9 /* FMDatabaseQueue.m in Sources */,
 				037F8E771C8D5FC50057BF6C /* UIView+JKPicker.m in Sources */,
 				037F8E161C8826750057BF6C /* YRYJLearnToDriveController.m in Sources */,
 				16C545911C98F65700AE5152 /* YRContactVC.m in Sources */,
+				032C459A1CB2D5250022C2F9 /* CYVideoToolBar.m in Sources */,
 				037F8E271C8834160057BF6C /* YRRegistPswController.m in Sources */,
 				03C652161CA92290005FFC71 /* YRMyAchievementController.m in Sources */,
 				037F8E6B1C8D5FC50057BF6C /* JKAssets.m in Sources */,
@@ -2109,12 +2300,15 @@
 				0315154C1C9BA60900A2A2F1 /* YRExamDownView.m in Sources */,
 				037F8DC61C8815F80057BF6C /* AppDelegate.m in Sources */,
 				037C92B71C901AF8005B41BF /* YRLeftImgBtn.m in Sources */,
+				032C45B81CB2D5800022C2F9 /* MASCompositeConstraint.m in Sources */,
 				037C92B11C901931005B41BF /* YRFirstMiddleView.m in Sources */,
+				032C442C1CB29BBE0022C2F9 /* YRMyPracticeView.m in Sources */,
 				031515461C9A9B1600A2A2F1 /* YRExamCell.m in Sources */,
 				031D50491CA23992000E1303 /* YRTeacherCommentCell.m in Sources */,
 				037F8EA01C8E68E90057BF6C /* YRCircleUser.m in Sources */,
 				037F8E7E1C8D78680057BF6C /* MBProgressHUD+Add.m in Sources */,
 				037D7C321C916B4100273703 /* UIImage+Tool.m in Sources */,
+				032C459B1CB2D5250022C2F9 /* CYFullViewController.m in Sources */,
 				037C929F1C8FF274005B41BF /* YRCircleHeadView.m in Sources */,
 				03228D3E1CA4DB6500890DC6 /* YRAchievementDetailController.m in Sources */,
 				03A8CA5A1CA289F8007AB152 /* YRMenuView.m in Sources */,
@@ -2126,6 +2320,7 @@
 				03A8CA571CA28265007AB152 /* YRStarView.m in Sources */,
 				03228D591CA5424C00890DC6 /* YRDriveLawController.m in Sources */,
 				037F8E6F1C8D5FC50057BF6C /* JKAssetsThumbnailView.m in Sources */,
+				032C45B91CB2D5800022C2F9 /* MASConstraint.m in Sources */,
 				037D7C091C914D2200273703 /* YRPerfectHeadView.m in Sources */,
 				03C651BB1CA8BF69005FFC71 /* YRYJMenuViewController.m in Sources */,
 				162E28651CA3C7DB00533880 /* YRChoosePlaceCell.m in Sources */,
@@ -2152,6 +2347,7 @@
 				031D50351CA1374D000E1303 /* YRAppointmentDetailController.m in Sources */,
 				03FE5B891CAB7F76009F0ED7 /* YRExamTypeCollect.m in Sources */,
 				037D7C2D1C916AE600273703 /* UzysGroupPickerView.m in Sources */,
+				032C45BF1CB2D5800022C2F9 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				166939FA1C9A3EAC00C7ECF2 /* Pinyin.c in Sources */,
 				03A25F171C928891000196A6 /* YRYJFirstClassController.m in Sources */,
 				1672A65A1C8FE60300AF6272 /* YRCoachTableCell.m in Sources */,
@@ -2161,9 +2357,13 @@
 				03228D311CA4D38700890DC6 /* SDBallProgressView.m in Sources */,
 				03FF14701C9F861600AEBB75 /* YRLearnOrderController.m in Sources */,
 				164A8CAD1C8D65EC00857638 /* YRCertificationViewController.m in Sources */,
+				032C44141CAE58440022C2F9 /* FMResultSet.m in Sources */,
+				032C45BE1CB2D5800022C2F9 /* NSArray+MASAdditions.m in Sources */,
 				03A8CA4B1CA25463007AB152 /* YRTeacherPlaceCell.m in Sources */,
 				037F8EB41C8E6D350057BF6C /* MJPhotoLoadingView.m in Sources */,
 				1672A65F1C8FE61200AF6272 /* YRStudentTableCell.m in Sources */,
+				032C44121CAE58440022C2F9 /* FMDatabasePool.m in Sources */,
+				032C45C01CB2D5800022C2F9 /* View+MASAdditions.m in Sources */,
 				1600EB3B1C87E65D001919EB /* main.m in Sources */,
 				03228D201CA3EF5800890DC6 /* YRCertificationController.m in Sources */,
 				16C163FF1CA8EFBC00804222 /* YRStudentAnnotationCalloutView.m in Sources */,
@@ -2174,6 +2374,8 @@
 				037F8E741C8D5FC50057BF6C /* JKPromptView.m in Sources */,
 				1672A6401C8FBC6200AF6272 /* YRChatViewController.m in Sources */,
 				1645D8911C950FCB0058D480 /* YRMapAnnotationView.m in Sources */,
+				032C45BA1CB2D5800022C2F9 /* MASConstraintMaker.m in Sources */,
+				032C44021CAE51AB0022C2F9 /* YRQuestionObj.m in Sources */,
 				1672A6641C8FE8F400AF6272 /* SchoolDataSource.m in Sources */,
 				037F8E7A1C8D6EE90057BF6C /* PhotoCell.m in Sources */,
 				037D7C2F1C916AE600273703 /* UzysWrapperPickerController.m in Sources */,
@@ -2182,9 +2384,11 @@
 				037F8E9A1C8E68BC0057BF6C /* YRCircleToolBar.m in Sources */,
 				164A8C921C8D1DCF00857638 /* YRMyWalletViewController.m in Sources */,
 				1672A6501C8FC6A600AF6272 /* YRMapSelectView.m in Sources */,
+				032C44251CB272650022C2F9 /* YRMyErrorController.m in Sources */,
 				037F8E711C8D5FC50057BF6C /* JKImagePickerController.m in Sources */,
 				03FF14751C9F866100AEBB75 /* YRMyCollectionController.m in Sources */,
 				037F8E321C884DBC0057BF6C /* PublicCheckMsgModel.m in Sources */,
+				032C44291CB2981E0022C2F9 /* YRMyPracticeController.m in Sources */,
 				037F8E221C8826750057BF6C /* JKCountDownButton.m in Sources */,
 				1600EBC21C88087A001919EB /* REFrostedContainerViewController.m in Sources */,
 				037F8E3E1C8D18D20057BF6C /* YRUserStatus.m in Sources */,
@@ -2198,33 +2402,36 @@
 				03C6521C1CA92446005FFC71 /* YRSettingController.m in Sources */,
 				1672A6381C8FBBA700AF6272 /* YRNearViewController.m in Sources */,
 				037F8EB11C8E6D350057BF6C /* MJPhoto.m in Sources */,
+				032C45991CB2D5250022C2F9 /* CYVideoPlayerView.m in Sources */,
 				1694F5801CA23DED009A4C21 /* YRDateCell.m in Sources */,
 				037F8E1E1C8826750057BF6C /* UIViewController+CWS.m in Sources */,
+				032C45C11CB2D5800022C2F9 /* ViewController+MASAdditions.m in Sources */,
 				1600EBC91C88087A001919EB /* UIView+XBExtension.m in Sources */,
 				03019D1D1C993C5D00895C77 /* YRUserDetailController.m in Sources */,
+				032C45BC1CB2D5800022C2F9 /* MASViewAttribute.m in Sources */,
 				1600EBC71C88087A001919EB /* XBScrollPageController.m in Sources */,
 				03FE5B7D1CAA0FF5009F0ED7 /* YRTeacherDetailObject.m in Sources */,
 				037F8E1B1C8826750057BF6C /* YRLoginViewController.m in Sources */,
 				031515491C9A9D3F00A2A2F1 /* YRExamHeadView.m in Sources */,
+				032C45BD1CB2D5800022C2F9 /* MASViewConstraint.m in Sources */,
 				03C651C21CA8C509005FFC71 /* YRMessageViewCell.m in Sources */,
 				03C6521F1CA92512005FFC71 /* YRSettingCell.m in Sources */,
 				037F8E411C8D1E8F0057BF6C /* YRManager.m in Sources */,
 				1624E29D1C8E7543009F4E20 /* YRCommentDetailVC.m in Sources */,
 				037F8E811C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m in Sources */,
 				037C92BA1C901F7E005B41BF /* YRUpImgBtn.m in Sources */,
-				03C652101CA921CD005FFC71 /* YRMyErrorController.m in Sources */,
 				037F8E361C891CE20057BF6C /* NSString+Tools.m in Sources */,
 				037C92AB1C900E88005B41BF /* YRCircleBtn.m in Sources */,
 				032C43F71CACE2F40022C2F9 /* UIViewController+YRCommonController.m in Sources */,
 				037F8EB61C8E6D350057BF6C /* MJPhotoToolbar.m in Sources */,
 				037D7C261C916AE600273703 /* CorePhotoPickerVCManager.m in Sources */,
 				1600EBC61C88087A001919EB /* UIViewController+REFrostedViewController.m in Sources */,
+				032C44101CAE58440022C2F9 /* FMDatabase.m in Sources */,
 				1672A64D1C8FBF9100AF6272 /* SharedMapView.m in Sources */,
 				03019D1A1C98F6D200895C77 /* KGFreshCatchDetailZanView.m in Sources */,
 				037D7C271C916AE600273703 /* UIImage+UzysExtension.m in Sources */,
 				037F8E721C8D5FC50057BF6C /* JKPhotoBrowser.m in Sources */,
 				03A8CA541CA27C98007AB152 /* YRTeacherHeadView.m in Sources */,
-				03C652191CA92311005FFC71 /* YRMyPracticeController.m in Sources */,
 				037D7C0C1C91545200273703 /* YRSexChoose.m in Sources */,
 				037F8EB31C8E6D350057BF6C /* MJPhotoBrowser.m in Sources */,
 				037F8E751C8D5FC50057BF6C /* JKUtil.m in Sources */,
@@ -2341,7 +2548,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: hengyu liu (9SH37383XP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2364,7 +2571,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: hengyu liu (9SH37383XP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -10,22 +10,24 @@
 #import "YRLearnCollectionCell.h"
 #import "YRQuestionObject.h"
 #include "YRPracticeDownView.h"
-//#import "YRAchievementDetailController.h"
 #import "YRGotScoreController.h"
+#import "FMDB.h"
+#import "YRFMDBObj.h"
+#import "YRQuestionObj.h"
 @interface YRLearnPracticeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,YRPracticeDownViewDelegate,UIAlertViewDelegate>
 {
-    NSInteger _currentID;
+    NSInteger _showAnswerID;
     NSInteger timeInt;
     NSTimer *timer;
-    
-    
+    YRQuestionObj *_currentQuestion;
 }
 @property (nonatomic, strong) NSMutableArray *errorArray;//错题
 @property (nonatomic, strong) NSMutableArray *rightArray;//正确题
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *msgArray;
 @property (nonatomic, strong) YRPracticeDownView *downView;
-
+@property (nonatomic, strong) FMDatabase *db;
+@property (nonatomic, assign) BOOL menuType;
 /*
 *   模拟考试倒计时
 */
@@ -51,9 +53,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _msgArray = [NSMutableArray array];
-    
     self.view.backgroundColor = [UIColor whiteColor];
-
+    self.db = [YRFMDBObj initFmdb];
+    //yes 科目四 no 科目一
+    self.menuType = self.objectFour;
     [self buildUI];
 }
 #pragma mark - 创建视图
@@ -74,11 +77,7 @@
     [self getDataWithInsert:NO];
     
     if (self.menuTag == 1) {//顺序练习
-        //显示答案
-        UIBarButtonItem *addPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_Cue"] style:UIBarButtonItemStyleBordered target:self action:@selector(showAnswer)];
-        //收藏
-//        UIBarButtonItem *searchPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_CollectionHollow"] style:UIBarButtonItemStyleBordered target:self action:@selector(collectionClick)];
-        self.navigationItem.rightBarButtonItems = @[addPlaceBtn];
+       
     }else if (self.menuTag == 0){//模拟考试
         _downView = [[YRPracticeDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.collectionView.frame), kScreenWidth, 44)];
         _downView.delegate = self;
@@ -88,14 +87,22 @@
         timeInt = 30*60;
         [self getTime];
     }else if (self.menuTag == 2){//随机练习
-        //显示答案
-        UIBarButtonItem *addPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_Cue"] style:UIBarButtonItemStyleBordered target:self action:@selector(showAnswer)];
-        //收藏
-//        UIBarButtonItem *searchPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_CollectionHollow"] style:UIBarButtonItemStyleBordered target:self action:@selector(collectionClick)];
-//        self.navigationItem.rightBarButtonItems = @[addPlaceBtn,searchPlaceBtn];
-        self.navigationItem.rightBarButtonItems = @[addPlaceBtn];
 
     }
+}
+-(void)setCollectMsg:(BOOL)collectBool
+{
+    //显示答案
+    UIBarButtonItem *addPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_Cue"] style:UIBarButtonItemStyleBordered target:self action:@selector(showAnswer)];
+    // 1    0
+    NSString *imgName;
+    if (collectBool) {
+        imgName = @"Learn_CollectionBlack";
+    }else
+        imgName = @"Learn_CollectionHollow";
+    //收藏
+    UIBarButtonItem *searchPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:imgName] style:UIBarButtonItemStyleBordered target:self action:@selector(collectionClick)];
+    self.navigationItem.rightBarButtonItems = @[addPlaceBtn,searchPlaceBtn];
 }
 -(void)getTime
 {
@@ -134,50 +141,78 @@
 #pragma mark - 显示答案
 -(void)showAnswer
 {
-    
+    _showAnswerID = _currentQuestion.id;
+    [self.collectionView reloadData];
 }
 
 #pragma mark - 收藏
 -(void)collectionClick
 {
-    
+    if (_currentQuestion.collect) {
+        [YRFMDBObj changeMsgWithId:_currentQuestion.id withNewMsg:@"collect = 0" withFMDB:self.db];
+        [MBProgressHUD showSuccess:@"取消收藏成功" toView:self.view];
+        [self setCollectMsg:NO];
+        return;
+    }
+    [YRFMDBObj changeMsgWithId:_currentQuestion.id withNewMsg:@"collect = 1" withFMDB:self.db];
+    [MBProgressHUD showSuccess:@"收藏成功" toView:self.view];
+    [self setCollectMsg:YES];
 }
 #pragma mark - 请求数据
 -(void)getDataWithInsert:(BOOL)insert
 {
     if (self.menuTag == 2) {//随机练习
-        [RequestData GET:JK_SJ_PRACTICE parameters:@{@"type":@"0"} complete:^(NSDictionary *responseDic) {
-            MyLog(@"%@",responseDic);
-            YRQuestionObject *questionOB = [YRQuestionObject mj_objectWithKeyValues:responseDic];
-            [_msgArray addObject:questionOB];
-            [self.collectionView reloadData];
-        } failed:^(NSError *error) {
-            
-        }];
+        _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getShunXuPracticeWithType:self.menuType withFMDB:self.db]];
     }else if (self.menuTag == 0){//模拟考试
-    
-        [RequestData GET:JK_MN_PRACTICE parameters:@{@"type":@"0"} complete:^(NSDictionary *responseDic) {
-            NSArray *user = [YRQuestionObject mj_objectArrayWithKeyValuesArray:(NSArray *)responseDic];
-            MyLog(@"%@",user);
-            _msgArray = [NSMutableArray arrayWithArray:user];
-            _downView.numbString = [NSString stringWithFormat:@"1/%ld",_msgArray.count];;
-
-            [self.collectionView reloadData];
-        } failed:^(NSError *error) {
-            
-        }];
+        NSArray *array = [NSArray arrayWithArray:[YRFMDBObj getShunXuPracticeWithType:self.menuType withFMDB:self.db]];
+        NSMutableArray *idArray = [NSMutableArray array];
+        _msgArray = [NSMutableArray array];
+        for (int i = 0; i<array.count; i++) {
+            YRQuestionObj *questionObj = array[arc4random() % array.count];
+            if (![idArray containsObject:[NSString stringWithFormat:@"%ld",questionObj.id]]) {
+                [idArray addObject:[NSString stringWithFormat:@"%ld",questionObj.id]];
+                [_msgArray addObject:questionObj];
+                if (self.objectFour) {
+                    if (idArray.count == 50) {
+                        break;
+                    }
+                }else{
+                    if (idArray.count == 100) {
+                        break;
+                    }
+                }
+            }
+        }
+        _downView.numbString = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
         
-    }else{
-        [RequestData GET:[NSString stringWithFormat:@"/question/question/%ld",_currentID] parameters:nil complete:^(NSDictionary *responseDic) {
-            MyLog(@"%@",responseDic);
-            YRQuestionObject *questionOB = [YRQuestionObject mj_objectWithKeyValues:responseDic];
-            [_msgArray addObject:questionOB];
-            [self.collectionView reloadData];
-            //        }
-        } failed:^(NSError *error) {
-            
-        }];
+    }else if(self.menuTag == 1){//顺序练习
+        _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getShunXuPracticeWithType:self.menuType withFMDB:self.db]];
+        self.title = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
+    }else if(self.menuTag == 3){//专题练习
+        _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:[NSString stringWithFormat:@"kind = %ld",self.perfisonalKind] withFMDB:self.db]];
+        self.title = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
+    }else if (self.menuTag == 4){//错题
+        if (self.perfisonalKind == 1) {//全部错题
+            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:@"error = 1" withFMDB:self.db]];
+        }else//专项错题
+            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:[NSString stringWithFormat:@"kind = %ld and error = 1",self.perfisonalKind] withFMDB:self.db]];
+        self.title = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
+    }else if (self.menuTag == 5){//收藏
+        if (self.perfisonalKind == 1) {//全部错题
+            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:@"collect = 1" withFMDB:self.db]];
+        }else//专项错题
+            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:[NSString stringWithFormat:@"kind = %ld and collect = 1",self.perfisonalKind] withFMDB:self.db]];
+        self.title = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
     }
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (self.menuTag == 1) {
+        if (self.currentID) {
+          YRQuestionObj*qusObj = self.msgArray[0];
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentID - qusObj.id+1 inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+    }    }
 }
 #pragma mark - UIColletionViewDataSource
 //定义展示的UIColletionViewCell的个数
@@ -196,39 +231,53 @@
     static NSString *CellIdentifier = @"UIColletionViewCell";
     
     YRLearnCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    YRQuestionObject *ques = _msgArray[indexPath.row];
+    YRQuestionObj *ques;
+    if (self.menuTag == 2) {
+        ;
+        if (_showAnswerID) {//显示答案时候不取数据
+            ques = _currentQuestion;
+        }else
+            ques = _msgArray[arc4random() % _msgArray.count];
+    }else
+        ques = _msgArray[indexPath.row];
+    _currentQuestion = ques;
     cell.questionOb = ques;
-    [cell setAnswerIsClickBlock:^(YRQuestionObject *currentQues) {
-        if (currentQues.chooseAnswer.integerValue == currentQues.answer) {//正确
-            if (![self.rightArray containsObject:[NSString stringWithFormat:@"%ld",currentQues.id]]) {
-                if ([self.errorArray containsObject:[NSString stringWithFormat:@"%ld",currentQues.id]]) {
-                    [self.errorArray removeObject:[NSString stringWithFormat:@"%ld",currentQues.id]];
-                }
-                [self.rightArray addObject:[NSString stringWithFormat:@"%ld",currentQues.id]];
-            }
-        }else{//错误
-            if (![self.errorArray containsObject:[NSString stringWithFormat:@"%ld",currentQues.id]]) {
-                //先移除争取里面的
-                if ([self.rightArray containsObject:[NSString stringWithFormat:@"%ld",currentQues.id]]) {
-                    [self.rightArray removeObject:[NSString stringWithFormat:@"%ld",currentQues.id]];
-                }
-                [self.errorArray addObject:[NSString stringWithFormat:@"%ld",currentQues.id]];
-            }
-        }
+    [cell setAnswerIsClickBlock:^(YRQuestionObj *currentQues) {
+        NSString *already = [NSString stringWithFormat:@"already = 1"];
+        NSString *error = [NSString stringWithFormat:@"error = %d",currentQues.answer == currentQues.chooseAnswer?0:1];
+        NSString *chooseAnswer = [NSString stringWithFormat:@"chooseAnswer = %ld",(long)currentQues.chooseAnswer];
+        [YRFMDBObj changeMsgWithId:ques.id withNewMsg:already withFMDB:self.db];
+        [YRFMDBObj changeMsgWithId:ques.id withNewMsg:error withFMDB:self.db];
+        [YRFMDBObj changeMsgWithId:ques.id withNewMsg:chooseAnswer withFMDB:self.db];
         [_msgArray replaceObjectAtIndex:indexPath.row withObject:currentQues];
-        [self.collectionView reloadData];
-    }];
-    
-    if (self.menuTag == 1 || self.menuTag == 2) {
-        if (indexPath.row == _msgArray.count-1) {
-            _currentID++;
-            [self getDataWithInsert:NO];
+        if (self.menuTag == 0) {//考试状态选择就跳到下一个题
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+            if (currentQues.error) {
+                [self.errorArray addObject:currentQues];
+            }else
+                [self.rightArray addObject:currentQues];
+        }else{//练习状态选择正确后跳到下一个题
+            if (!currentQues.error) {
+                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+            }
         }
-        self.title = [NSString stringWithFormat:@"%ld/10",ques.id];
-    }else if(self.menuTag == 0){
+    }];
+    //显示答案
+    if (_showAnswerID) {
+        cell.showAanly = _showAnswerID;
+        _showAnswerID = 0;
+    }
+    if(self.menuTag == 0){//模拟考试显示底部菜单
         _downView.numbString = [NSString stringWithFormat:@"%ld/%ld",indexPath.row+1,_msgArray.count];
         _downView.questObj = ques;
         cell.MNCurrentID = indexPath.row+1;
+        cell.examBool = YES;
+    }else{
+        if (self.menuTag == 1) {
+            [YRFMDBObj saveMsgWithMsg:ques.id withType:self.menuType];
+        }
+        [self setCollectMsg:ques.collect];
+        self.title = [NSString stringWithFormat:@"%ld/%ld",indexPath.row+1,_msgArray.count];
     }
     return cell;
 }
@@ -259,32 +308,26 @@
 -(void)praciceDownViewBtnClick:(NSInteger)btnTag with:(NSString *)quesID
 {
     if (btnTag == 1) {//收藏
-//        NSString *quesid = [@[quesID] mj_JSONString];
-        [RequestData POST:JK_Get_COLLECT parameters:@{@"id":quesID} complete:^(NSDictionary *responseDic) {
-            MyLog(@"%@",responseDic);
-            [MBProgressHUD showSuccess:@"收藏成功" toView:GET_WINDOW];
-        } failed:^(NSError *error) {
-            
-        }];
+        [self collectionClick];
     }else{//交卷
         //提交错题
-        [RequestData POST:JK_POST_WRONG parameters:@{@"id":[self.errorArray mj_JSONString]} complete:^(NSDictionary *responseDic) {
-            MyLog(@"%@",responseDic);
-        } failed:^(NSError *error) {
-            
-        }]; 
-        
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"确认提交" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"提交", nil];
+//        [RequestData POST:JK_POST_WRONG parameters:@{@"id":[self.errorArray mj_JSONString]} complete:^(NSDictionary *responseDic) {
+//            MyLog(@"%@",responseDic);
+//        } failed:^(NSError *error) {
+//            
+//        }];
+        NSInteger scroeInt = self.objectFour ? self.rightArray.count*2:self.rightArray.count;
+        NSString *string = [NSString stringWithFormat:@"您已经回答了%ld题，考试得分%ld，确定要交卷吗?",self.errorArray.count+self.rightArray.count,scroeInt];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:string delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"提交", nil];
         [alert show];
-        
     }
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
         YRGotScoreController *adv = [[YRGotScoreController alloc]init];
-        CGFloat fenshu = (CGFloat)self.rightArray.count/(CGFloat)self.msgArray.count;
-        adv.scroe = fenshu*100;
+        NSInteger scroeInt = self.objectFour ? self.rightArray.count*2:self.rightArray.count;
+        adv.scroe = scroeInt;
         [self.navigationController pushViewController:adv animated:YES];
     }
 }

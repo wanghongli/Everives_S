@@ -110,4 +110,30 @@
         }
     }];
 }
+
+#pragma mark - 获取题库
++ (void)GETQuestionBank:(NSString *)URIString
+               complete:(void (^)(NSDictionary *responseDic))complete
+                 failed:(void (^)(NSError *error))failed
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    if (KUserManager.id) {
+        [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@",KUserManager.id] forHTTPHeaderField:@"uid"];
+        [manager.requestSerializer setValue:KUserManager.token forHTTPHeaderField:@"token"];
+        [manager.requestSerializer setValue:@"0" forHTTPHeaderField:@"kind"];
+    }
+    NSString *URL = [NSString stringWithFormat:@"%@%@",SERVER_URL_GET_QUESTION,URIString];
+    [manager GET:URL parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if(complete){
+            complete(responseObject);
+        }
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",[operation.responseData mj_JSONString]);
+        NSLog(@"error:%@",error);
+        NSLog(@"code:%ld",(long)error.code);
+        if (failed) {
+            failed(error);
+        }
+    }];
+}
 @end

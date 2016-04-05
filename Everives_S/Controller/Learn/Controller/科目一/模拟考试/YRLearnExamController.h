@@ -10,4 +10,7 @@
 
 @interface YRLearnExamController : UITableViewController
 
+//yes 为科目四进入 no为科目一进入
+@property (nonatomic, assign) BOOL objectFour;
+
 @end

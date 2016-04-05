@@ -82,13 +82,12 @@
         leftLabel.text = @"+86";
 
         //添加右侧获取验证码按钮
-        self.getCodeBtn = [[JKCountDownButton alloc]initWithFrame:CGRectMake(0, 0, 90, textField.height)];
-        self.getCodeBtn.backgroundColor = kMainColor;
+        self.getCodeBtn = [[JKCountDownButton alloc]initWithFrame:CGRectMake(0, 0, 100, textField.height)];
+        self.getCodeBtn.backgroundColor = [UIColor colorWithRed:31/255.0 green:158/255.0 blue:240/255.0 alpha:1];
         self.getCodeBtn.layer.masksToBounds = YES;
         self.getCodeBtn.layer.cornerRadius = self.getCodeBtn.height/2;
         self.getCodeBtn.layer.borderColor = [UIColor whiteColor].CGColor;
         self.getCodeBtn.layer.borderWidth = 3;
-        self.getCodeBtn.backgroundColor = [UIColor lightGrayColor];
         [self.getCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
         self.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [self.getCodeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -100,12 +99,13 @@
                 [MBProgressHUD showError:@"手机号码有误" toView:GET_WINDOW];
                 return;
             }
+            sender.enabled = NO;
+            sender.backgroundColor = [UIColor lightGrayColor];
             [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:ws.tellText.text zone:@"86" customIdentifier:@"空钩的验证码" result:^(NSError *error) {
                 if (!error)
                 {
                     MyLog(@"验证码发送成功");
                     [MBProgressHUD showSuccess:@"验证码发送成功" toView:GET_WINDOW];
-                    sender.enabled = NO;
                     [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                     [sender startWithSecond:60];
                     
@@ -116,11 +116,14 @@
                     [sender didFinished:^NSString *(JKCountDownButton *countDownButton, int second) {
                         countDownButton.enabled = YES;
                         [countDownButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                        sender.backgroundColor = [UIColor colorWithRed:31/255.0 green:158/255.0 blue:240/255.0 alpha:1];
                         return @"重新发送";
                     }];
                 }
                 else
                 {
+                    sender.enabled = YES;
+                    sender.backgroundColor = [UIColor colorWithRed:31/255.0 green:158/255.0 blue:240/255.0 alpha:1];
                     [MBProgressHUD showError:@"验证码发送失败" toView:GET_WINDOW];
                 }
             }];

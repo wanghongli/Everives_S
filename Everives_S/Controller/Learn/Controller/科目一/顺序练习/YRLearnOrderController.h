@@ -17,5 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *replyBtn;
 - (IBAction)btnClick:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIView *headView;
+@property (weak, nonatomic) IBOutlet UIButton *startAnswerQues;
 
+
+@property (nonatomic, assign) BOOL objectFour;
 @end

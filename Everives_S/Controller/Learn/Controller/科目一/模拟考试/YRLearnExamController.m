@@ -34,7 +34,10 @@
 -(void)buildUI
 {
     _titleArray = @[@"考试科目",@"考试题库",@"考试标准",@"合格标准"];
-    _menuArray = @[@"科目一理论考试",@"重庆市科目一理论考试题库",@"30分钟，50题",@"满分100分，90分及格"];
+    if (self.objectFour) {
+        _menuArray = @[@"科目四理论考试",@"重庆市科目四理论考试题库",@"30分钟，50题",@"满分100分，90分及格"];
+    }else
+        _menuArray = @[@"科目一理论考试",@"重庆市科目一理论考试题库",@"30分钟，100题",@"满分100分，90分及格"];
     
     _headView = [[YRExamUserHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth/2)];
     self.tableView.tableHeaderView = _headView;
@@ -50,7 +53,6 @@
     [footView addSubview:startBtn];
     self.tableView.tableFooterView = footView;
     
-    
 //    [self.view bringSubviewToFront:self.noMsgView];
 }
 
@@ -58,7 +60,8 @@
 {
     YRLearnPracticeController *learnVC = [[YRLearnPracticeController alloc]init];
     learnVC.title = @"模拟考试";
-    learnVC.currentID = 1;
+//    learnVC.currentID = 1;
+    learnVC.objectFour = self.objectFour;
     learnVC.menuTag = 0;
     [self.navigationController pushViewController:learnVC animated:YES];
 }

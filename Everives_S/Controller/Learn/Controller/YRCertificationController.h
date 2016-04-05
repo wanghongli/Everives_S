@@ -7,7 +7,5 @@
 //  信息认证
 
 #import <UIKit/UIKit.h>
-
 @interface YRCertificationController : UIViewController
-
 @end

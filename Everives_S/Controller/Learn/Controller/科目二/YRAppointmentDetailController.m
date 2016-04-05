@@ -39,6 +39,15 @@
     startBtn.layer.cornerRadius = startBtn.height/2;
     [footView addSubview:startBtn];
     self.tableView.tableFooterView = footView;
+    [self getData];
+}
+-(void)getData
+{
+    [RequestData GET:[NSString stringWithFormat:@"/order/order/%@",_teacherOrder.id] parameters:@{} complete:^(NSDictionary *responseDic) {
+        MyLog(@"%@",responseDic);
+    } failed:^(NSError *error) {
+        
+    }];
 }
 -(void)sartClick:(UIButton *)sender
 {

@@ -11,7 +11,8 @@
 
 #define QINIU_SERVER_URL @"http://7xr6ql.com1.z0.glb.clouddn.com/"  //七牛服务器地址
 
-#define SERVER_URL @"http://120.27.55.225/drive.php" // 正式服务器 114.215.86.90
+#define SERVER_URL @"http://120.27.55.225/drive.php" // 正式链接
+#define SERVER_URL_GET_QUESTION @"http://120.27.55.225/" // 获取题库链接
 
 //用户通用模块
 #define USER_LOGIN @"/account/token" //登陆

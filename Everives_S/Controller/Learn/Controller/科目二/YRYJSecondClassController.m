@@ -73,7 +73,7 @@
 -(void)getData
 {
     
-    [RequestData GET:STUDENT_ORDER parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
+    [RequestData GET:STUDENT_ORDER parameters:@{@"page":@"0",@"kind":@"0"} complete:^(NSDictionary *responseDic) {
         MyLog(@"%@",responseDic);
         msgArray = [YRTeacherOrder mj_objectArrayWithKeyValuesArray:responseDic];
         if (msgArray.count) {
@@ -99,8 +99,6 @@
     if (cell == nil) {
         cell = [[YRLearnSecondCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-//    cell.testNum = indexPath.section;
-//    cell.timeString = @"14:00-16:00";
     YRTeacherOrder *teacherOrder = msgArray[indexPath.row];
     cell.teacherOrder = teacherOrder;
     return cell;
@@ -122,6 +120,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YRAppointmentDetailController *detailVC = [[YRAppointmentDetailController alloc]initWithNibName:@"YRAppointmentDetailController" bundle:nil];
     detailVC.title = @"预约详情";
+    detailVC.teacherOrder = msgArray[indexPath.row];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 #pragma mark - YRLearnNoMsgViewDelegate

@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YRQuestionObject.h"
+#import "YRQuestionObj.h"
 @interface YRLearnCollectionCell : UICollectionViewCell
-@property (nonatomic, strong) YRQuestionObject *questionOb;
-@property (nonatomic, strong) void (^answerIsClickBlock)(YRQuestionObject *answerQues);
+@property (nonatomic, strong) YRQuestionObj *questionOb;
+@property (nonatomic, strong) void (^answerIsClickBlock)(YRQuestionObj *answerQues);
 
 @property (nonatomic, assign) NSInteger MNCurrentID;
 
+//显示答案
+@property (nonatomic, assign) BOOL showAanly;
+//考试状态
+@property (nonatomic, assign) BOOL examBool;
 @end

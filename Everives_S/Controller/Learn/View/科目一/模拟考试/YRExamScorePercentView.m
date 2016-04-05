@@ -53,26 +53,30 @@
     _lastString = laststring;
 
 }
-
+-(void)setHeadString:(NSString *)headString
+{
+    _headString = headString;
+}
 -(void)setScoreString:(NSString *)scoreString
 {
     _scoreString = scoreString;
     _middleString.text = scoreString;
     CGSize middleSize = [scoreString sizeWithFont:kFontOfSize(30) maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
-    CGSize firstSize = [kFirstString sizeWithFont:kFontOfLetterMedium maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+    CGSize firstSize = [_headString sizeWithFont:kFontOfLetterMedium maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
     _firstString.frame = CGRectMake(0, middleSize.height-firstSize.height, firstSize.width, firstSize.height);
+    _firstString.text = _headString;
     _middleString.frame = CGRectMake(CGRectGetMaxX(_firstString.frame), 0, middleSize.width, middleSize.height);
     CGSize lastSize = [@"%" sizeWithFont:kFontOfLetterMedium maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
     _lastString.frame = CGRectMake(CGRectGetMaxX(_middleString.frame), _firstString.y, lastSize.width, lastSize.height);
     
     
 }
-+(CGFloat)getExamScorePercentViewHeight:(NSString *)scoreString
++(CGFloat)getExamScorePercentViewHeight:(NSString *)scoreString  withHeadString:(NSString *)headString
 {
     CGFloat weight = 0;
     CGSize middleSize = [scoreString sizeWithFont:kFontOfSize(30) maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
     weight+=middleSize.width;
-    CGSize firstSize = [kFirstString sizeWithFont:kFontOfLetterMedium maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+    CGSize firstSize = [headString sizeWithFont:kFontOfLetterMedium maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
     weight+=firstSize.width;
     CGSize lastSize = [@"%" sizeWithFont:kFontOfLetterMedium maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
     weight+=lastSize.width;

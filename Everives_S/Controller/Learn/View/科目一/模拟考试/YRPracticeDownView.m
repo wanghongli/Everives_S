@@ -88,7 +88,7 @@
     MyLog(@"%s",__func__);
     [self.delegate praciceDownViewBtnClick:sender.tag-10 with:[NSString stringWithFormat:@"%ld",_questObj.id]];
 }
--(void)setQuestObj:(YRQuestionObject *)questObj
+-(void)setQuestObj:(YRQuestionObj *)questObj
 {
     _questObj = questObj;
 }

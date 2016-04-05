@@ -34,4 +34,12 @@
    complete:(void (^)(NSDictionary *responseDic))complete
      failed:(void (^)(NSError *error))failed;
 
+
+/**
+ *  获取题库
+ */
++ (void)GETQuestionBank:(NSString *)URIString
+   complete:(void (^)(NSDictionary *responseDic))complete
+     failed:(void (^)(NSError *error))failed;
+
 @end

@@ -42,6 +42,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.view.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
+
     if (KUserManager.id) {
         _headView.loginBool = YES;
     }else{
@@ -92,6 +94,7 @@
     } else if(indexPath.section == 1){
         if (indexPath.row == 0) {
             if (!KUserManager.id) {//登陆
+                [MBProgressHUD showError:@"请登陆" toView:GET_WINDOW];
                 [self menuHeadViewLoginClick];
                 return;
             }
@@ -100,6 +103,7 @@
             self.frostedViewController.contentViewController = navigationController;
         }else if (indexPath.row == 1) {
             if (!KUserManager.id) {//登陆
+                [MBProgressHUD showError:@"请登陆" toView:GET_WINDOW];
                 [self menuHeadViewLoginClick];
                 return;
             }
@@ -207,7 +211,6 @@
 #pragma mark - 登陆
 -(void)menuHeadViewLoginClick
 {
-    [MBProgressHUD showError:@"请登陆" toView:GET_WINDOW];
     YRLoginViewController *loginVC = [[YRLoginViewController alloc]init];
     loginVC.title = @"登陆";
     YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:loginVC];

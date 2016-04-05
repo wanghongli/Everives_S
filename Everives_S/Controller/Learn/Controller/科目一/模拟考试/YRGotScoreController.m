@@ -33,10 +33,19 @@
     
     self.scoreBackImg.image = [UIImage imageNamed:@"Learn_Grade-1_Score"];
     self.scoreLabel.text = [NSString stringWithFormat:@"%ld",self.scroe];
-    self.descriLabel.text = @"恭喜您达到合格标准!";
+    if (self.scroe>=90) {
+        self.descriLabel.text = @"恭喜您达到合格标准!";
+    }else
+        self.descriLabel.text = @"不要灰心，继续努力!";
+    self.scorePercentView.headString = @"您的排名为";
     self.scorePercentView.scoreString = @"88";
     [self.errorBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.shareBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"<返回" style:UIBarButtonItemStyleDone target:self action:@selector(backClick)];
+}
+-(void)backClick
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 -(void)btnClick:(UIButton *)sender
 {
@@ -63,10 +72,8 @@
 -(UIImageView *)scoreBackImg
 {
     if (!_scoreBackImg) {
-        
         _scoreBackImg = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth/2-kImgW/2, CGRectGetMaxY(self.yourScore.frame)+kToTopDestace/2, kImgW, kImgH)];
         [self.view addSubview:_scoreBackImg];
-        
     }
     return _scoreBackImg;
 }
@@ -98,7 +105,7 @@
 {
     if (!_scorePercentView) {
         
-        _scorePercentView = [[YRExamScorePercentView alloc]initWithFrame:CGRectMake(kScreenWidth/2-[YRExamScorePercentView getExamScorePercentViewHeight:@"99"]/2, CGRectGetMaxY(self.descriLabel.frame)+kToTopDestace/2, [YRExamScorePercentView getExamScorePercentViewHeight:@"99"], [@"99" sizeWithFont:kFontOfSize(30) maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].height)];
+        _scorePercentView = [[YRExamScorePercentView alloc]initWithFrame:CGRectMake(kScreenWidth/2-[YRExamScorePercentView getExamScorePercentViewHeight:@"99" withHeadString:@"您的排名为"]/2, CGRectGetMaxY(self.descriLabel.frame)+kToTopDestace/2, [YRExamScorePercentView getExamScorePercentViewHeight:@"99" withHeadString:@"您的排名为"], [@"99" sizeWithFont:kFontOfSize(30) maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].height)];
         [self.view addSubview:_scorePercentView];
         
     }

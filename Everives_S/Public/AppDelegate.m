@@ -17,6 +17,8 @@
 #import <SMS_SDK/SMSSDK.h>
 #import <SMS_SDK/Extend/SMSSDK+AddressBookMethods.h>
 #import "SDWebImageManager.h"
+
+#import "YRQuestionObj.h"
 //SMSSDK官网公共key
 #define appkey @"f3fc6baa9ac4"
 #define app_secrect @"7f3dedcb36d92deebcb373af921d635a"
@@ -64,8 +66,10 @@
     self.window.rootViewController = frostedViewController;
     
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
+
 #pragma mark - 获取登陆信息
 -(void)loginClick
 {

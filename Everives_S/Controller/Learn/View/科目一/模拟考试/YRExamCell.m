@@ -71,6 +71,10 @@
     
     _msgLabel.frame = CGRectMake(CGRectGetMaxX(_backView.frame)+kDistace, 0, kScreenWidth-kDistace*3-CGRectGetMaxX(_backView.frame), 40);
 }
+-(void)setExamBool:(BOOL)examBool
+{
+    _examBool = examBool;
+}
 -(void)setMsgString:(NSString *)msgString
 {
     _msgString = msgString;
@@ -99,36 +103,81 @@
     _backView.hidden = YES;
     _centerView.hidden = YES;
 }
--(void)setQuest:(YRQuestionObject *)quest
+-(void)setQuest:(YRQuestionObj *)quest
 {
     _quest = quest;
-    
-    if (quest.option.count && [quest.option[0] length]) {//单选题
-        if (quest.chooseAnswer) {
-            if ([quest.option[quest.answer] isEqualToString:_msgLabel.text]) {//选项正确
-                    _menuLabel.textColor = [UIColor greenColor];
-            }else {//选项错误
-                if ([quest.option[[quest.chooseAnswer integerValue]] isEqualToString:_msgLabel.text] ) {
-                    _menuLabel.textColor = [UIColor redColor];
-                }else
-                    _menuLabel.textColor = [UIColor blackColor];
+    if (self.examBool) {//考试状态
+        if (!quest.currentError) {
+            if (quest.option.count == 4) {//单选题
+                _menuLabel.textColor = [UIColor blackColor];
+                _menuLabel.backgroundColor = [UIColor whiteColor];
+            }else{
+                _centerView.hidden = YES;
             }
+            return;
+        }
+         if (quest.option.count == 4) {//单选题
+             NSInteger chooseInt;
+             if (quest.chooseAnswer>2) {
+                 chooseInt = quest.chooseAnswer==4?3:4;
+             }else
+                 chooseInt = quest.chooseAnswer;
+             if ([quest.option[chooseInt-1] isEqualToString:_msgLabel.text]) {//选项
+                 _menuLabel.textColor = [UIColor whiteColor];
+                 _menuLabel.backgroundColor = [UIColor lightGrayColor];
+             }else{
+                 _menuLabel.textColor = [UIColor blackColor];
+                 _menuLabel.backgroundColor = [UIColor whiteColor];
+             }
+         }else{//判断题
+             if ([quest.option[quest.chooseAnswer-1] isEqualToString:_msgLabel.text]) {//选项正确
+                 _centerView.backgroundColor = [UIColor lightGrayColor];
+             }else{
+                 _centerView.hidden = YES;
+             }
+         }
+        return;
+    }
+    if (quest.option.count == 4) {//单选题
+        NSInteger chooseInt;
+        if (quest.answer>2) {
+            chooseInt = quest.answer==4?3:4;
+        }else
+            chooseInt = quest.answer;
+        
+        if (quest.currentError) {
+            if ([quest.option[chooseInt-1] isEqualToString:_msgLabel.text]) {//选项正确
+                _menuLabel.textColor = [UIColor greenColor];
+            }else{
+                NSInteger errorInt;
+                if (quest.chooseAnswer>2) {
+                    errorInt = quest.chooseAnswer==4?3:4;
+                }else
+                    errorInt = quest.chooseAnswer;
+                
+                if (quest.currentError == 1) {
+                    _menuLabel.textColor = [UIColor blackColor];
+                }else{
+                    if ([quest.option[errorInt-1] isEqualToString:_msgLabel.text]) {//选错的
+                        _menuLabel.textColor = [UIColor redColor];
+                    }
+                }
+            }
+    
         }else{
             _menuLabel.textColor = [UIColor blackColor];
         }
     }else{//判断题
         if (quest.chooseAnswer) {//选择了
-            NSInteger chooseInt = quest.chooseAnswer.integerValue;
             _centerView.hidden = NO;
-
-            if (chooseInt == quest.answer) {//选择正确
-                if ([_msgLabel.text isEqualToString:@"正确"]) {
+            if (quest.chooseAnswer == quest.answer) {//选择正确
+                if ([quest.option[quest.chooseAnswer-1] isEqualToString:_msgLabel.text]) {
                     _centerView.backgroundColor = [UIColor greenColor];
                 }else{
                     _centerView.hidden = YES;
                 }
             }else{//选错了
-                if ([_msgLabel.text isEqualToString:@"正确"]) {
+                if ([quest.option[quest.answer-1] isEqualToString:_msgLabel.text]) {
                     _centerView.backgroundColor = [UIColor greenColor];
                 }else{
                     _centerView.backgroundColor = [UIColor redColor];
@@ -137,14 +186,6 @@
         }else{//新题
             _centerView.hidden = YES;
         }
-        
     }
 }
-- (void)awakeFromNib {
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-}
-
 @end

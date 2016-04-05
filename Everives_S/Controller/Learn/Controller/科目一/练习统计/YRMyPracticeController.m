@@ -8,12 +8,18 @@
 
 #import "YRMyPracticeController.h"
 #import "XYPieChart.h"
+#import "YRExamScorePercentView.h"
+#import "YRMyPracticeView.h"
+#import "YRFMDBObj.h"
 @interface YRMyPracticeController ()<XYPieChartDelegate, XYPieChartDataSource>
 @property (nonatomic, strong) NSArray *colorArray;
 @property (nonatomic, strong) NSArray *numArray;
 @property (nonatomic, strong) XYPieChart *pieChartView;
 
 @property (nonatomic, strong) UILabel *currentState;
+@property (nonatomic, strong) YRExamScorePercentView *scorePercentView;
+
+@property (nonatomic, strong) YRMyPracticeView *myPracticeView;
 @end
 
 @implementation YRMyPracticeController
@@ -23,19 +29,42 @@
     self.title = @"练习统计";
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.pieChartView];
-
-    self.currentState.text = @"当前进度";
-    [self.pieChartView reloadData];
+    [self setMsg];
+   
 }
-
+-(void)setMsg{
+    self.currentState.text = @"当前进度";
+    
+    NSArray *array = [YRFMDBObj getErrorAlreadyAndTotalQuestionWithType:0];
+    //未做过数量
+    NSInteger firstInt = [array[0] integerValue] - [array[2] integerValue];
+    //错题数
+    NSInteger secondInt = [array[1] integerValue];
+    //正确数
+    NSInteger thirdInt = [array[2] integerValue] - [array[1] integerValue];
+    
+    int firstPercent = (int)firstInt*100/(thirdInt+secondInt+firstInt);
+    int secondPercent = (int)secondInt*100/(thirdInt+secondInt+firstInt);
+    int thridPercent = (int)thirdInt*100/(thirdInt+secondInt+firstInt);
+    _numArray = @[[NSNumber numberWithInteger:firstPercent],[NSNumber numberWithInteger:secondPercent],[NSNumber numberWithInteger:thridPercent]];
+    [self.pieChartView reloadData];
+    
+    
+    int rightPercent = (int)thirdInt*100/(thirdInt+secondInt);
+    self.scorePercentView.headString = @"正确率";
+    self.scorePercentView.scoreString =[NSString stringWithFormat:@"%d",rightPercent];
+    
+    self.myPracticeView = [[YRMyPracticeView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.scorePercentView.frame)+20, kScreenWidth, [YRMyPracticeView getHeight])];
+    [self.view addSubview:self.myPracticeView];
+}
 
 -(NSArray *)colorArray
 {
     if (_colorArray == nil) {
         _colorArray =[NSArray arrayWithObjects:
-                        [UIColor colorWithRed:246/255.0 green:155/255.0 blue:0/255.0 alpha:1],
-                        [UIColor colorWithRed:129/255.0 green:195/255.0 blue:29/255.0 alpha:1],
-                        [UIColor colorWithRed:148/255.0 green:141/255.0 blue:139/255.0 alpha:1],nil];
+                        [UIColor lightGrayColor],
+                        [UIColor redColor],
+                        [UIColor greenColor],nil];
     }
     return _colorArray;
 }
@@ -107,5 +136,16 @@
 {
     NSLog(@"did select slice at index %lu",(unsigned long)index);
 //    self.selectedSliceLabel.text = [NSString stringWithFormat:@"$%@",[self.numArray objectAtIndex:index]];
+}
+
+-(YRExamScorePercentView *)scorePercentView
+{
+    if (!_scorePercentView) {
+        
+        _scorePercentView = [[YRExamScorePercentView alloc]initWithFrame:CGRectMake(kScreenWidth/2-[YRExamScorePercentView getExamScorePercentViewHeight:@"99" withHeadString:@"正确率"]/2, CGRectGetMaxY(self.pieChartView.frame)+20, [YRExamScorePercentView getExamScorePercentViewHeight:@"99" withHeadString:@"正确率"], [@"99" sizeWithFont:kFontOfSize(30) maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].height)];
+        [self.view addSubview:_scorePercentView];
+        
+    }
+    return _scorePercentView;
 }
 @end

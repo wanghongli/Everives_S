@@ -11,6 +11,7 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "SDImageCache.h"
+#import "YRShaHeObjct.h"
 #define kQiniuThumbnailParam(scale) ([NSString stringWithFormat:@"?imageMogr2/thumbnail/!%dp", scale])
 
 @implementation YRCirclePhoto
@@ -154,8 +155,10 @@
             NSString *photo = pic_urls[i];
             UIImage *imgMsg;
             //四分钟以内的进行加载
-            if ([self intervalSinceNow:circleModel.time]) {
-               imgMsg = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:photo];
+            if ([self intervalSinceNow:circleModel.time] || [KUserManager.id isEqualToString:circleModel.uid]) {
+//               imgMsg = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:photo];
+                imgMsg = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:photo];
+//                imgMsg = [YRShaHeObjct loadNSDictionaryForDocument:photo];
             }
                 
                 NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

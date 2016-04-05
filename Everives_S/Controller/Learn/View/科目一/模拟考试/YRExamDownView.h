@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YRQuestionObject.h"
+#import "YRQuestionObj.h"
 
 @interface YRExamDownView : UIView
 @property (nonatomic, strong) NSString *anayString;
-@property (nonatomic, strong) YRQuestionObject *questOb;
+@property (nonatomic, strong) YRQuestionObj *questOb;
 +(CGFloat)examDownViewGetHeight:(NSString *)analyseString;
-+(CGFloat)examDownViewHeight:(YRQuestionObject *)analyseString;
++(CGFloat)examDownViewHeight:(YRQuestionObj *)analyseString;
 
 @end

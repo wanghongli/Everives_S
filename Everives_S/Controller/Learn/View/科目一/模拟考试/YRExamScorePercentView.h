@@ -11,8 +11,8 @@
 @interface YRExamScorePercentView : UIView
 
 @property (nonatomic, strong) NSString *scoreString;
+@property (nonatomic, strong) NSString *headString;
 
-
-+ (CGFloat)getExamScorePercentViewHeight:(NSString *)scoreString;
++ (CGFloat)getExamScorePercentViewHeight:(NSString *)scoreString withHeadString:(NSString *)headString;
 
 @end

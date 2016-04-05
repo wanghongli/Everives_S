@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YRMyErrorController : UIViewController
+@interface YRMyErrorController : UITableViewController
 
 @end

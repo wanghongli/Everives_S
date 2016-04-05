@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YRTeacherOrder.h"
 @interface YRAppointmentDetailController : UITableViewController
+@property (nonatomic, strong) YRTeacherOrder *teacherOrder;
 
 @end

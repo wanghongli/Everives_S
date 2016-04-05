@@ -49,6 +49,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 @property(nonatomic,strong) UISearchBar *searchBar;
 @property(nonatomic,strong) YRFillterBtnView *schoolFillterView;
 @property(nonatomic,strong) YRFillterBtnView *coachFillterView;
+@property(nonatomic,strong) UIButton *myLocationBtn;
 @end
 
 @implementation YRNearViewController
@@ -57,13 +58,14 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [super viewDidLoad];
     self.title = @"附近";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick:)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"切换" style:UIBarButtonItemStylePlain target:self action:@selector(changeViewClick:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Neighborhood_List"] style:UIBarButtonItemStylePlain target:self action:@selector(changeViewClick:)];
     _isMapView = YES;
     _mapView = [SharedMapView sharedInstance].mapView;
     _selectView = [[YRMapSelectView alloc] init];
     _selectView.delegate = self;
     [self.view addSubview:_mapView];
     [self.view addSubview:_selectView];
+    [self.view addSubview:self.myLocationBtn];
     [_mapView addSubview:self.searchBar];
     [self getDataForMap:1];
     
@@ -145,6 +147,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 - (void)changeViewClick:(UIBarButtonItem*)sender{
     if (_isMapView) {
         _isMapView = NO;
+        [self.navigationItem.rightBarButtonItem setImage:[UIImage imageNamed:@"Neighborhood_map"]];
         switch (_selectView.selectedBtnNum) {
             case 1:{
                 [self.view addSubview:self.schoolTable];
@@ -163,6 +166,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         }
     }else{
         _isMapView = YES;
+        [self.navigationItem.rightBarButtonItem setImage:[UIImage imageNamed:@"Neighborhood_List"]];
         switch (_selectView.selectedBtnNum) {
             case 1:{
                 [self.schoolTable removeFromSuperview];
@@ -181,6 +185,13 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         }
     }
 }
+-(void)myLocationBtnClick:(UIButton*)sender{
+    double lat = [KUserLocation.latitude?:0 doubleValue];
+    double lng = [KUserLocation.longitude doubleValue];
+    if (lat) {
+        _mapView.centerCoordinate = CLLocationCoordinate2DMake(lat, lng);
+    }
+}
 #pragma mark - YRMapSelectViewDelegate
 -(void)schoolBtnClick:(UIButton *)sender{
     if (sender.tag == _selectView.selectedBtnNum) {
@@ -191,6 +202,10 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [_mapView removeAnnotations:_coachForMap];
     [_mapView removeAnnotations:_stuForMap];
     [self addAnnotationswithType:1];
+    
+    if (!_isMapView) {
+        [self.view addSubview:self.schoolTable];
+    }
 }
 -(void)coachBtnClick:(UIButton*)sender{
     if (sender.tag == _selectView.selectedBtnNum) {
@@ -201,6 +216,10 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [_mapView removeAnnotations:_schoolForMap];
     [_mapView removeAnnotations:_stuForMap];
     [self getDataForMap:2];
+    
+    if (!_isMapView) {
+        [self.view addSubview:self.coachTable];
+    }
 }
 -(void)studentBtnClick:(UIButton*)sender{
     if (sender.tag == _selectView.selectedBtnNum) {
@@ -211,6 +230,10 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [_mapView removeAnnotations:_schoolForMap];
     [_mapView removeAnnotations:_coachForMap];
     [self getDataForMap:3];
+    
+    if (!_isMapView) {
+        [self.view addSubview:self.studentTable];
+    }
 }
 -(void)removeLastTable{
     [self.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -218,7 +241,6 @@ static NSString *studentCellID = @"YRStudentTableCellID";
             [obj removeFromSuperview];
         }
     }];
-    _isMapView = YES;
 }
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -316,5 +338,13 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         _coachFillterView.tag = 2;
     }
     return _coachFillterView;
+}
+-(UIButton *)myLocationBtn{
+    if (!_myLocationBtn) {
+        _myLocationBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, kScreenHeight - 60, 50, 50)];
+        [_myLocationBtn setImage:[UIImage imageNamed:@"Neighborhood_Location"] forState:UIControlStateNormal];
+        [_myLocationBtn addTarget:self action:@selector(myLocationBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _myLocationBtn;
 }
 @end

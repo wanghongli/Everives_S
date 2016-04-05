@@ -35,12 +35,12 @@
 #define STUDENT_SEARCH_USER @"/student/user/" //搜索学员
 #define STUDENT_FRIENDS @"/student/friends" //我的好友
 #define STUDENT_DELETE_FRIENDS @"/student/friends/id" //删除好友
-#define STUDENT_NEARBY @"/student/nearby" //搜索附近学员
-#define STUDENT_NEARTEACHER @"/student/nearTeacher" //教练列表
-#define STUDENT_PLACES @"/student/place" //场地列表
+#define STUDENT_NEARBY @"/info/nearbystudent" //附近学员列表
+#define STUDENT_NEARTEACHER @"/info/nearTeacher" //教练列表
+#define STUDENT_PLACES @"/info/place" //场地列表
 #define STUDENT_CONTACT @"/student/contact"  //手机通讯录
 #define STUDENT_TEACHERS @"/student/teachers"  //关注的教练
-#define STUDENT_NEARBYPOINT @"/student/nearbyPoint" //获取地图描点
+#define STUDENT_NEARBYPOINT @"/info/nearbyPoint" //获取地图描点
 #define STUDENT_MONEY @"/student/money"  //资金记录
 
 //七牛token

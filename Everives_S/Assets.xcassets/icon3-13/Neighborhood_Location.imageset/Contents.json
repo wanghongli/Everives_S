@@ -2,16 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Neighborhood_Location.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "Neighborhood_Location.png"
     },
     {
       "idiom" : "universal",
+      "filename" : "Neighborhood_Location@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "Neighborhood_Location@3x.png"
     }
   ],
   "info" : {

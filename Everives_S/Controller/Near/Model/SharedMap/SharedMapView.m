@@ -12,6 +12,7 @@
 #import "YRSchoolModel.h"
 #import "YRCoachModel.h"
 #import "YRUserStatus.h"
+
 @interface SharedMapView ()<UIAlertViewDelegate>
 
 @property (nonatomic, readwrite) MAMapView *mapView;
@@ -58,6 +59,8 @@
         MACoordinateRegion region = MACoordinateRegionMake(center,MACoordinateSpanMake(.15f,.15f));
         _mapView.region = region;
         _mapView.centerCoordinate = center;
+        _mapView.rotateEnabled = NO;
+        _mapView.showsCompass= YES;
     }
 }
 
@@ -74,14 +77,16 @@
         if (annotationView == nil)
         {
             annotationView = [[YRMapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+            
+            annotationView.image = [UIImage imageNamed:@"Neighborhood_Here"];
+            
+            // 设置为NO，用以调用自定义的calloutView
+            annotationView.canShowCallout = NO;
+            
+            // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
+            annotationView.centerOffset = CGPointMake(0, -18);
         }
-        annotationView.image = [UIImage imageNamed:@"Neighborhood_Here"];
         
-        // 设置为NO，用以调用自定义的calloutView
-        annotationView.canShowCallout = NO;
-        
-        // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
-        annotationView.centerOffset = CGPointMake(0, -18);
         return annotationView;
     }
     return nil;
@@ -94,11 +99,12 @@ updatingLocation:(BOOL)updatingLocation
     
     if(updatingLocation)
     {
-        //取出当前位置的坐标
+//        取出当前位置的坐标
         NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
         CLLocationCoordinate2D center = CLLocationCoordinate2DMake(userLocation.coordinate.latitude,userLocation.coordinate.longitude);
         KUserLocation.longitude = [NSString stringWithFormat:@"%f",userLocation.coordinate.longitude];
         KUserLocation.latitude = [NSString stringWithFormat:@"%f",userLocation.coordinate.latitude];
+        
         //设置地图中心
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{

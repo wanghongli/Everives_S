@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YRReservationDetailVC : UIViewController
-
+@interface YRReservationDetailVC : UITableViewController
+@property(nonatomic,strong)NSString *orderID;
 @end

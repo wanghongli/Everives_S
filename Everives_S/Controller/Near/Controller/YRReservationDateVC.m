@@ -11,7 +11,7 @@
 #import "YRReservationChoosePlaceVC.h"
 #import "NSString+Tools.h"
 #import "RequestData.h"
-#import "YRReservationModel.h"
+#import "YRCanOrderPlacesModel.h"
 static NSInteger sectionNum = 8;//竖着的那种
 static NSInteger rowNum = 8; //横着的那种
 @interface YRReservationDateVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
@@ -30,7 +30,7 @@ static NSInteger rowNum = 8; //横着的那种
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.title = @"预约时间";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(commitBtnClick:)];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     [self.view addSubview:self.collectionView];
@@ -57,9 +57,29 @@ static NSInteger rowNum = 8; //横着的那种
     _timeEndArray = @[@"10:00",@"11:00",@"12:00",@"15:00",@"16:00",@"17:00",@"18:00"];
 }
 -(void)commitBtnClick:(UIBarButtonItem*)sender{
+    
+    [_result sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSInteger r1 = [obj1 row];
+        NSInteger r2 = [obj2 row];
+        NSInteger s1 =[obj1 section];
+        NSInteger s2 = [obj2 section];
+        if (s1 > s2) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if (s1 < s2) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        if (r1 > r2) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if (r1 < r2) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
     NSMutableArray *resultDate=@[].mutableCopy;
     [_result enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSDictionary *dic = @{@"date":_dateAyyayWithYear[((NSIndexPath*)obj).section-1],@"time":[NSString stringWithFormat:@"%li",((NSIndexPath*)obj).row]};
+            NSDictionary *dic = @{@"date":_dateAyyayWithYear[((NSIndexPath*)obj).section-1],@"time":[NSString stringWithFormat:@"%ld",(long)((NSIndexPath*)obj).row]};
         [resultDate addObject:dic];
     }];
     YRReservationChoosePlaceVC *choosePlace = [[YRReservationChoosePlaceVC alloc]init];
@@ -69,7 +89,7 @@ static NSInteger rowNum = 8; //横着的那种
 }
 -(void)getData{
     [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_AVAILTIME,_coachID] parameters:nil complete:^(NSDictionary *responseDic) {
-        _modelArray = [YRReservationModel mj_objectArrayWithKeyValuesArray:responseDic];
+        _modelArray = [YRCanOrderPlacesModel mj_objectArrayWithKeyValuesArray:responseDic];
         [_cannotSelected removeAllObjects];
         [self.collectionView reloadData];
     } failed:^(NSError *error) {
@@ -91,19 +111,32 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     cell.priceLabel.text = @"";
     cell.timeStart.text = @"";
     cell.timeEnd.text = @"";
+    cell.priceLabel.textColor = [UIColor blackColor];
+    cell.timeStart.textColor = [UIColor blackColor];
+    cell.timeEnd.textColor = [UIColor blackColor];
+    cell.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
     if (indexPath.row == 0) { //第一行
         if (indexPath.section != 0) {
             cell.priceLabel.text = _dateArray[indexPath.section-1];
+            cell.priceLabel.textColor = [UIColor colorWithRed:65/255.0 green:65/255.0 blue:65/255.0 alpha:1];
+            cell.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1];
         }
     }else if (indexPath.section == 0) {  //第一列
         cell.timeStart.text = _timeStartArray[indexPath.row-1];
         cell.timeEnd.text = _timeEndArray[indexPath.row-1];
+        cell.timeStart.textColor = [UIColor colorWithRed:54/255.0 green:93/255.0 blue:178/255.0 alpha:1];
+        cell.timeEnd.textColor = [UIColor colorWithRed:54/255.0 green:93/255.0 blue:178/255.0 alpha:1];
     }else{
         [_modelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            YRReservationModel *model = (YRReservationModel*)obj;
+            YRCanOrderPlacesModel *model = (YRCanOrderPlacesModel*)obj;
             if([model.date isEqualToString:_dateAyyayWithYear[indexPath.section-1]]){
                 if ([model.time integerValue] == indexPath.row) {
-                    cell.priceLabel.text = [model.price isEqualToString:@"-1"]?@"已被预约":[NSString stringWithFormat:@"￥%@",model.price];
+                    if ([model.price isEqualToString:@"-1"]) {
+                        cell.priceLabel.text = @"已被预约";
+                        cell.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
+                    }else{
+                        cell.priceLabel.text = [NSString stringWithFormat:@"￥%@",model.price];
+                    }
                 }
             }
         }];

@@ -12,7 +12,7 @@
 #import "YRSchoolModel.h"
 #import "YRCoachModel.h"
 #import "YRUserStatus.h"
-@interface SharedMapView ()
+@interface SharedMapView ()<UIAlertViewDelegate>
 
 @property (nonatomic, readwrite) MAMapView *mapView;
 
@@ -110,6 +110,44 @@ updatingLocation:(BOOL)updatingLocation
     }
 }
 
+-(void)mapView:(MAMapView *)mapView didFailToLocateUserWithError:(NSError *)error{
+    NSString *errorString;
+    NSLog(@"Error: %@",[error localizedDescription]);
+    switch([error code]) {
+        case kCLErrorDenied:
+        {
+            //Access denied by user
+            errorString = @"请打“开定位服”务来允许Everives确定您的位置";
+            //Do something...
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"设置" otherButtonTitles:@"取消", nil];
+            [alert show];
+            break;
+        }
+        case kCLErrorLocationUnknown:
+            //Probably temporary...
+            errorString = @"定位信息不可用";
+            //Do something else...
+            break;
+        default:
+            errorString = @"位置错误";
+            break;
+    }
 
+    
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        [self openSettings];
+    }
+}
+- (void)openSettings
+{
+    BOOL canOpenSettings = (&UIApplicationOpenSettingsURLString != NULL);
+    if (canOpenSettings) {
+        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
 @end
 

@@ -14,8 +14,8 @@
         [self.contentView addSubview:self.priceLabel];
         [self.contentView addSubview:self.timeStart];
         [self.contentView addSubview:self.timeEnd];
-        self.backgroundColor = [UIColor whiteColor];
-        self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
+        self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.layer.borderWidth = 1;
         self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.contentView.frame];
         self.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.173 green:0.550 blue:1.000 alpha:1.000];

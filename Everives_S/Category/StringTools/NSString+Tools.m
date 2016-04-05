@@ -232,6 +232,19 @@
     
 }
 
++(NSString *)getTheDayInWeek:(NSString *)dateyyyyMMdd{
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [df dateFromString:dateyyyyMMdd];
+    NSCalendarUnit calendarUnit = NSCalendarUnitWeekday;
+    NSDateComponents *theComponents = [calendar components:calendarUnit fromDate:date];
+    NSUInteger day = [theComponents weekday];
+    NSArray *weekdays = @[@"",@"星期天", @"星期一", @"星期二", @"星期三", @"星期四", @"星期五", @"星期六"];
+    NSString *weekDay = [weekdays objectAtIndex:day];
+    return weekDay;
+}
+
 -(CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize
 {
     NSDictionary *attrs = @{NSFontAttributeName : font};

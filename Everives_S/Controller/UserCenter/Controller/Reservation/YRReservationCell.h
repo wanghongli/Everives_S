@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class YROrderedPlaceModel;
 @interface YRReservationCell : UITableViewCell
-
+-(void)configCellWithModel:(YROrderedPlaceModel*)model;
 @end

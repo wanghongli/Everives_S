@@ -9,8 +9,11 @@
 #import "YRReservationViewController.h"
 #import "YRReservationCell.h"
 #import "YRReservationDetailVC.h"
+#import "YROrderedPlaceModel.h"
 static NSString *cellId = @"YRReservationCellID";
-@interface YRReservationViewController ()
+@interface YRReservationViewController (){
+    NSArray *_models;
+}
 
 @end
 
@@ -21,12 +24,14 @@ static NSString *cellId = @"YRReservationCellID";
     // Do any additional setup after loading the view.
     [self.tableView registerNib:[UINib nibWithNibName:@"YRReservationCell" bundle:nil] forCellReuseIdentifier:cellId];
     self.tableView.rowHeight = 108;
+    self.tableView.tableFooterView = [[UIView alloc] init];
     [self getData];
 }
 
 -(void)getData{
     [RequestData GET:STUDENT_ORDER parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
-        NSLog(@"%@",responseDic);
+        _models = [YROrderedPlaceModel mj_objectArrayWithKeyValuesArray:responseDic];
+        [self.tableView reloadData];
     } failed:^(NSError *error) {
         
     }];
@@ -35,16 +40,16 @@ static NSString *cellId = @"YRReservationCellID";
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 12;
+    return _models.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    YRReservationCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    if (!cell) {
-        cell = [[YRReservationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-    }
+    YRReservationCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
+    [cell configCellWithModel:_models[indexPath.row]];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.navigationController pushViewController:[[YRReservationDetailVC alloc] init] animated:YES];
+    YRReservationDetailVC *detailVC = [[YRReservationDetailVC alloc] init];
+    detailVC.orderID = [_models[indexPath.row] id];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 @end

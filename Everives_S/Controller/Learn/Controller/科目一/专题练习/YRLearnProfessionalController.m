@@ -9,6 +9,7 @@
 #import "YRLearnProfessionalController.h"
 #import "YRLearnPracticeController.h"
 #import "YRQuestionKindObj.h"
+
 @interface YRLearnProfessionalController ()
 @property (nonatomic, strong) NSMutableArray *titleArray;
 @end
@@ -28,10 +29,7 @@
         }
     }
     
-//    self.titleArray = @[@"交通法规",@"交通信号灯",@"路况环境",@"机动车驾驶操作"];
-    
     self.tableView.tableFooterView = [[UIView alloc]init];
-    
 }
 #pragma mark - Table view data source
 

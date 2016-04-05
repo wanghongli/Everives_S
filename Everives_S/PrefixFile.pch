@@ -19,6 +19,7 @@
 #import "YRManager.h"
 #import "MBProgressHUD+Add.h"
 #import "NSString+Tools.h"
+#import "YRPublicMethod.h"
 #endif
 
 

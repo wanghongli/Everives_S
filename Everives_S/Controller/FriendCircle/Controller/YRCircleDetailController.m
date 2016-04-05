@@ -333,6 +333,10 @@
 }
 - (IBAction)sendClick:(UIButton *)sender {
     [self.commentText resignFirstResponder];
+    if (!self.commentText.text.length) {
+        [MBProgressHUD showError:@"评论内容不能为空" toView:self.view];
+        return;
+    }
     [_commentBody setObject:self.commentText.text forKey:@"content"];
     [self takeCommentWith];
 }

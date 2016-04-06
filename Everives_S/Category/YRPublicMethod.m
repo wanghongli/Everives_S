@@ -14,7 +14,6 @@
  */
 +(NSString *)publicMethodAccodingIntMsgTurnToTimeString:(NSInteger)timeInt
 {
-    timeInt--;
     int hour = (int)timeInt/3600;
     NSString *hourString = hour>9 ? [NSString stringWithFormat:@"%d",hour] : [NSString stringWithFormat:@"0%d",hour];
     int minute = timeInt%3600/60;

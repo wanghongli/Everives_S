@@ -24,4 +24,6 @@
  *  @return yes为有网络，no为未联网
  */
 +(BOOL)checkNetworkIsAvailable;
+
+
 @end

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YRTeacherCommentObj.h"
 @interface YRTeacherCommentCell : UITableViewCell
 + (instancetype)cellWithTableView:(UITableView *)tableView;
-@property (nonatomic, strong) NSString *introduce;
+@property (nonatomic, strong) YRTeacherCommentObj *teacherCommentObj;
 
 + (CGFloat) getTeacherCommentCellHeightWith:(NSString *)introduce;
 @end

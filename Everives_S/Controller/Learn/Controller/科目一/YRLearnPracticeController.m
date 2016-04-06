@@ -16,9 +16,13 @@
 #import "YRQuestionObj.h"
 @interface YRLearnPracticeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,YRPracticeDownViewDelegate,UIAlertViewDelegate>
 {
+    //显示答案
     NSInteger _showAnswerID;
+    //倒计时剩余时间
     NSInteger timeInt;
+    //倒计时
     NSTimer *timer;
+    //当前题
     YRQuestionObj *_currentQuestion;
 }
 @property (nonatomic, strong) NSMutableArray *errorArray;//错题
@@ -54,10 +58,27 @@
     [super viewDidLoad];
     _msgArray = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
+    //初始化数据库
     self.db = [YRFMDBObj initFmdb];
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     //yes 科目四 no 科目一
     self.menuType = self.objectFour;
     [self buildUI];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"<返回" style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
+}
+-(void)backClick
+{
+    if (self.menuTag == 0) {//考试模式
+        if (self.errorArray.count+self.rightArray.count) {
+            NSInteger scroeInt = self.objectFour ? self.rightArray.count*2:self.rightArray.count;
+            NSString *string = [NSString stringWithFormat:@"您已经回答了%ld题，考试得分%ld，确定要交卷吗?",self.errorArray.count+self.rightArray.count,scroeInt];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:string delegate:self cancelButtonTitle:@"继续答题" otherButtonTitles:@"提交", nil];
+            alert.tag = 10;
+            [alert show];
+        }else
+            [self.navigationController popViewControllerAnimated:YES];
+    }else
+        [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - 创建视图
 -(void)buildUI
@@ -84,7 +105,7 @@
         [self.view addSubview:_downView];
         _countDownBar = [[UIBarButtonItem alloc]initWithTitle:@"30:00" style:UIBarButtonItemStylePlain target:self action:@selector(downBarBtn)];
         self.navigationItem.rightBarButtonItem = _countDownBar;
-        timeInt = 30*60;
+        timeInt = self.objectFour?30*60:45*60;
         [self getTime];
     }else if (self.menuTag == 2){//随机练习
 
@@ -116,6 +137,7 @@
 #pragma mark - timer方法
 -(void)handleMaxShowTimer:(NSTimer *)time
 {
+    timeInt--;
     [_countDownBar setTitle:[YRPublicMethod publicMethodAccodingIntMsgTurnToTimeString:timeInt]];
     if (timeInt == 0) {//考试结束
         [time invalidate];
@@ -313,16 +335,21 @@
 //        }];
         NSInteger scroeInt = self.objectFour ? self.rightArray.count*2:self.rightArray.count;
         NSString *string = [NSString stringWithFormat:@"您已经回答了%ld题，考试得分%ld，确定要交卷吗?",self.errorArray.count+self.rightArray.count,scroeInt];
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:string delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"提交", nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:string delegate:self cancelButtonTitle:@"继续答题" otherButtonTitles:@"提交", nil];
+        alert.tag = 11;
         [alert show];
     }
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
+        NSInteger totalTime = self.objectFour?30*60:45*60;
         YRGotScoreController *adv = [[YRGotScoreController alloc]init];
         NSInteger scroeInt = self.objectFour ? self.rightArray.count*2:self.rightArray.count;
         adv.scroe = scroeInt;
+        adv.costTime = totalTime - timeInt;
+        adv.surplusTime = timeInt;
+        adv.objFour = self.objectFour;
         [self.navigationController pushViewController:adv animated:YES];
     }
 }

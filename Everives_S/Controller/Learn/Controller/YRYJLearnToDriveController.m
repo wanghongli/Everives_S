@@ -26,7 +26,7 @@ FMDatabase *db;
 //重载init方法
 - (instancetype)init
 {
-    if (self = [super initWithTagViewHeight:49])
+    if (self = [super initWithTagViewHeight:48])
     {
         
     }
@@ -35,7 +35,7 @@ FMDatabase *db;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tagItemSize = CGSizeMake(self.view.frame.size.width/4, 49);
+    self.tagItemSize = CGSizeMake(self.view.frame.size.width/4, 48);
     self.title = @"蚁人学车";
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu_icon"] style:UIBarButtonItemStylePlain target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu)];

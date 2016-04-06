@@ -23,12 +23,16 @@
 }
 -(CGRect)titleRectForContentRect:(CGRect)contentRect
 {
-    CGFloat x = contentRect.size.width/2-kDistance;
-    return CGRectMake(x, 0, contentRect.size.width-x, contentRect.size.height);
+    CGFloat wh = contentRect.size.height-2*kDistance;
+    CGSize titleSize = [@"驾考法规"  sizeWithFont:kFontOfSize(14) maxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+    CGFloat kdistace = (contentRect.size.width - wh - titleSize.width)/3;
+    return CGRectMake(kdistace*2+wh, 0, titleSize.width, contentRect.size.height);
 }
 -(CGRect)imageRectForContentRect:(CGRect)contentRect
 {
     CGFloat wh = contentRect.size.height-2*kDistance;
-    return CGRectMake(contentRect.size.width/2-wh-kDistance, kDistance, wh, wh);
+    CGSize titleSize = [@"驾考法规"  sizeWithFont:kFontOfSize(14) maxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+    CGFloat kdistace = (contentRect.size.width - wh - titleSize.width)/3;
+    return CGRectMake(kdistace, kDistance, wh, wh);
 }
 @end

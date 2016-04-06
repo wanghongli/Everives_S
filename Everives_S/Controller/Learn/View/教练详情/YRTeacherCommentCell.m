@@ -80,10 +80,9 @@
     [self addSubview:timeaddresslabel];
     _timeAddressLabel = timeaddresslabel;
 }
-
-- (void)setIntroduce:(NSString *)introduce
+-(void)setTeacherCommentObj:(YRTeacherCommentObj *)teacherCommentObj
 {
-    _introduce = introduce;
+    _teacherCommentObj = teacherCommentObj;
     
     _headImg.frame = CGRectMake(kDistance, kDistance, kImgHW, kImgHW);
     _headImg.image = [UIImage imageNamed:@"head_jiaolian"];
@@ -92,16 +91,16 @@
     
     CGSize nameSize = [@"小王" sizeWithFont:kFontOfLetterMedium maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
     _nameLabel.frame = CGRectMake(_headImg.x, CGRectGetMaxY(_headImg.frame)+kDistance, kImgHW, nameSize.height);
-    _nameLabel.text = @"Eunice";
+    _nameLabel.text = teacherCommentObj.name;
     
     
     CGFloat commentX = CGRectGetMaxX(_headImg.frame)+kDistance;
     CGFloat commentY = _headImg.y;
     CGFloat commentW = kScreenWidth - 3*kDistance - kImgHW - kDistance;
-    CGSize commentSize = [introduce sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(commentW, MAXFLOAT)];
+    CGSize commentSize = [teacherCommentObj.content sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(commentW, MAXFLOAT)];
     CGFloat commentH = commentSize.height;
     _commentLabel.frame = CGRectMake(kDistance/2, kDistance/2, commentW, commentH);
-    _commentLabel.text = introduce;
+    _commentLabel.text = teacherCommentObj.content;
     
     _commentBackView.frame = CGRectMake(commentX, commentY, kScreenWidth - 3*kDistance - kImgHW, commentH+kDistance);
     _commentBackView.layer.masksToBounds = YES;
@@ -113,8 +112,19 @@
     }else
         timeY = CGRectGetMaxY(_commentBackView.frame)+kDistance;
     _timeAddressLabel.frame = CGRectMake(kDistance, timeY, kScreenWidth-2*kDistance, nameSize.height);
-    _timeAddressLabel.text = @"2016-03-03 13:30 南山场地一";
     
+    NSString *str=[NSString stringWithFormat:@"%ld",teacherCommentObj.time];//时间戳
+    NSTimeInterval time=[str doubleValue];//因为时差问题要加8小时 == 28800 sec
+    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:time];
+    NSLog(@"date:%@",[detaildate description]);
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSString *currentDateStr = [dateFormatter stringFromDate: detaildate];
+    
+    _timeAddressLabel.text = currentDateStr;
 }
 
 + (CGFloat) getTeacherCommentCellHeightWith:(NSString *)introduce

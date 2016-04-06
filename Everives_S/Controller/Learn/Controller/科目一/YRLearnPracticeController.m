@@ -16,9 +16,13 @@
 #import "YRQuestionObj.h"
 @interface YRLearnPracticeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,YRPracticeDownViewDelegate,UIAlertViewDelegate>
 {
+    //显示答案
     NSInteger _showAnswerID;
+    //倒计时剩余时间
     NSInteger timeInt;
+    //倒计时
     NSTimer *timer;
+    //当前题
     YRQuestionObj *_currentQuestion;
 }
 @property (nonatomic, strong) NSMutableArray *errorArray;//错题
@@ -54,10 +58,27 @@
     [super viewDidLoad];
     _msgArray = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
+    //初始化数据库
     self.db = [YRFMDBObj initFmdb];
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     //yes 科目四 no 科目一
     self.menuType = self.objectFour;
     [self buildUI];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"<返回" style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
+}
+-(void)backClick
+{
+    if (self.menuTag == 0) {//考试模式
+        if (self.errorArray.count+self.rightArray.count) {
+            NSInteger scroeInt = self.objectFour ? self.rightArray.count*2:self.rightArray.count;
+            NSString *string = [NSString stringWithFormat:@"您已经回答了%ld题，考试得分%ld，确定要交卷吗?",self.errorArray.count+self.rightArray.count,scroeInt];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:string delegate:self cancelButtonTitle:@"继续答题" otherButtonTitles:@"提交", nil];
+            alert.tag = 10;
+            [alert show];
+        }else
+            [self.navigationController popViewControllerAnimated:YES];
+    }else
+        [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - 创建视图
 -(void)buildUI
@@ -84,7 +105,7 @@
         [self.view addSubview:_downView];
         _countDownBar = [[UIBarButtonItem alloc]initWithTitle:@"30:00" style:UIBarButtonItemStylePlain target:self action:@selector(downBarBtn)];
         self.navigationItem.rightBarButtonItem = _countDownBar;
-        timeInt = 30*60;
+        timeInt = self.objectFour?30*60:45*60;
         [self getTime];
     }else if (self.menuTag == 2){//随机练习
 
@@ -113,26 +134,12 @@
                                              repeats:YES];
     [timer fire];
 }
+#pragma mark - timer方法
 -(void)handleMaxShowTimer:(NSTimer *)time
 {
     timeInt--;
-    int hour = (int)timeInt/3600;
-    NSString *hourString = hour>9 ? [NSString stringWithFormat:@"%d",hour] : [NSString stringWithFormat:@"0%d",hour];
-    int minute = timeInt%3600/60;
-    NSString *minuteString = minute>9 ? [NSString stringWithFormat:@"%d",minute] : [NSString stringWithFormat:@"0%d",minute];
-    int second = timeInt%60%60;
-    NSString *secondString = minute>9 ? [NSString stringWithFormat:@"%d",second] : [NSString stringWithFormat:@"0%d",second];
-    NSString *textString;
-    if (hour<1) {
-        if (minute<1) {
-            textString = [NSString stringWithFormat:@"%@",secondString];
-        }else
-            textString = [NSString stringWithFormat:@"%@:%@",minuteString,secondString];
-    }else{
-        textString = [NSString stringWithFormat:@"%@:%@:%@",hourString,minuteString,secondString];
-    }
-    [_countDownBar setTitle:textString];
-    if (timeInt == 0) {
+    [_countDownBar setTitle:[YRPublicMethod publicMethodAccodingIntMsgTurnToTimeString:timeInt]];
+    if (timeInt == 0) {//考试结束
         [time invalidate];
     }
 }
@@ -148,6 +155,7 @@
 #pragma mark - 收藏
 -(void)collectionClick
 {
+    
     if (_currentQuestion.collect) {
         [YRFMDBObj changeMsgWithId:_currentQuestion.id withNewMsg:@"collect = 0" withFMDB:self.db];
         [MBProgressHUD showSuccess:@"取消收藏成功" toView:self.view];
@@ -158,50 +166,54 @@
     [MBProgressHUD showSuccess:@"收藏成功" toView:self.view];
     [self setCollectMsg:YES];
 }
+#pragma mark - 获取模拟考试数据
+-(void)getExamMsg
+{
+    NSArray *array = [NSArray arrayWithArray:[YRFMDBObj getShunXuPracticeWithType:self.menuType withFMDB:self.db]];
+    NSMutableArray *idArray = [NSMutableArray array];
+    _msgArray = [NSMutableArray array];
+    for (int i = 0; i<array.count; i++) {
+        YRQuestionObj *questionObj = array[arc4random() % array.count];
+        if (![idArray containsObject:[NSString stringWithFormat:@"%ld",questionObj.id]]) {
+            [idArray addObject:[NSString stringWithFormat:@"%ld",questionObj.id]];
+            [_msgArray addObject:questionObj];
+            if (self.objectFour) {
+                if (idArray.count == 50) {//科目四50题
+                    break;
+                }
+            }else{
+                if (idArray.count == 100) {//科目一100题
+                    break;
+                }
+            }
+        }
+    }
+    _downView.numbString = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
+}
 #pragma mark - 请求数据
 -(void)getDataWithInsert:(BOOL)insert
 {
     if (self.menuTag == 2) {//随机练习
         _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getShunXuPracticeWithType:self.menuType withFMDB:self.db]];
     }else if (self.menuTag == 0){//模拟考试
-        NSArray *array = [NSArray arrayWithArray:[YRFMDBObj getShunXuPracticeWithType:self.menuType withFMDB:self.db]];
-        NSMutableArray *idArray = [NSMutableArray array];
-        _msgArray = [NSMutableArray array];
-        for (int i = 0; i<array.count; i++) {
-            YRQuestionObj *questionObj = array[arc4random() % array.count];
-            if (![idArray containsObject:[NSString stringWithFormat:@"%ld",questionObj.id]]) {
-                [idArray addObject:[NSString stringWithFormat:@"%ld",questionObj.id]];
-                [_msgArray addObject:questionObj];
-                if (self.objectFour) {
-                    if (idArray.count == 50) {
-                        break;
-                    }
-                }else{
-                    if (idArray.count == 100) {
-                        break;
-                    }
-                }
-            }
-        }
-        _downView.numbString = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
-        
+        [self getExamMsg];
     }else if(self.menuTag == 1){//顺序练习
-        _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getShunXuPracticeWithType:self.menuType withFMDB:self.db]];
+        _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getShunXuPracticeWithType:self.objectFour withFMDB:self.db]];
         self.title = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
     }else if(self.menuTag == 3){//专题练习
-        _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:[NSString stringWithFormat:@"kind = %ld",self.perfisonalKind] withFMDB:self.db]];
+        _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.objectFour withSearchMsg:[NSString stringWithFormat:@"kind = %ld",self.perfisonalKind] withFMDB:self.db]];
         self.title = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
     }else if (self.menuTag == 4){//错题
         if (self.perfisonalKind == 1) {//全部错题
             _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:@"error = 1" withFMDB:self.db]];
         }else//专项错题
-            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:[NSString stringWithFormat:@"kind = %ld and error = 1",self.perfisonalKind] withFMDB:self.db]];
+            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.objectFour withSearchMsg:[NSString stringWithFormat:@"kind = %ld and error = 1",self.perfisonalKind] withFMDB:self.db]];
         self.title = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
     }else if (self.menuTag == 5){//收藏
         if (self.perfisonalKind == 1) {//全部错题
-            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:@"collect = 1" withFMDB:self.db]];
+            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.objectFour withSearchMsg:@"collect = 1" withFMDB:self.db]];
         }else//专项错题
-            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.menuType withSearchMsg:[NSString stringWithFormat:@"kind = %ld and collect = 1",self.perfisonalKind] withFMDB:self.db]];
+            _msgArray = [NSMutableArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.objectFour withSearchMsg:[NSString stringWithFormat:@"kind = %ld and collect = 1",self.perfisonalKind] withFMDB:self.db]];
         self.title = [NSString stringWithFormat:@"1/%ld",_msgArray.count];
     }
 }
@@ -233,7 +245,6 @@
     YRLearnCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     YRQuestionObj *ques;
     if (self.menuTag == 2) {
-        ;
         if (_showAnswerID) {//显示答案时候不取数据
             ques = _currentQuestion;
         }else
@@ -242,25 +253,10 @@
         ques = _msgArray[indexPath.row];
     _currentQuestion = ques;
     cell.questionOb = ques;
+    
+    //选择答案后数据的处理
     [cell setAnswerIsClickBlock:^(YRQuestionObj *currentQues) {
-        NSString *already = [NSString stringWithFormat:@"already = 1"];
-        NSString *error = [NSString stringWithFormat:@"error = %d",currentQues.answer == currentQues.chooseAnswer?0:1];
-        NSString *chooseAnswer = [NSString stringWithFormat:@"chooseAnswer = %ld",(long)currentQues.chooseAnswer];
-        [YRFMDBObj changeMsgWithId:ques.id withNewMsg:already withFMDB:self.db];
-        [YRFMDBObj changeMsgWithId:ques.id withNewMsg:error withFMDB:self.db];
-        [YRFMDBObj changeMsgWithId:ques.id withNewMsg:chooseAnswer withFMDB:self.db];
-        [_msgArray replaceObjectAtIndex:indexPath.row withObject:currentQues];
-        if (self.menuTag == 0) {//考试状态选择就跳到下一个题
-            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
-            if (currentQues.error) {
-                [self.errorArray addObject:currentQues];
-            }else
-                [self.rightArray addObject:currentQues];
-        }else{//练习状态选择正确后跳到下一个题
-            if (!currentQues.error) {
-                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
-            }
-        }
+        [self chooseAnswerBackToSaveMsg:currentQues withIndexPath:indexPath];
     }];
     //显示答案
     if (_showAnswerID) {
@@ -281,7 +277,28 @@
     }
     return cell;
 }
-
+//选择答案后对数据的处理（刷新与存储）
+-(void)chooseAnswerBackToSaveMsg:(YRQuestionObj *)currentQues withIndexPath:(NSIndexPath*)indexPath
+{
+    NSString *already = [NSString stringWithFormat:@"already = 1"];
+    NSString *error = [NSString stringWithFormat:@"error = %d",currentQues.answer == currentQues.chooseAnswer?0:1];
+    NSString *chooseAnswer = [NSString stringWithFormat:@"chooseAnswer = %ld",(long)currentQues.chooseAnswer];
+    [YRFMDBObj changeMsgWithId:currentQues.id withNewMsg:already withFMDB:self.db];
+    [YRFMDBObj changeMsgWithId:currentQues.id withNewMsg:error withFMDB:self.db];
+    [YRFMDBObj changeMsgWithId:currentQues.id withNewMsg:chooseAnswer withFMDB:self.db];
+    [_msgArray replaceObjectAtIndex:indexPath.row withObject:currentQues];
+    if (self.menuTag == 0) {//考试状态选择就跳到下一个题
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+        if (currentQues.error) {
+            [self.errorArray addObject:currentQues];
+        }else
+            [self.rightArray addObject:currentQues];
+    }else{//练习状态选择正确后跳到下一个题
+        if (!currentQues.error) {
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+        }
+    }
+}
 #pragma mark - UIColletcionViewDelegateFlowLayout
 //定义每个Item的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -318,16 +335,21 @@
 //        }];
         NSInteger scroeInt = self.objectFour ? self.rightArray.count*2:self.rightArray.count;
         NSString *string = [NSString stringWithFormat:@"您已经回答了%ld题，考试得分%ld，确定要交卷吗?",self.errorArray.count+self.rightArray.count,scroeInt];
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:string delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"提交", nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:string delegate:self cancelButtonTitle:@"继续答题" otherButtonTitles:@"提交", nil];
+        alert.tag = 11;
         [alert show];
     }
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
+        NSInteger totalTime = self.objectFour?30*60:45*60;
         YRGotScoreController *adv = [[YRGotScoreController alloc]init];
         NSInteger scroeInt = self.objectFour ? self.rightArray.count*2:self.rightArray.count;
         adv.scroe = scroeInt;
+        adv.costTime = totalTime - timeInt;
+        adv.surplusTime = timeInt;
+        adv.objFour = self.objectFour;
         [self.navigationController pushViewController:adv animated:YES];
     }
 }

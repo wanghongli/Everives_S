@@ -32,8 +32,8 @@
 -(void)buildUI
 {
     for (int i = 0; i<2; i++) {
-        CGFloat w = (kSizeOfScreen.width-kDistance)/2;
-        CGFloat x = i*kDistance+i*w;
+        CGFloat w = (kSizeOfScreen.width-2*kDistance)/2;
+        CGFloat x = i*2*kDistance+i*w;
         CGFloat y = 0;
         CGFloat h = self.frame.size.height;
         YRLeftImgBtn *leftBtn = [[YRLeftImgBtn alloc]initWithFrame:CGRectMake(x, y, w, h)];

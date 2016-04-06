@@ -58,10 +58,6 @@
     [self addSubview:leftimg];
     _leftImg = leftimg;
     
-//    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kSizeOfScreen.width, 1)];
-//    view.backgroundColor = kCOLOR(230, 230, 230);
-//    _topLine = view;
-//    [self addSubview:_topLine];
     
     // 头像
     UIImageView *iconView = [[UIImageView alloc] init];

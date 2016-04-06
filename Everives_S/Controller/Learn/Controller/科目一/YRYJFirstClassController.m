@@ -40,24 +40,50 @@
 }
 -(void)buildUI
 {
-    MyLog(@"%lf",kScreenHeight);
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-64-50)];
     [self.view addSubview:_scrollView];
+    //进入考试
     _examBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, kDistance, kScreenWidth, kScreenWidth*0.435)];
     [_examBtn setBackgroundImage:[UIImage imageNamed:@"Learn_Home_Exam"] forState:UIControlStateNormal];
     [_scrollView addSubview:_examBtn];
     [_examBtn addTarget:self action:@selector(gotoExamClick:) forControlEvents:UIControlEventTouchUpInside];
     _examBtn.backgroundColor = [UIColor whiteColor];
     
+    //顺序练习、随机练习、专题练习
     _headView = [[YRFirstHeadView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_examBtn.frame)+kDistance, kSizeOfScreen.width, kSizeOfScreen.width*0.25/0.78+30)];
     _headView.delegate = self;
     [_scrollView addSubview:_headView];
-    
-    _middleView = [[YRFirstMiddleView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headView.frame)+kDistance, kSizeOfScreen.width, _headView.frame.size.height/2)];
+
+    if (kScreenHeight < 500) {//5、5s、4、4s
+        
+        _middleView = [[YRFirstMiddleView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headView.frame)+kDistance, kSizeOfScreen.width, _headView.frame.size.height/2)];
+        _middleView.delegate = self;
+        [_scrollView addSubview:_middleView];
+        
+        _downView = [[YRFirstDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_middleView.frame)+kDistance, kSizeOfScreen.width, _headView.frame.size.height*2/3)];
+        _downView.delegate = self;
+        [_scrollView addSubview:_downView];
+        
+        if (CGRectGetMaxY(_downView.frame)>=self.scrollView.height) {
+            _scrollView.contentSize = CGSizeMake(kScreenWidth, CGRectGetMaxY(_downView.frame));
+        }else{
+            _scrollView.contentSize = CGSizeMake(kScreenWidth,self.scrollView.height);
+        }
+        return;
+    }
+    CGFloat heightLow;
+    if (kScreenHeight == 568) {
+        heightLow = kScreenHeight-64-50-CGRectGetMaxY(_headView.frame)-kDistance - 10;
+    }else
+        heightLow = kScreenHeight-64-50-CGRectGetMaxY(_headView.frame)-kDistance;
+
+    //驾考法规、考试技巧
+    _middleView = [[YRFirstMiddleView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_headView.frame)+kDistance, kSizeOfScreen.width, heightLow*3/7)];
     _middleView.delegate = self;
     [_scrollView addSubview:_middleView];
     
-    _downView = [[YRFirstDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_middleView.frame)+kDistance, kSizeOfScreen.width, _headView.frame.size.height*2/3)];
+    //我的错题、我的收藏、练习统计、我的成绩
+    _downView = [[YRFirstDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_middleView.frame)+kDistance, kSizeOfScreen.width, heightLow*4/7)];
     _downView.delegate = self;
     [_scrollView addSubview:_downView];
     
@@ -92,6 +118,7 @@
     }else{//专题练习
         YRLearnProfessionalController *learnVC = [[YRLearnProfessionalController alloc]init];
         learnVC.title = @"专题练习";
+        learnVC.objFour = NO;
         [self.navigationController pushViewController:learnVC animated:YES];
     }
 

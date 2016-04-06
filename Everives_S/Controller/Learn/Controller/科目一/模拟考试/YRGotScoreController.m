@@ -9,7 +9,7 @@
 #import "YRGotScoreController.h"
 #import "YRExamScorePercentView.h"
 #import "YRMyErrorController.h"
-
+#import "YRPublicMethod.h"
 #define kImgW 120
 #define kImgH 160
 #define kToTopDestace 20
@@ -31,6 +31,28 @@
     self.title = @"得分";
     self.view.backgroundColor = [UIColor whiteColor];
     
+    [self buildUI];
+    [self.errorBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.shareBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"<返回" style:UIBarButtonItemStyleDone target:self action:@selector(backClick)];
+//    [self postData];
+}
+-(void)postData
+{
+    NSDictionary *dic = @{
+                          @"time":[NSString stringWithFormat:@"%ld",(NSInteger)[[NSDate date] timeIntervalSince1970]],
+                          @"grade":@(self.scroe),
+                          @"cost":@(self.costTime),
+                          @"type":@(self.objFour)
+                          };
+    [RequestData POST:JK_POST_TESTRESULT parameters:dic complete:^(NSDictionary *responseDic) {
+        MyLog(@"%@",responseDic);
+    } failed:^(NSError *error) {
+        
+    }];
+}
+-(void)buildUI
+{
     self.scoreBackImg.image = [UIImage imageNamed:@"Learn_Grade-1_Score"];
     self.scoreLabel.text = [NSString stringWithFormat:@"%ld",self.scroe];
     if (self.scroe>=90) {
@@ -39,9 +61,6 @@
         self.descriLabel.text = @"不要灰心，继续努力!";
     self.scorePercentView.headString = @"您的排名为";
     self.scorePercentView.scoreString = @"88";
-    [self.errorBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.shareBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"<返回" style:UIBarButtonItemStyleDone target:self action:@selector(backClick)];
 }
 -(void)backClick
 {

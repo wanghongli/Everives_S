@@ -10,6 +10,7 @@
 #import "YRUpImgBtn.h"
 
 #define kDistance 5
+#define kDistacePercent 0.2
 @interface YRFirstDownView ()
 {
     NSArray *array;
@@ -30,8 +31,8 @@
 -(void)buildUI
 {
     for (int i = 0; i<4; i++) {
-        CGFloat distance = kSizeOfScreen.width*0.35/5;
-        CGFloat w = kSizeOfScreen.width*(1-0.35)/4;
+        CGFloat distance = kSizeOfScreen.width*kDistacePercent/5;
+        CGFloat w = kSizeOfScreen.width*(1-kDistacePercent)/4;
         CGFloat x = distance + i*(distance+w);
         CGFloat y = kDistance;
         CGFloat h = self.frame.size.height-2*kDistance;

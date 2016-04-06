@@ -8,8 +8,10 @@
 
 #import "YRLearnProfessionalController.h"
 #import "YRLearnPracticeController.h"
+#import "YRQuestionKindObj.h"
+
 @interface YRLearnProfessionalController ()
-@property (nonatomic, strong) NSArray *titleArray;
+@property (nonatomic, strong) NSMutableArray *titleArray;
 @end
 
 @implementation YRLearnProfessionalController
@@ -17,9 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"专题练习";
-    self.titleArray = @[@"交通法规",@"交通信号灯",@"路况环境",@"机动车驾驶操作"];
-    self.tableView.tableFooterView = [[UIView alloc]init];
+    self.titleArray = [NSMutableArray array];
+    NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];
+    NSArray *array = [YRQuestionKindObj mj_objectArrayWithKeyValuesArray:[userDefaults objectForKey:@"ques_kind"]];
+    for (int i = 0; i<array.count; i++) {
+        YRQuestionKindObj *quesKind = array[i];
+        if (quesKind.type == self.objFour) {
+            [self.titleArray addObject:quesKind];
+        }
+    }
     
+    self.tableView.tableFooterView = [[UIView alloc]init];
 }
 #pragma mark - Table view data source
 
@@ -35,9 +45,11 @@
     static NSString *cellID = @"cellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     }
-    cell.textLabel.text = self.titleArray[indexPath.row];
+    YRQuestionKindObj *quesKind = self.titleArray[indexPath.row];
+    cell.textLabel.text = quesKind.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld",quesKind.num];
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
@@ -46,8 +58,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YRLearnPracticeController *practiceVC = [[YRLearnPracticeController alloc]init];
     practiceVC.menuTag = 3;
-    practiceVC.perfisonalKind = 121+indexPath.row;
+    YRQuestionKindObj *quesKind = self.titleArray[indexPath.row];
+    practiceVC.perfisonalKind = quesKind.id;
+    practiceVC.objectFour = self.objFour;
     [self.navigationController pushViewController:practiceVC animated:YES];
-    
 }
 @end

@@ -11,5 +11,16 @@
 @interface YRGotScoreController : UIViewController
 
 @property (nonatomic, assign) NSInteger scroe;
-
+/**
+ *  yes科目四 no科目一
+ */
+@property (nonatomic, assign) BOOL objFour;
+/**
+ *  花费时间
+ */
+@property (nonatomic, assign) NSInteger costTime;
+/**
+ *  剩余时间
+ */
+@property (nonatomic, assign) NSInteger surplusTime;
 @end

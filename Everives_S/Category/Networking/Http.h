@@ -66,6 +66,7 @@
 #define JK_Get_COLLECT @"/question/Collect" //收藏考题
 #define JK_POST_WRONG @"/question/wrong" //添加错题
 #define JK_GET_COLLECT @"/question/Collect" //收藏的专题列表
+#define JK_POST_TESTRESULT @"/question/testResult" //添加测试成绩
 
 //预约部分
 #define STUDENT_AVAILTIME @"/order/availTime/"  //查看可预约时间

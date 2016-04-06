@@ -18,11 +18,12 @@
 #import "YRTeacherDetailObject.h"
 #import "YRSchoolModel.h"
 #import <MJExtension.h>
-
+#import "YRTeacherDetailObj.h"
 @interface YRTeacherDetailController () <UITableViewDelegate,UITableViewDataSource,YRTeacherDownViewDelegate>
 {
     YRTeacherDetailObject *_teacherObj;
 }
+@property (nonatomic, strong) YRTeacherDetailObj *teacherDetail;
 @property (nonatomic, strong) NSArray *placeArray;
 @property (nonatomic ,strong) UITableView *tableView;
 
@@ -38,13 +39,7 @@
     self.title = @"教练详情";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _headView = [[YRTeacherHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth/2)];
-    self.tableView.tableHeaderView = _headView;
-    self.tableView.tableFooterView = [[UIView alloc]init];
     
-    _downView = [[YRTeacherDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), kScreenWidth, 44)];
-    _downView.delegate = self;
-    [self.view addSubview:_downView];
     //获取数据
     [self getData];
 }
@@ -54,18 +49,22 @@
     //获取教练详情
     NSString *urlString = [NSString stringWithFormat:@"%@%@",USER_TEACHER_DETAIL,self.teacherID];
     [RequestData GET:urlString parameters:nil complete:^(NSDictionary *responseDic) {
-        _teacherObj = [YRTeacherDetailObject mj_objectWithKeyValues:responseDic];
-        _headView.teacherObj = _teacherObj;
+        MyLog(@"%@",responseDic);
+        
+        self.teacherDetail = [YRTeacherDetailObj mj_objectWithKeyValues:responseDic];
+//        _teacherObj = [YRTeacherDetailObject mj_objectWithKeyValues:responseDic];
+
+        _headView = [[YRTeacherHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth/2)];
+        self.tableView.tableHeaderView = _headView;
+        self.tableView.tableFooterView = [[UIView alloc]init];
+        
+        _downView = [[YRTeacherDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), kScreenWidth, 44)];
+        _downView.delegate = self;
+        [self.view addSubview:_downView];
+        _headView.teacherObj = self.teacherDetail;
+
     } failed:^(NSError *error) {
         
-    }];
-    
-    //获取练车场地
-    [RequestData GET:STUDENT_PLACES parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
-//        _placeArray = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];
-//        [self.tableView reloadData];
-    } failed:^(NSError *error) {
-        NSLog(@"%@",error);
     }];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -76,8 +75,9 @@
 {
     NSInteger numbRow;
     if (section == 2) {
-//        numbRow = _placeArray.count;
         numbRow = 4;
+//       return self.teacherDetail.place.count;
+//        numbRow = self.teacherDetail.place.count;
     }else
         numbRow = 1;
     return numbRow;
@@ -87,17 +87,17 @@
 {
     if (indexPath.section == 0) {
         YRTeacherDetailCell *cell = [YRTeacherDetailCell cellWithTableView:tableView];
-        cell.introduce = @"态度温和，不骂学员，长得帅。首次通过率为92%，有多年教学经验可以放心。";
+//        cell.introduce = @"态度温和，不骂学员，长得帅。首次通过率为92%，有多年教学经验可以放心。";
+        cell.introduce = self.teacherDetail.intro;
         return cell;
     }else if (indexPath.section == 1){
         YRTeacherCommentCell *cell = [YRTeacherCommentCell cellWithTableView:tableView];
-        cell.introduce = @"态度温和，不骂学员，长得帅。首次通过率为92%，有多年教学经验可以放心。";
+//        cell.introduce = @"态度温和，不骂学员，长得帅。首次通过率为92%，有多年教学经验可以放心。";
+        cell.teacherCommentObj = _teacherDetail.comment;
         return cell;
     }else if (indexPath.section == 2){
         YRTeacherPlaceCell *cell = [YRTeacherPlaceCell cellWithTableView:tableView];
 //        YRSchoolModel *schoolModel = _placeArray[indexPath.row];
-//        [cell teacherPlaceGetSchoolName:schoolModel.name address:schoolModel.address];
-
         [cell teacherPlaceGetSchoolName:@"希望小学驾校" address:@"南岸/黄角丫"];
         return cell;
     }else{
@@ -111,7 +111,9 @@
     if (indexPath.section == 0) {
         return [YRTeacherDetailCell getTeacherDetailCellHeightWith:@"态度温和，不骂学员，长得帅。首次通过率为92%，有多年教学经验可以放心。"];
     }else if (indexPath.section == 1){
-        return [YRTeacherCommentCell getTeacherCommentCellHeightWith:@"态度温和，不骂学员，长得帅。首次通过率为92%，有多年教学经验可以放心。"];
+//        return [YRTeacherCommentCell getTeacherCommentCellHeightWith:@"态度温和，不骂学员，长得帅。首次通过率为92%，有多年教学经验可以放心。"];
+        return [YRTeacherCommentCell getTeacherCommentCellHeightWith:_teacherDetail.comment.content];
+
     }else if (indexPath.section == 2){
         return 44;
     }else{
@@ -126,7 +128,7 @@
     }else{
         YRTeacherSectionSecoView *sectionView = [[YRTeacherSectionSecoView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)];
         if (section == 1) {
-            sectionView.titleString = @"学员评价(12)";
+            sectionView.titleString = @"学员评价";
         }else if(section == 2){
             sectionView.titleString = @"练车场地";
         }else{

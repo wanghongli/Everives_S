@@ -13,6 +13,9 @@
 @interface YRLearnCollectionCell ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *menuArray;
+    NSMutableArray *answerArray;
+    //多项选择时是否显示底部按钮
+    BOOL showSectionFooter;
 }
 @property (nonatomic, strong) UITableView *tableview;
 @property (nonatomic, strong) YRExamHeadView *headView;
@@ -24,6 +27,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         menuArray = @[@"1",@"2",@"4",@"8"];
+        answerArray = [NSMutableArray array];
         _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         _tableview.delegate = self;
         _tableview.dataSource = self;
@@ -38,6 +42,13 @@
 -(void)setQuestionOb:(YRQuestionObj *)questionOb
 {
     _questionOb = questionOb;
+
+    //判断是否显示多选确定按钮
+    if (![menuArray containsObject:[NSString stringWithFormat:@"%ld",_questionOb.answer]] && _questionOb.currentError==0) {
+        showSectionFooter = YES;
+    }else
+        showSectionFooter = NO;
+    
     _headView.frame = CGRectMake(0, 0, kScreenWidth, [YRExamHeadView examHeadViewHeight:questionOb]);
     _headView.ques = questionOb;
     _tableview.tableHeaderView = _headView;
@@ -88,9 +99,7 @@
         cell = [[YRExamCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     }
     cell.examBool = self.examBool;
-    if (_questionOb.option.count ==4) {
-        cell.menuString = indexPath.row;
-    }
+    cell.menuString = indexPath.row;
     NSString *stringMsg = _questionOb.option[indexPath.row];
     cell.msgString = stringMsg;
     cell.quest = _questionOb;
@@ -108,52 +117,88 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if ([menuArray containsObject:[NSString stringWithFormat:@"%ld",_questionOb.answer]]) {
+    if (!showSectionFooter) {
         return 0.1;
     }
-    return 40;
+    return 50;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
-    if ([menuArray containsObject:[NSString stringWithFormat:@"%ld",_questionOb.answer]]) {
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
+    if (!showSectionFooter) {
         view.backgroundColor = [UIColor clearColor];
-    }else
-        view.backgroundColor = [UIColor redColor];
+    }else{
+//        view.backgroundColor = [UIColor redColor];
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(100, 3, kScreenWidth-200, 44)];
+        [btn setTitle:@"确认答案" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        btn.backgroundColor = [UIColor blueColor];
+        btn.layer.masksToBounds = YES;
+        btn.layer.cornerRadius = btn.height/2;
+        [btn addTarget:self action:@selector(sureAnswerClick) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:btn];
+    }
 
     return view;
+}
+-(void)sureAnswerClick
+{
+    if (![menuArray containsObject:[NSString stringWithFormat:@"%ld",_questionOb.chooseAnswer]]) {
+        showSectionFooter = NO;
+        //判断正确与否
+        [self hasBeenAnswerQuetion];
+        [self.tableview reloadData];
+    }else{
+        [MBProgressHUD showError:@"此题是多项选择题" toView:GET_WINDOW];
+    }
+        
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        if (!_questionOb.currentError) {
-            if ([menuArray containsObject:[NSString stringWithFormat:@"%ld",_questionOb.answer]]) {//单选题
-                _questionOb.chooseAnswer = [menuArray[indexPath.row] integerValue];
-                if (_questionOb.answer == _questionOb.chooseAnswer) {//答对了
-                    MyLog(@"答对了");
-                    _tableview.tableFooterView = [[UIView alloc]init];
-                    _questionOb.error = 0;
-                    _questionOb.currentError = 1;
-                }else{//错误
-                    MyLog(@"答错了");
-                    if (self.examBool) {//考试状态
-                        _tableview.tableFooterView = [[UIView alloc]init];
-                    }else{
-                        _downView.frame = CGRectMake(0, 0, kScreenWidth, [YRExamDownView examDownViewHeight:_questionOb]);
-                        _downView.questOb = _questionOb;
-                        _tableview.tableFooterView = _downView;
-                    }
-                    _questionOb.error = 1;
-                    _questionOb.currentError = 2;
-                }
-                _questionOb.already = 1;
-                if (self.answerIsClickBlock) {
-                    self.answerIsClickBlock(_questionOb);
-                }
-            }else{//多选题
-                
-            }
+    if (![menuArray containsObject:[NSString stringWithFormat:@"%ld",_questionOb.answer]]) {//多项选择题
+        NSString *chooseAnswer = [menuArray objectAtIndex:indexPath.row];
+        if ([answerArray containsObject:chooseAnswer]) {
+            [answerArray removeObject:chooseAnswer];
+        }else
+            [answerArray addObject:chooseAnswer];
+        NSInteger answer = 0;
+        for (int i = 0; i<answerArray.count; i++) {
+            answer+=[answerArray[i] integerValue];
         }
-        [tableView reloadData];
+        _questionOb.chooseAnswer = answer;
+        [self.tableview reloadData];
+        return;
+    }
+    if (!_questionOb.currentError) {
+        _questionOb.chooseAnswer = [menuArray[indexPath.row] integerValue];
+        //判断正确与否
+        [self hasBeenAnswerQuetion];
+    }
+    [tableView reloadData];
+}
+-(void)hasBeenAnswerQuetion
+{
+    if (_questionOb.answer == _questionOb.chooseAnswer) {//答对了
+        MyLog(@"答对了");
+        _tableview.tableFooterView = [[UIView alloc]init];
+        _questionOb.error = 0;
+        _questionOb.currentError = 1;
+    }else{//错误
+        MyLog(@"答错了");
+        if (self.examBool) {//考试状态
+            _tableview.tableFooterView = [[UIView alloc]init];
+        }else{
+            _downView.frame = CGRectMake(0, 0, kScreenWidth, [YRExamDownView examDownViewHeight:_questionOb]);
+            _downView.questOb = _questionOb;
+            _tableview.tableFooterView = _downView;
+        }
+        _questionOb.error = 1;
+        _questionOb.currentError = 2;
+    }
+    _questionOb.already = 1;
+    if (self.answerIsClickBlock) {
+        self.answerIsClickBlock(_questionOb);
+    }
 }
 @end

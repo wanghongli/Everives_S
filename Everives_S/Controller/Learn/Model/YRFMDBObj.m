@@ -46,19 +46,7 @@
         FMResultSet *rs = [db executeQuery:stirng];
     
         while ([rs next]) {
-            YRQuestionObj *questionObj = [[YRQuestionObj alloc]init];
-            questionObj.content = [rs stringForColumn:@"content"];
-            questionObj.option = [self arrayWithJsonString:[rs stringForColumn:@"option"]];
-            questionObj.analy = [rs stringForColumn:@"analy"];
-            questionObj.pics = [rs stringForColumn:@"pics"];
-            questionObj.answer = [rs intForColumn:@"answer"];
-            questionObj.kind = [rs intForColumn:@"kind"];
-            questionObj.type = [rs intForColumn:@"type"];
-            questionObj.id = [rs intForColumn:@"id"];
-            questionObj.collect = [rs intForColumn:@"collect"];
-            questionObj.already = [rs intForColumn:@"already"];
-            questionObj.error = [rs intForColumn:@"error"];
-            [array addObject:questionObj];
+            [array addObject:[self putQuestionToArrayWithResultSet:rs]];
         }
     return array;
 }
@@ -72,19 +60,7 @@
     FMResultSet *rs = [db executeQuery:stirng];
     
     while ([rs next]) {
-        YRQuestionObj *questionObj = [[YRQuestionObj alloc]init];
-        questionObj.content = [rs stringForColumn:@"content"];
-        questionObj.option = [self arrayWithJsonString:[rs stringForColumn:@"option"]];
-        questionObj.analy = [rs stringForColumn:@"analy"];
-        questionObj.pics = [rs stringForColumn:@"pics"];
-        questionObj.answer = [rs intForColumn:@"answer"];
-        questionObj.kind = [rs intForColumn:@"kind"];
-        questionObj.type = [rs intForColumn:@"type"];
-        questionObj.id = [rs intForColumn:@"id"];
-        questionObj.collect = [rs intForColumn:@"collect"];
-        questionObj.already = [rs intForColumn:@"already"];
-        questionObj.error = [rs intForColumn:@"error"];
-        [array addObject:questionObj];
+        [array addObject:[self putQuestionToArrayWithResultSet:rs]];
     }
     return array;
 }
@@ -99,24 +75,13 @@
     FMResultSet *rs = [db executeQuery:stirng];
     
     while ([rs next]) {
-        YRQuestionObj *questionObj = [[YRQuestionObj alloc]init];
-        questionObj.content = [rs stringForColumn:@"content"];
-        questionObj.option = [self arrayWithJsonString:[rs stringForColumn:@"option"]];
-        questionObj.analy = [rs stringForColumn:@"analy"];
-        questionObj.pics = [rs stringForColumn:@"pics"];
-        questionObj.answer = [rs intForColumn:@"answer"];
-        questionObj.kind = [rs intForColumn:@"kind"];
-        questionObj.type = [rs intForColumn:@"type"];
-        questionObj.id = [rs intForColumn:@"id"];
-        questionObj.error = [rs intForColumn:@"collect"];
-        questionObj.already = [rs intForColumn:@"already"];
-        questionObj.error = [rs intForColumn:@"error"];
-        [array addObject:questionObj];
+        [array addObject:[self putQuestionToArrayWithResultSet:rs]];
     }
     return array;
 }
 + (NSMutableArray *) getAlreadyPracticeWithType:(NSInteger)type withFMDB:(FMDatabase *)db
-{ NSMutableArray *array = [NSMutableArray array];
+{
+    NSMutableArray *array = [NSMutableArray array];
     // 查询数据
     //@"SELECT * FROM t_question where id=1"
     //@"SELECT * FROM t_question where content='驾驶机动车在道路上违反道路交通安全法的行为，属于什么行为？'"
@@ -124,22 +89,35 @@
     FMResultSet *rs = [db executeQuery:stirng];
     
     while ([rs next]) {
-        YRQuestionObj *questionObj = [[YRQuestionObj alloc]init];
-        questionObj.content = [rs stringForColumn:@"content"];
-        questionObj.option = [self arrayWithJsonString:[rs stringForColumn:@"option"]];
-        questionObj.analy = [rs stringForColumn:@"analy"];
-        questionObj.pics = [rs stringForColumn:@"pics"];
-        questionObj.answer = [rs intForColumn:@"answer"];
-        questionObj.kind = [rs intForColumn:@"kind"];
-        questionObj.type = [rs intForColumn:@"type"];
-        questionObj.id = [rs intForColumn:@"id"];
-        questionObj.error = [rs intForColumn:@"collect"];
-        questionObj.already = [rs intForColumn:@"already"];
-        questionObj.error = [rs intForColumn:@"error"];
-        [array addObject:questionObj];
+        [array addObject:[self putQuestionToArrayWithResultSet:rs]];
     }
     return array;
 }
+/**
+ *  把检索出来的数据保存在题库模型中去
+ *
+ *  @param rs 检索出的结果
+ *
+ *  @return 返回题库模型
+ */
++(YRQuestionObj *)putQuestionToArrayWithResultSet:(FMResultSet *)rs
+{
+    YRQuestionObj *questionObj = [[YRQuestionObj alloc]init];
+    questionObj.content = [rs stringForColumn:@"content"];
+    questionObj.option = [self arrayWithJsonString:[rs stringForColumn:@"option"]];
+    questionObj.analy = [rs stringForColumn:@"analy"];
+    questionObj.pics = [rs stringForColumn:@"pics"];
+    questionObj.answer = [rs intForColumn:@"answer"];
+    questionObj.kind = [rs intForColumn:@"kind"];
+    questionObj.type = [rs intForColumn:@"type"];
+    questionObj.id = [rs intForColumn:@"id"];
+    questionObj.error = [rs intForColumn:@"collect"];
+    questionObj.already = [rs intForColumn:@"already"];
+    questionObj.error = [rs intForColumn:@"error"];
+    return questionObj;
+}
+
+
 + (NSArray *)arrayWithJsonString:(NSString *)jsonString {
     if (jsonString == nil) {
         return nil;

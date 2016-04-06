@@ -71,13 +71,14 @@
         for (NSInteger i = 0; i<_titles.count; i++) {
             UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(_btnWidth*i, 0, _btnWidth, self.frame.size.height)];
             btn.tag = i;
+            btn.titleLabel.font = kFontOfLetterMedium;
             [btn setTitle:_titles[i] forState:UIControlStateNormal];
             if (i==0) {
                 [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             }else{
                 [btn setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];
             }
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+
             [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
             [_btns addObject:btn];
         }

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YRNearViewController : UIViewController
-
+@property(nonatomic,assign) BOOL isGoOnLearning;
 @end

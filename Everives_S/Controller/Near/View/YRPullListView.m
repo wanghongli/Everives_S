@@ -46,6 +46,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.textLabel.font = kFontOfLetterMedium;
     }
     cell.textLabel.text = [_itemArrays[tableView.tag] objectAtIndex:indexPath.row];
     return cell;

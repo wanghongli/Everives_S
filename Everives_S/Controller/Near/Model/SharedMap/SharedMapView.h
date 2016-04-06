@@ -11,7 +11,6 @@
 @interface SharedMapView : NSObject<MAMapViewDelegate>
 
 @property (nonatomic, readonly) MAMapView *mapView;
-
 + (instancetype)sharedInstance;
 
 @end

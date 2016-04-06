@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//就是地区排序方式那一行
 @interface YRFillterBtnView : UIView
 @property(nonatomic,strong) NSArray *itemArrs;
 @property(nonatomic,strong) NSString *addr;//返回选择后的地址

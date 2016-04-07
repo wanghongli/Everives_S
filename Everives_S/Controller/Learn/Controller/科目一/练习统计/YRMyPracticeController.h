@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YRMyPracticeController : UIViewController
+@property (nonatomic, assign) BOOL objFour;
 
 @end

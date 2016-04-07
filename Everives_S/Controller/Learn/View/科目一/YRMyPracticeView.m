@@ -88,7 +88,7 @@
     [super layoutSubviews];
     
     CGFloat weight = kScreenWidth/3;
-    CGSize numSize = [@"763" sizeWithFont:kFontOfSize(30) maxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+    CGSize numSize = [@"7633" sizeWithFont:kFontOfSize(30) maxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
     CGSize labelSize = [@"未做题" sizeWithFont:kFontOfSize(14) maxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
     _fristNum.frame = CGRectMake(0, 0, weight, numSize.height);
     _firstLabel.frame = CGRectMake(0, CGRectGetMaxY(_fristNum.frame), weight, labelSize.height);
@@ -99,14 +99,18 @@
     _thirdNum.frame = CGRectMake(CGRectGetMaxX(_secondNum.frame), 0, weight, numSize.height);
     _thirdLabel.frame = CGRectMake(_thirdNum.x, CGRectGetMaxY(_fristNum.frame), weight, labelSize.height);
     
-    NSArray *array = [YRFMDBObj getErrorAlreadyAndTotalQuestionWithType:0];
-    //未做过数量
-    NSInteger firstInt = [array[0] integerValue] - [array[2] integerValue];
-    //错题数
-    NSInteger secondInt = [array[1] integerValue];
-    //正确数
-    NSInteger thirdInt = [array[2] integerValue] - [array[1] integerValue];
     
+}
+-(void)setMsgArray:(NSArray *)msgArray
+{
+//    NSArray *array = [YRFMDBObj getErrorAlreadyAndTotalQuestionWithType:0 already:1];
+    //未做过数量
+    NSInteger firstInt = [msgArray[0] integerValue] - [msgArray[2] integerValue];
+    //错题数
+    NSInteger secondInt = [msgArray[1] integerValue];
+    //正确数
+    NSInteger thirdInt = [msgArray[2] integerValue] - [msgArray[1] integerValue];
+    //
     _fristNum.text = [NSString stringWithFormat:@"%ld",firstInt];
     _secondNum.text = [NSString stringWithFormat:@"%ld",secondInt];
     _thirdNum.text = [NSString stringWithFormat:@"%ld",thirdInt];

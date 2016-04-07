@@ -47,13 +47,6 @@ FMDatabase *db;
                             @"科目三",
                             @"科目四",
                             ];
-    
-//    NSArray *classNames = @[
-//                            [YRYJFirstClassController class],
-//                            [YRYJSecondClassController class],
-//                            [YRYJThirdClassController class],
-//                            [YRYJFourthClassController class]
-//                            ];
     NSArray *classNames = @[
                             [YRYJFirstClassController class],
                             [YRYJSecondClassController class],
@@ -138,7 +131,7 @@ FMDatabase *db;
                         for (int i = 0; i<array.count; i++) {
                             YRQuestionObj *quesObj = array[i];
                             //1.executeUpdate:不确定的参数用？来占位（后面参数必须是oc对象，；代表语句结束）
-                            [db executeUpdateWithFormat:@"INSERT INTO t_question (analy, content, option, pics, answer, kind, type,id,collect,error,already,chooseAnswer) VALUES (%@,%@,%@,%@,%ld,%ld,%ld,%ld,%d,%d,%d,%d);",quesObj.analy,quesObj.content,[quesObj.option mj_JSONString],quesObj.pics,quesObj.answer,quesObj.kind,quesObj.type,quesObj.id,0,0,0,0];
+                            [db executeUpdateWithFormat:@"INSERT INTO t_question (analy, content, option, pics, answer, kind, type,id,collect,error,already,chooseAnswer,professionalAlready,randomAlready,totalAlready) VALUES (%@,%@,%@,%@,%ld,%ld,%ld,%ld,%d,%d,%d,%d,%d,%d,%d);",quesObj.analy,quesObj.content,[quesObj.option mj_JSONString],quesObj.pics,quesObj.answer,quesObj.kind,quesObj.type,quesObj.id,0,0,0,0,0,0,0];
                         }
                     }];
                 });

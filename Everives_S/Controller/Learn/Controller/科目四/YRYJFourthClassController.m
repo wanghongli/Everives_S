@@ -138,15 +138,19 @@
 {
     if (btnTag == 0) {//我的错题
         YRMyErrorController *errorVC = [[YRMyErrorController alloc]init];
+        errorVC.objFour = YES;
         [self.navigationController pushViewController:errorVC animated:YES];
     }else if (btnTag == 1){//我的收藏
         YRMyCollectionController *collectVC = [[YRMyCollectionController alloc]init];
+        collectVC.objFour = YES;
         [self.navigationController pushViewController:collectVC animated:YES];
     }else if (btnTag == 2){//练习统计
         YRMyPracticeController *practiceVC = [[YRMyPracticeController alloc]init];
+        practiceVC.objFour = YES;
         [self.navigationController pushViewController:practiceVC animated:YES];
     }else{//我的成绩
         YRMyAchievementController *achieveVC = [[YRMyAchievementController alloc]init];
+        achieveVC.objFour = YES;
         [self.navigationController pushViewController:achieveVC animated:YES];
     }
 }@end

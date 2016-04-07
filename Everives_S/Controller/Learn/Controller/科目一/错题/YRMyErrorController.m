@@ -9,8 +9,9 @@
 #import "YRMyErrorController.h"
 #import "YRLearnPracticeController.h"
 #import "YRFMDBObj.h"
+#import "YRQuestionKindObj.h"
 @interface YRMyErrorController ()
-@property (nonatomic, strong) NSArray *titleArray;
+@property (nonatomic, strong) NSMutableArray *titleArray;
 
 
 @end
@@ -20,7 +21,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的错题";
-    self.titleArray = @[@"交通法规",@"交通信号灯",@"路况环境",@"机动车驾驶操作"];
+    self.titleArray = [NSMutableArray array];
+    NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];
+    NSArray *array = [YRQuestionKindObj mj_objectArrayWithKeyValuesArray:[userDefaults objectForKey:@"ques_kind"]];
+    for (int i = 0; i<array.count; i++) {
+        YRQuestionKindObj *quesKind = array[i];
+        if (quesKind.type == self.objFour) {
+            [self.titleArray addObject:quesKind];
+        }
+    }
+//    self.titleArray = @[@"交通法规",@"交通信号灯",@"路况环境",@"机动车驾驶操作"];
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.tableView.backgroundColor = kCOLOR(241, 241, 241);
 }
@@ -45,8 +55,10 @@
     }
     if (indexPath.section == 0) {
         cell.textLabel.text = @"所有错题";
-    }else
-        cell.textLabel.text = self.titleArray[indexPath.row];
+    }else{
+        YRQuestionKindObj *quesKind = self.titleArray[indexPath.row];
+        cell.textLabel.text = quesKind.name;
+    }
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
@@ -55,7 +67,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YRLearnPracticeController *practiceVC = [[YRLearnPracticeController alloc]init];
     if (indexPath.section == 0) {
-        NSArray *array = [NSArray arrayWithArray:[YRFMDBObj getPracticeWithType:0 withSearchMsg:@"error = 1" withFMDB:[YRFMDBObj initFmdb]]];
+        NSArray *array = [NSArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.objFour withSearchMsg:@"error = 1" withFMDB:[YRFMDBObj initFmdb]]];
         if (!array.count) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"暂无错题" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
@@ -64,13 +76,14 @@
             practiceVC.perfisonalKind = 1;
         }
     }else{
-        NSArray *array = [NSArray arrayWithArray:[YRFMDBObj getPracticeWithType:0 withSearchMsg:[NSString stringWithFormat:@"kind = %ld and error = 1",121+indexPath.row] withFMDB:[YRFMDBObj initFmdb]]];
+        YRQuestionKindObj *quesKind = self.titleArray[indexPath.row];
+        NSArray *array = [NSArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.objFour withSearchMsg:[NSString stringWithFormat:@"kind = %ld and error = 1",quesKind.id] withFMDB:[YRFMDBObj initFmdb]]];
         if (!array.count) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"暂无此项错题" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
             return;
         }else{
-            practiceVC.perfisonalKind = 121+indexPath.row;
+            practiceVC.perfisonalKind = quesKind.id;
         }
     }
     practiceVC.menuTag = 4;

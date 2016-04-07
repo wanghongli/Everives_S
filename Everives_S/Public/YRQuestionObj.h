@@ -20,7 +20,11 @@
 @property (nonatomic, assign) NSInteger id;
 @property (nonatomic, assign) NSInteger error;
 @property (nonatomic, assign) NSInteger collect;
-@property (nonatomic, assign) NSInteger already;
+@property (nonatomic, assign) NSInteger already;//顺序练习记录
+@property (nonatomic, assign) NSInteger randomAlready;//随机练习记录
+@property (nonatomic, assign) NSInteger professionalAlready;//专题练习记录
+@property (nonatomic, assign) NSInteger totalAlready;//做过的记录
 @property (nonatomic, assign) NSInteger chooseAnswer;
+
 @property (nonatomic, assign) NSInteger currentError; //0未做  1做对  2做错
 @end

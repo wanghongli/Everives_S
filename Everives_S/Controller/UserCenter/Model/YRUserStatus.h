@@ -29,7 +29,10 @@
 @property (nonatomic, strong) NSString *token;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *sign;
-
+@property (nonatomic, assign) NSInteger frozenMoney;
+@property (nonatomic, assign) NSInteger checked;
+@property (nonatomic, assign) NSInteger push;
+@property (nonatomic, assign) NSInteger show;
 //好友属性
 @property (nonatomic, assign) BOOL relation;
 @end

@@ -280,10 +280,22 @@
 //选择答案后对数据的处理（刷新与存储）
 -(void)chooseAnswerBackToSaveMsg:(YRQuestionObj *)currentQues withIndexPath:(NSIndexPath*)indexPath
 {
-    NSString *already = [NSString stringWithFormat:@"already = 1"];
+    NSString *already;
+    if (self.menuTag == 1) {//1表示顺序练习；
+        already = [NSString stringWithFormat:@"already = 1"];
+        currentQues.already = 1;
+    }else if (self.menuTag == 2){//2表示随机练习；
+        already = [NSString stringWithFormat:@"randomAlready = 1"];
+        currentQues.randomAlready = 1;
+    }else if (self.menuTag == 3){//3表示专项练习
+        already = [NSString stringWithFormat:@"professionalAlready = 1"];
+        currentQues.professionalAlready = 1;
+    }
+    currentQues.totalAlready = 1;
     NSString *error = [NSString stringWithFormat:@"error = %d",currentQues.answer == currentQues.chooseAnswer?0:1];
     NSString *chooseAnswer = [NSString stringWithFormat:@"chooseAnswer = %ld",(long)currentQues.chooseAnswer];
     [YRFMDBObj changeMsgWithId:currentQues.id withNewMsg:already withFMDB:self.db];
+    [YRFMDBObj changeMsgWithId:currentQues.id withNewMsg:[NSString stringWithFormat:@"totalAlready = 1"] withFMDB:self.db];
     [YRFMDBObj changeMsgWithId:currentQues.id withNewMsg:error withFMDB:self.db];
     [YRFMDBObj changeMsgWithId:currentQues.id withNewMsg:chooseAnswer withFMDB:self.db];
     [_msgArray replaceObjectAtIndex:indexPath.row withObject:currentQues];
@@ -327,12 +339,6 @@
     if (btnTag == 1) {//收藏
         [self collectionClick];
     }else{//交卷
-        //提交错题
-//        [RequestData POST:JK_POST_WRONG parameters:@{@"id":[self.errorArray mj_JSONString]} complete:^(NSDictionary *responseDic) {
-//            MyLog(@"%@",responseDic);
-//        } failed:^(NSError *error) {
-//            
-//        }];
         NSInteger scroeInt = self.objectFour ? self.rightArray.count*2:self.rightArray.count;
         NSString *string = [NSString stringWithFormat:@"您已经回答了%ld题，考试得分%ld，确定要交卷吗?",self.errorArray.count+self.rightArray.count,scroeInt];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:string delegate:self cancelButtonTitle:@"继续答题" otherButtonTitles:@"提交", nil];

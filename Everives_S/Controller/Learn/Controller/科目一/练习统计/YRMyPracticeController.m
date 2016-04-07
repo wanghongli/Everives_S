@@ -35,7 +35,7 @@
 -(void)setMsg{
     self.currentState.text = @"当前进度";
     
-    NSArray *array = [YRFMDBObj getErrorAlreadyAndTotalQuestionWithType:0];
+    NSArray *array = [YRFMDBObj getErrorAlreadyAndTotalQuestionWithType:self.objFour already:1];
     //未做过数量
     NSInteger firstInt = [array[0] integerValue] - [array[2] integerValue];
     //错题数
@@ -49,13 +49,18 @@
     _numArray = @[[NSNumber numberWithInteger:firstPercent],[NSNumber numberWithInteger:secondPercent],[NSNumber numberWithInteger:thridPercent]];
     [self.pieChartView reloadData];
     
-    
-    int rightPercent = (int)thirdInt*100/(thirdInt+secondInt);
+    int rightPercent;
+    if (thirdInt+secondInt>0) {
+        rightPercent = (int)thirdInt*100/(thirdInt+secondInt);
+    }else
+        rightPercent = 100;
+        
     self.scorePercentView.headString = @"正确率";
     self.scorePercentView.scoreString =[NSString stringWithFormat:@"%d",rightPercent];
     
     self.myPracticeView = [[YRMyPracticeView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.scorePercentView.frame)+20, kScreenWidth, [YRMyPracticeView getHeight])];
     [self.view addSubview:self.myPracticeView];
+    self.myPracticeView.msgArray = array;
 }
 
 -(NSArray *)colorArray

@@ -196,7 +196,6 @@
         _questionOb.error = 1;
         _questionOb.currentError = 2;
     }
-    _questionOb.already = 1;
     if (self.answerIsClickBlock) {
         self.answerIsClickBlock(_questionOb);
     }

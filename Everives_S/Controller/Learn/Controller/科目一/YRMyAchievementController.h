@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YRMyAchievementController : UIViewController
+@property (nonatomic, assign) BOOL objFour;
 
 @end

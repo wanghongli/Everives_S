@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface YRMyPracticeView : UIView
-
+@property (nonatomic, strong) NSArray *msgArray;
 +(CGFloat)getHeight;
 
 @end

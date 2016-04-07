@@ -94,19 +94,7 @@
     
     _menuView.frame = CGRectMake(0, CGRectGetMaxY(_starView.frame)+5, kScreenWidth, 20);
     
-    _menuView.menuArray = @[[NSString stringWithFormat:@"%ld年",teacherObj.year],teacherObj.kind ? @"科目二":@"科目三",[NSString stringWithFormat:@"%ld人",teacherObj.student]];
-    
-    
-//    //姓名性别
-//    [_nameLabel nameWith:teacherObj.name sex:1];
-//    _starView.starNu = [teacherObj.grade integerValue];
-//    [_headImg sd_setImageWithURL:[NSURL URLWithString:teacherObj.avatar] placeholderImage:[UIImage imageNamed:@"head_jiaolian"]];
-//
-//    NSString *menu;
-//    if (teacherObj.kind == 0) {
-//        menu = @"科二";;
-//    }else
-//        menu = @"科三";
-//    _menuView.menuArray = @[[NSString stringWithFormat:@"%ld年",teacherObj.year],menu,[NSString stringWithFormat:@"%ld人",teacherObj.student]];
+    NSString *kindString = teacherObj.kind ==0 ? @"科目二": (teacherObj.kind == 1 ? @"科目三":@"科目二 科目三");
+    _menuView.menuArray = @[[NSString stringWithFormat:@"%ld年",teacherObj.year],kindString,[NSString stringWithFormat:@"%ld人",teacherObj.student]];
 }
 @end

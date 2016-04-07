@@ -16,6 +16,6 @@
 @property (nonatomic, strong) NSString *pname; //场地名字
 @property (nonatomic, strong) NSString *price; //价格
 @property (nonatomic, strong) NSString *status; //0未支付 1已支付，等待同伴一起拼 2已支付，等待去练车 3待评价 4已评价 5已取消',
-@property (nonatomic, strong) NSString *time;//时间段
+@property (nonatomic, assign) NSInteger time;//时间段
 @property (nonatomic, strong) NSString *tname;//教练名字
 @end

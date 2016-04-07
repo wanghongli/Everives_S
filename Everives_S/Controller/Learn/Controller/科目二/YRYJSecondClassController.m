@@ -68,23 +68,29 @@
     [_goOnBtn addTarget:self action:@selector(goOnLearnCar) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_downView];
     [self.view bringSubviewToFront:_downView];
-    //无数据的时候展示
-//    [self.view bringSubviewToFront:self.noMsgView];
+    
     //获取数据
     [self getData];
 }
 -(void)getData
 {
-    
+    [MBProgressHUD showMessag:@"加载中..." toView:GET_WINDOW];
     [RequestData GET:STUDENT_ORDER parameters:@{@"page":@"0",@"kind":@"0"} complete:^(NSDictionary *responseDic) {
         MyLog(@"%@",responseDic);
+        [MBProgressHUD hideAllHUDsForView:GET_WINDOW animated:YES];
         msgArray = [YRTeacherOrder mj_objectArrayWithKeyValuesArray:responseDic];
         if (msgArray.count) {
             [self.tableView reloadData];
-        }else
-            [MBProgressHUD showError:@"暂无数据" toView:GET_WINDOW];
+            self.noMsgView.hidden = YES;
+        }else{
+//            [MBProgressHUD showError:@"暂无数据" toView:GET_WINDOW];
+            self.noMsgView.btnTitle = @"安排学车计划";
+            self.noMsgView.hidden = NO;
+            //无数据的时候展示
+            [self.view bringSubviewToFront:self.noMsgView];
+        }
     } failed:^(NSError *error) {
-        
+        [MBProgressHUD hideAllHUDsForView:GET_WINDOW animated:YES];
     }];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -130,6 +136,13 @@
 -(void)learnNoMsgViewAttestationClick
 {
     MyLog(@"%s",__func__);
+    if ([self.noMsgView.btnTitle isEqualToString:@"安排学车计划"]) {
+        YRNearViewController *nearViewController = [[YRNearViewController alloc] init];
+        nearViewController.isGoOnLearning = YES;
+        YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:nearViewController];
+        self.frostedViewController.contentViewController = navigationController;
+        return;
+    }
     YRCertificationController *certificationVC = [[YRCertificationController alloc]init];
     [self.navigationController pushViewController:certificationVC animated:YES];
 }
@@ -145,7 +158,7 @@
 {
     if (!_noMsgView) {
         
-        _noMsgView = [[YRLearnNoMsgView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, self.tableView.height)];
+        _noMsgView = [[YRLearnNoMsgView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, self.tableView.height+44)];
         _noMsgView.delegate = self;
         [self.view addSubview:_noMsgView];
     }

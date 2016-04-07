@@ -40,4 +40,17 @@
     
     return network;
 }
+/**
+ *  修改用户资料
+ */
++(void)changeUserMsgWithKeys:(NSArray *)keys values:(NSArray *)values
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary* dicUser = [NSMutableDictionary dictionaryWithDictionary:[userDefault dictionaryForKey:@"user"]];
+    for (int i = 0; i<keys.count; i++) {
+        [dicUser setObject:values[i] forKey:keys[i]];
+    }
+    [userDefault setObject:dicUser forKey:@"user"];
+    [NSUserDefaults resetStandardUserDefaults];
+}
 @end

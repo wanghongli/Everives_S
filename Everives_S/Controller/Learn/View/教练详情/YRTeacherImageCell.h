@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YRTeacherPicsObj.h"
 @interface YRTeacherImageCell : UITableViewCell
 
 @property (nonatomic, strong) NSArray *imgArray;

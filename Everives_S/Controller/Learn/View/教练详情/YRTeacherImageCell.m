@@ -59,6 +59,7 @@
     _imgArray = imgArray;
     
     for (int i = 0 ; i<3; i++) {
+        
         UIImageView *imageV = self.subviews[i+1];
         CGFloat imgY = 0;
         CGFloat imgW = (kScreenWidth - 4*kDistace)/3;
@@ -67,6 +68,11 @@
 
         imageV.frame = CGRectMake(imgX, imgY, imgW, imgH);
         imageV.image = [UIImage imageNamed:@"Login_addAvatar"];
+        if (imgArray.count) {
+            YRTeacherPicsObj *pic = imgArray[i];
+            [imageV sd_setImageWithURL:[NSURL URLWithString:pic.url] placeholderImage:[UIImage imageNamed:@"Login_addAvatar"]];
+        }
+
     }
 }
 

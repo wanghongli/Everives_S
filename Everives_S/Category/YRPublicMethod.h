@@ -25,5 +25,12 @@
  */
 +(BOOL)checkNetworkIsAvailable;
 
+/**
+ *  修改用户资料
+ *
+ *  @param key   数据名称
+ *  @param value 具体数据
+ */
++(void)changeUserMsgWithKeys:(NSArray *)keys values:(NSArray *)values;
 
 @end

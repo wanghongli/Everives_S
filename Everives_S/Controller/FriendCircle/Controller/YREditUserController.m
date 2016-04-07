@@ -195,6 +195,8 @@
                       [RequestData PUT:STUDENT_AVATAR parameters:@{@"avatar":[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]} complete:^(NSDictionary *responseDic) {
                           NSLog(@"%@",responseDic);
                           KUserManager.avatar = [NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName];
+                          [YRPublicMethod changeUserMsgWithKeys:@[@"avatar"] values:@[[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]]];
+
                           [MBProgressHUD showSuccess:@"头像修改成功" toView:GET_WINDOW];
                       } failed:^(NSError *error) {
                           
@@ -236,7 +238,6 @@
         }
     }
     [_bodyDic setObject:self.nickNameText.text forKey:@"name"];
-//    [_bodyDic setObject:[NSString stringWithFormat:@"%ld",(long)_sexInteger] forKey:@"gender"];
     //判断性别
     [_bodyDic setObject:_sexString forKey:@"gender"];
     //判断年龄
@@ -253,12 +254,13 @@
         KUserManager.sign = _signText.text;
         KUserManager.age = self.ageText.text;
         KUserManager.gender = _sexString;
+        [YRPublicMethod changeUserMsgWithKeys:@[@"name",@"sign",@"age",@"gender"] values:@[_nickNameText.text,_signText.text,_ageText.text,_sexString]];
+        
         [MBProgressHUD showSuccess:@"修改成功" toView:GET_WINDOW];
         [self.navigationController popViewControllerAnimated:YES];
     } failed:^(NSError *error) {
         
     }];
-
 }
 //判断是否为汉字
 - (BOOL)isChinesecharacter:(NSString *)string{

@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+
+@protocol CallOutViewDelegate <NSObject>
+-(void)callOutViewClicked:(NSInteger)tag;
+@end
 @interface YRSchoolAnnotationCalloutView : UIView
 @property(nonatomic,strong) NSString *imageurl;
 @property(nonatomic,strong) NSString *namestr;

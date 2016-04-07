@@ -28,6 +28,7 @@
     }
     return self;
 }
+
 -(void)buildUI{
     [self addSubview:self.imageView];
     [self addSubview:self.name];

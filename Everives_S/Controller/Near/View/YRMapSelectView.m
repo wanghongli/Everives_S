@@ -11,15 +11,15 @@
 
 @end
 @implementation YRMapSelectView
--(instancetype)init{
+-(instancetype)initWithSelectedNum:(NSInteger)num{
     if (self = [super init]) {
         self.backgroundColor = [UIColor whiteColor];
         self.frame = CGRectMake(0, 64, kScreenWidth, 44);
+        _selectedBtnNum = num?:1;
         [self addSubview:self.schoolBtn];
         [self addSubview:self.coachBtn];
         [self addSubview:self.studentBtn];
         [self addSubview:self.lineView];
-        _selectedBtnNum = 1;
     }
     return self;
 }
@@ -27,7 +27,7 @@
     if (!_schoolBtn) {
         _schoolBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2-150, 0, 60, 44)];
         [_schoolBtn setTitle:@"驾校" forState:UIControlStateNormal];
-        [_schoolBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_schoolBtn setTitleColor:_selectedBtnNum==1?[UIColor blackColor]:kTextBlackColor forState:UIControlStateNormal];
         [_schoolBtn addTarget:self action:@selector(schoolBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _schoolBtn;
@@ -36,7 +36,7 @@
     if (!_coachBtn) {
         _coachBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2-30, 0, 60, 44)];
         [_coachBtn setTitle:@"教练" forState:UIControlStateNormal];
-        [_coachBtn setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];
+        [_coachBtn setTitleColor:_selectedBtnNum==2?[UIColor blackColor]:kTextBlackColor forState:UIControlStateNormal];
         [_coachBtn addTarget:self action:@selector(coachBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _coachBtn;
@@ -45,14 +45,14 @@
     if (!_studentBtn) {
         _studentBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2+90, 0, 60, 44)];
         [_studentBtn setTitle:@"驾友" forState:UIControlStateNormal];
-        [_studentBtn setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];
+        [_studentBtn setTitleColor:_selectedBtnNum==1?[UIColor blackColor]:kTextBlackColor forState:UIControlStateNormal];
         [_studentBtn addTarget:self action:@selector(studentBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _studentBtn;
 }
 -(UIView *)lineView{
     if (!_lineView) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2-160, 42, 80, 2)];
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2-160+(_selectedBtnNum-1)*120, 42, 80, 2)];
         _lineView.backgroundColor = [UIColor redColor];
     }
     return _lineView;

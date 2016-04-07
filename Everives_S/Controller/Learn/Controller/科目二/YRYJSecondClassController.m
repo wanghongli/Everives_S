@@ -13,6 +13,9 @@
 #import "YRCertificationController.h" //信息认证
 #import "YRTeacherOrder.h"
 #import "UIViewController+YRCommonController.h"
+#import "YRYJNavigationController.h"
+#import "REFrostedViewController.h"
+#import "YRNearViewController.h"
 @interface YRYJSecondClassController ()<UITableViewDelegate,UITableViewDataSource,YRLearnNoMsgViewDelegate>
 {
     NSArray *msgArray;
@@ -133,7 +136,10 @@
 #pragma mark - 继续安排学车计划
 -(void)goOnLearnCar
 {
-    MyLog(@"%s",__func__);
+    YRNearViewController *nearViewController = [[YRNearViewController alloc] init];
+    nearViewController.isGoOnLearning = YES;
+    YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:nearViewController];
+    self.frostedViewController.contentViewController = navigationController;
 }
 -(YRLearnNoMsgView *)noMsgView
 {

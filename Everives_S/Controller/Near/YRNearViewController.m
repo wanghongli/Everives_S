@@ -61,15 +61,18 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Neighborhood_List"] style:UIBarButtonItemStylePlain target:self action:@selector(changeViewClick:)];
     _isMapView = YES;
     _mapView = [SharedMapView sharedInstance].mapView;
-    _selectView = [[YRMapSelectView alloc] init];
+    _selectView = [[YRMapSelectView alloc] initWithSelectedNum:_isGoOnLearning?2:1];
     _selectView.delegate = self;
     [self.view addSubview:_mapView];
     [self.view addSubview:_selectView];
     [self.view addSubview:self.myLocationBtn];
     [_mapView addSubview:self.searchBar];
-    [self getDataForMap:1];
-    
+    [self getDataForMap:_isGoOnLearning?2:1];
+    if (_isGoOnLearning) {
+        [self changeViewClick:nil];
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tablewViewReloadData:) name:kNearViewControlerReloadTable object:nil];
+    
 }
 
 
@@ -201,7 +204,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     _searchBar.hidden = NO;
     [_mapView removeAnnotations:_coachForMap];
     [_mapView removeAnnotations:_stuForMap];
-    [self addAnnotationswithType:1];
+    [self getDataForMap:1];
     
     if (!_isMapView) {
         [self.view addSubview:self.schoolTable];
@@ -263,6 +266,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     
 }
+
 #pragma mark - Getters
 -(UITableView *)schoolTable{
     if (!_schoolTable) {
@@ -328,13 +332,17 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 -(YRFillterBtnView *)schoolFillterView{
     if (!_schoolFillterView) {
         _schoolFillterView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式"]];
+        _schoolFillterView.itemArrs = @[@[@[@"重庆"],@[@"不限",@"南岸",@"江北",@"渝北",@"渝中",@"北碚",@"巴南",@"沙坪坝"]],
+                                        @[@[@"综合排序",@"人气最高",@"距离最近",@"评价最好"]]];
         _schoolFillterView.tag = 1;
     }
     return _schoolFillterView;
 }
 -(YRFillterBtnView *)coachFillterView{
     if (!_coachFillterView) {
-        _coachFillterView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式"]];
+        _coachFillterView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式",@"不限"]];
+        _coachFillterView.itemArrs = @[@[@[@"重庆"],@[@"不限",@"南岸",@"江北",@"渝北",@"渝中",@"北碚",@"巴南",@"沙坪坝"]],
+                                       @[@[@"综合排序",@"人气最高",@"距离最近",@"评价最好"]],@[@[@"不限",@"科二教练",@"科三教练"]]];
         _coachFillterView.tag = 2;
     }
     return _coachFillterView;

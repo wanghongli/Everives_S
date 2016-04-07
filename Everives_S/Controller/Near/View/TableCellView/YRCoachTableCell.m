@@ -25,8 +25,8 @@
 -(void)setModel:(YRCoachModel *)model{
     [_avatar sd_setImageWithURL:[NSURL URLWithString:model.avatar]];
     _name.text = model.name;
-    _teachAge.text = model.year;
-    _stuNum.text = model.student;
+    _teachAge.text = [NSString stringWithFormat:@"教龄 %@年",model.year];
+    _stuNum.text = [NSString stringWithFormat:@"学员 %@个",model.student];
     _distance.text = [NSString stringWithFormat:@"%.2f%@",([model.distance integerValue]/1000.0),@"km"];
     _distance.textColor = kTextlightGrayColor;
     _course.text = [model.kind isEqualToString:@"0"]?@"科目二":@"科目三";

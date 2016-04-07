@@ -210,7 +210,6 @@
 		1600EBCC1C88087A001919EB /* XBConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBC01C88087A001919EB /* XBConst.m */; };
 		161B1BFF1C910FF80047182D /* CoachDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 161B1BFE1C910FF80047182D /* CoachDataSource.m */; };
 		161B1C021C9110480047182D /* StudentDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 161B1C011C9110480047182D /* StudentDataSource.m */; };
-		1624E2981C8E667B009F4E20 /* YRReservationDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624E2961C8E667B009F4E20 /* YRReservationDetailVC.m */; };
 		1624E29D1C8E7543009F4E20 /* YRCommentDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624E29B1C8E7543009F4E20 /* YRCommentDetailVC.m */; };
 		1624E29E1C8E7543009F4E20 /* YRCommentDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1624E29C1C8E7543009F4E20 /* YRCommentDetailVC.xib */; };
 		16271AA31CB360830082F7CB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16271A891CB360830082F7CB /* Info.plist */; };
@@ -240,6 +239,13 @@
 		164A8CAE1C8D65EC00857638 /* YRCertificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8CAC1C8D65EC00857638 /* YRCertificationViewController.xib */; };
 		164A8CB21C8D729700857638 /* YRActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CB01C8D729700857638 /* YRActivityTableViewCell.m */; };
 		164A8CB31C8D729700857638 /* YRActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8CB11C8D729700857638 /* YRActivityTableViewCell.xib */; };
+		165991CA1CB64DFA00338264 /* YRReservationDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 165991C91CB64DFA00338264 /* YRReservationDetailVC.m */; };
+		165991CF1CB65B3800338264 /* YROrderedPlaceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 165991CC1CB65B3800338264 /* YROrderedPlaceDetailModel.m */; };
+		165991D01CB65B3800338264 /* YROrderedPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 165991CE1CB65B3800338264 /* YROrderedPlaceModel.m */; };
+		165991E11CB65BB500338264 /* YROrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 165991DC1CB65BB500338264 /* YROrderItemCell.m */; };
+		165991E21CB65BB500338264 /* YROrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 165991DD1CB65BB500338264 /* YROrderItemCell.xib */; };
+		165991E31CB65BB500338264 /* YRReservationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 165991DF1CB65BB500338264 /* YRReservationCell.m */; };
+		165991E41CB65BB500338264 /* YRReservationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 165991E01CB65BB500338264 /* YRReservationCell.xib */; };
 		1665D0E61CA8C9030064A103 /* YRStudentMoneyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1665D0E51CA8C9030064A103 /* YRStudentMoneyDetailVC.m */; };
 		1665D0E91CA8C94E0064A103 /* YRMoneyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1665D0E81CA8C94E0064A103 /* YRMoneyDetailModel.m */; };
 		1665D0ED1CA8CCED0064A103 /* YRMoneyDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1665D0EB1CA8CCED0064A103 /* YRMoneyDetailCell.m */; };
@@ -264,11 +270,7 @@
 		1672A6641C8FE8F400AF6272 /* SchoolDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672A6631C8FE8F400AF6272 /* SchoolDataSource.m */; };
 		168132AC1C97B012008F3090 /* YRStarsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 168132AB1C97B012008F3090 /* YRStarsView.m */; };
 		16921F5A1CAE37BE007FBDF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB451C87E65D001919EB /* Assets.xcassets */; };
-		16921F5D1CAE55C1007FBDF5 /* YROrderedPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16921F5C1CAE55C1007FBDF5 /* YROrderedPlaceModel.m */; };
-		16921F601CAE6564007FBDF5 /* YROrderedPlaceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16921F5F1CAE6564007FBDF5 /* YROrderedPlaceDetailModel.m */; };
 		16921F661CAE6867007FBDF5 /* YRReservationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16921F651CAE6867007FBDF5 /* YRReservationModel.m */; };
-		16921F6A1CAE7770007FBDF5 /* YROrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16921F681CAE7770007FBDF5 /* YROrderItemCell.m */; };
-		16921F6B1CAE7770007FBDF5 /* YROrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16921F691CAE7770007FBDF5 /* YROrderItemCell.xib */; };
 		1694F57D1CA234A6009A4C21 /* YRReservationDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694F57C1CA234A6009A4C21 /* YRReservationDateVC.m */; };
 		1694F5801CA23DED009A4C21 /* YRDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694F57F1CA23DED009A4C21 /* YRDateCell.m */; };
 		1694F5831CA25DF4009A4C21 /* YRReservationChoosePlaceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1694F5821CA25DF4009A4C21 /* YRReservationChoosePlaceVC.m */; };
@@ -289,8 +291,6 @@
 		16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096071C89236900FF4A81 /* YRUserCenterViewController.m */; };
 		16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D0960A1C89345D00FF4A81 /* RequestData.m */; };
 		16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096131C89682700FF4A81 /* YRReservationViewController.m */; };
-		16D096181C89699300FF4A81 /* YRReservationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096161C89699300FF4A81 /* YRReservationCell.m */; };
-		16D096191C89699300FF4A81 /* YRReservationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16D096171C89699300FF4A81 /* YRReservationCell.xib */; };
 		3E6442085DEAC8124A5E55C4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F955F842A16D32F98F195A02 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -690,8 +690,6 @@
 		161B1BFE1C910FF80047182D /* CoachDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachDataSource.m; sourceTree = "<group>"; };
 		161B1C001C9110480047182D /* StudentDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentDataSource.h; sourceTree = "<group>"; };
 		161B1C011C9110480047182D /* StudentDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentDataSource.m; sourceTree = "<group>"; };
-		1624E2951C8E667B009F4E20 /* YRReservationDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YRReservationDetailVC.h; path = ../YRReservationDetailVC.h; sourceTree = "<group>"; };
-		1624E2961C8E667B009F4E20 /* YRReservationDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YRReservationDetailVC.m; path = ../YRReservationDetailVC.m; sourceTree = "<group>"; };
 		1624E29A1C8E7543009F4E20 /* YRCommentDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCommentDetailVC.h; sourceTree = "<group>"; };
 		1624E29B1C8E7543009F4E20 /* YRCommentDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCommentDetailVC.m; sourceTree = "<group>"; };
 		1624E29C1C8E7543009F4E20 /* YRCommentDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRCommentDetailVC.xib; sourceTree = "<group>"; };
@@ -749,6 +747,18 @@
 		164A8CAF1C8D729700857638 /* YRActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRActivityTableViewCell.h; sourceTree = "<group>"; };
 		164A8CB01C8D729700857638 /* YRActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRActivityTableViewCell.m; sourceTree = "<group>"; };
 		164A8CB11C8D729700857638 /* YRActivityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRActivityTableViewCell.xib; sourceTree = "<group>"; };
+		165991C81CB64DFA00338264 /* YRReservationDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRReservationDetailVC.h; sourceTree = "<group>"; };
+		165991C91CB64DFA00338264 /* YRReservationDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationDetailVC.m; sourceTree = "<group>"; };
+		165991CB1CB65B3800338264 /* YROrderedPlaceDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YROrderedPlaceDetailModel.h; sourceTree = "<group>"; };
+		165991CC1CB65B3800338264 /* YROrderedPlaceDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YROrderedPlaceDetailModel.m; sourceTree = "<group>"; };
+		165991CD1CB65B3800338264 /* YROrderedPlaceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YROrderedPlaceModel.h; sourceTree = "<group>"; };
+		165991CE1CB65B3800338264 /* YROrderedPlaceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YROrderedPlaceModel.m; sourceTree = "<group>"; };
+		165991DB1CB65BB500338264 /* YROrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YROrderItemCell.h; sourceTree = "<group>"; };
+		165991DC1CB65BB500338264 /* YROrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YROrderItemCell.m; sourceTree = "<group>"; };
+		165991DD1CB65BB500338264 /* YROrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YROrderItemCell.xib; sourceTree = "<group>"; };
+		165991DE1CB65BB500338264 /* YRReservationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRReservationCell.h; sourceTree = "<group>"; };
+		165991DF1CB65BB500338264 /* YRReservationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationCell.m; sourceTree = "<group>"; };
+		165991E01CB65BB500338264 /* YRReservationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRReservationCell.xib; sourceTree = "<group>"; };
 		1665D0E41CA8C9030064A103 /* YRStudentMoneyDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRStudentMoneyDetailVC.h; sourceTree = "<group>"; };
 		1665D0E51CA8C9030064A103 /* YRStudentMoneyDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRStudentMoneyDetailVC.m; sourceTree = "<group>"; };
 		1665D0E71CA8C94E0064A103 /* YRMoneyDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMoneyDetailModel.h; sourceTree = "<group>"; };
@@ -791,15 +801,8 @@
 		1672A6631C8FE8F400AF6272 /* SchoolDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolDataSource.m; sourceTree = "<group>"; };
 		168132AA1C97B012008F3090 /* YRStarsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRStarsView.h; sourceTree = "<group>"; };
 		168132AB1C97B012008F3090 /* YRStarsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRStarsView.m; sourceTree = "<group>"; };
-		16921F5B1CAE55C1007FBDF5 /* YROrderedPlaceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YROrderedPlaceModel.h; path = ../YROrderedPlaceModel.h; sourceTree = "<group>"; };
-		16921F5C1CAE55C1007FBDF5 /* YROrderedPlaceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YROrderedPlaceModel.m; path = ../YROrderedPlaceModel.m; sourceTree = "<group>"; };
-		16921F5E1CAE6564007FBDF5 /* YROrderedPlaceDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YROrderedPlaceDetailModel.h; path = ../YROrderedPlaceDetailModel.h; sourceTree = "<group>"; };
-		16921F5F1CAE6564007FBDF5 /* YROrderedPlaceDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YROrderedPlaceDetailModel.m; path = ../YROrderedPlaceDetailModel.m; sourceTree = "<group>"; };
 		16921F641CAE6867007FBDF5 /* YRReservationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRReservationModel.h; sourceTree = "<group>"; };
 		16921F651CAE6867007FBDF5 /* YRReservationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationModel.m; sourceTree = "<group>"; };
-		16921F671CAE7770007FBDF5 /* YROrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YROrderItemCell.h; sourceTree = "<group>"; };
-		16921F681CAE7770007FBDF5 /* YROrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YROrderItemCell.m; sourceTree = "<group>"; };
-		16921F691CAE7770007FBDF5 /* YROrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YROrderItemCell.xib; sourceTree = "<group>"; };
 		1694F57B1CA234A6009A4C21 /* YRReservationDateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRReservationDateVC.h; sourceTree = "<group>"; };
 		1694F57C1CA234A6009A4C21 /* YRReservationDateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationDateVC.m; sourceTree = "<group>"; };
 		1694F57E1CA23DED009A4C21 /* YRDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDateCell.h; sourceTree = "<group>"; };
@@ -839,9 +842,6 @@
 		16D0960A1C89345D00FF4A81 /* RequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestData.m; sourceTree = "<group>"; };
 		16D096121C89682700FF4A81 /* YRReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRReservationViewController.h; sourceTree = "<group>"; };
 		16D096131C89682700FF4A81 /* YRReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationViewController.m; sourceTree = "<group>"; };
-		16D096151C89699300FF4A81 /* YRReservationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YRReservationCell.h; path = ../YRReservationCell.h; sourceTree = "<group>"; };
-		16D096161C89699300FF4A81 /* YRReservationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YRReservationCell.m; path = ../YRReservationCell.m; sourceTree = "<group>"; };
-		16D096171C89699300FF4A81 /* YRReservationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YRReservationCell.xib; path = ../YRReservationCell.xib; sourceTree = "<group>"; };
 		7015813C2D65EC7400D8D9EE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D594CBA93F4C6756E23B469B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F955F842A16D32F98F195A02 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1844,6 +1844,15 @@
 			path = MapAnnotation;
 			sourceTree = "<group>";
 		};
+		165991C71CB64DFA00338264 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				165991C81CB64DFA00338264 /* YRReservationDetailVC.h */,
+				165991C91CB64DFA00338264 /* YRReservationDetailVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		166939F71C9A3E9A00C7ECF2 /* Pinyin */ = {
 			isa = PBXGroup;
 			children = (
@@ -2008,22 +2017,13 @@
 			path = TableDataSource;
 			sourceTree = "<group>";
 		};
-		16921F611CAE668C007FBDF5 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1624E2951C8E667B009F4E20 /* YRReservationDetailVC.h */,
-				1624E2961C8E667B009F4E20 /* YRReservationDetailVC.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		16921F621CAE668C007FBDF5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				16921F5B1CAE55C1007FBDF5 /* YROrderedPlaceModel.h */,
-				16921F5C1CAE55C1007FBDF5 /* YROrderedPlaceModel.m */,
-				16921F5E1CAE6564007FBDF5 /* YROrderedPlaceDetailModel.h */,
-				16921F5F1CAE6564007FBDF5 /* YROrderedPlaceDetailModel.m */,
+				165991CB1CB65B3800338264 /* YROrderedPlaceDetailModel.h */,
+				165991CC1CB65B3800338264 /* YROrderedPlaceDetailModel.m */,
+				165991CD1CB65B3800338264 /* YROrderedPlaceModel.h */,
+				165991CE1CB65B3800338264 /* YROrderedPlaceModel.m */,
 				16921F641CAE6867007FBDF5 /* YRReservationModel.h */,
 				16921F651CAE6867007FBDF5 /* YRReservationModel.m */,
 			);
@@ -2033,12 +2033,12 @@
 		16921F631CAE668C007FBDF5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				16D096151C89699300FF4A81 /* YRReservationCell.h */,
-				16D096161C89699300FF4A81 /* YRReservationCell.m */,
-				16D096171C89699300FF4A81 /* YRReservationCell.xib */,
-				16921F671CAE7770007FBDF5 /* YROrderItemCell.h */,
-				16921F681CAE7770007FBDF5 /* YROrderItemCell.m */,
-				16921F691CAE7770007FBDF5 /* YROrderItemCell.xib */,
+				165991DB1CB65BB500338264 /* YROrderItemCell.h */,
+				165991DC1CB65BB500338264 /* YROrderItemCell.m */,
+				165991DD1CB65BB500338264 /* YROrderItemCell.xib */,
+				165991DE1CB65BB500338264 /* YRReservationCell.h */,
+				165991DF1CB65BB500338264 /* YRReservationCell.m */,
+				165991E01CB65BB500338264 /* YRReservationCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2092,7 +2092,7 @@
 		16D096101C8967DE00FF4A81 /* Reservation */ = {
 			isa = PBXGroup;
 			children = (
-				16921F611CAE668C007FBDF5 /* Controller */,
+				165991C71CB64DFA00338264 /* Controller */,
 				16921F621CAE668C007FBDF5 /* Model */,
 				16921F631CAE668C007FBDF5 /* View */,
 				16D096121C89682700FF4A81 /* YRReservationViewController.h */,
@@ -2211,12 +2211,13 @@
 				1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */,
 				16921F5A1CAE37BE007FBDF5 /* Assets.xcassets in Resources */,
 				03A25F251C92AF17000196A6 /* YRDriveLawCell.xib in Resources */,
+				165991E41CB65BB500338264 /* YRReservationCell.xib in Resources */,
 				03C651C31CA8C509005FFC71 /* YRMessageViewCell.xib in Resources */,
 				037D7C291C916AE600273703 /* UzysAssetPickerController.bundle in Resources */,
 				16C5459E1C995A6400AE5152 /* YRSearchFriendCell.xib in Resources */,
 				037D7C2B1C916AE600273703 /* UzysAssetsPickerController.xib in Resources */,
-				16921F6B1CAE7770007FBDF5 /* YROrderItemCell.xib in Resources */,
 				03FF14711C9F861600AEBB75 /* YRLearnOrderController.xib in Resources */,
+				165991E21CB65BB500338264 /* YROrderItemCell.xib in Resources */,
 				031515381C9A3D7400A2A2F1 /* YREditUserController.xib in Resources */,
 				03F59B901C8EC1FF009D5EA2 /* YRCircleDetailController.xib in Resources */,
 				037F8E691C8D5FC50057BF6C /* JKImagePickerController.strings in Resources */,
@@ -2228,7 +2229,6 @@
 				1624E29E1C8E7543009F4E20 /* YRCommentDetailVC.xib in Resources */,
 				164A8C9B1C8D248300857638 /* YRMyCommentCellTableViewCell.xib in Resources */,
 				1672A6601C8FE61200AF6272 /* YRStudentTableCell.xib in Resources */,
-				16D096191C89699300FF4A81 /* YRReservationCell.xib in Resources */,
 				1672A65B1C8FE60300AF6272 /* YRCoachTableCell.xib in Resources */,
 				031D50361CA1374D000E1303 /* YRAppointmentDetailController.xib in Resources */,
 			);
@@ -2289,7 +2289,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16921F6A1CAE7770007FBDF5 /* YROrderItemCell.m in Sources */,
 				1665D0ED1CA8CCED0064A103 /* YRMoneyDetailCell.m in Sources */,
 				032C46161CB3BF030022C2F9 /* YRPublicMethod.m in Sources */,
 				037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */,
@@ -2308,7 +2307,6 @@
 				03C651BE1CA8BF79005FFC71 /* YRMessageObject.m in Sources */,
 				03228D371CA4D38700890DC6 /* SDTransparentPieProgressView.m in Sources */,
 				03228D4A1CA4E92D00890DC6 /* YRScoreDetailHeadView.m in Sources */,
-				16921F5D1CAE55C1007FBDF5 /* YROrderedPlaceModel.m in Sources */,
 				031515431C9A912100A2A2F1 /* YRQuestionObject.m in Sources */,
 				032C461D1CB4B67D0022C2F9 /* YRTeacherDetailObj.m in Sources */,
 				032C44211CB260D70022C2F9 /* YRLearnProfessionalController.m in Sources */,
@@ -2319,7 +2317,6 @@
 				031D503C1CA14B8A000E1303 /* YRLearnNoMsgView.m in Sources */,
 				03228D521CA5251D00890DC6 /* YRGotScoreController.m in Sources */,
 				037C92B41C901A33005B41BF /* YRFirstDownView.m in Sources */,
-				1624E2981C8E667B009F4E20 /* YRReservationDetailVC.m in Sources */,
 				03228D551CA52E6300890DC6 /* YRExamScorePercentView.m in Sources */,
 				16693A091C9A96C700C7ECF2 /* YRUserLocation.m in Sources */,
 				1672A6411C8FBC6200AF6272 /* YRFriendViewController.m in Sources */,
@@ -2342,6 +2339,7 @@
 				032C43FA1CACFEBF0022C2F9 /* XYPieChart.m in Sources */,
 				03A8CA511CA272F4007AB152 /* YRTeacherSectionSecoView.m in Sources */,
 				031D50391CA13A56000E1303 /* YRAppointmentHeadView.m in Sources */,
+				165991CF1CB65B3800338264 /* YROrderedPlaceDetailModel.m in Sources */,
 				03A25F0F1C925848000196A6 /* YRMenuHeadView.m in Sources */,
 				164A8CA91C8D65A200857638 /* YRNotificationViewController.m in Sources */,
 				16B75DEA1C92A627004DC928 /* YRPullListView.m in Sources */,
@@ -2370,7 +2368,6 @@
 				037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */,
 				03228D321CA4D38700890DC6 /* SDBaseProgressView.m in Sources */,
 				037F8EB51C8E6D350057BF6C /* MJPhotoProgressView.m in Sources */,
-				16921F601CAE6564007FBDF5 /* YROrderedPlaceDetailModel.m in Sources */,
 				1600EBC31C88087A001919EB /* REFrostedViewController.m in Sources */,
 				16921F661CAE6867007FBDF5 /* YRReservationModel.m in Sources */,
 				161B1BFF1C910FF80047182D /* CoachDataSource.m in Sources */,
@@ -2401,6 +2398,7 @@
 				037C92B71C901AF8005B41BF /* YRLeftImgBtn.m in Sources */,
 				037C92B11C901931005B41BF /* YRFirstMiddleView.m in Sources */,
 				032C442C1CB29BBE0022C2F9 /* YRMyPracticeView.m in Sources */,
+				165991D01CB65B3800338264 /* YROrderedPlaceModel.m in Sources */,
 				031515461C9A9B1600A2A2F1 /* YRExamCell.m in Sources */,
 				031D50491CA23992000E1303 /* YRTeacherCommentCell.m in Sources */,
 				037F8EA01C8E68E90057BF6C /* YRCircleUser.m in Sources */,
@@ -2437,6 +2435,7 @@
 				1600EBC51C88087A001919EB /* UIView+REFrostedViewController.m in Sources */,
 				03F59B8F1C8EC1FF009D5EA2 /* YRCircleDetailController.m in Sources */,
 				037F8E2A1C883C570057BF6C /* YRProtocolViewController.m in Sources */,
+				165991CA1CB64DFA00338264 /* YRReservationDetailVC.m in Sources */,
 				037F8E1D1C8826750057BF6C /* UIButton+titleFrame.m in Sources */,
 				166939FD1C9A3F1D00C7ECF2 /* ChineseString.m in Sources */,
 				037D7C251C916AE600273703 /* CorePhoto.m in Sources */,
@@ -2467,7 +2466,6 @@
 				03228D201CA3EF5800890DC6 /* YRCertificationController.m in Sources */,
 				16C163FF1CA8EFBC00804222 /* YRStudentAnnotationCalloutView.m in Sources */,
 				03FE5B861CAB7F09009F0ED7 /* YRExamCollectController.m in Sources */,
-				16D096181C89699300FF4A81 /* YRReservationCell.m in Sources */,
 				037D7C281C916AE600273703 /* UzysAppearanceConfig.m in Sources */,
 				16C5459D1C995A6400AE5152 /* YRSearchFriendCell.m in Sources */,
 				037F8E741C8D5FC50057BF6C /* JKPromptView.m in Sources */,
@@ -2487,6 +2485,7 @@
 				1672A6501C8FC6A600AF6272 /* YRMapSelectView.m in Sources */,
 				032C44251CB272650022C2F9 /* YRMyErrorController.m in Sources */,
 				037F8E711C8D5FC50057BF6C /* JKImagePickerController.m in Sources */,
+				165991E31CB65BB500338264 /* YRReservationCell.m in Sources */,
 				032C46101CB392C50022C2F9 /* YRChooseMenuView.m in Sources */,
 				03FF14751C9F866100AEBB75 /* YRMyCollectionController.m in Sources */,
 				037F8E321C884DBC0057BF6C /* PublicCheckMsgModel.m in Sources */,
@@ -2537,6 +2536,7 @@
 				037D7C0C1C91545200273703 /* YRSexChoose.m in Sources */,
 				037F8EB31C8E6D350057BF6C /* MJPhotoBrowser.m in Sources */,
 				037F8E751C8D5FC50057BF6C /* JKUtil.m in Sources */,
+				165991E11CB65BB500338264 /* YROrderItemCell.m in Sources */,
 				1600EBCB1C88087A001919EB /* XBTagTitleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

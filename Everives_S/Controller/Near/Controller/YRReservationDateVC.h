@@ -11,4 +11,5 @@
 @interface YRReservationDateVC : UIViewController
 @property(nonatomic,strong) NSString *coachID;
 @property(nonatomic,strong) NSString *coachName;
+@property(nonatomic,strong) NSString *kind;//0科目二 1科目三
 @end

@@ -60,7 +60,7 @@ static NSString *HeaderID = @"headerID";
         [_parameterArr addObject:dic];
     }];
     NSDictionary *parameters = @{@"id":_coachID,@"partner":@"0",@"info":[_parameterArr mj_JSONString],@"kind":@"0"};
-    NSLog(@"%@",_selectedDic);
+    NSLog(@"%@",parameters[@"info"]);
     [RequestData POST:STUDENT_ORDER parameters:parameters complete:^(NSDictionary *responseDic) {
         NSLog(@"%@",responseDic);
         [MBProgressHUD showSuccess:@"预约成功" toView:self.view];

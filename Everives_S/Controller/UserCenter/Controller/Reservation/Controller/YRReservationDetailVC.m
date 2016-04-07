@@ -17,7 +17,7 @@ static NSString *cellID = @"cellID";
     NSArray *_statusArr;
     YROrderedPlaceDetailModel *_model;
 }
-
+@property(nonatomic,strong) UIView *myTableFooter;
 @end
 
 @implementation YRReservationDetailVC
@@ -25,7 +25,7 @@ static NSString *cellID = @"cellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     _statusArr = @[@"未支付" ,@"已支付",@"等待同伴一起拼",@"已支付",@"等待去练车", @"待评价" ,@"已评价" ,@"已取消"];
-    self.tableView.tableFooterView = [[UIView alloc] init];
+    self.tableView.tableFooterView = self.myTableFooter;
     [self.tableView registerNib:[UINib nibWithNibName:@"YROrderItemCell" bundle:nil] forCellReuseIdentifier:cellID];
     self.tableView.rowHeight = 90;
     [self getData];
@@ -50,5 +50,23 @@ static NSString *cellID = @"cellID";
     YROrderItemCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     [cell configCellWithModel:_model.info[indexPath.row]];
     return cell;
+}
+
+-(UIView *)myTableFooter{
+    if (!_myTableFooter) {
+        _myTableFooter = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 110)];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(50, 30, kScreenWidth-100, 50)];
+        [btn setTitle:_statusArr[[_model.status integerValue]] forState:UIControlStateNormal];
+        btn.titleLabel.font = kFontOfLetterMedium;
+        btn.backgroundColor = [UIColor colorWithWhite:0.181 alpha:1.000];
+        btn.layer.cornerRadius = 25;
+        [btn addTarget:self action:@selector(footerBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_myTableFooter addSubview:btn];
+    }
+    return _myTableFooter;
+}
+
+-(void)footerBtnClick:(UIButton*)sender{
+    
 }
 @end

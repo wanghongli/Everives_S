@@ -79,11 +79,14 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 #pragma mark - Private Methods
 //收到筛选信息之后的通知处理
 -(void)tablewViewReloadData:(NSNotification*)notification{
+    //驾校筛选信息
     if (_selectView.selectedBtnNum == NearTableTypeSchool) {
         NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":_schoolFillterView.sort?:@"0",@"address":(_schoolFillterView.addr && ![_schoolFillterView.addr isEqualToString:@"不限"])?_schoolFillterView.addr:@"",@"key":@""};
+        NSLog(@"sort%@    address%@",parameters[@"sort"],parameters[@"address"]);
         [_schoolData getDataWithParameters:parameters];
-    }else{
-        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":_coachFillterView.sort?:@"0",@"address":(_coachFillterView.addr && ![_coachFillterView.addr isEqualToString:@"不限"])?_coachFillterView.addr:@"",@"key":@""};
+    }else{//教练筛选信息
+        NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":_coachFillterView.sort?:@"0",@"address":(_coachFillterView.addr && ![_coachFillterView.addr isEqualToString:@"不限"])?_coachFillterView.addr:@"",@"key":@"",@"kind":_coachFillterView.kind?:@"0"};
+         NSLog(@"sort%@    address%@  kind%@",parameters[@"sort"],parameters[@"address"],parameters[@"kind"]);
         [_coachData getDataWithParameters:parameters];
     }
 }
@@ -208,6 +211,10 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     
     if (!_isMapView) {
         [self.view addSubview:self.schoolTable];
+        if (!self.schoolFillterView.hasObserver) {
+            [self.schoolFillterView addMyObserver];
+        }
+        [self.coachFillterView removeMyObserver];
     }
 }
 -(void)coachBtnClick:(UIButton*)sender{
@@ -219,9 +226,12 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [_mapView removeAnnotations:_schoolForMap];
     [_mapView removeAnnotations:_stuForMap];
     [self getDataForMap:2];
-    
     if (!_isMapView) {
         [self.view addSubview:self.coachTable];
+        if (!self.coachFillterView.hasObserver) {
+            [self.coachFillterView addMyObserver];
+        }
+        [self.schoolFillterView removeMyObserver];
     }
 }
 -(void)studentBtnClick:(UIButton*)sender{
@@ -340,9 +350,9 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(YRFillterBtnView *)coachFillterView{
     if (!_coachFillterView) {
-        _coachFillterView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式",@"不限"]];
+        _coachFillterView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式",@"科二教练"]];
         _coachFillterView.itemArrs = @[@[@[@"重庆"],@[@"不限",@"南岸",@"江北",@"渝北",@"渝中",@"北碚",@"巴南",@"沙坪坝"]],
-                                       @[@[@"综合排序",@"人气最高",@"距离最近",@"评价最好"]],@[@[@"不限",@"科二教练",@"科三教练"]]];
+                                       @[@[@"综合排序",@"人气最高",@"距离最近",@"评价最好"]],@[@[@"科二教练",@"科三教练"]]];
         _coachFillterView.tag = 2;
     }
     return _coachFillterView;

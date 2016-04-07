@@ -13,9 +13,9 @@
     CGFloat _btnWidth;
     NSInteger _btnNum;
     NSInteger _whichBtnClicked;
-    NSMutableArray *_pullViews;
     BOOL _ishiden;
 }
+@property(nonatomic,strong) NSMutableArray *pullViews;
 @property(nonatomic,strong) NSArray *titles;
 @property(nonatomic,strong) NSMutableArray *btns;
 @property(nonatomic,strong) YRPullListView *pullView;
@@ -36,30 +36,42 @@
         }
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
         self.layer.borderWidth = 1;
-        _itemArrs = @[@[@[@"重庆"],@[@"不限",@"南岸",@"江北",@"渝北",@"渝中",@"北碚",@"巴南",@"沙坪坝"]],
-                        @[@[@"综合排序",@"人气最高",@"距离最近",@"评价最好"]]];
+        [self addMyObserver];
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePullView:) name:kFillterBtnRemovePullView object:nil];
     return self;
 }
-
+-(void)addMyObserver{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePullView:) name:kFillterBtnRemovePullView object:nil];
+    _hasObserver = YES;
+}
+-(void)removeMyObserver{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kFillterBtnRemovePullView object:nil];
+    _hasObserver = NO;
+}
+//全部选择之后自动收缩选项
 -(void)removePullView:(NSNotification*)notification{
     _ishiden = YES;
     [self.pullView removeFromSuperview];
+    //当前选择按钮的title，比如渝北、人气最高、科目二
     NSString *title = [NSString string];
     for (NSInteger i =0; i<self.pullView.selectedArray.count; i++) {
         title = [title stringByAppendingString:_itemArrs[_whichBtnClicked][i][[self.pullView.selectedArray[i] integerValue]]];
     }
-    if (self.pullView.tag == 0) {
+    if (self.pullView.tag == 0) {//地区
         if ([_addr isEqualToString:[title substringFromIndex:2]]) {
             return;
         }
         _addr = [title substringFromIndex:2];
-    }else{
-        if ([_sort integerValue] == [[self.pullView.selectedArray lastObject] integerValue]) {
+    }else if(self.pullView.tag == 1){//排序方式
+        if ([_sort integerValue] == [self.pullView.selectedArray[0] integerValue]) {
             return;
         }
-        _sort = [NSString stringWithFormat:@"%@",[self.pullView.selectedArray lastObject]];
+        _sort = [NSString stringWithFormat:@"%@",self.pullView.selectedArray[0]];
+    }else{//科目二科目三
+        if ([_kind integerValue] == [self.pullView.selectedArray[0] integerValue]) {
+            return;
+        }
+        _kind = [NSString stringWithFormat:@"%@",self.pullView.selectedArray[0]];
     }
     [_btns[_whichBtnClicked] setTitle:title forState:UIControlStateNormal];
     
@@ -112,17 +124,22 @@
             for (NSInteger i =0; i<self.pullView.selectedArray.count; i++) {
                 title = [title stringByAppendingString:_itemArrs[_whichBtnClicked][i][[self.pullView.selectedArray[i] integerValue]]];
             }
-            if (sender.tag == 0) {
+            if (sender.tag == 0) {//地区
                 if ([_addr isEqualToString:[title substringFromIndex:2]]) {
                     return;
                 }
                 _addr = [title substringFromIndex:2];
                 
-            }else{
-                if ([_sort integerValue] == [[self.pullView.selectedArray lastObject] integerValue]) {
+            }else if(sender.tag == 1){//排序方式
+                if ([_sort integerValue] == [self.pullView.selectedArray[0] integerValue]) {
                     return;
                 }
-                _sort = [NSString stringWithFormat:@"%@",[self.pullView.selectedArray lastObject]];
+                _sort = [NSString stringWithFormat:@"%@",self.pullView.selectedArray[0]];
+            }else{//科目二科目三
+                if ([_kind integerValue] == [self.pullView.selectedArray[0] integerValue]) {
+                    return;
+                }
+                _kind = [NSString stringWithFormat:@"%@",self.pullView.selectedArray[0]];
             }
             [sender setTitle:title forState:UIControlStateNormal];
             [[NSNotificationCenter defaultCenter] postNotificationName:kNearViewControlerReloadTable object:nil];
@@ -131,7 +148,7 @@
    
 }
 -(YRPullListView *)pullView{
-    if (!_pullView) {
+    if (!_pullViews||_pullViews.count == 0) {
         for (NSInteger i = 0; i<_titles.count; i++) {
             YRPullListView *pullView = [[YRPullListView alloc] initWithFrame:CGRectMake(0, 45, kScreenWidth, kScreenHeight/4) itemArray:_itemArrs[i]];
             pullView.tag = i;

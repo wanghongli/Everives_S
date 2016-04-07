@@ -32,7 +32,6 @@
     [self setCornerRadiusWith:self.firstImg];
     [self setCornerRadiusWith:self.leftImg];
     [self setCornerRadiusWith:self.rightImg];
-    
     if (testNum%2) {
         self.leftImg.hidden = YES;
         self.rightImg.hidden = YES;
@@ -62,9 +61,19 @@
 -(void)setTeacherOrder:(YRTeacherOrder *)teacherOrder
 {
     _teacherOrder = teacherOrder;
-    self.nameLabel.text = KUserManager.name;
-    self.calendarLabel.text = teacherOrder.date;
-    self.timeLabel.text = teacherOrder.time;
+    self.nameLabel.text = teacherOrder.tname;
+    
+    NSString *datey = [teacherOrder.date substringToIndex:4];
+    NSString *datem = [teacherOrder.date substringWithRange:NSMakeRange(5, 2)];
+    NSString *dated = [teacherOrder.date substringFromIndex:8];
+    NSString *calendarString = [NSString stringWithFormat:@"%@年%@月%@日",datey,datem,dated];
+    NSString *weekString = [NSString getTheDayInWeek:teacherOrder.date];
+    self.calendarLabel.text = [NSString stringWithFormat:@"%@ %@",calendarString,weekString];
+    
+    NSArray *times = @[@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"14:00-15:00",@"15:00-16:00",@"16:00-17:00",@"17:00-18:00"];
+    self.timeLabel.text = times[teacherOrder.time];;
+    [self setCornerRadiusWith:self.timeLabel];
+
     self.addressLabel.text = teacherOrder.pname;
     [self.firstImg sd_setImageWithURL:[NSURL URLWithString:teacherOrder.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
     

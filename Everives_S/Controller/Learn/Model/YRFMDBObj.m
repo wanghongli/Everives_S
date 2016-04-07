@@ -24,7 +24,7 @@
     if ([db open])
     {
         //4.创表
-        BOOL result = [db executeUpdate:@"CREATE TABLE if not exists t_question (analy text, content text,option text,pics text,answer integer,kind integer,type integer,id integer primary key,collect integer,error integer,already integer,chooseAnswer integer);"];
+        BOOL result = [db executeUpdate:@"CREATE TABLE if not exists t_question (analy text, content text,option text,pics text,answer integer,kind integer,type integer,id integer primary key,collect integer,error integer,already integer,chooseAnswer integer,randomAlready integer,professionalAlready integer,totalAlready integer);"];
 
         if (result)
         {
@@ -65,13 +65,19 @@
     return array;
 }
 
-+ (NSMutableArray *) getErrorPracticeWithType:(NSInteger)type withFMDB:(FMDatabase *)db
++ (NSMutableArray *) getErrorPracticeWithType:(NSInteger)type withFMDB:(FMDatabase *)db withAlreadyType:(BOOL)allType
 {
     NSMutableArray *array = [NSMutableArray array];
     // 查询数据
     //@"SELECT * FROM t_question where id=1"
-    //@"SELECT * FROM t_question where content='驾驶机动车在道路上违反道路交通安全法的行为，属于什么行为？'"
-    NSString *stirng = [NSString stringWithFormat:@"SELECT * FROM t_question where type=%ld and error = %d",type,1];
+    //@"SELECT * FROM t_question where content='驾驶机动车在道路上违反道路交通安全法的行为，属于什么行为？'";
+    NSString *stirng;
+    if (allType) {//全部
+        stirng = [NSString stringWithFormat:@"SELECT * FROM t_question where type=%ld and error = %d",type,1];
+
+    }else//顺序联系
+        stirng = [NSString stringWithFormat:@"SELECT * FROM t_question where type=%ld and error = %d and already = 1",type,1];
+
     FMResultSet *rs = [db executeQuery:stirng];
     
     while ([rs next]) {
@@ -79,13 +85,18 @@
     }
     return array;
 }
-+ (NSMutableArray *) getAlreadyPracticeWithType:(NSInteger)type withFMDB:(FMDatabase *)db
++ (NSMutableArray *) getAlreadyPracticeWithType:(NSInteger)type withFMDB:(FMDatabase *)db withAlreadyType:(BOOL)allAlready
 {
     NSMutableArray *array = [NSMutableArray array];
     // 查询数据
     //@"SELECT * FROM t_question where id=1"
     //@"SELECT * FROM t_question where content='驾驶机动车在道路上违反道路交通安全法的行为，属于什么行为？'"
-    NSString *stirng = [NSString stringWithFormat:@"SELECT * FROM t_question where type=%ld and already = %d",type,1];
+//    NSString *stirng = [NSString stringWithFormat:@"SELECT * FROM t_question where type=%ld and already = %d",type,1];
+    NSString *stirng;
+    if (allAlready) {//全部
+        stirng = [NSString stringWithFormat:@"SELECT * FROM t_question where type=%ld and totalAlready = 1",type];
+    }else//顺序联系
+        stirng = [NSString stringWithFormat:@"SELECT * FROM t_question where type=%ld and already = 1",type];
     FMResultSet *rs = [db executeQuery:stirng];
     
     while ([rs next]) {
@@ -113,6 +124,9 @@
     questionObj.id = [rs intForColumn:@"id"];
     questionObj.error = [rs intForColumn:@"collect"];
     questionObj.already = [rs intForColumn:@"already"];
+    questionObj.randomAlready = [rs intForColumn:@"randomAlready"];
+    questionObj.totalAlready = [rs intForColumn:@"totalAlready"];
+    questionObj.professionalAlready = [rs intForColumn:@"professionalAlready"];
     questionObj.error = [rs intForColumn:@"error"];
     return questionObj;
 }
@@ -143,15 +157,15 @@
     NSString *msgString = [NSString stringWithFormat:@"UPDATE t_question SET %@ WHERE id = %ld;",newMsg,msgID];
     [db executeUpdate:msgString];
 }
-+(NSArray *)getErrorAlreadyAndTotalQuestionWithType:(NSInteger)type
++(NSArray *)getErrorAlreadyAndTotalQuestionWithType:(NSInteger)type already:(BOOL)alreadyBool
 {
     NSArray *msgArray;
     NSMutableArray *totalarray = [NSMutableArray array];
     totalarray = [self getShunXuPracticeWithType:type withFMDB:[self initFmdb]];
     NSMutableArray *errorArray = [NSMutableArray array];
-    errorArray = [self getErrorPracticeWithType:type withFMDB:[self initFmdb]];
+    errorArray = [self getErrorPracticeWithType:type withFMDB:[self initFmdb] withAlreadyType:alreadyBool];
     NSMutableArray *alreadyarray = [NSMutableArray array];
-    alreadyarray = [self getAlreadyPracticeWithType:type withFMDB:[self initFmdb]];
+    alreadyarray = [self getAlreadyPracticeWithType:type withFMDB:[self initFmdb] withAlreadyType:alreadyBool];
     msgArray = @[[NSString stringWithFormat:@"%ld",totalarray.count],[NSString stringWithFormat:@"%ld",errorArray.count],[NSString stringWithFormat:@"%ld",alreadyarray.count]];
     return msgArray;
 }

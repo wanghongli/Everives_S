@@ -9,10 +9,12 @@
 #import "YRMyCollectionController.h"
 #import "YRLearnPracticeController.h"
 #import "YRFMDBObj.h"
+#import "YRQuestionKindObj.h"
+
 @interface YRMyCollectionController ()
-{
-    NSArray *tableArray;
-}
+
+@property (nonatomic, strong) NSMutableArray *titleArray;
+
 @end
 
 @implementation YRMyCollectionController
@@ -21,7 +23,16 @@
     [super viewDidLoad];
     self.title = @"我的收藏";
     self.view.backgroundColor = [UIColor whiteColor];
-    tableArray = @[@"交通法规",@"交通信号灯",@"路况环境",@"机动车驾驶操作"];
+//    tableArray = @[@"交通法规",@"交通信号灯",@"路况环境",@"机动车驾驶操作"];
+    self.titleArray = [NSMutableArray array];
+    NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];
+    NSArray *array = [YRQuestionKindObj mj_objectArrayWithKeyValuesArray:[userDefaults objectForKey:@"ques_kind"]];
+    for (int i = 0; i<array.count; i++) {
+        YRQuestionKindObj *quesKind = array[i];
+        if (quesKind.type == self.objFour) {
+            [self.titleArray addObject:quesKind];
+        }
+    }
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.backgroundColor = kCOLOR(241, 241, 241);
 
@@ -40,7 +51,7 @@
     if (section == 0) {
         return 1;
     }
-    return [tableArray count];
+    return [_titleArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -53,8 +64,10 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     if (indexPath.section == 0) {
         cell.textLabel.text = @"所有收藏";
-    }else
-        cell.textLabel.text = tableArray[indexPath.row];
+    }else{
+        YRQuestionKindObj *quesKind = self.titleArray[indexPath.row];
+        cell.textLabel.text = quesKind.name;
+    }
     
     return cell;
 }
@@ -78,7 +91,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YRLearnPracticeController *practiceVC = [[YRLearnPracticeController alloc]init];
     if (indexPath.section == 0) {
-        NSArray *array = [NSArray arrayWithArray:[YRFMDBObj getPracticeWithType:0 withSearchMsg:@"collect = 1" withFMDB:[YRFMDBObj initFmdb]]];
+        NSArray *array = [NSArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.objFour withSearchMsg:@"collect = 1" withFMDB:[YRFMDBObj initFmdb]]];
         if (!array.count) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"暂无收藏" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
@@ -87,13 +100,14 @@
             practiceVC.perfisonalKind = 1;
         }
     }else{
-        NSArray *array = [NSArray arrayWithArray:[YRFMDBObj getPracticeWithType:0 withSearchMsg:[NSString stringWithFormat:@"kind = %ld and collect = 1",121+indexPath.row] withFMDB:[YRFMDBObj initFmdb]]];
+        YRQuestionKindObj *quesKind = self.titleArray[indexPath.row];
+        NSArray *array = [NSArray arrayWithArray:[YRFMDBObj getPracticeWithType:self.objFour withSearchMsg:[NSString stringWithFormat:@"kind = %ld and collect = 1",quesKind.id] withFMDB:[YRFMDBObj initFmdb]]];
         if (!array.count) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"暂无此项收藏" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
             return;
         }else{
-            practiceVC.perfisonalKind = 121+indexPath.row;
+            practiceVC.perfisonalKind = quesKind.id;
         }
     }
     practiceVC.menuTag = 5;

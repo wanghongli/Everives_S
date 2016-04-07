@@ -74,7 +74,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSArray *array = [YRFMDBObj getErrorAlreadyAndTotalQuestionWithType:self.objectFour];
+    NSArray *array = [YRFMDBObj getErrorAlreadyAndTotalQuestionWithType:self.objectFour already:0];
     self.totalNum.text = array[0];
     self.errorNum.text = array[1];
     self.completeNum.text = array[2];

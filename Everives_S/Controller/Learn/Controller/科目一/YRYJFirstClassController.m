@@ -139,6 +139,7 @@
 {
     if (btnTag == 0) {//我的错题
         YRMyErrorController *errorVC = [[YRMyErrorController alloc]init];
+        errorVC.objFour = NO;
         [self.navigationController pushViewController:errorVC animated:YES];
     }else if (btnTag == 1){//我的收藏
         YRMyCollectionController *collectVC = [[YRMyCollectionController alloc]init];

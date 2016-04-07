@@ -42,6 +42,11 @@
     _turnBtn = turnbtn;
     
 }
+-(void)setBtnTitle:(NSString *)btnTitle
+{
+    _btnTitle = btnTitle;
+    [_turnBtn setTitle:btnTitle forState:UIControlStateNormal];
+}
 -(void)layoutSubviews
 {
     [super layoutSubviews];

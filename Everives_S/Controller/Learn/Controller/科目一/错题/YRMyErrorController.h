@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YRMyErrorController : UITableViewController
+@property (nonatomic, assign) BOOL objFour;
 
 @end

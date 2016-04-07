@@ -9,6 +9,7 @@
 #import "UIViewController+YRCommonController.h"
 #import "YRYJNavigationController.h"
 @implementation UIViewController (YRCommonController)
+
 - (void)goToLoginVC
 {
     [MBProgressHUD showError:@"请登陆" toView:GET_WINDOW];

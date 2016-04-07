@@ -34,16 +34,18 @@
  *  获取错误
  *
  *  @param type 0为科目一   1为科目二
+ *  @param allAlready  yes 全部  no 顺序练习
  *
  */
-+ (NSMutableArray *) getErrorPracticeWithType:(NSInteger)type withFMDB:(FMDatabase *)db;
++ (NSMutableArray *) getErrorPracticeWithType:(NSInteger)type withFMDB:(FMDatabase *)db withAlreadyType:(BOOL)allType;
 /**
  *  获取已做过
  *
  *  @param type 0为科目一   1为科目二
+ *  @param allAlready  yes 全部  no 顺序练习
  *
  */
-+ (NSMutableArray *) getAlreadyPracticeWithType:(NSInteger)type withFMDB:(FMDatabase *)db;
++ (NSMutableArray *) getAlreadyPracticeWithType:(NSInteger)type withFMDB:(FMDatabase *)db withAlreadyType:(BOOL)allAlready;
 /**
  *  修改数据库的数据
  *
@@ -56,7 +58,7 @@
  *  获取错误题数、已做过题数和总题数
  *
  */
-+(NSArray *)getErrorAlreadyAndTotalQuestionWithType:(NSInteger)type;
++(NSArray *)getErrorAlreadyAndTotalQuestionWithType:(NSInteger)type already:(BOOL)alreadyBool;
 /**
  *  收藏
  *

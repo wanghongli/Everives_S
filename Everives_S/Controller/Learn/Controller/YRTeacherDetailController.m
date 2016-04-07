@@ -21,6 +21,7 @@
 #import "YRTeacherDetailObj.h"
 #import "YRTeacherPlaceObj.h"
 #import "YRTeacherPicsObj.h"
+
 @interface YRTeacherDetailController () <UITableViewDelegate,UITableViewDataSource,YRTeacherDownViewDelegate>
 {
     YRTeacherDetailObject *_teacherObj;
@@ -41,6 +42,8 @@
     self.title = @"教练详情";
     self.view.backgroundColor = [UIColor whiteColor];
     
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     
     //获取数据
     [self getData];
@@ -76,12 +79,22 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger numbRow;
-    if (section == 2) {
-        numbRow = 4;
-//       return self.teacherDetail.place.count;
-        numbRow = self.teacherDetail.place.count;
-    }else
+    if (section == 0) {
         numbRow = 1;
+    }else if (section == 1){
+        if (_teacherDetail.comment) {
+            numbRow = 1;
+        }else
+            numbRow = 0;
+    }else if (section == 2) {
+        numbRow = self.teacherDetail.place.count;
+    }else{
+        if (_teacherDetail.pics.count) {
+            numbRow = 1;
+        }else{
+            numbRow = 0;
+        }
+    }
     return numbRow;
 }
 
@@ -171,7 +184,7 @@
 -(UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-44-64)];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-44-64)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [self.view addSubview:_tableView];

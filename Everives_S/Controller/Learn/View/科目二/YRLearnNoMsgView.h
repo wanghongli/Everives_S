@@ -14,6 +14,8 @@
 
 @interface YRLearnNoMsgView : UIView
 
+@property (nonatomic, strong)NSString *btnTitle;
+
 @property (nonatomic, assign) id<YRLearnNoMsgViewDelegate>delegate;
 
 @end

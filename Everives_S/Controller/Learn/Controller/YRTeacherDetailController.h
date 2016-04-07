@@ -10,5 +10,5 @@
 
 @interface YRTeacherDetailController : UIViewController
 @property (nonatomic, strong) NSString *teacherID;
-
+@property(nonatomic,strong) NSString *kind;
 @end

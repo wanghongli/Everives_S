@@ -79,13 +79,25 @@ static NSInteger rowNum = 8; //横着的那种
     }];
     NSMutableArray *resultDate=@[].mutableCopy;
     [_result enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSDictionary *dic = @{@"date":_dateAyyayWithYear[((NSIndexPath*)obj).section-1],@"time":[NSString stringWithFormat:@"%ld",(long)((NSIndexPath*)obj).row]};
+            NSDictionary *dic = @{@"date":_dateAyyayWithYear[((NSIndexPath*)obj).section-1],@"time":[NSString stringWithFormat:@"%ld",(long)((NSIndexPath*)obj).row],@"place":@"0"};
         [resultDate addObject:dic];
     }];
-    YRReservationChoosePlaceVC *choosePlace = [[YRReservationChoosePlaceVC alloc]init];
-    choosePlace.timeArray = resultDate;
-    choosePlace.coachID = _coachID;
-    [self.navigationController pushViewController:choosePlace animated:YES];
+    //如果是科目三就不再选择场地，直接提交
+    if ([_kind isEqualToString:@"1"]) {
+        
+        NSDictionary *parameters = @{@"id":_coachID,@"partner":@"0",@"info":[resultDate mj_JSONString],@"kind":@"1"};
+        NSLog(@"%@",parameters[@"info"]);
+        [RequestData POST:STUDENT_ORDER parameters:parameters complete:^(NSDictionary *responseDic) {
+            
+        } failed:^(NSError *error) {
+            
+        }];
+    }else{//如果是科目二则继续选择场地
+        YRReservationChoosePlaceVC *choosePlace = [[YRReservationChoosePlaceVC alloc]init];
+        choosePlace.timeArray = resultDate;
+        choosePlace.coachID = _coachID;
+        [self.navigationController pushViewController:choosePlace animated:YES];
+    }
 }
 -(void)getData{
     [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_AVAILTIME,_coachID] parameters:nil complete:^(NSDictionary *responseDic) {

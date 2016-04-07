@@ -264,6 +264,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     }else if(tableView.tag == NearTableTypeCoach){
         YRTeacherDetailController *coachDetail = [[YRTeacherDetailController alloc] init];
         coachDetail.teacherID = [_coachData.coachArray[indexPath.row] id];
+        coachDetail.kind = [_coachData.coachArray[indexPath.row] kind];
         [self.navigationController pushViewController:coachDetail animated:YES];
     }else{
         YRUserDetailController *userDetail = [[YRUserDetailController alloc] init];

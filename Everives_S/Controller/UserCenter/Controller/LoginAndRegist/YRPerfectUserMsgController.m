@@ -111,6 +111,8 @@
             KUserManager.name = self.nickName.text;
             KUserManager.gender = _bodyDic[@"gender"];
             KUserManager.sign = _bodyDic[@"sign"];
+            [YRPublicMethod changeUserMsgWithKeys:@[@"name",@"sign",@"age",@"gender"] values:@[_nickName.text,KUserManager.sign,_ageText.text,KUserManager.gender]];
+
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self dismissViewControllerAnimated:YES completion:nil];
             [MBProgressHUD showSuccess:@"提交成功" toView:GET_WINDOW];
@@ -184,6 +186,7 @@
                       
                           [RequestData PUT:STUDENT_AVATAR parameters:@{@"avatar":[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]} complete:^(NSDictionary *responseDic) {
                               KUserManager.avatar = [NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName];
+                              [YRPublicMethod changeUserMsgWithKeys:@[@"avatar"] values:@[[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]]];
                               [MBProgressHUD showSuccess:@"头像修改成功" toView:GET_WINDOW];
                           } failed:^(NSError *error) {
                               

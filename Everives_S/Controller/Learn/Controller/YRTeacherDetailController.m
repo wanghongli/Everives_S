@@ -19,6 +19,8 @@
 #import "YRSchoolModel.h"
 #import <MJExtension.h>
 #import "YRTeacherDetailObj.h"
+#import "YRTeacherPlaceObj.h"
+#import "YRTeacherPicsObj.h"
 @interface YRTeacherDetailController () <UITableViewDelegate,UITableViewDataSource,YRTeacherDownViewDelegate>
 {
     YRTeacherDetailObject *_teacherObj;
@@ -55,13 +57,13 @@
 //        _teacherObj = [YRTeacherDetailObject mj_objectWithKeyValues:responseDic];
 
         _headView = [[YRTeacherHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth/2)];
+        _headView.teacherObj = self.teacherDetail;
         self.tableView.tableHeaderView = _headView;
         self.tableView.tableFooterView = [[UIView alloc]init];
         
         _downView = [[YRTeacherDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), kScreenWidth, 44)];
         _downView.delegate = self;
         [self.view addSubview:_downView];
-        _headView.teacherObj = self.teacherDetail;
 
     } failed:^(NSError *error) {
         
@@ -77,7 +79,7 @@
     if (section == 2) {
         numbRow = 4;
 //       return self.teacherDetail.place.count;
-//        numbRow = self.teacherDetail.place.count;
+        numbRow = self.teacherDetail.place.count;
     }else
         numbRow = 1;
     return numbRow;
@@ -98,11 +100,12 @@
     }else if (indexPath.section == 2){
         YRTeacherPlaceCell *cell = [YRTeacherPlaceCell cellWithTableView:tableView];
 //        YRSchoolModel *schoolModel = _placeArray[indexPath.row];
-        [cell teacherPlaceGetSchoolName:@"希望小学驾校" address:@"南岸/黄角丫"];
+        YRTeacherPlaceObj *placeObj = _teacherDetail.place[indexPath.row];
+        [cell teacherPlaceGetSchoolName:placeObj.name address:@"南岸/黄角丫"];
         return cell;
     }else{
         YRTeacherImageCell *cell = [YRTeacherImageCell cellWithTableView:tableView];
-        cell.imgArray = nil;
+        cell.imgArray = self.teacherDetail.pics;
         return cell;
     }
 }
@@ -168,7 +171,7 @@
 -(UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-44)];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-44-64)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [self.view addSubview:_tableView];

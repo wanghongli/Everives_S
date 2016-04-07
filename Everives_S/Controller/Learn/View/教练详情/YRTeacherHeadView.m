@@ -58,35 +58,55 @@
     [super layoutSubviews];
     
     
+//    _starView.frame = CGRectMake(0, self.height-50, [YRStarView getStarViewWight], 20);
+//    _starView.center = CGPointMake(kScreenWidth/2, _starView.center.y);
+//    _starView.starNu = 3;
+//    
+//    _nameLabel.frame = CGRectMake(0, _starView.y - 20, kScreenWidth, [@"罗纳尔多" sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(kScreenWidth/2, MAXFLOAT)].height);
+////    [_nameLabel nameWith:@"罗拉尔多" sex:1];
+//    
+//    _headImg.frame = CGRectMake(0, (self.height - 70)*0.3/2+5, (self.height - 70)*0.7, (self.height - 70)*0.7);
+////    _headImg.image = [UIImage imageNamed:@"head_jiaolian"];
+//    _headImg.center = CGPointMake(kScreenWidth/2, _headImg.center.y);
+//    _headImg.layer.masksToBounds = YES;
+//    _headImg.layer.cornerRadius = _headImg.height/2;
+//    
+//    _menuView.frame = CGRectMake(0, CGRectGetMaxY(_starView.frame)+5, kScreenWidth, 20);
+////    _menuView.menuArray = @[@"7年",@"科二",@"122人"];
+}
+-(void)setTeacherObj:(YRTeacherDetailObj *)teacherObj
+{
+    _teacherObj = teacherObj;
     _starView.frame = CGRectMake(0, self.height-50, [YRStarView getStarViewWight], 20);
     _starView.center = CGPointMake(kScreenWidth/2, _starView.center.y);
-    _starView.starNu = 3;
+    _starView.starNu = [teacherObj.grade integerValue];
     
-    _nameLabel.frame = CGRectMake(0, _starView.y - 20, kScreenWidth, [@"罗纳尔多" sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(kScreenWidth/2, MAXFLOAT)].height);
-    [_nameLabel nameWith:@"罗拉尔多" sex:1];
+    _nameLabel.frame = CGRectMake(0, _starView.y - 20, kScreenWidth, [teacherObj.name sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(kScreenWidth/2, MAXFLOAT)].height);
+        [_nameLabel nameWith:teacherObj.name sex:1];
     
     _headImg.frame = CGRectMake(0, (self.height - 70)*0.3/2+5, (self.height - 70)*0.7, (self.height - 70)*0.7);
-    _headImg.image = [UIImage imageNamed:@"head_jiaolian"];
+    //    _headImg.image = [UIImage imageNamed:@"head_jiaolian"];
+    [_headImg sd_setImageWithURL:[NSURL URLWithString:teacherObj.avatar] placeholderImage:[UIImage imageNamed:@"head_jiaolian"]];
+    
     _headImg.center = CGPointMake(kScreenWidth/2, _headImg.center.y);
     _headImg.layer.masksToBounds = YES;
     _headImg.layer.cornerRadius = _headImg.height/2;
     
     _menuView.frame = CGRectMake(0, CGRectGetMaxY(_starView.frame)+5, kScreenWidth, 20);
-    _menuView.menuArray = @[@"7年",@"科二",@"122人"];
-}
--(void)setTeacherObj:(YRTeacherDetailObj *)teacherObj
-{
-    _teacherObj = teacherObj;
-    //姓名性别
-    [_nameLabel nameWith:teacherObj.name sex:1];
-    _starView.starNu = [teacherObj.grade integerValue];
-    [_headImg sd_setImageWithURL:[NSURL URLWithString:teacherObj.avatar] placeholderImage:[UIImage imageNamed:@"head_jiaolian"]];
-
-    NSString *menu;
-    if (teacherObj.kind == 0) {
-        menu = @"科二";;
-    }else
-        menu = @"科三";
-    _menuView.menuArray = @[[NSString stringWithFormat:@"%ld年",teacherObj.year],menu,[NSString stringWithFormat:@"%ld人",teacherObj.student]];
+    
+    _menuView.menuArray = @[[NSString stringWithFormat:@"%ld年",teacherObj.year],teacherObj.kind ? @"科目二":@"科目三",[NSString stringWithFormat:@"%ld人",teacherObj.student]];
+    
+    
+//    //姓名性别
+//    [_nameLabel nameWith:teacherObj.name sex:1];
+//    _starView.starNu = [teacherObj.grade integerValue];
+//    [_headImg sd_setImageWithURL:[NSURL URLWithString:teacherObj.avatar] placeholderImage:[UIImage imageNamed:@"head_jiaolian"]];
+//
+//    NSString *menu;
+//    if (teacherObj.kind == 0) {
+//        menu = @"科二";;
+//    }else
+//        menu = @"科三";
+//    _menuView.menuArray = @[[NSString stringWithFormat:@"%ld年",teacherObj.year],menu,[NSString stringWithFormat:@"%ld人",teacherObj.student]];
 }
 @end

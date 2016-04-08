@@ -12,6 +12,8 @@
 #import "NSString+Tools.h"
 #import "RequestData.h"
 #import "YRCanOrderPlacesModel.h"
+#import "YROrderConfirmViewController.h"
+#import "YRTeacherDetailObj.h"
 static NSInteger sectionNum = 8;//竖着的那种
 static NSInteger rowNum = 8; //横着的那种
 @interface YRReservationDateVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
@@ -83,24 +85,33 @@ static NSInteger rowNum = 8; //横着的那种
         [resultDate addObject:dic];
     }];
     //如果是科目三就不再选择场地，直接提交
-    if ([_kind isEqualToString:@"1"]) {
+    if (_coachModel.kind == 1) {
         
-        NSDictionary *parameters = @{@"id":_coachID,@"partner":@"0",@"info":[resultDate mj_JSONString],@"kind":@"1"};
-        NSLog(@"%@",parameters[@"info"]);
-        [RequestData POST:STUDENT_ORDER parameters:parameters complete:^(NSDictionary *responseDic) {
-            
-        } failed:^(NSError *error) {
-            
-        }];
+        NSDictionary *parameters = @{@"id":[NSString stringWithFormat:@"%li",_coachModel.id],@"partner":@"0",@"info":[resultDate mj_JSONString],@"kind":@"1"};
+//        [RequestData POST:STUDENT_ORDER parameters:parameters complete:^(NSDictionary *responseDic) {
+//            
+//        } failed:^(NSError *error) {
+//            
+//        }];
+        /**
+         /description
+         
+         - returns:
+         */
+        YROrderConfirmViewController *confirmVC = [[YROrderConfirmViewController alloc] init];
+        confirmVC.parameters = parameters;
+        confirmVC.DateTimeArray = resultDate;
+        confirmVC.coachModel = _coachModel;
+        [self.navigationController pushViewController:confirmVC animated:YES];
     }else{//如果是科目二则继续选择场地
         YRReservationChoosePlaceVC *choosePlace = [[YRReservationChoosePlaceVC alloc]init];
         choosePlace.timeArray = resultDate;
-        choosePlace.coachID = _coachID;
+        choosePlace.coachModel = _coachModel;
         [self.navigationController pushViewController:choosePlace animated:YES];
     }
 }
 -(void)getData{
-    [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_AVAILTIME,_coachID] parameters:nil complete:^(NSDictionary *responseDic) {
+    [RequestData GET:[NSString stringWithFormat:@"%@%li",STUDENT_AVAILTIME,_coachModel.id] parameters:nil complete:^(NSDictionary *responseDic) {
         _modelArray = [YRCanOrderPlacesModel mj_objectArrayWithKeyValuesArray:responseDic];
         [_cannotSelected removeAllObjects];
         [self.collectionView reloadData];

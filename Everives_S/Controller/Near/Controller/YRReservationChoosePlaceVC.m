@@ -12,6 +12,8 @@
 #import "YRChoosePlaceCell.h"
 #import "NSString+Tools.h"
 #import "YRReservationDateVC.h"
+#import "YROrderConfirmViewController.h"
+#import "YRTeacherDetailObj.h"
 static NSString *HeaderID = @"headerID";
 
 @interface YRReservationChoosePlaceVC (){
@@ -40,7 +42,7 @@ static NSString *HeaderID = @"headerID";
     [self getData];
 }
 - (void)getData{
-    [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_AVAILPLACE,_coachID] parameters:@{@"data":[_timeArray mj_JSONString]} complete:^(NSDictionary *responseDic) {
+    [RequestData GET:[NSString stringWithFormat:@"%@%li",STUDENT_AVAILPLACE,_coachModel.id] parameters:@{@"data":[_timeArray mj_JSONString]} complete:^(NSDictionary *responseDic) {
         
         [((NSArray*)responseDic) enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [_modelArrays addObject:[YRBriefPlaceModel mj_objectArrayWithKeyValuesArray:obj]];
@@ -59,23 +61,27 @@ static NSString *HeaderID = @"headerID";
         NSDictionary *dic = @{@"date":obj[@"date"],@"time":obj[@"time"],@"place":placeID};
         [_parameterArr addObject:dic];
     }];
-    NSDictionary *parameters = @{@"id":_coachID,@"partner":@"0",@"info":[_parameterArr mj_JSONString],@"kind":@"0"};
-    NSLog(@"%@",parameters[@"info"]);
-    [RequestData POST:STUDENT_ORDER parameters:parameters complete:^(NSDictionary *responseDic) {
-        NSLog(@"%@",responseDic);
-        [MBProgressHUD showSuccess:@"预约成功" toView:self.view];
-        NSMutableArray *array = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
-        [self.navigationController.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj isKindOfClass:[YRReservationDateVC class]]) {
-                [array removeObject:obj];
-            }
-            
-        }];
-        self.navigationController.viewControllers = array;
-        [self.navigationController popViewControllerAnimated:YES];
-    } failed:^(NSError *error) {
-        
-    }];
+    NSDictionary *parameters = @{@"id":[NSString stringWithFormat:@"%li",_coachModel.id],@"partner":@"0",@"info":[_parameterArr mj_JSONString],@"kind":@"0"};
+    YROrderConfirmViewController *confirmVC = [[YROrderConfirmViewController alloc] init];
+    confirmVC.parameters = parameters;
+    confirmVC.DateTimeArray = _parameterArr;
+    confirmVC.coachModel = _coachModel;
+    [self.navigationController pushViewController:confirmVC animated:YES];
+//    [RequestData POST:STUDENT_ORDER parameters:parameters complete:^(NSDictionary *responseDic) {
+//        NSLog(@"%@",responseDic);
+//        [MBProgressHUD showSuccess:@"预约成功" toView:self.view];
+//        NSMutableArray *array = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+//        [self.navigationController.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            if ([obj isKindOfClass:[YRReservationDateVC class]]) {
+//                [array removeObject:obj];
+//            }
+//            
+//        }];
+//        self.navigationController.viewControllers = array;
+//        [self.navigationController popViewControllerAnimated:YES];
+//    } failed:^(NSError *error) {
+//        
+//    }];
 }
 
 #pragma mark - Table view data source
@@ -99,7 +105,7 @@ static NSString *HeaderID = @"headerID";
     }
     NSString *date = _timeArray[section][@"date"];
     NSString *time = _times[[_timeArray[section][@"time"] integerValue]];
-    NSString *str =[NSString stringWithFormat:@"您已预约%@教练 科目二，时间%@,%@,请选择本次学车场地",_coachName?:@"罗纳尔多",date,time];
+    NSString *str =[NSString stringWithFormat:@"您已预约%@教练 科目二，时间%@,%@,请选择本次学车场地",_coachModel.name?:@"罗纳尔多",date,time];
     UIFont *font = [UIFont systemFontOfSize:17];
     CGSize size = [str sizeWithFont:font maxSize:CGSizeMake(kScreenWidth-16, 100)];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(8, (80-size.height)/2, kScreenWidth-16, size.height)];

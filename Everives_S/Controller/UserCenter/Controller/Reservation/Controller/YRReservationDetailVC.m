@@ -28,12 +28,13 @@ static NSString *cellID = @"cellID";
     self.tableView.tableFooterView = self.myTableFooter;
     [self.tableView registerNib:[UINib nibWithNibName:@"YROrderItemCell" bundle:nil] forCellReuseIdentifier:cellID];
     self.tableView.rowHeight = 90;
+    
     [self getData];
 }
 -(void)getData{
     [RequestData GET:[NSString stringWithFormat:@"%@/%@",STUDENT_ORDER,_orderID] parameters:nil complete:^(NSDictionary *responseDic) {
         _model = [YROrderedPlaceDetailModel mj_objectWithKeyValues:responseDic];
-        [self.tableView reloadData];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     } failed:^(NSError *error) {
         
     }];

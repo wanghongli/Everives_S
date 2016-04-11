@@ -20,6 +20,7 @@
 #import "YRCoachModel.h"
 #import "YRUserDetailController.h"
 #import "YRTeacherDetailController.h"
+#import "YRMapAnnotationView.h"
 //定义三个table的类型
 typedef NS_ENUM(NSUInteger,NearTableType){
     NearTableTypeSchool = 1,
@@ -30,7 +31,7 @@ static NSString *schoolCellID = @"YRSchoolTableCellID";
 static NSString *coachCellID = @"YRCoachTableCellID";
 static NSString *studentCellID = @"YRStudentTableCellID";
 
-@interface YRNearViewController ()<YRMapSelectViewDelegate,UITableViewDelegate,UISearchBarDelegate>{
+@interface YRNearViewController ()<YRMapSelectViewDelegate,UITableViewDelegate,UISearchBarDelegate,CallOutViewDelegate>{
     MAMapView *_mapView;
     YRMapSelectView *_selectView;
     BOOL _isMapView;
@@ -60,6 +61,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Neighborhood_List"] style:UIBarButtonItemStylePlain target:self action:@selector(changeViewClick:)];
     _isMapView = YES;
+    [SharedMapView sharedInstance].delegate = self;
     _mapView = [SharedMapView sharedInstance].mapView;
     _selectView = [[YRMapSelectView alloc] initWithSelectedNum:_isGoOnLearning?2:1];
     _selectView.delegate = self;
@@ -277,7 +279,23 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     
 }
-
+#pragma mark - CallOutViewDelegate
+-(void)callOutViewClickedKind:(NSInteger)kind modelID:(NSString*) modelID{
+    if (kind == NearTableTypeSchool) {
+        YRSchoolCelldetailVC *schoolDetail = [[YRSchoolCelldetailVC alloc] init];
+        schoolDetail.placeID = modelID;
+        [self.navigationController pushViewController:schoolDetail animated:YES];
+    }else if(kind == NearTableTypeCoach){
+        YRTeacherDetailController *coachDetail = [[YRTeacherDetailController alloc] init];
+        coachDetail.teacherID = modelID;
+        coachDetail.kind = 0;//表明教练负责科目二教学或者科目三
+        [self.navigationController pushViewController:coachDetail animated:YES];
+    }else{
+        YRUserDetailController *userDetail = [[YRUserDetailController alloc] init];
+        userDetail.userID = modelID;
+        [self.navigationController pushViewController:userDetail animated:YES];
+    }
+}
 #pragma mark - Getters
 -(UITableView *)schoolTable{
     if (!_schoolTable) {

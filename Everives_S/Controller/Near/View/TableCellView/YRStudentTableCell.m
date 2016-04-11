@@ -25,7 +25,7 @@
     [_avatar sd_setImageWithURL:[NSURL URLWithString:model.avatar]];
     _name.text = model.name;
     _sign.text = model.sign;
-    _distance.text = model.sign;
+    _distance.text = @"距离";
     _distance.textColor = kTextlightGrayColor;
     _sign.textColor = kTextlightGrayColor;
     if ([model.gender isEqualToString:@"0"]) {

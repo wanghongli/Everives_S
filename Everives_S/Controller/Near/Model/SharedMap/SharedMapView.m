@@ -8,7 +8,6 @@
 
 #import "SharedMapView.h"
 #import "CoreLocation/CoreLocation.h"
-#import "YRMapAnnotationView.h"
 #import "YRSchoolModel.h"
 #import "YRCoachModel.h"
 #import "YRUserStatus.h"
@@ -86,8 +85,10 @@
             
             // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
             annotationView.centerOffset = CGPointMake(0, -18);
+            annotationView.delegate = self.delegate;
+           
         }
-        
+        annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         return annotationView;
     }
     return nil;

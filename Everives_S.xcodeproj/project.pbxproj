@@ -218,6 +218,7 @@
 		161B1C021C9110480047182D /* StudentDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 161B1C011C9110480047182D /* StudentDataSource.m */; };
 		1624E29D1C8E7543009F4E20 /* YRCommentDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624E29B1C8E7543009F4E20 /* YRCommentDetailVC.m */; };
 		1624E29E1C8E7543009F4E20 /* YRCommentDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1624E29C1C8E7543009F4E20 /* YRCommentDetailVC.xib */; };
+		1625BF521CB74CFE006A2A50 /* YROrderConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1625BF501CB74CFE006A2A50 /* YROrderConfirmViewController.m */; };
 		16271AA31CB360830082F7CB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16271A891CB360830082F7CB /* Info.plist */; };
 		16271AA41CB360830082F7CB /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 16271A8B1CB360830082F7CB /* MASCompositeConstraint.m */; };
 		16271AA51CB360830082F7CB /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 16271A8E1CB360830082F7CB /* MASConstraint.m */; };
@@ -711,6 +712,8 @@
 		1624E29A1C8E7543009F4E20 /* YRCommentDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCommentDetailVC.h; sourceTree = "<group>"; };
 		1624E29B1C8E7543009F4E20 /* YRCommentDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCommentDetailVC.m; sourceTree = "<group>"; };
 		1624E29C1C8E7543009F4E20 /* YRCommentDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRCommentDetailVC.xib; sourceTree = "<group>"; };
+		1625BF4F1CB74CFE006A2A50 /* YROrderConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YROrderConfirmViewController.h; sourceTree = "<group>"; };
+		1625BF501CB74CFE006A2A50 /* YROrderConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YROrderConfirmViewController.m; sourceTree = "<group>"; };
 		16271A891CB360830082F7CB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16271A8A1CB360830082F7CB /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		16271A8B1CB360830082F7CB /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
@@ -1985,6 +1988,8 @@
 				1694F57C1CA234A6009A4C21 /* YRReservationDateVC.m */,
 				1694F5811CA25DF4009A4C21 /* YRReservationChoosePlaceVC.h */,
 				1694F5821CA25DF4009A4C21 /* YRReservationChoosePlaceVC.m */,
+				1625BF4F1CB74CFE006A2A50 /* YROrderConfirmViewController.h */,
+				1625BF501CB74CFE006A2A50 /* YROrderConfirmViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2450,6 +2455,7 @@
 				03C652161CA92290005FFC71 /* YRMyAchievementController.m in Sources */,
 				037F8E6B1C8D5FC50057BF6C /* JKAssets.m in Sources */,
 				037F8E1C1C8826750057BF6C /* YRRegistViewController.m in Sources */,
+				1625BF521CB74CFE006A2A50 /* YROrderConfirmViewController.m in Sources */,
 				037F8E871C8D90C70057BF6C /* YRWeibo.m in Sources */,
 				0315154C1C9BA60900A2A2F1 /* YRExamDownView.m in Sources */,
 				037F8DC61C8815F80057BF6C /* AppDelegate.m in Sources */,

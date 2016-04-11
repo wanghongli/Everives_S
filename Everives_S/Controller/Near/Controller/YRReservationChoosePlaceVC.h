@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class YRTeacherDetailObj;
 @interface YRReservationChoosePlaceVC : UITableViewController
 @property(nonatomic,strong) NSArray *timeArray;
-@property(nonatomic,strong) NSString *coachID;
-@property(nonatomic,strong) NSString *coachName;
+@property(nonatomic,strong) YRTeacherDetailObj *coachModel;
 @end

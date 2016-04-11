@@ -34,7 +34,7 @@ static NSString * schoolCellID = @"YRSchoolTableCellID";
     [MBProgressHUD showHUDAddedTo:self.table animated:YES];
     [RequestData GET:STUDENT_PLACES parameters:parameters complete:^(NSDictionary *responseDic) {
         _placeArray = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];
-        [self.table reloadData];
+        [self.table reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         [MBProgressHUD hideHUDForView:self.table animated:YES];
     } failed:^(NSError *error) {
         NSLog(@"%@",error);

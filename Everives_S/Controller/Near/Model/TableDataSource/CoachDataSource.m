@@ -32,7 +32,7 @@ static NSString * coachCellID = @"YRCoachTableCellID";
     [MBProgressHUD showHUDAddedTo:self.table animated:YES];
     [RequestData GET:STUDENT_NEARTEACHER parameters:parameters complete:^(NSDictionary *responseDic) {
         _coachArray = [YRCoachModel mj_objectArrayWithKeyValuesArray:responseDic];
-        [self.table reloadData];
+        [self.table reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         [MBProgressHUD hideHUDForView:self.table animated:YES];
     } failed:^(NSError *error) {
         NSLog(@"%@",error);

@@ -176,8 +176,8 @@
         
     }else{//预约
         YRReservationDateVC *vc = [[YRReservationDateVC alloc] init];
-        vc.coachID = _teacherID;
-        vc.kind = _kind;
+        self.teacherDetail.kind = [_kind integerValue];
+        vc.coachModel = self.teacherDetail;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

@@ -33,7 +33,7 @@ static NSString * studentCellID = @"YRStudentTableCellID";
     [MBProgressHUD showHUDAddedTo:self.table animated:YES];
     [RequestData GET:STUDENT_NEARBY parameters:parameters complete:^(NSDictionary *responseDic) {
         _stuArray = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
-        [self.table reloadData];
+        [self.table reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
         [MBProgressHUD hideHUDForView:self.table animated:YES];
     } failed:^(NSError *error) {
         NSLog(@"%@",error);

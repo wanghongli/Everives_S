@@ -16,6 +16,8 @@
 #import "YRQuestionObj.h"
 #import "FMDB.h"
 #import "YRFMDBObj.h"
+
+#import "YRTeacherMakeCommentController.h"
 #define CZVersionKey @"version"
 @interface YRYJLearnToDriveController ()
 @property (nonatomic, strong) FMDatabaseQueue *databaseQueue;
@@ -92,6 +94,14 @@ FMDatabase *db;
 //    [self updateMsg];
 //    //获取数据并写入
 //    [self getData];
+    
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"教练评价" style:UIBarButtonItemStylePlain target:self action:@selector(teacherCommentClick)];
+}
+-(void)teacherCommentClick
+{
+    YRTeacherMakeCommentController *commentVC = [[YRTeacherMakeCommentController alloc]init];
+    [self.navigationController pushViewController:commentVC animated:YES];
 }
 -(void)updateMsg
 {

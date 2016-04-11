@@ -1,11 +1,15 @@
 //
-//  YRScoreDetailHeadView.h
+//  YRTeacherStarLevelView.h
 //  Everives_S
 //
-//  Created by 李洪攀 on 16/3/25.
+//  Created by 李洪攀 on 16/4/8.
 //  Copyright © 2016年 darkclouds. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-@interface YRScoreDetailHeadView : UIView
+
+@interface YRTeacherStarLevelView : UIView
+
+
+
 @end

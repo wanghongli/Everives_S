@@ -76,7 +76,6 @@
 
     self.addressLabel.text = teacherOrder.pname;
     [self.firstImg sd_setImageWithURL:[NSURL URLWithString:teacherOrder.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
-    
     [self setImgWith:1];
 }
 -(void)setImgWith:(NSInteger)testNum

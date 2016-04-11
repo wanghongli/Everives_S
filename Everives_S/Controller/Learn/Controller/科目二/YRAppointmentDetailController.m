@@ -8,15 +8,16 @@
 
 #import "YRAppointmentDetailController.h"
 #import "YRAppointmentHeadView.h"
-
 #import "YRTeacherDetailController.h"
+#import "YRLearnOrderDetail.h"
+#import "YRLearnOrderDetailInfo.h"
 @interface YRAppointmentDetailController () <YRAppointmentHeadViewDelegate>
 {
     NSArray *_titleArray;
     NSArray *_menuArray;
 }
-@property (nonatomic, strong) YRAppointmentHeadView *headView;
-
+@property (nonatomic, strong) YRAppointmentHeadView *headView;//头不视图
+@property (nonatomic, strong) YRLearnOrderDetail *orderDetail;//详情模型
 @end
 
 @implementation YRAppointmentDetailController
@@ -43,10 +44,21 @@
 }
 -(void)getData
 {
+    [MBProgressHUD showMessag:@"加载中..." toView:GET_WINDOW];
     [RequestData GET:[NSString stringWithFormat:@"/order/order/%@",_teacherOrder.id] parameters:@{} complete:^(NSDictionary *responseDic) {
         MyLog(@"%@",responseDic);
-    } failed:^(NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:GET_WINDOW animated:YES];
+        self.orderDetail = [YRLearnOrderDetail mj_objectWithKeyValues:responseDic];
+        self.headView.orderDetail = self.orderDetail;
         
+        YRLearnOrderDetailInfo *detailInfo = self.orderDetail.info[0];
+        NSString *orderTime = [YRPublicMethod getDateAndWeekWith:detailInfo.date];;
+        NSString *string = [YRPublicMethod getDetailLearnTimeWith:detailInfo.time];
+        NSString *price = [NSString stringWithFormat:@"￥%ld",detailInfo.price];
+        _menuArray = @[orderTime,string,detailInfo.place,price];
+        [self.tableView reloadData];
+    } failed:^(NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:GET_WINDOW animated:YES];
     }];
 }
 -(void)sartClick:(UIButton *)sender

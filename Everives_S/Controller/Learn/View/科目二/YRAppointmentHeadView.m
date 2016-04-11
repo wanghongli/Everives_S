@@ -69,7 +69,15 @@
     _headBtn = headbtn;
     
 }
-
+- (void)setOrderDetail:(YRLearnOrderDetail *)orderDetail
+{
+    _orderDetail = orderDetail;
+    [_headImg sd_setImageWithURL:[NSURL URLWithString:orderDetail.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
+    self.nameLabel.text = orderDetail.tname;
+    self.leftImg.hidden = YES;
+    self.rightImg.hidden = YES;
+    self.detailLabel.text = [YRPublicMethod getOrderStatusWith:orderDetail.status];
+}
 -(void)layoutSubviews
 {
     [super layoutSubviews];

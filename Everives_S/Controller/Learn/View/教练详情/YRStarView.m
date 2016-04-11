@@ -45,7 +45,6 @@
     [super layoutSubviews];
     CGFloat maxX = 0;
     for (int i = 0; i<5; i++) {
-        
         UIImageView *img = [self viewWithTag:i+10];
         img.frame = CGRectMake((kDistace+kStarHW)*i, (self.height - kStarHW)/2, kStarHW, kStarHW);
         maxX = CGRectGetMaxX(img.frame);

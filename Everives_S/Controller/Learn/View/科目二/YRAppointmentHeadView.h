@@ -11,7 +11,9 @@
 
 @end
 #import <UIKit/UIKit.h>
-
+#import "YRLearnOrderDetail.h"
 @interface YRAppointmentHeadView : UIView
+@property (nonatomic, strong) YRLearnOrderDetail *orderDetail;
+
 @property (nonatomic, assign) id<YRAppointmentHeadViewDelegate>delegate;
 @end

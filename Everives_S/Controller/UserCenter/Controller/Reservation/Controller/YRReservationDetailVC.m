@@ -18,6 +18,7 @@ static NSString *cellID = @"cellID";
     YROrderedPlaceDetailModel *_model;
 }
 @property(nonatomic,strong) UIView *myTableFooter;
+@property(nonatomic,strong) UIView *myTableHeader;
 @end
 
 @implementation YRReservationDetailVC
@@ -25,7 +26,6 @@ static NSString *cellID = @"cellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     _statusArr = @[@"未支付" ,@"已支付",@"等待同伴一起拼",@"已支付",@"等待去练车", @"待评价" ,@"已评价" ,@"已取消"];
-    self.tableView.tableFooterView = self.myTableFooter;
     [self.tableView registerNib:[UINib nibWithNibName:@"YROrderItemCell" bundle:nil] forCellReuseIdentifier:cellID];
     self.tableView.rowHeight = 90;
     
@@ -34,6 +34,8 @@ static NSString *cellID = @"cellID";
 -(void)getData{
     [RequestData GET:[NSString stringWithFormat:@"%@/%@",STUDENT_ORDER,_orderID] parameters:nil complete:^(NSDictionary *responseDic) {
         _model = [YROrderedPlaceDetailModel mj_objectWithKeyValues:responseDic];
+        self.tableView.tableHeaderView = self.myTableHeader;
+        self.tableView.tableFooterView = self.myTableFooter;
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     } failed:^(NSError *error) {
         
@@ -52,7 +54,24 @@ static NSString *cellID = @"cellID";
     [cell configCellWithModel:_model.info[indexPath.row]];
     return cell;
 }
-
+-(UIView *)myTableHeader{
+    if (!_myTableHeader) {
+        _myTableHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 180)];
+        UIImageView *avatar = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth/2-40, 30, 80, 80)];
+        [avatar sd_setImageWithURL:[NSURL URLWithString:_model.avatar]];
+        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 115, 100, 20)];
+        name.text = _model.tname;
+        name.textAlignment = NSTextAlignmentCenter;
+        UILabel *state = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 140, 100, 20)];
+        state.text = _statusArr[[_model.status integerValue]];
+        state.textAlignment = NSTextAlignmentCenter;
+        [_myTableHeader addSubview:avatar];
+        [_myTableHeader addSubview:name];
+        [_myTableHeader addSubview:state];
+        
+    }
+    return _myTableHeader;
+}
 -(UIView *)myTableFooter{
     if (!_myTableFooter) {
         _myTableFooter = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 110)];

@@ -833,7 +833,7 @@ fromOldState:(MAAnnotationViewDragState)oldState;
  @param annotationView callout所属的标注view
  @param control 对应的control
  */
-- (void)mapView:(MAMapView *)mapView annotationView:(MAAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control;
+- (void)mapView:(MAMapView *)mapView annotationView:(MAAnnotationView *)view cAccessoryControlTapped:(UIControl *)control;
 
 /**
  *  标注view的calloutview整体点击时，触发改回调。

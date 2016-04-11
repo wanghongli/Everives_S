@@ -141,7 +141,9 @@
     [MBProgressHUD showMessag:@"提交中..." toView:self.view];
     [PublicCheckMsgModel checkTellWithTellNum:self.tellText.text complete:^(BOOL isSuccess) {
         if (![self.codeText.text isValid]) {
-            NSLog(@"验证码不能为空");
+            MyLog(@"验证码不能为空");
+            [MBProgressHUD showError:@"验证码不能为空" toView:self.view];
+
             return ;
         }
         [SMSSDK commitVerificationCode:self.codeText.text phoneNumber:self.tellText.text zone:@"86" result:^(NSError *error) {
@@ -154,7 +156,7 @@
                     sender.userInteractionEnabled = YES;
                     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                     if ([self.title isEqualToString:@"忘记密码"]) {//忘记密码
-                        NSLog(@"手机号码没有注册");
+                        MyLog(@"手机号码没有注册");
                         return;
                     }
                     YRRegistPswController *pswVC = [[YRRegistPswController alloc]init];
@@ -178,6 +180,7 @@
             else
             {
                 MyLog(@"验证失败");
+                [MBProgressHUD showError:@"验证失败" toView:self.view];
                 sender.userInteractionEnabled = YES;
                 [MBProgressHUD hideAllHUDsForView:self.view animated:self.view];
             }

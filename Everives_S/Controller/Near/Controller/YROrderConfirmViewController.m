@@ -9,30 +9,46 @@
 #import "YROrderConfirmViewController.h"
 #import "YRTeacherDetailObj.h"
 #import "YRStarsView.h"
+#import "YRReservationDateVC.h"
+#import "YRReservationChoosePlaceVC.h"
 static NSString *cellID = @"cellID";
-@interface YROrderConfirmViewController (){
+@interface YROrderConfirmViewController ()<UIAlertViewDelegate>{
     NSArray *_times;
 }
 @property(nonatomic,strong) UIView *coachView;
+@property(nonatomic,strong) UIButton *commitFooterBtn;
+@property(nonatomic,strong) UIView *footerView;
 @end
 
 @implementation YROrderConfirmViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"确认订单";
     _times = @[@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"14:00-15:00",@"15:00-16:00",@"16:00-17:00",@"17:00-18:00"];
-    self.tableView.tableFooterView = [[UIView alloc] init];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(commitBtnClick:)];
+    self.tableView.tableFooterView = self.footerView;
 }
 
 -(void)commitBtnClick:(UIBarButtonItem*)sender{
-    
-    //        [RequestData POST:STUDENT_ORDER parameters:parameters complete:^(NSDictionary *responseDic) {
-    //
-    //        } failed:^(NSError *error) {
-    //
-    //        }];
+    sender.enabled = NO;
+    [RequestData POST:STUDENT_ORDER parameters:_parameters complete:^(NSDictionary *responseDic) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确认支付" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"支付", nil];
+        [alertView show];
+    } failed:^(NSError *error) {
+
+    }];
 }
+-(void)returnToCoachDetail{
+    NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray: self.navigationController.viewControllers];
+    [self.navigationController.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[YRReservationDateVC class]]||[obj isKindOfClass:[YRReservationChoosePlaceVC class]]) {
+            [allViewControllers removeObjectIdenticalTo: obj];
+        }
+    }];
+    self.navigationController.viewControllers = allViewControllers;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark - UITableView
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section) {
         return 70;
@@ -92,7 +108,7 @@ static NSString *cellID = @"cellID";
             titleLab.text = @"时段";
             [_DateTimeArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 UILabel *contentLab = [[UILabel alloc] initWithFrame:CGRectMake(90, 20+30*idx, kScreenWidth -60, 30)];
-                contentLab.text = [NSString stringWithFormat:@"%@ %@ %@",obj[@"date"],[NSString getTheDayInWeek:obj[@"date"]],_times[[obj[@"time"] integerValue]]];
+                contentLab.text = [NSString stringWithFormat:@"%@ %@ %@",obj[@"date"],[NSString getTheDayInWeek:obj[@"date"]],_times[[obj[@"time"] integerValue]-1]];
                 [cell.contentView addSubview:contentLab];
             }];
             [cell.contentView addSubview:titleLab];
@@ -109,7 +125,7 @@ static NSString *cellID = @"cellID";
         {
             titleLab.text = @"合计";
             UILabel *contentLab = [[UILabel alloc] initWithFrame:CGRectMake(90, 20, 100, 30)];
-            contentLab.text = @"￥400";
+            contentLab.text = [NSString stringWithFormat:@"￥ %li",_totalPrice];
             contentLab.textColor = [UIColor redColor];
             [cell.contentView addSubview:titleLab];
             [cell.contentView addSubview:contentLab];
@@ -120,6 +136,20 @@ static NSString *cellID = @"cellID";
             return cell;
     }
 }
+#pragma mark - UIAlertView
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        UIAlertView *successAlertView = [[UIAlertView alloc] initWithTitle:@"支付成功" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
+        successAlertView.tag = 0;
+        [successAlertView show];
+    }
+}
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 0){
+        [self returnToCoachDetail];
+    }
+}
+#pragma mark - Getters
 -(UIView *)coachView{
     if (!_coachView) {
         _coachView.backgroundColor = [UIColor colorWithWhite:0.748 alpha:1.000];
@@ -136,5 +166,26 @@ static NSString *cellID = @"cellID";
         
     }
     return _coachView;
+}
+
+-(UIButton *)commitFooterBtn{
+    if (!_commitFooterBtn) {
+        _commitFooterBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, 30, kScreenWidth-60, 30)];
+        [_commitFooterBtn setTitle:@"提交订单" forState:UIControlStateNormal];
+        [_commitFooterBtn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
+        [_commitFooterBtn addTarget:self action:@selector(commitBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        _commitFooterBtn.layer.cornerRadius = 20;
+        _commitFooterBtn.layer.borderColor = kTextlightGrayColor.CGColor;
+        _commitFooterBtn.layer.borderWidth = 0.5;
+        
+    }
+    return _commitFooterBtn;
+}
+-(UIView *)footerView{
+    if (!_footerView) {
+        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 100)];
+        [_footerView addSubview:self.commitFooterBtn];
+    }
+    return _footerView;
 }
 @end

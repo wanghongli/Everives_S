@@ -12,4 +12,5 @@
 @property(nonatomic,strong) NSDictionary *parameters;//提交订单的参数
 @property(nonatomic,strong) NSArray *DateTimeArray;
 @property(nonatomic,strong) YRTeacherDetailObj *coachModel;
+@property(nonatomic,assign) NSInteger totalPrice;
 @end

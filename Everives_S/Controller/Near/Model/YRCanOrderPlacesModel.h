@@ -23,4 +23,6 @@
 @property(nonatomic,strong) NSString *time;
 @property(nonatomic,strong) NSArray *place;
 @property(nonatomic,strong) NSString *price;
+@property(nonatomic,assign) NSInteger row;
+@property(nonatomic,assign) NSInteger section;
 @end

@@ -66,22 +66,8 @@ static NSString *HeaderID = @"headerID";
     confirmVC.parameters = parameters;
     confirmVC.DateTimeArray = _parameterArr;
     confirmVC.coachModel = _coachModel;
+    confirmVC.totalPrice = _totalPrice;
     [self.navigationController pushViewController:confirmVC animated:YES];
-//    [RequestData POST:STUDENT_ORDER parameters:parameters complete:^(NSDictionary *responseDic) {
-//        NSLog(@"%@",responseDic);
-//        [MBProgressHUD showSuccess:@"预约成功" toView:self.view];
-//        NSMutableArray *array = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
-//        [self.navigationController.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            if ([obj isKindOfClass:[YRReservationDateVC class]]) {
-//                [array removeObject:obj];
-//            }
-//            
-//        }];
-//        self.navigationController.viewControllers = array;
-//        [self.navigationController popViewControllerAnimated:YES];
-//    } failed:^(NSError *error) {
-//        
-//    }];
 }
 
 #pragma mark - Table view data source
@@ -104,7 +90,7 @@ static NSString *HeaderID = @"headerID";
         header = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:HeaderID];
     }
     NSString *date = _timeArray[section][@"date"];
-    NSString *time = _times[[_timeArray[section][@"time"] integerValue]];
+    NSString *time = _times[[_timeArray[section][@"time"] integerValue]-1];
     NSString *str =[NSString stringWithFormat:@"您已预约%@教练 科目二，时间%@,%@,请选择本次学车场地",_coachModel.name?:@"罗纳尔多",date,time];
     UIFont *font = [UIFont systemFontOfSize:17];
     CGSize size = [str sizeWithFont:font maxSize:CGSizeMake(kScreenWidth-16, 100)];

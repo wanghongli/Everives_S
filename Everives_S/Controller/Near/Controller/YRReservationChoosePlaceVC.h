@@ -11,4 +11,5 @@
 @interface YRReservationChoosePlaceVC : UITableViewController
 @property(nonatomic,strong) NSArray *timeArray;
 @property(nonatomic,strong) YRTeacherDetailObj *coachModel;
+@property(nonatomic,assign) NSInteger totalPrice;
 @end

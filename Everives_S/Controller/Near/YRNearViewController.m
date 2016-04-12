@@ -21,6 +21,7 @@
 #import "YRUserDetailController.h"
 #import "YRTeacherDetailController.h"
 #import "YRMapAnnotationView.h"
+#import "YRMapFMDB.h"
 //定义三个table的类型
 typedef NS_ENUM(NSUInteger,NearTableType){
     NearTableTypeSchool = 1,
@@ -84,16 +85,16 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     //驾校筛选信息
     if (_selectView.selectedBtnNum == NearTableTypeSchool) {
         NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":_schoolFillterView.sort?:@"0",@"address":(_schoolFillterView.addr && ![_schoolFillterView.addr isEqualToString:@"不限"])?_schoolFillterView.addr:@"",@"key":@""};
-        NSLog(@"sort%@    address%@",parameters[@"sort"],parameters[@"address"]);
         [_schoolData getDataWithParameters:parameters];
     }else{//教练筛选信息
         NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":_coachFillterView.sort?:@"0",@"address":(_coachFillterView.addr && ![_coachFillterView.addr isEqualToString:@"不限"])?_coachFillterView.addr:@"",@"key":@"",@"kind":_coachFillterView.kind?:@"0"};
-         NSLog(@"sort%@    address%@  kind%@",parameters[@"sort"],parameters[@"address"],parameters[@"kind"]);
         [_coachData getDataWithParameters:parameters];
     }
 }
 -(void)getDataForMap:(NSInteger) kind{
-    [RequestData GET:STUDENT_NEARBYPOINT parameters:@{@"kind":[NSNumber numberWithInteger:kind],@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"time":@""} complete:^(NSDictionary *responseDic) {
+    NSNumber *timeForMapUpdate = [[NSUserDefaults standardUserDefaults] objectForKey:@"timeForMapUpdate"];
+    NSNumber *nowTime = [NSNumber numberWithDouble:[NSDate date].timeIntervalSince1970];
+    [RequestData GET:STUDENT_NEARBYPOINT parameters:@{@"kind":[NSNumber numberWithInteger:kind],@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"time":timeForMapUpdate?:@""} complete:^(NSDictionary *responseDic) {
         switch (kind) {
             case 1:{
                 _schoolForMap = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];
@@ -103,6 +104,11 @@ static NSString *studentCellID = @"YRStudentTableCellID";
                         [obj setImaageurl:((YRPictureModel*)([obj pics][0])).url];
                     }
                 }];
+                NSMutableArray *schools = [YRMapFMDB GetSchools].mutableCopy;
+                [schools addObjectsFromArray:_schoolForMap];
+                [YRMapFMDB saveObjects:_schoolForMap];
+                _schoolForMap = schools.copy;
+                [[NSUserDefaults standardUserDefaults] setObject:nowTime forKey:@"timeForMapUpdate"];
                 break;
             }
             case 2:{

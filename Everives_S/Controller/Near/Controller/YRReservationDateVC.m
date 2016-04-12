@@ -58,6 +58,26 @@ static NSInteger rowNum = 8; //横着的那种
     _timeStartArray = @[@"09:00-",@"10:00-",@"11:00-",@"14:00-",@"15:00-",@"16:00-",@"17:00-"];
     _timeEndArray = @[@"10:00",@"11:00",@"12:00",@"15:00",@"16:00",@"17:00",@"18:00"];
 }
+
+-(void)getData{
+    [RequestData GET:[NSString stringWithFormat:@"%@%li",STUDENT_AVAILTIME,_coachModel.id] parameters:nil complete:^(NSDictionary *responseDic) {
+        _modelArray = [YRCanOrderPlacesModel mj_objectArrayWithKeyValuesArray:responseDic];
+        [_modelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            YRCanOrderPlacesModel *model = (YRCanOrderPlacesModel*)obj;
+            [_dateAyyayWithYear enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if([model.date isEqualToString:_dateAyyayWithYear[idx]]){
+                    model.section = idx+1;
+                }
+            }];
+            model.row = [model.time integerValue];
+        }];
+        [_cannotSelected removeAllObjects];
+        [self.collectionView reloadData];
+    } failed:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
 -(void)commitBtnClick:(UIBarButtonItem*)sender{
     
     [_result sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -80,44 +100,35 @@ static NSInteger rowNum = 8; //横着的那种
         return (NSComparisonResult)NSOrderedSame;
     }];
     NSMutableArray *resultDate=@[].mutableCopy;
+    __block NSInteger totalPrice = 0;
     [_result enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSDictionary *dic = @{@"date":_dateAyyayWithYear[((NSIndexPath*)obj).section-1],@"time":[NSString stringWithFormat:@"%ld",(long)((NSIndexPath*)obj).row],@"place":@"0"};
+        NSIndexPath *indexPath = obj;
+            NSDictionary *dic = @{@"date":_dateAyyayWithYear[indexPath.section-1],@"time":[NSString stringWithFormat:@"%ld",(long)indexPath.row],@"place":@"0"};
         [resultDate addObject:dic];
+        [_modelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            YRCanOrderPlacesModel *model = obj;
+            if (model.section == indexPath.section && model.row == indexPath.row) {
+                totalPrice += [model.price integerValue];
+            }
+        }];
     }];
     //如果是科目三就不再选择场地，直接提交
     if (_coachModel.kind == 1) {
         
         NSDictionary *parameters = @{@"id":[NSString stringWithFormat:@"%li",_coachModel.id],@"partner":@"0",@"info":[resultDate mj_JSONString],@"kind":@"1"};
-//        [RequestData POST:STUDENT_ORDER parameters:parameters complete:^(NSDictionary *responseDic) {
-//            
-//        } failed:^(NSError *error) {
-//            
-//        }];
-        /**
-         /description
-         
-         - returns:
-         */
         YROrderConfirmViewController *confirmVC = [[YROrderConfirmViewController alloc] init];
         confirmVC.parameters = parameters;
         confirmVC.DateTimeArray = resultDate;
         confirmVC.coachModel = _coachModel;
+        confirmVC.totalPrice = totalPrice;
         [self.navigationController pushViewController:confirmVC animated:YES];
     }else{//如果是科目二则继续选择场地
         YRReservationChoosePlaceVC *choosePlace = [[YRReservationChoosePlaceVC alloc]init];
         choosePlace.timeArray = resultDate;
         choosePlace.coachModel = _coachModel;
+        choosePlace.totalPrice = totalPrice;
         [self.navigationController pushViewController:choosePlace animated:YES];
     }
-}
--(void)getData{
-    [RequestData GET:[NSString stringWithFormat:@"%@%li",STUDENT_AVAILTIME,_coachModel.id] parameters:nil complete:^(NSDictionary *responseDic) {
-        _modelArray = [YRCanOrderPlacesModel mj_objectArrayWithKeyValuesArray:responseDic];
-        [_cannotSelected removeAllObjects];
-        [self.collectionView reloadData];
-    } failed:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
 }
 
 static NSString *kCellIdentifier = @"kCellIdentifier";
@@ -150,16 +161,15 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         cell.timeStart.textColor = [UIColor colorWithRed:54/255.0 green:93/255.0 blue:178/255.0 alpha:1];
         cell.timeEnd.textColor = [UIColor colorWithRed:54/255.0 green:93/255.0 blue:178/255.0 alpha:1];
     }else{
+        
         [_modelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YRCanOrderPlacesModel *model = (YRCanOrderPlacesModel*)obj;
-            if([model.date isEqualToString:_dateAyyayWithYear[indexPath.section-1]]){
-                if ([model.time integerValue] == indexPath.row) {
-                    if ([model.price isEqualToString:@"-1"]) {
-                        cell.priceLabel.text = @"已被预约";
-                        cell.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
-                    }else{
-                        cell.priceLabel.text = [NSString stringWithFormat:@"￥%@",model.price];
-                    }
+            if (model.section == indexPath.section && model.row == indexPath.row) {
+                if ([model.price isEqualToString:@"-1"]) {
+                    cell.priceLabel.text = @"已被预约";
+                    cell.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
+                }else{
+                    cell.priceLabel.text = [NSString stringWithFormat:@"￥%@",model.price];
                 }
             }
         }];

@@ -31,7 +31,7 @@ static NSString *cellId = @"YRReservationCellID";
 -(void)getData{
     [RequestData GET:STUDENT_ORDER parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
         _models = [YROrderedPlaceModel mj_objectArrayWithKeyValuesArray:responseDic];
-        [self.tableView reloadData];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     } failed:^(NSError *error) {
         
     }];

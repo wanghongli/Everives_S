@@ -25,6 +25,7 @@ static CGFloat cellHeight = 60;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title =  @"驾校详情";
     self.tableView.tableHeaderView = self.headerView;
     [self getData];
     _icons = @[@"Neighborhood_Field_DriSch",@"Neighborhood_Field_Add",@"Neig_Coach_Bespeak",@"Neighborhood_Field_Contacts",@"Neighborhood_Field_Area",@"neighborhood_Field_Facility",@"Neighborhood_Field_Coach"];
@@ -80,7 +81,30 @@ static CGFloat cellHeight = 60;
             break;
         }
         case 5:{
-            cell.textLabel.text = [NSString stringWithFormat:@"%@",@"场地设施"];
+            [cell.contentView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (obj.tag == 2333) {
+                    [obj removeFromSuperview];
+                }
+            }];
+            UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(16, 18, 22, 22)];
+            image.tag = 2333;
+            image.image = [UIImage imageNamed:_icons[5]];
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(53, 18, kScreenWidth, 22)];
+            titleLabel.tag = 2333;
+            titleLabel.text = @"场地设施";
+            NSString *places = [NSString stringWithFormat:@"侧方位【%@】 半坡起步【%@】 直角转弯【%@】 曲线行驶【%@】 倒车入库【%@】",
+                                _model.cfw,_model.bpqb,_model.zjzw,_model.qxxs,_model.dcrk];
+            CGSize size = [places sizeWithFont:kFontOfLetterMedium maxSize:CGSizeMake(kScreenWidth-53, 100)];
+            UILabel *contentLab = [[UILabel alloc] init];
+            contentLab.tag = 2333;
+            contentLab.font = kFontOfLetterMedium;
+            contentLab.text = places;
+            contentLab.numberOfLines = 0;
+            contentLab.lineBreakMode = NSLineBreakByWordWrapping;
+            contentLab.frame = CGRectMake(53, 58, size.width, size.height);
+            [cell.contentView addSubview:image];
+            [cell.contentView addSubview:titleLabel];
+            [cell.contentView addSubview:contentLab];
             break;
         }
         case 6:{
@@ -90,7 +114,9 @@ static CGFloat cellHeight = 60;
         default:
             break;
     }
-    cell.imageView.image = [UIImage imageNamed:_icons[indexPath.row]];
+    if (indexPath.row != 5) {
+        cell.imageView.image = [UIImage imageNamed:_icons[indexPath.row]];
+    }
     return cell;
 }
 -(UIImageView *)headerView{

@@ -14,9 +14,12 @@
 #import "YRCanOrderPlacesModel.h"
 #import "YROrderConfirmViewController.h"
 #import "YRTeacherDetailObj.h"
-static NSInteger sectionNum = 8;//竖着的那种
+static NSInteger sectionNum = 7;//竖着的那种
 static NSInteger rowNum = 8; //横着的那种
-@interface YRReservationDateVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
+#define kcellHeight (kScreenHeight-64)/rowNum
+#define kcellWidth 62.5
+
+@interface YRReservationDateVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDataSource>{
     NSArray *_dateArray;//显示在顶部不带年份
     NSArray *_dateAyyayWithYear;//带年份
     NSArray *_timeStartArray;
@@ -27,6 +30,7 @@ static NSInteger rowNum = 8; //横着的那种
     
 }
 @property(nonatomic,strong) UICollectionView *collectionView;
+@property(nonatomic,strong) UITableView *timeView;
 @end
 @implementation YRReservationDateVC
 -(void)viewDidLoad{
@@ -35,6 +39,7 @@ static NSInteger rowNum = 8; //横着的那种
     self.view.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(commitBtnClick:)];
     self.navigationItem.rightBarButtonItem.enabled = NO;
+    [self.view addSubview:self.timeView];
     [self.view addSubview:self.collectionView];
     [self initSome];
     [self getData];
@@ -66,7 +71,7 @@ static NSInteger rowNum = 8; //横着的那种
             YRCanOrderPlacesModel *model = (YRCanOrderPlacesModel*)obj;
             [_dateAyyayWithYear enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if([model.date isEqualToString:_dateAyyayWithYear[idx]]){
-                    model.section = idx+1;
+                    model.section = idx;
                 }
             }];
             model.row = [model.time integerValue];
@@ -103,7 +108,7 @@ static NSInteger rowNum = 8; //横着的那种
     __block NSInteger totalPrice = 0;
     [_result enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSIndexPath *indexPath = obj;
-            NSDictionary *dic = @{@"date":_dateAyyayWithYear[indexPath.section-1],@"time":[NSString stringWithFormat:@"%ld",(long)indexPath.row],@"place":@"0"};
+        NSDictionary *dic = @{@"date":_dateAyyayWithYear[indexPath.section],@"time":[NSString stringWithFormat:@"%ld",(long)indexPath.row],@"place":@"0"};
         [resultDate addObject:dic];
         [_modelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YRCanOrderPlacesModel *model = obj;
@@ -143,25 +148,13 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     YRDateCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
     cell.priceLabel.text = @"";
-    cell.timeStart.text = @"";
-    cell.timeEnd.text = @"";
     cell.priceLabel.textColor = [UIColor blackColor];
-    cell.timeStart.textColor = [UIColor blackColor];
-    cell.timeEnd.textColor = [UIColor blackColor];
     cell.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
     if (indexPath.row == 0) { //第一行
-        if (indexPath.section != 0) {
-            cell.priceLabel.text = _dateArray[indexPath.section-1];
-            cell.priceLabel.textColor = [UIColor colorWithRed:65/255.0 green:65/255.0 blue:65/255.0 alpha:1];
-            cell.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1];
-        }
-    }else if (indexPath.section == 0) {  //第一列
-        cell.timeStart.text = _timeStartArray[indexPath.row-1];
-        cell.timeEnd.text = _timeEndArray[indexPath.row-1];
-        cell.timeStart.textColor = [UIColor colorWithRed:54/255.0 green:93/255.0 blue:178/255.0 alpha:1];
-        cell.timeEnd.textColor = [UIColor colorWithRed:54/255.0 green:93/255.0 blue:178/255.0 alpha:1];
+        cell.priceLabel.text = _dateArray[indexPath.section];
+        cell.priceLabel.textColor = [UIColor colorWithRed:65/255.0 green:65/255.0 blue:65/255.0 alpha:1];
+        cell.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1];
     }else{
-        
         [_modelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YRCanOrderPlacesModel *model = (YRCanOrderPlacesModel*)obj;
             if (model.section == indexPath.section && model.row == indexPath.row) {
@@ -203,6 +196,39 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     }
     return YES;
 }
+#pragma mark - UITableViewDataSource
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 8;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellID = @"tableCellID";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
+    }
+    if (indexPath.row == 0) {
+        //表头
+    }else{
+        UILabel *startTime = [[UILabel alloc] initWithFrame:CGRectMake(0, kcellHeight/2-20, kcellWidth, 20)];
+        startTime.font = kFontOfLetterMedium;
+        startTime.text = _timeStartArray[indexPath.row-1];
+        startTime.textAlignment = NSTextAlignmentCenter;
+        startTime.textColor = [UIColor colorWithRed:54/255.0 green:93/255.0 blue:178/255.0 alpha:1];
+        UILabel *endTime = [[UILabel alloc] initWithFrame:CGRectMake(0, kcellHeight/2, kcellWidth, 20)];
+        endTime.font = kFontOfLetterMedium;
+        endTime.text = _timeEndArray[indexPath.row-1];
+        endTime.textAlignment = NSTextAlignmentCenter;
+        endTime.textColor = [UIColor colorWithRed:54/255.0 green:93/255.0 blue:178/255.0 alpha:1];
+        [cell.contentView addSubview:startTime];
+        [cell.contentView addSubview:endTime];
+    }
+    return cell;
+}
 #pragma mark - Getters
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
@@ -210,8 +236,8 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        layout.itemSize = CGSizeMake(kScreenWidth/6, ([[UIScreen mainScreen]bounds].size.height-64)/sectionNum);
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, [[UIScreen mainScreen]bounds].size.height) collectionViewLayout:layout];
+        layout.itemSize = CGSizeMake(kcellWidth, kcellHeight);
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(kcellWidth, 64, kcellWidth*5, kScreenHeight-64) collectionViewLayout:layout];
         [_collectionView registerClass:[YRDateCell class] forCellWithReuseIdentifier:kCellIdentifier];
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
@@ -220,5 +246,14 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         
     }
     return _collectionView;
+}
+-(UITableView *)timeView{
+    if (!_timeView) {
+        _timeView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kcellWidth, kScreenHeight)];
+        _timeView.rowHeight = kcellHeight;
+        _timeView.dataSource = self;
+        _timeView.scrollEnabled = NO;
+    }
+    return _timeView;
 }
 @end

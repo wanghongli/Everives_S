@@ -144,9 +144,6 @@ updatingLocation:(BOOL)updatingLocation
     
 }
 
--(void)mapView:(MAMapView *)mapView didAnnotationViewCalloutTapped:(MAAnnotationView *)view{
-    NSLog(@"fuck");
-}
 
 //在弹出的view中，提示打开设置
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

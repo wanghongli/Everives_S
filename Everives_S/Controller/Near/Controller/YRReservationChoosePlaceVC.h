@@ -11,4 +11,10 @@
 @interface YRReservationChoosePlaceVC : UITableViewController
 @property(nonatomic,strong) NSArray *timeArray;
 @property(nonatomic,strong) YRTeacherDetailObj *coachModel;
+@property(nonatomic,assign) NSInteger totalPrice;
+@property(nonatomic,assign) BOOL isShareOrder;
+/**
+ *  合拼教练的同伴
+ */
+@property(nonatomic,strong) YRUserStatus *partnerModel;
 @end

@@ -175,10 +175,12 @@
     if (btnTag == 1) {//关注
         
     }else{//预约
-        YRReservationDateVC *vc = [[YRReservationDateVC alloc] init];
+        YRReservationDateVC *chooseDateVC = [[YRReservationDateVC alloc] init];
+        chooseDateVC.isShareOrder = _isShareOrder;
         self.teacherDetail.kind = [_kind integerValue];
-        vc.coachModel = self.teacherDetail;
-        [self.navigationController pushViewController:vc animated:YES];
+        chooseDateVC.coachModel = self.teacherDetail;
+        chooseDateVC.partnerModel = _partnerModel;
+        [self.navigationController pushViewController:chooseDateVC animated:YES];
     }
 }
 

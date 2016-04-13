@@ -10,6 +10,4 @@
 
 @interface YRDateCell : UICollectionViewCell
 @property(nonatomic,strong) UILabel *priceLabel;
-@property(nonatomic,strong) UILabel *timeStart;
-@property(nonatomic,strong) UILabel *timeEnd;
 @end

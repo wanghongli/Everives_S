@@ -11,4 +11,9 @@
 @interface YRTeacherDetailController : UIViewController
 @property (nonatomic, strong) NSString *teacherID;
 @property(nonatomic,strong) NSString *kind;
+@property(nonatomic,assign) BOOL isShareOrder;
+/**
+ *  合拼教练的同伴
+ */
+@property(nonatomic,strong) YRUserStatus *partnerModel;
 @end

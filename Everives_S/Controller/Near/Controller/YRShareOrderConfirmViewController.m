@@ -1,45 +1,37 @@
 //
-//  YROrderConfirmViewController.m
+//  YRShareOrderConfirmViewController.m
 //  Everives_S
 //
 //  Created by darkclouds on 16/4/8.
 //  Copyright © 2016年 darkclouds. All rights reserved.
 //
 
-#import "YROrderConfirmViewController.h"
+#import "YRShareOrderConfirmViewController.h"
 #import "YRTeacherDetailObj.h"
 #import "YRStarsView.h"
 #import "YRReservationDateVC.h"
 #import "YRReservationChoosePlaceVC.h"
 static NSString *cellID = @"cellID";
-@interface YROrderConfirmViewController ()<UIAlertViewDelegate>{
+@interface YRShareOrderConfirmViewController ()<UIAlertViewDelegate>{
     NSArray *_times;
 }
 @property(nonatomic,strong) UIView *coachView;
 @property(nonatomic,strong) UIButton *commitFooterBtn;
 @property(nonatomic,strong) UIView *footerView;
-@property(nonatomic,strong) NSString *orderID;
 @end
 
-@implementation YROrderConfirmViewController
+@implementation YRShareOrderConfirmViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"确认订单";
+    self.title = @"确认合拼";
     _times = @[@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"14:00-15:00",@"15:00-16:00",@"16:00-17:00",@"17:00-18:00"];
     self.tableView.tableFooterView = self.footerView;
 }
 
 -(void)commitBtnClick:(UIBarButtonItem*)sender{
-    static BOOL hasCommit = NO;
-    if (hasCommit) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"订单已经提交过了，请勿重复提交" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alertView show];
-        return;
-    }
+    sender.enabled = NO;
     [RequestData POST:STUDENT_ORDER parameters:_parameters complete:^(NSDictionary *responseDic) {
-        hasCommit = YES;
-        _orderID = responseDic[@"id"];
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确认支付" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"支付", nil];
         [alertView show];
     } failed:^(NSError *error) {
@@ -64,10 +56,11 @@ static NSString *cellID = @"cellID";
     switch (indexPath.row) {
         case 0:
         case 1:
-            return 70;
         case 2:
-            return 50+30*_DateTimeArray.count;
+            return 70;
         case 3:
+            return 50+30*_DateTimeArray.count;
+        case 4:
             return 100;
         default:
             return 0;
@@ -77,7 +70,7 @@ static NSString *cellID = @"cellID";
     return 2;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return section?:4;
+    return section?:5;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return section?10:0;
@@ -88,8 +81,17 @@ static NSString *cellID = @"cellID";
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(30, 20, 40, 30)];
-    switch (indexPath.section*4+indexPath.row) {
+    switch (indexPath.section*5+indexPath.row) {
         case 0:
+        {
+            titleLab.text = @"合拼";
+            UILabel *contentLab = [[UILabel alloc] initWithFrame:CGRectMake(90, 20, 100, 30)];
+            contentLab.text = _partnerModel.name;
+            [cell.contentView addSubview:titleLab];
+            [cell.contentView addSubview:contentLab];
+            return  cell;
+        }
+        case 1:
         {
             titleLab.text = @"驾校";
             UILabel *contentLab = [[UILabel alloc] initWithFrame:CGRectMake(90, 20, 100, 30)];
@@ -98,7 +100,7 @@ static NSString *cellID = @"cellID";
             [cell.contentView addSubview:contentLab];
             return  cell;
         }
-        case 1:
+        case 2:
         {
             titleLab.text = @"项目";
             UILabel *contentLab = [[UILabel alloc] initWithFrame:CGRectMake(90, 20, 70, 30)];
@@ -111,7 +113,7 @@ static NSString *cellID = @"cellID";
             [cell.contentView addSubview:contentLab];
             return  cell;
         }
-        case 2:
+        case 3:
         {
             titleLab.text = @"时段";
             [_DateTimeArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -122,14 +124,14 @@ static NSString *cellID = @"cellID";
             [cell.contentView addSubview:titleLab];
             return  cell;
         }
-        case 3:
+        case 4:
         {
             titleLab.text = @"教练";
             [cell.contentView addSubview:self.coachView];
             [cell.contentView addSubview:titleLab];
             return  cell;
         }
-        case 4:
+        case 5:
         {
             titleLab.text = @"合计";
             UILabel *contentLab = [[UILabel alloc] initWithFrame:CGRectMake(90, 20, 100, 30)];
@@ -146,20 +148,14 @@ static NSString *cellID = @"cellID";
 }
 #pragma mark - UIAlertView
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    //确认支付
     if (buttonIndex == 1) {
-        [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_PAY,_orderID] parameters:nil complete:^(NSDictionary *responseDic) {
-            
-        } failed:^(NSError *error) {
-            
-        }];
         UIAlertView *successAlertView = [[UIAlertView alloc] initWithTitle:@"支付成功" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
-        successAlertView.tag = 2333;
+        successAlertView.tag = 0;
         [successAlertView show];
     }
 }
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    if (alertView.tag == 2333){
+    if (alertView.tag == 0){
         [self returnToCoachDetail];
     }
 }
@@ -185,7 +181,7 @@ static NSString *cellID = @"cellID";
 -(UIButton *)commitFooterBtn{
     if (!_commitFooterBtn) {
         _commitFooterBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, 30, kScreenWidth-60, 30)];
-        [_commitFooterBtn setTitle:@"提交订单" forState:UIControlStateNormal];
+        [_commitFooterBtn setTitle:@"确认合拼" forState:UIControlStateNormal];
         [_commitFooterBtn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
         [_commitFooterBtn addTarget:self action:@selector(commitBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         _commitFooterBtn.layer.cornerRadius = 20;

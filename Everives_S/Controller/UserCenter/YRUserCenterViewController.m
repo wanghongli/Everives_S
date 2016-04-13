@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"个人中心";
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.tableFooterView = [[UIView alloc] init];
     cellNmaes = @[@"我的预约",@"我的钱包",@"我的评价",@"活动通知",@"信息认证"];

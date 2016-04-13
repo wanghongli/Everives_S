@@ -73,6 +73,7 @@
 #define STUDENT_AVAILPLACE @"/order/availPlace/"  //查看某时段可选场地
 #define STUDENT_ORDER @"/order/order" //提交订单post  获取预约记录列表get 获取详情get+id
 #define STUDENT_MAKE_COMMENT @"/order/Comment" //添加评价
+#define STUDENT_PAY	@"/order/payment/"  //支付
 //群聊部分
 #define GROUP_GROUP @"/group/group" // 创建群post  我加入的群get
 #endif

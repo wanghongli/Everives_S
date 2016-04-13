@@ -17,15 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    //从controller栈中移除一些controller
+    NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray: self.navigationController.viewControllers];
     [self.navigationController.childViewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[YRContactVC class]]) {
-            NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray: self.navigationController.viewControllers];
             [allViewControllers removeObjectIdenticalTo: obj];
-            self.navigationController.viewControllers = allViewControllers;
         }
-        
     }];
+    self.navigationController.viewControllers = allViewControllers;
     
 }
 

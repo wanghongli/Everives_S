@@ -204,16 +204,6 @@
         NSArray *imgArray = @[@"Drawer_Navigation_Setting",@"Drawer_Navigation_TurnOff"];
         cell.menuText.text = titles[indexPath.row];
         cell.leftImg.image = [UIImage imageNamed:imgArray[indexPath.row]];
-    }else if (indexPath.section == 1) {
-        NSArray *titles = @[@"驾友", @"驾友圈", @"附近",@"个人"];
-        NSArray *icons = @[@"Drawer_Navigation_Friend",@"Drawer_Navigation_SNS",@"Drawer_Navigation_Neighborhood",@"Drawer_Navigation_Personal"];
-        cell.menuText.text = titles[indexPath.row];
-        cell.leftImg.image = [UIImage imageNamed:icons[indexPath.row]];
-    } else {
-        NSArray *titles = @[@"设置", @"注销"];
-        NSArray *icons = @[@"Drawer_Navigation_Setting",@"Drawer_Navigation_TurnOff"];
-        cell.menuText.text = titles[indexPath.row];
-        cell.leftImg.image = [UIImage imageNamed:icons[indexPath.row]];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;

@@ -11,6 +11,7 @@
 #import "YRTeacherDetailController.h"
 #import "YRLearnOrderDetail.h"
 #import "YRLearnOrderDetailInfo.h"
+#import "YRTeacherMakeCommentController.h"
 @interface YRAppointmentDetailController () <YRAppointmentHeadViewDelegate>
 {
     NSArray *_titleArray;
@@ -19,6 +20,7 @@
 }
 @property (nonatomic, strong) YRAppointmentHeadView *headView;//头不视图
 @property (nonatomic, strong) YRLearnOrderDetail *orderDetail;//详情模型
+@property (nonatomic, strong) UIButton *startBtn;
 @end
 
 @implementation YRAppointmentDetailController
@@ -32,14 +34,14 @@
     self.tableView.tableHeaderView = self.headView;
     
     UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 80)];
-    UIButton *startBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, footView.height-40, kScreenWidth-40, 40)];
-    [startBtn setTitle:@"发消息" forState:UIControlStateNormal];
-    [startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    startBtn.backgroundColor = kCOLOR(50, 51, 52);
-    [startBtn addTarget:self action:@selector(sartClick:) forControlEvents:UIControlEventTouchUpInside];
-    startBtn.layer.masksToBounds = YES;
-    startBtn.layer.cornerRadius = startBtn.height/2;
-    [footView addSubview:startBtn];
+    self.startBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, footView.height-40, kScreenWidth-40, 40)];
+    [self.startBtn setTitle:@"发消息" forState:UIControlStateNormal];
+    [self.startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.startBtn.backgroundColor = kCOLOR(50, 51, 52);
+    [self.startBtn addTarget:self action:@selector(sartClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.startBtn.layer.masksToBounds = YES;
+    self.startBtn.layer.cornerRadius = self.startBtn.height/2;
+    [footView addSubview:self.startBtn];
     self.tableView.tableFooterView = footView;
     [self getData];
 }
@@ -61,18 +63,34 @@
             [_totalMenu addObject:_menuArray];
         }
         
+        [self setStarBtnTitle:[YRPublicMethod getOrderStatusWith:self.orderDetail.status]];
+        
         [self.tableView reloadData];
     } failed:^(NSError *error) {
         [MBProgressHUD hideAllHUDsForView:GET_WINDOW animated:YES];
     }];
 }
+-(void)setStarBtnTitle:(NSString *)titleString
+{
+    if ([titleString isEqualToString:@"未支付"]) {
+        [self.startBtn setTitle:@"去支付" forState:UIControlStateNormal];
+    }else if ([titleString isEqualToString:@"已完成,等待评价"]){
+        [self.startBtn setTitle:@"去评价" forState:UIControlStateNormal];
+    }else{
+        [self.startBtn setTitle:@"发消息" forState:UIControlStateNormal];
+    }
+}
 -(void)sartClick:(UIButton *)sender
 {
-    //    YRLearnPracticeController *learnVC = [[YRLearnPracticeController alloc]init];
-    //    learnVC.title = @"模拟考试";
-    //    learnVC.currentID = 1;
-    //    learnVC.menuTag = 0;
-    //    [self.navigationController pushViewController:learnVC animated:YES];
+    if ([sender.titleLabel.text isEqualToString:@"未支付"]) {//去支付
+        
+    }else if ([sender.titleLabel.text isEqualToString:@"去评价"]){//去评价
+        YRTeacherMakeCommentController *makeCommentVC = [[YRTeacherMakeCommentController alloc]init];
+        makeCommentVC.orderID = [NSString stringWithFormat:@"%ld",self.orderDetail.id];
+        [self.navigationController pushViewController:makeCommentVC animated:YES];
+    }else{//发送消息
+    
+    }
 }
 
 - (void)didReceiveMemoryWarning {

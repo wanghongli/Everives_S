@@ -200,7 +200,6 @@
 		03FF14781C9FCA0900AEBB75 /* YRPracticeDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF14771C9FCA0900AEBB75 /* YRPracticeDownView.m */; };
 		03FF147C1C9FEB9F00AEBB75 /* YRLearnSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF147A1C9FEB9F00AEBB75 /* YRLearnSecondCell.m */; };
 		03FF147D1C9FEB9F00AEBB75 /* YRLearnSecondCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FF147B1C9FEB9F00AEBB75 /* YRLearnSecondCell.xib */; };
-		03FF14801C9FFDE100AEBB75 /* YRSecoDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF147F1C9FFDE100AEBB75 /* YRSecoDetailController.m */; };
 		1600EB3B1C87E65D001919EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EB3A1C87E65D001919EB /* main.m */; };
 		1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1600EB471C87E65D001919EB /* LaunchScreen.storyboard */; };
 		1600EBA11C87E8A5001919EB /* YRYJNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600EBA01C87E8A5001919EB /* YRYJNavigationController.m */; };
@@ -677,8 +676,6 @@
 		03FF14791C9FEB9F00AEBB75 /* YRLearnSecondCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnSecondCell.h; sourceTree = "<group>"; };
 		03FF147A1C9FEB9F00AEBB75 /* YRLearnSecondCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnSecondCell.m; sourceTree = "<group>"; };
 		03FF147B1C9FEB9F00AEBB75 /* YRLearnSecondCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRLearnSecondCell.xib; sourceTree = "<group>"; };
-		03FF147E1C9FFDE100AEBB75 /* YRSecoDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSecoDetailController.h; sourceTree = "<group>"; };
-		03FF147F1C9FFDE100AEBB75 /* YRSecoDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSecoDetailController.m; sourceTree = "<group>"; };
 		1600EB361C87E65D001919EB /* Everives_S.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everives_S.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1600EB3A1C87E65D001919EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1600EB451C87E65D001919EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1608,8 +1605,6 @@
 			children = (
 				03A25F111C928891000196A6 /* YRYJSecondClassController.h */,
 				03A25F121C928891000196A6 /* YRYJSecondClassController.m */,
-				03FF147E1C9FFDE100AEBB75 /* YRSecoDetailController.h */,
-				03FF147F1C9FFDE100AEBB75 /* YRSecoDetailController.m */,
 				031D50321CA1374D000E1303 /* YRAppointmentDetailController.h */,
 				031D50331CA1374D000E1303 /* YRAppointmentDetailController.m */,
 				031D50341CA1374D000E1303 /* YRAppointmentDetailController.xib */,
@@ -2501,7 +2496,6 @@
 				037C929F1C8FF274005B41BF /* YRCircleHeadView.m in Sources */,
 				03228D3E1CA4DB6500890DC6 /* YRAchievementDetailController.m in Sources */,
 				03A8CA5A1CA289F8007AB152 /* YRMenuView.m in Sources */,
-				03FF14801C9FFDE100AEBB75 /* YRSecoDetailController.m in Sources */,
 				03228D411CA4DBBE00890DC6 /* YRLearnExamController.m in Sources */,
 				1600EBCC1C88087A001919EB /* XBConst.m in Sources */,
 				168132AC1C97B012008F3090 /* YRStarsView.m in Sources */,

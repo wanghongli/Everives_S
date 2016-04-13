@@ -21,7 +21,7 @@ static NSString *cellId = @"YRReservationCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"我的预约";
     [self.tableView registerNib:[UINib nibWithNibName:@"YRReservationCell" bundle:nil] forCellReuseIdentifier:cellId];
     self.tableView.rowHeight = 108;
     self.tableView.tableFooterView = [[UIView alloc] init];
@@ -29,11 +29,13 @@ static NSString *cellId = @"YRReservationCellID";
 }
 
 -(void)getData{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [RequestData GET:STUDENT_ORDER parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
         _models = [YROrderedPlaceModel mj_objectArrayWithKeyValuesArray:responseDic];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failed:^(NSError *error) {
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

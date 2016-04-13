@@ -19,4 +19,6 @@
 
 @property (nonatomic, assign) id<YRStarLevelDetailViewDelegate>delegate;
 @property (nonatomic, assign) CGFloat viewHeight;
+@property (nonatomic, assign) NSInteger starNum;
+
 @end

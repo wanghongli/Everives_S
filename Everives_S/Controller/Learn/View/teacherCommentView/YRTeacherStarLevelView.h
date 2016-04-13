@@ -15,5 +15,7 @@
 @interface YRTeacherStarLevelView : UIView
 
 @property (nonatomic, assign) id<YRTeacherStarLevelViewDelegate>delegate;
-
+@property (nonatomic, assign) NSInteger attitudeInt;
+@property (nonatomic, assign) NSInteger describeInt;
+@property (nonatomic, assign) NSInteger qualityInt;
 @end

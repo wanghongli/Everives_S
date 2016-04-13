@@ -106,4 +106,21 @@
     }
     [self.delegate teacherStarLevelMenu:menu starLevel:starTag];
 }
+-(void)setQualityInt:(NSInteger)qualityInt
+{
+    _qualityInt = qualityInt;
+    _starView1.starNum = qualityInt;
+}
+-(void)setAttitudeInt:(NSInteger)attitudeInt
+{
+    _attitudeInt = attitudeInt;
+    _starView2.starNum = attitudeInt;
+}
+-(void)setDescribeInt:(NSInteger)describeInt
+{
+    _describeInt = describeInt;
+    _starView.starNum = describeInt;
+
+}
+
 @end

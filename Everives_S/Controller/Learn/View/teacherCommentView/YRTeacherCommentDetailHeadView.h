@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YRTeacherCommentDetailObj.h"
 @interface YRTeacherCommentDetailHeadView : UIView
-
+@property (nonatomic, strong) YRTeacherCommentDetailObj *detailObj;
 @end

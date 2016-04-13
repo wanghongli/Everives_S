@@ -18,6 +18,7 @@ static NSString *cellID = @"cellID";
 @property(nonatomic,strong) UIView *coachView;
 @property(nonatomic,strong) UIButton *commitFooterBtn;
 @property(nonatomic,strong) UIView *footerView;
+@property(nonatomic,strong) NSString *orderID;
 @end
 
 @implementation YROrderConfirmViewController
@@ -30,8 +31,15 @@ static NSString *cellID = @"cellID";
 }
 
 -(void)commitBtnClick:(UIBarButtonItem*)sender{
-    sender.enabled = NO;
+    static BOOL hasCommit = NO;
+    if (hasCommit) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"订单已经提交过了，请勿重复提交" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
     [RequestData POST:STUDENT_ORDER parameters:_parameters complete:^(NSDictionary *responseDic) {
+        hasCommit = YES;
+        _orderID = responseDic[@"id"];
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确认支付" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"支付", nil];
         [alertView show];
     } failed:^(NSError *error) {
@@ -138,14 +146,20 @@ static NSString *cellID = @"cellID";
 }
 #pragma mark - UIAlertView
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    //确认支付
     if (buttonIndex == 1) {
+        [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_PAY,_orderID] parameters:nil complete:^(NSDictionary *responseDic) {
+            
+        } failed:^(NSError *error) {
+            
+        }];
         UIAlertView *successAlertView = [[UIAlertView alloc] initWithTitle:@"支付成功" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
-        successAlertView.tag = 0;
+        successAlertView.tag = 2333;
         [successAlertView show];
     }
 }
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    if (alertView.tag == 0){
+    if (alertView.tag == 2333){
         [self returnToCoachDetail];
     }
 }

@@ -46,7 +46,7 @@
 -(void)getData
 {
     [MBProgressHUD showMessag:@"加载中..." toView:GET_WINDOW];
-    [RequestData GET:[NSString stringWithFormat:@"/order/order/%@",_teacherOrder.id] parameters:@{} complete:^(NSDictionary *responseDic) {
+    [RequestData GET:[NSString stringWithFormat:@"/order/order/%@",self.orderId] parameters:@{} complete:^(NSDictionary *responseDic) {
         MyLog(@"%@",responseDic);
         [MBProgressHUD hideAllHUDsForView:GET_WINDOW animated:YES];
         self.orderDetail = [YRLearnOrderDetail mj_objectWithKeyValues:responseDic];

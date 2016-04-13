@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "YRTeacherOrder.h"
 @interface YRAppointmentDetailController : UITableViewController
-@property (nonatomic, strong) YRTeacherOrder *teacherOrder;
+@property (nonatomic, strong) NSString *orderId;
 
 @end

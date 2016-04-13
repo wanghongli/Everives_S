@@ -12,7 +12,8 @@
 #import "YRLearnOrderDetail.h"
 #import "YRLearnOrderDetailInfo.h"
 #import "YRTeacherMakeCommentController.h"
-@interface YRAppointmentDetailController () <YRAppointmentHeadViewDelegate>
+#import "YRChatViewController.h"
+@interface YRAppointmentDetailController () <YRAppointmentHeadViewDelegate,UIAlertViewDelegate>
 {
     NSArray *_titleArray;
     NSArray *_menuArray;
@@ -82,14 +83,22 @@
 }
 -(void)sartClick:(UIButton *)sender
 {
-    if ([sender.titleLabel.text isEqualToString:@"未支付"]) {//去支付
-        
+    if ([sender.titleLabel.text isEqualToString:@"去支付"]) {//去支付
+        sender.enabled = NO;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确认支付" message:@"订单已生成，确认支付？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"支付", nil];
+        [alertView show];
     }else if ([sender.titleLabel.text isEqualToString:@"去评价"]){//去评价
         YRTeacherMakeCommentController *makeCommentVC = [[YRTeacherMakeCommentController alloc]init];
         makeCommentVC.orderID = [NSString stringWithFormat:@"%ld",self.orderDetail.id];
         [self.navigationController pushViewController:makeCommentVC animated:YES];
     }else{//发送消息
-    
+        YRChatViewController *conversationVC = [[YRChatViewController alloc]init];
+        conversationVC.conversationType = ConversationType_PRIVATE;
+        conversationVC.targetId = [NSString stringWithFormat:@"tea%li",_orderDetail.tid];
+        conversationVC.title = _orderDetail.tname;
+        conversationVC.enableNewComingMessageIcon=YES;//开启消息提醒
+        conversationVC.enableUnreadMessageIcon=YES;
+        [self.navigationController pushViewController:conversationVC animated:YES];
     }
 }
 
@@ -136,6 +145,22 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+#pragma mark - UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    //确认支付
+    if (buttonIndex == 1) {
+        [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_PAY,_orderId] parameters:nil complete:^(NSDictionary *responseDic) {
+            UIAlertView *successAlertView = [[UIAlertView alloc] initWithTitle:@"支付成功" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
+            [successAlertView show];
+        } failed:^(NSError *error) {
+            UIAlertView *successAlertView = [[UIAlertView alloc] initWithTitle:@"支付失败" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
+            [successAlertView show];
+        }];
+        
+    }
+}
+
 - (void)appointmentHeadViewClick
 {
     YRTeacherDetailController *tdc = [[YRTeacherDetailController alloc]init];

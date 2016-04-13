@@ -38,7 +38,7 @@
     _status.textColor = [UIColor colorWithRed:250/255.0 green:126/255.0 blue:48/255.0 alpha:1];
     _coach.textColor = [UIColor colorWithRed:118/255.0 green:119/255.0 blue:121/255.0 alpha:1];
     _times = @[@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"14:00-15:00",@"15:00-16:00",@"16:00-17:00",@"17:00-18:00"];
-    _statusArr = @[@"未支付" ,@"已支付，等待同伴一起拼",@"已支付，等待去练车", @"待评价" ,@"已评价" ,@"已取消"];
+    _statusArr = @[@"未支付" ,@"已支付",@"已支付", @"已完成" ,@"已取消"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -248,8 +248,6 @@
 		164A8CB21C8D729700857638 /* YRActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A8CB01C8D729700857638 /* YRActivityTableViewCell.m */; };
 		164A8CB31C8D729700857638 /* YRActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164A8CB11C8D729700857638 /* YRActivityTableViewCell.xib */; };
 		16565DFE1CBDE2580086407A /* YRShareOrderConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16565DFD1CBDE2580086407A /* YRShareOrderConfirmViewController.m */; };
-		165991CA1CB64DFA00338264 /* YRReservationDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 165991C91CB64DFA00338264 /* YRReservationDetailVC.m */; };
-		165991CF1CB65B3800338264 /* YROrderedPlaceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 165991CC1CB65B3800338264 /* YROrderedPlaceDetailModel.m */; };
 		165991D01CB65B3800338264 /* YROrderedPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 165991CE1CB65B3800338264 /* YROrderedPlaceModel.m */; };
 		165991E11CB65BB500338264 /* YROrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 165991DC1CB65BB500338264 /* YROrderItemCell.m */; };
 		165991E21CB65BB500338264 /* YROrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 165991DD1CB65BB500338264 /* YROrderItemCell.xib */; };
@@ -774,10 +772,6 @@
 		164A8CB11C8D729700857638 /* YRActivityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRActivityTableViewCell.xib; sourceTree = "<group>"; };
 		16565DFC1CBDE2580086407A /* YRShareOrderConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRShareOrderConfirmViewController.h; sourceTree = "<group>"; };
 		16565DFD1CBDE2580086407A /* YRShareOrderConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRShareOrderConfirmViewController.m; sourceTree = "<group>"; };
-		165991C81CB64DFA00338264 /* YRReservationDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRReservationDetailVC.h; sourceTree = "<group>"; };
-		165991C91CB64DFA00338264 /* YRReservationDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationDetailVC.m; sourceTree = "<group>"; };
-		165991CB1CB65B3800338264 /* YROrderedPlaceDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YROrderedPlaceDetailModel.h; sourceTree = "<group>"; };
-		165991CC1CB65B3800338264 /* YROrderedPlaceDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YROrderedPlaceDetailModel.m; sourceTree = "<group>"; };
 		165991CD1CB65B3800338264 /* YROrderedPlaceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YROrderedPlaceModel.h; sourceTree = "<group>"; };
 		165991CE1CB65B3800338264 /* YROrderedPlaceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YROrderedPlaceModel.m; sourceTree = "<group>"; };
 		165991DB1CB65BB500338264 /* YROrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YROrderItemCell.h; sourceTree = "<group>"; };
@@ -1913,8 +1907,6 @@
 		165991C71CB64DFA00338264 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				165991C81CB64DFA00338264 /* YRReservationDetailVC.h */,
-				165991C91CB64DFA00338264 /* YRReservationDetailVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2091,8 +2083,6 @@
 		16921F621CAE668C007FBDF5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				165991CB1CB65B3800338264 /* YROrderedPlaceDetailModel.h */,
-				165991CC1CB65B3800338264 /* YROrderedPlaceDetailModel.m */,
 				165991CD1CB65B3800338264 /* YROrderedPlaceModel.h */,
 				165991CE1CB65B3800338264 /* YROrderedPlaceModel.m */,
 				16921F641CAE6867007FBDF5 /* YRReservationModel.h */,
@@ -2424,7 +2414,6 @@
 				032C43FA1CACFEBF0022C2F9 /* XYPieChart.m in Sources */,
 				03A8CA511CA272F4007AB152 /* YRTeacherSectionSecoView.m in Sources */,
 				031D50391CA13A56000E1303 /* YRAppointmentHeadView.m in Sources */,
-				165991CF1CB65B3800338264 /* YROrderedPlaceDetailModel.m in Sources */,
 				03A25F0F1C925848000196A6 /* YRMenuHeadView.m in Sources */,
 				164A8CA91C8D65A200857638 /* YRNotificationViewController.m in Sources */,
 				16B75DEA1C92A627004DC928 /* YRPullListView.m in Sources */,
@@ -2523,7 +2512,6 @@
 				1600EBC51C88087A001919EB /* UIView+REFrostedViewController.m in Sources */,
 				03F59B8F1C8EC1FF009D5EA2 /* YRCircleDetailController.m in Sources */,
 				037F8E2A1C883C570057BF6C /* YRProtocolViewController.m in Sources */,
-				165991CA1CB64DFA00338264 /* YRReservationDetailVC.m in Sources */,
 				037F8E1D1C8826750057BF6C /* UIButton+titleFrame.m in Sources */,
 				166939FD1C9A3F1D00C7ECF2 /* ChineseString.m in Sources */,
 				037D7C251C916AE600273703 /* CorePhoto.m in Sources */,

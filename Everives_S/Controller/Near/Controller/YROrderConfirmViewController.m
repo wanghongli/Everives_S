@@ -12,6 +12,7 @@
 #import "YRReservationDateVC.h"
 #import "YRReservationChoosePlaceVC.h"
 static NSString *cellID = @"cellID";
+static BOOL hasCommit = NO;
 @interface YROrderConfirmViewController ()<UIAlertViewDelegate>{
     NSArray *_times;
 }
@@ -29,14 +30,17 @@ static NSString *cellID = @"cellID";
     _times = @[@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"14:00-15:00",@"15:00-16:00",@"16:00-17:00",@"17:00-18:00"];
     self.tableView.tableFooterView = self.footerView;
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    hasCommit = NO;
+}
 -(void)commitBtnClick:(UIBarButtonItem*)sender{
-    static BOOL hasCommit = NO;
     if (hasCommit) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"订单已经提交过了，请勿重复提交" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alertView show];
         return;
     }
+    //提交订单
     [RequestData POST:STUDENT_ORDER parameters:_parameters complete:^(NSDictionary *responseDic) {
         hasCommit = YES;
         _orderID = responseDic[@"id"];

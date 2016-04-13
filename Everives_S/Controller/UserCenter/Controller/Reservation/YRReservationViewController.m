@@ -8,8 +8,8 @@
 
 #import "YRReservationViewController.h"
 #import "YRReservationCell.h"
-#import "YRReservationDetailVC.h"
 #import "YROrderedPlaceModel.h"
+#import "YRAppointmentDetailController.h"
 static NSString *cellId = @"YRReservationCellID";
 @interface YRReservationViewController (){
     NSArray *_models;
@@ -21,7 +21,7 @@ static NSString *cellId = @"YRReservationCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"我的预约";
     [self.tableView registerNib:[UINib nibWithNibName:@"YRReservationCell" bundle:nil] forCellReuseIdentifier:cellId];
     self.tableView.rowHeight = 108;
     self.tableView.tableFooterView = [[UIView alloc] init];
@@ -29,11 +29,13 @@ static NSString *cellId = @"YRReservationCellID";
 }
 
 -(void)getData{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [RequestData GET:STUDENT_ORDER parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
         _models = [YROrderedPlaceModel mj_objectArrayWithKeyValuesArray:responseDic];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failed:^(NSError *error) {
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -48,8 +50,11 @@ static NSString *cellId = @"YRReservationCellID";
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    YRReservationDetailVC *detailVC = [[YRReservationDetailVC alloc] init];
-    detailVC.orderID = [_models[indexPath.row] id];
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    YRAppointmentDetailController *detailVC = [[YRAppointmentDetailController alloc]initWithNibName:@"YRAppointmentDetailController" bundle:nil];
+    detailVC.title = @"预约详情";
+    detailVC.orderId = [_models[indexPath.row] id];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 @end

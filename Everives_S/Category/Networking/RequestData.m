@@ -48,6 +48,7 @@
         [manager.requestSerializer setValue:@"0" forHTTPHeaderField:@"kind"];
 //        NSLog(@"")
     }
+    MyLog(@"parameters - %@",parameters);
     NSString *URL = [NSString stringWithFormat:@"%@%@",SERVER_URL,URLString];
     [manager POST:URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if(complete){

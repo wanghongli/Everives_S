@@ -8,8 +8,10 @@
 
 #import "YRTeacherCommentDetailController.h"
 #import "YRTeacherCommentDetailHeadView.h"
+#import "YRTeacherCommentDetailObj.h"
 @interface YRTeacherCommentDetailController ()
 @property (nonatomic, strong) YRTeacherCommentDetailHeadView *commentDetailHeadView;
+@property (nonatomic, strong) YRTeacherCommentDetailObj *detailObj;
 @end
 
 @implementation YRTeacherCommentDetailController
@@ -18,7 +20,15 @@
     [super viewDidLoad];
     self.title = @"评价详情";
     self.tableView.tableHeaderView = self.commentDetailHeadView;
-    
+    [MBProgressHUD showMessag:@"加载中..." toView:self.view];
+    [RequestData GET:[NSString stringWithFormat:@"/order/comment/1"] parameters:nil complete:^(NSDictionary *responseDic) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        MyLog(@"%@",responseDic);
+        self.detailObj = [YRTeacherCommentDetailObj mj_objectWithKeyValues:responseDic];
+        self.commentDetailHeadView.detailObj = self.detailObj;
+    } failed:^(NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

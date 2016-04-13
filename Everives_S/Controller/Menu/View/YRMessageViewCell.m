@@ -51,7 +51,13 @@
         self.acceptBtn.hidden = YES;
         self.refuseBtn.hidden = YES;
         self.statusLabel.hidden = NO;
-        self.statusLabel.text = @"已添加";
+        if (messageObj.type == 400) {
+            self.statusLabel.text = @"查看";
+            self.statusLabel.textColor = [UIColor redColor];
+        }else{
+            self.statusLabel.text = @"已添加";
+            self.statusLabel.textColor = [UIColor lightGrayColor];
+        }
     }else{//不是朋友
         if (messageObj.type ==100) {//好友申请
             self.acceptBtn.hidden = NO;

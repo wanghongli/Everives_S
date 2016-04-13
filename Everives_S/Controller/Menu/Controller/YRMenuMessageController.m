@@ -131,6 +131,8 @@
         
     }else if (notiMsg.type == 201){//驾友圈评论
         
+    }else if (notiMsg.type == 400){//拼教练
+    
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

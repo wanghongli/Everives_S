@@ -75,5 +75,23 @@
     
     _starView.frame = CGRectMake(CGRectGetMaxX(_imgView.frame), CGRectGetMaxY(_nameLabel.frame), self.width-CGRectGetMaxX(_imgView.frame), _imgView.height - nameSize.height +10);
 }
+-(void)setDetailObj:(YRTeacherCommentDetailObj *)detailObj
+{
+    _detailObj = detailObj;
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:detailObj.avatar] placeholderImage:[UIImage imageNamed:@"head_jiaolian"]];
+   
+    NSString *nameString = [NSString stringWithFormat:@"%@",detailObj.tname];
+    CGSize nameSize = [nameString sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
 
+    _nameLabel.frame = CGRectMake(CGRectGetMaxX(_imgView.frame)+kdistace, _imgView.y, nameSize.width, nameSize.height);
+    _nameLabel.text = nameString;
+    
+    _levelLabel.frame = CGRectMake(CGRectGetMaxX(_nameLabel.frame)+kdistace, _imgView.y, nameSize.width, nameSize.height);
+    _levelLabel.text = detailObj.grade;
+    
+    _starView.describeInt = detailObj.describe;
+    _starView.qualityInt = detailObj.quality;
+    _starView.attitudeInt = detailObj.attitude;
+    _starView.userInteractionEnabled = NO;
+}
 @end

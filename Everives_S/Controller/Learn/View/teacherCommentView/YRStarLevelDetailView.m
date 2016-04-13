@@ -59,5 +59,15 @@
     }
     [self.delegate starLevelDetailViewWhichStarClick:sender.tag+1-10 with:self];
 }
-
+-(void)setStarNum:(NSInteger)starNum
+{
+    _starNum = starNum;
+    for (int i = 0; i<5; i++) {
+        UIButton *btn = (UIButton *)[self viewWithTag:i+10];
+        if (starNum>=i+1) {
+            btn.selected = YES;
+        }else
+            btn.selected = NO;
+    }
+}
 @end

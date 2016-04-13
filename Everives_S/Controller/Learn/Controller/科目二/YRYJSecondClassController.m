@@ -129,7 +129,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YRAppointmentDetailController *detailVC = [[YRAppointmentDetailController alloc]initWithNibName:@"YRAppointmentDetailController" bundle:nil];
     detailVC.title = @"预约详情";
-    detailVC.teacherOrder = msgArray[indexPath.row];
+    detailVC.orderId = [msgArray[indexPath.row] id];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 #pragma mark - YRLearnNoMsgViewDelegate

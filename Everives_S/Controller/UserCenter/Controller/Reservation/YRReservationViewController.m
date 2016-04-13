@@ -8,8 +8,8 @@
 
 #import "YRReservationViewController.h"
 #import "YRReservationCell.h"
-#import "YRReservationDetailVC.h"
 #import "YROrderedPlaceModel.h"
+#import "YRAppointmentDetailController.h"
 static NSString *cellId = @"YRReservationCellID";
 @interface YRReservationViewController (){
     NSArray *_models;
@@ -50,8 +50,11 @@ static NSString *cellId = @"YRReservationCellID";
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    YRReservationDetailVC *detailVC = [[YRReservationDetailVC alloc] init];
-    detailVC.orderID = [_models[indexPath.row] id];
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    YRAppointmentDetailController *detailVC = [[YRAppointmentDetailController alloc]initWithNibName:@"YRAppointmentDetailController" bundle:nil];
+    detailVC.title = @"预约详情";
+    detailVC.orderId = [_models[indexPath.row] id];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 @end

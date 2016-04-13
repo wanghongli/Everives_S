@@ -73,8 +73,13 @@
 }
 -(void)setStarBtnTitle:(NSString *)titleString
 {
+    
     if ([titleString isEqualToString:@"未支付"]) {
-        [self.startBtn setTitle:@"去支付" forState:UIControlStateNormal];
+        if (_orderDetail.partner != 0) {
+            [self.startBtn setTitle:@"确认拼教练" forState:UIControlStateNormal];
+        }else{
+            [self.startBtn setTitle:@"去支付" forState:UIControlStateNormal];
+        }
     }else if ([titleString isEqualToString:@"已完成,等待评价"]){
         [self.startBtn setTitle:@"去评价" forState:UIControlStateNormal];
     }else{
@@ -83,7 +88,8 @@
 }
 -(void)sartClick:(UIButton *)sender
 {
-    if ([sender.titleLabel.text isEqualToString:@"去支付"]) {//去支付
+    //去支付
+    if ([sender.titleLabel.text isEqualToString:@"去支付"]||[sender.titleLabel.text isEqualToString:@"确认拼教练"]) {
         sender.enabled = NO;
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确认支付" message:@"订单已生成，确认支付？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"支付", nil];
         [alertView show];

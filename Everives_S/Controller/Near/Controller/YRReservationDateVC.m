@@ -18,10 +18,10 @@
 
 static NSInteger sectionNum = 7;//竖着的那种
 static NSInteger rowNum = 8; //横着的那种
-#define kcellHeight (kScreenHeight-64)/rowNum
+#define kcellHeight (kScreenHeight-64-50)/(rowNum-1)
 #define kcellWidth 62.5
 
-@interface YRReservationDateVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDataSource>{
+@interface YRReservationDateVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDataSource,UITableViewDelegate>{
     NSArray *_dateArray;//显示在顶部不带年份
     NSArray *_dateAyyayWithYear;//带年份
     NSArray *_timeStartArray;
@@ -167,10 +167,13 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     cell.priceLabel.textColor = [UIColor blackColor];
     cell.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
     if (indexPath.row == 0) { //第一行
+        CGRect rec = cell.priceLabel.frame;
+        cell.priceLabel.frame = CGRectMake(rec.origin.x,15,rec.size.width,rec.size.height);
         cell.priceLabel.text = _dateArray[indexPath.section];
         cell.priceLabel.textColor = [UIColor colorWithRed:65/255.0 green:65/255.0 blue:65/255.0 alpha:1];
         cell.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1];
     }else{
+        cell.priceLabel.frame = CGRectMake(0,kcellHeight/2-10,kcellWidth,20);
         [_modelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YRCanOrderPlacesModel *model = (YRCanOrderPlacesModel*)obj;
             if (model.section == indexPath.section && model.row == indexPath.row) {
@@ -189,6 +192,12 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     return cell;
 }
 
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        return CGSizeMake(kcellWidth, 50);
+    }
+    return CGSizeMake(kcellWidth, kcellHeight);
+}
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if ([_cannotSelected containsObject:indexPath]) {
         return;
@@ -212,6 +221,10 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     }
     return YES;
 }
+#pragma mark - UITableViewDelegate
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return indexPath.row?kcellHeight:50;
+}
 #pragma mark - UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -219,6 +232,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 8;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"tableCellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -266,8 +280,8 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 -(UITableView *)timeView{
     if (!_timeView) {
         _timeView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kcellWidth, kScreenHeight)];
-        _timeView.rowHeight = kcellHeight;
         _timeView.dataSource = self;
+        _timeView.delegate = self;
         _timeView.scrollEnabled = NO;
     }
     return _timeView;

@@ -190,12 +190,17 @@
     if (indexPath.section == 0) {
         NSArray *titles = @[@"学车"];
         cell.textLabel.text = titles[indexPath.row];
+        cell.imageView.image = [UIImage imageNamed:@"Drawer_Navigation_learn"];
     }else if (indexPath.section == 1) {
         NSArray *titles = @[@"驾友", @"驾友圈", @"附近",@"个人"];
+        NSArray *icons = @[@"Drawer_Navigation_Friend",@"Drawer_Navigation_SNS",@"Drawer_Navigation_Neighborhood",@"Drawer_Navigation_Personal"];
         cell.textLabel.text = titles[indexPath.row];
+        cell.imageView.image = [UIImage imageNamed:icons[indexPath.row]];
     } else {
         NSArray *titles = @[@"设置", @"注销"];
+        NSArray *icons = @[@"Drawer_Navigation_Setting",@"Drawer_Navigation_TurnOff"];
         cell.textLabel.text = titles[indexPath.row];
+        cell.imageView.image = [UIImage imageNamed:icons[indexPath.row]];
     }
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     return cell;

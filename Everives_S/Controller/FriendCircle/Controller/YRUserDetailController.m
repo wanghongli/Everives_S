@@ -17,6 +17,10 @@
 #import "YRFriendCircleController.h"
 #import "YREditUserController.h"
 #import "YRChatViewController.h"
+#import "YRNearViewController.h"
+#import "YRYJNavigationController.h"
+#import "REFrostedViewController.h"
+
 @interface YRUserDetailController ()<UITableViewDelegate,UITableViewDataSource,YRUserDownViewDelegate>
 {
     YRUserStatus *_userMsg;
@@ -164,7 +168,12 @@
         [self.navigationController pushViewController:conversationVC animated:YES];
         
     }else{//拼教练
-    
+        YRNearViewController *nearViewController = [[YRNearViewController alloc] init];
+        nearViewController.isGoOnLearning = YES;
+        nearViewController.isShareOrder = YES;
+        nearViewController.partnerModel = _userMsg;
+        YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:nearViewController];
+        self.frostedViewController.contentViewController = navigationController;
     }
 }
 

@@ -14,6 +14,7 @@
 #import "YRReservationDateVC.h"
 #import "YROrderConfirmViewController.h"
 #import "YRTeacherDetailObj.h"
+#import "YRShareOrderConfirmViewController.h"
 static NSString *HeaderID = @"headerID";
 
 @interface YRReservationChoosePlaceVC (){
@@ -61,13 +62,26 @@ static NSString *HeaderID = @"headerID";
         NSDictionary *dic = @{@"date":obj[@"date"],@"time":obj[@"time"],@"place":placeID};
         [_parameterArr addObject:dic];
     }];
-    NSDictionary *parameters = @{@"id":[NSString stringWithFormat:@"%li",_coachModel.id],@"partner":@"0",@"info":[_parameterArr mj_JSONString],@"kind":@"0"};
-    YROrderConfirmViewController *confirmVC = [[YROrderConfirmViewController alloc] init];
-    confirmVC.parameters = parameters;
-    confirmVC.DateTimeArray = _parameterArr;
-    confirmVC.coachModel = _coachModel;
-    confirmVC.totalPrice = _totalPrice;
-    [self.navigationController pushViewController:confirmVC animated:YES];
+    NSDictionary *parameters = @{@"id":[NSString stringWithFormat:@"%li",_coachModel.id],@"partner":_isShareOrder?_partnerModel.id:@"0",@"info":[_parameterArr mj_JSONString],@"kind":@"0"};
+    //合拼
+    if (_isShareOrder) {
+        YRShareOrderConfirmViewController *confirmVC = [[YRShareOrderConfirmViewController alloc] init];
+        confirmVC.parameters = parameters;
+        confirmVC.DateTimeArray = _parameterArr.copy;
+        confirmVC.coachModel = _coachModel;
+        confirmVC.totalPrice = _totalPrice;
+        confirmVC.partnerModel = _partnerModel;
+        [self.navigationController pushViewController:confirmVC animated:YES];
+    }else{
+        YROrderConfirmViewController *confirmVC = [[YROrderConfirmViewController alloc] init];
+        confirmVC.parameters = parameters;
+        confirmVC.DateTimeArray = _parameterArr.copy;
+        confirmVC.coachModel = _coachModel;
+        confirmVC.totalPrice = _totalPrice;
+        [self.navigationController pushViewController:confirmVC animated:YES];
+    }
+    [_parameterArr removeAllObjects];
+    
 }
 
 #pragma mark - Table view data source

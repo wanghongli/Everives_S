@@ -1,18 +1,18 @@
 //
-//  YRReservationChoosePlaceVC.h
+//  YRShareOrderConfirmViewController.h
 //  Everives_S
 //
-//  Created by darkclouds on 16/3/23.
+//  Created by darkclouds on 16/4/8.
 //  Copyright © 2016年 darkclouds. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 @class YRTeacherDetailObj;
-@interface YRReservationChoosePlaceVC : UITableViewController
-@property(nonatomic,strong) NSArray *timeArray;
+@interface YRShareOrderConfirmViewController : UITableViewController
+@property(nonatomic,strong) NSDictionary *parameters;//提交订单的参数
+@property(nonatomic,strong) NSArray *DateTimeArray;
 @property(nonatomic,strong) YRTeacherDetailObj *coachModel;
 @property(nonatomic,assign) NSInteger totalPrice;
-@property(nonatomic,assign) BOOL isShareOrder;
 /**
  *  合拼教练的同伴
  */

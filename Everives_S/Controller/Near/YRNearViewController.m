@@ -77,7 +77,10 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tablewViewReloadData:) name:kNearViewControlerReloadTable object:nil];
     
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    _isShareOrder = NO;
+}
 
 #pragma mark - Private Methods
 //收到筛选信息之后的通知处理
@@ -273,6 +276,8 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         YRTeacherDetailController *coachDetail = [[YRTeacherDetailController alloc] init];
         coachDetail.teacherID = [_coachData.coachArray[indexPath.row] id];
         coachDetail.kind = [_coachData.coachArray[indexPath.row] kind];
+        coachDetail.isShareOrder = _isShareOrder;
+        coachDetail.partnerModel = _partnerModel;
         [self.navigationController pushViewController:coachDetail animated:YES];
     }else{
         YRUserDetailController *userDetail = [[YRUserDetailController alloc] init];

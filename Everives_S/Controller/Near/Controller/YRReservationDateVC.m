@@ -14,6 +14,8 @@
 #import "YRCanOrderPlacesModel.h"
 #import "YROrderConfirmViewController.h"
 #import "YRTeacherDetailObj.h"
+#import "YRShareOrderConfirmViewController.h"
+
 static NSInteger sectionNum = 7;//竖着的那种
 static NSInteger rowNum = 8; //横着的那种
 #define kcellHeight (kScreenHeight-64)/rowNum
@@ -120,18 +122,32 @@ static NSInteger rowNum = 8; //横着的那种
     //如果是科目三就不再选择场地，直接提交
     if (_coachModel.kind == 1) {
         
-        NSDictionary *parameters = @{@"id":[NSString stringWithFormat:@"%li",_coachModel.id],@"partner":@"0",@"info":[resultDate mj_JSONString],@"kind":@"1"};
-        YROrderConfirmViewController *confirmVC = [[YROrderConfirmViewController alloc] init];
-        confirmVC.parameters = parameters;
-        confirmVC.DateTimeArray = resultDate;
-        confirmVC.coachModel = _coachModel;
-        confirmVC.totalPrice = totalPrice;
-        [self.navigationController pushViewController:confirmVC animated:YES];
+        NSDictionary *parameters = @{@"id":[NSString stringWithFormat:@"%li",_coachModel.id],@"partner":_isShareOrder?_partnerModel.id:@"0",@"info":[resultDate mj_JSONString],@"kind":@"1"};
+        //合拼教练
+        if (_isShareOrder) {
+            YRShareOrderConfirmViewController *confirmVC = [[YRShareOrderConfirmViewController alloc] init];
+            confirmVC.parameters = parameters;
+            confirmVC.DateTimeArray = resultDate;
+            confirmVC.coachModel = _coachModel;
+            confirmVC.totalPrice = totalPrice;
+            confirmVC.partnerModel = _partnerModel;
+            [self.navigationController pushViewController:confirmVC animated:YES];
+        }else{
+            YROrderConfirmViewController *confirmVC = [[YROrderConfirmViewController alloc] init];
+            confirmVC.parameters = parameters;
+            confirmVC.DateTimeArray = resultDate;
+            confirmVC.coachModel = _coachModel;
+            confirmVC.totalPrice = totalPrice;
+            [self.navigationController pushViewController:confirmVC animated:YES];
+        }
+        
     }else{//如果是科目二则继续选择场地
         YRReservationChoosePlaceVC *choosePlace = [[YRReservationChoosePlaceVC alloc]init];
         choosePlace.timeArray = resultDate;
         choosePlace.coachModel = _coachModel;
         choosePlace.totalPrice = totalPrice;
+        choosePlace.isShareOrder = _isShareOrder;
+        choosePlace.partnerModel = _partnerModel;
         [self.navigationController pushViewController:choosePlace animated:YES];
     }
 }

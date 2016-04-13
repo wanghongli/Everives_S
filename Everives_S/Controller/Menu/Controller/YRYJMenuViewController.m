@@ -19,6 +19,7 @@
 #import "YRMenuHeadView.h"
 #import "YRMenuMessageController.h"
 #import "YRSettingController.h"
+#import "YRMenuCell.h"
 @interface YRYJMenuViewController ()<UIAlertViewDelegate,YRMenuHeadViewDelegate>
 @property (nonatomic, strong) YRMenuHeadView *headView;
 @end
@@ -38,6 +39,8 @@
     _headView.delegate = self;
     self.tableView.tableHeaderView = _headView;
     self.tableView.tableFooterView = [[UIView alloc]init];
+    [self.tableView registerNib:[UINib nibWithNibName:@"YRMenuCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -182,22 +185,27 @@
 {
     static NSString *cellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    YRMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[YRMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     if (indexPath.section == 0) {
         NSArray *titles = @[@"学车"];
-        cell.textLabel.text = titles[indexPath.row];
+        cell.menuText.text = titles[indexPath.row];
+        cell.leftImg.image = [UIImage imageNamed:@"Neighborhood_Field_DriSch"];
     }else if (indexPath.section == 1) {
         NSArray *titles = @[@"驾友", @"驾友圈", @"附近",@"个人"];
-        cell.textLabel.text = titles[indexPath.row];
+        NSArray *imgArray = @[@"Drawer_Navigation_Friend",@"Drawer_Navigation_SNS",@"Drawer_Navigation_Neighborhood",@"Drawer_Navigation_Personal"];
+        cell.menuText.text = titles[indexPath.row];
+        cell.leftImg.image = [UIImage imageNamed:imgArray[indexPath.row]];
     } else {
         NSArray *titles = @[@"设置", @"注销"];
-        cell.textLabel.text = titles[indexPath.row];
+        NSArray *imgArray = @[@"Drawer_Navigation_Setting",@"Drawer_Navigation_TurnOff"];
+        cell.menuText.text = titles[indexPath.row];
+        cell.leftImg.image = [UIImage imageNamed:imgArray[indexPath.row]];
     }
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 #pragma mark - 消息中心

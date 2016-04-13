@@ -125,6 +125,8 @@
         }
     } error:^(NSString *errorMsg) {
         NSLog(@"%@",errorMsg);
+        [MBProgressHUD showError:@"密码修改失败" toView:GET_WINDOW];
+
     }];
     
 }

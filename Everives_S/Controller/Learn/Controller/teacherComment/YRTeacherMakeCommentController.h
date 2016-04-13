@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YRTeacherMakeCommentController : UIViewController
-
+@property (nonatomic, strong) NSString *orderID;
 @end

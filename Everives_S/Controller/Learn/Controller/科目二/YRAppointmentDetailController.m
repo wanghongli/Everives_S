@@ -15,6 +15,7 @@
 {
     NSArray *_titleArray;
     NSArray *_menuArray;
+    NSMutableArray *_totalMenu;
 }
 @property (nonatomic, strong) YRAppointmentHeadView *headView;//头不视图
 @property (nonatomic, strong) YRLearnOrderDetail *orderDetail;//详情模型
@@ -50,12 +51,16 @@
         [MBProgressHUD hideAllHUDsForView:GET_WINDOW animated:YES];
         self.orderDetail = [YRLearnOrderDetail mj_objectWithKeyValues:responseDic];
         self.headView.orderDetail = self.orderDetail;
+        _totalMenu = [NSMutableArray array];
+        for (int i = 0 ; i<self.orderDetail.info.count; i++) {
+            YRLearnOrderDetailInfo *detailInfo = self.orderDetail.info[i];
+            NSString *orderTime = [YRPublicMethod getDateAndWeekWith:detailInfo.date];;
+            NSString *string = [YRPublicMethod getDetailLearnTimeWith:detailInfo.time];
+            NSString *price = [NSString stringWithFormat:@"￥%ld",detailInfo.price];
+            _menuArray = @[orderTime,string,detailInfo.place,price];
+            [_totalMenu addObject:_menuArray];
+        }
         
-        YRLearnOrderDetailInfo *detailInfo = self.orderDetail.info[0];
-        NSString *orderTime = [YRPublicMethod getDateAndWeekWith:detailInfo.date];;
-        NSString *string = [YRPublicMethod getDetailLearnTimeWith:detailInfo.time];
-        NSString *price = [NSString stringWithFormat:@"￥%ld",detailInfo.price];
-        _menuArray = @[orderTime,string,detailInfo.place,price];
         [self.tableView reloadData];
     } failed:^(NSError *error) {
         [MBProgressHUD hideAllHUDsForView:GET_WINDOW animated:YES];
@@ -76,7 +81,7 @@
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.orderDetail.info.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -90,10 +95,29 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     }
     cell.textLabel.text = _titleArray[indexPath.row];
-    cell.detailTextLabel.text = _menuArray[indexPath.row];
+    NSArray *array = _totalMenu[indexPath.section];
+    cell.detailTextLabel.text = array[indexPath.row];
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section == self.orderDetail.info.count-1) {
+        return 2;
+    }
+    return 10;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 2;
+    }
+    return 0.1;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 - (void)appointmentHeadViewClick
 {
     YRTeacherDetailController *tdc = [[YRTeacherDetailController alloc]init];

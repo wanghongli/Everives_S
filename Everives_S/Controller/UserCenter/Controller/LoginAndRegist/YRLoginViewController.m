@@ -103,8 +103,8 @@
 - (void)loginClick:(CWSPublicButton*)sender
 {
     MyLog(@"%s",__func__);
-    [MBProgressHUD showMessag:@"正在登陆" toView:self.view];
     [PublicCheckMsgModel loginMsgCheckTell:self.phoneTF.text psw:self.passwordTF.text complete:^(BOOL isSuccess) {
+        [MBProgressHUD showMessag:@"正在登陆" toView:self.view];
         [RequestData POST:USER_LOGIN parameters:@{@"tel":self.phoneTF.text,@"password":self.passwordTF.text,@"kind":@"0",@"type":@"1"} complete:^(NSDictionary *responseDic) {
             NSLog(@"%@",responseDic);
             YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:responseDic];
@@ -125,20 +125,30 @@
                 });
             }
                                           error:^(RCConnectErrorCode status) {
-                                              NSLog(@"error_status = %ld",status);
+                                              MyLog(@"error_status = %ld",status);
+                                              [userDefaults removeObjectForKey:@"user"];
+                                              [userDefaults removeObjectForKey:@"loginCount"];
+                                              [NSUserDefaults resetStandardUserDefaults];
+                                              [MBProgressHUD showError:@"登陆失败，请重新登陆" toView:GET_WINDOW];
                                           }
                                  tokenIncorrect:^() {
-                                     NSLog(@"token incorrect");
+                                     [userDefaults removeObjectForKey:@"user"];
+                                     [userDefaults removeObjectForKey:@"loginCount"];
+                                     [NSUserDefaults resetStandardUserDefaults];
+                                     MyLog(@"token incorrect");
+                                     [MBProgressHUD showError:@"登陆失败，请重新登陆" toView:GET_WINDOW];
                                  }];
             
         } failed:^(NSError *error) {
-            
-            NSLog(@"error - %@",[error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONString]);
+            NSDictionary *string = (NSDictionary *)[error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONObject];
+//            NSLog(@"error - %@",[error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONString]);
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD showError:string[@"info"] toView:self.view];
         }];
     } error:^(NSString *errorMsg) {//账号密码有误
         NSLog(@"%@",errorMsg);
         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD showError:errorMsg toView:self.view];
     }];
     
 }

@@ -16,12 +16,12 @@
 #import <QiniuSDK.h>
 
 #import "YRTeacherCommentDetailController.h"
-@interface YRTeacherMakeCommentController ()<JKImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UITextViewDelegate>
+@interface YRTeacherMakeCommentController ()<JKImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UITextViewDelegate,YRTeacherStarLevelViewDelegate>
 {
-    NSMutableDictionary *_bodyDic;
     NSMutableArray *_imgNameArray;
     NSMutableArray *_publishImgArray;
 }
+@property (nonatomic, strong) NSMutableDictionary *bodyDic;
 @property (nonatomic, retain) UICollectionView *collectionView;
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) UIButton *publishBtn;
@@ -66,7 +66,7 @@
     UIView *textTopLine = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.starView.frame), kSizeOfScreen.width, 1)];
     textTopLine.backgroundColor = kCOLOR(241, 241, 241);
     [self.view addSubview:textTopLine];
-    self.textView = [[UITextView alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(self.starView.frame)+1, kSizeOfScreen.width-30, 170)];
+    self.textView = [[UITextView alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(self.starView.frame)+1, kSizeOfScreen.width-30, 110)];
     self.textView.delegate = self;
     self.textView.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:self.textView];
@@ -75,7 +75,7 @@
     self.textView.textColor = kCOLOR(200, 200, 200);
     
     
-    self.publishBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.collectionView.frame), kSizeOfScreen.width, 44)];
+    self.publishBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.collectionView.frame)+40, kSizeOfScreen.width, 44)];
     self.publishBtn.backgroundColor = kMainColor;
     [self.publishBtn setTitle:@"发布" forState:UIControlStateNormal];
     [self.publishBtn addTarget:self action:@selector(publishClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -102,8 +102,130 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:imagePickerController];
     [self presentViewController:navigationController animated:YES completion:NULL];
 }
+#pragma mark - 发布
 -(void)publishClick:(UIButton*)sender
-{}
+{
+    //判断星级是否选择
+    NSArray *keyArray = [_bodyDic allKeys];
+    if ([keyArray containsObject:@"describe"]) {
+        if ([keyArray containsObject:@"quality"]) {
+            if (![keyArray containsObject:@"attitude"]){
+                [MBProgressHUD showError:@"“教学态度”星级评定不能为空" toView:self.view];
+                return;
+            }
+        }else{
+            [MBProgressHUD showError:@"“教学质量”星级评定不能为空" toView:self.view];
+            return;
+        }
+    }else{
+        [MBProgressHUD showError:@"“描述相符”星级评定不能为空" toView:self.view];
+        return;
+    }
+    //判断评价不能为空
+    if (!self.textView.text.length) {
+        [MBProgressHUD showError:@"评价内容不能为空，请输入" toView:self.view];
+        return;
+    }
+    //添加内容
+    [_bodyDic setObject:self.textView.text forKey:@"content"];
+    //添加订单id
+    [_bodyDic setObject:self.orderID forKey:@"id"];
+    [RequestData POST:STUDENT_MAKE_COMMENT parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+        MyLog(@"%@",responseDic);
+    } failed:^(NSError *error) {
+        
+    }];
+    
+    [MBProgressHUD showMessag:@"上传中..." toView:self.view];
+    if (!self.assetsArray.count) {
+        NSString *imgArray = [_publishImgArray mj_JSONString];
+        [_bodyDic setObject:imgArray forKey:@"pics"];
+        [RequestData POST:STUDENT_MAKE_COMMENT parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+//            [self goBackVC];
+        } failed:^(NSError *error) {
+            sender.userInteractionEnabled = YES;
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
+        return;
+    }
+    
+    for (int i = 0; i<self.assetsArray.count; i++) {
+        JKAssets *jkasset = self.assetsArray[i];
+        ALAssetsLibrary   *lib = [[ALAssetsLibrary alloc] init];
+        [lib assetForURL:jkasset.assetPropertyURL resultBlock:^(ALAsset *asset) {
+            if (asset) {
+                UIImage *img=[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
+                NSData *uploadData = UIImageJPEGRepresentation(img, 1);
+                NSString *imageName = [[uploadData.description md5] addString:@".jpg"];
+                [_imgNameArray addObject:imageName];
+                [_publishImgArray addObject:[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]];
+                
+//                [YRShaHeObjct saveNSDictionaryForDocument:uploadData FileUrl:imageName];
+//                [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName];
+                [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName toDisk:YES];
+                
+                if (_imgNameArray.count == self.assetsArray.count) {
+                    NSString *imgArray = [_publishImgArray mj_JSONString];
+                    [_bodyDic setObject:imgArray forKey:@"pics"];
+                    [self publishImages:_imgNameArray];
+                    [RequestData POST:STUDENT_MAKE_COMMENT parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+                        sender.userInteractionEnabled = YES;
+                        [self goBackVC];
+                    } failed:^(NSError *error) {
+                        sender.userInteractionEnabled = YES;
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    }];
+                }
+            }
+        } failureBlock:^(NSError *error) {
+            
+        }];
+    }
+}
+-(void)publishImages:(NSArray *)imgName
+{
+    [RequestData GET:USER_QINIUTOKEN parameters:nil complete:^(NSDictionary *responseDic) {
+        //获取token
+        MyLog(@"%@",responseDic);
+        NSString *token = responseDic[@"token"];
+        QNUploadManager *upManager = [[QNUploadManager alloc] init];
+        for (int i = 0; i<self.assetsArray.count; i++) {
+            JKAssets *jkasset = self.assetsArray[i];
+            ALAssetsLibrary   *lib = [[ALAssetsLibrary alloc] init];
+            [lib assetForURL:jkasset.assetPropertyURL resultBlock:^(ALAsset *asset) {
+                if (asset) {
+                    UIImage *img=[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
+                    NSData *uploadData = UIImageJPEGRepresentation(img, 1);
+                    //上传到七牛
+                    [upManager putData:uploadData key:imgName[i] token:token
+                              complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                                  MyLog(@"%@\n---%@\n %@",info,resp,key);
+                                  if (resp) {
+                                      if (i == self.assetsArray.count-1) {
+//                                          [MBProgressHUD showSuccess:@"上传成功" toView:self.navigationController.view];
+                                          
+                                      }
+                                  }
+                                  
+                              } option:nil];
+                }
+            } failureBlock:^(NSError *error) {
+                
+            }];
+        }
+    } failed:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+-(void)goBackVC
+{
+//    YRFriendCircleController *fcVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+//    fcVC.refreshMsg = @"刷新数据";
+//    [self.navigationController popToViewController:fcVC animated:YES];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+}
+
 #pragma mark - JKImagePickerControllerDelegate
 - (void)imagePickerController:(JKImagePickerController *)imagePicker didSelectAsset:(JKAssets *)asset isSource:(BOOL)source
 {
@@ -155,7 +277,6 @@ static NSString *kPhotoCellIdentifier = @"kPhotoCellIdentifier";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"%ld",(long)[indexPath row]);
-    
 }
 
 - (UICollectionView *)collectionView{
@@ -166,7 +287,7 @@ static NSString *kPhotoCellIdentifier = @"kPhotoCellIdentifier";
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         UIImage  *img = [UIImage imageNamed:@"pic_add"];
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.textView.frame), CGRectGetWidth(self.view.frame)-30 - img.size.width - 10, 80) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15, 200+64, CGRectGetWidth(self.view.frame)-30 - img.size.width - 10, 80) collectionViewLayout:layout];
         _collectionView.backgroundColor = [UIColor clearColor];
         [_collectionView registerClass:[PhotoCell class] forCellWithReuseIdentifier:kPhotoCellIdentifier];
         _collectionView.delegate = self;
@@ -175,9 +296,15 @@ static NSString *kPhotoCellIdentifier = @"kPhotoCellIdentifier";
         _collectionView.showsVerticalScrollIndicator = NO;
         
         [self.view addSubview:_collectionView];
-        
     }
     return _collectionView;
+}
+-(NSMutableDictionary *)bodyDic
+{
+    if (_bodyDic == nil) {
+        _bodyDic = [NSMutableDictionary dictionary];
+    }
+    return _bodyDic;
 }
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
@@ -206,12 +333,19 @@ static NSString *kPhotoCellIdentifier = @"kPhotoCellIdentifier";
 {
     [self.view endEditing:YES];
 }
-
+#pragma mark - 星级选择代理YRTeacherStarLevelViewDelegate
+-(void)teacherStarLevelMenu:(NSString *)menu starLevel:(NSInteger)starLevel
+{
+    NSString *starLevelString = [NSString stringWithFormat:@"%ld",starLevel];
+    [_bodyDic setObject:starLevelString forKey:menu];
+    MyLog(@"%@",_bodyDic);
+}
 - (YRTeacherStarLevelView *)starView
 {
     if (_starView == nil) {
         
         _starView = [[YRTeacherStarLevelView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth*0.36)];
+        _starView.delegate = self;
         [self.view addSubview:_starView];
         
     }

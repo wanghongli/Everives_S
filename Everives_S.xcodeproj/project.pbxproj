@@ -86,6 +86,8 @@
 		032C464D1CBB74E30022C2F9 /* YRStarLevelDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C464A1CBB74E30022C2F9 /* YRStarLevelDetailView.m */; };
 		032C464E1CBB74E30022C2F9 /* YRTeacherStarLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C464C1CBB74E30022C2F9 /* YRTeacherStarLevelView.m */; };
 		032C46511CBB75520022C2F9 /* YRTeacherCommentDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C46501CBB75520022C2F9 /* YRTeacherCommentDetailHeadView.m */; };
+		032FADE31CBDFE82006A7AA4 /* YRMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 032FADE11CBDFE82006A7AA4 /* YRMenuCell.m */; };
+		032FADE41CBDFE82006A7AA4 /* YRMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032FADE21CBDFE82006A7AA4 /* YRMenuCell.xib */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -452,6 +454,9 @@
 		032C464C1CBB74E30022C2F9 /* YRTeacherStarLevelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRTeacherStarLevelView.m; sourceTree = "<group>"; };
 		032C464F1CBB75520022C2F9 /* YRTeacherCommentDetailHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRTeacherCommentDetailHeadView.h; sourceTree = "<group>"; };
 		032C46501CBB75520022C2F9 /* YRTeacherCommentDetailHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRTeacherCommentDetailHeadView.m; sourceTree = "<group>"; };
+		032FADE01CBDFE82006A7AA4 /* YRMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMenuCell.h; sourceTree = "<group>"; };
+		032FADE11CBDFE82006A7AA4 /* YRMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMenuCell.m; sourceTree = "<group>"; };
+		032FADE21CBDFE82006A7AA4 /* YRMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRMenuCell.xib; sourceTree = "<group>"; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -1585,6 +1590,9 @@
 				03C651BF1CA8C509005FFC71 /* YRMessageViewCell.h */,
 				03C651C01CA8C509005FFC71 /* YRMessageViewCell.m */,
 				03C651C11CA8C509005FFC71 /* YRMessageViewCell.xib */,
+				032FADE01CBDFE82006A7AA4 /* YRMenuCell.h */,
+				032FADE11CBDFE82006A7AA4 /* YRMenuCell.m */,
+				032FADE21CBDFE82006A7AA4 /* YRMenuCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2278,6 +2286,7 @@
 				03FF14711C9F861600AEBB75 /* YRLearnOrderController.xib in Resources */,
 				165991E21CB65BB500338264 /* YROrderItemCell.xib in Resources */,
 				031515381C9A3D7400A2A2F1 /* YREditUserController.xib in Resources */,
+				032FADE41CBDFE82006A7AA4 /* YRMenuCell.xib in Resources */,
 				03F59B901C8EC1FF009D5EA2 /* YRCircleDetailController.xib in Resources */,
 				037F8E691C8D5FC50057BF6C /* JKImagePickerController.strings in Resources */,
 				037F8EB21C8E6D350057BF6C /* MJPhotoBrowser.bundle in Resources */,
@@ -2595,6 +2604,7 @@
 				1600EBC61C88087A001919EB /* UIViewController+REFrostedViewController.m in Sources */,
 				032C44101CAE58440022C2F9 /* FMDatabase.m in Sources */,
 				1672A64D1C8FBF9100AF6272 /* SharedMapView.m in Sources */,
+				032FADE31CBDFE82006A7AA4 /* YRMenuCell.m in Sources */,
 				03019D1A1C98F6D200895C77 /* KGFreshCatchDetailZanView.m in Sources */,
 				037D7C271C916AE600273703 /* UIImage+UzysExtension.m in Sources */,
 				037F8E721C8D5FC50057BF6C /* JKPhotoBrowser.m in Sources */,

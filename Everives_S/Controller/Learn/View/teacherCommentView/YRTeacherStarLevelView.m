@@ -93,12 +93,17 @@
 }
 -(void)starLevelDetailViewWhichStarClick:(NSInteger)starTag with:(YRStarLevelDetailView *)starView
 {
+    NSString *menu;
     if ([starView isEqual:_starView]) {//描述相符
+        menu = @"describe";
         MyLog(@"描述相符 - %ld",starTag);
     }else if ([starView isEqual:_starView1]) {//教学质量
         MyLog(@"教学质量 - %ld",starTag);
+        menu = @"quality";
     }else if ([starView isEqual:_starView2]) {//服务态度
         MyLog(@"服务态度 - %ld",starTag);
+        menu = @"attitude";
     }
+    [self.delegate teacherStarLevelMenu:menu starLevel:starTag];
 }
 @end

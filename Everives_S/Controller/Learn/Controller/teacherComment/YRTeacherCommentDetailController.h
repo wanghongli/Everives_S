@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YRTeacherCommentDetailController : UITableViewController
-
+@property (nonatomic, assign) NSInteger orderID;
 @end

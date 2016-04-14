@@ -66,21 +66,26 @@
     _imgView.layer.masksToBounds = YES;
     _imgView.layer.cornerRadius = _imgView.height/2;
     
-    CGSize nameSize = [@"罗纳尔多" sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
-    _nameLabel.frame = CGRectMake(CGRectGetMaxX(_imgView.frame)+kdistace, _imgView.y, nameSize.width, nameSize.height);
-    _nameLabel.text = @"罗纳尔多";
+//    CGSize nameSize = [@"罗纳尔多" sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+//    _nameLabel.frame = CGRectMake(CGRectGetMaxX(_imgView.frame)+kdistace, _imgView.y, nameSize.width, nameSize.height);
+//    _nameLabel.text = @"罗纳尔多";
+//    
+//    _levelLabel.frame = CGRectMake(CGRectGetMaxX(_nameLabel.frame)+kdistace, _imgView.y, nameSize.width, nameSize.height);
+//    _levelLabel.text = @"4.0";
     
-    _levelLabel.frame = CGRectMake(CGRectGetMaxX(_nameLabel.frame)+kdistace, _imgView.y, nameSize.width, nameSize.height);
-    _levelLabel.text = @"4.0";
-    
-    _starView.frame = CGRectMake(CGRectGetMaxX(_imgView.frame), CGRectGetMaxY(_nameLabel.frame), self.width-CGRectGetMaxX(_imgView.frame), _imgView.height - nameSize.height +10);
+//    _starView.frame = CGRectMake(CGRectGetMaxX(_imgView.frame), CGRectGetMaxY(_nameLabel.frame), self.width-CGRectGetMaxX(_imgView.frame), _imgView.height - nameSize.height +10);
 }
 -(void)setDetailObj:(YRTeacherCommentDetailObj *)detailObj
 {
     _detailObj = detailObj;
+    
+    _imgView.frame = CGRectMake(kdistace, self.height/6, self.height*2/3, self.height*2/3);
+    _imgView.layer.masksToBounds = YES;
+    _imgView.layer.cornerRadius = _imgView.height/2;
     [_imgView sd_setImageWithURL:[NSURL URLWithString:detailObj.avatar] placeholderImage:[UIImage imageNamed:@"head_jiaolian"]];
    
     NSString *nameString = [NSString stringWithFormat:@"%@",detailObj.tname];
+    MyLog(@"%@",nameString);
     CGSize nameSize = [nameString sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
 
     _nameLabel.frame = CGRectMake(CGRectGetMaxX(_imgView.frame)+kdistace, _imgView.y, nameSize.width, nameSize.height);
@@ -89,6 +94,8 @@
     _levelLabel.frame = CGRectMake(CGRectGetMaxX(_nameLabel.frame)+kdistace, _imgView.y, nameSize.width, nameSize.height);
     _levelLabel.text = detailObj.grade;
     
+    
+    _starView.frame = CGRectMake(CGRectGetMaxX(_imgView.frame), CGRectGetMaxY(_nameLabel.frame), self.width-CGRectGetMaxX(_imgView.frame), _imgView.height - nameSize.height +10);
     _starView.describeInt = detailObj.describe;
     _starView.qualityInt = detailObj.quality;
     _starView.attitudeInt = detailObj.attitude;

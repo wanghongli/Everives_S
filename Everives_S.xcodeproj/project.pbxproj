@@ -89,6 +89,10 @@
 		032FADE31CBDFE82006A7AA4 /* YRMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 032FADE11CBDFE82006A7AA4 /* YRMenuCell.m */; };
 		032FADE41CBDFE82006A7AA4 /* YRMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032FADE21CBDFE82006A7AA4 /* YRMenuCell.xib */; };
 		032FADE81CBE3759006A7AA4 /* YRTeacherCommentDetailObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 032FADE71CBE3759006A7AA4 /* YRTeacherCommentDetailObj.m */; };
+		032FADEB1CBE4489006A7AA4 /* YRTeacherCommentDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 032FADEA1CBE4489006A7AA4 /* YRTeacherCommentDownView.m */; };
+		032FADF31CBF2C1A006A7AA4 /* YRMyCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 032FADF21CBF2C1A006A7AA4 /* YRMyCommentTableViewCell.m */; };
+		032FADF61CBF3A83006A7AA4 /* YRMyCommentObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 032FADF51CBF3A83006A7AA4 /* YRMyCommentObj.m */; };
+		032FADF91CBF435B006A7AA4 /* YRTeacherAllCommentControllerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032FADF81CBF435B006A7AA4 /* YRTeacherAllCommentControllerController.m */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -459,6 +463,14 @@
 		032FADE21CBDFE82006A7AA4 /* YRMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRMenuCell.xib; sourceTree = "<group>"; };
 		032FADE61CBE3759006A7AA4 /* YRTeacherCommentDetailObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRTeacherCommentDetailObj.h; sourceTree = "<group>"; };
 		032FADE71CBE3759006A7AA4 /* YRTeacherCommentDetailObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRTeacherCommentDetailObj.m; sourceTree = "<group>"; };
+		032FADE91CBE4489006A7AA4 /* YRTeacherCommentDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRTeacherCommentDownView.h; sourceTree = "<group>"; };
+		032FADEA1CBE4489006A7AA4 /* YRTeacherCommentDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRTeacherCommentDownView.m; sourceTree = "<group>"; };
+		032FADF11CBF2C1A006A7AA4 /* YRMyCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyCommentTableViewCell.h; sourceTree = "<group>"; };
+		032FADF21CBF2C1A006A7AA4 /* YRMyCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyCommentTableViewCell.m; sourceTree = "<group>"; };
+		032FADF41CBF3A83006A7AA4 /* YRMyCommentObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMyCommentObj.h; sourceTree = "<group>"; };
+		032FADF51CBF3A83006A7AA4 /* YRMyCommentObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMyCommentObj.m; sourceTree = "<group>"; };
+		032FADF71CBF435B006A7AA4 /* YRTeacherAllCommentControllerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRTeacherAllCommentControllerController.h; sourceTree = "<group>"; };
+		032FADF81CBF435B006A7AA4 /* YRTeacherAllCommentControllerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRTeacherAllCommentControllerController.m; sourceTree = "<group>"; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -1102,6 +1114,8 @@
 				032C464C1CBB74E30022C2F9 /* YRTeacherStarLevelView.m */,
 				032C464F1CBB75520022C2F9 /* YRTeacherCommentDetailHeadView.h */,
 				032C46501CBB75520022C2F9 /* YRTeacherCommentDetailHeadView.m */,
+				032FADE91CBE4489006A7AA4 /* YRTeacherCommentDownView.h */,
+				032FADEA1CBE4489006A7AA4 /* YRTeacherCommentDownView.m */,
 			);
 			path = teacherCommentView;
 			sourceTree = "<group>";
@@ -1371,6 +1385,8 @@
 				037F8DEE1C8826750057BF6C /* YRYJLearnToDriveController.m */,
 				031D503D1CA22985000E1303 /* YRTeacherDetailController.h */,
 				031D503E1CA22985000E1303 /* YRTeacherDetailController.m */,
+				032FADF71CBF435B006A7AA4 /* YRTeacherAllCommentControllerController.h */,
+				032FADF81CBF435B006A7AA4 /* YRTeacherAllCommentControllerController.m */,
 				03228D1E1CA3EF5800890DC6 /* YRCertificationController.h */,
 				03228D1F1CA3EF5800890DC6 /* YRCertificationController.m */,
 			);
@@ -1468,6 +1484,8 @@
 				037F8E3D1C8D18D20057BF6C /* YRUserStatus.m */,
 				037F8E3F1C8D1E8F0057BF6C /* YRManager.h */,
 				037F8E401C8D1E8F0057BF6C /* YRManager.m */,
+				032FADF41CBF3A83006A7AA4 /* YRMyCommentObj.h */,
+				032FADF51CBF3A83006A7AA4 /* YRMyCommentObj.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2162,6 +2180,8 @@
 			children = (
 				164A8C941C8D23F600857638 /* YRMyCommentsTableViewController.h */,
 				164A8C951C8D23F600857638 /* YRMyCommentsTableViewController.m */,
+				032FADF11CBF2C1A006A7AA4 /* YRMyCommentTableViewCell.h */,
+				032FADF21CBF2C1A006A7AA4 /* YRMyCommentTableViewCell.m */,
 				164A8C971C8D248300857638 /* YRMyCommentCellTableViewCell.h */,
 				164A8C981C8D248300857638 /* YRMyCommentCellTableViewCell.m */,
 				164A8C991C8D248300857638 /* YRMyCommentCellTableViewCell.xib */,
@@ -2391,6 +2411,7 @@
 				03C651CD1CA8DB43005FFC71 /* YRYJThirdClassController.m in Sources */,
 				03019D231C9954B900895C77 /* YRUserDetailCell.m in Sources */,
 				03C651BE1CA8BF79005FFC71 /* YRMessageObject.m in Sources */,
+				032FADF61CBF3A83006A7AA4 /* YRMyCommentObj.m in Sources */,
 				03228D371CA4D38700890DC6 /* SDTransparentPieProgressView.m in Sources */,
 				03228D4A1CA4E92D00890DC6 /* YRScoreDetailHeadView.m in Sources */,
 				031515431C9A912100A2A2F1 /* YRQuestionObject.m in Sources */,
@@ -2508,6 +2529,7 @@
 				037D7C091C914D2200273703 /* YRPerfectHeadView.m in Sources */,
 				032C46231CB4B6A80022C2F9 /* YRTeacherPicsObj.m in Sources */,
 				03C651BB1CA8BF69005FFC71 /* YRYJMenuViewController.m in Sources */,
+				032FADF91CBF435B006A7AA4 /* YRTeacherAllCommentControllerController.m in Sources */,
 				162E28651CA3C7DB00533880 /* YRChoosePlaceCell.m in Sources */,
 				037F8E201C8826750057BF6C /* CWSPublicButton.m in Sources */,
 				03228D3A1CA4D3A000890DC6 /* SDDemoItemView.m in Sources */,
@@ -2535,10 +2557,12 @@
 				037D7C2D1C916AE600273703 /* UzysGroupPickerView.m in Sources */,
 				166939FA1C9A3EAC00C7ECF2 /* Pinyin.c in Sources */,
 				032C46261CB4B6BF0022C2F9 /* YRTeacherPlaceObj.m in Sources */,
+				032FADEB1CBE4489006A7AA4 /* YRTeacherCommentDownView.m in Sources */,
 				032FADE81CBE3759006A7AA4 /* YRTeacherCommentDetailObj.m in Sources */,
 				03A25F171C928891000196A6 /* YRYJFirstClassController.m in Sources */,
 				032C46131CB3AF890022C2F9 /* YRQuestionKindObj.m in Sources */,
 				1672A65A1C8FE60300AF6272 /* YRCoachTableCell.m in Sources */,
+				032FADF31CBF2C1A006A7AA4 /* YRMyCommentTableViewCell.m in Sources */,
 				1694F57D1CA234A6009A4C21 /* YRReservationDateVC.m in Sources */,
 				16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */,
 				03FF14781C9FCA0900AEBB75 /* YRPracticeDownView.m in Sources */,

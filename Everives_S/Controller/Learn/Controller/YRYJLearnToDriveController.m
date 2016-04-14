@@ -96,7 +96,7 @@ FMDatabase *db;
 //    [self getData];
     
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"教练评价" style:UIBarButtonItemStylePlain target:self action:@selector(teacherCommentClick)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"教练评价" style:UIBarButtonItemStylePlain target:self action:@selector(teacherCommentClick)];
 }
 -(void)teacherCommentClick
 {

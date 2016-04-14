@@ -11,5 +11,6 @@
 @interface YRTeacherSectionSecoView : UIView
 
 @property (nonatomic, strong) NSString *titleString;
+@property (nonatomic, strong) void (^moreCommentOrPicClickBlock)(NSString *titleString);
 
 @end

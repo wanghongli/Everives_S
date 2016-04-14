@@ -12,5 +12,5 @@
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @property (nonatomic, strong) YRTeacherCommentObj *teacherCommentObj;
 
-+ (CGFloat) getTeacherCommentCellHeightWith:(NSString *)introduce;
++ (CGFloat) getTeacherCommentCellHeightWith:(YRTeacherCommentObj *)teacherCommentObj;
 @end

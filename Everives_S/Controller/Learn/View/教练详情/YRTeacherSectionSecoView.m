@@ -77,6 +77,8 @@
 
 -(void)allMsgBtnClick:(UIButton *)sender
 {
-    
+    if (self.moreCommentOrPicClickBlock) {
+        self.moreCommentOrPicClickBlock(sender.titleLabel.text);
+    }
 }
 @end

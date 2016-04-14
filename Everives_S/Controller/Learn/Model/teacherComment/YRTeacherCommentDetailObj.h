@@ -22,7 +22,7 @@
 @property (nonatomic, strong) NSArray *pics;
 @property (nonatomic, assign) NSInteger price;
 @property (nonatomic, assign) NSInteger tid;
-@property (nonatomic, assign) NSInteger time;
+@property (nonatomic, strong) NSString *time;
 @property (nonatomic, strong) NSString *tname;
 @property (nonatomic, assign) NSInteger uid;
 @end

@@ -21,7 +21,7 @@
 #import "YRTeacherDetailObj.h"
 #import "YRTeacherPlaceObj.h"
 #import "YRTeacherPicsObj.h"
-
+#import "YRTeacherAllCommentControllerController.h"
 @interface YRTeacherDetailController () <UITableViewDelegate,UITableViewDataSource,YRTeacherDownViewDelegate>
 {
     YRTeacherDetailObject *_teacherObj;
@@ -102,17 +102,14 @@
 {
     if (indexPath.section == 0) {
         YRTeacherDetailCell *cell = [YRTeacherDetailCell cellWithTableView:tableView];
-//        cell.introduce = @"态度温和，不骂学员，长得帅。首次通过率为92%，有多年教学经验可以放心。";
         cell.introduce = self.teacherDetail.intro;
         return cell;
     }else if (indexPath.section == 1){
         YRTeacherCommentCell *cell = [YRTeacherCommentCell cellWithTableView:tableView];
-//        cell.introduce = @"态度温和，不骂学员，长得帅。首次通过率为92%，有多年教学经验可以放心。";
-        cell.teacherCommentObj = _teacherDetail.comment;
+        cell.teacherCommentObj = _teacherDetail.comment[0];
         return cell;
     }else if (indexPath.section == 2){
         YRTeacherPlaceCell *cell = [YRTeacherPlaceCell cellWithTableView:tableView];
-//        YRSchoolModel *schoolModel = _placeArray[indexPath.row];
         YRTeacherPlaceObj *placeObj = _teacherDetail.place[indexPath.row];
         [cell teacherPlaceGetSchoolName:placeObj.name address:@"南岸/黄角丫"];
         return cell;
@@ -127,8 +124,7 @@
     if (indexPath.section == 0) {
         return [YRTeacherDetailCell getTeacherDetailCellHeightWith:@"态度温和，不骂学员，长得帅。首次通过率为92%，有多年教学经验可以放心。"];
     }else if (indexPath.section == 1){
-//        return [YRTeacherCommentCell getTeacherCommentCellHeightWith:@"态度温和，不骂学员，长得帅。首次通过率为92%，有多年教学经验可以放心。"];
-        return [YRTeacherCommentCell getTeacherCommentCellHeightWith:_teacherDetail.comment.content];
+        return [YRTeacherCommentCell getTeacherCommentCellHeightWith:_teacherDetail.comment[0]];
 
     }else if (indexPath.section == 2){
         return 44;
@@ -150,6 +146,16 @@
         }else{
             sectionView.titleString = @"场地和车型照片";
         }
+        [sectionView setMoreCommentOrPicClickBlock:^(NSString *titleString) {
+            MyLog(@"%@",titleString);
+            if ([titleString isEqualToString:@"全部评论"]) {
+                YRTeacherAllCommentControllerController *allComment = [[YRTeacherAllCommentControllerController alloc]init];
+                allComment.teacherID = [self.teacherID integerValue];
+                [self.navigationController pushViewController:allComment animated:YES];
+            }else if ([titleString isEqualToString:@"全部照片"]){
+                
+            }
+        }];
         return sectionView;
     }
 }

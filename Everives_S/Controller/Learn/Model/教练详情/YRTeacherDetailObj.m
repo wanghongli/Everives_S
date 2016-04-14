@@ -11,6 +11,6 @@
 @implementation YRTeacherDetailObj
 + (NSDictionary *)objectClassInArray
 {
-    return @{@"pics":[YRTeacherPicsObj class],@"place":[YRTeacherPlaceObj class]};
+    return @{@"pics":[YRTeacherPicsObj class],@"place":[YRTeacherPlaceObj class],@"comment":[YRTeacherCommentObj class]};
 }
 @end

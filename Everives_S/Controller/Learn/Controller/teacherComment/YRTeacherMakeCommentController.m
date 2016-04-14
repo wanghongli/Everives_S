@@ -42,12 +42,6 @@
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
         self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"评价详情" style:UIBarButtonItemStylePlain target:self action:@selector(teacherCommentClick)];
-}
--(void)teacherCommentClick
-{
-    YRTeacherCommentDetailController *detailVC = [[YRTeacherCommentDetailController alloc]init];
-    [self.navigationController pushViewController:detailVC animated:YES];
 }
 -(void)buildUI
 {
@@ -130,11 +124,7 @@
     [_bodyDic setObject:self.textView.text forKey:@"content"];
     //添加订单id
     [_bodyDic setObject:self.orderID forKey:@"id"];
-    [RequestData POST:STUDENT_MAKE_COMMENT parameters:_bodyDic complete:^(NSDictionary *responseDic) {
-        MyLog(@"%@",responseDic);
-    } failed:^(NSError *error) {
-        
-    }];
+    [_bodyDic setObject:@"0" forKey:@"hide"];
     
     [MBProgressHUD showMessag:@"上传中..." toView:self.view];
     if (!self.assetsArray.count) {
@@ -142,6 +132,10 @@
         [_bodyDic setObject:imgArray forKey:@"pics"];
         [RequestData POST:STUDENT_MAKE_COMMENT parameters:_bodyDic complete:^(NSDictionary *responseDic) {
 //            [self goBackVC];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            YRTeacherCommentDetailController *detailVC = [[YRTeacherCommentDetailController alloc]init];
+            detailVC.orderID = [self.orderID integerValue];
+            [self.navigationController pushViewController:detailVC animated:YES];
         } failed:^(NSError *error) {
             sender.userInteractionEnabled = YES;
             [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -160,8 +154,6 @@
                 [_imgNameArray addObject:imageName];
                 [_publishImgArray addObject:[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]];
                 
-//                [YRShaHeObjct saveNSDictionaryForDocument:uploadData FileUrl:imageName];
-//                [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName];
                 [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName toDisk:YES];
                 
                 if (_imgNameArray.count == self.assetsArray.count) {
@@ -170,7 +162,10 @@
                     [self publishImages:_imgNameArray];
                     [RequestData POST:STUDENT_MAKE_COMMENT parameters:_bodyDic complete:^(NSDictionary *responseDic) {
                         sender.userInteractionEnabled = YES;
-                        [self goBackVC];
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        YRTeacherCommentDetailController *detailVC = [[YRTeacherCommentDetailController alloc]init];
+                        detailVC.orderID = [self.orderID integerValue];
+                        [self.navigationController pushViewController:detailVC animated:YES];
                     } failed:^(NSError *error) {
                         sender.userInteractionEnabled = YES;
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -202,7 +197,7 @@
                                   MyLog(@"%@\n---%@\n %@",info,resp,key);
                                   if (resp) {
                                       if (i == self.assetsArray.count-1) {
-//                                          [MBProgressHUD showSuccess:@"上传成功" toView:self.navigationController.view];
+                                          [MBProgressHUD showSuccess:@"上传成功" toView:self.navigationController.view];
                                           
                                       }
                                   }

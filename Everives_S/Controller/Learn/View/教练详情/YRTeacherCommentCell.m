@@ -79,6 +79,14 @@
     timeaddresslabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:timeaddresslabel];
     _timeAddressLabel = timeaddresslabel;
+    
+    for (int i = 0; i<9; i++) {
+        UIImageView *img = [[UIImageView alloc]init];
+        img.tag = i+30;
+        [self addSubview:img];
+    }
+    
+    
 }
 -(void)setTeacherCommentObj:(YRTeacherCommentObj *)teacherCommentObj
 {
@@ -111,8 +119,25 @@
         timeY = CGRectGetMaxY(_nameLabel.frame)+kDistance;
     }else
         timeY = CGRectGetMaxY(_commentBackView.frame)+kDistance;
-    _timeAddressLabel.frame = CGRectMake(kDistance, timeY, kScreenWidth-2*kDistance, nameSize.height);
+    if (teacherCommentObj.pics.count) {
+        for (int i = 0; i<9; i++) {
+            UIImageView *img = [self viewWithTag:i+30];
+            if (i<teacherCommentObj.pics.count) {
+                img.hidden = NO;
+                CGFloat x = i%3;
+                CGFloat y = i/3;
+                CGFloat distace = 5;
+                img.frame = CGRectMake(kDistance + x*(kPICTURE_HW+distace), CGRectGetMaxY(_nameLabel.frame)+kDistance+y*(kPICTURE_HW+distace), kPICTURE_HW, kPICTURE_HW);
+                [img sd_setImageWithURL:[NSURL URLWithString:teacherCommentObj.pics[i]] placeholderImage:[UIImage imageNamed:@""]];
+                timeY = CGRectGetMaxY(img.frame)+kDistance;
+                
+            }else{
+                img.hidden = YES;
+            }
+        }
+    }
     
+    _timeAddressLabel.frame = CGRectMake(kDistance, timeY, kScreenWidth-2*kDistance, nameSize.height);
     NSString *str=[NSString stringWithFormat:@"%ld",teacherCommentObj.time];//时间戳
     NSTimeInterval time=[str doubleValue];//因为时差问题要加8小时 == 28800 sec
     NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:time];
@@ -121,27 +146,37 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //设定时间格式,这里可以设置成自己需要的格式
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    
     NSString *currentDateStr = [dateFormatter stringFromDate: detaildate];
-    
     _timeAddressLabel.text = currentDateStr;
 }
 
-+ (CGFloat) getTeacherCommentCellHeightWith:(NSString *)introduce
++ (CGFloat) getTeacherCommentCellHeightWith:(YRTeacherCommentObj *)teacherCommentObj
 {
     CGFloat height;
+    
     height+=kDistance;
     
     CGSize nameSize = [@"小王" sizeWithFont:kFontOfLetterMedium maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
     
     CGFloat commentW = kScreenWidth - 3*kDistance - kImgHW;
-    CGSize commentSize = [introduce sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(commentW, MAXFLOAT)];
+    CGSize commentSize = [teacherCommentObj.content sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(commentW, MAXFLOAT)];
     
     if (nameSize.height+kDistance+kImgHW>=commentSize.height) {
         height+=(nameSize.height+kDistance+kImgHW+kDistance);
     }else
         height+=commentSize.height+kDistance;
     
+    if (teacherCommentObj.pics.count) {
+//        for (int i = 0; i<9; i++) {
+//            if (i<teacherCommentObj.pics.count) {
+                CGFloat y = teacherCommentObj.pics.count/3;
+//                height += y*(kPICTURE_HW+5);
+                height = height + y*(kPICTURE_HW+5) + kPICTURE_HW;
+//                
+//            }
+//        }
+        height+=kDistance;
+    }
     height+=nameSize.height;
     height+=kDistance;
     

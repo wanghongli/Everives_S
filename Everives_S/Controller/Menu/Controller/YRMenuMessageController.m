@@ -12,6 +12,7 @@
 #import "YRMessageViewCell.h"
 #import "YRMyFriendsObject.h"
 #import "YRYJNavigationController.h"
+#import "YRAppointmentDetailController.h"
 @interface YRMenuMessageController ()
 {
     NSInteger _page;
@@ -132,7 +133,10 @@
     }else if (notiMsg.type == 201){//驾友圈评论
         
     }else if (notiMsg.type == 400){//拼教练
-    
+        YRAppointmentDetailController *detailVC = [[YRAppointmentDetailController alloc]initWithNibName:@"YRAppointmentDetailController" bundle:nil];
+        detailVC.title = @"预约详情";
+        detailVC.orderId = [NSString stringWithFormat:@"%li",notiMsg.link];
+        [self.navigationController pushViewController:detailVC animated:YES];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

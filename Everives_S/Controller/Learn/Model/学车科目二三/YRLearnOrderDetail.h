@@ -22,4 +22,5 @@
 @property (nonatomic, assign) NSInteger time;
 @property (nonatomic, strong) NSString *tname;
 @property (nonatomic, assign) NSInteger uid;
+@property (nonatomic, assign) NSInteger partner;
 @end

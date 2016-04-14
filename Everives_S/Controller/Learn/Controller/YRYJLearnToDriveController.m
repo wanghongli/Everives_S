@@ -52,7 +52,7 @@ FMDatabase *db;
     NSArray *classNames = @[
                             [YRYJFirstClassController class],
                             [YRYJSecondClassController class],
-                            [YRYJSecondClassController class],
+                            [YRYJThirdClassController class],
                             [YRYJFourthClassController class]
                             ];
     

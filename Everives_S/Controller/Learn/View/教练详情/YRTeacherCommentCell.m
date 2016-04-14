@@ -167,14 +167,8 @@
         height+=commentSize.height+kDistance;
     
     if (teacherCommentObj.pics.count) {
-//        for (int i = 0; i<9; i++) {
-//            if (i<teacherCommentObj.pics.count) {
-                CGFloat y = teacherCommentObj.pics.count/3;
-//                height += y*(kPICTURE_HW+5);
-                height = height + y*(kPICTURE_HW+5) + kPICTURE_HW;
-//                
-//            }
-//        }
+        CGFloat y = teacherCommentObj.pics.count/3;
+        height = height + y*(kPICTURE_HW+5) + kPICTURE_HW;
         height+=kDistance;
     }
     height+=nameSize.height;

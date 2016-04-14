@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _titleArray = @[@"预约时间",@"学车时段",@"训练场地准",@"预约费用"];
+    _titleArray = @[@"预约时间",@"学车时段",@"训练场地",@"预约费用"];
     _menuArray = @[@"2016年3月4日 星期五",@"14:00-16:00&17:00-18:00",@"玉祥驾校南山区",@"￥450"];
     _headView = [[YRAppointmentHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 170)];
     _headView.delegate = self;

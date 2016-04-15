@@ -303,6 +303,7 @@
 		16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096071C89236900FF4A81 /* YRUserCenterViewController.m */; };
 		16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D0960A1C89345D00FF4A81 /* RequestData.m */; };
 		16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096131C89682700FF4A81 /* YRReservationViewController.m */; };
+		16D3FC2A1CC0E401007F73CF /* ZHScrollImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D3FC291CC0E401007F73CF /* ZHScrollImageView.m */; };
 		16F8A8BA1CBF8630004EBC57 /* YRSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F8A8B91CBF8630004EBC57 /* YRSliderView.m */; };
 		3E6442085DEAC8124A5E55C4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F955F842A16D32F98F195A02 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -878,6 +879,8 @@
 		16D0960A1C89345D00FF4A81 /* RequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestData.m; sourceTree = "<group>"; };
 		16D096121C89682700FF4A81 /* YRReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRReservationViewController.h; sourceTree = "<group>"; };
 		16D096131C89682700FF4A81 /* YRReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationViewController.m; sourceTree = "<group>"; };
+		16D3FC281CC0E401007F73CF /* ZHScrollImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHScrollImageView.h; sourceTree = "<group>"; };
+		16D3FC291CC0E401007F73CF /* ZHScrollImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHScrollImageView.m; sourceTree = "<group>"; };
 		16F8A8B81CBF8630004EBC57 /* YRSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSliderView.h; sourceTree = "<group>"; };
 		16F8A8B91CBF8630004EBC57 /* YRSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSliderView.m; sourceTree = "<group>"; };
 		7015813C2D65EC7400D8D9EE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2047,6 +2050,8 @@
 			children = (
 				1645D88E1C950F2A0058D480 /* MapAnnotation */,
 				1672A6511C8FE5A900AF6272 /* TableCellView */,
+				16D3FC281CC0E401007F73CF /* ZHScrollImageView.h */,
+				16D3FC291CC0E401007F73CF /* ZHScrollImageView.m */,
 				1672A64E1C8FC6A600AF6272 /* YRMapSelectView.h */,
 				1672A64F1C8FC6A600AF6272 /* YRMapSelectView.m */,
 				16B75DE81C92A627004DC928 /* YRPullListView.h */,
@@ -2400,6 +2405,7 @@
 				03019D201C994E6300895C77 /* YRUserDownView.m in Sources */,
 				03C651C61CA8CBEE005FFC71 /* YRMyFriendsObject.m in Sources */,
 				16B4735D1CBC9F0C00448884 /* YRMapFMDB.m in Sources */,
+				16D3FC2A1CC0E401007F73CF /* ZHScrollImageView.m in Sources */,
 				03FE5B801CAA4172009F0ED7 /* YRSettingPrivacyCell.m in Sources */,
 				16C41B321CA27855004C4F80 /* YRCanOrderPlacesModel.m in Sources */,
 				032C46301CB746770022C2F9 /* YRLearnOrderDetail.m in Sources */,

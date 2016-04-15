@@ -70,7 +70,6 @@
         [_headView sd_setImageWithURL:[NSURL URLWithString:_userMsg.bg] placeholderImage:[UIImage imageNamed:@"background_1"]];
         [_headView setUserMsgWithName:_userMsg.name gender:[_userMsg.gender boolValue] sign:_userMsg.sign];
         _headView.headImgUrl = _userMsg.avatar;
-//        _userArray = @[@[_userMsg.age,@"科目二",_userMsg.sign],@[@""]];
         _userArray = @[@[_userMsg.age,_userMsg.sign],@[@""]];
 
         if (self.userID) {
@@ -168,6 +167,10 @@
         [self.navigationController pushViewController:conversationVC animated:YES];
         
     }else{//拼教练
+        if (!_userMsg.relation) {//不好友
+            [[[UIAlertView alloc] initWithTitle:@"提示" message:@"拼教练必须先添加好友！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            return;
+        }
         YRNearViewController *nearViewController = [[YRNearViewController alloc] init];
         nearViewController.isGoOnLearning = YES;
         nearViewController.isShareOrder = YES;

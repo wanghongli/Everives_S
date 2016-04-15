@@ -34,8 +34,8 @@
     _headView.delegate = self;
     self.tableView.tableHeaderView = self.headView;
     
-    UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 80)];
-    self.startBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, footView.height-40, kScreenWidth-40, 40)];
+    UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 70)];
+    self.startBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, footView.height-55, kScreenWidth-40, 40)];
     [self.startBtn setTitle:@"发消息" forState:UIControlStateNormal];
     [self.startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.startBtn.backgroundColor = kCOLOR(50, 51, 52);

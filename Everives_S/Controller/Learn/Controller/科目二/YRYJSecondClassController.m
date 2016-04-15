@@ -39,7 +39,6 @@
     }else{
         [self buildUI];
     }
-    
 }
 
 -(void)buildUI
@@ -83,7 +82,7 @@
             [self.tableView reloadData];
             self.noMsgView.hidden = YES;
         }else{
-//            [MBProgressHUD showError:@"暂无数据" toView:GET_WINDOW];
+            [MBProgressHUD showError:@"暂无数据" toView:self.view];
             self.noMsgView.btnTitle = @"安排学车计划";
             self.noMsgView.hidden = NO;
             //无数据的时候展示

@@ -18,6 +18,7 @@
 #import "YRFMDBObj.h"
 
 #import "YRTeacherMakeCommentController.h"
+#import "REFrostedViewController.h"
 #define CZVersionKey @"version"
 @interface YRYJLearnToDriveController ()
 @property (nonatomic, strong) FMDatabaseQueue *databaseQueue;
@@ -39,7 +40,7 @@ FMDatabase *db;
     [super viewDidLoad];
     self.tagItemSize = CGSizeMake(self.view.frame.size.width/4, 48);
     self.title = @"蚁人学车";
-    
+    self.frostedViewController.panGestureEnabled = YES;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu_icon"] style:UIBarButtonItemStylePlain target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu)];
     self.backgroundColor = [UIColor whiteColor];
     
@@ -163,4 +164,41 @@ FMDatabase *db;
         
     }];
 }
+
+#pragma mark - 滑动手势处理
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.contentOffset.x<=0) {
+        if ([scrollView.panGestureRecognizer velocityInView:self.view].x>0) {
+            [self.frostedViewController panGestureRecognized:scrollView.panGestureRecognizer];
+            NSLog(@"did scroll %@",scrollView.panGestureRecognizer);
+            scrollView.contentOffset = CGPointMake(0, 0);
+        }else{
+            return;
+        }
+    }
+}
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if([scrollView.panGestureRecognizer translationInView:self.view].x<150){
+        [self.frostedViewController hideMenuViewController];
+    }
+    if ([scrollView.panGestureRecognizer translationInView:self.view].x>150) {
+        [self.frostedViewController resizeMenuViewControllerToSize:CGSizeMake(kScreenWidth*0.85, kScreenHeight+20)];
+    }
+}
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    NSLog(@"contentoffsetx %f",scrollView.contentOffset.x);
+    NSLog(@"velocity %f",[scrollView.panGestureRecognizer velocityInView:self.view].x);
+    NSLog(@"translation %f",[scrollView.panGestureRecognizer translationInView:self.view].x);
+    if (scrollView.contentOffset.x<=0) {
+        if ([scrollView.panGestureRecognizer velocityInView:self.view].x>0) {
+            [self.frostedViewController panGestureRecognized:scrollView.panGestureRecognizer];
+            NSLog(@"will scroll %@",scrollView.panGestureRecognizer);
+        }else{
+            return;
+        }
+    }
+}
+
 @end

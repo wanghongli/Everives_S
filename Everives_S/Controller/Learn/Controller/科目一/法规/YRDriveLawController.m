@@ -9,63 +9,26 @@
 #import "YRDriveLawController.h"
 #import "YRDriveLawCell.h"
 
-#import "YRDriveLawDetailController.h"
 @interface YRDriveLawController ()
-
+@property(nonatomic,strong) UIWebView *webview;
+@property(nonatomic,strong) NSString *urlStr;
 @end
 
 @implementation YRDriveLawController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"YRDriveLawCell" bundle:nil] forCellReuseIdentifier:@"lawID"];
-    self.tableView.tableFooterView = [[UIView alloc]init];
+    _urlStr = [self.title isEqualToString:@"最新法规"]?@"http://120.27.55.225/data/zuixinfagui.html":@"http://120.27.55.225/data/datijiqiao.html";
+    [self.view addSubview:self.webview];
 }
 
-#pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellID = @"lawID";
-    
-    YRDriveLawCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell == nil) {
-        cell = [[YRDriveLawCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+-(UIWebView *)webview{
+    if (!_webview) {
+        _webview = [[UIWebView alloc] initWithFrame:self.view.bounds];
+        [_webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlStr]]];
     }
-    cell.headLabel.layer.masksToBounds = YES;
-    cell.headLabel.layer.cornerRadius = cell.headLabel.height/2;
-    cell.headLabel.layer.borderWidth = 2;
-    cell.headLabel.layer.borderColor = [self randomColor].CGColor;
-    cell.headLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row+1];
-    
-    return cell;
-}
-- (UIColor *) randomColor
-{
-    CGFloat hue = ( arc4random() % 256 / 256.0 ); //0.0 to 1.0
-    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0,away from white
-    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; //0.5 to 1.0,away from black
-    return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 60;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    YRDriveLawDetailController *ddc = [[YRDriveLawDetailController alloc]init];
-    [self.navigationController pushViewController:ddc animated:YES];
+    return _webview;
 }
 
 @end

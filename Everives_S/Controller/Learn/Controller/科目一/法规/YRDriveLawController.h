@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YRDriveLawController : UITableViewController
+@interface YRDriveLawController : UIViewController
 
 @end

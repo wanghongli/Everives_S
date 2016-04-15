@@ -22,6 +22,7 @@
 #import "YRTeacherDetailController.h"
 #import "YRMapAnnotationView.h"
 #import "YRMapFMDB.h"
+#import "YRSliderView.h"
 //定义三个table的类型
 typedef NS_ENUM(NSUInteger,NearTableType){
     NearTableTypeSchool = 1,
@@ -52,12 +53,14 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 @property(nonatomic,strong) YRFillterBtnView *schoolFillterView;
 @property(nonatomic,strong) YRFillterBtnView *coachFillterView;
 @property(nonatomic,strong) UIButton *myLocationBtn;
+@property(nonatomic,strong) YRSliderView *slider;
 @end
 
 @implementation YRNearViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.frostedViewController.panGestureEnabled = YES;
     self.title = @"附近";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Neighborhood_List"] style:UIBarButtonItemStylePlain target:self action:@selector(changeViewClick:)];
@@ -69,16 +72,20 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [self.view addSubview:_mapView];
     [self.view addSubview:_selectView];
     [self.view addSubview:self.myLocationBtn];
+    [self.view addSubview:self.slider];
     [_mapView addSubview:self.searchBar];
     [self getDataForMap:_isGoOnLearning?2:1];
     if (_isGoOnLearning) {
         [self changeViewClick:nil];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tablewViewReloadData:) name:kNearViewControlerReloadTable object:nil];
+    //添加边缘手势
+    [self addEdgeGesture];
     
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    //清除掉状态字段，防止普通预约也误认为是拼教练
     _isShareOrder = NO;
 }
 
@@ -97,7 +104,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 -(void)getDataForMap:(NSInteger) kind{
     NSNumber *timeForMapUpdate = [[NSUserDefaults standardUserDefaults] objectForKey:@"timeForMapUpdate"];
     NSNumber *nowTime = [NSNumber numberWithDouble:[NSDate date].timeIntervalSince1970];
-    [RequestData GET:STUDENT_NEARBYPOINT parameters:@{@"kind":[NSNumber numberWithInteger:kind],@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"time":timeForMapUpdate?:@""} complete:^(NSDictionary *responseDic) {
+    [RequestData GET:STUDENT_NEARBYPOINT parameters:@{@"kind":[NSNumber numberWithInteger:kind],@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"time":timeForMapUpdate?:@"",@"tkind":_tkind?@"1":@"0"} complete:^(NSDictionary *responseDic) {
         switch (kind) {
             case 1:{
                 _schoolForMap = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];
@@ -209,6 +216,36 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         _mapView.centerCoordinate = CLLocationCoordinate2DMake(lat, lng);
     }
 }
+-(void)sliderDrag:(UISlider*)sender{
+    if (sender.value>50) {
+        [sender setValue:100 animated:YES];
+        if (_tkind == 0) {
+            _tkind = 1;
+            [_mapView removeAnnotations:_coachForMap];
+            [self getDataForMap:2];
+        }
+    }else{
+        [sender setValue:0 animated:YES];
+        if (_tkind == 1) {
+            _tkind = 0;
+            [_mapView removeAnnotations:_coachForMap];
+            [self getDataForMap:2];
+        }
+    }
+}
+-(void)addEdgeGesture
+{
+    UIScreenEdgePanGestureRecognizer *screenEdagePan = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(screenEdgePanGesture:)];
+    [screenEdagePan setEdges:UIRectEdgeLeft];
+    [_mapView addGestureRecognizer:screenEdagePan];
+}
+
+-(void)screenEdgePanGesture:(UIScreenEdgePanGestureRecognizer *)recognizer
+{
+    
+    [self.frostedViewController panGestureRecognized:recognizer];
+    
+}
 #pragma mark - YRMapSelectViewDelegate
 -(void)schoolBtnClick:(UIButton *)sender{
     if (sender.tag == _selectView.selectedBtnNum) {
@@ -216,6 +253,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     }
     [self removeLastTable];
     _searchBar.hidden = NO;
+    self.slider.hidden = YES;
     [_mapView removeAnnotations:_coachForMap];
     [_mapView removeAnnotations:_stuForMap];
     [self getDataForMap:1];
@@ -232,6 +270,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     if (sender.tag == _selectView.selectedBtnNum) {
         return;
     }
+    self.slider.hidden = NO;
     [self removeLastTable];
     _searchBar.hidden = NO;
     [_mapView removeAnnotations:_schoolForMap];
@@ -251,6 +290,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     }
     [self removeLastTable];
     _searchBar.hidden = YES;
+    self.slider.hidden = YES;
     [_mapView removeAnnotations:_schoolForMap];
     [_mapView removeAnnotations:_coachForMap];
     [self getDataForMap:3];
@@ -288,6 +328,28 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
+    if (searchBar.text.length == 0) {
+        return;
+    }
+    NSMutableArray *searchRes = @[].mutableCopy;
+    //当前是驾校
+    if (_selectView.selectedBtnNum == 1) {
+        [_schoolForMap enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if([[obj name] containsString:searchBar.text]){
+                [searchRes addObject:obj];
+            }
+        }];
+        [_mapView removeAnnotations:_schoolForMap];
+    }else{//当前是教练
+        [_coachForMap enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if([[obj name] containsString:searchBar.text]){
+                [searchRes addObject:obj];
+            }
+        }];
+        [_mapView removeAnnotations:_coachForMap];
+    }
+    [_mapView addAnnotations:searchRes];
     
 }
 #pragma mark - CallOutViewDelegate
@@ -394,5 +456,14 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         [_myLocationBtn addTarget:self action:@selector(myLocationBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _myLocationBtn;
+}
+-(YRSliderView *)slider{
+    if (!_slider) {
+        _slider = [[YRSliderView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 70, kScreenWidth, 70)];
+        _slider.hidden = YES;
+        [_slider.slider addTarget:self action:@selector(sliderDrag:) forControlEvents:UIControlEventTouchUpInside];
+        [_slider.slider addTarget:self action:@selector(sliderDrag:) forControlEvents:UIControlEventTouchUpOutside];
+    }
+    return _slider;
 }
 @end

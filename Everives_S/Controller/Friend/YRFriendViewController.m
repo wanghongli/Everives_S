@@ -26,7 +26,7 @@ static BOOL addViewIsHidden = YES;
     [super viewDidLoad];
     self.title = @"驾友";
     self.emptyConversationView = self.emptyView;
-    self.frostedViewController.panGestureEnabled = NO;
+    self.frostedViewController.panGestureEnabled = YES;
     //设置需要显示哪些类型的会话
     [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE),
                                         @(ConversationType_GROUP),]];

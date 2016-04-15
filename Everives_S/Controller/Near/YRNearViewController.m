@@ -60,7 +60,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.frostedViewController.panGestureEnabled = NO;
+    self.frostedViewController.panGestureEnabled = YES;
     self.title = @"附近";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Neighborhood_List"] style:UIBarButtonItemStylePlain target:self action:@selector(changeViewClick:)];
@@ -79,6 +79,8 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         [self changeViewClick:nil];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tablewViewReloadData:) name:kNearViewControlerReloadTable object:nil];
+    //添加边缘手势
+    [self addEdgeGesture];
     
 }
 -(void)viewWillDisappear:(BOOL)animated{
@@ -230,6 +232,19 @@ static NSString *studentCellID = @"YRStudentTableCellID";
             [self getDataForMap:2];
         }
     }
+}
+-(void)addEdgeGesture
+{
+    UIScreenEdgePanGestureRecognizer *screenEdagePan = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(screenEdgePanGesture:)];
+    [screenEdagePan setEdges:UIRectEdgeLeft];
+    [_mapView addGestureRecognizer:screenEdagePan];
+}
+
+-(void)screenEdgePanGesture:(UIScreenEdgePanGestureRecognizer *)recognizer
+{
+    
+    [self.frostedViewController panGestureRecognized:recognizer];
+    
 }
 #pragma mark - YRMapSelectViewDelegate
 -(void)schoolBtnClick:(UIButton *)sender{
@@ -447,7 +462,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         _slider = [[YRSliderView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 70, kScreenWidth, 70)];
         _slider.hidden = YES;
         [_slider.slider addTarget:self action:@selector(sliderDrag:) forControlEvents:UIControlEventTouchUpInside];
-        
+        [_slider.slider addTarget:self action:@selector(sliderDrag:) forControlEvents:UIControlEventTouchUpOutside];
     }
     return _slider;
 }

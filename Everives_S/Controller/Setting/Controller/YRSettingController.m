@@ -10,6 +10,7 @@
 #import "YRSettingCell.h"
 #import "YRYJNavigationController.h"
 #import "YRPrivacySettingController.h"
+#import "REFrostedViewController.h"
 @interface YRSettingController ()
 {
     NSArray *_menuArray;
@@ -21,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"设置";
+    self.frostedViewController.panGestureEnabled = YES;
     _menuArray = @[@[@"隐私设置"],@[@"系统通知提醒",@"驾友消息提醒",@"驾友圈消息提醒"],@[@"关于我们",@"用户反馈",@"系统版本"]];
     self.tableView.backgroundColor = kCOLOR(241, 241, 241);
     

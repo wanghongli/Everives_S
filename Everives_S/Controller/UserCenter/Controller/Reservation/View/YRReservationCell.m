@@ -56,7 +56,7 @@
     _place.text = model.pname;
     _coach.text= model.tname;
     _status.text = _statusArr[[model.status integerValue]];
-    _course.image = [UIImage imageNamed:[model.kind isEqualToString:@"0"]?@"CoachInformation_Grade-2":@"CoachInformation_Grade-3"];
+    _course.image = [UIImage imageNamed:[model.kind isEqualToString:@"0"]?@"class_two":@"class_three"];
     _price.text = [NSString stringWithFormat:@"￥%@",model.price];
     _weekday.text = [NSString getTheDayInWeek:model.date];
 }

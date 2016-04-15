@@ -304,6 +304,7 @@
 		16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096071C89236900FF4A81 /* YRUserCenterViewController.m */; };
 		16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D0960A1C89345D00FF4A81 /* RequestData.m */; };
 		16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096131C89682700FF4A81 /* YRReservationViewController.m */; };
+		16F8A8BA1CBF8630004EBC57 /* YRSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F8A8B91CBF8630004EBC57 /* YRSliderView.m */; };
 		3E6442085DEAC8124A5E55C4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F955F842A16D32F98F195A02 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -880,6 +881,8 @@
 		16D0960A1C89345D00FF4A81 /* RequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestData.m; sourceTree = "<group>"; };
 		16D096121C89682700FF4A81 /* YRReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRReservationViewController.h; sourceTree = "<group>"; };
 		16D096131C89682700FF4A81 /* YRReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationViewController.m; sourceTree = "<group>"; };
+		16F8A8B81CBF8630004EBC57 /* YRSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSliderView.h; sourceTree = "<group>"; };
+		16F8A8B91CBF8630004EBC57 /* YRSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSliderView.m; sourceTree = "<group>"; };
 		7015813C2D65EC7400D8D9EE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D594CBA93F4C6756E23B469B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F955F842A16D32F98F195A02 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2061,6 +2064,8 @@
 				1694F57F1CA23DED009A4C21 /* YRDateCell.m */,
 				162E28631CA3C7DB00533880 /* YRChoosePlaceCell.h */,
 				162E28641CA3C7DB00533880 /* YRChoosePlaceCell.m */,
+				16F8A8B81CBF8630004EBC57 /* YRSliderView.h */,
+				16F8A8B91CBF8630004EBC57 /* YRSliderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2585,6 +2590,7 @@
 				1672A6401C8FBC6200AF6272 /* YRChatViewController.m in Sources */,
 				1645D8911C950FCB0058D480 /* YRMapAnnotationView.m in Sources */,
 				16271AA91CB360830082F7CB /* MASViewConstraint.m in Sources */,
+				16F8A8BA1CBF8630004EBC57 /* YRSliderView.m in Sources */,
 				032C44021CAE51AB0022C2F9 /* YRQuestionObj.m in Sources */,
 				1672A6641C8FE8F400AF6272 /* SchoolDataSource.m in Sources */,
 				037F8E7A1C8D6EE90057BF6C /* PhotoCell.m in Sources */,

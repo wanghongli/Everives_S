@@ -22,4 +22,6 @@
  *  合拼教练的同伴
  */
 @property(nonatomic,strong) YRUserStatus *partnerModel;
+//教练类型
+@property(nonatomic,assign) NSInteger tkind;
 @end

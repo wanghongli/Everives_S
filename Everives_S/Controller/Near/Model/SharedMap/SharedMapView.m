@@ -60,7 +60,8 @@
         _mapView.region = region;
         _mapView.centerCoordinate = center;
         _mapView.rotateEnabled = NO;
-        _mapView.showsCompass= YES;
+        _mapView.showsCompass= NO;
+        _mapView.showsScale = NO;
     }
 }
 

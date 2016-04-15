@@ -45,7 +45,6 @@
 		03228D521CA5251D00890DC6 /* YRGotScoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D511CA5251D00890DC6 /* YRGotScoreController.m */; };
 		03228D551CA52E6300890DC6 /* YRExamScorePercentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D541CA52E6300890DC6 /* YRExamScorePercentView.m */; };
 		03228D591CA5424C00890DC6 /* YRDriveLawController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D581CA5424C00890DC6 /* YRDriveLawController.m */; };
-		03228D5C1CA5427000890DC6 /* YRDriveLawDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03228D5B1CA5427000890DC6 /* YRDriveLawDetailController.m */; };
 		032C43E01CABBFD40022C2F9 /* YRTeacherOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C43DF1CABBFD40022C2F9 /* YRTeacherOrder.m */; };
 		032C43E61CACB51D0022C2F9 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C43E41CACB51D0022C2F9 /* SMS_SDK.framework */; };
 		032C43E81CACB7130022C2F9 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C43E71CACB7130022C2F9 /* MOBFoundation.framework */; };
@@ -384,8 +383,6 @@
 		03228D541CA52E6300890DC6 /* YRExamScorePercentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRExamScorePercentView.m; sourceTree = "<group>"; };
 		03228D571CA5424C00890DC6 /* YRDriveLawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDriveLawController.h; sourceTree = "<group>"; };
 		03228D581CA5424C00890DC6 /* YRDriveLawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRDriveLawController.m; sourceTree = "<group>"; };
-		03228D5A1CA5427000890DC6 /* YRDriveLawDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDriveLawDetailController.h; sourceTree = "<group>"; };
-		03228D5B1CA5427000890DC6 /* YRDriveLawDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRDriveLawDetailController.m; sourceTree = "<group>"; };
 		032C43DE1CABBFD40022C2F9 /* YRTeacherOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRTeacherOrder.h; sourceTree = "<group>"; };
 		032C43DF1CABBFD40022C2F9 /* YRTeacherOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRTeacherOrder.m; sourceTree = "<group>"; };
 		032C43E41CACB51D0022C2F9 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
@@ -998,8 +995,6 @@
 			children = (
 				03228D571CA5424C00890DC6 /* YRDriveLawController.h */,
 				03228D581CA5424C00890DC6 /* YRDriveLawController.m */,
-				03228D5A1CA5427000890DC6 /* YRDriveLawDetailController.h */,
-				03228D5B1CA5427000890DC6 /* YRDriveLawDetailController.m */,
 			);
 			path = "法规";
 			sourceTree = "<group>";
@@ -2407,7 +2402,6 @@
 				16B4735D1CBC9F0C00448884 /* YRMapFMDB.m in Sources */,
 				03FE5B801CAA4172009F0ED7 /* YRSettingPrivacyCell.m in Sources */,
 				16C41B321CA27855004C4F80 /* YRCanOrderPlacesModel.m in Sources */,
-				03228D5C1CA5427000890DC6 /* YRDriveLawDetailController.m in Sources */,
 				032C46301CB746770022C2F9 /* YRLearnOrderDetail.m in Sources */,
 				16693A031C9A8ACD00C7ECF2 /* YRPictureModel.m in Sources */,
 				032C46201CB4B6980022C2F9 /* YRTeacherCommentObj.m in Sources */,

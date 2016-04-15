@@ -18,7 +18,7 @@
 
 static NSInteger sectionNum = 7;//竖着的那种
 static NSInteger rowNum = 8; //横着的那种
-#define kcellHeight (kScreenHeight-64-50)/(rowNum-1)
+#define kcellHeight ((kScreenHeight-64-50)/(rowNum-1)-1)
 #define kcellWidth 62.5
 
 @interface YRReservationDateVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDataSource,UITableViewDelegate>{

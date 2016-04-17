@@ -29,6 +29,9 @@
         return;
     }
     _models = models;
+    if (_models.count == 1) {
+        self.scrollView.scrollEnabled = NO;
+    }
     self.scrollView.contentSize = CGSizeMake(kScreenWidth*(models.count+2), kTopImageHeight);
     [self.scrollView setContentOffset:CGPointMake(kScreenWidth, 0) animated:NO];
     CGRect oneLineTitleRect = CGRectMake(15, kTopImageHeight-50, kScreenWidth-30, 26);

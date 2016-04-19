@@ -39,21 +39,19 @@ static BOOL addViewIsHidden = YES;
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self.addView removeFromSuperview];
 }
 
 -(void)addFriendBtnClick:(UIButton*)sender{
     [self.navigationController pushViewController:[[YRAddFriendVC alloc] init] animated:YES];
-    [self.addView removeFromSuperview];
     addViewIsHidden = YES;
 }
 -(void)addGroupBtnClick:(UIButton*)sender{
     YRContactVC *contact = [[YRContactVC alloc] init];
     contact.isAllowSelected = YES;
     [self.navigationController pushViewController:contact animated:YES];
-    [self.addView removeFromSuperview];
     addViewIsHidden = YES;
 }
 //重载函数，onSelectedTableRow 是选择会话列表之后的事件

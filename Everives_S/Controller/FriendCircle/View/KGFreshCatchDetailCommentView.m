@@ -61,9 +61,6 @@
     
     // 头像
     UIImageView *iconView = [[UIImageView alloc] init];
-    [self addSubview:iconView];
-    _iconView = iconView;
-    
     // 添加点按手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
     [iconView addGestureRecognizer:tap];

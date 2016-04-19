@@ -147,7 +147,7 @@
 {
     if (btnTag == 0) {
         if (!_userMsg.relation) {//添加好友
-            [RequestData POST:@"/student/friend" parameters:@{@"id":_userMsg.id} complete:^(NSDictionary *responseDic) {
+            [RequestData POST:@"/friend/friend" parameters:@{@"id":_userMsg.id} complete:^(NSDictionary *responseDic) {
                 MyLog(@"%@",responseDic);
                 [MBProgressHUD showSuccess:@"请求已发送" toView:GET_WINDOW];
             } failed:^(NSError *error) {

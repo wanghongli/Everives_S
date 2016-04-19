@@ -221,16 +221,12 @@
         
         //评论中名字被点击
         [cell setUserNameTapClickBlock:^(YRCircleComment *user) {
-//            [RequestData requestInfomationWithURI:USER_GETUSERINFO andParameters:@{@"id":[NSString stringWithFormat:@"%ld",(long)user.uid]} complete:^(NSDictionary *responseDic) {
-//                
-//                KGUserMsgController *msgVC = [[KGUserMsgController alloc]init];
-//                msgVC.userMsg = [KGUserStatus mj_objectWithKeyValues:responseDic];
-//                msgVC.notUserGetIn = YES;
-//                [self.navigationController pushViewController:msgVC animated:YES];
-//                
-//            } failed:^(NSError *error) {
-//                
-//            }];
+            MyLog(@"%@",user);
+            YRUserDetailController *userVC = [[YRUserDetailController alloc]init];
+            if ([KUserManager.id integerValue]!=user.uid) {//用户自己
+                userVC.userID = [NSString stringWithFormat:@"%ld",user.uid];
+            }else
+            [self.navigationController pushViewController:userVC animated:YES];
         }];
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.array = _branceArray[indexPath.section-1][indexPath.row];

@@ -43,7 +43,7 @@
 }
 -(void)getFriend
 {
-    [RequestData GET:@"/student/friends" parameters:nil complete:^(NSDictionary *responseDic) {
+    [RequestData GET:@"/friend/friends" parameters:nil complete:^(NSDictionary *responseDic) {
         MyLog(@"%@",responseDic);
         friendsArray = [YRMyFriendsObject mj_objectArrayWithKeyValuesArray:responseDic];
         [self getData];
@@ -73,6 +73,8 @@
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     [RequestData GET:@"/student/notify" parameters:@{@"page":[NSString stringWithFormat:@"%ld",(long)_page],@"count":@"20"} complete:^(NSDictionary *responseDic) {
         MyLog(@"%@",responseDic);
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
         NSArray *arrayMsg = [YRMessageObject mj_objectArrayWithKeyValuesArray:responseDic];
         if (_page) {
             _arrayMsg = (NSMutableArray*)[_arrayMsg arrayByAddingObjectsFromArray:arrayMsg];
@@ -88,7 +90,6 @@
         // 结束刷新
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     } failed:^(NSError *error) {
         // 结束刷新
         [self.tableView.mj_header endRefreshing];

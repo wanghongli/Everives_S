@@ -16,7 +16,7 @@
 }
 -(void)friendsStatusChange:(NSInteger)btnTag
 {
-    [RequestData POST:@"/student/friendRes" parameters:@{@"id":_messageObj.id,@"status":[NSString stringWithFormat:@"%ld",btnTag]} complete:^(NSDictionary *responseDic) {
+    [RequestData POST:@"/friend/friendRes" parameters:@{@"id":_messageObj.id,@"status":[NSString stringWithFormat:@"%ld",btnTag]} complete:^(NSDictionary *responseDic) {
         if (self.friendsStautsChange) {
             self.friendsStautsChange(YES);
         }

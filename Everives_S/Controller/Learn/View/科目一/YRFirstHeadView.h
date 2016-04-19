@@ -15,5 +15,5 @@
 @interface YRFirstHeadView : UIView
 
 @property (nonatomic, assign) id<YRFirstHeadViewDelegate>delegate;
-
+@property (nonatomic, strong) NSArray *setPercentArray;
 @end

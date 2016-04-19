@@ -15,6 +15,7 @@
 		03019D1D1C993C5D00895C77 /* YRUserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03019D1C1C993C5D00895C77 /* YRUserDetailController.m */; };
 		03019D201C994E6300895C77 /* YRUserDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03019D1F1C994E6300895C77 /* YRUserDownView.m */; };
 		03019D231C9954B900895C77 /* YRUserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03019D221C9954B900895C77 /* YRUserDetailCell.m */; };
+		0302232D1CC601F70079DDA3 /* YRQuestionObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 0302232C1CC601F70079DDA3 /* YRQuestionObj.m */; };
 		031515371C9A3D7400A2A2F1 /* YREditUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031515351C9A3D7400A2A2F1 /* YREditUserController.m */; };
 		031515381C9A3D7400A2A2F1 /* YREditUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031515361C9A3D7400A2A2F1 /* YREditUserController.xib */; };
 		0315153F1C9A71FC00A2A2F1 /* YRSequencePracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0315153E1C9A71FC00A2A2F1 /* YRSequencePracticeController.m */; };
@@ -57,7 +58,6 @@
 		032C43F71CACE2F40022C2F9 /* UIViewController+YRCommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C43F61CACE2F40022C2F9 /* UIViewController+YRCommonController.m */; };
 		032C43FA1CACFEBF0022C2F9 /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C43F91CACFEBF0022C2F9 /* XYPieChart.m */; };
 		032C43FD1CAD242B0022C2F9 /* YRShaHeObjct.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C43FC1CAD242B0022C2F9 /* YRShaHeObjct.m */; };
-		032C44021CAE51AB0022C2F9 /* YRQuestionObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C44011CAE51AB0022C2F9 /* YRQuestionObj.m */; };
 		032C44101CAE58440022C2F9 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C44051CAE58440022C2F9 /* FMDatabase.m */; };
 		032C44111CAE58440022C2F9 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C44071CAE58440022C2F9 /* FMDatabaseAdditions.m */; };
 		032C44121CAE58440022C2F9 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 032C44091CAE58440022C2F9 /* FMDatabasePool.m */; };
@@ -344,6 +344,8 @@
 		03019D1F1C994E6300895C77 /* YRUserDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserDownView.m; sourceTree = "<group>"; };
 		03019D211C9954B900895C77 /* YRUserDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserDetailCell.h; sourceTree = "<group>"; };
 		03019D221C9954B900895C77 /* YRUserDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserDetailCell.m; sourceTree = "<group>"; };
+		0302232B1CC601F70079DDA3 /* YRQuestionObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRQuestionObj.h; sourceTree = "<group>"; };
+		0302232C1CC601F70079DDA3 /* YRQuestionObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRQuestionObj.m; sourceTree = "<group>"; };
 		031515341C9A3D7400A2A2F1 /* YREditUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YREditUserController.h; sourceTree = "<group>"; };
 		031515351C9A3D7400A2A2F1 /* YREditUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YREditUserController.m; sourceTree = "<group>"; };
 		031515361C9A3D7400A2A2F1 /* YREditUserController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YREditUserController.xib; sourceTree = "<group>"; };
@@ -420,8 +422,6 @@
 		032C43F91CACFEBF0022C2F9 /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
 		032C43FB1CAD242B0022C2F9 /* YRShaHeObjct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRShaHeObjct.h; sourceTree = "<group>"; };
 		032C43FC1CAD242B0022C2F9 /* YRShaHeObjct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRShaHeObjct.m; sourceTree = "<group>"; };
-		032C44001CAE51AB0022C2F9 /* YRQuestionObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRQuestionObj.h; sourceTree = "<group>"; };
-		032C44011CAE51AB0022C2F9 /* YRQuestionObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRQuestionObj.m; sourceTree = "<group>"; };
 		032C44041CAE58440022C2F9 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		032C44051CAE58440022C2F9 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		032C44061CAE58440022C2F9 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -1217,6 +1217,8 @@
 				032C461A1CB4B67D0022C2F9 /* 教练详情 */,
 				032C43F81CACFEBF0022C2F9 /* XYPieChart.h */,
 				032C43F91CACFEBF0022C2F9 /* XYPieChart.m */,
+				0302232B1CC601F70079DDA3 /* YRQuestionObj.h */,
+				0302232C1CC601F70079DDA3 /* YRQuestionObj.m */,
 				031515411C9A912100A2A2F1 /* YRQuestionObject.h */,
 				031515421C9A912100A2A2F1 /* YRQuestionObject.m */,
 				03FE5B7B1CAA0FF5009F0ED7 /* YRTeacherDetailObject.h */,
@@ -1345,8 +1347,6 @@
 			children = (
 				037F8DC41C8815F80057BF6C /* AppDelegate.h */,
 				037F8DC51C8815F80057BF6C /* AppDelegate.m */,
-				032C44001CAE51AB0022C2F9 /* YRQuestionObj.h */,
-				032C44011CAE51AB0022C2F9 /* YRQuestionObj.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -2718,6 +2718,7 @@
 				037F8EA01C8E68E90057BF6C /* YRCircleUser.m in Sources */,
 				037F8E7E1C8D78680057BF6C /* MBProgressHUD+Add.m in Sources */,
 				037D7C321C916B4100273703 /* UIImage+Tool.m in Sources */,
+				0302232D1CC601F70079DDA3 /* YRQuestionObj.m in Sources */,
 				032C459B1CB2D5250022C2F9 /* CYFullViewController.m in Sources */,
 				037C929F1C8FF274005B41BF /* YRCircleHeadView.m in Sources */,
 				03228D3E1CA4DB6500890DC6 /* YRAchievementDetailController.m in Sources */,
@@ -2790,7 +2791,6 @@
 				1645D8911C950FCB0058D480 /* YRMapAnnotationView.m in Sources */,
 				16271AA91CB360830082F7CB /* MASViewConstraint.m in Sources */,
 				16F8A8BA1CBF8630004EBC57 /* YRSliderView.m in Sources */,
-				032C44021CAE51AB0022C2F9 /* YRQuestionObj.m in Sources */,
 				1672A6641C8FE8F400AF6272 /* SchoolDataSource.m in Sources */,
 				037F8E7A1C8D6EE90057BF6C /* PhotoCell.m in Sources */,
 				037D7C2F1C916AE600273703 /* UzysWrapperPickerController.m in Sources */,

@@ -100,15 +100,7 @@
 #pragma mark - 获取登陆信息
 -(void)loginClick
 {
-//    NSDictionary* dicUser = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"loginCount"];
-//    if (dicUser) {
-//        [RequestData POST:USER_LOGIN parameters:@{@"tel":dicUser[@"tel"],@"password":dicUser[@"psw"],@"kind":@"0",@"type":@"1"} complete:^(NSDictionary *responseDic) {
-//            NSLog(@"%@",responseDic);
-//            YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:responseDic];
-            NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];
-//            [userDefaults setObject:responseDic forKey:@"user"];
-//            [userDefaults setObject:dicUser forKey:@"loginCount"];
-    //            [NSUserDefaults resetStandardUserDefaults];
+    NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];
     NSDictionary *dicUser = [userDefaults objectForKey:@"user"];
     if (!dicUser) {
         return;
@@ -118,21 +110,14 @@
     //连接融云服务器
     [[RCIM sharedRCIM] connectWithToken:KUserManager.rongToken success:^(NSString *userId) {
         // Connect 成功
-        NSLog(@"融云链接成功");
+        MyLog(@"融云链接成功");
     }
                                   error:^(RCConnectErrorCode status) {
-                                      NSLog(@"error_status = %ld",status);
+                                      MyLog(@"error_status = %ld",status);
                                   }
                          tokenIncorrect:^() {
-                             NSLog(@"token incorrect");
+                             MyLog(@"token incorrect");
                          }];
-    
-    //        } failed:^(NSError *error) {
-    //
-//            NSLog(@"error - %@",[error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONString]);
-//            
-//        }];
-//    }
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
 }

@@ -23,7 +23,7 @@
  */
 + (NSMutableArray *) getShunXuPracticeWithType:(NSInteger)type withFMDB:(FMDatabase *)db;
 /**
- *  专题练习
+ *  获取数据
  *
  *  @param type 0为科目一   1为科目二
  *  @param kind 不同的kind代表不同的题目

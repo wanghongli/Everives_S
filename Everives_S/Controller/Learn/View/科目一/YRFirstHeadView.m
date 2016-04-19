@@ -42,15 +42,26 @@
         [circleBtn setImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
         [circleBtn setTitleColor:[UIColor colorWithRed:145/255.0 green:146/255.0 blue:147/255.0 alpha:1] forState:UIControlStateNormal];
         [circleBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-        circleBtn.tag = i;
-        [circleBtn initCircleRangeFloat:[percentArray[i] floatValue]];
+        circleBtn.tag = i+10;
+//        [circleBtn initCircleRangeFloat:[percentArray[i] floatValue]];
         [self addSubview:circleBtn];
     }
 }
 
 -(void)btnClick:(YRCircleBtn*)sender
 {
-    [self.delegate firstHeadViewBtnClick:sender.tag];
+    [self.delegate firstHeadViewBtnClick:sender.tag-10];
 }
-
+-(void)setSetPercentArray:(NSArray *)setPercentArray
+{
+    _setPercentArray = setPercentArray;
+    MyLog(@"%@",setPercentArray);
+    for (int i = 0; i<3; i++) {
+        YRCircleBtn *circleBtn = (YRCircleBtn *)[self viewWithTag:i+10];
+        
+        MyLog(@"%f",[setPercentArray[i] floatValue]);
+//        [circleBtn initCircleRangeFloat:[percentArray[i] floatValue]];
+        [circleBtn initCircleRangeFloat:[setPercentArray[i] floatValue]];
+    }
+}
 @end

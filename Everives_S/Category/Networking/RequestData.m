@@ -46,7 +46,6 @@
         [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@",KUserManager.id] forHTTPHeaderField:@"uid"];
         [manager.requestSerializer setValue:KUserManager.token forHTTPHeaderField:@"token"];
         [manager.requestSerializer setValue:@"0" forHTTPHeaderField:@"kind"];
-//        NSLog(@"")
     }
     MyLog(@"parameters - %@",parameters);
     NSString *URL = [NSString stringWithFormat:@"%@%@",SERVER_URL,URLString];
@@ -55,13 +54,14 @@
             complete(responseObject);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",[operation.responseData mj_JSONString]);
+        MyLog(@"%@",[operation.responseData mj_JSONString]);
         MyLog(@"operation - %@",operation);
-        
-        NSLog(@"error:%@",error);
-        NSLog(@"code:%ld",(long)error.code);
+        MyLog(@"error:%@",error);
+        MyLog(@"code:%ld",(long)error.code);
         if (failed) {
             failed(error);
+            NSDictionary *dic = [operation.responseData mj_JSONObject];
+            [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
         }
     }];
 }

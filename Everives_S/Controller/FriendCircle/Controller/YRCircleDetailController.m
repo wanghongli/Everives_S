@@ -15,6 +15,7 @@
 #import "KGFreshCatchDetailCommentView.h"
 #import "KGFreshCatchDetailZanView.h"
 #import "YRPraiseMem.h"
+#import "YRUserDetailController.h"
 @interface YRCircleDetailController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,KGFreshCatchDetailZanViewDelegate>
 {
     BOOL _wasKeyboardManagerEnabled;
@@ -206,12 +207,11 @@
         }];
         //点击头像事件
         [cell setIconClickBlock:^(BOOL userBool) {
-            MyLog(@"%s  %d",__func__,userBool);
-            if (userBool) {//用户自己
-                
-            }else{//别人
-                
+            YRUserDetailController *userVC = [[YRUserDetailController alloc]init];
+            if (!userBool) {//用户自己
+                userVC.userID = statusF.status.uid;
             }
+            [self.navigationController pushViewController:userVC animated:YES];
         }];
         return cell;
     }else{
@@ -345,5 +345,10 @@
 {
     YRPraiseMem *praiseObject = _cellFrameMsg.status.praiseMem[nubInt];//
     MyLog(@"%s   id=%@,avatar=%@",__func__,praiseObject.id,praiseObject.avatar);
+    YRUserDetailController *userVC = [[YRUserDetailController alloc]init];
+    if (![KUserManager.id isEqualToString:praiseObject.id]) {//用户自己
+        userVC.userID = praiseObject.id;
+    }
+    [self.navigationController pushViewController:userVC animated:YES];
 }
 @end

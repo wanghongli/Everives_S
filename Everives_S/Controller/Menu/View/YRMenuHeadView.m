@@ -37,13 +37,13 @@
     
     UILabel *namelabel = [[UILabel alloc]init];
     namelabel.font = [UIFont systemFontOfSize:18];
-    namelabel.textAlignment = NSTextAlignmentCenter;
+    namelabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:namelabel];
     _nameLabel = namelabel;
     
     UILabel *signlabel = [[UILabel alloc]init];
     signlabel.font = [UIFont systemFontOfSize:14];
-    signlabel.textAlignment = NSTextAlignmentCenter;
+    signlabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:signlabel];
     _signLabel = signlabel;
     
@@ -67,13 +67,13 @@
     _headImg.image = [UIImage imageNamed:KUSER_HEAD_IMG];
     
     NSString *nameString = @"玉祥驾校";
-    CGSize nameSize = [nameString sizeWithFont:[UIFont systemFontOfSize:18] maxSize:CGSizeMake(self.width/2, wh/2)];
-    _nameLabel.frame = CGRectMake(CGRectGetMaxX(_headImg.frame)+kDistace, _headImg.y+kDistace/2, nameSize.width, wh/2);
+//    CGSize nameSize = [nameString sizeWithFont:[UIFont systemFontOfSize:18] maxSize:CGSizeMake(self.width/2, wh/2)];
+    _nameLabel.frame = CGRectMake(CGRectGetMaxX(_headImg.frame)+kDistace, _headImg.y+kDistace/2, self.width-wh*2/3-kDistace - (CGRectGetMaxX(_headImg.frame)+kDistace), wh/2);
     _nameLabel.text = nameString;
     
     NSString *signString = @"学车好难...";
-    CGSize signSize = [signString sizeWithFont:[UIFont systemFontOfSize:14] maxSize:CGSizeMake(self.width/2, wh/2)];
-    _signLabel.frame = CGRectMake(_nameLabel.x, CGRectGetMaxY(_nameLabel.frame)-kDistace/2, signSize.width, wh/2);
+//    CGSize signSize = [signString sizeWithFont:[UIFont systemFontOfSize:14] maxSize:CGSizeMake(self.width/2, wh/2)];
+    _signLabel.frame = CGRectMake(_nameLabel.x, CGRectGetMaxY(_nameLabel.frame)-kDistace/2, _nameLabel.width, wh/2);
     _signLabel.text = signString;
     
     _notiBtn.frame = CGRectMake(self.width-wh*2/3-kDistace, _headImg.y+wh/6, wh*2/3, wh*2/3);

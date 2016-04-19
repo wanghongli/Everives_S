@@ -20,6 +20,7 @@
 #import "YRMyAchievementController.h"
 #import "YRMyPracticeController.h"
 #import "YRLearnProfessionalController.h"
+#import "YRFMDBObj.h"
 #define kDistance 10
 @interface YRYJFourthClassController ()<YRFirstHeadViewDelegate,YRFirstMiddleViewDelegate,YRFirstDownViewDelegate>
 
@@ -93,6 +94,25 @@
     }else{
         _scrollView.contentSize = CGSizeMake(kScreenWidth,self.scrollView.height);
     }
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setMiddleViewMsg];
+}
+#pragma mark - 给顺序练习、随机练习和专题练习传值
+-(void)setMiddleViewMsg
+{
+    NSArray *sxPractice = [YRFMDBObj getPracticeWithType:1 withSearchMsg:@"already = 1" withFMDB:[YRFMDBObj initFmdb]];
+    NSArray *sjPractice = [YRFMDBObj getPracticeWithType:1 withSearchMsg:@"randomAlready = 1" withFMDB:[YRFMDBObj initFmdb]];
+    NSArray *ztPractice = [YRFMDBObj getPracticeWithType:1 withSearchMsg:@"professionalAlready = 1" withFMDB:[YRFMDBObj initFmdb]];
+    NSArray *allPractice = [YRFMDBObj getShunXuPracticeWithType:1 withFMDB:[YRFMDBObj initFmdb]];
+    
+    CGFloat sxPercent = (float)sxPractice.count/(float)allPractice.count;
+    CGFloat sjPercent = (float)sjPractice.count/(float)allPractice.count;
+    CGFloat ztPercent = (float)ztPractice.count/(float)allPractice.count;
+    
+    _headView.setPercentArray = @[[NSString stringWithFormat:@"%.2f",sxPercent],[NSString stringWithFormat:@"%.2f",sjPercent],[NSString stringWithFormat:@"%.2f",ztPercent]];
 }
 #pragma mark - 进入模拟考试
 -(void)gotoExamClick:(UIButton *)sender

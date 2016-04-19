@@ -40,12 +40,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"驾友资料";
     if (self.userID) {
-//        _msgArray = @[@[@"年龄",@"进度",@"介绍"],@[@"TA的驾友圈"]];
         _msgArray = @[@[@"年龄",@"介绍"],@[@"TA的驾友圈"]];
 
     }else{
         _msgArray = @[@[@"年龄",@"介绍"],@[@"我的驾友圈"]];
-//        _msgArray = @[@[@"年龄",@"进度",@"介绍"],@[@"我的驾友圈"]];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(editClick:)];
     }
     [self buildUI];

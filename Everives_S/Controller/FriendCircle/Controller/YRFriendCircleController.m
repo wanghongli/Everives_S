@@ -149,7 +149,6 @@
     }];
     //点击头像事件
     [cell setIconClickBlock:^(BOOL userBool) {
-        MyLog(@"%s  %d",__func__,userBool);
         if (self.userStatus) {
             return;
         }

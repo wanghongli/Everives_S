@@ -34,6 +34,7 @@ static NSString *cellID = @"cellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"驾友";
     _selectedArray = @[].mutableCopy;
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.rowHeight = 60;
@@ -56,7 +57,7 @@ static NSString *cellID = @"cellID";
     }
 }
 -(void)getContacts{
-    [RequestData GET:STUDENT_FRIENDS parameters:nil complete:^(NSDictionary *responseDic) {
+    [RequestData GET:FRIEND_FRIENDS parameters:nil complete:^(NSDictionary *responseDic) {
         _ret = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
         if (_ret) {
             self.indexArray = [ChineseString IndexArray:_ret];
@@ -94,8 +95,11 @@ static NSString *cellID = @"cellID";
         //显示聊天会话界面
         [self.navigationController pushViewController:Chat animated:YES];
     }else{
-        NSDictionary *dic = @{@"tea":selectedUserIds,@"stu":_myCoachVC.selectedCoachIDArray?:@[]};
-        [RequestData POST:GROUP_GROUP parameters:@{@"data":[dic mj_JSONString]} complete:^(NSDictionary *responseDic) {
+        NSMutableArray *groupMenberIds= @[].mutableCopy;
+        [groupMenberIds addObjectsFromArray:selectedUserIds];
+        [groupMenberIds addObjectsFromArray:_myCoachVC.selectedCoachIDArray];
+        NSLog(@"%@",[groupMenberIds mj_JSONString]);
+        [RequestData POST:GROUP_GROUP parameters:@{@"data":[groupMenberIds mj_JSONString]} complete:^(NSDictionary *responseDic) {
             NSLog(@"%@",responseDic);
             
             YRChatViewController *groupChat = [[YRChatViewController alloc]init];
@@ -188,7 +192,7 @@ static NSString *cellID = @"cellID";
     // 从列表中删除
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     NSString *friendID = [[[self.letterResultArr objectAtIndex:indexPath.section]objectAtIndex:indexPath.row] id];
-    [RequestData DELETE:[NSString stringWithFormat:@"%@/%@",STUDENT_DELETE_FRIENDS,friendID] parameters:nil complete:^(NSDictionary *responseDic) {
+    [RequestData DELETE:[NSString stringWithFormat:@"%@/%@",FRIEND_FRIEND,friendID] parameters:nil complete:^(NSDictionary *responseDic) {
         
     } failed:^(NSError *error) {
         

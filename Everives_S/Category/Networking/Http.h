@@ -33,8 +33,8 @@
 #define STUDENT_GET_OTHERSINFO @"/student/info/" //获取他人信息
 #define STUDENT_BRIEF @"/account/brief/id" //获取简略信息
 #define STUDENT_SEARCH_USER @"/student/user/" //搜索学员
-#define STUDENT_FRIENDS @"/student/friends" //我的好友
-#define STUDENT_DELETE_FRIENDS @"/student/friends/id" //删除好友
+#define FRIEND_FRIENDS @"/friend/friends" //我的好友
+#define FRIEND_FRIEND @"/friend/friend" //添加好友 接id删除好友
 #define STUDENT_NEARBY @"/info/nearbystudent" //附近学员列表
 #define STUDENT_NEARTEACHER @"/info/nearTeacher" //教练列表
 #define STUDENT_PLACES @"/info/place" //场地列表

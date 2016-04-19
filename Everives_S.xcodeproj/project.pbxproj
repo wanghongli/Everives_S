@@ -240,6 +240,7 @@
 		1608688B1CC5D7E900E7CC6D /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 160868721CC5D7E900E7CC6D /* TencentOpenApi_IOS_Bundle.bundle */; };
 		1608688C1CC5D7E900E7CC6D /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 160868751CC5D7E900E7CC6D /* libSocialWechat.a */; };
 		1608688D1CC5D7E900E7CC6D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 160868761CC5D7E900E7CC6D /* libWeChatSDK.a */; };
+		160868911CC60C0600E7CC6D /* libUMessage_Sdk_1.2.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1608688F1CC60C0600E7CC6D /* libUMessage_Sdk_1.2.6.a */; };
 		161B1BFF1C910FF80047182D /* CoachDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 161B1BFE1C910FF80047182D /* CoachDataSource.m */; };
 		161B1C021C9110480047182D /* StudentDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 161B1C011C9110480047182D /* StudentDataSource.m */; };
 		1624E29D1C8E7543009F4E20 /* YRCommentDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1624E29B1C8E7543009F4E20 /* YRCommentDetailVC.m */; };
@@ -791,6 +792,8 @@
 		160868781CC5D7E900E7CC6D /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		160868791CC5D7E900E7CC6D /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		1608687A1CC5D7E900E7CC6D /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		1608688F1CC60C0600E7CC6D /* libUMessage_Sdk_1.2.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.2.6.a; sourceTree = "<group>"; };
+		160868901CC60C0600E7CC6D /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		161B1BFD1C910FF80047182D /* CoachDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachDataSource.h; sourceTree = "<group>"; };
 		161B1BFE1C910FF80047182D /* CoachDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachDataSource.m; sourceTree = "<group>"; };
 		161B1C001C9110480047182D /* StudentDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentDataSource.h; sourceTree = "<group>"; };
@@ -968,6 +971,7 @@
 				032C44171CAE58630022C2F9 /* libsqlite3.tbd in Frameworks */,
 				1608688C1CC5D7E900E7CC6D /* libSocialWechat.a in Frameworks */,
 				1608688D1CC5D7E900E7CC6D /* libWeChatSDK.a in Frameworks */,
+				160868911CC60C0600E7CC6D /* libUMessage_Sdk_1.2.6.a in Frameworks */,
 				032C43F21CACB7580022C2F9 /* libstdc++.tbd in Frameworks */,
 				032C43F01CACB7500022C2F9 /* JavaScriptCore.framework in Frameworks */,
 				032C43EE1CACB7480022C2F9 /* MessageUI.framework in Frameworks */,
@@ -1882,6 +1886,7 @@
 		1600EBA21C88087A001919EB /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				1608688E1CC60C0600E7CC6D /* UMessage_Sdk_1.2.6 */,
 				160868441CC5D7E900E7CC6D /* UMSocial_Sdk_5.0.1 */,
 				1608685F1CC5D7E900E7CC6D /* UMSocial_Sdk_Extra_Frameworks */,
 				16271A881CB360830082F7CB /* Masonry */,
@@ -2067,6 +2072,15 @@
 				1608687A1CC5D7E900E7CC6D /* WXApiObject.h */,
 			);
 			path = Wechat;
+			sourceTree = "<group>";
+		};
+		1608688E1CC60C0600E7CC6D /* UMessage_Sdk_1.2.6 */ = {
+			isa = PBXGroup;
+			children = (
+				1608688F1CC60C0600E7CC6D /* libUMessage_Sdk_1.2.6.a */,
+				160868901CC60C0600E7CC6D /* UMessage.h */,
+			);
+			path = UMessage_Sdk_1.2.6;
 			sourceTree = "<group>";
 		};
 		16271A881CB360830082F7CB /* Masonry */ = {
@@ -2998,6 +3012,7 @@
 					"$(PROJECT_DIR)/Everives_S/ThirdLib/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
 					"$(PROJECT_DIR)/Everives_S/ThirdLib/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/Everives_S/ThirdLib/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/Everives_S/ThirdLib/UMessage_Sdk_1.2.6",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.helloworld.Everives;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3029,6 +3044,7 @@
 					"$(PROJECT_DIR)/Everives_S/ThirdLib/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
 					"$(PROJECT_DIR)/Everives_S/ThirdLib/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/Everives_S/ThirdLib/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/Everives_S/ThirdLib/UMessage_Sdk_1.2.6",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.helloworld.Everives;
 				PRODUCT_NAME = "$(TARGET_NAME)";

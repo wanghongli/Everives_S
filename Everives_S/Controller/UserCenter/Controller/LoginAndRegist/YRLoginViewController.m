@@ -141,7 +141,7 @@
             
         } failed:^(NSError *error) {
             NSDictionary *string = (NSDictionary *)[error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONObject];
-//            NSLog(@"error - %@",[error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONString]);
+            NSLog(@"error - %@",[error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONString]);
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [MBProgressHUD showError:string[@"info"] toView:self.view];
         }];

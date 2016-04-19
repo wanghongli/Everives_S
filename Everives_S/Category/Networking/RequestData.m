@@ -56,6 +56,8 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",[operation.responseData mj_JSONString]);
+        MyLog(@"operation - %@",operation);
+        
         NSLog(@"error:%@",error);
         NSLog(@"code:%ld",(long)error.code);
         if (failed) {

@@ -17,11 +17,12 @@
 #import <SMS_SDK/SMSSDK.h>
 #import <SMS_SDK/Extend/SMSSDK+AddressBookMethods.h>
 #import "SDWebImageManager.h"
-
 #import "YRQuestionObj.h"
-//SMSSDK官网公共key
-#define appkey @"f3fc6baa9ac4"
-#define app_secrect @"7f3dedcb36d92deebcb373af921d635a"
+#import "UMSocial.h"
+#import "UMSocialSinaSSOHandler.h"
+#import "UMSocialQQHandler.h"
+#import "UMSocialWechatHandler.h"
+
 
 @interface AppDelegate ()<RCIMUserInfoDataSource,RCIMGroupInfoDataSource>
 
@@ -35,6 +36,11 @@
     //高德地图
     [MAMapServices sharedServices].apiKey = @"89bb4d69d45261a2a125e558dbf3ebb6";
     
+    //友盟分享
+    [UMSocialData setAppKey:kUMengAppkey];
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:kSinaAppkey secret:kSinaAppSecret RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    [UMSocialQQHandler setQQWithAppId:kAppID appKey:kTencentAppkey url:@"http://www.umeng.com/social"];
+    [UMSocialWechatHandler setWXAppId:kWeChatID appSecret:kWeChatSecret url:@"http://www.umeng.com/social"];
     //融云即时通讯
     [[RCIM sharedRCIM] initWithAppKey:@"z3v5yqkbvtd30"];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
@@ -239,5 +245,15 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     } failed:^(NSError *error) {
     }];
     return completion(nil);
+}
+
+//SSO登陆
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        //调用其他SDK，例如支付宝SDK等
+    }
+    return result;
 }
 @end

@@ -12,13 +12,15 @@
 #import "YRSchoolModel.h"
 #import <MJExtension.h>
 #import "YRPictureModel.h"
+#import "ZHScrollImageView.h"
+
 static CGFloat headerHeight = 213;
 static CGFloat cellHeight = 60;
 @interface YRSchoolCelldetailVC (){
     NSArray *_icons;
 }
 @property(nonatomic,strong) YRSchoolModel *model;
-@property(nonatomic,strong)UIImageView *headerView;
+@property(nonatomic,strong) ZHScrollImageView *headerView;
 @end
 
 @implementation YRSchoolCelldetailVC
@@ -35,7 +37,8 @@ static CGFloat cellHeight = 60;
     [RequestData GET:[NSString stringWithFormat:@"%@/%@",STUDENT_PLACES,_placeID] parameters:nil complete:^(NSDictionary *responseDic) {
         _model = [YRSchoolModel mj_objectWithKeyValues:responseDic];
         [self.tableView reloadData];
-        [_headerView sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)(_model.pics[0])).url]];
+//        [_headerView sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)(_model.pics[0])).url]];
+        _headerView.models = _model.pics;
     } failed:^(NSError *error) {
         
     }];
@@ -119,9 +122,9 @@ static CGFloat cellHeight = 60;
     }
     return cell;
 }
--(UIImageView *)headerView{
+-(ZHScrollImageView *)headerView{
     if (!_headerView) {
-        _headerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, headerHeight)];
+        _headerView = [[ZHScrollImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, headerHeight)];
     }
     return _headerView;
 }

@@ -147,3 +147,20 @@
 
 #define kNearViewControlerReloadTable  @"nearViewControlerReloadTable" //筛选之后重新加载table的数据
 #define kFillterBtnRemovePullView @"fillterBtnRemovePullView"  //下拉选项被选择后自动收缩
+
+/**
+ *  分享相关
+ */
+#define kSinaAppkey @"2910434921"
+#define kSinaAppSecret @"095b7d354355af5d77ce47f677319e69"
+#define kAppID @"1066171081"
+#define kBundleID @"com.wjh.zhihudaily"
+#define kTencentAppkey @"fnVjd2FhdDMw7jvu"
+#define kUMengAppkey @"56a1a01467e58ec5e9001990"
+#define kWeChatID @"wxb538b509999cc37e"
+#define kWeChatSecret @"05f996f5c4c54b4cc726cd8e354eaa50"
+#define kUserManger [UserManger sharedUserManger]
+
+//SMSSDK官网公共key
+#define appkey @"f3fc6baa9ac4"
+#define app_secrect @"7f3dedcb36d92deebcb373af921d635a"

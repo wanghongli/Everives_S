@@ -22,7 +22,11 @@
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialQQHandler.h"
 #import "UMSocialWechatHandler.h"
+#import "UMessage.h"
 
+//友盟推送
+#define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define _IPHONE80_ 80000
 
 @interface AppDelegate ()<RCIMUserInfoDataSource,RCIMGroupInfoDataSource>
 
@@ -41,6 +45,51 @@
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:kSinaAppkey secret:kSinaAppSecret RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [UMSocialQQHandler setQQWithAppId:kAppID appKey:kTencentAppkey url:@"http://www.umeng.com/social"];
     [UMSocialWechatHandler setWXAppId:kWeChatID appSecret:kWeChatSecret url:@"http://www.umeng.com/social"];
+    
+    //友盟推送
+    [UMessage startWithAppkey:@"5705eecf67e58e8850000269" launchOptions:launchOptions];
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
+    if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
+    {
+        //register remoteNotification types （iOS 8.0及其以上版本）
+        UIMutableUserNotificationAction *action1 = [[UIMutableUserNotificationAction alloc] init];
+        action1.identifier = @"action1_identifier";
+        action1.title=@"Accept";
+        action1.activationMode = UIUserNotificationActivationModeForeground;//当点击的时候启动程序
+        
+        UIMutableUserNotificationAction *action2 = [[UIMutableUserNotificationAction alloc] init];  //第二按钮
+        action2.identifier = @"action2_identifier";
+        action2.title=@"Reject";
+        action2.activationMode = UIUserNotificationActivationModeBackground;//当点击的时候不启动程序，在后台处理
+        action2.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
+        action2.destructive = YES;
+        
+        UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
+        categorys.identifier = @"category1";//这组动作的唯一标示
+        [categorys setActions:@[action1,action2] forContext:(UIUserNotificationActionContextDefault)];
+        
+        UIUserNotificationSettings *userSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert
+                                                                                     categories:[NSSet setWithObject:categorys]];
+        [UMessage registerRemoteNotificationAndUserNotificationSettings:userSettings];
+        
+    } else{
+        //register remoteNotification types (iOS 8.0以下)
+        [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
+         |UIRemoteNotificationTypeSound
+         |UIRemoteNotificationTypeAlert];
+    }
+#else
+    
+    //register remoteNotification types (iOS 8.0以下)
+    [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
+     |UIRemoteNotificationTypeSound
+     |UIRemoteNotificationTypeAlert];
+    
+#endif
+    //for log
+    [UMessage setLogEnabled:YES];
+    
     //融云即时通讯
     [[RCIM sharedRCIM] initWithAppKey:@"z3v5yqkbvtd30"];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
@@ -121,7 +170,7 @@
         NSLog(@"融云链接成功");
     }
                                   error:^(RCConnectErrorCode status) {
-                                      NSLog(@"error_status = %ld",status);
+                                      NSLog(@"error_status = %li",(long)status);
                                   }
                          tokenIncorrect:^() {
                              NSLog(@"token incorrect");
@@ -158,6 +207,7 @@
     [[SDWebImageManager sharedManager].imageCache clearMemory];
 }
 
+
 //融云推送处理2  注册用户通知设置
 - (void)application:(UIApplication *)application
 didRegisterUserNotificationSettings:
@@ -166,7 +216,7 @@ didRegisterUserNotificationSettings:
     [application registerForRemoteNotifications];
 }
 /**
- * 融云推送处理3
+ * 融云推送处理3   友盟推送处理
  */
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -179,12 +229,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
      withString:@""];
     
     [[RCIMClient sharedRCIMClient] setDeviceToken:token];
+    [UMessage registerDeviceToken:deviceToken];
     
 }
 
 /**
- * 融云推送处理4
- * userInfo内容请参考官网文档
+ * 融云推送处理4  友盟推送
  */
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
@@ -204,6 +254,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     } else {
         NSLog(@"该远程推送不包含来自融云的推送服务");
     }
+    
+    [UMessage didReceiveRemoteNotification:userInfo];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error

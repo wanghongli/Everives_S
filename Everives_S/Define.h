@@ -164,3 +164,7 @@
 //SMSSDK官网公共key
 #define appkey @"f3fc6baa9ac4"
 #define app_secrect @"7f3dedcb36d92deebcb373af921d635a"
+
+//推送
+#define kUMengAppKey @"5705eecf67e58e8850000269"
+#define kUMengAppSecret @"cndnbyxmbdk8nokqcszuyohikgm9nv2c"

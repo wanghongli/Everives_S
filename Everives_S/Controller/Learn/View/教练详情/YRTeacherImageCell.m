@@ -7,7 +7,8 @@
 //
 
 #import "YRTeacherImageCell.h"
-
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
 #define kDistace 10
 @interface YRTeacherImageCell ()
 
@@ -45,7 +46,7 @@
         // 裁剪图片，超出控件的部分裁剪掉
         imageV.clipsToBounds = YES;
         imageV.image = [UIImage imageNamed:@"Login_addAvatar"];
-        imageV.tag = i+10;
+        imageV.tag = i;
         // 添加点按手势
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTap:)];
         [imageV addGestureRecognizer:tap];
@@ -79,8 +80,27 @@
 -(void)imageTap:(UITapGestureRecognizer *)sender
 {
     
+    UIImageView *tapView = (UIImageView*)sender.view;
+    // CZPhoto -> MJPhoto
+    int i = 0;
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (YRTeacherPicsObj *photo in _imgArray) {
+        MJPhoto *p = [[MJPhoto alloc] init];
+        NSString *urlStr = photo.url;
+        p.url = [NSURL URLWithString:urlStr];
+        p.index = i;
+        p.srcImageView = tapView;
+        [arrM addObject:p];
+        i++;
+    }
     
-    
+    // 弹出图片浏览器
+    // 创建浏览器对象
+    MJPhotoBrowser *brower = [[MJPhotoBrowser alloc] init];
+    brower.photos = arrM;
+    brower.currentPhotoIndex = tapView.tag;
+    [brower show];
+
 }
 
 @end

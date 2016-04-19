@@ -22,6 +22,8 @@
 #import "YRTeacherPlaceObj.h"
 #import "YRTeacherPicsObj.h"
 #import "YRTeacherAllCommentControllerController.h"
+#import "YRSchoolCelldetailVC.h"
+#import "YRTeacherAllPicsController.h"
 @interface YRTeacherDetailController () <UITableViewDelegate,UITableViewDataSource,YRTeacherDownViewDelegate>
 {
     YRTeacherDetailObject *_teacherObj;
@@ -111,7 +113,7 @@
     }else if (indexPath.section == 2){
         YRTeacherPlaceCell *cell = [YRTeacherPlaceCell cellWithTableView:tableView];
         YRTeacherPlaceObj *placeObj = _teacherDetail.place[indexPath.row];
-        [cell teacherPlaceGetSchoolName:placeObj.name address:@"南岸/黄角丫"];
+        [cell teacherPlaceGetSchoolName:placeObj.name address:@""];
         return cell;
     }else{
         YRTeacherImageCell *cell = [YRTeacherImageCell cellWithTableView:tableView];
@@ -153,7 +155,9 @@
                 allComment.teacherID = [self.teacherID integerValue];
                 [self.navigationController pushViewController:allComment animated:YES];
             }else if ([titleString isEqualToString:@"全部照片"]){
-                
+                YRTeacherAllPicsController *allPicsVC = [[YRTeacherAllPicsController alloc]init];
+                allPicsVC.teacherID = [self.teacherID integerValue];
+                [self.navigationController pushViewController:allPicsVC animated:YES];
             }
         }];
         return sectionView;
@@ -173,13 +177,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 2) {
+        YRSchoolCelldetailVC *schoolVC = [[YRSchoolCelldetailVC alloc]init];
+        YRTeacherPlaceObj *placeObj = _teacherDetail.place[indexPath.row];
+        schoolVC.placeID = [NSString stringWithFormat:@"%ld",placeObj.id];
+        [self.navigationController pushViewController:schoolVC animated:YES];
+    }
 }
 
 #pragma mark - teacherDownView代理
 -(void)teacherDownViewBtnClick:(NSInteger)btnTag
 {
     if (btnTag == 1) {//关注
-        
+        [RequestData POST:@"/student/teacher" parameters:@{@"id":self.teacherID} complete:^(NSDictionary *responseDic) {
+            MyLog(@"%@",responseDic);
+            [MBProgressHUD showSuccess:@"关注成功" toView:self.view];
+        } failed:^(NSError *error) {
+            
+        }];
     }else{//预约
         YRReservationDateVC *chooseDateVC = [[YRReservationDateVC alloc] init];
         chooseDateVC.isShareOrder = _isShareOrder;

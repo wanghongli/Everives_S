@@ -15,6 +15,7 @@
 #import "YROrderConfirmViewController.h"
 #import "YRTeacherDetailObj.h"
 #import "YRShareOrderConfirmViewController.h"
+#import "YRLineView.h"
 
 static NSInteger sectionNum = 7;//竖着的那种
 static NSInteger rowNum = 8; //横着的那种
@@ -241,8 +242,20 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
     }
+    //表头
     if (indexPath.row == 0) {
-        //表头
+        YRLineView *line = [[YRLineView alloc] initWithFrame:CGRectMake(0, 0, kcellWidth, 50)];
+        line.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
+        
+        UILabel *timeL = [[UILabel alloc] initWithFrame:CGRectMake(kcellWidth/2, 12, kcellWidth, 15)];
+        timeL.text = @"日期";
+        timeL.font = kFontOfLetterMedium;
+        UILabel *dateL = [[UILabel alloc] initWithFrame:CGRectMake(6, 27, kcellWidth, 15)];
+        dateL.text = @"时段";
+        dateL.font = kFontOfLetterMedium;
+        [cell.contentView addSubview:line];
+        [cell.contentView addSubview:timeL];
+        [cell.contentView addSubview:dateL];
     }else{
         UILabel *startTime = [[UILabel alloc] initWithFrame:CGRectMake(0, kcellHeight/2-20, kcellWidth, 20)];
         startTime.font = kFontOfLetterMedium;
@@ -286,4 +299,5 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     }
     return _timeView;
 }
+
 @end

@@ -11,6 +11,7 @@
 #import "YRYJNavigationController.h"
 #import "YRPrivacySettingController.h"
 #import "REFrostedViewController.h"
+#import "YRAboutUsViewController.h"
 @interface YRSettingController ()
 {
     NSArray *_menuArray;
@@ -82,6 +83,13 @@
     if (indexPath.section == 0) {
         YRPrivacySettingController *spVC = [[YRPrivacySettingController alloc]init];
         [self.navigationController pushViewController:spVC animated:YES];
+    }
+    //关于我们
+    if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            YRAboutUsViewController *about = [[YRAboutUsViewController alloc]init];
+            [self.navigationController pushViewController:about animated:YES];
+        }
     }
 }
 @end

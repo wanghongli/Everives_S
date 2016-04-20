@@ -35,21 +35,17 @@
     [self.errorBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.shareBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"<返回" style:UIBarButtonItemStyleDone target:self action:@selector(backClick)];
-//    [self postData];
+    
+    [self saveAchievement];
 }
--(void)postData
+#pragma mark - 保存成绩
+-(void)saveAchievement
 {
-    NSDictionary *dic = @{
-                          @"time":[NSString stringWithFormat:@"%ld",(NSInteger)[[NSDate date] timeIntervalSince1970]],
-                          @"grade":@(self.scroe),
-                          @"cost":@(self.costTime),
-                          @"type":@(self.objFour)
-                          };
-    [RequestData POST:JK_POST_TESTRESULT parameters:dic complete:^(NSDictionary *responseDic) {
-        MyLog(@"%@",responseDic);
-    } failed:^(NSError *error) {
+    if (self.objFour) {//科目四
         
-    }];
+    }else{//科目一
+        
+    }
 }
 -(void)buildUI
 {

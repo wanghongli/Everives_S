@@ -94,6 +94,8 @@
 		032FADF61CBF3A83006A7AA4 /* YRMyCommentObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 032FADF51CBF3A83006A7AA4 /* YRMyCommentObj.m */; };
 		032FADF91CBF435B006A7AA4 /* YRTeacherAllCommentControllerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032FADF81CBF435B006A7AA4 /* YRTeacherAllCommentControllerController.m */; };
 		0340DF951CC62DF100CF9884 /* YRTeacherAllPicsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0340DF941CC62DF100CF9884 /* YRTeacherAllPicsController.m */; };
+		0340DF9C1CC718BF00CF9884 /* YRTeacherAllPicsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0340DF9A1CC718BF00CF9884 /* YRTeacherAllPicsCell.m */; };
+		0340DF9D1CC718BF00CF9884 /* YRTeacherAllPicsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0340DF9B1CC718BF00CF9884 /* YRTeacherAllPicsCell.xib */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -495,6 +497,9 @@
 		032FADF81CBF435B006A7AA4 /* YRTeacherAllCommentControllerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRTeacherAllCommentControllerController.m; sourceTree = "<group>"; };
 		0340DF931CC62DF100CF9884 /* YRTeacherAllPicsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRTeacherAllPicsController.h; sourceTree = "<group>"; };
 		0340DF941CC62DF100CF9884 /* YRTeacherAllPicsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRTeacherAllPicsController.m; sourceTree = "<group>"; };
+		0340DF991CC718BF00CF9884 /* YRTeacherAllPicsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRTeacherAllPicsCell.h; sourceTree = "<group>"; };
+		0340DF9A1CC718BF00CF9884 /* YRTeacherAllPicsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRTeacherAllPicsCell.m; sourceTree = "<group>"; };
+		0340DF9B1CC718BF00CF9884 /* YRTeacherAllPicsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRTeacherAllPicsCell.xib; sourceTree = "<group>"; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -1251,6 +1256,9 @@
 				037C92A31C8FFE15005B41BF /* 科目三 */,
 				037C92A41C8FFE15005B41BF /* 科目四 */,
 				037C92A51C8FFE15005B41BF /* 科目一 */,
+				0340DF991CC718BF00CF9884 /* YRTeacherAllPicsCell.h */,
+				0340DF9A1CC718BF00CF9884 /* YRTeacherAllPicsCell.m */,
+				0340DF9B1CC718BF00CF9884 /* YRTeacherAllPicsCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2548,6 +2556,7 @@
 				164A8C931C8D1DCF00857638 /* YRMyWalletViewController.xib in Resources */,
 				03FF147D1C9FEB9F00AEBB75 /* YRLearnSecondCell.xib in Resources */,
 				037F8E6A1C8D5FC50057BF6C /* ImagesPicker.xcassets in Resources */,
+				0340DF9D1CC718BF00CF9884 /* YRTeacherAllPicsCell.xib in Resources */,
 				16271AA31CB360830082F7CB /* Info.plist in Resources */,
 				1624E29E1C8E7543009F4E20 /* YRCommentDetailVC.xib in Resources */,
 				164A8C9B1C8D248300857638 /* YRMyCommentCellTableViewCell.xib in Resources */,
@@ -2710,6 +2719,7 @@
 				037F8E1F1C8826750057BF6C /* CWSLoginTextField.m in Sources */,
 				1665D0E91CA8C94E0064A103 /* YRMoneyDetailModel.m in Sources */,
 				037F8E701C8D5FC50057BF6C /* JKAssetsViewCell.m in Sources */,
+				0340DF9C1CC718BF00CF9884 /* YRTeacherAllPicsCell.m in Sources */,
 				037D7C2C1C916AE600273703 /* UzysAssetsViewCell.m in Sources */,
 				1665D0E61CA8C9030064A103 /* YRStudentMoneyDetailVC.m in Sources */,
 				16C5458E1C98F20700AE5152 /* YRSearchFriendVC.m in Sources */,

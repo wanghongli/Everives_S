@@ -73,4 +73,12 @@
 +(NSInteger) getCurrentQuestionIDWithType:(BOOL)type;
 //创建沙盒存入数据或沙盒路径已有存入数据
 +(void)saveMsgWithMsg:(NSInteger)msgString withType:(BOOL)type;
+
+/**
+ * 获取成绩
+ *
+ */
++(NSArray *)getAchieveWithType:(BOOL)type;
+//存入成绩数据
++(void)saveAchieveWithMsg:(NSDictionary*)achieveMsg withType:(BOOL)type;
 @end

@@ -216,4 +216,29 @@
         [msg writeToFile:pStr atomically:YES];
     }
 }
++(NSArray *)getAchieveWithType:(BOOL)type
+{
+    NSArray *achieveArray;
+    return achieveArray;
+}
+//存入成绩数据
++(void)saveAchieveWithMsg:(NSDictionary*)achieveMsg withType:(BOOL)type
+{
+//    NSDictionary *msg = @{@"questionID":[NSString stringWithFormat:@"%ld",msgString]};
+//    //    获取document目录
+//    NSArray*larray=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString*lstring=[larray lastObject];
+//    
+//    //    如果把数据存
+//    NSString *pStr = [lstring stringByAppendingString:[NSString stringWithFormat:@"/questionID_%d.plist",type]];
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    BOOL result = [fileManager fileExistsAtPath:pStr];
+//    if (result) {
+//        [msg writeToFile:pStr atomically:YES];
+//    }else{
+//        //如果不存在就创建
+//        [[NSFileManager defaultManager]createFileAtPath:pStr contents:nil attributes:nil];
+//        [msg writeToFile:pStr atomically:YES];
+//    }
+}
 @end

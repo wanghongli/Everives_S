@@ -159,6 +159,7 @@
         [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_PAY,_orderId] parameters:nil complete:^(NSDictionary *responseDic) {
             UIAlertView *successAlertView = [[UIAlertView alloc] initWithTitle:@"支付成功" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
             [successAlertView show];
+            [self.startBtn setTitle:@"发消息" forState:UIControlStateNormal];
         } failed:^(NSError *error) {
             UIAlertView *successAlertView = [[UIAlertView alloc] initWithTitle:@"支付失败" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
             [successAlertView show];

@@ -271,6 +271,9 @@
         if (isMatch) {
             return YES;
         }else{
+            if ([string containsString:@" "]) {
+                return YES;
+            }
             return NO;
         }
     }else{

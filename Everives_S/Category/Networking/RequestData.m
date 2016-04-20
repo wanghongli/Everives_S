@@ -34,6 +34,9 @@
         NSLog(@"code:%ld",(long)error.code);
         if (failed) {
             failed(error);
+            NSDictionary *dic = [operation.responseData mj_JSONObject];
+            [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
+
         }
     }];
 
@@ -87,6 +90,9 @@
         NSLog(@"code:%ld",(long)error.code);
         if (failed) {
             failed(error);
+            NSDictionary *dic = [operation.responseData mj_JSONObject];
+            [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
+
         }
     }];
 }
@@ -110,6 +116,9 @@
         NSLog(@"code:%ld",(long)error.code);
         if (failed) {
             failed(error);
+            NSDictionary *dic = [operation.responseData mj_JSONObject];
+            [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
+
         }
     }];
 }
@@ -136,6 +145,9 @@
         NSLog(@"code:%ld",(long)error.code);
         if (failed) {
             failed(error);
+            NSDictionary *dic = [operation.responseData mj_JSONObject];
+            [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
+
         }
     }];
 }

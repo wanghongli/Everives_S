@@ -53,11 +53,6 @@
         _headView.loginBool = NO;
     }
 }
--(void)userClick:(UIButton *)sender
-{
-    NSLog(@"%s",__func__);
-    
-}
 
 #pragma mark -
 #pragma mark UITableView Delegate

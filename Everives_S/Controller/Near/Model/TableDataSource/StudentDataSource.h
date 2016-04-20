@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface StudentDataSource : NSObject<UITableViewDataSource>
-@property(nonatomic,strong) NSArray *stuArray;
+@property(nonatomic,strong) NSMutableArray *stuArray;
 @property(nonatomic,strong) UITableView *table;
 -(void)getData;
+-(void)loadMoreData;
 @end

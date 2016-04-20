@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 @interface SchoolDataSource : NSObject<UITableViewDataSource>
 @property(nonatomic,strong) UITableView *table;
-@property(nonatomic,strong) NSArray *placeArray;
+@property(nonatomic,strong) NSMutableArray *placeArray;
 -(void)getDataWithParameters:(NSDictionary*)parameters;
+-(void)loadMoreData;
 @end

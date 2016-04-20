@@ -10,6 +10,7 @@
 
 @interface CoachDataSource : NSObject<UITableViewDataSource>
 @property(nonatomic,strong) UITableView *table;
-@property(nonatomic,strong)  NSArray *coachArray;
+@property(nonatomic,strong)  NSMutableArray *coachArray;
 -(void)getDataWithParameters:(NSDictionary*)parameters;
+-(void)loadMoreData;
 @end

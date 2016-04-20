@@ -23,6 +23,7 @@
 #import "YRMapAnnotationView.h"
 #import "YRMapFMDB.h"
 #import "YRSliderView.h"
+#import <MJRefresh.h>
 //定义三个table的类型
 typedef NS_ENUM(NSUInteger,NearTableType){
     NearTableTypeSchool = 1,
@@ -310,18 +311,18 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView.tag == NearTableTypeSchool) {
         YRSchoolCelldetailVC *schoolDetail = [[YRSchoolCelldetailVC alloc] init];
-        schoolDetail.placeID = [_schoolData.placeArray[indexPath.row] id];
+        schoolDetail.placeID = [_schoolData.placeArray[indexPath.section][indexPath.row] id];
         [self.navigationController pushViewController:schoolDetail animated:YES];
     }else if(tableView.tag == NearTableTypeCoach){
         YRTeacherDetailController *coachDetail = [[YRTeacherDetailController alloc] init];
-        coachDetail.teacherID = [_coachData.coachArray[indexPath.row] id];
-        coachDetail.kind = [_coachData.coachArray[indexPath.row] kind];
+        coachDetail.teacherID = [_coachData.coachArray[indexPath.section][indexPath.row] id];
+        coachDetail.kind = [_coachData.coachArray[indexPath.section][indexPath.row] kind];
         coachDetail.isShareOrder = _isShareOrder;
         coachDetail.partnerModel = _partnerModel;
         [self.navigationController pushViewController:coachDetail animated:YES];
     }else{
         YRUserDetailController *userDetail = [[YRUserDetailController alloc] init];
-        userDetail.userID = [_studentData.stuArray[indexPath.row] id];
+        userDetail.userID = [_studentData.stuArray[indexPath.section][indexPath.row] id];
         [self.navigationController pushViewController:userDetail animated:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -372,12 +373,11 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 #pragma mark - Getters
 -(UITableView *)schoolTable{
     if (!_schoolTable) {
-        _schoolTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight)];
+        _schoolTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight-64)];
         _schoolTable.tableHeaderView = self.schoolFillterView;
-        _schoolTable.tableFooterView = [[UIView alloc]init];
         [_schoolTable registerNib:[UINib nibWithNibName:@"YRSchoolTableCell" bundle:nil] forCellReuseIdentifier:schoolCellID];
         _schoolTable.rowHeight = 100;
-        
+        _studentTable.tableFooterView = [[UIView alloc]init];
         _schoolData = [[SchoolDataSource alloc]init];
         _schoolData.table = _schoolTable;
         NSDictionary *parameters = @{@"page":@0,@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0",@"sort":@"0",@"address":@"",@"key":@""};
@@ -385,17 +385,18 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         _schoolTable.dataSource = _schoolData;
         _schoolTable.tag = NearTableTypeSchool;
         _schoolTable.delegate = self;
+        _schoolTable.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:_schoolData refreshingAction:@selector(loadMoreData)];
+        
     }
     return _schoolTable;
 }
 -(UITableView *)coachTable{
     if (!_coachTable) {
-        _coachTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight)];
+        _coachTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight-64)];
         _coachTable.tableHeaderView = self.coachFillterView;
-        _coachTable.tableFooterView = [[UIView alloc]init];
         [_coachTable registerNib:[UINib nibWithNibName:@"YRCoachTableCell" bundle:nil] forCellReuseIdentifier:coachCellID];
         _coachTable.rowHeight = 100;
-        
+        _coachTable.tableFooterView = [[UIView alloc]init];
         _coachData = [[CoachDataSource alloc] init];
         _coachData.table = _coachTable;
         _coachTable.dataSource = _coachData;
@@ -404,12 +405,13 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         [_coachData getDataWithParameters:parameters];
         _coachTable.tag = NearTableTypeCoach;
         _coachTable.delegate = self;
+        _coachTable.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:_coachData refreshingAction:@selector(loadMoreData) ];
     }
     return _coachTable;
 }
 -(UITableView *)studentTable{
     if (!_studentTable) {
-        _studentTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight)];
+        _studentTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight-64)];
         [_studentTable registerNib:[UINib nibWithNibName:@"YRStudentTableCell" bundle:nil] forCellReuseIdentifier:studentCellID];
         _studentTable.rowHeight = 100;
         _studentData = [[StudentDataSource alloc] init];
@@ -419,6 +421,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         _studentTable.tag = NearTableTypeStudent;
         _studentTable.delegate = self;
         _studentTable.tableFooterView = [[UIView alloc]init];
+        _studentTable.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:_studentData refreshingAction:@selector(loadMoreData) ];
     }
     return _studentTable;
 }

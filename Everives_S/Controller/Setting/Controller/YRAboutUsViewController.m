@@ -32,12 +32,13 @@
 
 -(UIButton *)shareBtn{
     if (!_shareBtn) {
-        _shareBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, kScreenHeight-150, kScreenWidth-200, 50)];
+        _shareBtn = [[UIButton alloc] initWithFrame:CGRectMake(80, kScreenHeight-150, kScreenWidth-160, 50)];
         [_shareBtn setTitle:@"分享" forState:UIControlStateNormal];
         [_shareBtn setTitleColor:[UIColor colorWithWhite:0.178 alpha:1.000] forState:UIControlStateNormal];
         [_shareBtn addTarget:self action:@selector(shareBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         _shareBtn.layer.borderColor = [UIColor colorWithRed:135/255.0 green:135/255.0 blue:135/255.0 alpha:1].CGColor;
         _shareBtn.layer.borderWidth = 0.5;
+        _shareBtn.layer.cornerRadius = 25;
     }
     return _shareBtn;
 }

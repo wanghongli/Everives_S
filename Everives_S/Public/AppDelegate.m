@@ -47,48 +47,7 @@
     [UMSocialWechatHandler setWXAppId:kWeChatID appSecret:kWeChatSecret url:@"http://www.umeng.com/social"];
     
     //友盟推送
-    [UMessage startWithAppkey:@"5705eecf67e58e8850000269" launchOptions:launchOptions];
-    
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
-    if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
-    {
-        //register remoteNotification types （iOS 8.0及其以上版本）
-        UIMutableUserNotificationAction *action1 = [[UIMutableUserNotificationAction alloc] init];
-        action1.identifier = @"action1_identifier";
-        action1.title=@"Accept";
-        action1.activationMode = UIUserNotificationActivationModeForeground;//当点击的时候启动程序
-        
-        UIMutableUserNotificationAction *action2 = [[UIMutableUserNotificationAction alloc] init];  //第二按钮
-        action2.identifier = @"action2_identifier";
-        action2.title=@"Reject";
-        action2.activationMode = UIUserNotificationActivationModeBackground;//当点击的时候不启动程序，在后台处理
-        action2.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
-        action2.destructive = YES;
-        
-        UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
-        categorys.identifier = @"category1";//这组动作的唯一标示
-        [categorys setActions:@[action1,action2] forContext:(UIUserNotificationActionContextDefault)];
-        
-        UIUserNotificationSettings *userSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert
-                                                                                     categories:[NSSet setWithObject:categorys]];
-        [UMessage registerRemoteNotificationAndUserNotificationSettings:userSettings];
-        
-    } else{
-        //register remoteNotification types (iOS 8.0以下)
-        [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
-         |UIRemoteNotificationTypeSound
-         |UIRemoteNotificationTypeAlert];
-    }
-#else
-    
-    //register remoteNotification types (iOS 8.0以下)
-    [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
-     |UIRemoteNotificationTypeSound
-     |UIRemoteNotificationTypeAlert];
-    
-#endif
-    //for log
-    [UMessage setLogEnabled:YES];
+    [UMessage startWithAppkey:kUMengAppKey launchOptions:launchOptions];
     
     //融云即时通讯
     [[RCIM sharedRCIM] initWithAppKey:@"z3v5yqkbvtd30"];
@@ -131,7 +90,6 @@
     YRYJMenuViewController *menuController = [[YRYJMenuViewController alloc] initWithStyle:UITableViewStylePlain];
     
     // Create frosted view controller
-    //
     REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
     frostedViewController.direction = REFrostedViewControllerDirectionLeft;
     frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
@@ -167,6 +125,52 @@
                          tokenIncorrect:^() {
                              MyLog(@"token incorrect");
                          }];
+    
+    
+    //友盟推送
+    NSLog(@"userid  %@",KUserManager.id);
+    [UMessage setAlias:KUserManager.id type:@"STU" response:nil];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
+    if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
+    {
+        //register remoteNotification types （iOS 8.0及其以上版本）
+        UIMutableUserNotificationAction *action1 = [[UIMutableUserNotificationAction alloc] init];
+        action1.identifier = @"action1_identifier";
+        action1.title=@"Accept";
+        action1.activationMode = UIUserNotificationActivationModeForeground;//当点击的时候启动程序
+        
+        UIMutableUserNotificationAction *action2 = [[UIMutableUserNotificationAction alloc] init];  //第二按钮
+        action2.identifier = @"action2_identifier";
+        action2.title=@"Reject";
+        action2.activationMode = UIUserNotificationActivationModeBackground;//当点击的时候不启动程序，在后台处理
+        action2.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
+        action2.destructive = YES;
+        
+        UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
+        categorys.identifier = @"category1";//这组动作的唯一标示
+        [categorys setActions:@[action1,action2] forContext:(UIUserNotificationActionContextDefault)];
+        
+        UIUserNotificationSettings *userSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert
+                                                                                     categories:[NSSet setWithObject:categorys]];
+        [UMessage registerRemoteNotificationAndUserNotificationSettings:userSettings];
+        
+    } else{
+        //register remoteNotification types (iOS 8.0以下)
+        [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
+         |UIRemoteNotificationTypeSound
+         |UIRemoteNotificationTypeAlert];
+    }
+#else
+    
+    //register remoteNotification types (iOS 8.0以下)
+    [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
+     |UIRemoteNotificationTypeSound
+     |UIRemoteNotificationTypeAlert];
+    
+#endif
+    //for log
+    [UMessage setLogEnabled:YES];
+
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
 }
@@ -205,6 +209,10 @@ didRegisterUserNotificationSettings:
  */
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"deviceToken  %@",[deviceToken description]);
+    //友盟
+    [UMessage registerDeviceToken:deviceToken];
+    //融云
     NSString *token =
     [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<"
                                                            withString:@""]
@@ -214,7 +222,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
      withString:@""];
     
     [[RCIMClient sharedRCIMClient] setDeviceToken:token];
-    [UMessage registerDeviceToken:deviceToken];
+    
     
 }
 
@@ -223,24 +231,29 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
  */
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    /**
-     * 统计推送打开率2
-     */
-    [[RCIMClient sharedRCIMClient] recordRemoteNotificationEvent:userInfo];
-    /**
-     * 获取融云推送服务扩展字段2
-     */
-    NSDictionary *pushServiceData = [[RCIMClient sharedRCIMClient] getPushExtraFromRemoteNotification:userInfo];
-    if (pushServiceData) {
-        NSLog(@"该远程推送包含来自融云的推送服务");
-        for (id key in [pushServiceData allKeys]) {
-            NSLog(@"key = %@, value = %@", key, pushServiceData[key]);
+    if (userInfo[@"YRTYPE"]) {
+        [UMessage didReceiveRemoteNotification:userInfo];
+    }else{
+        /**
+         * 统计推送打开率2
+         */
+        [[RCIMClient sharedRCIMClient] recordRemoteNotificationEvent:userInfo];
+        /**
+         * 获取融云推送服务扩展字段2
+         */
+        NSDictionary *pushServiceData = [[RCIMClient sharedRCIMClient] getPushExtraFromRemoteNotification:userInfo];
+        if (pushServiceData) {
+            NSLog(@"该远程推送包含来自融云的推送服务");
+            for (id key in [pushServiceData allKeys]) {
+                NSLog(@"key = %@, value = %@", key, pushServiceData[key]);
+            }
+        } else {
+            NSLog(@"该远程推送不包含来自融云的推送服务");
         }
-    } else {
-        NSLog(@"该远程推送不包含来自融云的推送服务");
     }
     
-    [UMessage didReceiveRemoteNotification:userInfo];
+    
+    
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error

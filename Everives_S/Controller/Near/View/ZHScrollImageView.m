@@ -34,34 +34,19 @@
     }
     self.scrollView.contentSize = CGSizeMake(kScreenWidth*(models.count+2), kTopImageHeight);
     [self.scrollView setContentOffset:CGPointMake(kScreenWidth, 0) animated:NO];
-    CGRect oneLineTitleRect = CGRectMake(15, kTopImageHeight-50, kScreenWidth-30, 26);
-    CGRect twoLineTitleRect = CGRectMake(15, kTopImageHeight-72, kScreenWidth-30, 52);
+
     for (int i = 0;i<models.count+2;i++) {
         UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth*i, 0, kScreenWidth, kTopImageHeight)];
-        UILabel *label = [[UILabel alloc] init];
-        UIFont *labelFont = [UIFont systemFontOfSize:21 weight:UIFontWeightBold];
-        label.numberOfLines = 0;
-        label.font = labelFont;
-        label.textColor = [UIColor whiteColor];
         if (i == 0) {
             [imageView sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)models[models.count-1]).url]];
-            label.text = ((YRPictureModel*)models[models.count-1]).url;
         }else if (i == models.count+1){
             [imageView sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)models[0]).url]];
-            label.text = ((YRPictureModel*)models[0]).url;
         }else{
            [imageView sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)models[i-1]).url]];
-           label.text = ((YRPictureModel*)models[i-1]).url;
         }
-        CGSize labelTextSize = [label.text boundingRectWithSize:CGSizeMake(kScreenWidth-30, 200) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:labelFont} context:nil].size;
-        //如果一行显示不完则两行显示
-        if (labelTextSize.height>26) {
-            label.frame = twoLineTitleRect;
-        }else{
-            label.frame = oneLineTitleRect;
-        }
+       
+        
         imageView.contentMode = UIViewContentModeScaleAspectFill;
-        [imageView addSubview:label];
         [self.scrollView addSubview:imageView];
         [self.imageViews addObject:imageView];
     }

@@ -10,7 +10,6 @@
 #import "MJExtension.h"
 #import <MAMapKit/MAMapKit.h>
 @interface YRUserStatus : MAPointAnnotation
-
 @property (nonatomic, strong) NSString *addrTime;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *age;
@@ -31,8 +30,12 @@
 @property (nonatomic, strong) NSString *sign;
 @property (nonatomic, assign) NSInteger frozenMoney;
 @property (nonatomic, assign) NSInteger checked;
-@property (nonatomic, assign) NSInteger push;
-@property (nonatomic, assign) NSInteger show;
+@property (nonatomic, assign) NSInteger push;//设置中通知状态
+@property (nonatomic, assign) NSInteger show;//'隐私设置 0显示 1不显示距离 2不显示',
+@property (nonatomic, assign) NSInteger first;  //第一个数为第一次分享  第二个数表示第一次充值； 11都操作过    10 分享过  01充值过  00没有分享
+@property (nonatomic, assign) NSInteger gua; //刮刮卡次数
+//@property (nonatomic, assign) NSInteger kind;//0学员1教练
+@property (nonatomic, assign) NSInteger zhuan;//大转盘次数
 //好友属性
 @property (nonatomic, assign) BOOL relation;
 @end

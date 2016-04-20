@@ -24,6 +24,8 @@
 #import "YRTeacherAllCommentControllerController.h"
 #import "YRSchoolCelldetailVC.h"
 #import "YRTeacherAllPicsController.h"
+#import "MJRefresh/MJRefresh.h"
+
 @interface YRTeacherDetailController () <UITableViewDelegate,UITableViewDataSource,YRTeacherDownViewDelegate>
 {
     YRTeacherDetailObject *_teacherObj;

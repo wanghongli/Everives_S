@@ -45,6 +45,26 @@
         cell = [[YRSettingPrivacyCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.textLabel.text = titleArray[indexPath.row];
+    if (KUserManager.id) {
+        if (indexPath.row == KUserManager.show) {
+            cell.selectBool = YES;
+        }else
+            cell.selectBool = NO;
+    }else{
+        cell.selectBool = NO;
+    }
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [RequestData PUT:@"/student/setting" parameters:@{@"show":[NSString stringWithFormat:@"%ld",indexPath.row]} complete:^(NSDictionary *responseDic) {
+        MyLog(@"%@",responseDic);
+        [YRPublicMethod changeUserMsgWithKeys:@[@"show"] values:@[@(indexPath.row)]];
+        KUserManager.show = indexPath.row;
+        [self.tableView reloadData];
+    } failed:^(NSError *error) {
+        
+    }];
 }
 @end

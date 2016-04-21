@@ -10,4 +10,5 @@
 
 @interface YRSettingPrivacyCell : UITableViewCell
 @property (nonatomic, strong) NSString *titleString;
+@property (nonatomic, assign) BOOL selectBool;
 @end

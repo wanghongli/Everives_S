@@ -55,17 +55,28 @@
     _backView.layer.masksToBounds = YES;
     _backView.layer.cornerRadius = _backView.height/2;
     _backView.layer.borderWidth = 1;
-    _backView.layer.borderColor = kCOLOR(220, 220, 220).CGColor;
+    if (_selectBool) {
+        _backView.layer.borderColor = kCOLOR(53, 117, 173).CGColor;
+        _centerView.backgroundColor = kCOLOR(53, 117, 173);
+    }else{
+        _backView.layer.borderColor = kCOLOR(220, 220, 220).CGColor;
+        _centerView.backgroundColor = [UIColor lightGrayColor];
+    }
     
     _centerView.layer.masksToBounds = YES;
     _centerView.layer.cornerRadius = _centerView.height/2;
     
     _titleLabel.frame = CGRectMake(kDistace, 0, kScreenWidth-4*kDistace, self.height);
     
+    
 }
 -(void)setTitleString:(NSString *)titleString
 {
     _titleString = titleString;
     _titleLabel.text = titleString;
+}
+-(void)setSelectBool:(BOOL)selectBool
+{
+    _selectBool = selectBool;
 }
 @end

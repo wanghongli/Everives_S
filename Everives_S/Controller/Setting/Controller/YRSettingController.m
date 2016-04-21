@@ -12,6 +12,7 @@
 #import "YRPrivacySettingController.h"
 #import "REFrostedViewController.h"
 #import "YRAboutUsViewController.h"
+#import "YRFeedBackController.h"
 @interface YRSettingController ()
 {
     NSArray *_menuArray;
@@ -30,7 +31,14 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu_icon"] style:UIBarButtonItemStylePlain target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu)];
 
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (KUserManager.id) {
+        [self.tableView reloadData];
+    }
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -55,13 +63,41 @@
     if (indexPath.section!=1) {
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
         cell.swithHidden = YES;
-    }else
+    }else{
         cell.swithHidden = NO;
-    //开关状态
-    cell.swithStatus = indexPath.row%2;
+        //开关状态
+        if (KUserManager.id) {
+            if (indexPath.row == 0) {
+                cell.swithStatus = KUserManager.push/100;
+            }else if(indexPath.row == 1){
+                cell.swithStatus = KUserManager.push%100/10;
+            }else{
+                cell.swithStatus = KUserManager.push%100%10;
+            }
+        }else
+            cell.swithStatus = NO;
+    }
     //开关事件
     [cell setSwithcIsOn:^(BOOL swithOn) {
-        
+        if (!KUserManager.id) {
+            return;
+        }
+        NSString *pushString;
+        if (indexPath.row == 0) {
+            pushString = [NSString stringWithFormat:@"%d%ld%ld",swithOn,KUserManager.push%100/10,KUserManager.push%100%10];
+        }else if(indexPath.row == 1){
+            pushString = [NSString stringWithFormat:@"%ld%d%ld",KUserManager.push/100,swithOn,KUserManager.push%100%10];
+        }else{
+            pushString = [NSString stringWithFormat:@"%ld%ld%d",KUserManager.push/100,KUserManager.push%100/10,swithOn];
+        }
+        [RequestData PUT:@"/student/setting" parameters:@{@"push":pushString} complete:^(NSDictionary *responseDic) {
+            MyLog(@"%@",responseDic);
+            [YRPublicMethod changeUserMsgWithKeys:@[@"show"] values:@[@([pushString integerValue])]];
+            KUserManager.push = [pushString integerValue];
+            [self.tableView reloadData];
+        } failed:^(NSError *error) {
+            
+        }];
     }];
     cell.textLabel.text = _menuArray[indexPath.section][indexPath.row];
     return cell;
@@ -89,6 +125,9 @@
         if (indexPath.row == 0) {
             YRAboutUsViewController *about = [[YRAboutUsViewController alloc]init];
             [self.navigationController pushViewController:about animated:YES];
+        }else if (indexPath.row == 1){
+            YRFeedBackController *feedbackVC = [[YRFeedBackController alloc]initWithNibName:@"YRFeedBackController" bundle:nil];
+            [self.navigationController pushViewController:feedbackVC animated:YES];
         }
     }
 }

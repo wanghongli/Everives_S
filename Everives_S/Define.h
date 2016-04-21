@@ -19,7 +19,10 @@
 #define KGroundColor [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1]
 //主色调  55 180 201
 #define kMainColor [UIColor colorWithRed:55/255.0 green:180/255.0 blue:201/255.0 alpha:1]
-
+//蚁人深色字体
+#define kYRBlackTextColor [UIColor colorWithRed:77/255.0 green:77/255.0 blue:77/255.0 alpha:1]
+//蚁人浅色字体
+#define kYRLightTextColor [UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1]
 /**
  *  Dock的高度
  */

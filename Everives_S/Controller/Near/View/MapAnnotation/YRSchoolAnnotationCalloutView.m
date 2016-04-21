@@ -89,7 +89,7 @@
 }
 -(UILabel *)name{
     if (!_name) {
-        _name = [[UILabel alloc] initWithFrame:CGRectMake(98, 4, 110, 20)];
+        _name = [[UILabel alloc] initWithFrame:CGRectMake(98, 8, 110, 20)];
         _name.font = kFontOfLetterBig;
         _name.text = _namestr;
     }
@@ -103,17 +103,18 @@
 }
 -(UILabel *)address{
     if (!_address) {
-        _address = [[UILabel alloc] initWithFrame:CGRectMake(98, 54, 110, 20)];
+        _address = [[UILabel alloc] initWithFrame:CGRectMake(98, 52, 115, 20)];
         _address.font = kFontOfLetterMedium;
+        _address.textColor = kYRBlackTextColor;
         _address.text = _addrstr;
     }
     return _address;
 }
 -(UILabel *)distance{
     if (!_distance) {
-        _distance = [[UILabel alloc] initWithFrame:CGRectMake(98, 74, 110, 20)];
+        _distance = [[UILabel alloc] initWithFrame:CGRectMake(98, 72, 110, 20)];
         _distance.font = kFontOfLetterMedium;
-        _distance.text = _distancestr?:@"12345km";
+        _distance.text = _distancestr?:@"距离未知";
         _distance.textColor = kTextlightGrayColor;
     }
     return _distance;

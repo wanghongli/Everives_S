@@ -15,6 +15,7 @@
 #import "YRSchoolAnnotationCalloutView.h"
 #import "YRCoachAnnotationCalloutView.h"
 #import "YRStudentAnnotationCalloutView.h"
+#import "DistanceToolFuc.h"
 @interface YRMapAnnotationView ()
 @property(nonatomic,assign) NSInteger kind;
 @property(nonatomic,strong) NSString *modelID;
@@ -89,11 +90,17 @@
         
     }
     if ([self.annotation isKindOfClass:[YRSchoolModel class]]) {
-        ((YRSchoolAnnotationCalloutView*)_calloutView).imageurl = ((YRSchoolModel*)(self.annotation)).imaageurl;
-        ((YRSchoolAnnotationCalloutView*)_calloutView).namestr = ((YRSchoolModel*)(self.annotation)).name;
-        ((YRSchoolAnnotationCalloutView*)_calloutView).scorestr = ((YRSchoolModel*)(self.annotation)).grade;
-        ((YRSchoolAnnotationCalloutView*)_calloutView).addrstr = ((YRSchoolModel*)(self.annotation)).address;
-        ((YRSchoolAnnotationCalloutView*)_calloutView).distancestr = ((YRSchoolModel*)(self.annotation)).distance;
+        YRSchoolModel *school = (YRSchoolModel*)(self.annotation);
+        ((YRSchoolAnnotationCalloutView*)_calloutView).imageurl = school.imaageurl;
+        ((YRSchoolAnnotationCalloutView*)_calloutView).namestr = school.name;
+        ((YRSchoolAnnotationCalloutView*)_calloutView).scorestr = school.grade;
+        ((YRSchoolAnnotationCalloutView*)_calloutView).addrstr = school.address;
+        double dis = [DistanceToolFuc calculateDistanceWithLongitude1:[school.lng doubleValue] Laititude1:[school.lat doubleValue] Longitude2:[KUserLocation.longitude doubleValue] Laititude2:[KUserLocation.latitude doubleValue]];
+        if(dis>1000){
+            ((YRSchoolAnnotationCalloutView*)_calloutView).distancestr = [NSString stringWithFormat:@"%.2fkm",dis/1000];
+        }else{
+            ((YRSchoolAnnotationCalloutView*)_calloutView).distancestr = [NSString stringWithFormat:@"%.0fm",dis];
+        }
         [((YRSchoolAnnotationCalloutView*)_calloutView) buildUI];
         _kind = 1;
         _modelID = ((YRSchoolModel*)(self.annotation)).id;

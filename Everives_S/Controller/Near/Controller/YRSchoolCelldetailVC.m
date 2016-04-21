@@ -30,14 +30,13 @@ static CGFloat cellHeight = 60;
     self.title =  @"驾校详情";
     self.tableView.tableHeaderView = self.headerView;
     [self getData];
-    _icons = @[@"Neighborhood_Field_DriSch",@"Neighborhood_Field_Add",@"Neig_Coach_Bespeak",@"Neighborhood_Field_Contacts",@"Neighborhood_Field_Area",@"neighborhood_Field_Facility",@"Neighborhood_Field_Coach"];
+    _icons = @[@"Neighborhood_Field_DriSch",@"Neighborhood_Field_Add",@"Neig_Coach_Bespeak",@"Neighborhood_Field_Contacts",@"Neighborhood_Field_Area",@"neighborhood_Field_Facility",@"neighborhood_Field_Facility",@"Neighborhood_Field_Coach"];
 }
 
 -(void)getData{
     [RequestData GET:[NSString stringWithFormat:@"%@/%@",STUDENT_PLACES,_placeID] parameters:nil complete:^(NSDictionary *responseDic) {
         _model = [YRSchoolModel mj_objectWithKeyValues:responseDic];
         [self.tableView reloadData];
-//        [_headerView sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)(_model.pics[0])).url]];
         _headerView.models = _model.pics;
     } failed:^(NSError *error) {
         
@@ -45,7 +44,7 @@ static CGFloat cellHeight = 60;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 5) {
+    if (indexPath.row == 5||indexPath.row == 6) {
         return cellHeight*2;
     }
     return cellHeight;
@@ -54,7 +53,7 @@ static CGFloat cellHeight = 60;
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 7;
+    return 8;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cellID";
@@ -95,12 +94,14 @@ static CGFloat cellHeight = 60;
             UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(53, 18, kScreenWidth, 22)];
             titleLabel.tag = 2333;
             titleLabel.text = @"场地设施";
+            titleLabel.textColor = kYRBlackTextColor;
             NSString *places = [NSString stringWithFormat:@"侧方位【%@】 半坡起步【%@】 直角转弯【%@】 曲线行驶【%@】 倒车入库【%@】",
                                 _model.cfw,_model.bpqb,_model.zjzw,_model.qxxs,_model.dcrk];
             CGSize size = [places sizeWithFont:kFontOfLetterMedium maxSize:CGSizeMake(kScreenWidth-53, 100)];
             UILabel *contentLab = [[UILabel alloc] init];
             contentLab.tag = 2333;
             contentLab.font = kFontOfLetterMedium;
+            contentLab.textColor = kYRBlackTextColor;
             contentLab.text = places;
             contentLab.numberOfLines = 0;
             contentLab.lineBreakMode = NSLineBreakByWordWrapping;
@@ -111,14 +112,38 @@ static CGFloat cellHeight = 60;
             break;
         }
         case 6:{
+            UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(16, 18, 22, 22)];
+            image.tag = 2333;
+            image.image = [UIImage imageNamed:_icons[5]];
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(53, 18, kScreenWidth, 22)];
+            titleLabel.tag = 2333;
+            titleLabel.text = @"场地介绍";
+            titleLabel.textColor = kYRBlackTextColor;
+            NSString *intro = _model.intro?:@"这个场地还没有任何介绍哦~";
+            CGSize size = [intro sizeWithFont:kFontOfLetterMedium maxSize:CGSizeMake(kScreenWidth-53, 100)];
+            UILabel *contentLab = [[UILabel alloc] init];
+            contentLab.tag = 2333;
+            contentLab.font = kFontOfLetterMedium;
+            contentLab.textColor = kYRBlackTextColor;
+            contentLab.text = intro;
+            contentLab.numberOfLines = 0;
+            contentLab.lineBreakMode = NSLineBreakByWordWrapping;
+            contentLab.frame = CGRectMake(53, 58, size.width, size.height);
+            [cell.contentView addSubview:image];
+            [cell.contentView addSubview:titleLabel];
+            [cell.contentView addSubview:contentLab];
+            break;
+        }
+        case 7:{
             cell.textLabel.text = [NSString stringWithFormat:@"%@",@"金牌教练"];
             break;
         }
         default:
             break;
     }
-    if (indexPath.row != 5) {
+    if (indexPath.row != 5 &&indexPath.row!=6) {
         cell.imageView.image = [UIImage imageNamed:_icons[indexPath.row]];
+        cell.textLabel.textColor = kYRBlackTextColor;
     }
     return cell;
 }

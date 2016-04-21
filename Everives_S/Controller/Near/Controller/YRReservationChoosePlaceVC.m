@@ -105,14 +105,21 @@ static NSString *HeaderID = @"headerID";
     }
     NSString *date = _timeArray[section][@"date"];
     NSString *time = _times[[_timeArray[section][@"time"] integerValue]-1];
-    NSString *str =[NSString stringWithFormat:@"您已预约%@教练 科目二，时间%@,%@,请选择本次学车场地",_coachModel.name?:@"罗纳尔多",date,time];
-    UIFont *font = [UIFont systemFontOfSize:17];
-    CGSize size = [str sizeWithFont:font maxSize:CGSizeMake(kScreenWidth-16, 100)];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(8, (80-size.height)/2, kScreenWidth-16, size.height)];
+    NSString *str =[NSString stringWithFormat:@"您已预约 %@ 教练 %@，时间 %@,%@,请选择本次学车场地",_coachModel.name,_coachModel.kind == 0?@"科目二":@"科目三",date,time];
+    NSMutableAttributedString *astr = [[NSMutableAttributedString alloc] initWithString:str];
+    [astr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16] range:NSMakeRange(5, _coachModel.name.length)];
+    [astr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16] range:NSMakeRange(9+_coachModel.name.length, 3)];
+    [astr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16] range:NSMakeRange(16+_coachModel.name.length, date.length)];
+    [astr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16] range:NSMakeRange(17+_coachModel.name.length+date.length, time.length)];
+    UIFont *font = kFontOfLetterBig;
+    CGSize size = [str sizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(kScreenWidth-40, 100)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, (80-size.height)/2, kScreenWidth-40, size.height)];
     label.font = font;
-    label.text = str;
+    label.attributedText = astr;
     label.lineBreakMode = NSLineBreakByCharWrapping;
     label.numberOfLines = 0;
+    
+    
     
     [header.contentView addSubview:label];
     return header;

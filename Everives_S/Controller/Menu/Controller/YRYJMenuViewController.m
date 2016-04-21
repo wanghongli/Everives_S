@@ -114,6 +114,11 @@
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:nearViewController];
             self.frostedViewController.contentViewController = navigationController;
         }else if (indexPath.row == 3) {
+            if (!KUserManager.id) {//登陆
+                [MBProgressHUD showError:@"请登陆" toView:GET_WINDOW];
+                [self menuHeadViewLoginClick];
+                return;
+            }
             UIViewController *secondViewController = [[YRUserCenterViewController alloc] init];
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
             self.frostedViewController.contentViewController = navigationController;
@@ -121,6 +126,11 @@
         
     }else if(indexPath.section == 2){
         if (indexPath.row == 0) {
+            if (!KUserManager.id) {//登陆
+                [MBProgressHUD showError:@"请登陆" toView:GET_WINDOW];
+                [self menuHeadViewLoginClick];
+                return;
+            }
             YRSettingController *secondViewController = [[YRSettingController alloc] init];
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
             self.frostedViewController.contentViewController = navigationController;

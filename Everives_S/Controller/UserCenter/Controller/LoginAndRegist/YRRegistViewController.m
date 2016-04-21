@@ -138,14 +138,14 @@
 -(void)registClick:(CWSPublicButton *)sender
 {
     sender.userInteractionEnabled = NO;
-    [MBProgressHUD showMessag:@"提交中..." toView:self.view];
     [PublicCheckMsgModel checkTellWithTellNum:self.tellText.text complete:^(BOOL isSuccess) {
         if (![self.codeText.text isValid]) {
             MyLog(@"验证码不能为空");
             [MBProgressHUD showError:@"验证码不能为空" toView:self.view];
-
+            sender.userInteractionEnabled = YES;
             return ;
         }
+        [MBProgressHUD showMessag:@"提交中..." toView:self.view];
         [SMSSDK commitVerificationCode:self.codeText.text phoneNumber:self.tellText.text zone:@"86" result:^(NSError *error) {
             
             if (!error) {
@@ -187,6 +187,8 @@
         }];
     } error:^(NSString *errorMsg) {
         NSLog(@"%@",errorMsg);
+        sender.userInteractionEnabled = YES;
+        [MBProgressHUD showError:errorMsg toView:self.view];
     }];
 }
 

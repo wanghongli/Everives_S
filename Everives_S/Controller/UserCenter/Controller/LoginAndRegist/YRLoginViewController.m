@@ -120,7 +120,9 @@
                 // Connect 成功
                 NSLog(@"融云链接成功");
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        
+                    }];
                     [MBProgressHUD showSuccess:@"登陆成功" toView:GET_WINDOW];
                 });
             }

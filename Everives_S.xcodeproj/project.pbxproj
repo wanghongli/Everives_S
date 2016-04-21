@@ -96,6 +96,8 @@
 		0340DF951CC62DF100CF9884 /* YRTeacherAllPicsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0340DF941CC62DF100CF9884 /* YRTeacherAllPicsController.m */; };
 		0340DF9C1CC718BF00CF9884 /* YRTeacherAllPicsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0340DF9A1CC718BF00CF9884 /* YRTeacherAllPicsCell.m */; };
 		0340DF9D1CC718BF00CF9884 /* YRTeacherAllPicsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0340DF9B1CC718BF00CF9884 /* YRTeacherAllPicsCell.xib */; };
+		0340DFA11CC87EDE00CF9884 /* YRFeedBackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0340DF9F1CC87EDE00CF9884 /* YRFeedBackController.m */; };
+		0340DFA21CC87EDE00CF9884 /* YRFeedBackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0340DFA01CC87EDE00CF9884 /* YRFeedBackController.xib */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -500,6 +502,9 @@
 		0340DF991CC718BF00CF9884 /* YRTeacherAllPicsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRTeacherAllPicsCell.h; sourceTree = "<group>"; };
 		0340DF9A1CC718BF00CF9884 /* YRTeacherAllPicsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRTeacherAllPicsCell.m; sourceTree = "<group>"; };
 		0340DF9B1CC718BF00CF9884 /* YRTeacherAllPicsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRTeacherAllPicsCell.xib; sourceTree = "<group>"; };
+		0340DF9E1CC87EDE00CF9884 /* YRFeedBackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRFeedBackController.h; sourceTree = "<group>"; };
+		0340DF9F1CC87EDE00CF9884 /* YRFeedBackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRFeedBackController.m; sourceTree = "<group>"; };
+		0340DFA01CC87EDE00CF9884 /* YRFeedBackController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRFeedBackController.xib; sourceTree = "<group>"; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -2200,6 +2205,9 @@
 				03FE5B821CAA4668009F0ED7 /* YRPrivacySettingController.m */,
 				160868411CC5C74100E7CC6D /* YRAboutUsViewController.h */,
 				160868421CC5C74100E7CC6D /* YRAboutUsViewController.m */,
+				0340DF9E1CC87EDE00CF9884 /* YRFeedBackController.h */,
+				0340DF9F1CC87EDE00CF9884 /* YRFeedBackController.m */,
+				0340DFA01CC87EDE00CF9884 /* YRFeedBackController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2531,6 +2539,7 @@
 				1608687F1CC5D7E900E7CC6D /* UMSCommentInputControlleriPad.xib in Resources */,
 				1600EB491C87E65D001919EB /* LaunchScreen.storyboard in Resources */,
 				16921F5A1CAE37BE007FBDF5 /* Assets.xcassets in Resources */,
+				0340DFA21CC87EDE00CF9884 /* YRFeedBackController.xib in Resources */,
 				1608687D1CC5D7E900E7CC6D /* UMSCommentDetailController.xib in Resources */,
 				1608688B1CC5D7E900E7CC6D /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				160868801CC5D7E900E7CC6D /* UMShareEditViewController.xib in Resources */,
@@ -2690,6 +2699,7 @@
 				037F8EB81C8E6D350057BF6C /* SDWebImageManager+MJ.m in Sources */,
 				03FE5B831CAA4668009F0ED7 /* YRPrivacySettingController.m in Sources */,
 				03019D171C98F57700895C77 /* YRPraiseMem.m in Sources */,
+				0340DFA11CC87EDE00CF9884 /* YRFeedBackController.m in Sources */,
 				03C651BA1CA8BF69005FFC71 /* YRMenuMessageController.m in Sources */,
 				03C651CE1CA8DB43005FFC71 /* YRYJFourthClassController.m in Sources */,
 				031D503F1CA22985000E1303 /* YRTeacherDetailController.m in Sources */,

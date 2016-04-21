@@ -176,6 +176,8 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    //如果用户设置了不接受聊天消息推送，则断开与融云的连接
+    [[RCIM sharedRCIM]logout];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -262,6 +264,17 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     //如果注册成功，可以删掉这个方法
     NSLog(@"application:didFailToRegisterForRemoteNotificationsWithError: %@", error);
 }
+
+//SSO登陆
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        //调用其他SDK，例如支付宝SDK等
+    }
+    return result;
+}
+
 //融云即时通讯  头像昵称等个人信息
 - (void)getUserInfoWithUserId:(NSString *)userId completion:(void (^)(RCUserInfo *))completion{
     NSString *strID = @"";
@@ -297,13 +310,5 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     return completion(nil);
 }
 
-//SSO登陆
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    BOOL result = [UMSocialSnsService handleOpenURL:url];
-    if (result == FALSE) {
-        //调用其他SDK，例如支付宝SDK等
-    }
-    return result;
-}
+
 @end

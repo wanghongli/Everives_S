@@ -28,7 +28,7 @@
 @property (nonatomic, strong) NSString *token;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *sign;
-@property (nonatomic, assign) NSInteger frozenMoney;
+@property (nonatomic, assign) NSString *frozenMoney;
 @property (nonatomic, assign) NSInteger checked;
 @property (nonatomic, assign) NSInteger push;//设置中通知状态
 @property (nonatomic, assign) NSInteger show;//'隐私设置 0显示 1不显示距离 2不显示',

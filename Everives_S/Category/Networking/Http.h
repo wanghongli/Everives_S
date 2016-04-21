@@ -41,7 +41,8 @@
 #define STUDENT_CONTACT @"/student/contact"  //手机通讯录
 #define STUDENT_TEACHERS @"/student/teachers"  //关注的教练
 #define STUDENT_NEARBYPOINT @"/info/nearbyPoint" //获取地图描点
-#define STUDENT_MONEY @"/student/money"  //资金记录
+#define STUDENT_MONEYLOG @"/Account/moneyLog"  //资金记录
+#define STUDENT_MONEY @"/Account/money" //更新资金
 
 //七牛token
 #define USER_QINIUTOKEN @"/common/qiniu" //获取七牛token
@@ -75,6 +76,11 @@
 #define STUDENT_MAKE_COMMENT @"/order/Comment" //添加评价
 #define STUDENT_GET_COMMENT_LIST @"/order/comment" //获取评价列表（用户）
 #define STUDENT_PAY	@"/order/payment/"  //支付
+
 //群聊部分
 #define GROUP_GROUP @"/group/group" // 创建群post  我加入的群get
+
+//活动
+#define  ACTIVITY_FIRST @"/activity/first"  //type参数	2注册后完善信息 1分享 0充值
+
 #endif

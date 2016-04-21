@@ -29,7 +29,7 @@ static NSString *cellID = @"cellID";
 }
 
 -(void)getData{
-    [RequestData GET:STUDENT_MONEY parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
+    [RequestData GET:STUDENT_MONEYLOG parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
         _models = [YRMoneyDetailModel mj_objectArrayWithKeyValuesArray:responseDic];
         [self.tableView reloadData];
     } failed:^(NSError *error) {

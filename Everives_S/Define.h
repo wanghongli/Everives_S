@@ -162,7 +162,8 @@
 #define kUMengAppkey @"56a1a01467e58ec5e9001990"
 #define kWeChatID @"wxb538b509999cc37e"
 #define kWeChatSecret @"05f996f5c4c54b4cc726cd8e354eaa50"
-#define kUserManger [UserManger sharedUserManger]
+
+//#define kUserManger [UserManger sharedUserManger]
 
 //SMSSDK官网公共key
 #define appkey @"f3fc6baa9ac4"

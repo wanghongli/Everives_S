@@ -23,6 +23,7 @@
 #import "UMSocialQQHandler.h"
 #import "UMSocialWechatHandler.h"
 #import "UMessage.h"
+#import "SharedMapView.h"
 
 //友盟推送
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
@@ -39,7 +40,8 @@
     
     //高德地图
     [MAMapServices sharedServices].apiKey = @"89bb4d69d45261a2a125e558dbf3ebb6";
-    
+    [AMapSearchServices sharedServices].apiKey = @"89bb4d69d45261a2a125e558dbf3ebb6";
+    [SharedMapView sharedInstance];
     //友盟分享
     [UMSocialData setAppKey:kUMengAppkey];
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:kSinaAppkey secret:kSinaAppSecret RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];

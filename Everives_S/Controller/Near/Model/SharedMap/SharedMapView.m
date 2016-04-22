@@ -14,6 +14,9 @@
 #import "YRSchoolAnnotationCalloutView.h"
 
 @interface SharedMapView ()<UIAlertViewDelegate>
+{
+     AMapSearchAPI *_search;
+}
 
 @property (nonatomic, readwrite) MAMapView *mapView;
 
@@ -40,6 +43,9 @@
     if (self = [super init])
     {
         [self createMapView];
+        //初始化检索对象
+        _search = [[AMapSearchAPI alloc] init];
+        _search.delegate = self;
     }
     return self;
 }
@@ -65,7 +71,6 @@
     }
 }
 
-#pragma mark - Interface
 
 #pragma mark - MapView Dlegate
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation
@@ -116,6 +121,15 @@ updatingLocation:(BOOL)updatingLocation
             _mapView.centerCoordinate = center;
         });
         
+        //构造AMapReGeocodeSearchRequest对象
+        AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
+        regeo.location = [AMapGeoPoint locationWithLatitude:userLocation.coordinate.latitude longitude:userLocation.coordinate.longitude];
+        regeo.radius = 10000;
+        regeo.requireExtension = YES;
+        
+        //发起逆地理编码
+        [_search AMapReGoecodeSearch: regeo];
+        
     }
 }
 
@@ -144,8 +158,19 @@ updatingLocation:(BOOL)updatingLocation
 
     
 }
+#pragma mark - AMapSearchDelegate
+//实现逆地理编码的回调函数
+- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
+{
+    if(response.regeocode != nil)
+    {
+        //通过AMapReGeocodeSearchResponse对象处理搜索结果
+        NSString *formattedAddress = [NSString stringWithFormat:@"ReGeocode: %@", response.regeocode.formattedAddress];
+        KUserLocation.addr = formattedAddress;
+    }
+}
 
-
+#pragma mark - private methods
 //在弹出的view中，提示打开设置
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {

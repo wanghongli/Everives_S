@@ -21,6 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - AMap3DMap (3.3.1)
+  - AMapSearch (3.2.0)
   - HappyDNS (0.2.3)
   - MBProgressHUD (0.9.2)
   - MJExtension (3.0.10)
@@ -37,6 +38,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - AMap3DMap
+  - AMapSearch
   - MBProgressHUD (~> 0.8)
   - MJExtension
   - MJRefresh
@@ -48,6 +50,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   AMap3DMap: 3962358ac36d17b3aaf03975ab534690f8af066f
+  AMapSearch: a885f0702578a441a22cb66fa74f8918c6d19e6f
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
@@ -57,6 +60,6 @@ SPEC CHECKSUMS:
   SDAutoLayout: 79b8977f863ba4722bb8f8f6f92981d0b8ae932a
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
 
-PODFILE CHECKSUM: ac862884dfb10f66f1dcd88a7233b3b64aef0745
+PODFILE CHECKSUM: 5b17a5dcbb4410fe425751a95b67f90de7ca7d4a
 
 COCOAPODS: 1.0.0.beta.1

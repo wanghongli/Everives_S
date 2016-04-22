@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <MAMapKit/MAMapKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
 #import "YRMapAnnotationView.h"
-@interface SharedMapView : NSObject<MAMapViewDelegate>
+@interface SharedMapView : NSObject<MAMapViewDelegate,AMapSearchDelegate>
 @property(nonatomic,weak) id<CallOutViewDelegate> delegate;
 @property (nonatomic, readonly) MAMapView *mapView;
 + (instancetype)sharedInstance;

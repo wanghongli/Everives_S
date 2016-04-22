@@ -9,4 +9,5 @@ pod 'RongCloudIMKit'
 pod 'Qiniu','~>7.0'
 pod 'AFNetworking'
 pod 'AMap3DMap'
+pod 'AMapSearch'
 end

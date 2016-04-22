@@ -82,5 +82,5 @@
 
 //活动
 #define  ACTIVITY_FIRST @"/activity/first"  //type参数	2注册后完善信息 1分享 0充值
-
+#define ACTIVITY_ACTIVITY @"/activity/activity" //活动列表
 #endif

@@ -161,10 +161,12 @@
             [successAlertView show];
             [self.startBtn setTitle:@"发消息" forState:UIControlStateNormal];
         } failed:^(NSError *error) {
-            UIAlertView *successAlertView = [[UIAlertView alloc] initWithTitle:@"支付失败" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
-            [successAlertView show];
+            UIAlertView *failureAlertView = [[UIAlertView alloc] initWithTitle:@"支付失败" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
+            [failureAlertView show];
+            _startBtn.enabled = YES;
         }];
-        
+    }else{//确定  取消
+        _startBtn.enabled = YES;
     }
 }
 

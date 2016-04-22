@@ -43,9 +43,9 @@
 /**
  *  屏幕的尺寸
  */
-#define kSizeOfScreen   [[UIScreen mainScreen]bounds].size
-#define kScreenWidth kSizeOfScreen.width
-#define kScreenHeight kSizeOfScreen.height
+#define kSizeOfScreen   ([[UIScreen mainScreen]bounds].size)
+#define kScreenWidth (kSizeOfScreen.width)
+#define kScreenHeight (kSizeOfScreen.height)
 /**
  *  字体字号(大中小)
  */

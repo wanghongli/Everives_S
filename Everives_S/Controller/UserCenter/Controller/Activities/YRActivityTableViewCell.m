@@ -7,17 +7,22 @@
 //
 
 #import "YRActivityTableViewCell.h"
-
+#import <UIImageView+WebCache.h>
 @implementation YRActivityTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    _titleL.textColor = kYRBlackTextColor;
+    _contentL.textColor = kYRLightTextColor;
+    _contentL.numberOfLines = 0;
+    _contentL.lineBreakMode = NSLineBreakByWordWrapping;
+    _dateL.textColor = kYRBlackTextColor;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)setModel:(YRActivityModel *)model{
+    [_picView sd_setImageWithURL:[NSURL URLWithString:model.pic]];
+    _titleL.text = model.title;
+    _contentL.text = model.intro;
+    _dateL.text = model.begintime;
 }
 
 @end

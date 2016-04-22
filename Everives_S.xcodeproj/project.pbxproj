@@ -332,6 +332,7 @@
 		16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D0960A1C89345D00FF4A81 /* RequestData.m */; };
 		16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096131C89682700FF4A81 /* YRReservationViewController.m */; };
 		16D3FC2A1CC0E401007F73CF /* ZHScrollImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D3FC291CC0E401007F73CF /* ZHScrollImageView.m */; };
+		16E22FB31CCA1A8000ED439A /* YRActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E22FB21CCA1A8000ED439A /* YRActivityModel.m */; };
 		16F8A8BA1CBF8630004EBC57 /* YRSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F8A8B91CBF8630004EBC57 /* YRSliderView.m */; };
 /* End PBXBuildFile section */
 
@@ -969,6 +970,8 @@
 		16D096131C89682700FF4A81 /* YRReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationViewController.m; sourceTree = "<group>"; };
 		16D3FC281CC0E401007F73CF /* ZHScrollImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHScrollImageView.h; sourceTree = "<group>"; };
 		16D3FC291CC0E401007F73CF /* ZHScrollImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHScrollImageView.m; sourceTree = "<group>"; };
+		16E22FB11CCA1A8000ED439A /* YRActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRActivityModel.h; sourceTree = "<group>"; };
+		16E22FB21CCA1A8000ED439A /* YRActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRActivityModel.m; sourceTree = "<group>"; };
 		16F8A8B81CBF8630004EBC57 /* YRSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSliderView.h; sourceTree = "<group>"; };
 		16F8A8B91CBF8630004EBC57 /* YRSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSliderView.m; sourceTree = "<group>"; };
 		621122004B2292969E50D2A7 /* Pods-Everives_S.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Everives_S.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Everives_S/Pods-Everives_S.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2386,6 +2389,8 @@
 				164A8CAF1C8D729700857638 /* YRActivityTableViewCell.h */,
 				164A8CB01C8D729700857638 /* YRActivityTableViewCell.m */,
 				164A8CB11C8D729700857638 /* YRActivityTableViewCell.xib */,
+				16E22FB11CCA1A8000ED439A /* YRActivityModel.h */,
+				16E22FB21CCA1A8000ED439A /* YRActivityModel.m */,
 			);
 			path = Activities;
 			sourceTree = "<group>";
@@ -2653,6 +2658,7 @@
 				03C651BE1CA8BF79005FFC71 /* YRMessageObject.m in Sources */,
 				032FADF61CBF3A83006A7AA4 /* YRMyCommentObj.m in Sources */,
 				03228D371CA4D38700890DC6 /* SDTransparentPieProgressView.m in Sources */,
+				16E22FB31CCA1A8000ED439A /* YRActivityModel.m in Sources */,
 				03228D4A1CA4E92D00890DC6 /* YRScoreDetailHeadView.m in Sources */,
 				031515431C9A912100A2A2F1 /* YRQuestionObject.m in Sources */,
 				032C461D1CB4B67D0022C2F9 /* YRTeacherDetailObj.m in Sources */,

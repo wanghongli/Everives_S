@@ -31,6 +31,7 @@ static NSString *cellId = @"YRReservationCellID";
 -(void)getData{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [RequestData GET:STUDENT_ORDER parameters:@{@"page":@"0"} complete:^(NSDictionary *responseDic) {
+        NSLog(@"%@",responseDic);
         _models = [YROrderedPlaceModel mj_objectArrayWithKeyValuesArray:responseDic];
         [self.tableView reloadData];
         [MBProgressHUD hideHUDForView:self.view animated:YES];

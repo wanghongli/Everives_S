@@ -7,20 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "YROrderPartnerModel.h"
 @interface YROrderedPlaceModel : NSObject
-/**
- 
- "id": "5",
- "date": "2016-03-26",
- "time": "2",
- "price": "200",
- "status": "4",'0未支付 1已支付，等待同伴一起拼 2已支付，等待去练车 3待评价 4已评价 5已取消'
- "kind": "0",'0科目2 1科目3'
- "pname": "测试",  #场地名称
- "tname": "Small",  #教练昵称
- "avatar": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1097386906,836054839&fm=58"
- */
+
+/*
+{
+    avatar = "http://7xr6ql.com1.z0.glb.clouddn.com/5017d44beba896b738db157a9179c967.jpg";
+    date = "2016-04-23";
+    id = 4;
+    kind = 0;
+    more = 1;
+    partner =         {
+        avatar = "http://7xr6ql.com1.z0.glb.clouddn.com/9d156c902e017ae388aacc3712e86a46.jpg";
+        id = 12;
+        name = "\U738b\U4e8c\U72d7";
+    };
+    pname = "\U5a01\U901a\U9a7e\U6821\U8bad\U7ec3\U573a";
+    price = 200;
+    status = 2;
+    time = 1;
+    tname = king;
+}*/
+
 @property(nonatomic,strong) NSString *id;
 @property(nonatomic,strong) NSString *time;
 @property(nonatomic,strong) NSString *price;
@@ -31,4 +39,6 @@
 @property(nonatomic,strong) NSString *tname;
 @property(nonatomic,strong) NSString *avatar;
 @property(nonatomic,strong) NSString *more;
+@property(nonatomic,strong) YROrderPartnerModel *partner;
+
 @end

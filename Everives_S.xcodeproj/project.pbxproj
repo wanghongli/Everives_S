@@ -333,6 +333,7 @@
 		16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096131C89682700FF4A81 /* YRReservationViewController.m */; };
 		16D3FC2A1CC0E401007F73CF /* ZHScrollImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D3FC291CC0E401007F73CF /* ZHScrollImageView.m */; };
 		16E22FB31CCA1A8000ED439A /* YRActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E22FB21CCA1A8000ED439A /* YRActivityModel.m */; };
+		16E22FB61CCA2FBD00ED439A /* YROrderPartnerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E22FB51CCA2FBD00ED439A /* YROrderPartnerModel.m */; };
 		16F8A8BA1CBF8630004EBC57 /* YRSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F8A8B91CBF8630004EBC57 /* YRSliderView.m */; };
 /* End PBXBuildFile section */
 
@@ -972,6 +973,8 @@
 		16D3FC291CC0E401007F73CF /* ZHScrollImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHScrollImageView.m; sourceTree = "<group>"; };
 		16E22FB11CCA1A8000ED439A /* YRActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRActivityModel.h; sourceTree = "<group>"; };
 		16E22FB21CCA1A8000ED439A /* YRActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRActivityModel.m; sourceTree = "<group>"; };
+		16E22FB41CCA2FBD00ED439A /* YROrderPartnerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YROrderPartnerModel.h; sourceTree = "<group>"; };
+		16E22FB51CCA2FBD00ED439A /* YROrderPartnerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YROrderPartnerModel.m; sourceTree = "<group>"; };
 		16F8A8B81CBF8630004EBC57 /* YRSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSliderView.h; sourceTree = "<group>"; };
 		16F8A8B91CBF8630004EBC57 /* YRSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSliderView.m; sourceTree = "<group>"; };
 		621122004B2292969E50D2A7 /* Pods-Everives_S.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Everives_S.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Everives_S/Pods-Everives_S.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2346,6 +2349,8 @@
 				165991CE1CB65B3800338264 /* YROrderedPlaceModel.m */,
 				16921F641CAE6867007FBDF5 /* YRReservationModel.h */,
 				16921F651CAE6867007FBDF5 /* YRReservationModel.m */,
+				16E22FB41CCA2FBD00ED439A /* YROrderPartnerModel.h */,
+				16E22FB51CCA2FBD00ED439A /* YROrderPartnerModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2859,6 +2864,7 @@
 				1600EBC21C88087A001919EB /* REFrostedContainerViewController.m in Sources */,
 				037F8E3E1C8D18D20057BF6C /* YRUserStatus.m in Sources */,
 				16693A001C9A89AB00C7ECF2 /* YRSchoolModel.m in Sources */,
+				16E22FB61CCA2FBD00ED439A /* YROrderPartnerModel.m in Sources */,
 				16399E241C9B96D500841C03 /* YRMyCoachVC.m in Sources */,
 				03019D141C98F02000895C77 /* YRNameSexView.m in Sources */,
 				16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */,

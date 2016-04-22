@@ -59,8 +59,6 @@
              withSecret:app_secrect];
     [SMSSDK enableAppContactFriends:NO];//不访问通讯录
 
-    //获取登陆信息
-    [self loginClick];
     
     /**
      * 融云推送处理1
@@ -81,7 +79,8 @@
         UIRemoteNotificationTypeSound;
         [application registerForRemoteNotificationTypes:myTypes];
     }
-    
+    //获取登陆信息
+    [self loginClick];
  
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -114,6 +113,13 @@
     }
     YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:dicUser];
     KUserManager = user;
+    
+    [self connectRongCloud];
+    
+    [self registerUMessageRemoteNotification];
+
+}
+-(void)connectRongCloud{
     //连接融云服务器
     [[RCIM sharedRCIM] connectWithToken:KUserManager.rongToken success:^(NSString *userId) {
         // Connect 成功
@@ -125,10 +131,9 @@
                          tokenIncorrect:^() {
                              MyLog(@"token incorrect");
                          }];
-    
-    
+}
+-(void)registerUMessageRemoteNotification{
     //友盟推送
-    NSLog(@"userid  %@",KUserManager.id);
     [UMessage setAlias:KUserManager.id type:@"STU" response:nil];
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
     if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
@@ -170,17 +175,22 @@
 #endif
     //for log
     [UMessage setLogEnabled:YES];
-
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     //如果用户设置了不接受聊天消息推送，则断开与融云的连接
-    [[RCIM sharedRCIM]logout];
+    if(!(KUserManager.push&2)){
+        [[RCIM sharedRCIM]logout];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    //如果用户设置了不接受聊天消息推送,回到前台需要继续使用融云则需要重新连接
+    if(!(KUserManager.push&2)){
+        [self connectRongCloud];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -233,7 +243,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
  */
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    if (userInfo[@"YRTYPE"]) {
+    if (userInfo[@"YR_TYPE"]) {
         [UMessage didReceiveRemoteNotification:userInfo];
     }else{
         /**

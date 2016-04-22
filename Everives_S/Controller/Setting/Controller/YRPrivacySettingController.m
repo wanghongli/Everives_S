@@ -58,8 +58,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [RequestData PUT:@"/student/setting" parameters:@{@"show":[NSString stringWithFormat:@"%ld",indexPath.row]} complete:^(NSDictionary *responseDic) {
-        MyLog(@"%@",responseDic);
+    NSDictionary *parameters = @{@"show":[NSString stringWithFormat:@"%li",indexPath.row]};
+    [RequestData PUT:@"/student/setting" parameters:parameters complete:^(NSDictionary *responseDic) {
         [YRPublicMethod changeUserMsgWithKeys:@[@"show"] values:@[@(indexPath.row)]];
         KUserManager.show = indexPath.row;
         [self.tableView reloadData];

@@ -56,20 +56,17 @@ static NSString * studentCellID = @"YRStudentTableCellID";
 -(void)loadMoreData{
     _page++;
     NSDictionary *parameters = @{@"page":[NSNumber numberWithInteger:_page],@"lat":KUserLocation.latitude?:@"0",@"lng":KUserLocation.longitude?:@"0"};
-    [MBProgressHUD showHUDAddedTo:self.table animated:YES];
     [RequestData GET:STUDENT_NEARBY parameters:parameters complete:^(NSDictionary *responseDic) {
         NSArray *models = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
-        if (models.count == 0) {
-            [MBProgressHUD hideHUDForView:self.table animated:YES];
+        if (models.count < 10) {
             [self.table.mj_footer endRefreshingWithNoMoreData];
-            return ;
+        }else{
+            [self.table.mj_footer endRefreshing];
         }
         [_stuArray addObject:models];
         [self.table insertSections:[NSIndexSet indexSetWithIndex:_page] withRowAnimation:UITableViewRowAnimationNone];
-        [MBProgressHUD hideHUDForView:self.table animated:YES];
     } failed:^(NSError *error) {
         NSLog(@"%@",error);
-        [MBProgressHUD hideHUDForView:self.table animated:YES];
     }];
 }
 @end

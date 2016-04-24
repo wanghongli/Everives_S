@@ -10,4 +10,5 @@ pod 'Qiniu','~>7.0'
 pod 'AFNetworking'
 pod 'AMap3DMap'
 pod 'AMapSearch'
+pod 'Pingpp', '~> 2.1.0'
 end

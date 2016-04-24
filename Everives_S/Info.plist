@@ -51,6 +51,7 @@
 	<array>
 		<string>wechat</string>
 		<string>weixin</string>
+		<string>alipay</string>
 		<string>sinaweibohd</string>
 		<string>sinaweibo</string>
 		<string>sinaweibosso</string>

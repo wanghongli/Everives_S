@@ -67,6 +67,8 @@ EOM
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "AMap3DMap/MAMapKit.framework/AMap.bundle"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
+  install_resource "Pingpp/lib/Channels/Alipay/AlipaySDK.bundle"
+  install_resource "Pingpp/lib/Pingpp.bundle"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_4_9_dev/RongCloud.bundle"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_4_9_dev/en.lproj"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_4_9_dev/zh-Hans.lproj"
@@ -75,6 +77,8 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "AMap3DMap/MAMapKit.framework/AMap.bundle"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
+  install_resource "Pingpp/lib/Channels/Alipay/AlipaySDK.bundle"
+  install_resource "Pingpp/lib/Pingpp.bundle"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_4_9_dev/RongCloud.bundle"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_4_9_dev/en.lproj"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_4_9_dev/zh-Hans.lproj"

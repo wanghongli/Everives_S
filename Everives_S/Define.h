@@ -150,7 +150,7 @@
 
 #define kNearViewControlerReloadTable  @"nearViewControlerReloadTable" //筛选之后重新加载table的数据
 #define kFillterBtnRemovePullView @"fillterBtnRemovePullView"  //下拉选项被选择后自动收缩
-
+#define kReceivedRCIMMessage @"ReceivedRCIMMessage"
 /**
  *  分享相关
  */

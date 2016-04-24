@@ -22,6 +22,7 @@
 #import "YRMenuCell.h"
 @interface YRYJMenuViewController ()<UIAlertViewDelegate,YRMenuHeadViewDelegate>
 @property (nonatomic, strong) YRMenuHeadView *headView;
+@property (nonatomic,strong) UIImageView *messagePoint;
 @end
 
 @implementation YRYJMenuViewController
@@ -52,8 +53,12 @@
     }else{
         _headView.loginBool = NO;
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveRCIMMessage) name:kReceivedRCIMMessage object:nil];
 }
-
+//接收到融云消息，添加小红点
+-(void)didReceiveRCIMMessage{
+    _messagePoint.hidden = NO;
+}
 #pragma mark -
 #pragma mark UITableView Delegate
 
@@ -90,12 +95,13 @@
         YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:homeViewController];
         self.frostedViewController.contentViewController = navigationController;
     } else if(indexPath.section == 1){
-        if (indexPath.row == 0) {
+        if (indexPath.row == 0) {//驾友
             if (!KUserManager.id) {//登陆
                 [MBProgressHUD showError:@"请登陆" toView:GET_WINDOW];
                 [self menuHeadViewLoginClick];
                 return;
             }
+            _messagePoint.hidden = YES;
             YRFriendViewController *friendViewController = [[YRFriendViewController alloc] init];
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:friendViewController];
             self.frostedViewController.contentViewController = navigationController;
@@ -109,18 +115,18 @@
             secondViewController.title = @"驾友圈";
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
             self.frostedViewController.contentViewController = navigationController;
-        }else if (indexPath.row == 2) {
+        }else if (indexPath.row == 2) {//附近
             YRNearViewController *nearViewController = [[YRNearViewController alloc] init];
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:nearViewController];
             self.frostedViewController.contentViewController = navigationController;
-        }else if (indexPath.row == 3) {
+        }else if (indexPath.row == 3) {//个人中心
             if (!KUserManager.id) {//登陆
                 [MBProgressHUD showError:@"请登陆" toView:GET_WINDOW];
                 [self menuHeadViewLoginClick];
                 return;
             }
-            UIViewController *secondViewController = [[YRUserCenterViewController alloc] init];
-            YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
+            UIViewController *userCenterViewController = [[YRUserCenterViewController alloc] init];
+            YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:userCenterViewController];
             self.frostedViewController.contentViewController = navigationController;
         }
         
@@ -204,6 +210,13 @@
         NSArray *imgArray = @[@"Drawer_Navigation_Friend",@"Drawer_Navigation_SNS",@"Drawer_Navigation_Neighborhood",@"Drawer_Navigation_Personal"];
         cell.menuText.text = titles[indexPath.row];
         cell.leftImg.image = [UIImage imageNamed:imgArray[indexPath.row]];
+        if (indexPath.row == 0) {
+            _messagePoint = [[UIImageView alloc] initWithFrame:CGRectMake(68, 12, 8, 8)];
+            _messagePoint.image = [UIImage imageNamed:@"Menu_Icon_Message_Point"];
+            _messagePoint.hidden = YES;
+            [cell.contentView addSubview:_messagePoint];
+        }
+        
     } else {
         NSArray *titles = @[@"设置", @"注销"];
         NSArray *imgArray = @[@"Drawer_Navigation_Setting",@"Drawer_Navigation_TurnOff"];

@@ -19,7 +19,7 @@
     NSArray *_menuArray;
     NSMutableArray *_totalMenu;
 }
-@property (nonatomic, strong) YRAppointmentHeadView *headView;//头不视图
+@property (nonatomic, strong) YRAppointmentHeadView *headView;//头部视图
 @property (nonatomic, strong) YRLearnOrderDetail *orderDetail;//详情模型
 @property (nonatomic, strong) UIButton *startBtn;
 @end

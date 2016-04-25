@@ -128,7 +128,7 @@
     if (cell == nil) {
         cell = [[YRLearnSecondCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    YRTeacherOrder *teacherOrder = msgArray[indexPath.row];
+    YRTeacherOrder *teacherOrder = msgArray[indexPath.section];
     cell.teacherOrder = teacherOrder;
     return cell;
 }

@@ -173,6 +173,7 @@
 - (void)appointmentHeadViewClick
 {
     YRTeacherDetailController *tdc = [[YRTeacherDetailController alloc]init];
+    tdc.teacherID = [NSString stringWithFormat:@"%ld",self.orderDetail.tid];
     [self.navigationController pushViewController:tdc animated:YES];
 }
 @end

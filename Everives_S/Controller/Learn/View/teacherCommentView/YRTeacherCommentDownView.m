@@ -7,6 +7,8 @@
 //
 
 #import "YRTeacherCommentDownView.h"
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
 #define kDistace 10
 @interface YRTeacherCommentDownView ()
 @property (nonatomic, weak) UILabel *contentLabel;
@@ -17,6 +19,7 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        MyLog(@"%d",self.userInteractionEnabled);
         [self buildUI];
     }
     return self;
@@ -42,9 +45,37 @@
     for (int i = 0; i<9; i++) {
         UIImageView *img = [[UIImageView alloc]init];
         img.tag = i+30;
+        // 添加点按手势
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTap:)];
+        [img addGestureRecognizer:tap];
         [self addSubview:img];
     }
 }
+-(void)imageTap:(UITapGestureRecognizer *)sender
+{
+    UIImageView *tapView = (UIImageView*)sender.view;
+    // CZPhoto -> MJPhoto
+    int i = 0;
+    NSArray *pics = (NSArray *)[_detailObj.pics mj_JSONObject];
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (NSString *photo in pics) {
+        MJPhoto *p = [[MJPhoto alloc] init];
+        p.url = [NSURL URLWithString:photo];
+        p.index = i;
+        p.srcImageView = tapView;
+        [arrM addObject:p];
+        i++;
+    }
+    
+    // 弹出图片浏览器
+    // 创建浏览器对象
+    MJPhotoBrowser *brower = [[MJPhotoBrowser alloc] init];
+    brower.photos = arrM;
+    brower.currentPhotoIndex = tapView.tag;
+    [brower show];
+    
+}
+
 -(void)layoutSubviews
 {
     [super layoutSubviews];
@@ -53,17 +84,18 @@
     _contentLabel.frame = CGRectMake(kDistace, kDistace, kScreenWidth-2*kDistace, contentSize.height);
     _contentLabel.text = _detailObj.content;
     
+    NSArray *pics = (NSArray *)[_detailObj.pics mj_JSONObject];
     CGFloat maxY = 0;
-    if (_detailObj.pics.count) {
+    if (pics.count) {
         for (int i = 0; i<9; i++) {
             UIImageView *img = [self viewWithTag:i+30];
-            if (i<_detailObj.pics.count) {
+            if (i<pics.count) {
                 img.hidden = NO;
                 CGFloat x = i%3;
                 CGFloat y = i/3;
                 CGFloat distace = 5;
                 img.frame = CGRectMake(kDistace + x*(kPICTURE_HW+distace), CGRectGetMaxY(_contentLabel.frame)+kDistace+y*(kPICTURE_HW+distace), kPICTURE_HW, kPICTURE_HW);
-                [img sd_setImageWithURL:[NSURL URLWithString:_detailObj.pics[i]] placeholderImage:[UIImage imageNamed:@""]];
+                [img sd_setImageWithURL:[NSURL URLWithString:pics[i]] placeholderImage:[UIImage imageNamed:@""]];
                 maxY = CGRectGetMaxY(img.frame);
             }else{
                 img.hidden = YES;
@@ -87,9 +119,9 @@
     CGSize contentSize = [detailObj.content sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(kScreenWidth-2*kDistace, CGFLOAT_MAX)];
     height+=contentSize.height;
     height+=kDistace;
-    
-    if (detailObj.pics.count) {
-        CGFloat y = detailObj.pics.count/3;
+    NSArray *pics = (NSArray *)[detailObj.pics mj_JSONObject];
+    if (pics.count) {
+        CGFloat y = pics.count/3;
         height = height + y*(kPICTURE_HW+5) + kPICTURE_HW;
         height+=kDistace;
     }
@@ -100,4 +132,5 @@
 
     return height;
 }
+
 @end

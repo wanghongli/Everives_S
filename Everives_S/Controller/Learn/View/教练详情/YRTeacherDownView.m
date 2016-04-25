@@ -7,6 +7,8 @@
 //
 
 #import "YRTeacherDownView.h"
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
 @interface YRTeacherDownView ()
 
 @property (nonatomic, weak) UIButton *attentionBtn;

@@ -19,7 +19,7 @@
 @property (nonatomic, assign) NSInteger hide;//0不隐藏 1隐藏
 @property (nonatomic, assign) NSInteger id;
 @property (nonatomic, strong) NSArray *info;
-@property (nonatomic, strong) NSArray *pics;
+@property (nonatomic, strong) NSString *pics;
 @property (nonatomic, assign) NSInteger price;
 @property (nonatomic, assign) NSInteger tid;
 @property (nonatomic, strong) NSString *time;

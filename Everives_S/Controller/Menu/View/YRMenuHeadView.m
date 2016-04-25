@@ -52,6 +52,10 @@
     [_notiBtn setImage:[UIImage imageNamed:@"alarm_img"] forState:UIControlStateNormal];
     [self addSubview:_notiBtn];
     
+    _notiImgView = [[UIImageView alloc]init];
+    _notiImgView.image = [UIImage imageNamed:@"Menu_Icon_Message_Point"];
+    _notiImgView.hidden = YES;
+    [_notiBtn addSubview:_notiImgView];
     UIButton *loginbtn = [[UIButton alloc]init];
     [loginbtn addTarget:self action:@selector(loginClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:loginbtn];
@@ -78,6 +82,8 @@
     
     _notiBtn.frame = CGRectMake(self.width-wh*2/3-kDistace, _headImg.y+wh/6, wh*2/3, wh*2/3);
     _notiBtn.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    
+    _notiImgView.frame = CGRectMake(wh*2/3-16, 14, 8, 8);
     
     _loginBtn.frame = CGRectMake(CGRectGetMaxX(_headImg.frame)+kDistace, _headImg.y, 60, _headImg.height);
     [_loginBtn setTitle:@"登陆" forState:UIControlStateNormal];

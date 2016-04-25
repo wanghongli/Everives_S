@@ -54,10 +54,20 @@
         _headView.loginBool = NO;
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveRCIMMessage) name:kReceivedRCIMMessage object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUMengMessage) name:kReceivedUMengMessage object:nil];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReceivedRCIMMessage object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReceivedUMengMessage object:nil];
 }
 //接收到融云消息，添加小红点
 -(void)didReceiveRCIMMessage{
     _messagePoint.hidden = NO;
+}
+//收到umeng推送，添加小红点
+-(void)didReceiveUMengMessage{
+    _headView.notiImgView.hidden = NO;
 }
 #pragma mark -
 #pragma mark UITableView Delegate
@@ -229,6 +239,7 @@
 #pragma mark - 消息中心
 -(void)menuHeadViewNotiClick
 {
+    _headView.notiImgView.hidden = YES;
     YRMenuMessageController *messageVC = [[YRMenuMessageController alloc]init];
     YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:messageVC];
     self.frostedViewController.contentViewController = navigationController;

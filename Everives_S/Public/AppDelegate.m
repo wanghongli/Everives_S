@@ -25,7 +25,7 @@
 #import "UMessage.h"
 #import "SharedMapView.h"
 #import "YRFriendViewController.h"
-
+#import "YRMenuMessageController.h"
 //友盟推送
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 #define _IPHONE80_ 80000
@@ -40,8 +40,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     //高德地图
-    [MAMapServices sharedServices].apiKey = @"89bb4d69d45261a2a125e558dbf3ebb6";
-    [AMapSearchServices sharedServices].apiKey = @"89bb4d69d45261a2a125e558dbf3ebb6";
+    [MAMapServices sharedServices].apiKey = kAMapAppKey;
+    [AMapSearchServices sharedServices].apiKey = kAMapAppKey;
     [SharedMapView sharedInstance];
     //友盟分享
     [UMSocialData setAppKey:kUMengAppkey];
@@ -53,14 +53,14 @@
     [UMessage startWithAppkey:kUMengAppKey launchOptions:launchOptions];
     
     //融云即时通讯
-    [[RCIM sharedRCIM] initWithAppKey:@"z3v5yqkbvtd30"];
+    [[RCIM sharedRCIM] initWithAppKey:kRCIMAppKey];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
     [[RCIM sharedRCIM] setGroupInfoDataSource:self];
     [RCIM sharedRCIM].receiveMessageDelegate = self;
     
     //短信验证码注册
-    [SMSSDK registerApp:appkey
-             withSecret:app_secrect];
+    [SMSSDK registerApp:kSMSSDKappkey
+             withSecret:kSMSSDKappSecrect];
     [SMSSDK enableAppContactFriends:NO];//不访问通讯录
 
     
@@ -182,12 +182,11 @@
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
 }
-
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     //如果用户设置了不接受聊天消息推送，则断开与融云的连接
-//    if(!(KUserManager.push&2)){
-//        [[RCIM sharedRCIM]logout];
-//    }
+    if(!(KUserManager.push&2)){
+        [[RCIM sharedRCIM]logout];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -249,13 +248,24 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
     if (userInfo[@"YR_TYPE"]) {//友盟推送
         [UMessage didReceiveRemoteNotification:userInfo];
-    }else{
+        if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+        {
+            //添加闹钟小红点
+            [[NSNotificationCenter defaultCenter] postNotificationName:kReceivedUMengMessage object:nil];
+            
+        }else{
+            YRMenuMessageController *messageVC = [[YRMenuMessageController alloc]init];
+            YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:messageVC];
+            ((REFrostedViewController*)(self.window.rootViewController)).contentViewController = navigationController;
+        }
+    }else{//融云推送
         /**
          * 统计推送打开率2
          */
         [[RCIMClient sharedRCIMClient] recordRemoteNotificationEvent:userInfo];
     }
 }
+
 -(void)application:(UIApplication *)application
 didReceiveLocalNotification:(UILocalNotification *)notification{
     //点击收到融云消息的推送

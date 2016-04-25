@@ -150,7 +150,8 @@
 
 #define kNearViewControlerReloadTable  @"nearViewControlerReloadTable" //筛选之后重新加载table的数据
 #define kFillterBtnRemovePullView @"fillterBtnRemovePullView"  //下拉选项被选择后自动收缩
-#define kReceivedRCIMMessage @"ReceivedRCIMMessage"
+#define kReceivedRCIMMessage @"ReceivedRCIMMessage"  //融云推送添加小红点
+#define kReceivedUMengMessage @"ReceivedUMengMessage" //友盟推送添加小红点
 /**
  *  分享相关
  */
@@ -162,13 +163,16 @@
 #define kUMengAppkey @"56a1a01467e58ec5e9001990"
 #define kWeChatID @"wxb538b509999cc37e"
 #define kWeChatSecret @"05f996f5c4c54b4cc726cd8e354eaa50"
-
-//#define kUserManger [UserManger sharedUserManger]
-
 //SMSSDK官网公共key
-#define appkey @"f3fc6baa9ac4"
-#define app_secrect @"7f3dedcb36d92deebcb373af921d635a"
-
-//推送
+#define kSMSSDKappkey @"f3fc6baa9ac4"
+#define kSMSSDKappSecrect @"7f3dedcb36d92deebcb373af921d635a"
+//友盟推送
 #define kUMengAppKey @"5705eecf67e58e8850000269"
 #define kUMengAppSecret @"cndnbyxmbdk8nokqcszuyohikgm9nv2c"
+//高德地图
+#define kAMapAppKey @"89f024e8967821905f51343fe4e4a652"
+//融云
+#define kRCIMAppKey @"3argexb6rzove"
+#define kRCIMAppSecret @"wHamqJYecOEvIQ"
+//ping++
+#define kPingSDKIdentifier @"app_WLez1OnnD88CWrHa"

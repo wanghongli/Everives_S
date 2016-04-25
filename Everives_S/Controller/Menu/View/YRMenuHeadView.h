@@ -16,5 +16,5 @@
 @interface YRMenuHeadView : UIImageView
 @property (nonatomic, assign) id<YRMenuHeadViewDelegate>delegate;
 @property (nonatomic, assign) BOOL loginBool;
-
+@property (nonatomic,strong) UIImageView *notiImgView;
 @end

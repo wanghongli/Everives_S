@@ -7,7 +7,7 @@
 //
 
 #import "YRDateCell.h"
-
+#import "UIColor+Tool.h"
 @implementation YRDateCell
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -16,7 +16,7 @@
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.layer.borderWidth = 1;
         self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.contentView.frame];
-        self.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.173 green:0.550 blue:1.000 alpha:1.000];
+        self.selectedBackgroundView.backgroundColor = [UIColor colorWithRGB:0x5fabef];
     }
     return self;
 }

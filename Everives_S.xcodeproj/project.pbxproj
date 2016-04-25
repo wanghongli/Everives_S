@@ -333,6 +333,7 @@
 		16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D0960A1C89345D00FF4A81 /* RequestData.m */; };
 		16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096131C89682700FF4A81 /* YRReservationViewController.m */; };
 		16D3FC2A1CC0E401007F73CF /* ZHScrollImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D3FC291CC0E401007F73CF /* ZHScrollImageView.m */; };
+		16D4DB1F1CCDEA9B0006B10A /* UIColor+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D4DB1E1CCDEA9B0006B10A /* UIColor+Tool.m */; };
 		16D999AB1CCC71530027BBEF /* YRWithDrawalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D999AA1CCC71530027BBEF /* YRWithDrawalViewController.m */; };
 		16E22FB31CCA1A8000ED439A /* YRActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E22FB21CCA1A8000ED439A /* YRActivityModel.m */; };
 		16E22FB61CCA2FBD00ED439A /* YROrderPartnerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E22FB51CCA2FBD00ED439A /* YROrderPartnerModel.m */; };
@@ -975,6 +976,8 @@
 		16D096131C89682700FF4A81 /* YRReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRReservationViewController.m; sourceTree = "<group>"; };
 		16D3FC281CC0E401007F73CF /* ZHScrollImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHScrollImageView.h; sourceTree = "<group>"; };
 		16D3FC291CC0E401007F73CF /* ZHScrollImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHScrollImageView.m; sourceTree = "<group>"; };
+		16D4DB1D1CCDEA9B0006B10A /* UIColor+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Tool.h"; sourceTree = "<group>"; };
+		16D4DB1E1CCDEA9B0006B10A /* UIColor+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Tool.m"; sourceTree = "<group>"; };
 		16D999A91CCC71530027BBEF /* YRWithDrawalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRWithDrawalViewController.h; sourceTree = "<group>"; };
 		16D999AA1CCC71530027BBEF /* YRWithDrawalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRWithDrawalViewController.m; sourceTree = "<group>"; };
 		16E22FB11CCA1A8000ED439A /* YRActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRActivityModel.h; sourceTree = "<group>"; };
@@ -1909,6 +1912,8 @@
 				032C43F61CACE2F40022C2F9 /* UIViewController+YRCommonController.m */,
 				032C46141CB3BF030022C2F9 /* YRPublicMethod.h */,
 				032C46151CB3BF030022C2F9 /* YRPublicMethod.m */,
+				16D4DB1D1CCDEA9B0006B10A /* UIColor+Tool.h */,
+				16D4DB1E1CCDEA9B0006B10A /* UIColor+Tool.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2811,6 +2816,7 @@
 				037F8EBB1C8E72490057BF6C /* YRCircleCellViewModel.m in Sources */,
 				03FF147C1C9FEB9F00AEBB75 /* YRLearnSecondCell.m in Sources */,
 				1600EBC51C88087A001919EB /* UIView+REFrostedViewController.m in Sources */,
+				16D4DB1F1CCDEA9B0006B10A /* UIColor+Tool.m in Sources */,
 				160868431CC5C74100E7CC6D /* YRAboutUsViewController.m in Sources */,
 				03F59B8F1C8EC1FF009D5EA2 /* YRCircleDetailController.m in Sources */,
 				037F8E2A1C883C570057BF6C /* YRProtocolViewController.m in Sources */,

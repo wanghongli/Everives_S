@@ -16,6 +16,7 @@
 #import "YRTeacherDetailObj.h"
 #import "YRShareOrderConfirmViewController.h"
 #import "YRLineView.h"
+#import "UIColor+Tool.h"
 
 static NSInteger sectionNum = 7;//竖着的那种
 static NSInteger rowNum = 8; //横着的那种
@@ -63,7 +64,7 @@ static NSInteger rowNum = 8; //横着的那种
     days[0] = @"今天";
     _dateArray = days.copy;
     _dateAyyayWithYear = days2.copy;
-    _timeStartArray = @[@"09:00-",@"10:00-",@"11:00-",@"14:00-",@"15:00-",@"16:00-",@"17:00-"];
+    _timeStartArray = @[@"09:00",@"10:00",@"11:00",@"14:00",@"15:00",@"16:00",@"17:00"];
     _timeEndArray = @[@"10:00",@"11:00",@"12:00",@"15:00",@"16:00",@"17:00",@"18:00"];
 }
 
@@ -172,7 +173,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         cell.priceLabel.frame = CGRectMake(rec.origin.x,15,rec.size.width,rec.size.height);
         cell.priceLabel.text = _dateArray[indexPath.section];
         cell.priceLabel.textColor = [UIColor colorWithRed:65/255.0 green:65/255.0 blue:65/255.0 alpha:1];
-        cell.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1];
+        cell.backgroundColor = [UIColor colorWithRGB:0xefefef];
     }else{
         cell.priceLabel.frame = CGRectMake(0,kcellHeight/2-10,kcellWidth,20);
         [_modelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -180,7 +181,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
             if (model.section == indexPath.section && model.row == indexPath.row) {
                 if ([model.price isEqualToString:@"-1"]) {
                     cell.priceLabel.text = @"已被预约";
-                    cell.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
+                    cell.backgroundColor = [UIColor colorWithRGB:0x79c5c2];
                 }else{
                     cell.priceLabel.text = [NSString stringWithFormat:@"￥%@",model.price];
                 }
@@ -267,8 +268,15 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         endTime.text = _timeEndArray[indexPath.row-1];
         endTime.textAlignment = NSTextAlignmentCenter;
         endTime.textColor = [UIColor colorWithRed:54/255.0 green:93/255.0 blue:178/255.0 alpha:1];
+        UILabel *centerL = [[UILabel alloc] initWithFrame:CGRectMake(0, kcellHeight/2-2, kcellWidth, 4)];
+        centerL.font = kFontOfLetterMedium;
+        centerL.text = @"-";
+        centerL.textAlignment = NSTextAlignmentCenter;
+        centerL.textColor = [UIColor colorWithRed:54/255.0 green:93/255.0 blue:178/255.0 alpha:1];
+        
         [cell.contentView addSubview:startTime];
         [cell.contentView addSubview:endTime];
+        [cell.contentView addSubview:centerL];
     }
     return cell;
 }

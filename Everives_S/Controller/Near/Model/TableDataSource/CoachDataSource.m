@@ -58,20 +58,17 @@ static NSString * coachCellID = @"YRCoachTableCellID";
 -(void)loadMoreData{
     _page++;
     _parameters[@"page"] = [NSNumber numberWithInteger:_page];
-    [MBProgressHUD showHUDAddedTo:self.table animated:YES];
     [RequestData GET:STUDENT_NEARTEACHER parameters:_parameters complete:^(NSDictionary *responseDic) {
         NSArray *places = [YRCoachModel mj_objectArrayWithKeyValuesArray:responseDic];
-        if (places.count == 0) {
-            [MBProgressHUD hideHUDForView:self.table animated:YES];
+        if (places.count < 10) {
             [self.table.mj_footer endRefreshingWithNoMoreData];
-            return ;
+        }else{
+            [self.table.mj_footer endRefreshing];
         }
         [_coachArray addObject:places];
         [self.table insertSections:[NSIndexSet indexSetWithIndex:_page] withRowAnimation:UITableViewRowAnimationNone];
-        [MBProgressHUD hideHUDForView:self.table animated:YES];
     } failed:^(NSError *error) {
         NSLog(@"%@",error);
-        [MBProgressHUD hideHUDForView:self.table animated:YES];
     }];
 }
 @end

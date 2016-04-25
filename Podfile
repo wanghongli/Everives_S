@@ -10,4 +10,6 @@ pod 'Qiniu','~>7.0'
 pod 'AFNetworking'
 pod 'AMap3DMap'
 pod 'AMapSearch'
+pod 'Pingpp/Alipay', '~> 2.1.0'
+pod 'Pingpp/Wx', '~> 2.1.0'
 end

@@ -8,7 +8,8 @@
 
 #import "YRMyWalletViewController.h"
 #import "YRStudentMoneyDetailVC.h"
-
+#import "YRRechargeViewController.h"
+#import "YRWithDrawalViewController.h"
 
 @interface YRMyWalletViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *money;
@@ -51,8 +52,12 @@
     [self.navigationController pushViewController:[[YRStudentMoneyDetailVC alloc] init] animated:YES];
 }
 - (IBAction)rechageBtnClick:(UIButton *)sender {
+    YRRechargeViewController *recharge = [[YRRechargeViewController alloc] init];
+    [self.navigationController pushViewController:recharge animated:YES];
 }
 - (IBAction)withDrawalBtnClick:(UIButton *)sender {
+    YRWithDrawalViewController *drewal = [[YRWithDrawalViewController alloc]init];
+    [self.navigationController pushViewController:drewal animated:YES];
 }
 
 

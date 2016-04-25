@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YRActivityModel.h"
 @interface YRActivityTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *picView;
+@property (weak, nonatomic) IBOutlet UILabel *titleL;
+@property (weak, nonatomic) IBOutlet UILabel *contentL;
+@property (weak, nonatomic) IBOutlet UILabel *dateL;
 
+@property(nonatomic,strong) YRActivityModel *model;
 @end

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,29 +15,74 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LAO-2a-LGr">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LAO-2a-LGr">
                         <rect key="frame" x="8" y="6" width="85" height="85"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="85" id="LSS-av-RTG"/>
+                            <constraint firstAttribute="height" constant="85" id="xjT-9U-RbY"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="活动名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PI6-qh-NYz">
-                        <rect key="frame" x="101" y="13" width="130" height="22"/>
-                        <fontDescription key="fontDescription" type="italicSystem" pointSize="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="活动名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PI6-qh-NYz">
+                        <rect key="frame" x="101" y="8" width="201" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="TU7-gd-U6s"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gML-b5-IsA">
-                        <rect key="frame" x="101" y="38" width="201" height="33"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdM-PW-af4">
+                        <rect key="frame" x="101" y="30" width="190" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="ty7-bN-aN0"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdM-PW-af4">
-                        <rect key="frame" x="101" y="70" width="180" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="活动内容活动内容活动内容活动内容活动内容活动内容活动内容活动内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gML-b5-IsA">
+                        <rect key="frame" x="101" y="47" width="211" height="38"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="38" id="Anf-NE-xe7"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="ese-V8-aKm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="fdM-PW-af4" secondAttribute="trailing" constant="21" id="1S1-9n-unz"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gML-b5-IsA" secondAttribute="trailing" constant="10" id="2Tx-L1-ExU"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="PI6-qh-NYz" secondAttribute="trailing" constant="10" id="3a2-oG-QRb"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="gML-b5-IsA" secondAttribute="bottom" constant="6.5" id="B4k-8x-5mh"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="LAO-2a-LGr" secondAttribute="bottom" constant="0.5" id="Byx-S1-iRq"/>
+                    <constraint firstItem="PI6-qh-NYz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="DVN-FE-nbX"/>
+                    <constraint firstItem="gML-b5-IsA" firstAttribute="top" secondItem="PI6-qh-NYz" secondAttribute="bottom" constant="17" id="EcM-dn-Qq2"/>
+                    <constraint firstItem="fdM-PW-af4" firstAttribute="leading" secondItem="LAO-2a-LGr" secondAttribute="trailing" constant="8" id="N3d-6s-GbX"/>
+                    <constraint firstItem="fdM-PW-af4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="22" id="ZOq-Z8-3N1"/>
+                    <constraint firstItem="gML-b5-IsA" firstAttribute="top" secondItem="fdM-PW-af4" secondAttribute="bottom" id="ZWP-c2-sq0"/>
+                    <constraint firstItem="PI6-qh-NYz" firstAttribute="leading" secondItem="LAO-2a-LGr" secondAttribute="trailing" constant="8" id="ec1-YU-eSQ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="gML-b5-IsA" secondAttribute="bottom" constant="5.5" id="fFu-0S-0Tl"/>
+                    <constraint firstItem="gML-b5-IsA" firstAttribute="leading" secondItem="LAO-2a-LGr" secondAttribute="trailing" constant="8" id="kma-cR-ufy"/>
+                    <constraint firstItem="LAO-2a-LGr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="moc-Xu-0IZ"/>
+                    <constraint firstItem="LAO-2a-LGr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" id="rzK-Zn-KNh"/>
+                    <constraint firstItem="gML-b5-IsA" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="uLj-lK-r1a"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="2Tx-L1-ExU"/>
+                        <exclude reference="ZWP-c2-sq0"/>
+                        <exclude reference="fFu-0S-0Tl"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="contentL" destination="gML-b5-IsA" id="VJg-w4-viz"/>
+                <outlet property="dateL" destination="fdM-PW-af4" id="HOa-qA-IRd"/>
+                <outlet property="picView" destination="LAO-2a-LGr" id="lX1-g7-kxD"/>
+                <outlet property="titleL" destination="PI6-qh-NYz" id="Evf-qb-bl4"/>
+            </connections>
             <point key="canvasLocation" x="359" y="254"/>
         </tableViewCell>
     </objects>

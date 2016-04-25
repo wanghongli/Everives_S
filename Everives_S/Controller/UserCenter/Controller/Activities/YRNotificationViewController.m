@@ -8,8 +8,10 @@
 
 #import "YRNotificationViewController.h"
 #import "YRActivityTableViewCell.h"
-@interface YRNotificationViewController ()
-
+#import "YRActivityModel.h"
+@interface YRNotificationViewController (){
+    NSArray *_activitymodels;
+}
 @end
 
 static NSString *cellID = @"YRActivityTableViewCellID";
@@ -17,14 +19,22 @@ static NSString *cellID = @"YRActivityTableViewCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"活动通知";
     self.clearsSelectionOnViewWillAppear = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"YRActivityTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
+    self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.rowHeight = 100;
+    [self getActivities];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)getActivities{
+    [RequestData GET:ACTIVITY_ACTIVITY parameters:nil complete:^(NSDictionary *responseDic) {
+        _activitymodels = [YRActivityModel mj_objectArrayWithKeyValuesArray:responseDic];
+        [self.tableView reloadData];
+    } failed:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark - Table view data source
@@ -34,7 +44,7 @@ static NSString *cellID = @"YRActivityTableViewCellID";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return _activitymodels.count;
 }
 
 
@@ -43,7 +53,9 @@ static NSString *cellID = @"YRActivityTableViewCellID";
     if (!cell) {
         cell = [[YRActivityTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
+    [cell setModel:_activitymodels[indexPath.row]];
     return cell;
 }
+
 
 @end

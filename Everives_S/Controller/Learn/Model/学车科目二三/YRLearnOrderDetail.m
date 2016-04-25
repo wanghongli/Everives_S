@@ -8,9 +8,10 @@
 
 #import "YRLearnOrderDetail.h"
 #import "YRLearnOrderDetailInfo.h"
+#import "YRLearnPartnerObj.h"
 @implementation YRLearnOrderDetail
 + (NSDictionary *)objectClassInArray
 {
-    return @{@"info":[YRLearnOrderDetailInfo class]};
+    return @{@"info":[YRLearnOrderDetailInfo class],@"partner":[YRLearnPartnerObj class]};
 }
 @end

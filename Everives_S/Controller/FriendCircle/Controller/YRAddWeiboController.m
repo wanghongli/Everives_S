@@ -25,6 +25,7 @@
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) UIButton *publishBtn;
 @property (nonatomic, strong) NSMutableArray   *assetsArray;
+@property (nonatomic, strong) UIButton *showAddr;//显示位置
 @end
 
 @implementation YRAddWeiboController
@@ -58,21 +59,37 @@
     self.textView.text = @"说点什么吧";
     self.textView.textColor = kCOLOR(200, 200, 200);
     
-    
-    self.publishBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.collectionView.frame)+30, kSizeOfScreen.width, 44)];
-    self.publishBtn.backgroundColor = kMainColor;
-    [self.publishBtn setTitle:@"发布" forState:UIControlStateNormal];
-    [self.publishBtn addTarget:self action:@selector(publishClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.publishBtn];
-    
     UIView *topLine = [[UIView alloc]initWithFrame:CGRectMake(15, 200+60, kSizeOfScreen.width-30, 1)];
     topLine.backgroundColor = kCOLOR(241, 241, 241);
     [self.view addSubview:topLine];
     UIView *downLine = [[UIView alloc]initWithFrame:CGRectMake(0, 200+64+80+4, kSizeOfScreen.width, 1)];
     downLine.backgroundColor = kCOLOR(241, 241, 241);
     [self.view addSubview:downLine];
+    
+    self.showAddr = [[UIButton alloc]initWithFrame:CGRectMake(self.collectionView.x, CGRectGetMaxY(downLine.frame)+10, 80, 20)];
+    [self.showAddr setTitle:@" 显示位置" forState:UIControlStateNormal];
+    [self.showAddr setTitle:@" 显示位置" forState:UIControlStateSelected];
+    [self.showAddr setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.showAddr setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [self.showAddr setImage:[UIImage imageNamed:@"Neighborhood_Field_Add"] forState:UIControlStateNormal];
+    [self.showAddr setImage:[UIImage imageNamed:@"Neighborhood_Field_Add"] forState:UIControlStateSelected];
+    [self.showAddr addTarget:self action:@selector(showAddrClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.showAddr.layer.masksToBounds = YES;
+    self.showAddr.layer.cornerRadius = self.showAddr.height/2;
+    self.showAddr.backgroundColor = kCOLOR(238, 239, 240);
+    self.showAddr.titleLabel.font = [UIFont systemFontOfSize:12];
+    [self.view addSubview:self.showAddr];
+    
+    self.publishBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.showAddr.frame)+30, kSizeOfScreen.width, 44)];
+    self.publishBtn.backgroundColor = kMainColor;
+    [self.publishBtn setTitle:@"发布" forState:UIControlStateNormal];
+    [self.publishBtn addTarget:self action:@selector(publishClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.publishBtn];
 }
-
+-(void)showAddrClick:(UIButton *)sender
+{
+    MyLog(@"%s - %@",__func__,sender);
+}
 - (void)composePicAdd
 {
     JKImagePickerController *imagePickerController = [[JKImagePickerController alloc] init];
@@ -97,8 +114,7 @@
         [MBProgressHUD showError:@"内容不能为空" toView:self.view];
         return;
     }
-    [_bodyDic setObject:@"重庆市渝北区光电园麒麟C座" forKey:@"address"];
-
+    [_bodyDic setObject:KUserLocation.addr forKey:@"address"];
     [_bodyDic setObject:self.textView.text forKey:@"content"];
     
     [MBProgressHUD showMessag:@"上传中..." toView:self.view];

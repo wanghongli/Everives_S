@@ -7,13 +7,15 @@
 //
 
 #import "YRAppointmentHeadView.h"
-
+#import "YRLearnPartnerObj.h"
 #define kHeadImgHeight 80
-#define kLOrRImgHeight 35
+#define kLOrRImgHeight 40
+#define kCenterImgW 20
 @interface YRAppointmentHeadView ()
 @property (nonatomic, weak) UIImageView *headImg;
 @property (nonatomic, weak) UIImageView *leftImg;
 @property (nonatomic, weak) UIImageView *rightImg;
+@property (nonatomic, weak) UIImageView *centerImg;
 @property (nonatomic, weak) UILabel *nameLabel;
 @property (nonatomic, weak) UILabel *detailLabel;
 
@@ -49,6 +51,11 @@
     [self addSubview:rightimg];
     _rightImg = rightimg;
     
+    UIImageView *centerimg = [[UIImageView alloc]init];
+    centerimg.image = [UIImage imageNamed:@"BespeakDetail_Arrow"];
+    [self addSubview:centerimg];
+    _centerImg = centerimg;
+    
     UILabel *namelabel = [[UILabel alloc]init];
     namelabel.font = [UIFont systemFontOfSize:15];
     namelabel.textAlignment = NSTextAlignmentCenter;
@@ -74,8 +81,17 @@
     _orderDetail = orderDetail;
     [_headImg sd_setImageWithURL:[NSURL URLWithString:orderDetail.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
     self.nameLabel.text = orderDetail.tname;
-    self.leftImg.hidden = YES;
-    self.rightImg.hidden = YES;
+    if (orderDetail.partner) {
+        self.leftImg.hidden = NO;
+        self.rightImg.hidden = NO;
+        [self.leftImg sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
+        [self.rightImg sd_setImageWithURL:[NSURL URLWithString:orderDetail.partner.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
+        [self bringSubviewToFront:self.centerImg];
+    }else{
+        self.leftImg.hidden = YES;
+        self.rightImg.hidden = YES;
+        self.centerImg.hidden = YES;
+    }
     self.detailLabel.text = [YRPublicMethod getOrderStatusWith:orderDetail.status];
 }
 -(void)layoutSubviews
@@ -83,8 +99,9 @@
     [super layoutSubviews];
     
     self.headImg.frame = CGRectMake(kScreenWidth/2-kHeadImgHeight/2, 20, kHeadImgHeight, kHeadImgHeight);
-    self.leftImg.frame = CGRectMake(_headImg.x-3, 70, kLOrRImgHeight, kLOrRImgHeight);
-    self.rightImg.frame = CGRectMake(self.headImg.x+52, self.leftImg.y, kLOrRImgHeight, kLOrRImgHeight);
+    self.leftImg.frame = CGRectMake(_headImg.x-5, 70, kLOrRImgHeight, kLOrRImgHeight);
+    self.rightImg.frame = CGRectMake(self.headImg.x+kHeadImgHeight/2+5, self.leftImg.y, kLOrRImgHeight, kLOrRImgHeight);
+    self.centerImg.frame = CGRectMake(CGRectGetMaxX(self.leftImg.frame)+5 - kCenterImgW/2, self.leftImg.y+self.leftImg.height/2-kCenterImgW*0.78/2, kCenterImgW, kCenterImgW*0.78);
     self.nameLabel.frame = CGRectMake(0, 115, kScreenWidth, 20);
     self.detailLabel.frame = CGRectMake(0, 140, kScreenWidth, 20);
     

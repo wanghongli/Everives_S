@@ -131,7 +131,7 @@
         }];
         textField.rightViewMode = UITextFieldViewModeAlways;
     }
-    
+
     return textField;
 }
 #pragma mark - 注册事件

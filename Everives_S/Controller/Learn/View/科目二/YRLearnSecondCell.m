@@ -8,7 +8,7 @@
 
 #import "YRLearnSecondCell.h"
 #import "UIImageView+WebCache.h"
-
+#import "YRLearnPartnerObj.h"
 @implementation YRLearnSecondCell
 
 
@@ -76,15 +76,22 @@
 
     self.addressLabel.text = teacherOrder.pname;
     [self.firstImg sd_setImageWithURL:[NSURL URLWithString:teacherOrder.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
-    [self setImgWith:1];
+    if (teacherOrder.partner == nil) {
+        [self setImgWith:YES];
+    }else{
+        [self setImgWith:NO];
+        [self.leftImg sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
+        [self.rightImg sd_setImageWithURL:[NSURL URLWithString:teacherOrder.partner.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
+        [self bringSubviewToFront:self.changeImg];
+    }
 }
--(void)setImgWith:(NSInteger)testNum
+-(void)setImgWith:(BOOL)testNum
 {
     [self setCornerRadiusWith:self.firstImg];
     [self setCornerRadiusWith:self.leftImg];
     [self setCornerRadiusWith:self.rightImg];
     
-    if (testNum%2) {
+    if (testNum) {
         self.leftImg.hidden = YES;
         self.rightImg.hidden = YES;
         self.changeImg.hidden = YES;

@@ -53,9 +53,15 @@
     
     _certificationBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, kScreenHeight - kScreenHeight/8, kScreenWidth, 44)];
     [_certificationBtn setTitle:@"为什么要进行信息认证？" forState:UIControlStateNormal];
-    [_certificationBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_certificationBtn setTitleColor:[UIColor colorWithRed:0 green:0 blue:93/255.0 alpha:1] forState:UIControlStateNormal];
+    _certificationBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [_certificationBtn addTarget:self action:@selector(certificationClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_certificationBtn];
+    
+    if (KUserManager.checked == 2) {//审核失败
+        _nameTF.text = KUserManager.realname;
+        _idCardTF.text = KUserManager.peopleId;
+    }
     
 }
 
@@ -64,7 +70,7 @@
 {
     [PublicCheckMsgModel checkName:self.nameTF.text idCard:self.idCardTF.text complete:^(BOOL isSuccess) {
         [RequestData POST:STUDENT_IDENTIFY parameters:@{@"realname":self.nameTF.text,@"peopleId":self.idCardTF.text} complete:^(NSDictionary *responseDic) {
-            [MBProgressHUD showSuccess:@"认证成功" toView:GET_WINDOW];
+            [MBProgressHUD showSuccess:@"信息已提交，正在等待审核" toView:GET_WINDOW];
             [self.navigationController popViewControllerAnimated:YES];
         } failed:^(NSError *error) {
             [MBProgressHUD showError:@"认证失败" toView:GET_WINDOW];

@@ -98,6 +98,7 @@
 		0340DF9D1CC718BF00CF9884 /* YRTeacherAllPicsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0340DF9B1CC718BF00CF9884 /* YRTeacherAllPicsCell.xib */; };
 		0340DFA11CC87EDE00CF9884 /* YRFeedBackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0340DF9F1CC87EDE00CF9884 /* YRFeedBackController.m */; };
 		0340DFA21CC87EDE00CF9884 /* YRFeedBackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0340DFA01CC87EDE00CF9884 /* YRFeedBackController.xib */; };
+		0340E07F1CCDBF0B00CF9884 /* YRLearnPartnerObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 0340E07E1CCDBF0B00CF9884 /* YRLearnPartnerObj.m */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -510,6 +511,8 @@
 		0340DF9E1CC87EDE00CF9884 /* YRFeedBackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRFeedBackController.h; sourceTree = "<group>"; };
 		0340DF9F1CC87EDE00CF9884 /* YRFeedBackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRFeedBackController.m; sourceTree = "<group>"; };
 		0340DFA01CC87EDE00CF9884 /* YRFeedBackController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRFeedBackController.xib; sourceTree = "<group>"; };
+		0340E07D1CCDBF0B00CF9884 /* YRLearnPartnerObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPartnerObj.h; sourceTree = "<group>"; };
+		0340E07E1CCDBF0B00CF9884 /* YRLearnPartnerObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPartnerObj.m; sourceTree = "<group>"; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -1202,6 +1205,8 @@
 				032C462F1CB746770022C2F9 /* YRLearnOrderDetail.m */,
 				032C46311CB74AFD0022C2F9 /* YRLearnOrderDetailInfo.h */,
 				032C46321CB74AFD0022C2F9 /* YRLearnOrderDetailInfo.m */,
+				0340E07D1CCDBF0B00CF9884 /* YRLearnPartnerObj.h */,
+				0340E07E1CCDBF0B00CF9884 /* YRLearnPartnerObj.m */,
 			);
 			path = "学车科目二三";
 			sourceTree = "<group>";
@@ -2748,6 +2753,7 @@
 				161B1BFF1C910FF80047182D /* CoachDataSource.m in Sources */,
 				03228D441CA4E08D00890DC6 /* YRScoreDetailDownView.m in Sources */,
 				16565DFE1CBDE2580086407A /* YRShareOrderConfirmViewController.m in Sources */,
+				0340E07F1CCDBF0B00CF9884 /* YRLearnPartnerObj.m in Sources */,
 				1645D89A1C9511DD0058D480 /* DistanceToolFuc.m in Sources */,
 				031515371C9A3D7400A2A2F1 /* YREditUserController.m in Sources */,
 				1645D8971C9511420058D480 /* YRMapAnnotaionModel.m in Sources */,

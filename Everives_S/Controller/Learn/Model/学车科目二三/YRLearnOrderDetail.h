@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MJExtension.h"
+@class YRLearnPartnerObj;
 
 @interface YRLearnOrderDetail : NSObject
 @property (nonatomic, strong) NSString *avatar;
@@ -22,5 +23,5 @@
 @property (nonatomic, assign) NSInteger time;
 @property (nonatomic, strong) NSString *tname;
 @property (nonatomic, assign) NSInteger uid;
-@property (nonatomic, assign) NSInteger partner;
+@property (nonatomic, strong) YRLearnPartnerObj *partner;
 @end

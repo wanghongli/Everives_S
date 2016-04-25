@@ -88,6 +88,7 @@
     }else
         urlString = WEIBO_GET_LIST;
     [RequestData GET:urlString parameters:@{@"page":[NSString stringWithFormat:@"%ld",_page]} complete:^(NSDictionary *responseDic) {
+        MyLog(@"%@",responseDic);
         if (_page == 0) {
             [_blogs removeAllObjects];
         }

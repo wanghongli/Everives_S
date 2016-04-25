@@ -30,7 +30,7 @@ static CGFloat cellHeight = 60;
     self.title =  @"驾校详情";
     self.tableView.tableHeaderView = self.headerView;
     [self getData];
-    _icons = @[@"Neighborhood_Field_DriSch",@"Neighborhood_Field_Add",@"Neig_Coach_Bespeak",@"Neighborhood_Field_Contacts",@"Neighborhood_Field_Area",@"neighborhood_Field_Facility",@"neighborhood_Field_Facility",@"Neighborhood_Field_Coach"];
+    _icons = @[@"Neighborhood_Field_DriSch",@"Neighborhood_Field_Add",@"Neig_Coach_Bespeak",@"Neighborhood_Field_Contacts",@"Neighborhood_Field_Area",@"neighborhood_Field_Facility",@"Neighborhood_Field_More",@"Neighborhood_Field_Coach"];
 }
 
 -(void)getData{
@@ -114,7 +114,7 @@ static CGFloat cellHeight = 60;
         case 6:{
             UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(16, 18, 22, 22)];
             image.tag = 2333;
-            image.image = [UIImage imageNamed:_icons[5]];
+            image.image = [UIImage imageNamed:_icons[6]];
             UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(53, 18, kScreenWidth, 22)];
             titleLabel.tag = 2333;
             titleLabel.text = @"场地介绍";

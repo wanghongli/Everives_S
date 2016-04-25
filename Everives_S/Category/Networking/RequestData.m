@@ -64,7 +64,7 @@
         if (failed) {
             failed(error);
             NSDictionary *dic = [operation.responseData mj_JSONObject];
-            [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
+            [MBProgressHUD showError:dic[@"info"]?:@"未知错误" toView:GET_WINDOW];
         }
     }];
 }

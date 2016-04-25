@@ -21,15 +21,15 @@
 @property (nonatomic, strong) NSString *lng;
 @property (nonatomic, strong) NSString *money;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *peopleId;
-@property (nonatomic, strong) NSString *realname;
+@property (nonatomic, strong) NSString *peopleId;//身份证
+@property (nonatomic, strong) NSString *realname;//真实姓名
 @property (nonatomic, strong) NSString *rongToken;
 @property (nonatomic, strong) NSString *tel;
 @property (nonatomic, strong) NSString *token;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *sign;
 @property (nonatomic, assign) NSString *frozenMoney;
-@property (nonatomic, assign) NSInteger checked;
+@property (nonatomic, assign) NSInteger checked; //0  1 完成 2 失败
 @property (nonatomic, assign) NSInteger push;//设置中通知状态
 @property (nonatomic, assign) NSInteger show;//'隐私设置 0显示 1不显示距离 2不显示',
 @property (nonatomic, assign) NSInteger first;  //第一个数为第一次分享  第二个数表示第一次充值； 11都操作过    10 分享过  01充值过  00没有分享

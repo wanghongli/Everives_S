@@ -11,6 +11,7 @@
 #import "YRAppointmentDetailController.h"
 #import "YRLearnNoMsgView.h"//没认证界面
 #import "YRCertificationController.h" //信息认证
+#import "YRFriendCircleController.h"
 #import "YRTeacherOrder.h"
 #import "UIViewController+YRCommonController.h"
 #import "YRYJNavigationController.h"
@@ -42,7 +43,32 @@
     }
     
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (KUserManager.checked == 0) {//未提交或正在审核
+        if (KUserManager.peopleId.length) {//正在审核
+            [self showMsgWithMst:@"您的信息正在审核当中" withHidden:NO];
+        }else{//未提交
+            [self showMsgWithMst:@"抱歉，您还为进行信息认证" withHidden:NO];
+        }
+    }else if (KUserManager.checked == 1){//审核通过
+        //获取数据
+        [self getData];
+    }else if (KUserManager.checked == 2){//审核失败
+        [self showMsgWithMst:@"审核失败" withHidden:NO];
+    }
+}
+-(void)showMsgWithMst:(NSString *)msg withHidden:(BOOL)hidden
+{
+    self.noMsgView.btnTitle = msg;
+    self.noMsgView.hidden = hidden;
+    if (hidden) {
+        return;
+    }
+    //无数据的时候展示
+    [self.view bringSubviewToFront:self.noMsgView];
+}
 -(void)buildUI
 {
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64-48-44)];
@@ -134,19 +160,22 @@
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 #pragma mark - YRLearnNoMsgViewDelegate
--(void)learnNoMsgViewAttestationClick
+-(void)learnNoMsgViewAttestationClickTag:(NSInteger)btnTag
 {
     MyLog(@"%s",__func__);
-    if ([self.noMsgView.btnTitle isEqualToString:@"安排学车计划"]) {
-        YRNearViewController *nearViewController = [[YRNearViewController alloc] init];
-        nearViewController.isGoOnLearning = YES;
+    if (btnTag == 0) {//审核中
+        YRFriendCircleController *nearViewController = [[YRFriendCircleController alloc] init];
         YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:nearViewController];
         self.frostedViewController.contentViewController = navigationController;
-        return;
+    }else if (btnTag == 1){//未审核
+        YRCertificationController *certificationVC = [[YRCertificationController alloc]init];
+        [self.navigationController pushViewController:certificationVC animated:YES];
+    }else{//失败
+        YRCertificationController *certificationVC = [[YRCertificationController alloc]init];
+        [self.navigationController pushViewController:certificationVC animated:YES];
     }
-    YRCertificationController *certificationVC = [[YRCertificationController alloc]init];
-    [self.navigationController pushViewController:certificationVC animated:YES];
 }
+
 #pragma mark - 继续安排学车计划
 -(void)goOnLearnCar
 {

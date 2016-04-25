@@ -25,9 +25,9 @@
 @property (nonatomic, retain) UICollectionView *collectionView;
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) UIButton *publishBtn;
-@property (nonatomic, strong) NSMutableArray   *assetsArray;
-
+@property (nonatomic, strong) NSMutableArray *assetsArray;
 @property (nonatomic, strong) YRTeacherStarLevelView *starView;
+@property (nonatomic, strong) UIButton *privacyBtn;//隐私按钮
 
 @end
 
@@ -82,6 +82,25 @@
     downLine.backgroundColor = kCOLOR(241, 241, 241);
     [self.view addSubview:downLine];
     [self.view bringSubviewToFront:button];
+    
+    self.privacyBtn = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-80, CGRectGetMaxY(downLine.frame)+5, 70, 10)];
+    self.privacyBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.privacyBtn setTitle:@" 匿名发表" forState:UIControlStateNormal];
+    self.privacyBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    [self.privacyBtn setTitle:@" 匿名发表" forState:UIControlStateSelected];
+    [self.privacyBtn setTitleColor:[UIColor colorWithRed:3/255.0 green:7/255.0 blue:12/255.0 alpha:1] forState:UIControlStateNormal];
+    [self.privacyBtn setTitleColor:[UIColor colorWithRed:3/255.0 green:7/255.0 blue:12/255.0 alpha:1] forState:UIControlStateSelected];
+    [self.privacyBtn setImage:[UIImage imageNamed:@"home_onclick1"] forState:UIControlStateNormal];
+    [self.privacyBtn setImage:[UIImage imageNamed:@"home_click2"] forState:UIControlStateSelected];
+    self.privacyBtn.selected = NO;
+    [self.privacyBtn addTarget:self action:@selector(privacyClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.privacyBtn];
+    
+}
+
+-(void)privacyClick:(UIButton *)sender
+{
+    sender.selected = !sender.selected;
 }
 
 - (void)composePicAdd
@@ -125,7 +144,7 @@
     //添加订单id
     [_bodyDic setObject:self.orderID forKey:@"id"];
     [_bodyDic setObject:@"0" forKey:@"hide"];
-    
+    [_bodyDic setObject:[NSString stringWithFormat:@"%d",self.privacyBtn.selected] forKey:@"hide"];
     [MBProgressHUD showMessag:@"上传中..." toView:self.view];
     if (!self.assetsArray.count) {
         NSString *imgArray = [_publishImgArray mj_JSONString];

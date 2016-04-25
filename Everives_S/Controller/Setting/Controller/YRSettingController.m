@@ -65,14 +65,25 @@
         cell.swithHidden = YES;
     }else{
         cell.swithHidden = NO;
+      NSDictionary *dic = @{
+          @"0":@"000",
+          @"1":@"001",
+          @"2":@"010",
+          @"3":@"011",
+          @"4":@"100",
+          @"5":@"101",
+          @"6":@"110",
+          @"7":@"111"
+          };
         //开关状态
         if (KUserManager.id) {
+            NSInteger pushID = [dic[[NSString stringWithFormat:@"%ld",KUserManager.push]] integerValue];
             if (indexPath.row == 0) {
-                cell.swithStatus = KUserManager.push/100;
+                cell.swithStatus = pushID/100;
             }else if(indexPath.row == 1){
-                cell.swithStatus = KUserManager.push%100/10;
+                cell.swithStatus = pushID%100/10;
             }else{
-                cell.swithStatus = KUserManager.push%100%10;
+                cell.swithStatus = pushID%100%10;
             }
         }else
             cell.swithStatus = NO;
@@ -82,21 +93,42 @@
         if (!KUserManager.id) {
             return;
         }
+        NSDictionary *dic = @{
+                              @"0":@"000",
+                              @"1":@"001",
+                              @"2":@"010",
+                              @"3":@"011",
+                              @"4":@"100",
+                              @"5":@"101",
+                              @"6":@"110",
+                              @"7":@"111"
+                              };
         NSString *pushString;
+        NSInteger pushID = [dic[[NSString stringWithFormat:@"%ld",KUserManager.push]] integerValue];
         if (indexPath.row == 0) {
-            pushString = [NSString stringWithFormat:@"%d%ld%ld",swithOn,KUserManager.push%100/10,KUserManager.push%100%10];
+            pushString = [NSString stringWithFormat:@"%d%ld%ld",swithOn,pushID%100/10,pushID%100%10];
         }else if(indexPath.row == 1){
-            pushString = [NSString stringWithFormat:@"%ld%d%ld",KUserManager.push/100,swithOn,KUserManager.push%100%10];
+            pushString = [NSString stringWithFormat:@"%ld%d%ld",pushID/100,swithOn,pushID%100%10];
         }else{
-            pushString = [NSString stringWithFormat:@"%ld%ld%d",KUserManager.push/100,KUserManager.push%100/10,swithOn];
+            pushString = [NSString stringWithFormat:@"%ld%ld%d",pushID/100,pushID%100/10,swithOn];
         }
-        [RequestData PUT:@"/student/setting" parameters:@{@"push":pushString} complete:^(NSDictionary *responseDic) {
+        NSDictionary *dic1 = @{
+                               @"000":@"0",
+                               @"001":@"1",
+                               @"010":@"2",
+                               @"011":@"3",
+                               @"100":@"4",
+                               @"101":@"5",
+                               @"110":@"6",
+                               @"111":@"7"
+                               };
+        [RequestData PUT:@"/student/setting" parameters:@{@"push":dic1[pushString]} complete:^(NSDictionary *responseDic) {
             MyLog(@"%@",responseDic);
-            [YRPublicMethod changeUserMsgWithKeys:@[@"show"] values:@[@([pushString integerValue])]];
-            KUserManager.push = [pushString integerValue];
+            [YRPublicMethod changeUserMsgWithKeys:@[@"push"] values:@[@([dic1[pushString] integerValue])]];
+            KUserManager.push = [dic1[pushString] integerValue];
             [self.tableView reloadData];
         } failed:^(NSError *error) {
-            
+            [self.tableView reloadData];
         }];
     }];
     cell.textLabel.text = _menuArray[indexPath.section][indexPath.row];

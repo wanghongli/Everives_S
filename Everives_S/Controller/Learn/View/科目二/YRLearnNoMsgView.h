@@ -7,7 +7,7 @@
 //
 @protocol YRLearnNoMsgViewDelegate <NSObject>
 
--(void)learnNoMsgViewAttestationClick;
+-(void)learnNoMsgViewAttestationClickTag:(NSInteger)btnTag;
 
 @end
 #import <UIKit/UIKit.h>

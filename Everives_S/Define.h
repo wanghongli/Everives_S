@@ -172,7 +172,7 @@
 //高德地图
 #define kAMapAppKey @"89f024e8967821905f51343fe4e4a652"
 //融云
-#define kRCIMAppKey @"3argexb6rzove"
-#define kRCIMAppSecret @"wHamqJYecOEvIQ"
+#define kRCIMAppKey @"z3v5yqkbvtd30"
+#define kRCIMAppSecret @"vGgJSBmkMo"
 //ping++
 #define kPingSDKIdentifier @"app_WLez1OnnD88CWrHa"

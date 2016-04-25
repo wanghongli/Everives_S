@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UIImageView *partnerAvatar;
+@property (weak, nonatomic) IBOutlet UIImageView *myAvatar;
 @property (weak, nonatomic) IBOutlet UILabel *date;
 @property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet UILabel *place;
@@ -32,7 +33,9 @@
     _avatar.layer.masksToBounds = YES;
     _avatar.layer.cornerRadius = 45;
     _partnerAvatar.layer.masksToBounds = YES;
-    _partnerAvatar.layer.cornerRadius = 25;
+    _partnerAvatar.layer.cornerRadius = 20;
+    _myAvatar.layer.masksToBounds = YES;
+    _myAvatar.layer.cornerRadius = 20;
     _time.backgroundColor = [UIColor colorWithRed:0.748 green:0.720 blue:0.739 alpha:1.000];
     _time.textColor = [UIColor whiteColor];
     _time.layer.cornerRadius = 10;
@@ -53,6 +56,7 @@
     [_avatar sd_setImageWithURL:[NSURL URLWithString:model.avatar]];
     if (model.partner) {
         [_partnerAvatar sd_setImageWithURL:[NSURL URLWithString:model.partner.avatar]];
+        [_myAvatar sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar]];
     }
     NSString *datey = [model.date substringToIndex:4];
     NSString *datem = [model.date substringWithRange:NSMakeRange(5, 2)];

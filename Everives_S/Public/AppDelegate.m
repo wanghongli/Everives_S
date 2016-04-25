@@ -115,12 +115,19 @@
     if (!dicUser) {
         return;
     }
-    YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:dicUser];
-    KUserManager = user;
-    
-    [self connectRongCloud];
-    
-    [self registerUMessageRemoteNotification];
+    NSDictionary *account = [userDefaults objectForKey:@"loginCount"];
+    [RequestData POST:USER_LOGIN parameters:@{@"tel":account[@"tel"],@"password":[account objectForKey:@"psw"],@"kind":@"0",@"type":@"1"} complete:^(NSDictionary *responseDic) {
+        MyLog(@"%@",responseDic);
+        YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:responseDic];
+        NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];
+        [userDefaults setObject:responseDic forKey:@"user"];
+        [NSUserDefaults resetStandardUserDefaults];
+        KUserManager = user;
+        [self connectRongCloud];
+        [self registerUMessageRemoteNotification];
+
+    } failed:^(NSError *error) {
+    }];
 
 }
 -(void)connectRongCloud{

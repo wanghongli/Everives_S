@@ -65,6 +65,7 @@
     [_coachBtn setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];
     [_studentBtn setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];
     _selectedBtnNum = 1;
+    sender.tag = 1;
     [self.delegate schoolBtnClick:sender];
 }
 -(void)coachBtnClick:(UIButton*)sender{
@@ -75,6 +76,7 @@
     [_schoolBtn setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];
     [_studentBtn setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];
     _selectedBtnNum = 2;
+    sender.tag = 2;
     [self.delegate coachBtnClick:sender];
 }
 -(void)studentBtnClick:(UIButton*)sender{
@@ -85,6 +87,7 @@
     [_coachBtn setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];
     [_schoolBtn setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];
     _selectedBtnNum = 3;
+    sender.tag = 3;
     [self.delegate studentBtnClick:sender];
 }
 @end

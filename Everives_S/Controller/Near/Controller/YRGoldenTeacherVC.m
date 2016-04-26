@@ -8,6 +8,7 @@
 
 #import "YRGoldenTeacherVC.h"
 #import "YRCoachTableCell.h"
+#import "YRSchoolModel.h"
 static NSString *cellReuseID = @"cellReuseID";
 @interface YRGoldenTeacherVC ()
 @property(nonatomic,strong) NSArray *models;
@@ -19,7 +20,7 @@ static NSString *cellReuseID = @"cellReuseID";
     [super viewDidLoad];
     self.title = @"金牌教练";
     self.clearsSelectionOnViewWillAppear = NO;
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight-64)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64)];
     [self.tableView registerNib:[UINib nibWithNibName:@"YRCoachTableCell" bundle:nil] forCellReuseIdentifier:cellReuseID];
     self.tableView.rowHeight = 100;
     self.tableView.tableFooterView = [[UIView alloc]init];
@@ -30,7 +31,7 @@ static NSString *cellReuseID = @"cellReuseID";
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSLog(@"%@   %@",PLACE_TEACHER,_placeID);
     [RequestData GET:[NSString stringWithFormat:@"%@%@",PLACE_TEACHER,_placeID] parameters:nil complete:^(NSDictionary *responseDic) {
-        _models = [YRCoachTableCell mj_objectArrayWithKeyValuesArray:responseDic];
+        _models = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];
         [self.tableView reloadData];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failed:^(NSError *error) {

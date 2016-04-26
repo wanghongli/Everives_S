@@ -16,7 +16,7 @@
 #import "RequestData.h"
 #import "REFrostedViewController.h"
 #import "YRUserDetailController.h"
-
+#import "YRCertificationController.h"
 @interface YRUserCenterViewController (){
     NSArray *cellNmaes;
     NSArray *cellImgs;
@@ -34,11 +34,17 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.tableFooterView = [[UIView alloc] init];
     cellNmaes = @[@"我的预约",@"我的钱包",@"我的评价",@"活动通知",@"信息认证"];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu_icon"] style:UIBarButtonItemStylePlain target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu)];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear: animated];
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    self.frostedViewController.panGestureEnabled = YES;
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.frostedViewController.panGestureEnabled = NO;
 }
 - (void)backBtnClick:(UIBarButtonItem*)sender{
     [self.frostedViewController presentMenuViewController];
@@ -145,7 +151,7 @@
         case 4:
         {
             [self.navigationController pushViewController:
-             [[YRCertificationViewController alloc] init] animated:YES] ;
+             [[YRCertificationController alloc] init] animated:YES] ;
             break;
         }
             

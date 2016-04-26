@@ -57,12 +57,11 @@
 {
     //获取教练详情
     NSString *urlString = [NSString stringWithFormat:@"%@%@",USER_TEACHER_DETAIL,self.teacherID];
+    [MBProgressHUD showMessag:@"加载中..." toView:self.view];
     [RequestData GET:urlString parameters:nil complete:^(NSDictionary *responseDic) {
         MyLog(@"%@",responseDic);
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         self.teacherDetail = [YRTeacherDetailObj mj_objectWithKeyValues:responseDic];
-//        _teacherObj = [YRTeacherDetailObject mj_objectWithKeyValues:responseDic];
-
         _headView = [[YRTeacherHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth/2)];
         _headView.teacherObj = self.teacherDetail;
         self.tableView.tableHeaderView = _headView;
@@ -73,7 +72,7 @@
         [self.view addSubview:_downView];
 
     } failed:^(NSError *error) {
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

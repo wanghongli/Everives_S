@@ -7,7 +7,7 @@
 //
 
 #import "YRCertificationController.h"
-
+#import "YRUserCenterViewController.h"
 #import "CWSLoginTextField.h"
 #import "CWSPublicButton.h"
 #import "UIButton+titleFrame.h"
@@ -57,12 +57,13 @@
     _certificationBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [_certificationBtn addTarget:self action:@selector(certificationClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_certificationBtn];
-    
-    if (KUserManager.checked == 2) {//审核失败
+    MyLog(@"%ld",KUserManager.checked);
+    if (KUserManager.checked) {//提交过
         _nameTF.text = KUserManager.realname;
         _idCardTF.text = KUserManager.peopleId;
+        BOOL btnHidden = KUserManager.checked-1 ? NO:YES;
+        _sureBtn.hidden = btnHidden;
     }
-    
 }
 
 #pragma mark - 确认信息

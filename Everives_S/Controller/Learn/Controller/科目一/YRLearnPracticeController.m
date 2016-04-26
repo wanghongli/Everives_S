@@ -14,6 +14,7 @@
 #import "FMDB.h"
 #import "YRFMDBObj.h"
 #import "YRQuestionObj.h"
+#import "UIBarButtonItem+Item.h"
 @interface YRLearnPracticeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,YRPracticeDownViewDelegate,UIAlertViewDelegate>
 {
     //显示答案
@@ -64,7 +65,8 @@
     //yes 科目四 no 科目一
     self.menuType = self.objectFour;
     [self buildUI];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"<返回" style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
+    UIBarButtonItem *left = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"navigationbar_back"] highImage:[UIImage imageNamed:@"navigationbar_back_highlighted"] target:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = left;
 }
 -(void)backClick
 {

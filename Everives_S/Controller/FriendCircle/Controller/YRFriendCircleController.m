@@ -15,7 +15,6 @@
 #import "YRFriendCircleCell.h"
 #import "YRCircleDetailController.h"
 #import "YRCircleHeadView.h"
-#import "YRYJNavigationController.h"
 #import "YRUserDetailController.h"
 
 @interface YRFriendCircleController ()
@@ -61,6 +60,13 @@
         _page = 0;
         [self getdata];
     }
+    
+    self.frostedViewController.panGestureEnabled = YES;
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.frostedViewController.panGestureEnabled = NO;
 }
 -(void)buildRefreshUI
 {

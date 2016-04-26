@@ -21,7 +21,8 @@
 #import "NSString+Tools.h"
 #import "YRPublicMethod.h"
 #import "UIImageView+WebCache.h"
-
+#import "YRYJNavigationController.h"
+#import "REFrostedViewController.h"
 #endif
 
 

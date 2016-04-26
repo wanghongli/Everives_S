@@ -10,9 +10,10 @@
 
 @interface YRWithDrawalViewController ()<UITextFieldDelegate>
 @property(nonatomic,strong) UIView *tableFooter;
-@property(nonatomic,assign) NSInteger seletedPayWay;// 0微信 1支付宝  默认0
+@property(nonatomic,strong) NSString *channel;
 @property(nonatomic,strong) UIImageView *wechatRightImage;
 @property(nonatomic,strong) UIImageView *aliRightImage;
+@property(nonatomic,strong) UITextField *numberInput;
 @end
 
 @implementation YRWithDrawalViewController
@@ -55,17 +56,17 @@
         {
             UILabel *titleL = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, 100, 50)];
             titleL.text = @"提现金额";
-            UITextField *numberInput = [[UITextField alloc] initWithFrame:CGRectMake(120, 16, kScreenWidth-200, 35)];
-            numberInput.leftView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, 16, 16)];
-            numberInput.leftViewMode = UITextFieldViewModeAlways;
-            numberInput.layer.borderWidth = 0.5;
-            numberInput.layer.borderColor = [UIColor lightGrayColor].CGColor;
-            numberInput.layer.cornerRadius = 5;
-            numberInput.placeholder = @"请填写金额";
-            numberInput.keyboardType = UIKeyboardTypeNumberPad;
-            numberInput.delegate = self;
+            _numberInput = [[UITextField alloc] initWithFrame:CGRectMake(120, 16, kScreenWidth-200, 35)];
+            _numberInput.leftView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, 16, 16)];
+            _numberInput.leftViewMode = UITextFieldViewModeAlways;
+            _numberInput.layer.borderWidth = 0.5;
+            _numberInput.layer.borderColor = [UIColor lightGrayColor].CGColor;
+            _numberInput.layer.cornerRadius = 5;
+            _numberInput.placeholder = @"请填写金额";
+            _numberInput.keyboardType = UIKeyboardTypeNumberPad;
+            _numberInput.delegate = self;
             [cell.contentView addSubview:titleL];
-            [cell.contentView addSubview:numberInput];
+            [cell.contentView addSubview:_numberInput];
             break;
         }
         case 2:
@@ -128,14 +129,14 @@
         }
         case 3://微信
         {
-            _seletedPayWay = 0;
+            _channel = @"wx";
             _wechatRightImage.image = [UIImage imageNamed:@"Pay_Selected"];
             _aliRightImage.image = [UIImage imageNamed:@"Pay_NotSelected"];
             break;
         }
         case 4://支付宝
         {
-            _seletedPayWay = 1;
+            _channel = @"alipay";
             _wechatRightImage.image = [UIImage imageNamed:@"Pay_NotSelected"];
             _aliRightImage.image = [UIImage imageNamed:@"Pay_Selected"];
             break;
@@ -161,10 +162,15 @@
     return _tableFooter;
 }
 -(void)sureBtnClick:(UIButton*)sender{
-    
+    if (_numberInput.text||[_numberInput.text integerValue] == 0) {
+        return;
+    }
 }
 #pragma mark - UITextFieldDelegate
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (range.location == 0 && [string  hasPrefix:@"0"]) {
+        return NO;
+    }
     NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
     NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
     return [string isEqualToString:filtered];

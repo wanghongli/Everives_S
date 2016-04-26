@@ -13,18 +13,28 @@
 #import "YRRegistPswController.h"
 #import "YRProtocolViewController.h"
 #import "PublicCheckMsgModel.h"
-
+#import "CWSLoginTextField.h"
 #import <SMS_SDK/SMSSDK.h>
+#import "CWSLoginTextField.h"
+#import "YRPerfectUserMsgController.h"
+#import <RongIMKit/RongIMKit.h>
 
 #define kDistance 10
 #define kTextFieldHeight 44
 @interface YRRegistViewController ()<CWSReadPolicyViewDelegate>
-
+{
+    NSMutableDictionary *_bodyDic;
+}
 @property (nonatomic, strong) UITextField *tellText;
 @property (nonatomic, strong) UITextField *codeText;
 @property (nonatomic, strong) JKCountDownButton *getCodeBtn;
 @property (nonatomic, strong) CWSPublicButton *registBtn;//注册按钮
 @property (nonatomic, strong) CWSReadPolicyView *readPolicyView;
+
+
+@property (nonatomic, strong) CWSLoginTextField *passwordTextField;//密码
+
+@property (nonatomic, strong) CWSLoginTextField *againPasswordTextField;//再次输入密码
 
 @end
 
@@ -46,10 +56,24 @@
     
     
     //验证码
-    self.codeText = [self setTextFieldWithFrame:CGRectMake(kDistance*2, CGRectGetMaxY(self.tellText.frame)+kDistance, kSizeOfScreen.width-4*kDistance, kTextFieldHeight) withPlaceholder:@"请输入验证码"];
+    self.codeText = [self setTextFieldWithFrame:CGRectMake(self.tellText.x, CGRectGetMaxY(self.tellText.frame)+kDistance, self.tellText.width, kTextFieldHeight) withPlaceholder:@"请输入验证码"];
     [self.view addSubview:self.codeText];
     
-    self.registBtn = [[CWSPublicButton alloc]initWithFrame:CGRectMake(kDistance*2, CGRectGetMaxY(self.codeText.frame)+kDistance, self.tellText.width, kTextFieldHeight)];
+    
+    //密码输入框
+    self.passwordTextField = [self setPswTextFieldWithFrame:CGRectMake(self.tellText.x, CGRectGetMaxY(self.codeText.frame)+kDistance, self.tellText.width, kTextFieldHeight) withPlaceholder:@"请输入您的密码"];
+    self.passwordTextField.secureTextEntry = YES;
+    _passwordTextField.leftImage = [UIImage imageNamed:@"searchbar_textfield_search_icon"];
+    
+    [self.view addSubview:self.passwordTextField];
+    
+    //再次密码输入
+    self.againPasswordTextField = [self setPswTextFieldWithFrame:CGRectMake(self.tellText.x, CGRectGetMaxY(self.passwordTextField.frame)+kDistance, self.tellText.width, kTextFieldHeight) withPlaceholder:@"请再次输入您的密码"];
+    self.againPasswordTextField.secureTextEntry = YES;
+    [self.view addSubview:self.againPasswordTextField];
+    _againPasswordTextField.leftImage = [UIImage imageNamed:@"searchbar_textfield_search_icon"];
+    
+    self.registBtn = [[CWSPublicButton alloc]initWithFrame:CGRectMake(kDistance*2, CGRectGetMaxY(self.againPasswordTextField.frame)+kDistance, self.tellText.width, kTextFieldHeight)];
     [self.registBtn setTitle:@"完成验证" forState:UIControlStateNormal];
     [self.registBtn addTarget:self action:@selector(registClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.registBtn];
@@ -60,7 +84,16 @@
         [self.view addSubview:_readPolicyView];
     }
 }
-
+#pragma mark - 快速创建输入框
+-(CWSLoginTextField *)setPswTextFieldWithFrame:(CGRect)frame withPlaceholder:(NSString *)placehold
+{
+    CWSLoginTextField *textField = [[CWSLoginTextField alloc]initWithFrame:frame];
+    textField.placeholder = placehold;
+    textField.backgroundColor = [UIColor whiteColor];
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    textField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, kTextFieldHeight)];
+    return textField;
+}
 #pragma mark - 快速创建输入框
 -(UITextField *)setTextFieldWithFrame:(CGRect)frame withPlaceholder:(NSString *)placehold
 {
@@ -145,53 +178,77 @@
             sender.userInteractionEnabled = YES;
             return ;
         }
-        [MBProgressHUD showMessag:@"提交中..." toView:self.view];
-        [SMSSDK commitVerificationCode:self.codeText.text phoneNumber:self.tellText.text zone:@"86" result:^(NSError *error) {
+        [PublicCheckMsgModel checkPswIsEqualFistPsw:self.passwordTextField.text secondPsw:self.againPasswordTextField.text complete:^(BOOL isSuccess) {
             
-            if (!error) {
-                MyLog(@"短信验证成功");
-                //检查手机号码是否注册
-                [RequestData GET:USER_CHECK_TELL parameters:@{@"tel":self.tellText.text,@"kind":@"0"} complete:^(NSDictionary *responseDic) {
-                    NSLog(@"%@",responseDic);
-                    sender.userInteractionEnabled = YES;
+            _bodyDic = [NSMutableDictionary dictionary];
+            [_bodyDic setObject:self.tellText.text forKey:@"tel"];
+            [_bodyDic setObject:self.codeText.text forKey:@"code"];
+            [_bodyDic setObject:self.passwordTextField.text forKey:@"password"];
+            [_bodyDic setObject:@"0" forKey:@"kind"];
+            [_bodyDic setObject:@"1" forKey:@"type"];
+            
+            if (![self.title isEqualToString:@"注册"]) {//忘记密码跳转来
+                [MBProgressHUD showMessag:@"修改中..." toView:self.view];
+                [RequestData POST:USER_FIND_PSW parameters:_bodyDic complete:^(NSDictionary *responseDic) {
                     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                    if ([self.title isEqualToString:@"忘记密码"]) {//忘记密码
-                        MyLog(@"手机号码没有注册");
-                        return;
-                    }
-                    YRRegistPswController *pswVC = [[YRRegistPswController alloc]init];
-                    pswVC.tellNum = self.tellText.text;
-                    pswVC.codeNum = self.codeText.text;
-                    [self.navigationController pushViewController:pswVC animated:YES];
-                    
+                    [MBProgressHUD showSuccess:@"密码修改成功" toView:GET_WINDOW];
+                    [self.navigationController popViewControllerAnimated:YES];
                 } failed:^(NSError *error) {
                     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                    sender.userInteractionEnabled = YES;
-                    if ([self.title isEqualToString:@"忘记密码"]) {//忘记密码
-                        YRRegistPswController *pswVC = [[YRRegistPswController alloc]init];
-                        pswVC.tellNum = self.tellText.text;
-                        pswVC.codeNum = self.codeText.text;
-                        [self.navigationController pushViewController:pswVC animated:YES];
-                        return;
-                    }
-                    [MBProgressHUD showError:@"手机号码已注册" toView:GET_WINDOW];
+                    sender.userInteractionEnabled = NO;
                 }];
+                
+            }else{//注册界面跳转而来
+                [MBProgressHUD showMessag:@"注册中..." toView:self.view];
+                [RequestData POST:USER_REGIST parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+                    MyLog(@"%@",responseDic);
+                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                    [self saveMsg:responseDic];
+                    sender.userInteractionEnabled = NO;
+                } failed:^(NSError *error) {
+                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                    sender.userInteractionEnabled = NO;
+                }];
+                
             }
-            else
-            {
-                MyLog(@"验证失败");
-                [MBProgressHUD showError:@"验证失败" toView:self.view];
-                sender.userInteractionEnabled = YES;
-                [MBProgressHUD hideAllHUDsForView:self.view animated:self.view];
-            }
+            
+            
+        } error:^(NSString *errorMsg) {
+            [MBProgressHUD showError:errorMsg toView:GET_WINDOW];
+            sender.userInteractionEnabled = NO;
         }];
     } error:^(NSString *errorMsg) {
-        NSLog(@"%@",errorMsg);
         sender.userInteractionEnabled = YES;
         [MBProgressHUD showError:errorMsg toView:self.view];
     }];
 }
-
+-(void)saveMsg:(NSDictionary *)responseDic
+{
+    YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:responseDic];
+    NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];
+    [userDefaults setObject:responseDic forKey:@"user"];
+    [userDefaults setObject:@{@"tel":self.tellText.text,@"psw":self.passwordTextField.text} forKey:@"loginCount"];
+    [NSUserDefaults resetStandardUserDefaults];
+    
+    KUserManager = user;
+    //连接融云服务器
+    [[RCIM sharedRCIM] connectWithToken:KUserManager.rongToken success:^(NSString *userId) {
+        // Connect 成功
+        NSLog(@"融云链接成功");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            YRPerfectUserMsgController *personalVC = [[YRPerfectUserMsgController alloc]init];
+            personalVC.title = @"完善个人资料";
+            [self.navigationController pushViewController:personalVC animated:YES];
+            [MBProgressHUD showSuccess:@"注册成功" toView:GET_WINDOW];
+        });
+    }
+                                  error:^(RCConnectErrorCode status) {
+                                      NSLog(@"error_status = %ld",status);
+                                  }
+                         tokenIncorrect:^() {
+                             NSLog(@"token incorrect");
+                         }];
+}
 #pragma mark - 服务选项代理
 //跳转到服务协议界面
 -(void)readPolicyViewTurnToPolicyVC

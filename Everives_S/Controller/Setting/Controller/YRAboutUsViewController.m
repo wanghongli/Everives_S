@@ -51,7 +51,8 @@
     {
         //得到分享到的平台名
         NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
-        if (!(KUserManager.first&3)) {
+        //如果是第一次分享
+        if (!(KUserManager.first&2)) {
             [RequestData GET:ACTIVITY_FIRST parameters:@{@"type":@"1"} complete:^(NSDictionary *responseDic) {
                 NSString *message = [NSString stringWithFormat:@"第一次分享，系统奖励学车币%@个",responseDic[@"info"]];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享成功" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"查看我的学车币", nil];

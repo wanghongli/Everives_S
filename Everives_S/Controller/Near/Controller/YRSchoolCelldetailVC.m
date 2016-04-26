@@ -13,6 +13,7 @@
 #import <MJExtension.h>
 #import "YRPictureModel.h"
 #import "ZHScrollImageView.h"
+#import "YRGoldenTeacherVC.h"
 
 static CGFloat headerHeight = 213;
 static CGFloat cellHeight = 60;
@@ -136,6 +137,7 @@ static CGFloat cellHeight = 60;
         }
         case 7:{
             cell.textLabel.text = [NSString stringWithFormat:@"%@",@"金牌教练"];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         }
         default:
@@ -147,6 +149,18 @@ static CGFloat cellHeight = 60;
     }
     return cell;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //金牌教练
+    if (indexPath.row == 7) {
+        YRGoldenTeacherVC *goldenTeacherVC = [[YRGoldenTeacherVC alloc] init];
+        goldenTeacherVC.placeID = _placeID;
+        [self.navigationController pushViewController:goldenTeacherVC animated:YES];
+    }
+}
+
+#pragma mark - Getters
 -(ZHScrollImageView *)headerView{
     if (!_headerView) {
         _headerView = [[ZHScrollImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, headerHeight)];

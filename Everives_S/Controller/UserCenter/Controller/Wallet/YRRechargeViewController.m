@@ -141,7 +141,7 @@
     return _tableFooter;
 }
 -(void)sureBtnClick:(UIButton*)sender{
-    if (!_numberInput.text||[_numberInput.text integerValue] == 0) {
+    if ([_numberInput.text integerValue] == 0) {
         return;
     }
     NSDictionary* dict = @{

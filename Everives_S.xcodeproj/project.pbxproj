@@ -337,6 +337,7 @@
 		16D3FC2A1CC0E401007F73CF /* ZHScrollImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D3FC291CC0E401007F73CF /* ZHScrollImageView.m */; };
 		16D4DB1F1CCDEA9B0006B10A /* UIColor+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D4DB1E1CCDEA9B0006B10A /* UIColor+Tool.m */; };
 		16D999AB1CCC71530027BBEF /* YRWithDrawalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D999AA1CCC71530027BBEF /* YRWithDrawalViewController.m */; };
+		16DDF2AC1CCF2C2F003F168E /* YRGoldenTeacherVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16DDF2AB1CCF2C2F003F168E /* YRGoldenTeacherVC.m */; };
 		16E22FB31CCA1A8000ED439A /* YRActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E22FB21CCA1A8000ED439A /* YRActivityModel.m */; };
 		16E22FB61CCA2FBD00ED439A /* YROrderPartnerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E22FB51CCA2FBD00ED439A /* YROrderPartnerModel.m */; };
 		16F8A8BA1CBF8630004EBC57 /* YRSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F8A8B91CBF8630004EBC57 /* YRSliderView.m */; };
@@ -986,6 +987,8 @@
 		16D4DB1E1CCDEA9B0006B10A /* UIColor+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Tool.m"; sourceTree = "<group>"; };
 		16D999A91CCC71530027BBEF /* YRWithDrawalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRWithDrawalViewController.h; sourceTree = "<group>"; };
 		16D999AA1CCC71530027BBEF /* YRWithDrawalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRWithDrawalViewController.m; sourceTree = "<group>"; };
+		16DDF2AA1CCF2C2F003F168E /* YRGoldenTeacherVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRGoldenTeacherVC.h; sourceTree = "<group>"; };
+		16DDF2AB1CCF2C2F003F168E /* YRGoldenTeacherVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRGoldenTeacherVC.m; sourceTree = "<group>"; };
 		16E22FB11CCA1A8000ED439A /* YRActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRActivityModel.h; sourceTree = "<group>"; };
 		16E22FB21CCA1A8000ED439A /* YRActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRActivityModel.m; sourceTree = "<group>"; };
 		16E22FB41CCA2FBD00ED439A /* YROrderPartnerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YROrderPartnerModel.h; sourceTree = "<group>"; };
@@ -2270,6 +2273,8 @@
 				1694F5821CA25DF4009A4C21 /* YRReservationChoosePlaceVC.m */,
 				1625BF4F1CB74CFE006A2A50 /* YROrderConfirmViewController.h */,
 				1625BF501CB74CFE006A2A50 /* YROrderConfirmViewController.m */,
+				16DDF2AA1CCF2C2F003F168E /* YRGoldenTeacherVC.h */,
+				16DDF2AB1CCF2C2F003F168E /* YRGoldenTeacherVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2886,6 +2891,7 @@
 				032C44251CB272650022C2F9 /* YRMyErrorController.m in Sources */,
 				037F8E711C8D5FC50057BF6C /* JKImagePickerController.m in Sources */,
 				165991E31CB65BB500338264 /* YRReservationCell.m in Sources */,
+				16DDF2AC1CCF2C2F003F168E /* YRGoldenTeacherVC.m in Sources */,
 				032C46101CB392C50022C2F9 /* YRChooseMenuView.m in Sources */,
 				03FF14751C9F866100AEBB75 /* YRMyCollectionController.m in Sources */,
 				037F8E321C884DBC0057BF6C /* PublicCheckMsgModel.m in Sources */,

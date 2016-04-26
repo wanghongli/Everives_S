@@ -7,12 +7,14 @@
 //
 
 #import "YRRechargeViewController.h"
+#import <Pingpp.h>
 
 @interface YRRechargeViewController ()<UITextFieldDelegate>
 @property(nonatomic,strong) UIView *tableFooter;
-@property(nonatomic,assign) NSInteger seletedPayWay;// 0微信 1支付宝 默认是0
+@property(nonatomic,strong) UITextField *numberInput;
 @property(nonatomic,strong) UIImageView *wechatRightImage;
 @property(nonatomic,strong) UIImageView *aliRightImage;
+@property(nonatomic,strong) NSString *channel;
 @end
 
 @implementation YRRechargeViewController
@@ -42,17 +44,17 @@
         {
             UILabel *titleL = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, 100, 50)];
             titleL.text = @"充值金额";
-            UITextField *numberInput = [[UITextField alloc] initWithFrame:CGRectMake(120, 16, kScreenWidth-200, 35)];
-            numberInput.leftView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, 16, 16)];
-            numberInput.leftViewMode = UITextFieldViewModeAlways;
-            numberInput.layer.borderWidth = 0.5;
-            numberInput.layer.borderColor = [UIColor lightGrayColor].CGColor;
-            numberInput.layer.cornerRadius = 5;
-            numberInput.keyboardType = UIKeyboardTypeNumberPad;
-            numberInput.placeholder = @"100枚 = 100元";
-            numberInput.delegate = self;
+            _numberInput = [[UITextField alloc] initWithFrame:CGRectMake(120, 16, kScreenWidth-200, 35)];
+            _numberInput.leftView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, 16, 16)];
+            _numberInput.leftViewMode = UITextFieldViewModeAlways;
+            _numberInput.layer.borderWidth = 0.5;
+            _numberInput.layer.borderColor = [UIColor lightGrayColor].CGColor;
+            _numberInput.layer.cornerRadius = 5;
+            _numberInput.keyboardType = UIKeyboardTypeNumberPad;
+            _numberInput.placeholder = @"100枚 = 100元";
+            _numberInput.delegate = self;
             [cell.contentView addSubview:titleL];
-            [cell.contentView addSubview:numberInput];
+            [cell.contentView addSubview:_numberInput];
             break;
         }
         case 1:
@@ -112,11 +114,11 @@
         return;
     }
     if(indexPath.row == 1){//微信
-        _seletedPayWay = 0;
+        _channel = @"wx";
         _wechatRightImage.image = [UIImage imageNamed:@"Pay_Selected"];
         _aliRightImage.image = [UIImage imageNamed:@"Pay_NotSelected"];
     }else{//支付宝
-        _seletedPayWay = 1;
+        _channel = @"alipay";
         _wechatRightImage.image = [UIImage imageNamed:@"Pay_NotSelected"];
         _aliRightImage.image = [UIImage imageNamed:@"Pay_Selected"];
     }
@@ -139,14 +141,40 @@
     return _tableFooter;
 }
 -(void)sureBtnClick:(UIButton*)sender{
+    if (!_numberInput.text||[_numberInput.text integerValue] == 0) {
+        return;
+    }
+    NSDictionary* dict = @{
+                           @"channel" : _channel?:@"wx",
+                           @"amount"  : _numberInput.text
+                           };
+    
+    [RequestData POST:MONEY_CHARGE parameters:dict complete:^(NSDictionary *responseDic) {
+        NSString *charge = [responseDic mj_JSONString];
+        [Pingpp createPayment:charge viewController:self appURLScheme:@"demoapp001" withCompletion:^(NSString *result, PingppError *error) {
+            NSLog(@"completion block: %@", result);
+            if (error == nil) {
+                NSLog(@"PingppError is nil");
+            } else {
+                NSLog(@"PingppError: code=%lu msg=%@", (unsigned  long)error.code, [error getMsg]);
+            }
+            
+        }];
+    } failed:^(NSError *error) {
+        
+    }];
     
 }
 
 #pragma mark - UITextFieldDelegate
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (range.location == 0 && [string  hasPrefix:@"0"]) {
+        return NO;
+    }
     NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
     NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
     return [string isEqualToString:filtered];
 }
+
 
 @end

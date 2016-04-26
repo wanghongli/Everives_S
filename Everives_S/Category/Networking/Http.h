@@ -11,7 +11,9 @@
 
 #define QINIU_SERVER_URL @"http://7xr6ql.com1.z0.glb.clouddn.com/"  //七牛服务器地址
 
-#define SERVER_URL @"http://120.27.55.225/drive.php" // 正式链接
+#define SERVER_URL @"http://114.215.145.224/index.php" // 正式链接
+//#define SERVER_URL @"http://120.27.55.225/drive.php"
+
 #define SERVER_URL_GET_QUESTION @"http://120.27.55.225/" // 获取题库链接
 
 //用户通用模块
@@ -83,4 +85,8 @@
 //活动
 #define  ACTIVITY_FIRST @"/activity/first"  //type参数	2注册后完善信息 1分享 0充值
 #define ACTIVITY_ACTIVITY @"/activity/activity" //活动列表
+
+//充值提现
+#define MONEY_CHARGE @"/money/Charge"  //充值
+
 #endif

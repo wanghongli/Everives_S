@@ -164,15 +164,15 @@
 #define kWeChatID @"wxb538b509999cc37e"
 #define kWeChatSecret @"05f996f5c4c54b4cc726cd8e354eaa50"
 //SMSSDK官网公共key
-#define kSMSSDKappkey @"f3fc6baa9ac4"
+#define kSMSSDKappkey @"120f1ff5728f4"
 #define kSMSSDKappSecrect @"7f3dedcb36d92deebcb373af921d635a"
 //友盟推送
 #define kUMengAppKey @"5705eecf67e58e8850000269"
-#define kUMengAppSecret @"cndnbyxmbdk8nokqcszuyohikgm9nv2c"
+#define kUMengAppSecret @"689a1443d28890d6f6c5a817db933712"
 //高德地图
 #define kAMapAppKey @"89f024e8967821905f51343fe4e4a652"
 //融云
-#define kRCIMAppKey @"z3v5yqkbvtd30"
-#define kRCIMAppSecret @"vGgJSBmkMo"
+#define kRCIMAppKey @"3argexb6rzove"
+#define kRCIMAppSecret @"wHamqJYecOEvIQ"
 //ping++
 #define kPingSDKIdentifier @"app_WLez1OnnD88CWrHa"

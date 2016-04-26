@@ -11,14 +11,10 @@
 #import "YRYJSecondClassController.h"
 #import "YRYJThirdClassController.h"
 #import "YRYJFourthClassController.h"
-#import "YRYJNavigationController.h"
-
 #import "YRQuestionObj.h"
 #import "FMDB.h"
 #import "YRFMDBObj.h"
-
 #import "YRTeacherMakeCommentController.h"
-#import "REFrostedViewController.h"
 #define CZVersionKey @"version"
 @interface YRYJLearnToDriveController ()
 @property (nonatomic, strong) FMDatabaseQueue *databaseQueue;
@@ -188,9 +184,7 @@ FMDatabase *db;
     }
 }
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    NSLog(@"contentoffsetx %f",scrollView.contentOffset.x);
-    NSLog(@"velocity %f",[scrollView.panGestureRecognizer velocityInView:self.view].x);
-    NSLog(@"translation %f",[scrollView.panGestureRecognizer translationInView:self.view].x);
+   
     if (scrollView.contentOffset.x<=0) {
         if ([scrollView.panGestureRecognizer velocityInView:self.view].x>0) {
             [self.frostedViewController panGestureRecognized:scrollView.panGestureRecognizer];
@@ -200,5 +194,10 @@ FMDatabase *db;
         }
     }
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    self.frostedViewController.panGestureEnabled = YES;
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    self.frostedViewController.panGestureEnabled = NO;
+}
 @end

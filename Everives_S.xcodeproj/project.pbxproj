@@ -100,6 +100,7 @@
 		0340DFA21CC87EDE00CF9884 /* YRFeedBackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0340DFA01CC87EDE00CF9884 /* YRFeedBackController.xib */; };
 		0340E07F1CCDBF0B00CF9884 /* YRLearnPartnerObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 0340E07E1CCDBF0B00CF9884 /* YRLearnPartnerObj.m */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
+		036FF4691CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 036FF4681CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
 		037C929F1C8FF274005B41BF /* YRCircleHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929E1C8FF274005B41BF /* YRCircleHeadView.m */; };
@@ -515,6 +516,8 @@
 		0340E07E1CCDBF0B00CF9884 /* YRLearnPartnerObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPartnerObj.m; sourceTree = "<group>"; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
+		036FF4671CCF06AC00F9ECD3 /* UIBarButtonItem+Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Item.h"; sourceTree = "<group>"; };
+		036FF4681CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Item.m"; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
 		037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCircleCommentCell.m; sourceTree = "<group>"; };
 		037C929A1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGFreshCatchDetailCommentView.h; sourceTree = "<group>"; };
@@ -1902,6 +1905,8 @@
 		1600EB9E1C87E8A5001919EB /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				036FF4671CCF06AC00F9ECD3 /* UIBarButtonItem+Item.h */,
+				036FF4681CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m */,
 				166939F71C9A3E9A00C7ECF2 /* Pinyin */,
 				1645D8981C9511DD0058D480 /* DistanceToolFuc.h */,
 				1645D8991C9511DD0058D480 /* DistanceToolFuc.m */,
@@ -2767,6 +2772,7 @@
 				1665D0E61CA8C9030064A103 /* YRStudentMoneyDetailVC.m in Sources */,
 				16C5458E1C98F20700AE5152 /* YRSearchFriendVC.m in Sources */,
 				037F8EB71C8E6D350057BF6C /* MJPhotoView.m in Sources */,
+				036FF4691CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m in Sources */,
 				032C44131CAE58440022C2F9 /* FMDatabaseQueue.m in Sources */,
 				037F8E771C8D5FC50057BF6C /* UIView+JKPicker.m in Sources */,
 				037F8E161C8826750057BF6C /* YRYJLearnToDriveController.m in Sources */,

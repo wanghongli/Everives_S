@@ -37,7 +37,12 @@
     if (KUserManager.id) {
         [self.tableView reloadData];
     }
-    
+    self.frostedViewController.panGestureEnabled = YES;
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.frostedViewController.panGestureEnabled = NO;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -10,6 +10,7 @@
 #import "YRExamScorePercentView.h"
 #import "YRMyErrorController.h"
 #import "YRPublicMethod.h"
+#import "UIBarButtonItem+Item.h"
 #define kImgW 120
 #define kImgH 160
 #define kToTopDestace 20
@@ -34,8 +35,8 @@
     [self buildUI];
     [self.errorBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.shareBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"<返回" style:UIBarButtonItemStyleDone target:self action:@selector(backClick)];
-    
+    UIBarButtonItem *left = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"navigationbar_back"] highImage:[UIImage imageNamed:@"navigationbar_back_highlighted"] target:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = left;
     [self saveAchievement];
 }
 #pragma mark - 保存成绩

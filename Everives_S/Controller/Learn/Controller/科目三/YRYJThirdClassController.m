@@ -188,7 +188,7 @@
 {
     if (!_noMsgView) {
         
-        _noMsgView = [[YRLearnNoMsgView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, self.tableView.height+44)];
+        _noMsgView = [[YRLearnNoMsgView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64-48)];
         _noMsgView.delegate = self;
         [self.view addSubview:_noMsgView];
     }

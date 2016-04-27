@@ -134,7 +134,7 @@
             }
             sender.enabled = NO;
             sender.backgroundColor = [UIColor lightGrayColor];
-            [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:ws.tellText.text zone:@"86" customIdentifier:@"空钩的验证码" result:^(NSError *error) {
+            [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:ws.tellText.text zone:@"86" customIdentifier:@"蚁人约驾的验证码" result:^(NSError *error) {
                 if (!error)
                 {
                     MyLog(@"验证码发送成功");
@@ -209,10 +209,7 @@
                     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                     sender.userInteractionEnabled = NO;
                 }];
-                
             }
-            
-            
         } error:^(NSString *errorMsg) {
             [MBProgressHUD showError:errorMsg toView:GET_WINDOW];
             sender.userInteractionEnabled = NO;

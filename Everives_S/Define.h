@@ -165,7 +165,7 @@
 #define kWeChatSecret @"05f996f5c4c54b4cc726cd8e354eaa50"
 //SMSSDK官网公共key
 #define kSMSSDKappkey @"120f1ff5728f4"
-#define kSMSSDKappSecrect @"7f3dedcb36d92deebcb373af921d635a"
+#define kSMSSDKappSecrect @"689a1443d28890d6f6c5a817db933712"
 //友盟推送
 #define kUMengAppKey @"5705eecf67e58e8850000269"
 #define kUMengAppSecret @"689a1443d28890d6f6c5a817db933712"

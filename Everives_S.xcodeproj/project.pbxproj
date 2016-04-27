@@ -331,6 +331,7 @@
 		16C545951C98F8D400AE5152 /* YRAddFriendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C545931C98F8D400AE5152 /* YRAddFriendVC.m */; };
 		16C5459D1C995A6400AE5152 /* YRSearchFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C5459B1C995A6400AE5152 /* YRSearchFriendCell.m */; };
 		16C5459E1C995A6400AE5152 /* YRSearchFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16C5459C1C995A6400AE5152 /* YRSearchFriendCell.xib */; };
+		16C609361CD04F7B00F3B88E /* YRSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C609351CD04F7B00F3B88E /* YRSlider.m */; };
 		16D096081C89236900FF4A81 /* YRUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096071C89236900FF4A81 /* YRUserCenterViewController.m */; };
 		16D0960B1C89345D00FF4A81 /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D0960A1C89345D00FF4A81 /* RequestData.m */; };
 		16D096141C89682700FF4A81 /* YRReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16D096131C89682700FF4A81 /* YRReservationViewController.m */; };
@@ -975,6 +976,8 @@
 		16C5459A1C995A6400AE5152 /* YRSearchFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSearchFriendCell.h; sourceTree = "<group>"; };
 		16C5459B1C995A6400AE5152 /* YRSearchFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSearchFriendCell.m; sourceTree = "<group>"; };
 		16C5459C1C995A6400AE5152 /* YRSearchFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRSearchFriendCell.xib; sourceTree = "<group>"; };
+		16C609341CD04F7B00F3B88E /* YRSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSlider.h; sourceTree = "<group>"; };
+		16C609351CD04F7B00F3B88E /* YRSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSlider.m; sourceTree = "<group>"; };
 		16D096061C89236900FF4A81 /* YRUserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserCenterViewController.h; sourceTree = "<group>"; };
 		16D096071C89236900FF4A81 /* YRUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserCenterViewController.m; sourceTree = "<group>"; };
 		16D096091C89345D00FF4A81 /* RequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestData.h; sourceTree = "<group>"; };
@@ -2318,6 +2321,8 @@
 				16F8A8B91CBF8630004EBC57 /* YRSliderView.m */,
 				167E248F1CC508520014DA14 /* YRLineView.h */,
 				167E24901CC508520014DA14 /* YRLineView.m */,
+				16C609341CD04F7B00F3B88E /* YRSlider.h */,
+				16C609351CD04F7B00F3B88E /* YRSlider.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2727,6 +2732,7 @@
 				032C441A1CAE73490022C2F9 /* YRFMDBObj.m in Sources */,
 				03228D331CA4D38700890DC6 /* SDLoopProgressView.m in Sources */,
 				032C43FA1CACFEBF0022C2F9 /* XYPieChart.m in Sources */,
+				16C609361CD04F7B00F3B88E /* YRSlider.m in Sources */,
 				03A8CA511CA272F4007AB152 /* YRTeacherSectionSecoView.m in Sources */,
 				031D50391CA13A56000E1303 /* YRAppointmentHeadView.m in Sources */,
 				03A25F0F1C925848000196A6 /* YRMenuHeadView.m in Sources */,

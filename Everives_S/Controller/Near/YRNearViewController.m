@@ -62,7 +62,6 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.frostedViewController.panGestureEnabled = YES;
     self.title = @"附近";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu_icon"] style:UIBarButtonItemStylePlain target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Neighborhood_List"] style:UIBarButtonItemStylePlain target:self action:@selector(changeViewClick:)];
@@ -241,6 +240,17 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         }
     }
 }
+-(void)sliderTapped:(UITapGestureRecognizer *)g{
+    UISlider *s =_slider.slider;
+    if (s.highlighted)
+        return; // tap on thumb, let slider deal with it
+    CGPoint pt = [g locationInView: s];
+    CGFloat percentage = pt.x / s.bounds.size.width;
+    CGFloat delta = percentage * (s.maximumValue - s.minimumValue);
+    CGFloat value = s.minimumValue + delta;
+    [s setValue:value animated:NO];
+    [self sliderDrag:s];
+}
 -(void)addEdgeGesture
 {
     UIScreenEdgePanGestureRecognizer *screenEdagePan = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(screenEdgePanGesture:)];
@@ -248,7 +258,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [_mapView addGestureRecognizer:screenEdagePan];
 }
 
--(void)screenEdgePanGesture:(UIScreenEdgePanGestureRecognizer *)recognizer
+-(void)screenEdgePanGesture:(UIPanGestureRecognizer *)recognizer
 {
     
     [self.frostedViewController panGestureRecognized:recognizer];
@@ -464,7 +474,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(UIButton *)myLocationBtn{
     if (!_myLocationBtn) {
-        _myLocationBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, kScreenHeight - 60, 50, 50)];
+        _myLocationBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, kScreenHeight - 140, 50, 50)];
         [_myLocationBtn setImage:[UIImage imageNamed:@"Neighborhood_Location"] forState:UIControlStateNormal];
         [_myLocationBtn addTarget:self action:@selector(myLocationBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -472,11 +482,26 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(YRSliderView *)slider{
     if (!_slider) {
-        _slider = [[YRSliderView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 70, kScreenWidth, 70)];
+        _slider = [[YRSliderView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 80, kScreenWidth, 80)];
         _slider.hidden = YES;
         [_slider.slider addTarget:self action:@selector(sliderDrag:) forControlEvents:UIControlEventTouchUpInside];
-        [_slider.slider addTarget:self action:@selector(sliderDrag:) forControlEvents:UIControlEventTouchUpOutside];
+         UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sliderTapped:)];
+        [_slider.slider addGestureRecognizer:gr];
+        
+        UIPanGestureRecognizer *pangr = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panOnSlider:)];
+        [_slider addGestureRecognizer:pangr];
     }
     return _slider;
+}
+-(void)panOnSlider:(UIPanGestureRecognizer*)gesture{
+    if (gesture.state == UIGestureRecognizerStateChanged) {
+        CGPoint movedPoint = [gesture translationInView:self.view];
+        CGFloat scale = kScreenWidth/(kScreenWidth-160);
+        float value = movedPoint.x/scale;
+        [_slider.slider setValue:value animated:YES];
+    }
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        [self sliderDrag:_slider.slider];
+    }
 }
 @end

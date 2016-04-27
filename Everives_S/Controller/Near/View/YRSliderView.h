@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YRSlider.h"
 
 @interface YRSliderView : UIView
-@property(nonatomic,strong) UISlider *slider;
+@property(nonatomic,strong) YRSlider *slider;
 @property(nonatomic,strong) UILabel *minLab;
 @property(nonatomic,strong) UILabel *maxLab;
 @end
+

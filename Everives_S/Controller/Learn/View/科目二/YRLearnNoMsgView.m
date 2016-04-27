@@ -28,7 +28,7 @@
 -(void)buildUI
 {
     UIImageView *imgview = [[UIImageView alloc]init];
-    imgview.image = [UIImage imageNamed:@"learn_no_msg"];
+    imgview.image = [UIImage imageNamed:@"User_Identify_Ing"];
     [self addSubview:imgview];
     _imgView = imgview;
     
@@ -57,25 +57,28 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    _imgView.frame = CGRectMake(self.width*0.2, self.height/7, self.width*0.6, self.width*0.6);
-    _describLabel.frame = CGRectMake(0, CGRectGetMaxY(_imgView.frame)+5, kScreenWidth, 20);
-    _describLabel.text = _btnTitle;
-    
+    _imgView.frame = CGRectMake(0, 0, self.width, self.height);
+    _describLabel.frame = CGRectMake(0, self.height/7+self.width*0.6+5, kScreenWidth, 20);
+//    _describLabel.text = _btnTitle;
     
     NSString *titleString;
     if ([_btnTitle isEqualToString:@"您的信息正在审核当中"]) {
+        _imgView.image = [UIImage imageNamed:@"User_Identify_Ing"];
         titleString = @"先去驾友圈看看吧!";
     }else if ([_btnTitle isEqualToString:@"抱歉，您还未进行信息认证"]){
         titleString = @"现在就去认证吧!";
+        _imgView.image = [UIImage imageNamed:@"User_Identify_No"];
     }else if ([_btnTitle isEqualToString:@"审核失败"]){
+        _imgView.image = [UIImage imageNamed:@"User_Identify_Ing"];
         titleString = @"重新认证";
     }
     
     CGSize btnSize = [titleString sizeWithFont:_turnBtn.titleLabel.font maxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
     [_turnBtn setTitle:titleString forState:UIControlStateNormal];
     _turnBtn.frame = CGRectMake(kScreenWidth/2-btnSize.width/2, self.height-self.height/7-40, btnSize.width, btnSize.height);
+    [self bringSubviewToFront:_turnBtn];
     
-    _lineView.frame = CGRectMake(_turnBtn.x, CGRectGetMaxY(_turnBtn.frame)+2, _turnBtn.width, 1);
+    _lineView.frame = CGRectMake(_turnBtn.x, CGRectGetMaxY(_turnBtn.frame)+2, _turnBtn.     width, 1);
 }
 -(void)btnClick
 {

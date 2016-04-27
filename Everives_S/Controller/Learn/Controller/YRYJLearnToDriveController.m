@@ -15,6 +15,7 @@
 #import "FMDB.h"
 #import "YRFMDBObj.h"
 #import "YRTeacherMakeCommentController.h"
+#import "UIBarButtonItem+Item.h"
 #define CZVersionKey @"version"
 @interface YRYJLearnToDriveController ()
 @property (nonatomic, strong) FMDatabaseQueue *databaseQueue;
@@ -37,7 +38,7 @@ FMDatabase *db;
     self.tagItemSize = CGSizeMake(self.view.frame.size.width/4, 48);
     self.title = @"蚁人学车";
     self.frostedViewController.panGestureEnabled = YES;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu_icon"] style:UIBarButtonItemStylePlain target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"menu_icon"] highImage:[UIImage imageNamed:@"menu_icon"] target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
     self.backgroundColor = [UIColor whiteColor];
     
     NSArray *titleArray = @[

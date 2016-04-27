@@ -24,6 +24,7 @@
 #import "YRMapFMDB.h"
 #import "YRSliderView.h"
 #import <MJRefresh.h>
+#import "UIImage+Tool.h"
 //定义三个table的类型
 typedef NS_ENUM(NSUInteger,NearTableType){
     NearTableTypeSchool = 1,
@@ -90,6 +91,9 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [super viewWillDisappear:animated];
     //清除掉状态字段，防止普通预约也误认为是拼教练
     _isShareOrder = NO;
+    
+}
+-(void)dealloc{
     //清除所有annotation,因为地图是单例生命周期比VC长
     [_mapView removeAnnotations:_schoolForMap];
     [_mapView removeAnnotations:_coachForMap];
@@ -172,6 +176,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 
 - (void)backBtnClick:(UIBarButtonItem*)sender{
+    [self.view endEditing:YES];
     [self.frostedViewController presentMenuViewController];
 }
 
@@ -284,6 +289,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         }
         [self.coachFillterView removeMyObserver];
     }
+    _myLocationBtn.frame = CGRectMake(5, kScreenHeight - 80, 50, 50);
 }
 -(void)coachBtnClick:(UIButton*)sender{
     if (sender.tag == _seletedBefore) {
@@ -303,6 +309,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         }
         [self.schoolFillterView removeMyObserver];
     }
+    _myLocationBtn.frame = CGRectMake(5, kScreenHeight - 140, 50, 50);
 }
 -(void)studentBtnClick:(UIButton*)sender{
     if (sender.tag == _seletedBefore) {
@@ -319,6 +326,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     if (!_isMapView) {
         [self.view addSubview:self.studentTable];
     }
+    _myLocationBtn.frame = CGRectMake(5, kScreenHeight - 80, 50, 50);
 }
 -(void)removeLastTable{
     [self.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -372,6 +380,14 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     }
     [_mapView addAnnotations:searchRes];
     
+}
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    searchBar.text = @"";
+}
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    if (searchBar.text.length == 0) {
+        searchBar.text = @"搜索";
+    }
 }
 #pragma mark - CallOutViewDelegate
 -(void)callOutViewClickedKind:(NSInteger)kind modelID:(NSString*) modelID{
@@ -447,9 +463,21 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(UISearchBar *)searchBar{
     if (!_searchBar) {
-        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44)];
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(20, 112, kScreenWidth-40, 44)];
         _searchBar.delegate = self;
-        _searchBar.searchBarStyle = UISearchBarStyleProminent;
+        _searchBar.searchBarStyle = UISearchBarStyleMinimal;
+        _searchBar.showsScopeBar = YES;
+        _searchBar.layer.cornerRadius = 22;
+        _searchBar.layer.masksToBounds = YES;
+        _searchBar.text = @"搜索";
+        UIImage *image = [UIImage imageNamed:@"NearMap_Search"];
+        [_searchBar setSearchFieldBackgroundImage:image forState:UIControlStateNormal];
+        UIImageView *left = [[UIImageView alloc] initWithFrame:CGRectMake(-10, 0, 22, 44)];
+        left.image = [UIImage imageNamed:@"LeftCircle"];
+        [_searchBar addSubview:left];
+        UIImageView *right = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth-50, 0, 22, 44)];
+        right.image = [UIImage imageNamed:@"RightCircle"];
+        [_searchBar addSubview:right];
     }
     return _searchBar;
 
@@ -474,7 +502,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(UIButton *)myLocationBtn{
     if (!_myLocationBtn) {
-        _myLocationBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, kScreenHeight - 140, 50, 50)];
+        _myLocationBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, kScreenHeight - 80, 50, 50)];
         [_myLocationBtn setImage:[UIImage imageNamed:@"Neighborhood_Location"] forState:UIControlStateNormal];
         [_myLocationBtn addTarget:self action:@selector(myLocationBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }

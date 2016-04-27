@@ -25,8 +25,9 @@
 }
 -(UIButton *)schoolBtn{
     if (!_schoolBtn) {
-        _schoolBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2-150, 0, 60, 44)];
+        _schoolBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2-110, 0, 60, 44)];
         [_schoolBtn setTitle:@"驾校" forState:UIControlStateNormal];
+        _schoolBtn.titleLabel.font = kFontOfLetterBig;
         [_schoolBtn setTitleColor:_selectedBtnNum==1?[UIColor blackColor]:kTextBlackColor forState:UIControlStateNormal];
         [_schoolBtn addTarget:self action:@selector(schoolBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -36,6 +37,7 @@
     if (!_coachBtn) {
         _coachBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2-30, 0, 60, 44)];
         [_coachBtn setTitle:@"教练" forState:UIControlStateNormal];
+        _coachBtn.titleLabel.font = kFontOfLetterBig;
         [_coachBtn setTitleColor:_selectedBtnNum==2?[UIColor blackColor]:kTextBlackColor forState:UIControlStateNormal];
         [_coachBtn addTarget:self action:@selector(coachBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -43,8 +45,9 @@
 }
 -(UIButton *)studentBtn{
     if (!_studentBtn) {
-        _studentBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2+90, 0, 60, 44)];
+        _studentBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2+50, 0, 60, 44)];
         [_studentBtn setTitle:@"驾友" forState:UIControlStateNormal];
+        _studentBtn.titleLabel.font = kFontOfLetterBig;
         [_studentBtn setTitleColor:_selectedBtnNum==1?[UIColor blackColor]:kTextBlackColor forState:UIControlStateNormal];
         [_studentBtn addTarget:self action:@selector(studentBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -52,14 +55,14 @@
 }
 -(UIView *)lineView{
     if (!_lineView) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2-160+(_selectedBtnNum-1)*120, 42, 80, 2)];
-        _lineView.backgroundColor = [UIColor redColor];
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2-110+(_selectedBtnNum-1)*80, 42, 60, 2)];
+        _lineView.backgroundColor = kCOLOR(50, 50, 50);
     }
     return _lineView;
 }
 -(void)schoolBtnClick:(UIButton*)sender{
     [UIView animateWithDuration:0.4 animations:^{
-        _lineView.frame = CGRectMake(kScreenWidth/2-160, 42, 80, 2);
+        _lineView.frame = CGRectMake(kScreenWidth/2-110, 42, 60, 2);
     }];
     [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_coachBtn setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];
@@ -70,7 +73,7 @@
 }
 -(void)coachBtnClick:(UIButton*)sender{
     [UIView animateWithDuration:0.4 animations:^{
-        _lineView.frame = CGRectMake(kScreenWidth/2-40, 42, 80, 2);
+        _lineView.frame = CGRectMake(kScreenWidth/2-30, 42, 60, 2);
     }];
     [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_schoolBtn setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];
@@ -81,7 +84,7 @@
 }
 -(void)studentBtnClick:(UIButton*)sender{
     [UIView animateWithDuration:0.4 animations:^{
-        _lineView.frame = CGRectMake(kScreenWidth/2+80, 42, 80, 2);
+        _lineView.frame = CGRectMake(kScreenWidth/2+50, 42, 60, 2);
     }];
     [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_coachBtn setTitleColor:kTextlightGrayColor forState:UIControlStateNormal];

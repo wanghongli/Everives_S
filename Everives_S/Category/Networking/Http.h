@@ -35,13 +35,13 @@
 #define STUDENT_GET_INFO @"/student/info" //获取本人信息
 #define STUDENT_GET_OTHERSINFO @"/student/info/" //获取他人信息
 #define STUDENT_BRIEF @"/account/brief/id" //获取简略信息
-#define STUDENT_SEARCH_USER @"/student/user/" //搜索学员
+#define STUDENT_SEARCH_USER @"/info/user/" //搜索学员
 #define FRIEND_FRIENDS @"/friend/friends" //我的好友
 #define FRIEND_FRIEND @"/friend/friend" //添加好友 接id删除好友
 #define STUDENT_NEARBY @"/info/nearbystudent" //附近学员列表
 #define STUDENT_NEARTEACHER @"/info/nearTeacher" //教练列表
 #define STUDENT_PLACES @"/info/place" //场地列表
-#define STUDENT_CONTACT @"/account/contact"  //手机通讯录
+#define STUDENT_CONTACT @"/info/contact"  //手机通讯录
 #define STUDENT_TEACHERS @"/student/teachers"  //关注的教练
 #define STUDENT_NEARBYPOINT @"/info/nearbyPoint" //获取地图描点
 #define STUDENT_MONEYLOG @"/Account/moneyLog"  //资金记录

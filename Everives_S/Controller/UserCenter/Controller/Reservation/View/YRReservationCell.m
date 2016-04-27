@@ -63,7 +63,7 @@
     NSString *datem = [model.date substringWithRange:NSMakeRange(5, 2)];
     NSString *dated = [model.date substringFromIndex:8];
     _date.text = [NSString stringWithFormat:@"%@年%@月%@日",datey,datem,dated];
-    _time.text = [NSString stringWithFormat:@"%@%@",_times[[model.time integerValue]],model.more?@"更多":@""];
+    _time.text = [NSString stringWithFormat:@"%@%@",_times[[model.time integerValue]],[model.more integerValue] ==1 ?@"更多":@""];
     CGRect rectBefore = _time.frame;
     CGSize size = [_time.text sizeWithFont:[UIFont systemFontOfSize:14] maxSize:CGSizeMake(kScreenWidth, 40)];
     _time.frame = CGRectMake(rectBefore.origin.x, rectBefore.origin.y, size.width, rectBefore.size.height);

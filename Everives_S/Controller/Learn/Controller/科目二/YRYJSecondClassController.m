@@ -68,7 +68,6 @@
     [_goOnBtn addTarget:self action:@selector(goOnLearnCar) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_downView];
     [self.view bringSubviewToFront:_downView];
-    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -158,6 +157,7 @@
     MyLog(@"%s",__func__);
     if (btnTag == 0) {//审核中
         YRFriendCircleController *nearViewController = [[YRFriendCircleController alloc] init];
+        nearViewController.title = @"驾友圈";
         YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:nearViewController];
         self.frostedViewController.contentViewController = navigationController;
     }else if (btnTag == 1){//未审核

@@ -143,8 +143,6 @@ FMDatabase *db;
                         }
                     }];
                 });
-               
-                
             } failed:^(NSError *error) {
                 
             }];

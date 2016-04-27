@@ -47,7 +47,7 @@
 - (void)setUI
 {
     //设置返回按钮
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"navigationbar_back"] highImage:[UIImage imageNamed:@"navigationbar_back"] target:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     
     //logo
     CGFloat weight = kSizeOfScreen.height*(1-CWSPercent) > kSizeOfScreen.width ? kSizeOfScreen.width : kSizeOfScreen.height*(1-CWSPercent);
@@ -90,6 +90,7 @@
 
     [_forgetPassWordBtn setFrameWithTitle:@"忘记密码?" forState:UIControlStateNormal];
     [_forgetPassWordBtn addTarget:self action:@selector(forgetPassWordClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_forgetPassWordBtn setTitleColor:kCOLOR(135, 135, 135) forState:UIControlStateNormal];
     [self.view addSubview:_forgetPassWordBtn];
     
     //新用户注册
@@ -98,6 +99,8 @@
     [_registBtn setFrameWithTitle:@"新用户注册" forState:UIControlStateNormal];
     [_registBtn addTarget:self action:@selector(registClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_registBtn];
+    [_registBtn setTitleColor:kCOLOR(19, 19, 19) forState:UIControlStateNormal];
+
 }
 #pragma mark - 登录事件
 - (void)loginClick:(CWSPublicButton*)sender

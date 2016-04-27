@@ -16,7 +16,6 @@
     [btn setBackgroundImage:image forState:UIControlStateNormal];
     [btn setBackgroundImage:highImage forState:UIControlStateHighlighted];
     [btn sizeToFit];
-    
     [btn addTarget:target action:action forControlEvents:controlEvents];
     
     return  [[UIBarButtonItem alloc] initWithCustomView:btn];

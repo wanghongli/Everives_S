@@ -44,7 +44,7 @@
     if (!self.userStatus) {
         [headView setUserMsgWithName:KUserManager.name gender:[KUserManager.gender boolValue] sign:KUserManager.sign];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addWeiboClick:)];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu_icon"] style:UIBarButtonItemStylePlain target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu)];
+        self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"menu_icon"] highImage:[UIImage imageNamed:@"menu_icon"] target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
     }else{
         [headView setUserMsgWithName:self.userStatus.name gender:[self.userStatus.gender boolValue] sign:self.userStatus.sign];
     }

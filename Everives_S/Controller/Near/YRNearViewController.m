@@ -64,8 +64,8 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"附近";
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu_icon"] style:UIBarButtonItemStylePlain target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Neighborhood_List"] style:UIBarButtonItemStylePlain target:self action:@selector(changeViewClick:)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"menu_icon"] highImage:[UIImage imageNamed:@"menu_icon"] target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"Neighborhood_List"] highImage:[UIImage imageNamed:@"Neighborhood_List"] target:self action:@selector(changeViewClick:) forControlEvents:UIControlEventTouchUpInside];
     _isMapView = YES;
     [SharedMapView sharedInstance].delegate = self;
     _mapView = [SharedMapView sharedInstance].mapView;
@@ -183,7 +183,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 - (void)changeViewClick:(UIBarButtonItem*)sender{
     if (_isMapView) {
         _isMapView = NO;
-        [self.navigationItem.rightBarButtonItem setImage:[UIImage imageNamed:@"Neighborhood_map"]];
+        [((UIButton*)(self.navigationItem.rightBarButtonItem.customView)) setBackgroundImage:[UIImage imageNamed:@"Neighborhood_map"] forState:UIControlStateNormal];
         switch (_selectView.selectedBtnNum) {
             case 1:{
                 [self.view addSubview:self.schoolTable];
@@ -202,7 +202,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         }
     }else{
         _isMapView = YES;
-        [self.navigationItem.rightBarButtonItem setImage:[UIImage imageNamed:@"Neighborhood_List"]];
+        [((UIButton*)(self.navigationItem.rightBarButtonItem.customView)) setBackgroundImage:[UIImage imageNamed:@"Neighborhood_List"] forState:UIControlStateNormal];
         switch (_selectView.selectedBtnNum) {
             case 1:{
                 [self.schoolTable removeFromSuperview];

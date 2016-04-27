@@ -77,7 +77,7 @@
         if (KUserManager.peopleId.length) {//正在审核
             [self showMsgWithMst:@"您的信息正在审核当中" withHidden:NO];
         }else{//未提交
-            [self showMsgWithMst:@"抱歉，您还为进行信息认证" withHidden:NO];
+            [self showMsgWithMst:@"抱歉，您还未进行信息认证" withHidden:NO];
         }
     }else if (KUserManager.checked == 1){//审核通过
         //获取数据

@@ -2,16 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "Pay_Selected.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "Pay_Selected.png",
+      "filename" : "Pay_Selected@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "Pay_Selected@3x.png"
     }
   ],
   "info" : {

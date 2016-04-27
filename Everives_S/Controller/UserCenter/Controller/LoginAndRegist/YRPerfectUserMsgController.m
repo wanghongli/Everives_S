@@ -50,7 +50,7 @@
 //    [user setObject:@"firstRegist" forKey:[NSString stringWithFormat:@"user_%@",KUserManager.id]];
 //    [NSUserDefaults resetStandardUserDefaults];
     
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"通知" message:[NSString stringWithFormat:@"恭喜你完成注册赠送你%ld个学车币,你可以去“个人-我的钱包”查看学车币！",KUserManager.frozenMoney] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"通知" message:[NSString stringWithFormat:@"恭喜你完成注册赠送你%@个学车币,你可以去“个人-我的钱包”查看学车币！",KUserManager.frozenMoney] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [alert show];
 }
 #pragma mark - 创建视图

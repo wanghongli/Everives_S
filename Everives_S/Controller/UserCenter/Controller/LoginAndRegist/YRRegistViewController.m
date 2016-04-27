@@ -155,6 +155,7 @@
                 }
                 else
                 {
+                    MyLog(@"%@",error);
                     sender.enabled = YES;
                     sender.backgroundColor = [UIColor colorWithRed:31/255.0 green:158/255.0 blue:240/255.0 alpha:1];
                     [MBProgressHUD showError:@"验证码发送失败" toView:GET_WINDOW];
@@ -164,7 +165,6 @@
         }];
         textField.rightViewMode = UITextFieldViewModeAlways;
     }
-
     return textField;
 }
 #pragma mark - 注册事件
@@ -195,7 +195,7 @@
                     [self.navigationController popViewControllerAnimated:YES];
                 } failed:^(NSError *error) {
                     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                    sender.userInteractionEnabled = NO;
+                    sender.userInteractionEnabled = YES;
                 }];
                 
             }else{//注册界面跳转而来
@@ -204,15 +204,15 @@
                     MyLog(@"%@",responseDic);
                     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                     [self saveMsg:responseDic];
-                    sender.userInteractionEnabled = NO;
+                    sender.userInteractionEnabled = YES;
                 } failed:^(NSError *error) {
                     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                    sender.userInteractionEnabled = NO;
+                    sender.userInteractionEnabled = YES;
                 }];
             }
         } error:^(NSString *errorMsg) {
             [MBProgressHUD showError:errorMsg toView:GET_WINDOW];
-            sender.userInteractionEnabled = NO;
+            sender.userInteractionEnabled = YES;
         }];
     } error:^(NSString *errorMsg) {
         sender.userInteractionEnabled = YES;

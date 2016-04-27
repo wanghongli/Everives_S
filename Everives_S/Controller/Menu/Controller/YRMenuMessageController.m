@@ -71,7 +71,7 @@
 -(void)getData
 {
     [MBProgressHUD showMessag:@"加载中..." toView:self.view];
-    [RequestData GET:@"/student/notify" parameters:@{@"page":[NSString stringWithFormat:@"%ld",(long)_page],@"count":@"20"} complete:^(NSDictionary *responseDic) {
+    [RequestData GET:@"/account/notify" parameters:@{@"page":[NSString stringWithFormat:@"%ld",(long)_page],@"count":@"20"} complete:^(NSDictionary *responseDic) {
         MyLog(@"%@",responseDic);
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 

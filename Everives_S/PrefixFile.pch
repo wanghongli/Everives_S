@@ -23,6 +23,7 @@
 #import "UIImageView+WebCache.h"
 #import "YRYJNavigationController.h"
 #import "REFrostedViewController.h"
+#import "UIBarButtonItem+Item.h"
 #endif
 
 

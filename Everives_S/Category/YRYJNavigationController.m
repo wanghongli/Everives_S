@@ -25,7 +25,7 @@
     
     //设置导航按钮的文字颜色
     NSMutableDictionary *titleAttr = [NSMutableDictionary dictionary];
-    titleAttr[NSForegroundColorAttributeName] = [UIColor orangeColor];
+    titleAttr[NSForegroundColorAttributeName] = [UIColor blackColor];
     [item setTitleTextAttributes:titleAttr forState:UIControlStateNormal];
 }
 - (void)viewDidLoad {

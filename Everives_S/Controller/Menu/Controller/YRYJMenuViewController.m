@@ -85,7 +85,7 @@
         return nil;
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 2)];
-    view.backgroundColor = [UIColor colorWithRed:167/255.0f green:167/255.0f blue:167/255.0f alpha:0.6f];
+    view.backgroundColor = [UIColor colorWithRed:238/255.0f green:240/255.0f blue:241/255.0f alpha:0.6f];
     return view;
 }
 
@@ -101,11 +101,15 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0 ) {
-        YRYJLearnToDriveController *homeViewController = [[YRYJLearnToDriveController alloc] init];
-        YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:homeViewController];
-        self.frostedViewController.contentViewController = navigationController;
-    } else if(indexPath.section == 1){
-        if (indexPath.row == 0) {//驾友
+//        YRYJLearnToDriveController *homeViewController = [[YRYJLearnToDriveController alloc] init];
+//        YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:homeViewController];
+//        self.frostedViewController.contentViewController = navigationController;
+//    } else if(indexPath.section == 1){
+        if (indexPath.row == 0) {
+            YRYJLearnToDriveController *homeViewController = [[YRYJLearnToDriveController alloc] init];
+            YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:homeViewController];
+            self.frostedViewController.contentViewController = navigationController;
+        }else if (indexPath.row == 1) {//驾友
             if (!KUserManager.id) {//登陆
                 [MBProgressHUD showError:@"请登陆" toView:GET_WINDOW];
                 [self menuHeadViewLoginClick];
@@ -115,7 +119,7 @@
             YRFriendViewController *friendViewController = [[YRFriendViewController alloc] init];
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:friendViewController];
             self.frostedViewController.contentViewController = navigationController;
-        }else if (indexPath.row == 1) {
+        }else if (indexPath.row == 2) {
             if (!KUserManager.id) {//登陆
                 [MBProgressHUD showError:@"请登陆" toView:GET_WINDOW];
                 [self menuHeadViewLoginClick];
@@ -125,11 +129,11 @@
             secondViewController.title = @"驾友圈";
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:secondViewController];
             self.frostedViewController.contentViewController = navigationController;
-        }else if (indexPath.row == 2) {//附近
+        }else if (indexPath.row == 3) {//附近
             YRNearViewController *nearViewController = [[YRNearViewController alloc] init];
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:nearViewController];
             self.frostedViewController.contentViewController = navigationController;
-        }else if (indexPath.row == 3) {//个人中心
+        }else if (indexPath.row == 4) {//个人中心
             if (!KUserManager.id) {//登陆
                 [MBProgressHUD showError:@"请登陆" toView:GET_WINDOW];
                 [self menuHeadViewLoginClick];
@@ -140,7 +144,7 @@
             self.frostedViewController.contentViewController = navigationController;
         }
         
-    }else if(indexPath.section == 2){
+    }else if(indexPath.section == 1){
         if (indexPath.row == 0) {
             if (!KUserManager.id) {//登陆
                 [MBProgressHUD showError:@"请登陆" toView:GET_WINDOW];
@@ -189,15 +193,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
     if (sectionIndex == 0) {
-        return 1;
-    }else if (sectionIndex ==1){
-        return 4;
+        return 5;
     }
     return 2;
 }
@@ -212,15 +214,15 @@
         cell = [[YRMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     if (indexPath.section == 0) {
-        NSArray *titles = @[@"学车"];
-        cell.menuText.text = titles[indexPath.row];
-        cell.leftImg.image = [UIImage imageNamed:@"Neighborhood_Field_DriSch"];
-    }else if (indexPath.section == 1) {
-        NSArray *titles = @[@"驾友", @"驾友圈", @"附近",@"个人"];
-        NSArray *imgArray = @[@"Drawer_Navigation_Friend",@"Drawer_Navigation_SNS",@"Drawer_Navigation_Neighborhood",@"Drawer_Navigation_Personal"];
+//        NSArray *titles = @[@"学车"];
+//        cell.menuText.text = titles[indexPath.row];
+//        cell.leftImg.image = [UIImage imageNamed:@"Neighborhood_Field_DriSch"];
+//    }else if (indexPath.section == 1) {
+        NSArray *titles = @[@"学车",@"驾友", @"驾友圈", @"附近",@"个人"];
+        NSArray *imgArray = @[@"Neighborhood_Field_DriSch",@"Drawer_Navigation_Friend",@"Drawer_Navigation_SNS",@"Drawer_Navigation_Neighborhood",@"Drawer_Navigation_Personal"];
         cell.menuText.text = titles[indexPath.row];
         cell.leftImg.image = [UIImage imageNamed:imgArray[indexPath.row]];
-        if (indexPath.row == 0) {
+        if (indexPath.row == 1) {
             _messagePoint = [[UIImageView alloc] initWithFrame:CGRectMake(68, 12, 8, 8)];
             _messagePoint.image = [UIImage imageNamed:@"Menu_Icon_Message_Point"];
             _messagePoint.hidden = YES;
@@ -233,7 +235,7 @@
         cell.menuText.text = titles[indexPath.row];
         cell.leftImg.image = [UIImage imageNamed:imgArray[indexPath.row]];
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 #pragma mark - 消息中心

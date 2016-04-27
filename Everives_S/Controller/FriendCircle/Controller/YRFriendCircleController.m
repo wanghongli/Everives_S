@@ -43,7 +43,7 @@
     self.tableView.tableHeaderView = headView;
     if (!self.userStatus) {
         [headView setUserMsgWithName:KUserManager.name gender:[KUserManager.gender boolValue] sign:KUserManager.sign];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(addWeiboClick:)];
+        self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"SNS_AddContent"] highImage:[UIImage imageNamed:@"SNS_AddContent"] target:self action:@selector(addWeiboClick:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu_icon"] style:UIBarButtonItemStylePlain target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu)];
     }else{
         [headView setUserMsgWithName:self.userStatus.name gender:[self.userStatus.gender boolValue] sign:self.userStatus.sign];

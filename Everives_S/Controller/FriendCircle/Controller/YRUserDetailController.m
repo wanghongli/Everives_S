@@ -44,7 +44,7 @@
 
     }else{
         _msgArray = @[@[@"年龄",@"介绍"],@[@"我的驾友圈"]];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(editClick:)];
+        self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"SNS_AddContent"] highImage:[UIImage imageNamed:@"SNS_AddContent"] target:self action:@selector(editClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     [self buildUI];
 //    [self getData];

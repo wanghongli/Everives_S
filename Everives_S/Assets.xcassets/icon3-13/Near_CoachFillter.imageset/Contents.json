@@ -2,16 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "Near_CoachFillter.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "Near_CoachFillter.png",
+      "filename" : "Near_CoachFillter@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "Near_CoachFillter@3x.png"
     }
   ],
   "info" : {

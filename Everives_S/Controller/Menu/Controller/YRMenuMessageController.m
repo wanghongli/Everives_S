@@ -33,12 +33,6 @@
     [self buildRefreshUI];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu_icon"] style:UIBarButtonItemStylePlain target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu)];
 
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshUserNotiMsg) name:@"USER_NOTIVC_REFRESH" object:self];
-//}
-//-(void)refreshUserNotiMsg
-//{
-//    _page = 0;
-//    [self getData];
     [self getFriend];
 }
 -(void)getFriend

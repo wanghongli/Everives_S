@@ -39,7 +39,7 @@
     if (self.childViewControllers.count) {//不是跟控制器
         viewController.hidesBottomBarWhenPushed = YES;
         
-        UIBarButtonItem *left = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"navigationbar_back"] highImage:[UIImage imageNamed:@"navigationbar_back_highlighted"] target:self action:@selector(popToPre) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *left = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"navigationbar_back"] highImage:[UIImage imageNamed:@"navigationbar_back"] target:self action:@selector(popToPre) forControlEvents:UIControlEventTouchUpInside];
         // 设置导航条的按钮
         viewController.navigationItem.leftBarButtonItem = left;
         
@@ -58,13 +58,6 @@
 }
 -(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    //    UITabBarController *tabBarVC = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-    //    //删除系统自带的tabBarButton
-    //    for (UIView *tabBarButton in tabBarVc.tabBar.subviews) {
-    //        if (![tabBarButton isKindOfClass:[CZTabBar class]]) {
-    //            [tabBarButton removeFromSuperview];
-    //        }
-    //    }
 }
 -(void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
@@ -76,13 +69,8 @@
 
 - (void)showMenu
 {
-    // Dismiss keyboard (optional)
-    //
     [self.view endEditing:YES];
     [self.frostedViewController.view endEditing:YES];
-    
-    // Present the view controller
-    //
     [self.frostedViewController presentMenuViewController];
 }
 
@@ -91,13 +79,8 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)sender
 {
-    // Dismiss keyboard (optional)
-    //
     [self.view endEditing:YES];
     [self.frostedViewController.view endEditing:YES];
-    
-    // Present the view controller
-    //
     [self.frostedViewController panGestureRecognized:sender];
 }
 

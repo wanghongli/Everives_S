@@ -31,7 +31,6 @@
 @property (nonatomic, strong) CWSPublicButton *registBtn;//注册按钮
 @property (nonatomic, strong) CWSReadPolicyView *readPolicyView;
 
-
 @property (nonatomic, strong) CWSLoginTextField *passwordTextField;//密码
 
 @property (nonatomic, strong) CWSLoginTextField *againPasswordTextField;//再次输入密码
@@ -54,16 +53,15 @@
     self.tellText = [self setTextFieldWithFrame:CGRectMake(kDistance*2, kDistance*2+64, kSizeOfScreen.width-4*kDistance, kTextFieldHeight) withPlaceholder:@"请输入您的手机号"];
     [self.view addSubview:self.tellText];
     
-    
     //验证码
     self.codeText = [self setTextFieldWithFrame:CGRectMake(self.tellText.x, CGRectGetMaxY(self.tellText.frame)+kDistance, self.tellText.width, kTextFieldHeight) withPlaceholder:@"请输入验证码"];
-    [self.view addSubview:self.codeText];
     
+    [self.view addSubview:self.codeText];
     
     //密码输入框
     self.passwordTextField = [self setPswTextFieldWithFrame:CGRectMake(self.tellText.x, CGRectGetMaxY(self.codeText.frame)+kDistance, self.tellText.width, kTextFieldHeight) withPlaceholder:@"请输入您的密码"];
     self.passwordTextField.secureTextEntry = YES;
-    _passwordTextField.leftImage = [UIImage imageNamed:@"searchbar_textfield_search_icon"];
+    _passwordTextField.leftImage = [UIImage imageNamed:@"Login_PasswordBlack"];
     
     [self.view addSubview:self.passwordTextField];
     
@@ -71,7 +69,7 @@
     self.againPasswordTextField = [self setPswTextFieldWithFrame:CGRectMake(self.tellText.x, CGRectGetMaxY(self.passwordTextField.frame)+kDistance, self.tellText.width, kTextFieldHeight) withPlaceholder:@"请再次输入您的密码"];
     self.againPasswordTextField.secureTextEntry = YES;
     [self.view addSubview:self.againPasswordTextField];
-    _againPasswordTextField.leftImage = [UIImage imageNamed:@"searchbar_textfield_search_icon"];
+    _againPasswordTextField.leftImage = [UIImage imageNamed:@"Login_PasswordBlack"];
     
     self.registBtn = [[CWSPublicButton alloc]initWithFrame:CGRectMake(kDistance*2, CGRectGetMaxY(self.againPasswordTextField.frame)+kDistance, self.tellText.width, kTextFieldHeight)];
     [self.registBtn setTitle:@"完成验证" forState:UIControlStateNormal];
@@ -107,11 +105,12 @@
     textField.layer.borderWidth = 1;
     textField.layer.borderColor = [UIColor blackColor].CGColor;
     textField.leftViewMode = UITextFieldViewModeAlways;
-    UILabel *leftLabel = [[UILabel alloc]initWithFrame:CGRectMake(kDistance, 0, 50, textField.height)];
-    leftLabel.textAlignment = NSTextAlignmentCenter;
-    leftLabel.font = [UIFont systemFontOfSize:14];
-    textField.leftView = leftLabel;
+    
     if ([placehold isEqualToString:@"请输入您的手机号"]) {
+        UILabel *leftLabel = [[UILabel alloc]initWithFrame:CGRectMake(kDistance, 0, 50, textField.height)];
+        leftLabel.textAlignment = NSTextAlignmentCenter;
+        leftLabel.font = [UIFont systemFontOfSize:14];
+        textField.leftView = leftLabel;
         leftLabel.text = @"+86";
 
         //添加右侧获取验证码按钮
@@ -163,8 +162,13 @@
             }];
             
         }];
-        textField.rightViewMode = UITextFieldViewModeAlways;
+    }else{
+        UIImageView *imageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Identification_IDcardBlack"]];//searchbar_textfield_search_icon
+        imageV.width += 20;
+        imageV.contentMode = UIViewContentModeCenter;
+        textField.leftView = imageV;
     }
+    textField.rightViewMode = UITextFieldViewModeAlways;
     return textField;
 }
 #pragma mark - 注册事件
@@ -257,8 +261,7 @@
 //是否选择协议
 -(void)readPolicyViewTochDown:(BOOL)readOrPolicy
 {
-//    _readSelect = readOrPolicy;
-
+    
 }
 
 

@@ -23,6 +23,7 @@
 #define USER_CHECK_TELL @"/account/checkTel" //检查手机号码
 #define USER_INFO_BYID @"/student/info/" // 通过id获取用户信息
 #define USER_TEACHER_DETAIL @"/account/teacher/" //获取教练详情
+#define PLACE_TEACHER @"/info/placeTeacher/" //金牌教练
 
 //学员模块
 #define STUDENT_INFO @"/student/info"  //修改个人信息
@@ -45,6 +46,7 @@
 #define STUDENT_NEARBYPOINT @"/info/nearbyPoint" //获取地图描点
 #define STUDENT_MONEYLOG @"/Account/moneyLog"  //资金记录
 #define STUDENT_MONEY @"/Account/money" //更新资金
+
 
 //七牛token
 #define USER_QINIUTOKEN @"/common/qiniu" //获取七牛token

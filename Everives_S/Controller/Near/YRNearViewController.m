@@ -38,6 +38,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     MAMapView *_mapView;
     YRMapSelectView *_selectView;
     BOOL _isMapView;
+    NSInteger _seletedBefore;
     
     SchoolDataSource *_schoolData;
     CoachDataSource *_coachData;
@@ -78,7 +79,9 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [self getDataForMap:_isGoOnLearning?2:1];
     if (_isGoOnLearning) {
         [self changeViewClick:nil];
+        _seletedBefore = 2;
     }
+    _seletedBefore = 1;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tablewViewReloadData:) name:kNearViewControlerReloadTable object:nil];
     //添加边缘手势
     [self addEdgeGesture];
@@ -88,6 +91,10 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     [super viewWillDisappear:animated];
     //清除掉状态字段，防止普通预约也误认为是拼教练
     _isShareOrder = NO;
+    //清除所有annotation,因为地图是单例生命周期比VC长
+    [_mapView removeAnnotations:_schoolForMap];
+    [_mapView removeAnnotations:_coachForMap];
+    [_mapView removeAnnotations:_stuForMap];
 }
 
 #pragma mark - Private Methods
@@ -249,9 +256,10 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 #pragma mark - YRMapSelectViewDelegate
 -(void)schoolBtnClick:(UIButton *)sender{
-    if (sender.tag == _selectView.selectedBtnNum) {
+    if (sender.tag == _seletedBefore) {
         return;
     }
+    _seletedBefore = sender.tag;
     [self removeLastTable];
     _searchBar.hidden = NO;
     self.slider.hidden = YES;
@@ -268,9 +276,10 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     }
 }
 -(void)coachBtnClick:(UIButton*)sender{
-    if (sender.tag == _selectView.selectedBtnNum) {
+    if (sender.tag == _seletedBefore) {
         return;
     }
+    _seletedBefore = sender.tag;
     self.slider.hidden = NO;
     [self removeLastTable];
     _searchBar.hidden = NO;
@@ -286,9 +295,10 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     }
 }
 -(void)studentBtnClick:(UIButton*)sender{
-    if (sender.tag == _selectView.selectedBtnNum) {
+    if (sender.tag == _seletedBefore) {
         return;
     }
+    _seletedBefore = sender.tag;
     [self removeLastTable];
     _searchBar.hidden = YES;
     self.slider.hidden = YES;

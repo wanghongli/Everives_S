@@ -18,6 +18,7 @@
 {
     NSMutableDictionary *_bodyDic;
     NSString *_sexString;
+    NSString *_avaterString;
 }
 @property (nonatomic, strong) YRUserStatus *userMsg;
 
@@ -191,16 +192,7 @@
         //上传到七牛http://7xn7nj.com2.z0.glb.qiniucdn.com/
         [upManager putData:uploadData key:imageName token:token
                   complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-                      //提交用户数据
-                      [RequestData PUT:STUDENT_AVATAR parameters:@{@"avatar":[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]} complete:^(NSDictionary *responseDic) {
-                          NSLog(@"%@",responseDic);
-                          KUserManager.avatar = [NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName];
-                          [YRPublicMethod changeUserMsgWithKeys:@[@"avatar"] values:@[[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]]];
-
-                          [MBProgressHUD showSuccess:@"头像修改成功" toView:GET_WINDOW];
-                      } failed:^(NSError *error) {
-                          
-                      }];
+                      _avaterString = [NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName];
                       
                   } option:nil];
     } failed:^(NSError *error) {
@@ -248,7 +240,25 @@
     }else
         [_bodyDic setObject:self.signText.text forKey:@"sign"];
     
+    [MBProgressHUD showMessag:@"提交中..." toView:self.view];
+    if (_avaterString) {
+        //提交用户数据
+        [RequestData PUT:STUDENT_AVATAR parameters:@{@"avatar":_avaterString} complete:^(NSDictionary *responseDic) {
+            NSLog(@"%@",responseDic);
+            KUserManager.avatar = _avaterString;
+            [YRPublicMethod changeUserMsgWithKeys:@[@"avatar"] values:@[_avaterString]];
+            [self sendUserMsg];
+        } failed:^(NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
+    }else{
+        [self sendUserMsg];
+    }
+}
+-(void)sendUserMsg
+{
     [RequestData PUT:STUDENT_INFO parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         MyLog(@"%@",responseDic);
         KUserManager.name = _nickNameText.text;
         KUserManager.sign = _signText.text;
@@ -259,7 +269,7 @@
         [MBProgressHUD showSuccess:@"修改成功" toView:GET_WINDOW];
         [self.navigationController popViewControllerAnimated:YES];
     } failed:^(NSError *error) {
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 //判断是否为汉字

@@ -25,8 +25,8 @@
 #import "YRSchoolCelldetailVC.h"
 #import "YRTeacherAllPicsController.h"
 #import "MJRefresh/MJRefresh.h"
-
-@interface YRTeacherDetailController () <UITableViewDelegate,UITableViewDataSource,YRTeacherDownViewDelegate>
+#import "YRCertificationController.h"
+@interface YRTeacherDetailController () <UITableViewDelegate,UITableViewDataSource,YRTeacherDownViewDelegate,UIAlertViewDelegate>
 {
     YRTeacherDetailObject *_teacherObj;
 }
@@ -197,15 +197,42 @@
             
         }];
     }else{//预约
-        YRReservationDateVC *chooseDateVC = [[YRReservationDateVC alloc] init];
-        chooseDateVC.isShareOrder = _isShareOrder;
-        self.teacherDetail.kind = [_kind integerValue];
-        chooseDateVC.coachModel = self.teacherDetail;
-        chooseDateVC.partnerModel = _partnerModel;
-        [self.navigationController pushViewController:chooseDateVC animated:YES];
+        
+        if (KUserManager.checked == 0) {//未提交或正在审核
+            if (KUserManager.peopleId.length) {//正在审核
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的信息正在审核当中" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+                alertView.tag = 20;
+                [alertView show];
+            }else{//未提交
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"抱歉，您还未进行信息认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去认证", nil];
+                alertView.tag = 21;
+                [alertView show];
+            }
+        }else if (KUserManager.checked == 1){//审核通过
+            YRReservationDateVC *chooseDateVC = [[YRReservationDateVC alloc] init];
+            chooseDateVC.isShareOrder = _isShareOrder;
+            self.teacherDetail.kind = [_kind integerValue];
+            chooseDateVC.coachModel = self.teacherDetail;
+            chooseDateVC.partnerModel = _partnerModel;
+            [self.navigationController pushViewController:chooseDateVC animated:YES];
+        }else if (KUserManager.checked == 2){//审核失败
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"审核失败" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"重新认证", nil];
+            alertView.tag = 22;
+            [alertView show];
+        }
     }
 }
-
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        MyLog(@"aaaaaa");
+        if (alertView.tag == 20) {
+        }else{
+            YRCertificationController *certificationVC = [[YRCertificationController alloc]init];
+            [self.navigationController pushViewController:certificationVC animated:YES];
+        }
+    }
+}
 -(UITableView *)tableView
 {
     if (!_tableView) {

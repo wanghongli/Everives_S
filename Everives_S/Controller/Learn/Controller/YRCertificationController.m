@@ -73,6 +73,11 @@
         [RequestData POST:STUDENT_IDENTIFY parameters:@{@"realname":self.nameTF.text,@"peopleId":self.idCardTF.text} complete:^(NSDictionary *responseDic) {
             [MBProgressHUD showSuccess:@"信息已提交，正在等待审核" toView:GET_WINDOW];
             [self.navigationController popViewControllerAnimated:YES];
+            KUserManager.checked = 0;
+            KUserManager.peopleId = self.idCardTF.text;
+            KUserManager.realname = self.nameTF.text;
+            [YRPublicMethod changeUserMsgWithKeys:@[@"checked",@"peopleId",@"realname"] values:@[@(0),self.idCardTF.text,self.nameTF.text]];
+
         } failed:^(NSError *error) {
             [MBProgressHUD showError:@"认证失败" toView:GET_WINDOW];
         }];

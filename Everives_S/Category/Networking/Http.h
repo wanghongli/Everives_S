@@ -9,7 +9,7 @@
 #ifndef CQSQ_Http_h
 #define CQSQ_Http_h
 
-#define QINIU_SERVER_URL @"http://7xr6ql.com1.z0.glb.clouddn.com/"  //七牛服务器地址
+#define QINIU_SERVER_URL @"http://7xtdgv.com2.z0.glb.qiniucdn.com/"  //七牛服务器地址
 
 #define SERVER_URL @"http://114.215.145.224/index.php" // 正式链接
 //#define SERVER_URL @"http://120.27.55.225/drive.php"

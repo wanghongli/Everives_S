@@ -19,6 +19,7 @@
     NSMutableDictionary *_bodyDic;
     NSString *_sexString;
     NSString *_avaterString;
+    UIImage *_chooseHeadImg;
 }
 @property (nonatomic, strong) YRUserStatus *userMsg;
 
@@ -172,9 +173,10 @@
         
         CorePhoto *photo = [medias lastObject];
         UIImage *image = [photo.editedImage compressedImage];
+        _chooseHeadImg = image;
         _headImg.image = image;
-        //上传头像
-        [self uploadImage:image];
+//        //上传头像
+//        [self uploadImage:image];
     };
     [self presentViewController:pickerVC animated:YES completion:nil];
 }
@@ -193,6 +195,15 @@
         [upManager putData:uploadData key:imageName token:token
                   complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                       _avaterString = [NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName];
+                      //提交用户数据
+                      [RequestData PUT:STUDENT_AVATAR parameters:@{@"avatar":[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]} complete:^(NSDictionary *responseDic) {
+                          NSLog(@"%@",responseDic);
+                          KUserManager.avatar = [NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName];
+                          [YRPublicMethod changeUserMsgWithKeys:@[@"avatar"] values:@[[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]]];
+                          [self sendUserMsg];
+                      } failed:^(NSError *error) {
+                          [MBProgressHUD hideHUDForView:self.view animated:YES];
+                      }];
                       
                   } option:nil];
     } failed:^(NSError *error) {
@@ -240,17 +251,11 @@
     }else
         [_bodyDic setObject:self.signText.text forKey:@"sign"];
     
+    
     [MBProgressHUD showMessag:@"提交中..." toView:self.view];
-    if (_avaterString) {
-        //提交用户数据
-        [RequestData PUT:STUDENT_AVATAR parameters:@{@"avatar":_avaterString} complete:^(NSDictionary *responseDic) {
-            NSLog(@"%@",responseDic);
-            KUserManager.avatar = _avaterString;
-            [YRPublicMethod changeUserMsgWithKeys:@[@"avatar"] values:@[_avaterString]];
-            [self sendUserMsg];
-        } failed:^(NSError *error) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        }];
+    if (_chooseHeadImg) {
+        //上传头像
+        [self uploadImage:_chooseHeadImg];
     }else{
         [self sendUserMsg];
     }

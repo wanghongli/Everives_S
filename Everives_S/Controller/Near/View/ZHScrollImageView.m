@@ -38,11 +38,11 @@
     for (int i = 0;i<models.count+2;i++) {
         UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth*i, 0, kScreenWidth, kTopImageHeight)];
         if (i == 0) {
-            [imageView sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)models[models.count-1]).url]];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)models[models.count-1]).url] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
         }else if (i == models.count+1){
-            [imageView sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)models[0]).url]];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)models[0]).url] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
         }else{
-           [imageView sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)models[i-1]).url]];
+           [imageView sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)models[i-1]).url] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
         }
        
         

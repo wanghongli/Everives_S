@@ -24,6 +24,14 @@
     self.tableView.rowHeight = 60;
     self.tableView.tableFooterView = self.tableFooter;
 }
+
+-(void)sureBtnClick:(UIButton*)sender{
+    if (_numberInput.text||[_numberInput.text integerValue] == 0) {
+        return;
+    }
+}
+
+#pragma mark - UItableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
@@ -146,26 +154,6 @@
     }
 }
 
--(UIView *)tableFooter{
-    if (!_tableFooter) {
-        _tableFooter = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 100)];
-        UIButton *sureBtn = [[UIButton alloc] initWithFrame:CGRectMake(80, 40, kScreenWidth-160, 50)];
-        [sureBtn addTarget:self action:@selector(sureBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [sureBtn setTitle:@"确认提现" forState:UIControlStateNormal];
-        [sureBtn setBackgroundColor:kCOLOR(43, 162, 238)];
-        sureBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        sureBtn.layer.borderWidth = 0.5;
-        sureBtn.layer.cornerRadius = 25;
-        [_tableFooter addSubview:sureBtn];
-        
-    }
-    return _tableFooter;
-}
--(void)sureBtnClick:(UIButton*)sender{
-    if (_numberInput.text||[_numberInput.text integerValue] == 0) {
-        return;
-    }
-}
 #pragma mark - UITextFieldDelegate
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     if (range.location == 0 && [string  hasPrefix:@"0"]) {
@@ -174,6 +162,24 @@
     NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
     NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
     return [string isEqualToString:filtered];
+}
+
+#pragma mark - Getters
+
+-(UIView *)tableFooter{
+    if (!_tableFooter) {
+        _tableFooter = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 100)];
+        UIButton *sureBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, 20, kScreenWidth-60, 40)];
+        [sureBtn addTarget:self action:@selector(sureBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [sureBtn setTitle:@"确认提现" forState:UIControlStateNormal];
+        [sureBtn setBackgroundColor:kCOLOR(43, 162, 238)];
+        sureBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        sureBtn.layer.borderWidth = 0.5;
+        sureBtn.layer.cornerRadius = 20;
+        [_tableFooter addSubview:sureBtn];
+        
+    }
+    return _tableFooter;
 }
 
 @end

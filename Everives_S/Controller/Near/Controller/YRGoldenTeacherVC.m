@@ -8,7 +8,7 @@
 
 #import "YRGoldenTeacherVC.h"
 #import "YRCoachTableCell.h"
-#import "YRSchoolModel.h"
+#import "YRCoachModel.h"
 static NSString *cellReuseID = @"cellReuseID";
 @interface YRGoldenTeacherVC ()
 @property(nonatomic,strong) NSArray *models;
@@ -31,7 +31,7 @@ static NSString *cellReuseID = @"cellReuseID";
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSLog(@"%@   %@",PLACE_TEACHER,_placeID);
     [RequestData GET:[NSString stringWithFormat:@"%@%@",PLACE_TEACHER,_placeID] parameters:nil complete:^(NSDictionary *responseDic) {
-        _models = [YRSchoolModel mj_objectArrayWithKeyValuesArray:responseDic];
+        _models = [YRCoachModel mj_objectArrayWithKeyValuesArray:responseDic];
         [self.tableView reloadData];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failed:^(NSError *error) {

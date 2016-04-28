@@ -23,7 +23,7 @@
     // Configure the view for the selected state
 }
 -(void)setModel:(YRSchoolModel *)model{
-    [_image sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)(model.pics[0])).url]];
+    [_image sd_setImageWithURL:[NSURL URLWithString:((YRPictureModel*)(model.pics[0])).url] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
     _name.text = model.name;
     _addr.text = model.address;
     _intro.text = model.intro;

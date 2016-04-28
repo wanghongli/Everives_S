@@ -67,7 +67,7 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.tagCollectionView.frame = CGRectMake(0, 0, XBScreenWidth, self.tagViewHeight);
+    self.tagCollectionView.frame = CGRectMake(50, 0, XBScreenWidth-100, self.tagViewHeight);
     self.pageCollectionView.frame = CGRectMake(0, self.tagViewHeight, XBScreenWidth, self.view.frame.size.height - self.tagViewHeight);
 }
 

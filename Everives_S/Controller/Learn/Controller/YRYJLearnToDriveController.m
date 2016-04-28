@@ -35,17 +35,17 @@ FMDatabase *db;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tagItemSize = CGSizeMake(self.view.frame.size.width/4, 48);
+    self.tagItemSize = CGSizeMake((self.view.frame.size.width-100)/4, 48);
     self.title = @"蚁人学车";
     self.frostedViewController.panGestureEnabled = YES;
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"menu_icon"] highImage:[UIImage imageNamed:@"menu_icon"] target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
     self.backgroundColor = [UIColor whiteColor];
     
     NSArray *titleArray = @[
-                            @"科目一",
-                            @"科目二",
-                            @"科目三",
-                            @"科目四",
+                            @"科一",
+                            @"科二",
+                            @"科三",
+                            @"科四",
                             ];
     NSArray *classNames = @[
                             [YRYJFirstClassController class],

@@ -83,7 +83,7 @@
 -(UIImageView *)imageView{
     if (!_imageView) {
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(4, 4, 90, 90)];
-        [_imageView sd_setImageWithURL:[NSURL URLWithString:_imageurl]];
+        [_imageView sd_setImageWithURL:[NSURL URLWithString:_imageurl] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
     }
     return _imageView;
 }

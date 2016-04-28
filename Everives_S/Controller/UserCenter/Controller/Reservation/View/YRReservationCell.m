@@ -54,10 +54,10 @@
     // Configure the view for the selected state
 }
 -(void)configCellWithModel:(YROrderedPlaceModel *)model{
-    [_avatar sd_setImageWithURL:[NSURL URLWithString:model.avatar]];
+    [_avatar sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
     if (model.partner) {
-        [_partnerAvatar sd_setImageWithURL:[NSURL URLWithString:model.partner.avatar]];
-        [_myAvatar sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar]];
+        [_partnerAvatar sd_setImageWithURL:[NSURL URLWithString:model.partner.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
+        [_myAvatar sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
     }
     NSString *datey = [model.date substringToIndex:4];
     NSString *datem = [model.date substringWithRange:NSMakeRange(5, 2)];

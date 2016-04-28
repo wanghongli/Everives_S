@@ -97,7 +97,7 @@
         avatar.layer.cornerRadius = 37;
         avatar.layer.borderColor = [UIColor lightGrayColor].CGColor;
         avatar.layer.borderWidth = 0.5;
-        [avatar sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar]];
+        [avatar sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
         
         UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(105, 12, 150, 30)];
         name.text = KUserManager.name;

@@ -144,6 +144,7 @@
 
 #define KUSER_HEAD_IMG @"Login_addAvatar"
 
+#define kUSERAVATAR_PLACEHOLDR @"User_Placeholder"
 /**
  *  通知
  */

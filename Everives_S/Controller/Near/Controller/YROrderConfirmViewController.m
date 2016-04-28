@@ -168,7 +168,7 @@ static NSString *cellID = @"cellID";
         _coachView = [[UIView alloc] initWithFrame:CGRectMake(90, 10, kScreenWidth - 60, 80)];
         UIImageView *avatar = [[UIImageView alloc] initWithFrame:CGRectMake(20, 5, 70, 70)];
         avatar.layer.cornerRadius = 35;
-        [avatar sd_setImageWithURL:[NSURL URLWithString:_coachModel.avatar]];
+        [avatar sd_setImageWithURL:[NSURL URLWithString:_coachModel.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
         UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(110, 15, kScreenWidth - 200, 30)];
         name.text = _coachModel.name;
         YRStarsView * stars = [[YRStarsView alloc] initWithFrame:CGRectMake(110, 35, 120, 30) score:[_coachModel.grade integerValue]  starWidth:20 intervel:3 needLabel:YES];

@@ -157,8 +157,8 @@
             //四分钟以内的进行加载
             if ([self intervalSinceNow:circleModel.time] || [KUserManager.id isEqualToString:circleModel.uid]) {
 //               imgMsg = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:photo];
-//                imgMsg = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:photo];
-                imgMsg = [YRShaHeObjct loadNSDictionaryForDocument:photo];
+                imgMsg = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:photo];
+//                imgMsg = [YRShaHeObjct loadNSDictionaryForDocument:photo];
             }
                 
                 NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -173,7 +173,9 @@
             }
             imageV.hidden = NO;
             if (imgMsg!=nil) {
-                imageV.image =imgMsg;
+//                dispatch_async(dispatch_get_main_queue(), ^{
+                    imageV.image =imgMsg;
+//                });
             }else{
                 [imageV sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
             }

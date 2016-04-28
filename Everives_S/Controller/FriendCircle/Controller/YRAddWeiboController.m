@@ -147,10 +147,11 @@
                 NSString *imageName = [[uploadData.description md5] addString:@".jpg"];
                 [_imgNameArray addObject:imageName];
                 [_publishImgArray addObject:[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]];
-                
-                [YRShaHeObjct saveNSDictionaryForDocument:uploadData FileUrl:imageName];
-//                [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName];
-                [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName toDisk:YES];
+                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [YRShaHeObjct saveNSDictionaryForDocument:uploadData FileUrl:imageName];
+                    [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName];
+                });
+//                [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName toDisk:YES];
                 
                 if (_imgNameArray.count == self.assetsArray.count) {
                     NSString *imgArray = [_publishImgArray mj_JSONString];
@@ -159,7 +160,7 @@
                     [RequestData POST:WEIBO_ADD parameters:_bodyDic complete:^(NSDictionary *responseDic) {
                         sender.userInteractionEnabled = YES;
                         if (_imgNameArray.count) {
-                            [self performSelector:@selector(goBackVC) withObject:nil afterDelay:0];
+                            [self goBackVC];
                         }else{
                             [self goBackVC];
                         }
@@ -176,11 +177,15 @@
 }
 -(void)goBackVC
 {
+    [self performSelector:@selector(goBackVC1) withObject:nil afterDelay:_imgNameArray.count];
+    
+}
+-(void)goBackVC1
+{
     YRFriendCircleController *fcVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
     fcVC.refreshMsg = @"刷新数据";
     [self.navigationController popToViewController:fcVC animated:YES];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
 }
 -(void)publishImages:(NSArray *)imgName
 {

@@ -32,14 +32,8 @@
 
 +(void)saveNSDictionaryForDocument:(NSData *)list  FileUrl:(NSString*) FileUrl  {
     
-    
-    
     NSString *f = [self fullpathOfFilename:FileUrl];
-    
-    
     [list writeToFile:f atomically:YES];
-//    [list writeToFile:f atomically:YES];
-    
 }
 //获得document文件路径
 

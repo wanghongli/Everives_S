@@ -16,7 +16,7 @@
     _avatar.layer.cornerRadius = 25;
 }
 -(void)configureCellWithAvatar:(NSString *)avatar name:(NSString *)name{
-    [_avatar sd_setImageWithURL:[NSURL URLWithString:avatar]];
+    [_avatar sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
     _name.text = name;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

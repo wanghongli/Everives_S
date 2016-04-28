@@ -23,7 +23,7 @@
 }
 
 -(void)setModel:(YRUserStatus *)model{
-    [_avatar sd_setImageWithURL:[NSURL URLWithString:model.avatar]];
+    [_avatar sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
     _name.text = model.name;
     _sign.text = model.sign.length != 0?model.sign:@"这个人很懒，什么都没有留下~";
     double dis = [DistanceToolFuc calculateDistanceWithLongitude1:[model.lng doubleValue] Laititude1:[model.lat doubleValue] Longitude2:[KUserLocation.longitude doubleValue] Laititude2:[KUserLocation.latitude doubleValue]];

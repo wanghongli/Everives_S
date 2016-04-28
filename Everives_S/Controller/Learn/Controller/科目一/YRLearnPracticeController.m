@@ -25,6 +25,8 @@
     NSTimer *timer;
     //当前题
     YRQuestionObj *_currentQuestion;
+    //当前cell位置定义
+    NSIndexPath *_currentIndexPath;
 }
 @property (nonatomic, strong) NSMutableArray *errorArray;//错题
 @property (nonatomic, strong) NSMutableArray *rightArray;//正确题
@@ -157,16 +159,11 @@
 #pragma mark - 收藏
 -(void)collectionClick
 {
-    
-    if (_currentQuestion.collect) {
-        [YRFMDBObj changeMsgWithId:_currentQuestion.id withNewMsg:@"collect = 0" withFMDB:self.db];
-        [MBProgressHUD showSuccess:@"取消收藏成功" toView:self.view];
-        [self setCollectMsg:NO];
-        return;
-    }
-    [YRFMDBObj changeMsgWithId:_currentQuestion.id withNewMsg:@"collect = 1" withFMDB:self.db];
-    [MBProgressHUD showSuccess:@"收藏成功" toView:self.view];
-    [self setCollectMsg:YES];
+    _currentQuestion.collect = !_currentQuestion.collect;
+    [self setCollectMsg:_currentQuestion.collect];
+    [YRFMDBObj changeMsgWithId:_currentQuestion.id withNewMsg:[NSString stringWithFormat:@"collect = %d",_currentQuestion.collect ? 1:0] withFMDB:self.db];
+    [MBProgressHUD showSuccess:_currentQuestion.collect ? @"收藏成功":@"取消收藏成功" toView:self.view];
+    [_msgArray replaceObjectAtIndex:_currentIndexPath.row withObject:_currentQuestion];
 }
 #pragma mark - 获取模拟考试数据
 -(void)getExamMsg
@@ -254,6 +251,7 @@
     }else
         ques = _msgArray[indexPath.row];
     _currentQuestion = ques;
+    _currentIndexPath = indexPath;
     cell.questionOb = ques;
     
     //选择答案后数据的处理

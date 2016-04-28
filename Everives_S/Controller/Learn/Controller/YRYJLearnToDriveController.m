@@ -63,9 +63,6 @@ FMDatabase *db;
     
     
     [self reloadDataWith:titleArray andSubViewdisplayClasses:classNames withParams:params];
-
-    
-    
     
     NSString *currentVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
     // 2.获取上一次的版本号

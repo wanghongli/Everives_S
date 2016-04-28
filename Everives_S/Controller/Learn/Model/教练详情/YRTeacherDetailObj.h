@@ -23,5 +23,6 @@
 @property (nonatomic, strong) NSArray *pics;
 @property (nonatomic, strong) NSArray *place;
 @property (nonatomic, assign) NSInteger year;
+@property (nonatomic, assign) NSInteger cared;
 
 @end

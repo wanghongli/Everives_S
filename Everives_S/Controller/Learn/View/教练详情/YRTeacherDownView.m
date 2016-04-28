@@ -63,4 +63,9 @@
 {
     [self.delegate teacherDownViewBtnClick:sender.tag-10];
 }
+-(void)setAttentionBool:(BOOL)attentionBool
+{
+    _attentionBool = attentionBool;
+    [_attentionBtn setTitle:attentionBool?@"已关注":@"关注" forState:UIControlStateNormal];
+}
 @end

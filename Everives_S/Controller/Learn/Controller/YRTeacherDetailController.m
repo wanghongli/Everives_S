@@ -69,6 +69,7 @@
         
         _downView = [[YRTeacherDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), kScreenWidth, 44)];
         _downView.delegate = self;
+        _downView.attentionBool = self.teacherDetail.cared;
         [self.view addSubview:_downView];
 
     } failed:^(NSError *error) {
@@ -190,12 +191,16 @@
 -(void)teacherDownViewBtnClick:(NSInteger)btnTag
 {
     if (btnTag == 1) {//关注
-        [RequestData POST:@"/student/teacher" parameters:@{@"id":self.teacherID} complete:^(NSDictionary *responseDic) {
-            MyLog(@"%@",responseDic);
-            [MBProgressHUD showSuccess:@"关注成功" toView:self.view];
-        } failed:^(NSError *error) {
-            
-        }];
+        if (!self.teacherDetail.cared) {
+            [RequestData POST:@"/student/teacher" parameters:@{@"id":self.teacherID} complete:^(NSDictionary *responseDic) {
+                MyLog(@"%@",responseDic);
+                [MBProgressHUD showSuccess:@"关注成功" toView:self.view];
+                self.teacherDetail.cared = 1;
+                _downView.attentionBool = 1;
+            } failed:^(NSError *error) {
+                
+            }];
+        }
     }else{//预约
         
         if (KUserManager.checked == 0) {//未提交或正在审核

@@ -78,6 +78,7 @@
     self.showAddr.layer.cornerRadius = self.showAddr.height/2;
     self.showAddr.backgroundColor = kCOLOR(238, 239, 240);
     self.showAddr.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.showAddr.hidden = YES;
     [self.view addSubview:self.showAddr];
     
     self.publishBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.showAddr.frame)+30, kSizeOfScreen.width, 44)];
@@ -109,9 +110,11 @@
     [_publishImgArray removeAllObjects];
     if (!self.textView.text.length) {
         [MBProgressHUD showError:@"内容不能为空" toView:self.view];
+        sender.userInteractionEnabled = YES;
         return;
     }else if([self.textView.text isEqualToString:@"说点什么吧"]){
         [MBProgressHUD showError:@"内容不能为空" toView:self.view];
+        sender.userInteractionEnabled = YES;
         return;
     }
     NSMutableString *addrString = [NSMutableString stringWithString:KUserLocation.addr];
@@ -167,7 +170,7 @@
                 }
             }
         } failureBlock:^(NSError *error) {
-            
+            sender.userInteractionEnabled = YES;
         }];
     }
 }

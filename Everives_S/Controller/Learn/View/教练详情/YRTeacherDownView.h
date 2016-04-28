@@ -14,4 +14,5 @@
 
 @interface YRTeacherDownView : UIView
 @property (nonatomic, assign) id<YRTeacherDownViewDelegate>delegate;
+@property (nonatomic, assign) BOOL attentionBool;
 @end

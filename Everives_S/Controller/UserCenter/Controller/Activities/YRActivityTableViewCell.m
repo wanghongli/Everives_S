@@ -19,7 +19,7 @@
 }
 
 -(void)setModel:(YRActivityModel *)model{
-    [_picView sd_setImageWithURL:[NSURL URLWithString:model.pic]];
+    [_picView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
     _titleL.text = model.title;
     _contentL.text = model.intro;
     _dateL.text = model.begintime;

@@ -64,23 +64,23 @@ static CGFloat cellHeight = 60;
     }
     switch (indexPath.row) {
         case 0:{
-            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"所属驾校:",_model.school];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"所属驾校 : ",_model.school];
             break;
         }
         case 1:{
-            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"地址:",_model.address];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"地址 : ",_model.address];
             break;
         }
         case 2:{
-            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"联系方式:",_model.tel];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"联系方式 : ",_model.tel];
             break;
         }
         case 3:{
-            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"场地联系人:",_model.admin];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"场地联系人 : ",_model.admin];
             break;
         }
         case 4:{
-            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"面积:",_model.area];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"面积 : ",[_model.area integerValue]?_model.area:@"未知"];
             break;
         }
         case 5:{

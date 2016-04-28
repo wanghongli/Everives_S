@@ -23,7 +23,7 @@
 }
 
 -(void)setModel:(YRCoachModel *)model{
-    [_avatar sd_setImageWithURL:[NSURL URLWithString:model.avatar]];
+    [_avatar sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
     _name.text = model.name;
     _teachAge.text = [NSString stringWithFormat:@"教龄 %@年",model.year];
     _stuNum.text = [NSString stringWithFormat:@"学员 %@个",model.student];

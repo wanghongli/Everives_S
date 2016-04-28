@@ -17,7 +17,7 @@
 #import "YRCircleHeadView.h"
 #import "YRUserDetailController.h"
 
-@interface YRFriendCircleController ()
+@interface YRFriendCircleController ()<UIAlertViewDelegate>
 {
     NSInteger _page;
     NSMutableArray *_blogs;
@@ -49,8 +49,6 @@
         [headView setUserMsgWithName:self.userStatus.name gender:[self.userStatus.gender boolValue] sign:self.userStatus.sign];
     }
     headView.image=[UIImage imageNamed:@"background_1"];
-    
-    [self getdata];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -105,7 +103,10 @@
             [_blogs addObject:statusF];
         }
         [self.tableView reloadData];
-        
+        if (!_blogs.count) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"暂无圈子数据，你可以去发布一条信息" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去发送", nil];
+            [alert show];
+        }
         // 结束刷新
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
@@ -115,6 +116,12 @@
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
     }];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self addWeiboClick:nil];
+    }
 }
 #pragma mark - 添加微博
 -(void)addWeiboClick:(UIBarButtonItem *)sender

@@ -63,6 +63,9 @@ static NSString *cellID =@"YRMyCommentCellTableViewCellID";
             [_commentArray addObjectsFromArray:array];
         }
         [self.tableView reloadData];
+        if (!_commentArray.count) {
+            [[[UIAlertView alloc] initWithTitle:@"提示" message:@"暂无评价信息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        }
         // 结束刷新
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];

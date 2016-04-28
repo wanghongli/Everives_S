@@ -86,6 +86,10 @@
     [_noSaveBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     _noSaveBtn.tag = 11;
     [self.view addSubview:_noSaveBtn];
+    _noSaveBtn.layer.masksToBounds = YES;
+    _noSaveBtn.layer.borderWidth = 1;
+    _noSaveBtn.layer.borderColor = kCOLOR(194, 194, 194).CGColor;
+    _noSaveBtn.backgroundColor = [UIColor whiteColor];
     
 }
 #pragma mark - 选择头像

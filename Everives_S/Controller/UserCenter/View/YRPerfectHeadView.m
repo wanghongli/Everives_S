@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) UIButton *chooseImgBtn;
 
+@property (nonatomic, strong) UIButton *backBtn;
+
 @end
 @implementation YRPerfectHeadView
 

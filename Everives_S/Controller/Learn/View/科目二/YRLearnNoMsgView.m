@@ -69,7 +69,7 @@
         titleString = @"现在就去认证吧!";
         _imgView.image = [UIImage imageNamed:@"User_Identify_No"];
     }else if ([_btnTitle isEqualToString:@"审核失败"]){
-        _imgView.image = [UIImage imageNamed:@"User_Identify_Ing"];
+        _imgView.image = [UIImage imageNamed:@"Certify_Failed"];
         titleString = @"重新认证";
     }
     

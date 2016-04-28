@@ -157,8 +157,8 @@
             //四分钟以内的进行加载
             if ([self intervalSinceNow:circleModel.time] || [KUserManager.id isEqualToString:circleModel.uid]) {
 //               imgMsg = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:photo];
-                imgMsg = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:photo];
-//                imgMsg = [YRShaHeObjct loadNSDictionaryForDocument:photo];
+//                imgMsg = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:photo];
+                imgMsg = [YRShaHeObjct loadNSDictionaryForDocument:photo];
             }
                 
                 NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

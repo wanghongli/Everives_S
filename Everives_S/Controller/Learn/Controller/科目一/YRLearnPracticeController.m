@@ -145,6 +145,7 @@
     [_countDownBar setTitle:[YRPublicMethod publicMethodAccodingIntMsgTurnToTimeString:timeInt]];
     if (timeInt == 0) {//考试结束
         [time invalidate];
+        [self turnToScore];
     }
 }
 #pragma mark - 倒计时
@@ -160,7 +161,9 @@
 -(void)collectionClick
 {
     _currentQuestion.collect = !_currentQuestion.collect;
-    [self setCollectMsg:_currentQuestion.collect];
+    if (self.menuTag == 0) {
+    }else
+        [self setCollectMsg:_currentQuestion.collect];
     [YRFMDBObj changeMsgWithId:_currentQuestion.id withNewMsg:[NSString stringWithFormat:@"collect = %d",_currentQuestion.collect ? 1:0] withFMDB:self.db];
     [MBProgressHUD showSuccess:_currentQuestion.collect ? @"收藏成功":@"取消收藏成功" toView:self.view];
     [_msgArray replaceObjectAtIndex:_currentIndexPath.row withObject:_currentQuestion];
@@ -300,12 +303,23 @@
     [YRFMDBObj changeMsgWithId:currentQues.id withNewMsg:chooseAnswer withFMDB:self.db];
     [_msgArray replaceObjectAtIndex:indexPath.row withObject:currentQues];
     if (self.menuTag == 0) {//考试状态选择就跳到下一个题
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
         if (currentQues.error) {
             [self.errorArray addObject:currentQues];
         }else
             [self.rightArray addObject:currentQues];
+        
+        if (_msgArray.count-1 == indexPath.row) {//答题完毕
+            //跳到成绩
+            [self turnToScore];
+        }else{
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+        }
+        
     }else{//练习状态选择正确后跳到下一个题
+        if (_msgArray.count-1 == indexPath.row) {//联系完毕
+            [[[UIAlertView alloc] initWithTitle:@"提示" message:@"习题练习完毕" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            
+        }
         if (!currentQues.error) {
             [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
         }
@@ -349,14 +363,21 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        NSInteger totalTime = self.objectFour?30*60:45*60;
-        YRGotScoreController *adv = [[YRGotScoreController alloc]init];
-        NSInteger scroeInt = self.objectFour ? self.rightArray.count*2:self.rightArray.count;
-        adv.scroe = scroeInt;
-        adv.costTime = totalTime - timeInt;
-        adv.surplusTime = timeInt;
-        adv.objFour = self.objectFour;
-        [self.navigationController pushViewController:adv animated:YES];
+        if (alertView.tag == 11) {
+            [self turnToScore];
+        }
+        
     }
+}
+-(void)turnToScore
+{
+    NSInteger totalTime = self.objectFour?30*60:45*60;
+    YRGotScoreController *adv = [[YRGotScoreController alloc]init];
+    NSInteger scroeInt = self.objectFour ? self.rightArray.count*2:self.rightArray.count;
+    adv.scroe = scroeInt;
+    adv.costTime = totalTime - timeInt;
+    adv.surplusTime = timeInt;
+    adv.objFour = self.objectFour;
+    [self.navigationController pushViewController:adv animated:YES];
 }
 @end

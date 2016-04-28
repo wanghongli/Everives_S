@@ -19,7 +19,7 @@
     int minute = timeInt%3600/60;
     NSString *minuteString = minute>9 ? [NSString stringWithFormat:@"%d",minute] : [NSString stringWithFormat:@"0%d",minute];
     int second = timeInt%60%60;
-    NSString *secondString = minute>9 ? [NSString stringWithFormat:@"%d",second] : [NSString stringWithFormat:@"0%d",second];
+    NSString *secondString = minute>9 ? [NSString stringWithFormat:@"%d",second] : [NSString stringWithFormat:@"%d",second];
     NSString *textString;
     if (hour<1) {
         if (minute<1) {

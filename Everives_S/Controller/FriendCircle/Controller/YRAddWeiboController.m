@@ -114,9 +114,13 @@
         [MBProgressHUD showError:@"内容不能为空" toView:self.view];
         return;
     }
-    [_bodyDic setObject:KUserLocation.addr forKey:@"address"];
+    NSMutableString *addrString = [NSMutableString stringWithString:KUserLocation.addr];
+    if ([addrString containsString:@"ReGeocode: "]) {
+        [addrString deleteCharactersInRange:NSMakeRange(0, 10)];
+    }
+    [_bodyDic setObject:addrString forKey:@"address"];
     [_bodyDic setObject:self.textView.text forKey:@"content"];
-    
+    MyLog(@"%@",KUserLocation.addr);
     [MBProgressHUD showMessag:@"上传中..." toView:self.view];
     if (!self.assetsArray.count) {
         NSString *imgArray = [_publishImgArray mj_JSONString];
@@ -141,7 +145,7 @@
                 [_imgNameArray addObject:imageName];
                 [_publishImgArray addObject:[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]];
                 
-//                [YRShaHeObjct saveNSDictionaryForDocument:uploadData FileUrl:imageName];
+                [YRShaHeObjct saveNSDictionaryForDocument:uploadData FileUrl:imageName];
 //                [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName];
                 [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName toDisk:YES];
                 

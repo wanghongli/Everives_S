@@ -86,10 +86,12 @@
 -(void)downViewBtnClick:(UIButton *)sender
 {
     MyLog(@"%s",__func__);
+    sender.selected = !sender.selected;
     [self.delegate praciceDownViewBtnClick:sender.tag-10 with:[NSString stringWithFormat:@"%ld",_questObj.id]];
 }
 -(void)setQuestObj:(YRQuestionObj *)questObj
 {
     _questObj = questObj;
+    _collectBtn.selected = questObj.collect;
 }
 @end

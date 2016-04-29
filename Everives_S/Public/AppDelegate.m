@@ -38,7 +38,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+
     //高德地图
     [MAMapServices sharedServices].apiKey = kAMapAppKey;
     [AMapSearchServices sharedServices].apiKey = kAMapAppKey;

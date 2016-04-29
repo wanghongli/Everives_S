@@ -25,6 +25,7 @@
 #import "YRSliderView.h"
 #import <MJRefresh.h>
 #import "UIImage+Tool.h"
+#import "YRSearchBar.h"
 //定义三个table的类型
 typedef NS_ENUM(NSUInteger,NearTableType){
     NearTableTypeSchool = 1,
@@ -52,7 +53,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 @property(nonatomic,strong) UITableView *schoolTable;
 @property(nonatomic,strong) UITableView *coachTable;
 @property(nonatomic,strong) UITableView *studentTable;
-@property(nonatomic,strong) UISearchBar *searchBar;
+@property(nonatomic,strong) YRSearchBar *searchBar;
 @property(nonatomic,strong) YRFillterBtnView *schoolFillterView;
 @property(nonatomic,strong) YRFillterBtnView *coachFillterView;
 @property(nonatomic,strong) UIButton *myLocationBtn;
@@ -461,23 +462,10 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     }
     return _studentTable;
 }
--(UISearchBar *)searchBar{
+-(YRSearchBar *)searchBar{
     if (!_searchBar) {
-        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(20, 112, kScreenWidth-40, 44)];
-        _searchBar.delegate = self;
-        _searchBar.searchBarStyle = UISearchBarStyleMinimal;
-        _searchBar.showsScopeBar = YES;
-        _searchBar.layer.cornerRadius = 22;
-        _searchBar.layer.masksToBounds = YES;
-        _searchBar.text = @"搜索";
-        UIImage *image = [UIImage imageNamed:@"NearMap_Search"];
-        [_searchBar setSearchFieldBackgroundImage:image forState:UIControlStateNormal];
-        UIImageView *left = [[UIImageView alloc] initWithFrame:CGRectMake(-10, 0, 22, 44)];
-        left.image = [UIImage imageNamed:@"LeftCircle"];
-        [_searchBar addSubview:left];
-        UIImageView *right = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth-50, 0, 22, 44)];
-        right.image = [UIImage imageNamed:@"RightCircle"];
-        [_searchBar addSubview:right];
+        _searchBar = [[YRSearchBar alloc] initWithFrame:CGRectMake(20, 112, kScreenWidth-40, 44)];
+        _searchBar.searchBar.delegate = self;
     }
     return _searchBar;
 

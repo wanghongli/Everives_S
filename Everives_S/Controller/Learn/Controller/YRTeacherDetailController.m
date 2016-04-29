@@ -63,6 +63,9 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         self.teacherDetail = [YRTeacherDetailObj mj_objectWithKeyValues:responseDic];
         _headView = [[YRTeacherHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth/2)];
+        if (self.kind) {
+            _headView.kind = self.kind;
+        }
         _headView.teacherObj = self.teacherDetail;
         self.tableView.tableHeaderView = _headView;
         self.tableView.tableFooterView = [[UIView alloc]init];
@@ -110,7 +113,7 @@
         return cell;
     }else if (indexPath.section == 1){
         YRTeacherCommentCell *cell = [YRTeacherCommentCell cellWithTableView:tableView];
-        cell.teacherCommentObj = _teacherDetail.comment[0];
+        cell.teacherCommentObj = _teacherDetail.comment;
         return cell;
     }else if (indexPath.section == 2){
         YRTeacherPlaceCell *cell = [YRTeacherPlaceCell cellWithTableView:tableView];
@@ -128,7 +131,7 @@
     if (indexPath.section == 0) {
         return [YRTeacherDetailCell getTeacherDetailCellHeightWith:@"态度温和，不骂学员，长得帅。首次通过率为92%，有多年教学经验可以放心。"];
     }else if (indexPath.section == 1){
-        return [YRTeacherCommentCell getTeacherCommentCellHeightWith:_teacherDetail.comment[0]];
+        return [YRTeacherCommentCell getTeacherCommentCellHeightWith:_teacherDetail.comment];
 
     }else if (indexPath.section == 2){
         return 44;

@@ -70,7 +70,7 @@
     UILabel *thirddtnum = [[UILabel alloc]init];
     thirddtnum.font = kFontOfSize(30);
     thirddtnum.textAlignment = NSTextAlignmentCenter;
-    thirddtnum.textColor = [UIColor greenColor];
+    thirddtnum.textColor = kCOLOR(26, 27, 27);
     [self addSubview:thirddtnum];
     _thirdNum = thirddtnum;
     

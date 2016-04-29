@@ -11,5 +11,5 @@
 @interface YRTeacherHeadView : UIImageView
 
 @property (nonatomic, strong) YRTeacherDetailObj *teacherObj;
-
+@property (nonatomic, strong) NSString *kind;
 @end

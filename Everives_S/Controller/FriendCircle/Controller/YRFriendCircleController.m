@@ -92,7 +92,7 @@
     }else
         urlString = WEIBO_GET_LIST;
     [RequestData GET:urlString parameters:@{@"page":[NSString stringWithFormat:@"%ld",_page]} complete:^(NSDictionary *responseDic) {
-        MyLog(@"%@",responseDic);
+//        MyLog(@"%@",responseDic);
         if (_page == 0) {
             [_blogs removeAllObjects];
         }
@@ -103,7 +103,7 @@
             [_blogs addObject:statusF];
         }
         [self.tableView reloadData];
-        if (!_blogs.count) {
+        if (!_blogs.count && self.userStatus == nil) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"暂无圈子数据，你可以去发布一条信息" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去发送", nil];
             [alert show];
         }

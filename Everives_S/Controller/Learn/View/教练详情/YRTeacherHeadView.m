@@ -93,8 +93,16 @@
     _headImg.layer.cornerRadius = _headImg.height/2;
     
     _menuView.frame = CGRectMake(0, CGRectGetMaxY(_starView.frame)+5, kScreenWidth, 20);
-    
-    NSString *kindString = teacherObj.kind ==0 ? @"科目二": (teacherObj.kind == 1 ? @"科目三":@"科目二 科目三");
+    NSString *kindString;
+    if (_kind) {
+        kindString = [_kind integerValue] ==0 ? @"科目二": (teacherObj.kind == 1 ? @"科目三":@"科目二 科目三");
+    }else
+        kindString = teacherObj.kind ==0 ? @"科目二": (teacherObj.kind == 1 ? @"科目三":@"科目二 科目三");
     _menuView.menuArray = @[[NSString stringWithFormat:@"%ld年",teacherObj.year],kindString,[NSString stringWithFormat:@"%ld人",teacherObj.student]];
+}
+-(void)setKind:(NSString *)kind
+{
+    _kind = kind;
+    
 }
 @end

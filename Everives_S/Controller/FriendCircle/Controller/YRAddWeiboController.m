@@ -150,8 +150,8 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
 //                    [YRShaHeObjct saveNSDictionaryForDocument:uploadData FileUrl:imageName];
                     [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName];
+                    MyLog(@"time-------addimg");
                 });
-//                [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName toDisk:YES];
                 
                 if (_imgNameArray.count == self.assetsArray.count) {
                     NSString *imgArray = [_publishImgArray mj_JSONString];

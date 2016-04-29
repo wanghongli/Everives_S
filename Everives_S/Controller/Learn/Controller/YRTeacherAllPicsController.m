@@ -68,7 +68,7 @@
 //返回每个item
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     YRTeacherAllPicsCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellid" forIndexPath:indexPath];
-    [cell.imgVIew sd_setImageWithURL:[NSURL URLWithString:_picArray[indexPath.row]] placeholderImage:[UIImage imageNamed:@"Login_addAvatar"]];
+    [cell.imgVIew sd_setImageWithURL:[NSURL URLWithString:_picArray[indexPath.row]] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
     return cell;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -95,7 +95,5 @@
     brower.photos = arrM;
     brower.currentPhotoIndex = indexPath.row;
     [brower show];
-
-    
 }
 @end

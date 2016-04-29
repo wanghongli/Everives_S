@@ -70,7 +70,8 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     _isMapView = YES;
     [SharedMapView sharedInstance].delegate = self;
     _mapView = [SharedMapView sharedInstance].mapView;
-    _selectView = [[YRMapSelectView alloc] initWithSelectedNum:_isGoOnLearning?2:1];
+    _mapView.frame = self.view.bounds;
+    _selectView = [[YRMapSelectView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44) selectedNum:_isGoOnLearning?2:1];
     _selectView.delegate = self;
     [self.view addSubview:_mapView];
     [self.view addSubview:_selectView];
@@ -266,9 +267,18 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 
 -(void)screenEdgePanGesture:(UIPanGestureRecognizer *)recognizer
 {
-    
     [self.frostedViewController panGestureRecognized:recognizer];
-    
+}
+-(void)panOnSlider:(UIPanGestureRecognizer*)gesture{
+    if (gesture.state == UIGestureRecognizerStateChanged) {
+        CGPoint movedPoint = [gesture translationInView:self.view];
+        CGFloat scale = kScreenWidth/(kScreenWidth-160);
+        float value = movedPoint.x/scale;
+        [_slider.slider setValue:value animated:YES];
+    }
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        [self sliderDrag:_slider.slider];
+    }
 }
 #pragma mark - YRMapSelectViewDelegate
 -(void)schoolBtnClick:(UIButton *)sender{
@@ -290,7 +300,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         }
         [self.coachFillterView removeMyObserver];
     }
-    _myLocationBtn.frame = CGRectMake(5, kScreenHeight - 80, 50, 50);
+    _myLocationBtn.frame = CGRectMake(5, kScreenHeight - 80-64, 50, 50);
 }
 -(void)coachBtnClick:(UIButton*)sender{
     if (sender.tag == _seletedBefore) {
@@ -310,7 +320,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
         }
         [self.schoolFillterView removeMyObserver];
     }
-    _myLocationBtn.frame = CGRectMake(5, kScreenHeight - 140, 50, 50);
+    _myLocationBtn.frame = CGRectMake(5, kScreenHeight - 140-64, 50, 50);
 }
 -(void)studentBtnClick:(UIButton*)sender{
     if (sender.tag == _seletedBefore) {
@@ -327,7 +337,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     if (!_isMapView) {
         [self.view addSubview:self.studentTable];
     }
-    _myLocationBtn.frame = CGRectMake(5, kScreenHeight - 80, 50, 50);
+    _myLocationBtn.frame = CGRectMake(5, kScreenHeight - 80-64, 50, 50);
 }
 -(void)removeLastTable{
     [self.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -410,7 +420,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 #pragma mark - Getters
 -(UITableView *)schoolTable{
     if (!_schoolTable) {
-        _schoolTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight-64)];
+        _schoolTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, kScreenWidth, kScreenHeight-64)];
         _schoolTable.tableHeaderView = self.schoolFillterView;
         [_schoolTable registerNib:[UINib nibWithNibName:@"YRSchoolTableCell" bundle:nil] forCellReuseIdentifier:schoolCellID];
         _schoolTable.rowHeight = 100;
@@ -429,7 +439,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(UITableView *)coachTable{
     if (!_coachTable) {
-        _coachTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight-64)];
+        _coachTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, kScreenWidth, kScreenHeight-64)];
         _coachTable.tableHeaderView = self.coachFillterView;
         [_coachTable registerNib:[UINib nibWithNibName:@"YRCoachTableCell" bundle:nil] forCellReuseIdentifier:coachCellID];
         _coachTable.rowHeight = 100;
@@ -448,7 +458,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(UITableView *)studentTable{
     if (!_studentTable) {
-        _studentTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight-64)];
+        _studentTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, kScreenWidth, kScreenHeight-64)];
         [_studentTable registerNib:[UINib nibWithNibName:@"YRStudentTableCell" bundle:nil] forCellReuseIdentifier:studentCellID];
         _studentTable.rowHeight = 100;
         _studentData = [[StudentDataSource alloc] init];
@@ -464,7 +474,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(YRSearchBar *)searchBar{
     if (!_searchBar) {
-        _searchBar = [[YRSearchBar alloc] initWithFrame:CGRectMake(20, 112, kScreenWidth-40, 44)];
+        _searchBar = [[YRSearchBar alloc] initWithFrame:CGRectMake(20, 48, kScreenWidth-40, 44)];
         _searchBar.searchBar.delegate = self;
     }
     return _searchBar;
@@ -472,7 +482,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(YRFillterBtnView *)schoolFillterView{
     if (!_schoolFillterView) {
-        _schoolFillterView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式"]];
+        _schoolFillterView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 44, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式"]];
         _schoolFillterView.itemArrs = @[@[@[@"重庆"],@[@"不限",@"南岸",@"江北",@"渝北",@"渝中",@"北碚",@"巴南",@"沙坪坝"]],
                                         @[@[@"综合排序",@"人气最高",@"距离最近",@"评价最好"]]];
         _schoolFillterView.tag = 1;
@@ -481,7 +491,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(YRFillterBtnView *)coachFillterView{
     if (!_coachFillterView) {
-        _coachFillterView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 108, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式",@"科二教练"]];
+        _coachFillterView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 44, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式",@"科二教练"]];
         _coachFillterView.itemArrs = @[@[@[@"重庆"],@[@"不限",@"南岸",@"江北",@"渝北",@"渝中",@"北碚",@"巴南",@"沙坪坝"]],
                                        @[@[@"综合排序",@"人气最高",@"距离最近",@"评价最好"]],@[@[@"科二教练",@"科三教练"]]];
         _coachFillterView.tag = 2;
@@ -490,7 +500,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(UIButton *)myLocationBtn{
     if (!_myLocationBtn) {
-        _myLocationBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, kScreenHeight - 80, 50, 50)];
+        _myLocationBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, kScreenHeight - 80-64, 50, 50)];
         [_myLocationBtn setImage:[UIImage imageNamed:@"Neighborhood_Location"] forState:UIControlStateNormal];
         [_myLocationBtn addTarget:self action:@selector(myLocationBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -498,7 +508,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(YRSliderView *)slider{
     if (!_slider) {
-        _slider = [[YRSliderView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 80, kScreenWidth, 80)];
+        _slider = [[YRSliderView alloc] initWithFrame:CGRectMake(0, kScreenHeight -80-64, kScreenWidth, 80)];
         _slider.hidden = YES;
         [_slider.slider addTarget:self action:@selector(sliderDrag:) forControlEvents:UIControlEventTouchUpInside];
          UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sliderTapped:)];
@@ -509,15 +519,5 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     }
     return _slider;
 }
--(void)panOnSlider:(UIPanGestureRecognizer*)gesture{
-    if (gesture.state == UIGestureRecognizerStateChanged) {
-        CGPoint movedPoint = [gesture translationInView:self.view];
-        CGFloat scale = kScreenWidth/(kScreenWidth-160);
-        float value = movedPoint.x/scale;
-        [_slider.slider setValue:value animated:YES];
-    }
-    if (gesture.state == UIGestureRecognizerStateEnded) {
-        [self sliderDrag:_slider.slider];
-    }
-}
+
 @end

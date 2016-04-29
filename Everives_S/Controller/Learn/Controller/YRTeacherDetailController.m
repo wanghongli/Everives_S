@@ -205,7 +205,7 @@
             }];
         }
     }else{//预约
-        
+        /*测试 假设全部通过审核
         if (KUserManager.checked == 0) {//未提交或正在审核
             if (KUserManager.peopleId.length) {//正在审核
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的信息正在审核当中" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
@@ -228,6 +228,13 @@
             alertView.tag = 22;
             [alertView show];
         }
+         */
+        YRReservationDateVC *chooseDateVC = [[YRReservationDateVC alloc] init];
+        chooseDateVC.isShareOrder = _isShareOrder;
+        self.teacherDetail.kind = [_kind integerValue];
+        chooseDateVC.coachModel = self.teacherDetail;
+        chooseDateVC.partnerModel = _partnerModel;
+        [self.navigationController pushViewController:chooseDateVC animated:YES];
     }
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

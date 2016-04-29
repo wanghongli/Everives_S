@@ -23,7 +23,7 @@
 
 @property(nonatomic,assign) NSInteger selectedBtnNum;//1、2、3分别表示  驾校 教练  驾友
 
--(instancetype)initWithSelectedNum:(NSInteger)num;
+-(instancetype)initWithFrame:(CGRect)frame selectedNum:(NSInteger)num;
 @end
 
 

@@ -288,7 +288,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         layout.minimumInteritemSpacing = 0;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         layout.itemSize = CGSizeMake(kcellWidth, kcellHeight);
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(kcellWidth, 64, kcellWidth*5, kScreenHeight-64) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(kcellWidth, 0, kcellWidth*5, kScreenHeight-64) collectionViewLayout:layout];
         [_collectionView registerClass:[YRDateCell class] forCellWithReuseIdentifier:kCellIdentifier];
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;

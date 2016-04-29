@@ -12,11 +12,13 @@
 #import <UIImageView+WebCache.h>
 #import "YRSearchFriendCell.h"
 #import "YRUserDetailController.h"
+#import "YRSearchBar.h"
 static NSString *cellID = @"cellID";
 @interface YRSearchFriendVC ()<UISearchBarDelegate>{
     NSArray *_searchRes;
 }
-@property(nonatomic,strong)UISearchBar *searchBar;
+@property(nonatomic,strong)YRSearchBar *searchBar;
+@property(nonatomic,strong) UIView *tableH;
 @end
 
 @implementation YRSearchFriendVC
@@ -26,7 +28,7 @@ static NSString *cellID = @"cellID";
     self.view.backgroundColor = [UIColor whiteColor];
     self.clearsSelectionOnViewWillAppear = NO;
     self.tableView.rowHeight = 60;
-    self.tableView.tableHeaderView = self.searchBar;
+    self.tableView.tableHeaderView = self.tableH;
     self.tableView.tableFooterView = [[UIView alloc] init];
     [self.tableView registerNib:[UINib nibWithNibName:@"YRSearchFriendCell" bundle:nil] forCellReuseIdentifier:cellID];
 }
@@ -61,7 +63,10 @@ static NSString *cellID = @"cellID";
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [searchBar resignFirstResponder];
-    [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_SEARCH_USER,[_searchBar.text  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] parameters:@{@"relation":@"1"} complete:^(NSDictionary *responseDic) {
+    if (searchBar.text.length == 0) {
+        return;
+    }
+    [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_SEARCH_USER,[_searchBar.searchBar.text  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] parameters:@{@"relation":@"1"} complete:^(NSDictionary *responseDic) {
         _searchRes = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
         if (_searchRes.count == 0) {
             [MBProgressHUD showSuccess:@"没有找到符合条件的用户~" toView:self.view];
@@ -71,15 +76,28 @@ static NSString *cellID = @"cellID";
     } failed:^(NSError *error) {
     }];
 }
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    searchBar.text = @"";
+}
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    if (searchBar.text.length == 0) {
+        searchBar.text = @"请输入驾友用户名或手机号码";
+    }
+}
 #pragma mark - Getters
--(UISearchBar *)searchBar{
+-(YRSearchBar *)searchBar{
     if (!_searchBar) {
-        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
-        _searchBar.delegate = self;
-        _searchBar.searchBarStyle = UISearchBarStyleMinimal;
-        _searchBar.placeholder = @"请输入驾友用户名或手机号码";
+        _searchBar = [[YRSearchBar alloc] initWithFrame:CGRectMake(16, 8, kScreenWidth-32, 44)];
+        _searchBar.searchBar.delegate = self;
 
     }
     return _searchBar;
+}
+-(UIView *)tableH{
+    if (!_tableH) {
+        _tableH = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
+        [_tableH addSubview:self.searchBar];
+    }
+    return _tableH;
 }
 @end

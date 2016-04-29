@@ -20,6 +20,7 @@ static NSString *cellID = @"cellID";
 @implementation YRMyCoachVC
 -(void)viewDidLoad{
     [super viewDidLoad];
+    self.title = @"我的教练";
     _selectedCoachIDArray = @[].mutableCopy;
     _selectedArray= @[].mutableCopy;
     self.tableView.tableFooterView = [[UIView alloc] init];

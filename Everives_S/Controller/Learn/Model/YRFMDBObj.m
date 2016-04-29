@@ -74,7 +74,6 @@
     NSString *stirng;
     if (allType) {//全部
         stirng = [NSString stringWithFormat:@"SELECT * FROM t_question where type=%ld and error = %d",type,1];
-
     }else//顺序联系
         stirng = [NSString stringWithFormat:@"SELECT * FROM t_question where type=%ld and error = %d and already = 1",type,1];
 

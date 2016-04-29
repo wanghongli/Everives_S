@@ -146,6 +146,7 @@
     if (timeInt == 0) {//考试结束
         [time invalidate];
         [self turnToScore];
+        [MBProgressHUD showSuccess:@"考试时间到" toView:GET_WINDOW];
     }
 }
 #pragma mark - 倒计时
@@ -311,14 +312,13 @@
         if (_msgArray.count-1 == indexPath.row) {//答题完毕
             //跳到成绩
             [self turnToScore];
+            [MBProgressHUD showSuccess:@"" toView:GET_WINDOW];
         }else{
             [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
         }
-        
     }else{//练习状态选择正确后跳到下一个题
         if (_msgArray.count-1 == indexPath.row) {//联系完毕
             [[[UIAlertView alloc] initWithTitle:@"提示" message:@"习题练习完毕" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-            
         }
         if (!currentQues.error) {
             [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];

@@ -43,9 +43,10 @@
     //正确数
     NSInteger thirdInt = [array[2] integerValue] - [array[1] integerValue];
     
-    int firstPercent = (int)firstInt*100/(thirdInt+secondInt+firstInt);
-    int secondPercent = (int)secondInt*100/(thirdInt+secondInt+firstInt);
-    int thridPercent = (int)thirdInt*100/(thirdInt+secondInt+firstInt);
+    int firstPercent = round((CGFloat)firstInt*100/[array[0] floatValue]);
+    int secondPercent = round((CGFloat)secondInt*100/[array[0] floatValue]);
+    int thridPercent = round((CGFloat)thirdInt*100/[array[0] floatValue]);
+    
     _numArray = @[[NSNumber numberWithInteger:firstPercent],[NSNumber numberWithInteger:secondPercent],[NSNumber numberWithInteger:thridPercent]];
     [self.pieChartView reloadData];
     
@@ -58,7 +59,7 @@
     self.scorePercentView.headString = @"正确率";
     self.scorePercentView.scoreString =[NSString stringWithFormat:@"%d",rightPercent];
     
-    self.myPracticeView = [[YRMyPracticeView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.scorePercentView.frame)+20, kScreenWidth, [YRMyPracticeView getHeight])];
+    self.myPracticeView = [[YRMyPracticeView alloc]initWithFrame:CGRectMake(0, self.view.height -64 - 1.5*[YRMyPracticeView getHeight], kScreenWidth, [YRMyPracticeView getHeight])];
     [self.view addSubview:self.myPracticeView];
     self.myPracticeView.msgArray = array;
 }
@@ -67,9 +68,9 @@
 {
     if (_colorArray == nil) {
         _colorArray =[NSArray arrayWithObjects:
-                        [UIColor lightGrayColor],
-                        [UIColor redColor],
-                        [UIColor greenColor],nil];
+                        kCOLOR(102, 155, 255),
+                        kCOLOR(44, 105, 159),
+                        kCOLOR(253, 255, 107),nil];
     }
     return _colorArray;
 }
@@ -95,7 +96,7 @@
 -(XYPieChart *)pieChartView
 {
     if (_pieChartView == nil) {
-        _pieChartView = [[XYPieChart alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth/3, kScreenWidth/3) Center:CGPointMake(kScreenWidth/6, kScreenWidth/6) Radius:kScreenWidth/6];
+        _pieChartView = [[XYPieChart alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth/2, kScreenWidth/2) Center:CGPointMake(kScreenWidth/4, kScreenWidth/4) Radius:kScreenWidth/4];
         _pieChartView.center = CGPointMake(kScreenWidth/2, 64+60+_pieChartView.height/2);
         [_pieChartView setDelegate:self];
         [_pieChartView setDataSource:self];

@@ -19,7 +19,7 @@
 @property (nonatomic, assign) NSInteger id;
 @property (nonatomic, assign) NSInteger kind;
 @property (nonatomic, assign) NSInteger student;
-@property (nonatomic, strong) NSArray *comment;
+@property (nonatomic, strong) YRTeacherCommentObj *comment;
 @property (nonatomic, strong) NSArray *pics;
 @property (nonatomic, strong) NSArray *place;
 @property (nonatomic, assign) NSInteger year;

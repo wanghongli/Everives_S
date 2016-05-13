@@ -10,6 +10,8 @@
 #import "YRYJMenuViewController.h"
 #import "UIBarButtonItem+Item.h"
 #import "UIViewController+REFrostedViewController.h"
+#import "UIImage+Tool.h"
+
 @interface YRYJNavigationController ()<UINavigationControllerDelegate>
 
 @property (strong, readwrite, nonatomic) YRYJMenuViewController *menuViewController;
@@ -33,6 +35,7 @@
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)]];
     _popDelegate = self.interactivePopGestureRecognizer.delegate;
     self.delegate = self;
+    [self.navigationBar setBackgroundImage:[UIImage imageWithColor:kCOLOR(247, 247, 247)] forBarMetrics:UIBarMetricsDefault];
 }
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {

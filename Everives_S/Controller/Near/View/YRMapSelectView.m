@@ -11,17 +11,16 @@
 
 @end
 @implementation YRMapSelectView
--(instancetype)initWithSelectedNum:(NSInteger)num{
-    if (self = [super init]) {
+-(instancetype)initWithFrame:(CGRect)frame selectedNum:(NSInteger)num{
+    if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor whiteColor];
-        self.frame = CGRectMake(0, 64, kScreenWidth, 44);
         _selectedBtnNum = num?:1;
         [self addSubview:self.schoolBtn];
         [self addSubview:self.coachBtn];
         [self addSubview:self.studentBtn];
         [self addSubview:self.lineView];
     }
-    return self;
+    return  self;
 }
 -(UIButton *)schoolBtn{
     if (!_schoolBtn) {

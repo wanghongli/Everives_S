@@ -16,11 +16,12 @@
 #import "YRSearchFriendCell.h"
 #import <AddressBook/AddressBook.h>
 #import "RequestData.h"
+#import "YRSearchBar.h"
 static NSString *cellID = @"cellID";
 @interface YRAddFriendVC ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>{
     NSArray *_resArray;
 }
-@property(nonatomic,strong) UISearchBar *searchBar;
+@property(nonatomic,strong) YRSearchBar *searchBar;
 @property(nonatomic,strong) UIButton *phoneContact;
 @property(nonatomic,strong) UITableView *resTable;
 @end
@@ -29,6 +30,7 @@ static NSString *cellID = @"cellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"添加驾友";
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.searchBar];
     [self.view addSubview:self.phoneContact];
@@ -114,7 +116,12 @@ static NSString *cellID = @"cellID";
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [searchBar resignFirstResponder];
-    [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_SEARCH_USER,[_searchBar.text  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]  parameters:@{@"relation":@"0"} complete:^(NSDictionary *responseDic) {
+    
+    if (searchBar.text.length == 0) {
+        return;
+    }
+    
+    [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_SEARCH_USER,[_searchBar.searchBar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]  parameters:@{@"relation":@"0"} complete:^(NSDictionary *responseDic) {
         _resArray = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
         if (_resArray.count == 0) {
             [MBProgressHUD showSuccess:@"没有找到符合条件的用户~" toView:self.view];
@@ -125,7 +132,14 @@ static NSString *cellID = @"cellID";
         
     }];
 }
-
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    searchBar.text = @"";
+}
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    if (searchBar.text.length == 0) {
+        searchBar.text = @"请输入驾友用户名或手机号码";
+    }
+}
 #pragma mark - UItableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -148,24 +162,23 @@ static NSString *cellID = @"cellID";
     [self.navigationController pushViewController:userDetailVC animated:YES];
 }
 #pragma mark - Getters
--(UISearchBar *)searchBar{
+-(YRSearchBar *)searchBar{
     if (!_searchBar) {
-        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, 60)];
-        _searchBar.delegate = self;
-        _searchBar.placeholder = @"请输入驾友用户名或手机号码";
-        _searchBar.searchBarStyle = UISearchBarStyleMinimal;
+        _searchBar = [[YRSearchBar alloc] initWithFrame:CGRectMake(16, 8, kScreenWidth-32, 44)];
+        _searchBar.searchBar.delegate = self;
+
     }
     return _searchBar;
 }
 -(UIButton *)phoneContact{
     if (!_phoneContact) {
-        _phoneContact = [[UIButton alloc] initWithFrame:CGRectMake(8, 128, kScreenWidth-16, 44)];
+        _phoneContact = [[UIButton alloc] initWithFrame:CGRectMake(16, 60, kScreenWidth-32, 44)];
         [_phoneContact setTitle:@"关注手机联系人" forState:UIControlStateNormal];
         [_phoneContact setImage:[UIImage imageNamed:@"Friend_AddFri_Contacts"] forState:UIControlStateNormal];
         [_phoneContact setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_phoneContact addTarget:self action:@selector(phoneContactBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         _phoneContact.layer.masksToBounds = YES;
-        _phoneContact.layer.cornerRadius = 5;
+        _phoneContact.layer.cornerRadius = 22;
         _phoneContact.layer.borderColor = [UIColor lightGrayColor].CGColor;
         _phoneContact.layer.borderWidth = 0.5;
     }
@@ -173,7 +186,7 @@ static NSString *cellID = @"cellID";
 }
 -(UITableView *)resTable{
     if (!_resTable) {
-        _resTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 175, kScreenWidth, kScreenHeight)];
+        _resTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 111, kScreenWidth, kScreenHeight)];
         _resTable.tableFooterView = [[UIView alloc] init];
         _resTable.rowHeight = 60;
         _resTable.delegate = self;

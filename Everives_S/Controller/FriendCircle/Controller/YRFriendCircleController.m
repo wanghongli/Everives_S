@@ -16,7 +16,6 @@
 #import "YRCircleDetailController.h"
 #import "YRCircleHeadView.h"
 #import "YRUserDetailController.h"
-
 @interface YRFriendCircleController ()<UIAlertViewDelegate>
 {
     NSInteger _page;
@@ -30,7 +29,6 @@
     [super viewDidLoad];
     _blogs = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
-    
     
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.tableFooterView = [[UIView alloc]init];

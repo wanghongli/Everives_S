@@ -65,21 +65,18 @@
     if (cell == nil) {
         cell = [[YRSettingCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    if (indexPath.section!=1) {
-        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-        cell.swithHidden = YES;
-    }else{
+    if (indexPath.section==1) {
         cell.swithHidden = NO;
-      NSDictionary *dic = @{
-          @"0":@"000",
-          @"1":@"001",
-          @"2":@"010",
-          @"3":@"011",
-          @"4":@"100",
-          @"5":@"101",
-          @"6":@"110",
-          @"7":@"111"
-          };
+        NSDictionary *dic = @{
+                              @"0":@"000",
+                              @"1":@"001",
+                              @"2":@"010",
+                              @"3":@"011",
+                              @"4":@"100",
+                              @"5":@"101",
+                              @"6":@"110",
+                              @"7":@"111"
+                              };
         //开关状态
         if (KUserManager.id) {
             NSInteger pushID = [dic[[NSString stringWithFormat:@"%ld",KUserManager.push]] integerValue];
@@ -92,6 +89,11 @@
             }
         }else
             cell.swithStatus = NO;
+    }else{
+        if (indexPath.row !=2) {
+            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+        }
+        cell.swithHidden = YES;
     }
     //开关事件
     [cell setSwithcIsOn:^(BOOL swithOn) {
@@ -136,7 +138,27 @@
             [self.tableView reloadData];
         }];
     }];
-    cell.textLabel.text = _menuArray[indexPath.section][indexPath.row];
+    
+    //如果是系统版本，直接在cell上添加版本信息
+    UIFont *font;
+    if (!(indexPath.section == 2 &&indexPath.row == 2)) {
+        cell.textLabel.text = _menuArray[indexPath.section][indexPath.row];
+        font = cell.textLabel.font;
+    }else{
+        // 当前应用软件版本  比如：1.0.1
+        NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+        NSString *appCurVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+        UILabel *leftL = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, 100, 44)];
+        leftL.text = @"系统版本";
+        leftL.font = font;
+        UILabel *rightL = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, kScreenWidth-100-20, 44)];
+        rightL.textAlignment = NSTextAlignmentRight;
+        rightL.text = appCurVersion;
+        rightL.font = font;
+        [cell.contentView addSubview:leftL];
+        [cell.contentView addSubview:rightL];
+        
+    }
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

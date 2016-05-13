@@ -94,7 +94,7 @@
                 imgMsg = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:photo];
                 [[SDImageCache sharedImageCache]removeImageForKey:photo];
             }
-                
+            
                 NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
                 
             MyLog(@"%@",[paths objectAtIndex:0]);

@@ -28,7 +28,7 @@
 }
 -(void)buildUI
 {
-    self.baseView.frame = CGRectMake(0, 64, kScreenWidth, self.baseView.height);
+    self.baseView.frame = CGRectMake(0, 0, kScreenWidth, self.baseView.height);
     [self.view addSubview:self.baseView];
     
     self.goOnBtn.layer.masksToBounds = YES;

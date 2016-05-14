@@ -38,6 +38,7 @@
     _titleLabel = titlelabel;
     
     UIImageView *imgview = [[UIImageView alloc]init];
+    imgview.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:imgview];
     _imgView = imgview;
     

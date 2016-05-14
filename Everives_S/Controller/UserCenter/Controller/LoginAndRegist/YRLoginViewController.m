@@ -20,7 +20,7 @@
 #import "YRUserStatus.h"
 #define CWSPercent 0.5
 #define CWSLeftDistance 15*2
-#define CWSHeightDistance [[UIScreen mainScreen]applicationFrame].size.height * 0.03961268
+#define CWSHeightDistance ([[UIScreen mainScreen]applicationFrame].size.height -64)*0.03961268
 @interface YRLoginViewController ()
 
 @property (nonatomic, strong) UIImageView *iconImgView;//大图片
@@ -53,8 +53,8 @@
     CGFloat weight = kSizeOfScreen.height*(1-CWSPercent) > kSizeOfScreen.width ? kSizeOfScreen.width : kSizeOfScreen.height*(1-CWSPercent);
     _iconImgView = [[UIImageView alloc]init];
     [self.view addSubview:_iconImgView];
-    _iconImgView.frame = CGRectMake(0,CWSHeightDistance,weight*0.3, weight*0.3);
-    _iconImgView.center = CGPointMake(kSizeOfScreen.width/2, kSizeOfScreen.height*(1-CWSPercent)/2+20);
+    _iconImgView.frame = CGRectMake(0,CWSHeightDistance-64,weight*0.3, weight*0.3);
+    _iconImgView.center = CGPointMake(kSizeOfScreen.width/2, kSizeOfScreen.height*(1-CWSPercent)/3);
     _iconImgView.image = [UIImage imageNamed:@"logo圆角版1"];
     
     //标题
@@ -65,7 +65,7 @@
     _titleLabel.text = @"蚁人约驾（学员）";
     
     //手机号码
-    _phoneTF = [[CWSLoginTextField alloc]initWithFrame:CGRectMake(CWSLeftDistance, kSizeOfScreen.height*CWSPercent, kSizeOfScreen.width - 2 * CWSLeftDistance, 44)];
+    _phoneTF = [[CWSLoginTextField alloc]initWithFrame:CGRectMake(CWSLeftDistance, kSizeOfScreen.height*0.4, kSizeOfScreen.width - 2 * CWSLeftDistance, 44)];
     _phoneTF.leftImage = [UIImage imageNamed:@"Login_UsernameGray"];
     _phoneTF.placeholder = @"手机号码";
     _phoneTF.keyboardType = UIKeyboardTypeNumberPad;

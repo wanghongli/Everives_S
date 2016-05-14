@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"编辑资料";
-    self.baseView.frame = CGRectMake(0, 66, kScreenWidth, self.baseView.height);
+    self.baseView.frame = CGRectMake(0, 2, kScreenWidth, self.baseView.height);
     [self.view addSubview:self.baseView];
     _bodyDic = [NSMutableDictionary dictionary];
     

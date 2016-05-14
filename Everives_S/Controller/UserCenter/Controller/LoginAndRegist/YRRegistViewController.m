@@ -50,7 +50,7 @@
     self.view.backgroundColor = kCOLOR(241, 241, 241);
 
     //手机号码输入框
-    self.tellText = [self setTextFieldWithFrame:CGRectMake(kDistance*2, kDistance*2+64, kSizeOfScreen.width-4*kDistance, kTextFieldHeight) withPlaceholder:@"请输入您的手机号"];
+    self.tellText = [self setTextFieldWithFrame:CGRectMake(kDistance*2, kDistance*2, kSizeOfScreen.width-4*kDistance, kTextFieldHeight) withPlaceholder:@"请输入您的手机号"];
     [self.view addSubview:self.tellText];
     
     //验证码

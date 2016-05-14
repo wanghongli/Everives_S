@@ -45,13 +45,13 @@
     
     UIImage  *img = [UIImage imageNamed:@"pic_add"];
     UIButton   *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(CGRectGetWidth(self.view.frame)-15-img.size.width, 200+(80-img.size.height)/2+64, img.size.width, img.size.height);
+    button.frame = CGRectMake(CGRectGetWidth(self.view.frame)-15-img.size.width, 200+(80-img.size.height)/2, img.size.width, img.size.height);
     [button setBackgroundImage:img forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(composePicAdd) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
-    self.textView = [[UITextView alloc]initWithFrame:CGRectMake(15, 15+64, kSizeOfScreen.width-30, 170)];
+    self.textView = [[UITextView alloc]initWithFrame:CGRectMake(15, 15, kSizeOfScreen.width-30, 170)];
     self.textView.delegate = self;
     self.textView.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:self.textView];
@@ -59,10 +59,10 @@
     self.textView.text = @"说点什么吧";
     self.textView.textColor = kCOLOR(200, 200, 200);
     
-    UIView *topLine = [[UIView alloc]initWithFrame:CGRectMake(15, 200+60, kSizeOfScreen.width-30, 1)];
+    UIView *topLine = [[UIView alloc]initWithFrame:CGRectMake(15, 200+60-64, kSizeOfScreen.width-30, 1)];
     topLine.backgroundColor = kCOLOR(241, 241, 241);
     [self.view addSubview:topLine];
-    UIView *downLine = [[UIView alloc]initWithFrame:CGRectMake(0, 200+64+80+4, kSizeOfScreen.width, 1)];
+    UIView *downLine = [[UIView alloc]initWithFrame:CGRectMake(0, 200+80, kSizeOfScreen.width, 1)];
     downLine.backgroundColor = kCOLOR(241, 241, 241);
     [self.view addSubview:downLine];
     

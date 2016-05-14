@@ -90,7 +90,7 @@
     UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc]init];
     [flowlayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     CGFloat collectHeight = self.menuTag ? 0:30;
-    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 30, kScreenWidth, self.view.frame.size.height-40-collectHeight) collectionViewLayout:flowlayout];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, self.view.frame.size.height-40-collectHeight) collectionViewLayout:flowlayout];
     flowlayout.minimumLineSpacing = 0;
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
@@ -366,7 +366,9 @@
         if (alertView.tag == 11) {
             [self turnToScore];
         }
-        
+        if (alertView.tag == 10) {
+            [self turnToScore];
+        }
     }
 }
 -(void)turnToScore

@@ -68,6 +68,7 @@
         _mapView.rotateEnabled = NO;
         _mapView.showsCompass= NO;
         _mapView.showsScale = NO;
+        _mapView.distanceFilter = 10.0;
     }
 }
 

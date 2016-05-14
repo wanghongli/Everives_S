@@ -82,6 +82,7 @@ static NSString *cellID = @"cellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(30, 20, 40, 30)];
     switch (indexPath.section*4+indexPath.row) {

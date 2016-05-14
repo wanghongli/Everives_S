@@ -45,6 +45,7 @@
     [footView addSubview:self.startBtn];
     self.tableView.tableFooterView = footView;
     [self getData];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 -(void)getData
 {
@@ -130,6 +131,7 @@
     cell.textLabel.text = _titleArray[indexPath.row];
     NSArray *array = _totalMenu[indexPath.section];
     cell.detailTextLabel.text = array[indexPath.row];
+    
     return cell;
 }
 

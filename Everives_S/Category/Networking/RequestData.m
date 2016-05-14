@@ -36,10 +36,8 @@
             failed(error);
             NSDictionary *dic = [operation.responseData mj_JSONObject];
             [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
-
         }
     }];
-
 }
 
 + (void)POST:(NSString *)URLString parameters:(id)parameters complete:(void (^)(NSDictionary *))complete failed:(void (^)(NSError *))failed

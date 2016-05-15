@@ -1,6 +1,6 @@
 //
 //  YRTeacherCommentDownView.m
-//  Everives_S
+//  Everives_T
 //
 //  Created by 李洪攀 on 16/4/13.
 //  Copyright © 2016年 darkclouds. All rights reserved.
@@ -10,6 +10,7 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #define kDistace 10
+#define kImgWH (kScreenWidth - 7*kDistace/2)/3
 @interface YRTeacherCommentDownView ()
 @property (nonatomic, weak) UILabel *contentLabel;
 @property (nonatomic, weak) UILabel *timeLabel;
@@ -19,7 +20,6 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        MyLog(@"%d",self.userInteractionEnabled);
         [self buildUI];
     }
     return self;
@@ -45,10 +45,13 @@
     for (int i = 0; i<9; i++) {
         UIImageView *img = [[UIImageView alloc]init];
         img.tag = i+30;
+        img.userInteractionEnabled = YES;
         // 添加点按手势
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTap:)];
         [img addGestureRecognizer:tap];
         [self addSubview:img];
+        MyLog(@"%d",img.userInteractionEnabled);
+        
     }
 }
 -(void)imageTap:(UITapGestureRecognizer *)sender
@@ -71,7 +74,7 @@
     // 创建浏览器对象
     MJPhotoBrowser *brower = [[MJPhotoBrowser alloc] init];
     brower.photos = arrM;
-    brower.currentPhotoIndex = tapView.tag;
+    brower.currentPhotoIndex = tapView.tag-30;
     [brower show];
     
 }
@@ -94,7 +97,7 @@
                 CGFloat x = i%3;
                 CGFloat y = i/3;
                 CGFloat distace = 5;
-                img.frame = CGRectMake(kDistace + x*(kPICTURE_HW+distace), CGRectGetMaxY(_contentLabel.frame)+kDistace+y*(kPICTURE_HW+distace), kPICTURE_HW, kPICTURE_HW);
+                img.frame = CGRectMake(kDistace + x*(kImgWH+distace), CGRectGetMaxY(_contentLabel.frame)+kDistace+y*(kImgWH+distace), kImgWH, kImgWH);
                 [img sd_setImageWithURL:[NSURL URLWithString:pics[i]] placeholderImage:[UIImage imageNamed:@""]];
                 maxY = CGRectGetMaxY(img.frame);
             }else{
@@ -122,14 +125,14 @@
     NSArray *pics = (NSArray *)[detailObj.pics mj_JSONObject];
     if (pics.count) {
         CGFloat y = pics.count/3;
-        height = height + y*(kPICTURE_HW+5) + kPICTURE_HW;
+        height = height + y*(kImgWH+5) + kImgWH;
         height+=kDistace;
     }
     
     CGSize timeSize = [[NSString intervalSinceNow:detailObj.time] sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(kScreenWidth-2*kDistace, CGFLOAT_MAX)];
     height+=timeSize.height;
     height+=kDistace;
-
+    
     return height;
 }
 

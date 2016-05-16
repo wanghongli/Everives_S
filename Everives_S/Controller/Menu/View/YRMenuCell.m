@@ -17,8 +17,8 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    self.selectedBackgroundView = [[UIView alloc]initWithFrame:self.contentView.frame];
+    self.selectedBackgroundView.backgroundColor = kCOLOR(245, 245, 245);
 }
 
 @end

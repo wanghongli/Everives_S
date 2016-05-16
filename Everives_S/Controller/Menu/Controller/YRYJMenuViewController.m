@@ -20,7 +20,9 @@
 #import "YRMenuMessageController.h"
 #import "YRSettingController.h"
 #import "YRMenuCell.h"
-@interface YRYJMenuViewController ()<UIAlertViewDelegate,YRMenuHeadViewDelegate>
+@interface YRYJMenuViewController ()<UIAlertViewDelegate,YRMenuHeadViewDelegate>{
+    NSIndexPath *_selectedIndexPath;
+}
 @property (nonatomic, strong) YRMenuHeadView *headView;
 @property (nonatomic,strong) UIImageView *messagePoint;
 @end
@@ -29,6 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     self.tableView.separatorColor = [UIColor colorWithRed:150/255.0f green:161/255.0f blue:177/255.0f alpha:1.0f];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -47,7 +50,7 @@
 {
     [super viewWillAppear:animated];
     self.view.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
-
+    [self.tableView selectRowAtIndexPath:_selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     if (KUserManager.id) {
         _headView.loginBool = YES;
     }else{
@@ -99,7 +102,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    _selectedIndexPath = indexPath;
     if (indexPath.section == 0 ) {
 //        YRYJLearnToDriveController *homeViewController = [[YRYJLearnToDriveController alloc] init];
 //        YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:homeViewController];

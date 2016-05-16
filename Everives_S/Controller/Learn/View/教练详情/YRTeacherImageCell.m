@@ -73,7 +73,6 @@
             YRTeacherPicsObj *pic = imgArray[i];
             [imageV sd_setImageWithURL:[NSURL URLWithString:pic.url] placeholderImage:[UIImage imageNamed:@"Login_addAvatar"]];
         }
-
     }
 }
 

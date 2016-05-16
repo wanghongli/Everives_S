@@ -18,4 +18,5 @@
 @property (nonatomic, assign) NSInteger attitudeInt;
 @property (nonatomic, assign) NSInteger describeInt;
 @property (nonatomic, assign) NSInteger qualityInt;
+@property (nonatomic, assign) NSInteger teachTime;
 @end

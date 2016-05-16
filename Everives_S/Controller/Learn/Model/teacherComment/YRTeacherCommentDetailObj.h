@@ -14,6 +14,7 @@
 @property (nonatomic, assign) NSInteger attitude;
 @property (nonatomic, assign) NSInteger describe;
 @property (nonatomic, assign) NSInteger quality;
+@property (nonatomic, assign) NSInteger teachTime;
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSString *grade;
 @property (nonatomic, assign) NSInteger hide;//0不隐藏 1隐藏

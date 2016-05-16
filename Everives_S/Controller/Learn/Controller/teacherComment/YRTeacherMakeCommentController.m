@@ -358,7 +358,7 @@ static NSString *kPhotoCellIdentifier = @"kPhotoCellIdentifier";
 {
     if (_starView == nil) {
         
-        _starView = [[YRTeacherStarLevelView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth*0.36)];
+        _starView = [[YRTeacherStarLevelView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth*0.36*9/7)];
         _starView.delegate = self;
         [self.view addSubview:_starView];
         

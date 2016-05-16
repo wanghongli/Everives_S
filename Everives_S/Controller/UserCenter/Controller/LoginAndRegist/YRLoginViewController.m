@@ -94,7 +94,6 @@
     [self.view addSubview:_forgetPassWordBtn];
     
     //新用户注册
-//    _registBtn = [[UIButton alloc]initWithFrame:CGRectMake(kSizeOfScreen.width - CWSLeftDistance, _forgetPassWordBtn.y, 0, 30)];
     _registBtn = [[UIButton alloc]initWithFrame:CGRectMake(kSizeOfScreen.width - CWSLeftDistance, _forgetPassWordBtn.y, 0, 30)];
     [_registBtn setFrameWithTitle:@"新用户注册" forState:UIControlStateNormal];
     [_registBtn addTarget:self action:@selector(registClick:) forControlEvents:UIControlEventTouchUpInside];

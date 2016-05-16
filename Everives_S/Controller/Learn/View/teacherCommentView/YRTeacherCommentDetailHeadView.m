@@ -99,6 +99,7 @@
     _starView.describeInt = detailObj.describe;
     _starView.qualityInt = detailObj.quality;
     _starView.attitudeInt = detailObj.attitude;
+    _starView.teachTime = detailObj.teachTime;
     _starView.userInteractionEnabled = NO;
 }
 @end

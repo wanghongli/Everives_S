@@ -52,7 +52,7 @@
             UILabel *titleL = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, 100, 50)];
             titleL.text = @"可提现金额";
             UILabel *balance = [[UILabel alloc] initWithFrame:CGRectMake(120, 16, kScreenWidth-200, 35)];
-            balance.text = @"   2000";
+            balance.text = [NSString stringWithFormat:@"    %@",KUserManager.money?:@"0"];
             balance.layer.borderWidth = 0.5;
             balance.layer.borderColor = [UIColor lightGrayColor].CGColor;
             balance.layer.cornerRadius = 5;

@@ -11,7 +11,6 @@
 #import "YRMyWalletViewController.h"
 #import "YRMyCommentsTableViewController.h"
 #import "YRNotificationViewController.h"
-#import "YRCertificationViewController.h"
 #import <UIImageView+WebCache.h>
 #import "RequestData.h"
 #import "REFrostedViewController.h"

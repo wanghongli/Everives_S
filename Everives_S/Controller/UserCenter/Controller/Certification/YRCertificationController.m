@@ -34,7 +34,7 @@
 - (void)buildUI
 {
     //姓名
-    _nameTF = [[CWSLoginTextField alloc]initWithFrame:CGRectMake(kDistance, kDistance+64, kSizeOfScreen.width - 2 * kDistance, 44)];
+    _nameTF = [[CWSLoginTextField alloc]initWithFrame:CGRectMake(kDistance, kDistance, kSizeOfScreen.width - 2 * kDistance, 44)];
     _nameTF.leftImage = [UIImage imageNamed:@"Neighborhood_Field_Contacts"];
     _nameTF.placeholder = @"请输入真实姓名";
     [self.view addSubview:_nameTF];
@@ -51,7 +51,7 @@
     [_sureBtn addTarget:self action:@selector(registClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_sureBtn];
     
-    _certificationBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, kScreenHeight - kScreenHeight/8, kScreenWidth, 44)];
+    _certificationBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, kScreenHeight - kScreenHeight/8-64, kScreenWidth, 44)];
     [_certificationBtn setTitle:@"为什么要进行信息认证？" forState:UIControlStateNormal];
     [_certificationBtn setTitleColor:[UIColor colorWithRed:0 green:0 blue:93/255.0 alpha:1] forState:UIControlStateNormal];
     _certificationBtn.titleLabel.font = [UIFont systemFontOfSize:14];

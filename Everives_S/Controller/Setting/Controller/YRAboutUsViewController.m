@@ -34,7 +34,7 @@
 
 -(void)shareBtnClick:(UIButton*)sender{
     [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:kUMengAppkey
+                                         appKey:kUMengShareAppkey
                                       shareText:@"人的一切痛苦都是对自己无能的愤怒"
                                      shareImage:[UIImage imageNamed:@"head_1"]
                                 shareToSnsNames:@[UMShareToSina,UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite]

@@ -76,10 +76,12 @@
 //预约部分
 #define STUDENT_AVAILTIME @"/order/availTime/"  //查看可预约时间
 #define STUDENT_AVAILPLACE @"/order/availPlace/"  //查看某时段可选场地
-#define STUDENT_ORDER @"/order/order" //提交订单post  获取预约记录列表get 获取详情get+id
+#define STUDENT_ORDER @"/order/order/" //提交订单post  获取预约记录列表get 获取详情get+id  取消订单  delete +id
 #define STUDENT_MAKE_COMMENT @"/order/Comment" //添加评价
 #define STUDENT_GET_COMMENT_LIST @"/order/comment" //获取评价列表（用户）
 #define STUDENT_PAY	@"/order/payment/"  //支付
+#define STUDENT_CANCEL_RES @"/order/orderRes/"  //回应取消订单 put+id
+
 
 //群聊部分
 #define GROUP_GROUP @"/group/group" // 创建群post  我加入的群get

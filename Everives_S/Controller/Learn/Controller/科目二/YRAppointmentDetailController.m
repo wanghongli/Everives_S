@@ -13,6 +13,8 @@
 #import "YRLearnOrderDetailInfo.h"
 #import "YRTeacherMakeCommentController.h"
 #import "YRChatViewController.h"
+#import "YRLearnPartnerObj.h"
+
 @interface YRAppointmentDetailController () <YRAppointmentHeadViewDelegate,UIAlertViewDelegate>
 {
     NSArray *_titleArray;
@@ -22,6 +24,7 @@
 @property (nonatomic, strong) YRAppointmentHeadView *headView;//头部视图
 @property (nonatomic, strong) YRLearnOrderDetail *orderDetail;//详情模型
 @property (nonatomic, strong) UIButton *startBtn;
+@property (nonatomic, strong) UIButton *cancelOrderBtn;
 @end
 
 @implementation YRAppointmentDetailController
@@ -34,16 +37,7 @@
     _headView.delegate = self;
     self.tableView.tableHeaderView = self.headView;
     
-    UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 70)];
-    self.startBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, footView.height-55, kScreenWidth-40, 40)];
-    [self.startBtn setTitle:@"发消息" forState:UIControlStateNormal];
-    [self.startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.startBtn.backgroundColor = kCOLOR(50, 51, 52);
-    [self.startBtn addTarget:self action:@selector(sartClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.startBtn.layer.masksToBounds = YES;
-    self.startBtn.layer.cornerRadius = self.startBtn.height/2;
-    [footView addSubview:self.startBtn];
-    self.tableView.tableFooterView = footView;
+    
     [self getData];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
@@ -51,7 +45,7 @@
 {
     [MBProgressHUD showMessag:@"加载中..." toView:GET_WINDOW];
     [RequestData GET:[NSString stringWithFormat:@"/order/order/%@",self.orderId] parameters:@{} complete:^(NSDictionary *responseDic) {
-        MyLog(@"%@",responseDic);
+        NSLog(@"%@",responseDic);
         [MBProgressHUD hideAllHUDsForView:GET_WINDOW animated:YES];
         self.orderDetail = [YRLearnOrderDetail mj_objectWithKeyValues:responseDic];
         self.headView.orderDetail = self.orderDetail;
@@ -68,9 +62,86 @@
         [self setStarBtnTitle:[YRPublicMethod getOrderStatusWith:self.orderDetail.status]];
         
         [self.tableView reloadData];
+        [self addFooterView];
     } failed:^(NSError *error) {
         [MBProgressHUD hideAllHUDsForView:GET_WINDOW animated:YES];
     }];
+}
+
+#pragma amrk - 根据订单状态判断底部视图布局
+-(void)addFooterView{
+    UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 115)];
+    self.startBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 15, kScreenWidth-40, 40)];
+    [self.startBtn setTitle:@"发消息" forState:UIControlStateNormal];
+    [self.startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.startBtn.backgroundColor = kCOLOR(50, 51, 52);
+    [self.startBtn addTarget:self action:@selector(startClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.startBtn.layer.masksToBounds = YES;
+    self.startBtn.layer.cornerRadius = self.startBtn.height/2;
+    
+    self.cancelOrderBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 60, kScreenWidth-40, 40)];
+    self.cancelOrderBtn.layer.masksToBounds = YES;
+    self.cancelOrderBtn.layer.cornerRadius = self.startBtn.height/2;
+    switch (_orderDetail.cancle) {
+        case 1://申请取消订单
+        {
+            [self.cancelOrderBtn setTitle:@"取消订单" forState:UIControlStateNormal];
+            [self.cancelOrderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            self.cancelOrderBtn.backgroundColor = kCOLOR(228, 69, 69);
+            [self.cancelOrderBtn addTarget:self action:@selector(cancelOrderBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            break;
+        }
+        case 500:
+        {
+            if (_orderDetail.cancleReplyer == [KUserManager.id integerValue]) {
+                UIAlertView *responseCancel = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"你的驾友%@申请取消订单,是否同意",((YRLearnPartnerObj*)(_orderDetail.partner)).name] delegate:self cancelButtonTitle:@"拒绝" otherButtonTitles:@"同意", nil];
+                responseCancel.tag = 2;
+                [responseCancel show];
+            }else{
+                [self.cancelOrderBtn setTitle:@"已申请取消订单" forState:UIControlStateNormal];
+                [self.cancelOrderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                self.cancelOrderBtn.backgroundColor = kCOLOR(228, 69, 69);
+            }
+            break;
+        }
+        case 501:
+        {
+            [self.cancelOrderBtn setTitle:@"等待审核取消订单" forState:UIControlStateNormal];
+            [self.cancelOrderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            self.cancelOrderBtn.backgroundColor = kCOLOR(228, 69, 69);
+            break;
+        }
+        case 502:
+        {
+            [self.cancelOrderBtn setTitle:@"取消订单已拒绝" forState:UIControlStateNormal];
+            [self.cancelOrderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            self.cancelOrderBtn.backgroundColor = kCOLOR(228, 69, 69);
+            break;
+        }
+        case 503:
+        {
+            [self.cancelOrderBtn setTitle:@"等待审核取消订单" forState:UIControlStateNormal];
+            [self.cancelOrderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            self.cancelOrderBtn.backgroundColor = kCOLOR(228, 69, 69);
+            break;
+        }
+        case 504:
+        {
+            [self.cancelOrderBtn setTitle:@"取消订单审核失败" forState:UIControlStateNormal];
+            [self.cancelOrderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            self.cancelOrderBtn.backgroundColor = kCOLOR(228, 69, 69);
+            break;
+        }
+            
+        default:
+            self.cancelOrderBtn = nil;
+            break;
+    }
+    
+    
+    [footView addSubview:self.startBtn];
+    [footView addSubview:self.cancelOrderBtn];
+    self.tableView.tableFooterView = footView;
 }
 -(void)setStarBtnTitle:(NSString *)titleString
 {
@@ -87,12 +158,13 @@
         [self.startBtn setTitle:@"发消息" forState:UIControlStateNormal];
     }
 }
--(void)sartClick:(UIButton *)sender
+-(void)startClick:(UIButton *)sender
 {
     //去支付
     if ([sender.titleLabel.text isEqualToString:@"去支付"]||[sender.titleLabel.text isEqualToString:@"确认拼教练"]) {
         sender.enabled = NO;
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确认支付" message:@"订单已生成，确认支付？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"支付", nil];
+        alertView.tag = 1;
         [alertView show];
     }else if ([sender.titleLabel.text isEqualToString:@"去评价"]){//去评价
         YRTeacherMakeCommentController *makeCommentVC = [[YRTeacherMakeCommentController alloc]init];
@@ -108,7 +180,11 @@
         [self.navigationController pushViewController:conversationVC animated:YES];
     }
 }
-
+- (void)cancelOrderBtnClick:(UIButton*)sender{
+    UIAlertView *confirmCancel = [[UIAlertView alloc] initWithTitle:nil message:@"确认取消订单" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+    confirmCancel.tag = 3;
+    [confirmCancel show];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -156,20 +232,49 @@
 
 #pragma mark - UIAlertViewDelegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    //确认支付
-    if (buttonIndex == 1) {
-        [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_PAY,_orderId] parameters:nil complete:^(NSDictionary *responseDic) {
-            UIAlertView *successAlertView = [[UIAlertView alloc] initWithTitle:@"支付成功" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
-            [successAlertView show];
-            [self.startBtn setTitle:@"发消息" forState:UIControlStateNormal];
-        } failed:^(NSError *error) {
-            UIAlertView *failureAlertView = [[UIAlertView alloc] initWithTitle:@"支付失败" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
-            [failureAlertView show];
+    if (alertView.tag == 1) {
+        //确认支付
+        if (buttonIndex == 1) {
+            [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_PAY,_orderId] parameters:nil complete:^(NSDictionary *responseDic) {
+                UIAlertView *successAlertView = [[UIAlertView alloc] initWithTitle:@"支付成功" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
+                [successAlertView show];
+                [self.startBtn setTitle:@"发消息" forState:UIControlStateNormal];
+            } failed:^(NSError *error) {
+                UIAlertView *failureAlertView = [[UIAlertView alloc] initWithTitle:@"支付失败" message:@"" delegate:self cancelButtonTitle:@"确认" otherButtonTitles: nil];
+                [failureAlertView show];
+                _startBtn.enabled = YES;
+            }];
+        }else{//确定  取消
             _startBtn.enabled = YES;
-        }];
-    }else{//确定  取消
-        _startBtn.enabled = YES;
+        }
+    }else if(alertView.tag == 2){
+        self.cancelOrderBtn.enabled = NO;
+        if (buttonIndex == 1) {
+            //被动方同意取消订单
+            [RequestData PUT:[NSString stringWithFormat:@"%@%li",STUDENT_CANCEL_RES,_orderDetail.id] parameters:@{@"status":@"1"} complete:^(NSDictionary *responseDic) {
+                [self.cancelOrderBtn setTitle:@"已同意取消订单" forState:UIControlStateNormal];
+            } failed:^(NSError *error) {
+                
+            }];
+        }else{
+            //被动方拒绝取消订单
+            [RequestData PUT:[NSString stringWithFormat:@"%@%li",STUDENT_CANCEL_RES,_orderDetail.id] parameters:@{@"status":@"0"} complete:^(NSDictionary *responseDic) {
+                [self.cancelOrderBtn setTitle:@"已拒绝取消订单" forState:UIControlStateNormal];
+            } failed:^(NSError *error) {
+                
+            }];
+        }
+    }else if(alertView.tag == 3){
+        if (buttonIndex == 1) {//非合拼订单，确定取消订单
+            [RequestData DELETE:[NSString stringWithFormat:@"%@%li",STUDENT_ORDER,_orderDetail.id] parameters:nil complete:^(NSDictionary *responseDic) {
+                [self.cancelOrderBtn setTitle:@"已申请取消订单" forState:UIControlStateNormal];
+                self.cancelOrderBtn.enabled = NO;
+            } failed:^(NSError *error) {
+                [MBProgressHUD showError:@"取消失败" toView:self.view];
+            }];
+        }
     }
+    
 }
 
 - (void)appointmentHeadViewClick

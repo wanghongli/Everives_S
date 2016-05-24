@@ -3093,7 +3093,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yizhongjia.stu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "73c1d3ec-b364-4187-8eed-bbbde8952ed8";
 			};
 			name = Debug;
 		};
@@ -3126,7 +3126,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yizhongjia.stu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "73c1d3ec-b364-4187-8eed-bbbde8952ed8";
 			};
 			name = Release;
 		};

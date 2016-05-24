@@ -44,7 +44,7 @@
     [AMapSearchServices sharedServices].apiKey = kAMapAppKey;
     [SharedMapView sharedInstance];
     //友盟分享
-    [UMSocialData setAppKey:kUMengAppkey];
+    [UMSocialData setAppKey:kUMengShareAppkey];
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:kSinaAppkey secret:kSinaAppSecret RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [UMSocialQQHandler setQQWithAppId:kAppID appKey:kTencentAppkey url:@"http://www.umeng.com/social"];
     [UMSocialWechatHandler setWXAppId:kWeChatID appSecret:kWeChatSecret url:@"http://www.umeng.com/social"];
@@ -84,7 +84,7 @@
         [application registerForRemoteNotificationTypes:myTypes];
     }
     //获取登陆信息
-    [self loginClick];
+    [self login];
  
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -108,7 +108,7 @@
 }
 
 #pragma mark - 获取登陆信息
--(void)loginClick
+-(void)login
 {
     NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];
     NSDictionary *dicUser = [userDefaults objectForKey:@"user"];

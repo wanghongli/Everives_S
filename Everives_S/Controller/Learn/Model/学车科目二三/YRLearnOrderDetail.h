@@ -24,4 +24,9 @@
 @property (nonatomic, strong) NSString *tname;
 @property (nonatomic, assign) NSInteger uid;
 @property (nonatomic, strong) YRLearnPartnerObj *partner;
+/**
+ *  cancle是取消订单的状态 1都可以退款（还要判断状态，如果是已取消则不能退款），其他状态见model里面通知部分 cancleReplyer是取消订单的响应者id，比如A请求退款，B需要响应，那么此处为B的ID。
+ */
+@property (nonatomic, assign) NSInteger cancle; //500退款申请 501同意 502拒绝 503等待审核 504审核失败
+@property (nonatomic, assign) NSInteger cancleReplyer;
 @end

@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016年03月21日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uIs-LE-yrT">
-                        <rect key="frame" x="106" y="11" width="126" height="21"/>
+                        <rect key="frame" x="106" y="11" width="121" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -67,21 +67,26 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="class_three" id="hbs-eV-HmF">
-                        <rect key="frame" x="188" y="78" width="44" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Qou-tF-AYF">
-                        <rect key="frame" x="58" y="63" width="40" height="40"/>
+                        <rect key="frame" x="55" y="54" width="45" height="45"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="uba-nr-gtf">
-                        <rect key="frame" x="8" y="63" width="40" height="40"/>
+                        <rect key="frame" x="6" y="54" width="45" height="45"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="class_three" id="hbs-eV-HmF">
+                        <rect key="frame" x="192" y="78" width="35" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BespeakDetail_Arrow" id="ShR-T7-bTc">
+                        <rect key="frame" x="43" y="68" width="20" height="15.5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="arrowhead" destination="ShR-T7-bTc" id="Fa7-MJ-qaH"/>
                 <outlet property="avatar" destination="mzc-HD-e2b" id="0A7-YQ-d0L"/>
                 <outlet property="coach" destination="uT6-Gi-5U8" id="ILW-zC-KER"/>
                 <outlet property="course" destination="hbs-eV-HmF" id="WgN-Ik-Gkd"/>
@@ -98,6 +103,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="BespeakDetail_Arrow" width="20" height="15"/>
         <image name="backImg" width="280" height="244"/>
         <image name="class_three" width="48" height="20"/>
     </resources>

@@ -8,8 +8,8 @@
 
 #import "YRAppointmentHeadView.h"
 #import "YRLearnPartnerObj.h"
-#define kHeadImgHeight 80
-#define kLOrRImgHeight 40
+#define kHeadImgHeight 90
+#define kLOrRImgHeight 45
 #define kCenterImgW 20
 @interface YRAppointmentHeadView ()
 @property (nonatomic, weak) UIImageView *headImg;
@@ -98,10 +98,10 @@
 {
     [super layoutSubviews];
     
-    self.headImg.frame = CGRectMake(kScreenWidth/2-kHeadImgHeight/2, 20, kHeadImgHeight, kHeadImgHeight);
-    self.leftImg.frame = CGRectMake(_headImg.x-5, 70, kLOrRImgHeight, kLOrRImgHeight);
-    self.rightImg.frame = CGRectMake(self.headImg.x+kHeadImgHeight/2+5, self.leftImg.y, kLOrRImgHeight, kLOrRImgHeight);
-    self.centerImg.frame = CGRectMake(CGRectGetMaxX(self.leftImg.frame)+5 - kCenterImgW/2, self.leftImg.y+self.leftImg.height/2-kCenterImgW*0.78/2, kCenterImgW, kCenterImgW*0.78);
+    self.headImg.frame = CGRectMake(kScreenWidth/2-kHeadImgHeight/2, 15, kHeadImgHeight, kHeadImgHeight);
+    self.leftImg.frame = CGRectMake(_headImg.x-2, 70, kLOrRImgHeight, kLOrRImgHeight);
+    self.rightImg.frame = CGRectMake(self.headImg.x+kHeadImgHeight/2+2, self.leftImg.y, kLOrRImgHeight, kLOrRImgHeight);
+    self.centerImg.frame = CGRectMake(CGRectGetMaxX(self.leftImg.frame)+3 - kCenterImgW/2, self.leftImg.y+self.leftImg.height/2-kCenterImgW*0.78/2, kCenterImgW, kCenterImgW*0.78);
     self.nameLabel.frame = CGRectMake(0, 115, kScreenWidth, 20);
     self.detailLabel.frame = CGRectMake(0, 140, kScreenWidth, 20);
     

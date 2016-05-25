@@ -34,12 +34,25 @@
     if([_numberInput.text integerValue]>[KUserManager.money integerValue]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"对不起，您的余额不足" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
+        return;
     }
     if ([_channel isEqualToString:@"wx"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"暂不支持微信提现" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
+        return;
     }
-    
+    //渠道 1支付宝 2微信 其他是各大银行
+    NSString *channelID = [_channel isEqualToString:@"wx"]?@"2":@"1";
+    NSDictionary *parameters = @{@"amount":_numberInput.text,@"channel":channelID,@"target":_accountInput.text};
+    [RequestData POST:MONEY_TIXIAN parameters:parameters complete:^(NSDictionary *responseDic) {
+        UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"提现操作成功，请等待" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        success.tag = 1;
+        [success show];
+    } failed:^(NSError *error) {
+        UIAlertView *failure = [[UIAlertView alloc] initWithTitle:@"提现操作失败，请稍后再试" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        failure.tag = 2;
+        [failure show];
+    }];
 }
 
 #pragma mark - UItableView
@@ -193,7 +206,9 @@
 
 #pragma mark - UIAlertViewDelegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
+    if (alertView.tag == 1 || alertView.tag == 2) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 #pragma mark - Getters
 

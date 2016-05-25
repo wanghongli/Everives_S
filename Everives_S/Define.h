@@ -156,14 +156,14 @@
 /**
  *  分享相关
  */
-#define kSinaAppkey @"2910434921"
-#define kSinaAppSecret @"095b7d354355af5d77ce47f677319e69"
-#define kAppID @"1066171081"
-#define kBundleID @"com.wjh.zhihudaily"
-#define kTencentAppkey @"fnVjd2FhdDMw7jvu"
+#define kSinaAppkey @"1842288242"
+#define kSinaAppSecret @"095b7d354355af5d77ce47f677319e69" //要更换
+#define kAppID @"1116337160"
+#define kBundleID @"com.yizhongjia.stu"
+#define kTencentAppkey @"2tGCblD70KQrF5RK"
 #define kUMengShareAppkey @"571d78cc67e58ecdbb00265f"
-#define kWeChatID @"wxb538b509999cc37e"
-#define kWeChatSecret @"05f996f5c4c54b4cc726cd8e354eaa50"
+#define kWeChatID @"wx17306b7afa88e4c4"
+#define kWeChatSecret @"102d411516c64bbe3879292742c529cc"
 //SMSSDK官网公共key
 #define kSMSSDKappkey @"120f88e798918"
 #define kSMSSDKappSecrect @"758bd215f6a16e9d8657e22c1bce7e98"

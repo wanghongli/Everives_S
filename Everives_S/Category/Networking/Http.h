@@ -92,5 +92,6 @@
 
 //充值提现
 #define MONEY_CHARGE @"/money/Charge"  //充值
+#define MONEY_TIXIAN @"/money/tixian"  //提现
 
 #endif

@@ -27,9 +27,9 @@
 }
 
 -(void)sureBtnClick:(UIButton*)sender{
-//    if ([_numberInput.text integerValue] == 0) {
-//        return;
-//    }
+    if ([_numberInput.text integerValue] == 0) {
+        return;
+    }
     NSDictionary* dict = @{
                            @"channel" : _channel?:@"wx",
                            @"amount"  : _numberInput.text
@@ -156,14 +156,14 @@
     
 }
 #pragma mark - UITextFieldDelegate
-//-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-//    if (range.location == 0 && [string  hasPrefix:@"0"]) {
-//        return NO;
-//    }
-//    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
-//    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-//    return [string isEqualToString:filtered];
-//}
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (range.location == 0 && [string  hasPrefix:@"0"]) {
+        return NO;
+    }
+    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+    return [string isEqualToString:filtered];
+}
 
 #pragma mark - UIAlertView
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

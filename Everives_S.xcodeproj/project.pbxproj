@@ -98,6 +98,8 @@
 		0340DFA11CC87EDE00CF9884 /* YRFeedBackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0340DF9F1CC87EDE00CF9884 /* YRFeedBackController.m */; };
 		0340DFA21CC87EDE00CF9884 /* YRFeedBackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0340DFA01CC87EDE00CF9884 /* YRFeedBackController.xib */; };
 		0340E07F1CCDBF0B00CF9884 /* YRLearnPartnerObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 0340E07E1CCDBF0B00CF9884 /* YRLearnPartnerObj.m */; };
+		034517621CF56B5C00444FF9 /* YRProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034517601CF56B5C00444FF9 /* YRProtocolViewController.m */; };
+		034517631CF56B5C00444FF9 /* YRProtocolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034517611CF56B5C00444FF9 /* YRProtocolViewController.xib */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
 		036FF4691CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 036FF4681CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
@@ -135,7 +137,6 @@
 		037F8E211C8826750057BF6C /* CWSReadPolicyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E0F1C8826750057BF6C /* CWSReadPolicyView.m */; };
 		037F8E221C8826750057BF6C /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E111C8826750057BF6C /* JKCountDownButton.m */; };
 		037F8E271C8834160057BF6C /* YRRegistPswController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E261C8834160057BF6C /* YRRegistPswController.m */; };
-		037F8E2A1C883C570057BF6C /* YRProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E291C883C570057BF6C /* YRProtocolViewController.m */; };
 		037F8E321C884DBC0057BF6C /* PublicCheckMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E311C884DBC0057BF6C /* PublicCheckMsgModel.m */; };
 		037F8E361C891CE20057BF6C /* NSString+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E351C891CE20057BF6C /* NSString+Tools.m */; };
 		037F8E3E1C8D18D20057BF6C /* YRUserStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F8E3D1C8D18D20057BF6C /* YRUserStatus.m */; };
@@ -513,6 +514,9 @@
 		0340DFA01CC87EDE00CF9884 /* YRFeedBackController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRFeedBackController.xib; sourceTree = "<group>"; };
 		0340E07D1CCDBF0B00CF9884 /* YRLearnPartnerObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPartnerObj.h; sourceTree = "<group>"; };
 		0340E07E1CCDBF0B00CF9884 /* YRLearnPartnerObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPartnerObj.m; sourceTree = "<group>"; };
+		0345175F1CF56B5C00444FF9 /* YRProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRProtocolViewController.h; sourceTree = "<group>"; };
+		034517601CF56B5C00444FF9 /* YRProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRProtocolViewController.m; sourceTree = "<group>"; };
+		034517611CF56B5C00444FF9 /* YRProtocolViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRProtocolViewController.xib; sourceTree = "<group>"; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
 		036FF4671CCF06AC00F9ECD3 /* UIBarButtonItem+Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Item.h"; sourceTree = "<group>"; };
@@ -587,8 +591,6 @@
 		037F8E111C8826750057BF6C /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
 		037F8E251C8834160057BF6C /* YRRegistPswController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRRegistPswController.h; sourceTree = "<group>"; };
 		037F8E261C8834160057BF6C /* YRRegistPswController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRRegistPswController.m; sourceTree = "<group>"; };
-		037F8E281C883C570057BF6C /* YRProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRProtocolViewController.h; sourceTree = "<group>"; };
-		037F8E291C883C570057BF6C /* YRProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRProtocolViewController.m; sourceTree = "<group>"; };
 		037F8E301C884DBC0057BF6C /* PublicCheckMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicCheckMsgModel.h; sourceTree = "<group>"; };
 		037F8E311C884DBC0057BF6C /* PublicCheckMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicCheckMsgModel.m; sourceTree = "<group>"; };
 		037F8E341C891CE20057BF6C /* NSString+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Tools.h"; sourceTree = "<group>"; };
@@ -1590,8 +1592,9 @@
 				037F8E031C8826750057BF6C /* YRRegistViewController.m */,
 				037F8E251C8834160057BF6C /* YRRegistPswController.h */,
 				037F8E261C8834160057BF6C /* YRRegistPswController.m */,
-				037F8E281C883C570057BF6C /* YRProtocolViewController.h */,
-				037F8E291C883C570057BF6C /* YRProtocolViewController.m */,
+				0345175F1CF56B5C00444FF9 /* YRProtocolViewController.h */,
+				034517601CF56B5C00444FF9 /* YRProtocolViewController.m */,
+				034517611CF56B5C00444FF9 /* YRProtocolViewController.xib */,
 				037D7C041C911F4A00273703 /* YRPerfectUserMsgController.h */,
 				037D7C051C911F4A00273703 /* YRPerfectUserMsgController.m */,
 			);
@@ -2599,6 +2602,7 @@
 				1608687E1CC5D7E900E7CC6D /* UMSCommentInputController.xib in Resources */,
 				03F59B901C8EC1FF009D5EA2 /* YRCircleDetailController.xib in Resources */,
 				1608687B1CC5D7E900E7CC6D /* UMSocialLocalizable.strings in Resources */,
+				034517631CF56B5C00444FF9 /* YRProtocolViewController.xib in Resources */,
 				037F8E691C8D5FC50057BF6C /* JKImagePickerController.strings in Resources */,
 				037F8EB21C8E6D350057BF6C /* MJPhotoBrowser.bundle in Resources */,
 				160868831CC5D7E900E7CC6D /* UMSnsAccountViewController.xib in Resources */,
@@ -2826,6 +2830,7 @@
 				03228D3A1CA4D3A000890DC6 /* SDDemoItemView.m in Sources */,
 				16A821FF1CA973BE0036CEDF /* YRSchoolAnnotationCalloutView.m in Sources */,
 				16C545951C98F8D400AE5152 /* YRAddFriendVC.m in Sources */,
+				034517621CF56B5C00444FF9 /* YRProtocolViewController.m in Sources */,
 				03228D341CA4D38700890DC6 /* SDPieLoopProgressView.m in Sources */,
 				164A8CB21C8D729700857638 /* YRActivityTableViewCell.m in Sources */,
 				03228D1D1CA3D51300890DC6 /* YRExamUserHeadView.m in Sources */,
@@ -2839,7 +2844,6 @@
 				16D4DB1F1CCDEA9B0006B10A /* UIColor+Tool.m in Sources */,
 				160868431CC5C74100E7CC6D /* YRAboutUsViewController.m in Sources */,
 				03F59B8F1C8EC1FF009D5EA2 /* YRCircleDetailController.m in Sources */,
-				037F8E2A1C883C570057BF6C /* YRProtocolViewController.m in Sources */,
 				037F8E1D1C8826750057BF6C /* UIButton+titleFrame.m in Sources */,
 				166939FD1C9A3F1D00C7ECF2 /* ChineseString.m in Sources */,
 				037D7C251C916AE600273703 /* CorePhoto.m in Sources */,

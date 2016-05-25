@@ -51,11 +51,12 @@
 
     //手机号码输入框
     self.tellText = [self setTextFieldWithFrame:CGRectMake(kDistance*2, kDistance*2, kSizeOfScreen.width-4*kDistance, kTextFieldHeight) withPlaceholder:@"请输入您的手机号"];
+    self.tellText.keyboardType = UIKeyboardTypePhonePad;
     [self.view addSubview:self.tellText];
     
     //验证码
     self.codeText = [self setTextFieldWithFrame:CGRectMake(self.tellText.x, CGRectGetMaxY(self.tellText.frame)+kDistance, self.tellText.width, kTextFieldHeight) withPlaceholder:@"请输入验证码"];
-    
+    self.codeText.keyboardType = UIKeyboardTypePhonePad;
     [self.view addSubview:self.codeText];
     
     //密码输入框
@@ -133,7 +134,7 @@
             }
             sender.enabled = NO;
             sender.backgroundColor = [UIColor lightGrayColor];
-            [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:ws.tellText.text zone:@"86" customIdentifier:@"蚁人约驾的验证码" result:^(NSError *error) {
+            [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:ws.tellText.text zone:@"86" customIdentifier:@"蚁众约驾的验证码" result:^(NSError *error) {
                 if (!error)
                 {
                     MyLog(@"验证码发送成功");
@@ -174,6 +175,12 @@
 #pragma mark - 注册事件
 -(void)registClick:(CWSPublicButton *)sender
 {
+//    YRPerfectUserMsgController *personalVC = [[YRPerfectUserMsgController alloc]init];
+//    personalVC.title = @"完善个人资料";
+//    [self.navigationController pushViewController:personalVC animated:YES];
+//    [MBProgressHUD showSuccess:@"注册成功" toView:GET_WINDOW];
+//    return;
+    
     sender.userInteractionEnabled = NO;
     [PublicCheckMsgModel checkTellWithTellNum:self.tellText.text complete:^(BOOL isSuccess) {
         if (![self.codeText.text isValid]) {
@@ -263,6 +270,4 @@
 {
     
 }
-
-
 @end

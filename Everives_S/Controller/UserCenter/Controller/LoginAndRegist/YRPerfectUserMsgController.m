@@ -69,6 +69,7 @@
     _ageText = [[CWSLoginTextField alloc]initWithFrame:CGRectMake(kDistace*2, CGRectGetMaxY(_nickName.frame)+kDistace, _nickName.width, _nickName.height)];
     _ageText.placeholder = @"请选择年龄";
     _ageText.leftString = @"年龄";
+    _ageText.keyboardType = UIKeyboardTypeNumberPad;
     [self.view addSubview:_ageText];
     
     _sexView = [[YRSexChoose alloc]initWithFrame:CGRectMake(_ageText.x, CGRectGetMaxY(_ageText.frame)+kDistace, _ageText.width, _ageText.height)];
@@ -85,6 +86,7 @@
     [_noSaveBtn setTitle:@"暂时不想填写" forState:UIControlStateNormal];
     [_noSaveBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     _noSaveBtn.tag = 11;
+    [_noSaveBtn setTitleColor:kCOLOR(194, 194, 194) forState:UIControlStateNormal];
     [self.view addSubview:_noSaveBtn];
     _noSaveBtn.layer.masksToBounds = YES;
     _noSaveBtn.layer.borderWidth = 1;
@@ -112,6 +114,16 @@
 -(void)btnClick:(CWSPublicButton *)sender
 {
     if (sender.tag == 10) {//填写完成
+        
+        NSString *regex = @"[a-zA-Z\u4e00-\u9fa5][a-zA-Z0-9\u4e00-\u9fa5]+";
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+        
+        if(![pred evaluateWithObject:self.nickName.text])
+        {
+            [MBProgressHUD showSuccess:@"昵称只能由中文、字母或数字组成" toView:GET_WINDOW];
+            return;
+        }
+        
         [MBProgressHUD showMessag:@"提交中..." toView:self.view];
         [_bodyDic setObject:self.nickName.text forKey:@"name"];
         [_bodyDic setObject:self.ageText.text forKey:@"age"];

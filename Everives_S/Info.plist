@@ -98,7 +98,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>蚁人约驾会在查看附近驾校和教练服务中使用您的位置信息</string>
+	<string>蚁众约驾会在查看附近驾校和教练服务中使用您的位置信息</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

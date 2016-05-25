@@ -17,10 +17,22 @@
             return;
         }
     }
-    
+    if (![phoneNum isVAlidPhoneNumber]) {
+        if (errorBlock) {
+            errorBlock(@"手机号码有误");
+            return;
+        }
+    }
     if (![pswMsg isValid]) {
         if (errorBlock) {
             errorBlock(@"密码不能为空");
+            return;
+        }
+    }
+    NSString *pswstring = [NSString stringWithFormat:@"%@",pswMsg];
+    if (pswstring.length<6 || pswstring.length>16) {
+        if (errorBlock) {
+            errorBlock(@"密码为6-16为字母和数字");
             return;
         }
     }
@@ -41,7 +53,12 @@
             return;
         }
     }
-    
+    if (![phoneNum isVAlidPhoneNumber]) {
+        if (errorBlock) {
+            errorBlock(@"手机号码有误");
+            return;
+        }
+    }
     if (completeBlock) {
         if (completeBlock) {
             completeBlock(YES);

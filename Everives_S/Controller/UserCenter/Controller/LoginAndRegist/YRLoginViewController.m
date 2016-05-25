@@ -62,7 +62,7 @@
     [self.view addSubview:_titleLabel];
     _titleLabel.frame = CGRectMake(0, CGRectGetMaxY(_iconImgView.frame)+CWSHeightDistance, kSizeOfScreen.width, 30);
     _titleLabel.textAlignment = NSTextAlignmentCenter;
-    _titleLabel.text = @"蚁人约驾（学员）";
+    _titleLabel.text = @"蚁众约驾（学员）";
     
     //手机号码
     _phoneTF = [[CWSLoginTextField alloc]initWithFrame:CGRectMake(CWSLeftDistance, kSizeOfScreen.height*0.4, kSizeOfScreen.width - 2 * CWSLeftDistance, 44)];
@@ -85,7 +85,6 @@
     [self.view addSubview:_sureBtn];
     
     //忘记密码
-//    _forgetPassWordBtn = [[UIButton alloc]initWithFrame:CGRectMake(CWSLeftDistance, kSizeOfScreen.height-30 + 20, 80, 30)];
     _forgetPassWordBtn = [[UIButton alloc]initWithFrame:CGRectMake(CWSLeftDistance, CGRectGetMaxY(_sureBtn.frame)+CWSHeightDistance, 80, 30)];
 
     [_forgetPassWordBtn setFrameWithTitle:@"忘记密码?" forState:UIControlStateNormal];

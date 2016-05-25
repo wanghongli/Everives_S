@@ -165,8 +165,11 @@
 #define kWeChatID @"wxb538b509999cc37e"
 #define kWeChatSecret @"05f996f5c4c54b4cc726cd8e354eaa50"
 //SMSSDK官网公共key
-#define kSMSSDKappkey @"120f88e798918"
-#define kSMSSDKappSecrect @"758bd215f6a16e9d8657e22c1bce7e98"
+//#define kSMSSDKappkey @"120f88e798918"
+//#define kSMSSDKappSecrect @"758bd215f6a16e9d8657e22c1bce7e98"
+#define kSMSSDKappkey @"1303daebef8b0"
+#define kSMSSDKappSecrect @"6dca11d9074312350fc8f3605908dfbf"
+
 //友盟推送
 #define kUMengAppKey @"571d78cc67e58ecdbb00265f"
 #define kUMengAppSecret @"vidgcolw9ktn4jbzjkwkbofeocy3oa1t"

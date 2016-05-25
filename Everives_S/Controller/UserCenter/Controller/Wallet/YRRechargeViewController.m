@@ -9,7 +9,7 @@
 #import "YRRechargeViewController.h"
 #import <Pingpp.h>
 
-@interface YRRechargeViewController ()<UITextFieldDelegate>
+@interface YRRechargeViewController ()<UITextFieldDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong) UIView *tableFooter;
 @property(nonatomic,strong) UITextField *numberInput;
 @property(nonatomic,strong) UIImageView *wechatRightImage;
@@ -27,9 +27,9 @@
 }
 
 -(void)sureBtnClick:(UIButton*)sender{
-    if ([_numberInput.text integerValue] == 0) {
-        return;
-    }
+//    if ([_numberInput.text integerValue] == 0) {
+//        return;
+//    }
     NSDictionary* dict = @{
                            @"channel" : _channel?:@"wx",
                            @"amount"  : _numberInput.text
@@ -37,12 +37,16 @@
     
     [RequestData POST:MONEY_CHARGE parameters:dict complete:^(NSDictionary *responseDic) {
         NSString *charge = [responseDic mj_JSONString];
-        [Pingpp createPayment:charge viewController:self appURLScheme:@"demoapp001" withCompletion:^(NSString *result, PingppError *error) {
+        [Pingpp createPayment:charge viewController:self appURLScheme:@"app_WLez1OnnD88CWrHa" withCompletion:^(NSString *result, PingppError *error) {
             NSLog(@"completion block: %@", result);
             if (error == nil) {
                 NSLog(@"PingppError is nil");
+                UIAlertView *successView = [[UIAlertView alloc] initWithTitle:@"充值成功" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [successView show];
             } else {
                 NSLog(@"PingppError: code=%lu msg=%@", (unsigned  long)error.code, [error getMsg]);
+                UIAlertView *failureView = [[UIAlertView alloc] initWithTitle:@"充值失败" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [failureView show];
             }
             
         }];
@@ -127,8 +131,8 @@
     UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionHeaderID];
     if (!header) {
         header = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:sectionHeaderID];
+        header.backgroundView.backgroundColor = [UIColor lightGrayColor];
     }
-    header.backgroundColor = [UIColor lightGrayColor];
     return header;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -152,15 +156,19 @@
     
 }
 #pragma mark - UITextFieldDelegate
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    if (range.location == 0 && [string  hasPrefix:@"0"]) {
-        return NO;
-    }
-    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
-    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-    return [string isEqualToString:filtered];
-}
+//-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+//    if (range.location == 0 && [string  hasPrefix:@"0"]) {
+//        return NO;
+//    }
+//    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
+//    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+//    return [string isEqualToString:filtered];
+//}
 
+#pragma mark - UIAlertView
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark -Getters
 -(UIView *)tableFooter{
     if (!_tableFooter) {

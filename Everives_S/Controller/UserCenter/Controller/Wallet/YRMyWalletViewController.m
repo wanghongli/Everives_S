@@ -26,16 +26,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"我的钱包";
     _recharge.layer.borderWidth = 0.5;
     _recharge.layer.borderColor = [UIColor lightGrayColor].CGColor;
     _recharge.layer.cornerRadius = 10;
     _withDrawal.layer.borderWidth = 0.5;
     _withDrawal.layer.borderColor = [UIColor lightGrayColor].CGColor;
     _withDrawal.layer.cornerRadius = 10;
-    [self getMoney];
-
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self getMoney];
+}
 -(void)getMoney{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [RequestData GET:STUDENT_MONEY parameters:nil complete:^(NSDictionary *responseDic) {

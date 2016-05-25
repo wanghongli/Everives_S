@@ -26,6 +26,8 @@
 #import "SharedMapView.h"
 #import "YRFriendViewController.h"
 #import "YRMenuMessageController.h"
+#import <Pingpp.h>
+
 //友盟推送
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 #define _IPHONE80_ 80000
@@ -285,7 +287,9 @@ didReceiveLocalNotification:(UILocalNotification *)notification{
 {
     BOOL result = [UMSocialSnsService handleOpenURL:url];
     if (result == FALSE) {
-        //调用其他SDK，例如支付宝SDK等
+        //调用ping++
+        BOOL canHandleURL = [Pingpp handleOpenURL:url withCompletion:nil];
+        return canHandleURL;
     }
     return result;
 }

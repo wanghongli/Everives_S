@@ -8,12 +8,13 @@
 
 #import "YRWithDrawalViewController.h"
 
-@interface YRWithDrawalViewController ()<UITextFieldDelegate>
+@interface YRWithDrawalViewController ()<UITextFieldDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong) UIView *tableFooter;
 @property(nonatomic,strong) NSString *channel;
 @property(nonatomic,strong) UIImageView *wechatRightImage;
 @property(nonatomic,strong) UIImageView *aliRightImage;
 @property(nonatomic,strong) UITextField *numberInput;
+@property(nonatomic,strong) UITextField *accountInput;
 @end
 
 @implementation YRWithDrawalViewController
@@ -21,14 +22,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"提现";
+    _channel = @"wx";
     self.tableView.rowHeight = 60;
     self.tableView.tableFooterView = self.tableFooter;
 }
 
 -(void)sureBtnClick:(UIButton*)sender{
-    if (_numberInput.text||[_numberInput.text integerValue] == 0) {
+    if (!_numberInput.text||[_numberInput.text integerValue] == 0) {
         return;
     }
+    if([_numberInput.text integerValue]>[KUserManager.money integerValue]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"对不起，您的余额不足" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
+    if ([_channel isEqualToString:@"wx"]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"暂不支持微信提现" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
+    
 }
 
 #pragma mark - UItableView
@@ -36,7 +47,7 @@
     return 2;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return section?3:2;
+    return 3;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -46,7 +57,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    switch (indexPath.section*2+indexPath.row) {
+    switch (indexPath.section*3+indexPath.row) {
         case 0:
         {
             UILabel *titleL = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, 100, 50)];
@@ -65,6 +76,7 @@
             UILabel *titleL = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, 100, 50)];
             titleL.text = @"提现金额";
             _numberInput = [[UITextField alloc] initWithFrame:CGRectMake(120, 16, kScreenWidth-200, 35)];
+            _numberInput.tag = 1;
             _numberInput.leftView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, 16, 16)];
             _numberInput.leftViewMode = UITextFieldViewModeAlways;
             _numberInput.layer.borderWidth = 0.5;
@@ -79,7 +91,7 @@
         }
         case 2:
         {
-            cell.textLabel.text = @"支付方式";
+            cell.textLabel.text = @"提现方式";
             break;
         }
         case 3:
@@ -87,7 +99,7 @@
             UIImageView *leftImage = [[UIImageView alloc] initWithFrame:CGRectMake(16, 9, 40, 40)];
             leftImage.image = [UIImage imageNamed:@"MyWallet_WechatPayment"];
             UILabel *titleL = [[UILabel alloc] initWithFrame:CGRectMake(71, 0, 200, 60)];
-            titleL.text = @"微信钱包支付";
+            titleL.text = @"微信钱包提现";
             _wechatRightImage = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - 40, 17.5, 25, 25)];
             _wechatRightImage.image = [UIImage imageNamed:@"Pay_Selected"];
             [cell.contentView addSubview:leftImage];
@@ -100,12 +112,25 @@
             UIImageView *leftImage = [[UIImageView alloc] initWithFrame:CGRectMake(16, 9, 40, 40)];
             leftImage.image = [UIImage imageNamed:@"MyWallet_Alipay"];
             UILabel *titleL = [[UILabel alloc] initWithFrame:CGRectMake(71, 0, 200, 60)];
-            titleL.text = @"微信钱包支付";
+            titleL.text = @"支付宝提现";
             _aliRightImage = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - 40, 17.5, 25, 25)];
             _aliRightImage.image = [UIImage imageNamed:@"Pay_NotSelected"];
             [cell.contentView addSubview:leftImage];
             [cell.contentView addSubview:titleL];
             [cell.contentView addSubview:_aliRightImage];
+            break;
+        }
+        case 5:
+        {
+            _accountInput = [[UITextField alloc] initWithFrame:CGRectMake(16, 16, kScreenWidth-32, 35)];
+            _accountInput.tag = 2;
+            _accountInput.leftView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, 16, 16)];
+            _accountInput.leftViewMode = UITextFieldViewModeAlways;
+            _accountInput.layer.borderWidth = 0.5;
+            _accountInput.layer.borderColor = [UIColor lightGrayColor].CGColor;
+            _accountInput.layer.cornerRadius = 5;
+            _accountInput.placeholder = @"请填写收款账号";
+            [cell.contentView addSubview:_accountInput];
             break;
         }
         default:
@@ -119,7 +144,6 @@
     if (!header) {
         header = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:sectionHeaderID];
     }
-    header.backgroundColor = [UIColor lightGrayColor];
     return header;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -128,7 +152,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.view endEditing:YES];
-    switch (indexPath.section*2+indexPath.row) {
+    switch (indexPath.section*3+indexPath.row) {
         case 0:
         case 1:
         case 2:
@@ -156,14 +180,21 @@
 
 #pragma mark - UITextFieldDelegate
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    if (range.location == 0 && [string  hasPrefix:@"0"]) {
-        return NO;
+    if (textField.tag == 1) {
+        if (range.location == 0 && [string  hasPrefix:@"0"]) {
+            return NO;
+        }
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        return [string isEqualToString:filtered];
     }
-    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
-    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-    return [string isEqualToString:filtered];
+    return YES;
 }
 
+#pragma mark - UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+}
 #pragma mark - Getters
 
 -(UIView *)tableFooter{

@@ -71,7 +71,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    KUserManager.checked = 1; //这行代码用于测试
+//    KUserManager.checked = 1; //这行代码用于测试
     [super viewWillAppear:animated];
     if (KUserManager.checked == 0) {//未提交或正在审核
         if (KUserManager.peopleId.length) {//正在审核

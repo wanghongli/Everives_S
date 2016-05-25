@@ -25,7 +25,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wb2910434921</string>
+				<string>wb1842288242</string>
 			</array>
 		</dict>
 		<dict>
@@ -33,7 +33,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>QQ41DF032E</string>
+				<string>QQ1105287655</string>
 			</array>
 		</dict>
 		<dict>
@@ -41,14 +41,16 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wxb538b509999cc37e</string>
+				<string>wx17306b7afa88e4c4</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array/>
+			<array>
+				<string>app_WLez1OnnD88CWrHa</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>

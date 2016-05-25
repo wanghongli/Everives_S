@@ -35,8 +35,8 @@
 -(void)shareBtnClick:(UIButton*)sender{
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:kUMengShareAppkey
-                                      shareText:@"人的一切痛苦都是对自己无能的愤怒"
-                                     shareImage:[UIImage imageNamed:@"head_1"]
+                                      shareText:@"蚁众约驾，开启预约学车新模式"
+                                     shareImage:[UIImage imageNamed:@"logo圆角版1"]
                                 shareToSnsNames:@[UMShareToSina,UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite]
                                        delegate:self];
 }

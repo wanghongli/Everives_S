@@ -157,7 +157,7 @@
  *  分享相关
  */
 #define kSinaAppkey @"1842288242"
-#define kSinaAppSecret @"095b7d354355af5d77ce47f677319e69" //要更换
+#define kSinaAppSecret @"3f4b07a882e2997e4b543dc3983a1211"
 #define kAppID @"1116337160"
 #define kBundleID @"com.yizhongjia.stu"
 #define kTencentAppkey @"2tGCblD70KQrF5RK"

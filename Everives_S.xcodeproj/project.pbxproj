@@ -240,7 +240,6 @@
 		160868841CC5D7E900E7CC6D /* UMSShareListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1608685C1CC5D7E900E7CC6D /* UMSShareListController.xib */; };
 		160868851CC5D7E900E7CC6D /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1608685D1CC5D7E900E7CC6D /* UMSocialSDKResourcesNew.bundle */; };
 		160868861CC5D7E900E7CC6D /* libSocialSinaSSO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 160868611CC5D7E900E7CC6D /* libSocialSinaSSO.a */; };
-		160868871CC5D7E900E7CC6D /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 160868621CC5D7E900E7CC6D /* libWeiboSDK.a */; };
 		160868881CC5D7E900E7CC6D /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1608686C1CC5D7E900E7CC6D /* WeiboSDK.bundle */; };
 		160868891CC5D7E900E7CC6D /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 160868701CC5D7E900E7CC6D /* libSocialQQ.a */; };
 		1608688A1CC5D7E900E7CC6D /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160868711CC5D7E900E7CC6D /* TencentOpenAPI.framework */; };
@@ -320,6 +319,7 @@
 		16A821FF1CA973BE0036CEDF /* YRSchoolAnnotationCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A821FE1CA973BE0036CEDF /* YRSchoolAnnotationCalloutView.m */; };
 		16ACDE7D1CEF121C002CD5B1 /* YRCertificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16ACDE7C1CEF121C002CD5B1 /* YRCertificationController.m */; };
 		16B0FD351CCB7EF300A5E3FD /* YRRechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B0FD331CCB7EF300A5E3FD /* YRRechargeViewController.m */; };
+		16B3F9411CF9274500A479A0 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B3F9401CF9274500A479A0 /* libWeiboSDK.a */; };
 		16B4735D1CBC9F0C00448884 /* YRMapFMDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B4735C1CBC9F0C00448884 /* YRMapFMDB.m */; };
 		16B75DEA1C92A627004DC928 /* YRPullListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B75DE91C92A627004DC928 /* YRPullListView.m */; };
 		16B75DED1C92B1EC004DC928 /* YRFillterBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B75DEC1C92B1EC004DC928 /* YRFillterBtnView.m */; };
@@ -794,7 +794,6 @@
 		1608685D1CC5D7E900E7CC6D /* UMSocialSDKResourcesNew.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResourcesNew.bundle; sourceTree = "<group>"; };
 		1608685E1CC5D7E900E7CC6D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UMSocialLocalizable.strings"; sourceTree = "<group>"; };
 		160868611CC5D7E900E7CC6D /* libSocialSinaSSO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialSinaSSO.a; sourceTree = "<group>"; };
-		160868621CC5D7E900E7CC6D /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		160868631CC5D7E900E7CC6D /* UMSocialSinaSSOHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSinaSSOHandler.h; sourceTree = "<group>"; };
 		160868641CC5D7E900E7CC6D /* WBHttpRequest+WeiboGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboGame.h"; sourceTree = "<group>"; };
 		160868651CC5D7E900E7CC6D /* WBHttpRequest+WeiboShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboShare.h"; sourceTree = "<group>"; };
@@ -955,6 +954,7 @@
 		16ACDE7C1CEF121C002CD5B1 /* YRCertificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCertificationController.m; sourceTree = "<group>"; };
 		16B0FD321CCB7EF300A5E3FD /* YRRechargeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRRechargeViewController.h; sourceTree = "<group>"; };
 		16B0FD331CCB7EF300A5E3FD /* YRRechargeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRRechargeViewController.m; sourceTree = "<group>"; };
+		16B3F9401CF9274500A479A0 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		16B4735B1CBC9F0C00448884 /* YRMapFMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMapFMDB.h; sourceTree = "<group>"; };
 		16B4735C1CBC9F0C00448884 /* YRMapFMDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMapFMDB.m; sourceTree = "<group>"; };
 		16B75DE81C92A627004DC928 /* YRPullListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRPullListView.h; sourceTree = "<group>"; };
@@ -1013,13 +1013,13 @@
 				1608688D1CC5D7E900E7CC6D /* libWeChatSDK.a in Frameworks */,
 				160868911CC60C0600E7CC6D /* libUMessage_Sdk_1.2.6.a in Frameworks */,
 				032C43F21CACB7580022C2F9 /* libstdc++.tbd in Frameworks */,
+				16B3F9411CF9274500A479A0 /* libWeiboSDK.a in Frameworks */,
 				032C43F01CACB7500022C2F9 /* JavaScriptCore.framework in Frameworks */,
 				032C43EE1CACB7480022C2F9 /* MessageUI.framework in Frameworks */,
 				032C43EC1CACB73D0022C2F9 /* libicucore.tbd in Frameworks */,
 				1608688A1CC5D7E900E7CC6D /* TencentOpenAPI.framework in Frameworks */,
 				032C43EA1CACB7350022C2F9 /* libz.tbd in Frameworks */,
 				032C43E81CACB7130022C2F9 /* MOBFoundation.framework in Frameworks */,
-				160868871CC5D7E900E7CC6D /* libWeiboSDK.a in Frameworks */,
 				032C43E61CACB51D0022C2F9 /* SMS_SDK.framework in Frameworks */,
 				1608687C1CC5D7E900E7CC6D /* libUMSocial_Sdk_5.0.1.a in Frameworks */,
 				160868861CC5D7E900E7CC6D /* libSocialSinaSSO.a in Frameworks */,
@@ -2082,8 +2082,8 @@
 		160868601CC5D7E900E7CC6D /* SinaSSO */ = {
 			isa = PBXGroup;
 			children = (
+				16B3F9401CF9274500A479A0 /* libWeiboSDK.a */,
 				160868611CC5D7E900E7CC6D /* libSocialSinaSSO.a */,
-				160868621CC5D7E900E7CC6D /* libWeiboSDK.a */,
 				160868631CC5D7E900E7CC6D /* UMSocialSinaSSOHandler.h */,
 				160868641CC5D7E900E7CC6D /* WBHttpRequest+WeiboGame.h */,
 				160868651CC5D7E900E7CC6D /* WBHttpRequest+WeiboShare.h */,

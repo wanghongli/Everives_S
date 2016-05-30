@@ -32,6 +32,8 @@
     self.frostedViewController.panGestureEnabled = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.tableFooterView = [[UIView alloc] init];
+    self.tableView.separatorColor = kCOLOR(230, 230, 230);
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 20);
     cellNmaes = @[@"我的预约",@"我的钱包",@"我的评价",@"活动通知",@"信息认证"];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"menu_icon"] highImage:[UIImage imageNamed:@"menu_icon"] target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -77,7 +79,9 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *line = [[UIView alloc] init];
-    line.backgroundColor = [UIColor colorWithWhite:0.946 alpha:1.000];
+    line.backgroundColor = kCOLOR(250, 250, 250);
+    line.layer.borderColor = kCOLOR(240, 240, 240).CGColor;
+    line.layer.borderWidth = 0.8;
     return line;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

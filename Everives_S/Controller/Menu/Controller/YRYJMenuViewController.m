@@ -215,6 +215,7 @@
     
     if (cell == nil) {
         cell = [[YRMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.textLabel.textColor = kYRBlackTextColor;
     }
     if (indexPath.section == 0) {
 //        NSArray *titles = @[@"学车"];

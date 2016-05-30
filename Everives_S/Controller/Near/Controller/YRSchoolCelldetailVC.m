@@ -152,6 +152,12 @@ static CGFloat cellHeight = 60;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //打开地图
+    if(indexPath.row == 1){
+        NSString *urlString = [[NSString stringWithFormat:@"http://maps.apple.com/?daddr=%@,%@&saddr=slat,slng",_model.lat, _model.lng] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    }
+        
     //金牌教练
     if (indexPath.row == 7) {
         YRGoldenTeacherVC *goldenTeacherVC = [[YRGoldenTeacherVC alloc] init];

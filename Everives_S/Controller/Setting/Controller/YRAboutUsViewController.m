@@ -37,7 +37,7 @@
                                          appKey:kUMengShareAppkey
                                       shareText:@"蚁众约驾，开启预约学车新模式"
                                      shareImage:[UIImage imageNamed:@"logo圆角版1"]
-                                shareToSnsNames:@[UMShareToSina,UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite]
+                                shareToSnsNames:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite]//UMShareToSina,取消分享到新浪微博，避免审核通不过
                                        delegate:self];
 }
 

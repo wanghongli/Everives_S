@@ -168,6 +168,13 @@ updatingLocation:(BOOL)updatingLocation
         //通过AMapReGeocodeSearchResponse对象处理搜索结果
         NSString *formattedAddress = [NSString stringWithFormat:@"ReGeocode: %@", response.regeocode.formattedAddress];
         KUserLocation.addr = formattedAddress;
+        
+        //同步地理位置信息
+        [RequestData PUT:USER_ADDRESS parameters:@{@"lat":KUserLocation.latitude,@"lng":KUserLocation.longitude,@"address":KUserLocation.addr} complete:^(NSDictionary *responseDic) {
+            
+        } failed:^(NSError *error) {
+            
+        }];
     }
 }
 

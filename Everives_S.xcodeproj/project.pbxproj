@@ -1394,6 +1394,7 @@
 		037F8DC31C8815EE0057BF6C /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				037F8E371C891F990057BF6C /* Networking */,
 				037F8DC41C8815F80057BF6C /* AppDelegate.h */,
 				037F8DC51C8815F80057BF6C /* AppDelegate.m */,
 			);
@@ -1655,7 +1656,8 @@
 				16D096091C89345D00FF4A81 /* RequestData.h */,
 				16D0960A1C89345D00FF4A81 /* RequestData.m */,
 			);
-			path = Networking;
+			name = Networking;
+			path = ../Category/Networking;
 			sourceTree = "<group>";
 		};
 		037F8E481C8D5FC50057BF6C /* ImagePicker */ = {
@@ -1919,7 +1921,6 @@
 				037D7C311C916B4100273703 /* UIImage+Tool.m */,
 				037F8E7F1C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.h */,
 				037F8E801C8D835F0057BF6C /* NSString+MKNetworkKitAdditions.m */,
-				037F8E371C891F990057BF6C /* Networking */,
 				037F8E331C891CDA0057BF6C /* StringTools */,
 				1600EB9F1C87E8A5001919EB /* YRYJNavigationController.h */,
 				1600EBA01C87E8A5001919EB /* YRYJNavigationController.m */,

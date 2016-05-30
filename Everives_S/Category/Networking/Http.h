@@ -24,6 +24,7 @@
 #define USER_INFO_BYID @"/student/info/" // 通过id获取用户信息
 #define USER_TEACHER_DETAIL @"/account/teacher/" //获取教练详情
 #define PLACE_TEACHER @"/info/placeTeacher/" //金牌教练
+#define USER_ADDRESS @"/Account/Address"  //更新位置信息
 
 //学员模块
 #define STUDENT_INFO @"/student/info"  //修改个人信息

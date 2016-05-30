@@ -21,6 +21,8 @@
     self.title = @"隐私设置";
     titleArray = @[@"在附近中显示",@"出现在附件中，不显示距离",@"不出现在附近"];
     self.tableView.tableFooterView = [[UIView alloc]init];
+    self.tableView.rowHeight = 55;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,6 +45,7 @@
     YRSettingPrivacyCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[YRSettingPrivacyCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.textLabel.textColor = kYRBlackTextColor;
     }
     cell.textLabel.text = titleArray[indexPath.row];
     if (KUserManager.id) {

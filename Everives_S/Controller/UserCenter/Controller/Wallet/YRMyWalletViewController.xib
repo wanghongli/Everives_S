@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tjR-cJ-SLi">
-                    <rect key="frame" x="60" y="417" width="200" height="33"/>
+                    <rect key="frame" x="60" y="357" width="200" height="33"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="EI0-aT-IZJ"/>
                         <constraint firstAttribute="height" constant="33" id="nyu-w9-GAl"/>
@@ -35,7 +35,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zB-fg-MHS">
-                    <rect key="frame" x="124" y="458" width="73" height="24"/>
+                    <rect key="frame" x="124" y="398" width="73" height="24"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="73" id="VL0-1S-YEU"/>
                         <constraint firstAttribute="height" constant="24" id="d25-XX-Fcw"/>
@@ -49,14 +49,14 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyWallet" translatesAutoresizingMaskIntoConstraints="NO" id="fci-lG-y7N">
-                    <rect key="frame" x="110" y="138" width="100" height="97"/>
+                    <rect key="frame" x="110" y="78" width="100" height="97"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="97" id="G2Y-fY-Qgu"/>
                         <constraint firstAttribute="width" constant="100" id="cPZ-LI-n7M"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3z-JU-8lu">
-                    <rect key="frame" x="60" y="376" width="200" height="33"/>
+                    <rect key="frame" x="60" y="316" width="200" height="33"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="33" id="FlZ-zw-aJJ"/>
                         <constraint firstAttribute="width" constant="200" id="Z41-hx-nKm"/>
@@ -71,7 +71,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eap-3R-Cym">
-                    <rect key="frame" x="160" y="341" width="100" height="19.5"/>
+                    <rect key="frame" x="160" y="281" width="100" height="19.5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="19.5" id="Bbr-q0-iJ2"/>
                         <constraint firstAttribute="width" constant="100" id="vBK-hT-CSd"/>
@@ -81,7 +81,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="活动赠送币" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQA-30-2c4">
-                    <rect key="frame" x="75" y="343" width="70" height="17"/>
+                    <rect key="frame" x="75" y="283" width="70" height="17"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="17" id="rPh-Yz-TgI"/>
                         <constraint firstAttribute="width" constant="70" id="va0-mf-0PK"/>
@@ -91,7 +91,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可提现余额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXz-we-00a">
-                    <rect key="frame" x="75" y="318" width="70" height="17"/>
+                    <rect key="frame" x="75" y="258" width="70" height="17"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="J5p-SH-i2q"/>
                         <constraint firstAttribute="height" constant="17" id="sjx-dk-WHA"/>
@@ -101,7 +101,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的学车币" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tp5-Lw-JVF">
-                    <rect key="frame" x="99" y="273" width="122" height="20.5"/>
+                    <rect key="frame" x="99" y="213" width="122" height="20.5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20.5" id="G6Z-oD-Fj6"/>
                         <constraint firstAttribute="width" constant="122" id="RPc-hz-fg2"/>
@@ -111,7 +111,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="600" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsr-QZ-DGH">
-                    <rect key="frame" x="160" y="316" width="100" height="20.5"/>
+                    <rect key="frame" x="160" y="256" width="100" height="20.5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20.5" id="3xE-Tu-SJ2"/>
                         <constraint firstAttribute="width" constant="100" id="NnA-LK-wl9"/>
@@ -135,7 +135,7 @@
                 <constraint firstItem="tp5-Lw-JVF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NwE-sY-j5P"/>
                 <constraint firstItem="9zB-fg-MHS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Yh3-Gh-ZMd"/>
                 <constraint firstItem="eap-3R-Cym" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="50" id="bMu-oA-Jyb"/>
-                <constraint firstItem="fci-lG-y7N" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="138" id="flk-sF-l7U"/>
+                <constraint firstItem="fci-lG-y7N" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="78" id="flk-sF-l7U"/>
                 <constraint firstItem="tp5-Lw-JVF" firstAttribute="top" secondItem="fci-lG-y7N" secondAttribute="bottom" constant="38" id="gyh-cn-QxW"/>
                 <constraint firstItem="OXz-we-00a" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-50" id="lmB-T3-GE7"/>
                 <constraint firstItem="OXz-we-00a" firstAttribute="top" secondItem="tp5-Lw-JVF" secondAttribute="bottom" constant="24.5" id="ssK-6A-Pwt"/>

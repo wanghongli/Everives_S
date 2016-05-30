@@ -26,8 +26,9 @@
     self.title = @"设置";
     self.frostedViewController.panGestureEnabled = YES;
     _menuArray = @[@[@"隐私设置"],@[@"系统通知提醒",@"驾友消息提醒",@"驾友圈消息提醒"],@[@"关于我们",@"用户反馈"]];
-    self.tableView.backgroundColor = kCOLOR(241, 241, 241);
-    
+    self.tableView.backgroundColor = kCOLOR(250, 250, 250);
+    self.tableView.rowHeight = 55;
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 20);
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"menu_icon"] highImage:[UIImage imageNamed:@"menu_icon"] target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
 
 }
@@ -64,6 +65,7 @@
     YRSettingCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[YRSettingCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.textLabel.textColor = kYRBlackTextColor;
     }
     if (indexPath.section==1) {
         cell.swithHidden = NO;

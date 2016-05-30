@@ -25,7 +25,7 @@
     [super viewDidLoad];
     self.title = @"设置";
     self.frostedViewController.panGestureEnabled = YES;
-    _menuArray = @[@[@"隐私设置"],@[@"系统通知提醒",@"驾友消息提醒",@"驾友圈消息提醒"],@[@"关于我们",@"用户反馈",@"系统版本"]];
+    _menuArray = @[@[@"隐私设置"],@[@"系统通知提醒",@"驾友消息提醒",@"驾友圈消息提醒"],@[@"关于我们",@"用户反馈"]];
     self.tableView.backgroundColor = kCOLOR(241, 241, 241);
     
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"menu_icon"] highImage:[UIImage imageNamed:@"menu_icon"] target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
@@ -141,24 +141,24 @@
     
     //如果是系统版本，直接在cell上添加版本信息
     UIFont *font;
-    if (!(indexPath.section == 2 &&indexPath.row == 2)) {
+//    if (!(indexPath.section == 2 &&indexPath.row == 2)) {
         cell.textLabel.text = _menuArray[indexPath.section][indexPath.row];
         font = cell.textLabel.font;
-    }else{
-        // 当前应用软件版本  比如：1.0.1
-        NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-        NSString *appCurVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-        UILabel *leftL = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, 100, 44)];
-        leftL.text = @"系统版本";
-        leftL.font = font;
-        UILabel *rightL = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, kScreenWidth-100-20, 44)];
-        rightL.textAlignment = NSTextAlignmentRight;
-        rightL.text = appCurVersion;
-        rightL.font = font;
-        [cell.contentView addSubview:leftL];
-        [cell.contentView addSubview:rightL];
-        
-    }
+//    }else{
+//        // 当前应用软件版本  比如：1.0.1
+//        NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+//        NSString *appCurVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+//        UILabel *leftL = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, 100, 44)];
+//        leftL.text = @"系统版本";
+//        leftL.font = font;
+//        UILabel *rightL = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, kScreenWidth-100-20, 44)];
+//        rightL.textAlignment = NSTextAlignmentRight;
+//        rightL.text = appCurVersion;
+//        rightL.font = font;
+//        [cell.contentView addSubview:leftL];
+//        [cell.contentView addSubview:rightL];
+//        
+//    }
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

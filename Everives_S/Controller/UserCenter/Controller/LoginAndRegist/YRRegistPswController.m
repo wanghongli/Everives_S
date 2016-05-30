@@ -9,7 +9,6 @@
 #import "YRRegistPswController.h"
 #import "CWSPublicButton.h"
 #import "YRRegistViewController.h"
-//#import "YRPersonalDataController.h"
 #import "YRPerfectUserMsgController.h"
 #import "RequestData.h"
 #import "PublicCheckMsgModel.h"
@@ -40,7 +39,7 @@
     self.title = @"确认密码";
     _bodyDic = [NSMutableDictionary dictionary];
     [_bodyDic setObject:self.tellNum forKey:@"tel"];
-    [_bodyDic setObject:self.codeNum forKey:@"code"];
+//    [_bodyDic setObject:self.codeNum forKey:@"code"];
     [_bodyDic setObject:@"0" forKey:@"kind"];
     [_bodyDic setObject:@"1" forKey:@"type"];
     [self buildUI];
@@ -49,9 +48,9 @@
 -(void)buildUI
 {
     //密码输入框
-    self.passwordTextField = [self setTextFieldWithFrame:CGRectMake(kDistance, kDistance*2+64, kSizeOfScreen.width-2*kDistance, kTextFieldHeight) withPlaceholder:@"请输入您的密码"];
+    self.passwordTextField = [self setTextFieldWithFrame:CGRectMake(kDistance, kDistance*2, kSizeOfScreen.width-2*kDistance, kTextFieldHeight) withPlaceholder:@"请输入您的密码"];
     self.passwordTextField.secureTextEntry = YES;
-    _passwordTextField.leftImage = [UIImage imageNamed:@"searchbar_textfield_search_icon"];
+    _passwordTextField.leftImage = [UIImage imageNamed:@"Login_PasswordBlack"];
 
     [self.view addSubview:self.passwordTextField];
     
@@ -59,7 +58,7 @@
     self.againPasswordTextField = [self setTextFieldWithFrame:CGRectMake(kDistance, CGRectGetMaxY(self.passwordTextField.frame)+kDistance, kSizeOfScreen.width-2*kDistance, kTextFieldHeight) withPlaceholder:@"请再次输入您的密码"];
     self.againPasswordTextField.secureTextEntry = YES;
     [self.view addSubview:self.againPasswordTextField];
-    _againPasswordTextField.leftImage = [UIImage imageNamed:@"searchbar_textfield_search_icon"];
+    _againPasswordTextField.leftImage = [UIImage imageNamed:@"Login_PasswordBlack"];
 
     
     self.registBtn = [[CWSPublicButton alloc]initWithFrame:CGRectMake(kDistance, CGRectGetMaxY(self.againPasswordTextField.frame)+2*kDistance, self.againPasswordTextField.width, kTextFieldHeight)];
@@ -97,9 +96,9 @@
         if (_pswOrRegistVC) {//忘记密码跳转来
             [MBProgressHUD showMessag:@"修改中..." toView:self.view];
 
-            [_bodyDic setObject:self.passwordTextField.text forKey:@"password"];
+//            [_bodyDic setObject:self.passwordTextField.text forKey:@"password"];
             
-            [RequestData POST:USER_FIND_PSW parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+            [RequestData POST:USER_FIND_PSW parameters:@{@"tel":self.tellNum,@"password":self.passwordTextField.text} complete:^(NSDictionary *responseDic) {
                 [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                 [MBProgressHUD showSuccess:@"密码修改成功" toView:GET_WINDOW];
                 [self.navigationController popToRootViewControllerAnimated:YES];
@@ -111,8 +110,8 @@
         }else{//注册界面跳转而来
             [MBProgressHUD showMessag:@"注册中..." toView:self.view];
             
-            [_bodyDic setObject:self.passwordTextField.text forKey:@"password"];
-            
+            [_bodyDic setObject:[NSString stringWithFormat:@"%@",self.passwordTextField.text] forKey:@"password"];
+        MyLog(@"%@",_bodyDic);
             [RequestData POST:USER_REGIST parameters:_bodyDic complete:^(NSDictionary *responseDic) {
                 MyLog(@"%@",responseDic);
                 [MBProgressHUD hideAllHUDsForView:self.view animated:YES];

@@ -20,6 +20,7 @@
 #define USER_LOGIN @"/account/token" //登陆
 #define USER_REGIST @"/account/account" //注册
 #define USER_FIND_PSW @"/account/Password" //找回密码
+#define USER_TELCHECK @"/account/telcheck/" //验证手机验证码
 #define USER_CHECK_TELL @"/account/checkTel" //检查手机号码
 #define USER_INFO_BYID @"/student/info/" // 通过id获取用户信息
 #define USER_TEACHER_DETAIL @"/account/teacher/" //获取教练详情

@@ -59,20 +59,20 @@
     self.codeText.keyboardType = UIKeyboardTypePhonePad;
     [self.view addSubview:self.codeText];
     
-    //密码输入框
-    self.passwordTextField = [self setPswTextFieldWithFrame:CGRectMake(self.tellText.x, CGRectGetMaxY(self.codeText.frame)+kDistance, self.tellText.width, kTextFieldHeight) withPlaceholder:@"请输入您的密码"];
-    self.passwordTextField.secureTextEntry = YES;
-    _passwordTextField.leftImage = [UIImage imageNamed:@"Login_PasswordBlack"];
+//    //密码输入框
+//    self.passwordTextField = [self setPswTextFieldWithFrame:CGRectMake(self.tellText.x, CGRectGetMaxY(self.codeText.frame)+kDistance, self.tellText.width, kTextFieldHeight) withPlaceholder:@"请输入您的密码"];
+//    self.passwordTextField.secureTextEntry = YES;
+//    _passwordTextField.leftImage = [UIImage imageNamed:@"Login_PasswordBlack"];
+//    
+//    [self.view addSubview:self.passwordTextField];
+//    
+//    //再次密码输入
+//    self.againPasswordTextField = [self setPswTextFieldWithFrame:CGRectMake(self.tellText.x, CGRectGetMaxY(self.passwordTextField.frame)+kDistance, self.tellText.width, kTextFieldHeight) withPlaceholder:@"请再次输入您的密码"];
+//    self.againPasswordTextField.secureTextEntry = YES;
+//    [self.view addSubview:self.againPasswordTextField];
+//    _againPasswordTextField.leftImage = [UIImage imageNamed:@"Login_PasswordBlack"];
     
-    [self.view addSubview:self.passwordTextField];
-    
-    //再次密码输入
-    self.againPasswordTextField = [self setPswTextFieldWithFrame:CGRectMake(self.tellText.x, CGRectGetMaxY(self.passwordTextField.frame)+kDistance, self.tellText.width, kTextFieldHeight) withPlaceholder:@"请再次输入您的密码"];
-    self.againPasswordTextField.secureTextEntry = YES;
-    [self.view addSubview:self.againPasswordTextField];
-    _againPasswordTextField.leftImage = [UIImage imageNamed:@"Login_PasswordBlack"];
-    
-    self.registBtn = [[CWSPublicButton alloc]initWithFrame:CGRectMake(kDistance*2, CGRectGetMaxY(self.againPasswordTextField.frame)+kDistance, self.tellText.width, kTextFieldHeight)];
+    self.registBtn = [[CWSPublicButton alloc]initWithFrame:CGRectMake(kDistance*2, CGRectGetMaxY(self.codeText.frame)+kDistance, self.tellText.width, kTextFieldHeight)];
     [self.registBtn setTitle:@"完成验证" forState:UIControlStateNormal];
     [self.registBtn addTarget:self action:@selector(registClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.registBtn];
@@ -175,10 +175,10 @@
 #pragma mark - 注册事件
 -(void)registClick:(CWSPublicButton *)sender
 {
-//    YRPerfectUserMsgController *personalVC = [[YRPerfectUserMsgController alloc]init];
-//    personalVC.title = @"完善个人资料";
+//    YRRegistPswController *personalVC = [[YRRegistPswController alloc]init];
+////    personalVC.title = @"完善个人资料";
 //    [self.navigationController pushViewController:personalVC animated:YES];
-//    [MBProgressHUD showSuccess:@"注册成功" toView:GET_WINDOW];
+////    [MBProgressHUD showSuccess:@"注册成功" toView:GET_WINDOW];
 //    return;
     
     sender.userInteractionEnabled = NO;
@@ -188,43 +188,41 @@
             [MBProgressHUD showError:@"验证码不能为空" toView:self.view];
             sender.userInteractionEnabled = YES;
             return ;
-        }
-        [PublicCheckMsgModel checkPswIsEqualFistPsw:self.passwordTextField.text secondPsw:self.againPasswordTextField.text complete:^(BOOL isSuccess) {
-            
+        }        
             _bodyDic = [NSMutableDictionary dictionary];
             [_bodyDic setObject:self.tellText.text forKey:@"tel"];
-            [_bodyDic setObject:self.codeText.text forKey:@"code"];
-            [_bodyDic setObject:self.passwordTextField.text forKey:@"password"];
-            [_bodyDic setObject:@"0" forKey:@"kind"];
-            [_bodyDic setObject:@"1" forKey:@"type"];
-            
-            if (![self.title isEqualToString:@"注册"]) {//忘记密码跳转来
-                [MBProgressHUD showMessag:@"修改中..." toView:self.view];
-                [RequestData POST:USER_FIND_PSW parameters:_bodyDic complete:^(NSDictionary *responseDic) {
-                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                    [MBProgressHUD showSuccess:@"密码修改成功" toView:GET_WINDOW];
-                    [self.navigationController popViewControllerAnimated:YES];
-                } failed:^(NSError *error) {
-                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                    sender.userInteractionEnabled = YES;
-                }];
-                
-            }else{//注册界面跳转而来
+            [_bodyDic setObject:[NSString stringWithFormat:@"%@",self.codeText.text] forKey:@"code"];
+//            [_bodyDic setObject:self.passwordTextField.text forKey:@"password"];
+//            [_bodyDic setObject:@"0" forKey:@"kind"];
+//            [_bodyDic setObject:@"1" forKey:@"type"];
+        
+//            if (![self.title isEqualToString:@"注册"]) {//忘记密码跳转来
+//                [MBProgressHUD showMessag:@"修改中..." toView:self.view];
+//                [RequestData POST:USER_TELCHECK parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+//                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//                    [MBProgressHUD showSuccess:@"密码修改成功" toView:GET_WINDOW];
+//                    [self.navigationController popViewControllerAnimated:YES];
+//                } failed:^(NSError *error) {
+//                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//                    sender.userInteractionEnabled = YES;
+//                }];
+//                
+//            }else{//注册界面跳转而来
+        MyLog(@"%@",_bodyDic);
                 [MBProgressHUD showMessag:@"注册中..." toView:self.view];
-                [RequestData POST:USER_REGIST parameters:_bodyDic complete:^(NSDictionary *responseDic) {
+                [RequestData POST:USER_TELCHECK parameters:_bodyDic complete:^(NSDictionary *responseDic) {
                     MyLog(@"%@",responseDic);
                     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                    [self saveMsg:responseDic];
+                    YRRegistPswController *personalVC = [[YRRegistPswController alloc]init];
+                    personalVC.tellNum = self.tellText.text;
+                    [self.navigationController pushViewController:personalVC animated:YES];
+
                     sender.userInteractionEnabled = YES;
                 } failed:^(NSError *error) {
                     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                     sender.userInteractionEnabled = YES;
                 }];
-            }
-        } error:^(NSString *errorMsg) {
-            [MBProgressHUD showError:errorMsg toView:GET_WINDOW];
-            sender.userInteractionEnabled = YES;
-        }];
+//            }
     } error:^(NSString *errorMsg) {
         sender.userInteractionEnabled = YES;
         [MBProgressHUD showError:errorMsg toView:self.view];

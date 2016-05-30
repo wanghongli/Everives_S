@@ -101,6 +101,8 @@
 		034517621CF56B5C00444FF9 /* YRProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 034517601CF56B5C00444FF9 /* YRProtocolViewController.m */; };
 		034517631CF56B5C00444FF9 /* YRProtocolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034517611CF56B5C00444FF9 /* YRProtocolViewController.xib */; };
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
+		0362492F1CFC11CF00968CA7 /* YRUserCertificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362492D1CFC11CF00968CA7 /* YRUserCertificationController.m */; };
+		036249301CFC11CF00968CA7 /* YRUserCertificationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0362492E1CFC11CF00968CA7 /* YRUserCertificationController.xib */; };
 		036FF4691CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 036FF4681CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -519,6 +521,9 @@
 		034517611CF56B5C00444FF9 /* YRProtocolViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRProtocolViewController.xib; sourceTree = "<group>"; };
 		0357AAF11C97A2130033E9BC /* YRLearnPracticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRLearnPracticeController.h; sourceTree = "<group>"; };
 		0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRLearnPracticeController.m; sourceTree = "<group>"; };
+		0362492C1CFC11CF00968CA7 /* YRUserCertificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserCertificationController.h; sourceTree = "<group>"; };
+		0362492D1CFC11CF00968CA7 /* YRUserCertificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserCertificationController.m; sourceTree = "<group>"; };
+		0362492E1CFC11CF00968CA7 /* YRUserCertificationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRUserCertificationController.xib; sourceTree = "<group>"; };
 		036FF4671CCF06AC00F9ECD3 /* UIBarButtonItem+Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Item.h"; sourceTree = "<group>"; };
 		036FF4681CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Item.m"; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -2414,6 +2419,9 @@
 			children = (
 				16ACDE7B1CEF121C002CD5B1 /* YRCertificationController.h */,
 				16ACDE7C1CEF121C002CD5B1 /* YRCertificationController.m */,
+				0362492C1CFC11CF00968CA7 /* YRUserCertificationController.h */,
+				0362492D1CFC11CF00968CA7 /* YRUserCertificationController.m */,
+				0362492E1CFC11CF00968CA7 /* YRUserCertificationController.xib */,
 			);
 			path = Certification;
 			sourceTree = "<group>";
@@ -2599,6 +2607,7 @@
 				031515381C9A3D7400A2A2F1 /* YREditUserController.xib in Resources */,
 				032FADE41CBDFE82006A7AA4 /* YRMenuCell.xib in Resources */,
 				160868821CC5D7E900E7CC6D /* UMSLoginViewController.xib in Resources */,
+				036249301CFC11CF00968CA7 /* YRUserCertificationController.xib in Resources */,
 				1608687E1CC5D7E900E7CC6D /* UMSCommentInputController.xib in Resources */,
 				03F59B901C8EC1FF009D5EA2 /* YRCircleDetailController.xib in Resources */,
 				1608687B1CC5D7E900E7CC6D /* UMSocialLocalizable.strings in Resources */,
@@ -2757,6 +2766,7 @@
 				037F8E6E1C8D5FC50057BF6C /* JKAssetsGroupsView.m in Sources */,
 				16271AAC1CB360830082F7CB /* View+MASAdditions.m in Sources */,
 				1600EBCA1C88087A001919EB /* XBPageCell.m in Sources */,
+				0362492F1CFC11CF00968CA7 /* YRUserCertificationController.m in Sources */,
 				1600EBA11C87E8A5001919EB /* YRYJNavigationController.m in Sources */,
 				037D7C2A1C916AE600273703 /* UzysAssetsPickerController.m in Sources */,
 				03A8CA4E1CA25D39007AB152 /* YRTeacherImageCell.m in Sources */,

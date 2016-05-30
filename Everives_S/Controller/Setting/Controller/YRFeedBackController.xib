@@ -18,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JMd-dD-qOG">
-                    <rect key="frame" x="20" y="84" width="280" height="120"/>
+                    <rect key="frame" x="20" y="20" width="280" height="120"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="120" id="pGy-G2-wdE"/>
@@ -27,7 +27,7 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ys-Uf-NeH">
-                    <rect key="frame" x="20" y="224" width="280" height="44"/>
+                    <rect key="frame" x="20" y="160" width="280" height="44"/>
                     <color key="backgroundColor" red="0.14117647058823529" green="0.14509803921568629" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="tZg-dv-pfC"/>
@@ -45,7 +45,7 @@
                 <constraint firstAttribute="trailing" secondItem="JMd-dD-qOG" secondAttribute="trailing" constant="20" id="4Zs-XS-oFM"/>
                 <constraint firstAttribute="trailing" secondItem="2Ys-Uf-NeH" secondAttribute="trailing" constant="20" id="8UV-P3-m6f"/>
                 <constraint firstItem="JMd-dD-qOG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="HH0-J8-Tmy"/>
-                <constraint firstItem="JMd-dD-qOG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="84" id="WPr-qP-lhz"/>
+                <constraint firstItem="JMd-dD-qOG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="WPr-qP-lhz"/>
                 <constraint firstItem="2Ys-Uf-NeH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="dkE-AO-geU"/>
                 <constraint firstItem="2Ys-Uf-NeH" firstAttribute="top" secondItem="JMd-dD-qOG" secondAttribute="bottom" constant="20" id="xQd-5l-ISe"/>
             </constraints>

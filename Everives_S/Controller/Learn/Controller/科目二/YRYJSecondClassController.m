@@ -10,7 +10,7 @@
 #import "YRLearnSecondCell.h"
 #import "YRAppointmentDetailController.h"
 #import "YRLearnNoMsgView.h"//没认证界面
-#import "YRCertificationController.h" //信息认证
+#import "YRUserCertificationController.h" //信息认证
 #import "YRFriendCircleController.h"
 #import "YRTeacherOrder.h"
 #import "UIViewController+YRCommonController.h"
@@ -162,10 +162,10 @@
         YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:nearViewController];
         self.frostedViewController.contentViewController = navigationController;
     }else if (btnTag == 1){//未审核
-        YRCertificationController *certificationVC = [[YRCertificationController alloc]init];
+        YRUserCertificationController *certificationVC = [[YRUserCertificationController alloc]initWithNibName:@"YRUserCertificationController" bundle:nil];
         [self.navigationController pushViewController:certificationVC animated:YES];
     }else{//失败
-        YRCertificationController *certificationVC = [[YRCertificationController alloc]init];
+        YRUserCertificationController *certificationVC = [[YRUserCertificationController alloc]initWithNibName:@"YRUserCertificationController" bundle:nil];
         [self.navigationController pushViewController:certificationVC animated:YES];
     }
 }

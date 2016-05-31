@@ -10,6 +10,7 @@
 #import "YRQuestionObj.h"
 @interface YRLearnCollectionCell : UICollectionViewCell
 @property (nonatomic, strong) YRQuestionObj *questionOb;
+@property (nonatomic, strong) void (^anserErrorClickBlock)();
 @property (nonatomic, strong) void (^answerIsClickBlock)(YRQuestionObj *answerQues);
 
 @property (nonatomic, assign) NSInteger MNCurrentID;

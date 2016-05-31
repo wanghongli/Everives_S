@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "Drawer_Background.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "Drawer_Background@2x.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "Drawer_Background.png",
+      "filename" : "Drawer_Background@3x.png",
       "scale" : "3x"
     }
   ],

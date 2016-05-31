@@ -100,4 +100,55 @@
     }
     return string;
 }
+
+/**
+ *  保存成绩
+ */
++(void)saveMsgWithDic:(NSDictionary *)dic withMenuTag:(NSInteger)menuTag
+{
+    
+    //    获取document目录
+    NSArray*larray=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString*lstring=[larray lastObject];
+    
+    //    如果把数据存储
+    NSString *pStr = [lstring stringByAppendingString:[NSString stringWithFormat:@"/scroe%ld.plist",menuTag]];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    MyLog(@"%@",pStr);
+    BOOL result = [fileManager fileExistsAtPath:pStr];
+    if (result) {//存在
+        NSMutableArray *array = [NSMutableArray arrayWithArray:[self readMsgWithMenu:menuTag]];
+        [array insertObject:dic atIndex:0];
+        [array writeToFile:pStr atomically:YES];
+    }else{//不存在
+        //如果不存在就创建
+//        NSDictionary *dicMsg = @{dic[@"year"]:@[dic]};
+        [[NSFileManager defaultManager]createFileAtPath:pStr contents:nil attributes:nil];
+        [@[dic] writeToFile:pStr atomically:YES];
+    }
+}
+
+/**
+ *  获取成绩
+ *
+ *  @param menuTag 1为科目一，2为科目四
+ */
++(NSArray *)readMsgWithMenu:(NSInteger)menuTag
+{
+    NSArray *dic;
+    //    获取document目录
+    NSArray*larray=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString*lstring=[larray lastObject];
+    
+    //    如果把数据存储
+    NSString *pStr = [lstring stringByAppendingString:[NSString stringWithFormat:@"/scroe%ld.plist",menuTag]];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    MyLog(@"%@",pStr);
+    BOOL result = [fileManager fileExistsAtPath:pStr];
+    if (result) {//存在
+        return [NSArray arrayWithContentsOfFile:pStr];
+    }
+    return dic;
+}
+
 @end

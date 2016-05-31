@@ -17,8 +17,10 @@
 #import "UIBarButtonItem+Item.h"
 @interface YRLearnPracticeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,YRPracticeDownViewDelegate,UIAlertViewDelegate>
 {
-    //显示答案
+    //显示答案的题id
     NSInteger _showAnswerID;
+    //显示或隐藏答案
+    BOOL _showOrHidden;
     //倒计时剩余时间
     NSInteger timeInt;
     //倒计时
@@ -59,6 +61,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _showOrHidden = NO;
     _msgArray = [NSMutableArray array];
     self.view.backgroundColor = [UIColor whiteColor];
     //初始化数据库
@@ -104,7 +107,7 @@
     if (self.menuTag == 1) {//顺序练习
        
     }else if (self.menuTag == 0){//模拟考试
-        _downView = [[YRPracticeDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.collectionView.frame), kScreenWidth, 44)];
+        _downView = [[YRPracticeDownView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.collectionView.frame)-44, kScreenWidth, 44)];
         _downView.delegate = self;
         [self.view addSubview:_downView];
         _countDownBar = [[UIBarButtonItem alloc]initWithTitle:@"30:00" style:UIBarButtonItemStylePlain target:self action:@selector(downBarBtn)];
@@ -118,15 +121,19 @@
 -(void)setCollectMsg:(BOOL)collectBool
 {
     //显示答案
-    UIBarButtonItem *addPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_Cue"] style:UIBarButtonItemStyleBordered target:self action:@selector(showAnswer)];
+//    UIBarButtonItem *addPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Learn_Cue"] style:UIBarButtonItemStyleBordered target:self action:@selector(showAnswer)];
+    UIBarButtonItem *addPlaceBtn = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"Learn_Cue"] highImage:[UIImage imageNamed:@"Learn_Cue"] target:self action:@selector(showAnswer) forControlEvents:UIControlEventTouchUpInside];
+
     // 1    0
     NSString *imgName;
     if (collectBool) {
-        imgName = @"Learn_CollectionBlack";
+        imgName = @"Neig_Coach_StaOrg";
     }else
-        imgName = @"Learn_CollectionHollow";
+        imgName = @"Neig_Coach_StaGre";
     //收藏
-    UIBarButtonItem *searchPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:imgName] style:UIBarButtonItemStyleBordered target:self action:@selector(collectionClick)];
+//    UIBarButtonItem *searchPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:imgName] style:UIBarButtonItemStyleBordered target:self action:@selector(collectionClick)];
+    UIBarButtonItem *searchPlaceBtn = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:imgName] highImage:[UIImage imageNamed:imgName] target:self action:@selector(collectionClick) forControlEvents:UIControlEventTouchUpInside];
+
     self.navigationItem.rightBarButtonItems = @[addPlaceBtn,searchPlaceBtn];
 }
 -(void)getTime
@@ -154,7 +161,8 @@
 #pragma mark - 显示答案
 -(void)showAnswer
 {
-    _showAnswerID = _currentQuestion.id;
+    _showOrHidden = YES;
+    _showAnswerID = _showAnswerID ? 0: _currentQuestion.id;
     [self.collectionView reloadData];
 }
 
@@ -248,12 +256,14 @@
     YRLearnCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     YRQuestionObj *ques;
     if (self.menuTag == 2) {
-        if (_showAnswerID) {//显示答案时候不取数据
+        if (_showOrHidden) {//显示答案时候不取数据
             ques = _currentQuestion;
-        }else
+        }else{
             ques = _msgArray[arc4random() % _msgArray.count];
-    }else
+        }
+    }else{
         ques = _msgArray[indexPath.row];
+    }
     _currentQuestion = ques;
     _currentIndexPath = indexPath;
     cell.questionOb = ques;
@@ -262,11 +272,13 @@
     [cell setAnswerIsClickBlock:^(YRQuestionObj *currentQues) {
         [self chooseAnswerBackToSaveMsg:currentQues withIndexPath:indexPath];
     }];
+    
     //显示答案
-    if (_showAnswerID) {
+//    if (_showAnswerID) {
         cell.showAanly = _showAnswerID;
-        _showAnswerID = 0;
-    }
+//        _showAnswerID = 0;
+//        _showOrHidden = NO;
+//    }
     if(self.menuTag == 0){//模拟考试显示底部菜单
         _downView.numbString = [NSString stringWithFormat:@"%ld/%ld",indexPath.row+1,_msgArray.count];
         _downView.questObj = ques;
@@ -278,8 +290,17 @@
         }
         [self setCollectMsg:ques.collect];
         self.title = [NSString stringWithFormat:@"%ld/%ld",indexPath.row+1,_msgArray.count];
+        //答错后点击空白跳转
+        [cell setAnserErrorClickBlock:^{
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+        }];
     }
     return cell;
+}
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    _showOrHidden = NO;
+    _showAnswerID = 0;
 }
 //选择答案后对数据的处理（刷新与存储）
 -(void)chooseAnswerBackToSaveMsg:(YRQuestionObj *)currentQues withIndexPath:(NSIndexPath*)indexPath
@@ -339,7 +360,6 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
 }
 //返回这个UIColletionView是否可以被选择
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath

@@ -103,6 +103,9 @@
 		0357AAF31C97A2130033E9BC /* YRLearnPracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0357AAF21C97A2130033E9BC /* YRLearnPracticeController.m */; };
 		0362492F1CFC11CF00968CA7 /* YRUserCertificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362492D1CFC11CF00968CA7 /* YRUserCertificationController.m */; };
 		036249301CFC11CF00968CA7 /* YRUserCertificationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0362492E1CFC11CF00968CA7 /* YRUserCertificationController.xib */; };
+		0362493E1CFD97E000968CA7 /* YRScroeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362493D1CFD97E000968CA7 /* YRScroeDetailViewController.m */; };
+		036249411CFDCA7200968CA7 /* YRScroeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036249401CFDCA7200968CA7 /* YRScroeHeadView.m */; };
+		036249441CFDCA8000968CA7 /* YRScroeDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036249431CFDCA8000968CA7 /* YRScroeDownView.m */; };
 		036FF4691CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 036FF4681CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -524,6 +527,12 @@
 		0362492C1CFC11CF00968CA7 /* YRUserCertificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRUserCertificationController.h; sourceTree = "<group>"; };
 		0362492D1CFC11CF00968CA7 /* YRUserCertificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserCertificationController.m; sourceTree = "<group>"; };
 		0362492E1CFC11CF00968CA7 /* YRUserCertificationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRUserCertificationController.xib; sourceTree = "<group>"; };
+		0362493C1CFD97E000968CA7 /* YRScroeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRScroeDetailViewController.h; sourceTree = "<group>"; };
+		0362493D1CFD97E000968CA7 /* YRScroeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRScroeDetailViewController.m; sourceTree = "<group>"; };
+		0362493F1CFDCA7200968CA7 /* YRScroeHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRScroeHeadView.h; sourceTree = "<group>"; };
+		036249401CFDCA7200968CA7 /* YRScroeHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRScroeHeadView.m; sourceTree = "<group>"; };
+		036249421CFDCA8000968CA7 /* YRScroeDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRScroeDownView.h; sourceTree = "<group>"; };
+		036249431CFDCA8000968CA7 /* YRScroeDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRScroeDownView.m; sourceTree = "<group>"; };
 		036FF4671CCF06AC00F9ECD3 /* UIBarButtonItem+Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Item.h"; sourceTree = "<group>"; };
 		036FF4681CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Item.m"; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -1355,6 +1364,10 @@
 				032C442B1CB29BBE0022C2F9 /* YRMyPracticeView.m */,
 				032C460E1CB392C50022C2F9 /* YRChooseMenuView.h */,
 				032C460F1CB392C50022C2F9 /* YRChooseMenuView.m */,
+				0362493F1CFDCA7200968CA7 /* YRScroeHeadView.h */,
+				036249401CFDCA7200968CA7 /* YRScroeHeadView.m */,
+				036249421CFDCA8000968CA7 /* YRScroeDownView.h */,
+				036249431CFDCA8000968CA7 /* YRScroeDownView.m */,
 			);
 			path = "科目一";
 			sourceTree = "<group>";
@@ -1792,6 +1805,8 @@
 				0315153E1C9A71FC00A2A2F1 /* YRSequencePracticeController.m */,
 				03C652141CA92290005FFC71 /* YRMyAchievementController.h */,
 				03C652151CA92290005FFC71 /* YRMyAchievementController.m */,
+				0362493C1CFD97E000968CA7 /* YRScroeDetailViewController.h */,
+				0362493D1CFD97E000968CA7 /* YRScroeDetailViewController.m */,
 			);
 			path = "科目一";
 			sourceTree = "<group>";
@@ -2702,6 +2717,7 @@
 				032C46201CB4B6980022C2F9 /* YRTeacherCommentObj.m in Sources */,
 				162E28621CA3C29600533880 /* YRBriefPlaceModel.m in Sources */,
 				03A25F161C928891000196A6 /* YRYJSecondClassController.m in Sources */,
+				036249411CFDCA7200968CA7 /* YRScroeHeadView.m in Sources */,
 				03C651CD1CA8DB43005FFC71 /* YRYJThirdClassController.m in Sources */,
 				167E24911CC508520014DA14 /* YRLineView.m in Sources */,
 				03019D231C9954B900895C77 /* YRUserDetailCell.m in Sources */,
@@ -2780,6 +2796,7 @@
 				16921F661CAE6867007FBDF5 /* YRReservationModel.m in Sources */,
 				161B1BFF1C910FF80047182D /* CoachDataSource.m in Sources */,
 				03228D441CA4E08D00890DC6 /* YRScoreDetailDownView.m in Sources */,
+				036249441CFDCA8000968CA7 /* YRScroeDownView.m in Sources */,
 				16565DFE1CBDE2580086407A /* YRShareOrderConfirmViewController.m in Sources */,
 				0340E07F1CCDBF0B00CF9884 /* YRLearnPartnerObj.m in Sources */,
 				1645D89A1C9511DD0058D480 /* DistanceToolFuc.m in Sources */,
@@ -2934,6 +2951,7 @@
 				037F8E1E1C8826750057BF6C /* UIViewController+CWS.m in Sources */,
 				1600EBC91C88087A001919EB /* UIView+XBExtension.m in Sources */,
 				03019D1D1C993C5D00895C77 /* YRUserDetailController.m in Sources */,
+				0362493E1CFD97E000968CA7 /* YRScroeDetailViewController.m in Sources */,
 				1600EBC71C88087A001919EB /* XBScrollPageController.m in Sources */,
 				03FE5B7D1CAA0FF5009F0ED7 /* YRTeacherDetailObject.m in Sources */,
 				037F8E1B1C8826750057BF6C /* YRLoginViewController.m in Sources */,

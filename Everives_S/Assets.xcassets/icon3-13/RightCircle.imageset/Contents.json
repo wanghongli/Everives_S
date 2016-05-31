@@ -2,16 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "RightCircle.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "RightCircle.png",
+      "filename" : "RightCircle@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "RightCircle@3x.png"
     }
   ],
   "info" : {

@@ -9,9 +9,10 @@
 #import "YRLearnExamController.h"
 #import "YRLearnPracticeController.h"
 #import "YRExamUserHeadView.h"
+#import "UIViewController+YRCommonController.h"
 
 #import "YRLearnNoMsgView.h"
-@interface YRLearnExamController ()<YRLearnNoMsgViewDelegate>
+@interface YRLearnExamController ()<YRLearnNoMsgViewDelegate,YRExamUserHeadViewDelegate>
 {
     NSArray *_titleArray;
     NSArray *_menuArray;
@@ -40,6 +41,7 @@
         _menuArray = @[@"科目一理论考试",@"重庆市科目一理论考试题库",@"45分钟，100题",@"满分100分，90分及格"];
     
     _headView = [[YRExamUserHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth/2)];
+    _headView.delegate = self;
     self.tableView.tableHeaderView = _headView;
     
     UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 80)];
@@ -55,7 +57,17 @@
     
 //    [self.view bringSubviewToFront:self.noMsgView];
 }
-
+-(void)examUserHeadClick
+{
+    if (!KUserManager.id) {
+        [self goToLoginVC];
+    }
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.headView.loginBool = YES;
+}
 -(void)sartClick:(UIButton *)sender
 {
     YRLearnPracticeController *learnVC = [[YRLearnPracticeController alloc]init];

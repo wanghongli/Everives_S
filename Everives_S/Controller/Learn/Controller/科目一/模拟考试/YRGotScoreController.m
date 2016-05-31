@@ -32,6 +32,22 @@
     self.title = @"得分";
     self.view.backgroundColor = [UIColor whiteColor];
     
+    // NSTimeInterval返回的是double类型，输出会显示为10位整数加小数点加一些其他值
+    // 如果想转成int型，必须转成long long型才够大。
+    NSDate *currentDate = [NSDate date];
+    NSTimeInterval time = [currentDate timeIntervalSince1970];
+    long long dTime = [[NSNumber numberWithDouble:time] longLongValue]; // 将double转为long long型
+    NSString *curTime = [NSString stringWithFormat:@"%llu",dTime]; // 输出long long型
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy"];
+    NSString *year = [formatter stringFromDate:currentDate];
+    
+    
+    NSDictionary *dic = @{@"scroe":[NSString stringWithFormat:@"%ld",self.scroe],@"time":curTime,@"costTime":[NSString stringWithFormat:@"%ld",self.costTime],@"year":year};
+    [YRPublicMethod saveMsgWithDic:dic withMenuTag:_objFour+1];
+    
+    MyLog(@"%@",[YRPublicMethod readMsgWithMenu:_objFour+1]);
+    
     [self buildUI];
     [self.errorBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.shareBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];

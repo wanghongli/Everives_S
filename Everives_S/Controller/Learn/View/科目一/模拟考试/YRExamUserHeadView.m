@@ -14,14 +14,14 @@
 @property (nonatomic, weak) UIImageView *headImg;
 @property (nonatomic, weak) UILabel *nameLabel;
 @property (nonatomic, weak) UIView *backView;
-
+@property (nonatomic, weak) UIButton *btn;
 @end
 @implementation YRExamUserHeadView
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame: frame]) {
-        
+        self.userInteractionEnabled = YES;
         [self buildUI];
         
     }
@@ -43,7 +43,11 @@
     [_backView addSubview:namelabel];
     _nameLabel = namelabel;
     
-    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide)];
+    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    //将触摸事件添加到当前view
+    [self addGestureRecognizer:tapGestureRecognizer];
 }
 
 -(void)layoutSubviews
@@ -58,16 +62,31 @@
     _backView.center = CGPointMake(kScreenWidth/2, self.height/2);
     _headImg.center = CGPointMake(kScreenWidth/2, _headImg.center.y);
     
-    _nameLabel.text = @"玉祥驾校";
-    _headImg.image = [UIImage imageNamed:@"head_jiaolian"];
+    _nameLabel.text = @"未登录";
+    _headImg.image = [UIImage imageNamed:@"User_Placeholder"];
     
     _headImg.layer.masksToBounds = YES;
     _headImg.layer.cornerRadius = _headImg.height/2;
-    
+    _headImg.layer.borderWidth = 1;
+    _headImg.layer.borderColor = kCOLOR(241, 241, 241).CGColor;
     if (KUserManager.id) {
         _nameLabel.text = KUserManager.name;
-        [_headImg sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:@"head_jiaolian"]];
+        [_headImg sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:@"User_Placeholder"]];
     }
 }
-
+-(void)setLoginBool:(BOOL)loginBool
+{
+    if (KUserManager.id) {
+        _nameLabel.text = KUserManager.name;
+        [_headImg sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:@"User_Placeholder"]];
+    }else{
+        _nameLabel.text = @"未登录";
+        _headImg.image = [UIImage imageNamed:@"User_Placeholder"];
+    }
+}
+-(void)keyboardHide{
+    if (!KUserManager.id) {
+        [self.delegate examUserHeadClick];
+    }
+}
 @end

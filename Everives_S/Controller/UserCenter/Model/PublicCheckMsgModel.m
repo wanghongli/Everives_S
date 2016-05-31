@@ -84,6 +84,13 @@
             return;
         }
     }
+    NSString *pswstring = [NSString stringWithFormat:@"%@",fistPsw];
+    if (pswstring.length<6 || pswstring.length>16) {
+        if (errorBlock) {
+            errorBlock(@"密码为6-16为字母和数字");
+            return;
+        }
+    }
     
     
     

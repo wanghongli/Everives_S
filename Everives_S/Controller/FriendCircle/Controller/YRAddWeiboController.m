@@ -62,13 +62,13 @@
     UIView *topLine = [[UIView alloc]initWithFrame:CGRectMake(15, 200+60-64, kSizeOfScreen.width-30, 1)];
     topLine.backgroundColor = kCOLOR(241, 241, 241);
     [self.view addSubview:topLine];
-    UIView *downLine = [[UIView alloc]initWithFrame:CGRectMake(0, 200+80, kSizeOfScreen.width, 1)];
+    UIView *downLine = [[UIView alloc]initWithFrame:CGRectMake(0, 200+84, kSizeOfScreen.width, 1)];
     downLine.backgroundColor = kCOLOR(241, 241, 241);
     [self.view addSubview:downLine];
     
     self.showAddr = [[UIButton alloc]initWithFrame:CGRectMake(self.collectionView.x, CGRectGetMaxY(downLine.frame)+10, 80, 20)];
     [self.showAddr setTitle:@" 显示位置" forState:UIControlStateNormal];
-    [self.showAddr setTitle:@" 显示位置" forState:UIControlStateSelected];
+    [self.showAddr setTitle:@" 不显示" forState:UIControlStateSelected];
     [self.showAddr setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.showAddr setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
     [self.showAddr setImage:[UIImage imageNamed:@"Neighborhood_Field_Add"] forState:UIControlStateNormal];
@@ -78,7 +78,8 @@
     self.showAddr.layer.cornerRadius = self.showAddr.height/2;
     self.showAddr.backgroundColor = kCOLOR(238, 239, 240);
     self.showAddr.titleLabel.font = [UIFont systemFontOfSize:12];
-    self.showAddr.hidden = YES;
+//    self.showAddr.hidden = YES;
+    self.showAddr.selected = NO;
     [self.view addSubview:self.showAddr];
     
     self.publishBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.showAddr.frame)+30, kSizeOfScreen.width, 44)];
@@ -90,6 +91,12 @@
 -(void)showAddrClick:(UIButton *)sender
 {
     MyLog(@"%s - %@",__func__,sender);
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [sender setTitle:@"不显示" forState:UIControlStateNormal];
+    }else{
+        [sender setTitle:@"显示位置" forState:UIControlStateNormal];
+    }
 }
 - (void)composePicAdd
 {
@@ -117,11 +124,19 @@
         sender.userInteractionEnabled = YES;
         return;
     }
-    NSMutableString *addrString = [NSMutableString stringWithString:KUserLocation.addr];
-    if ([addrString containsString:@"ReGeocode: "]) {
-        [addrString deleteCharactersInRange:NSMakeRange(0, 10)];
+    if (KUserLocation.addr) {
+        NSMutableString *addrString = [NSMutableString stringWithString:KUserLocation.addr];
+        if ([addrString containsString:@"ReGeocode: "]) {
+            [addrString deleteCharactersInRange:NSMakeRange(0, 10)];
+        }
+        if (!self.showAddr.selected) {
+            [_bodyDic setObject:addrString forKey:@"address"];
+        }else
+            [_bodyDic setObject:@"暂无地址信息" forKey:@"address"];
+    }else{
+        [_bodyDic setObject:@"暂无地址信息" forKey:@"address"];
     }
-    [_bodyDic setObject:addrString forKey:@"address"];
+   
     [_bodyDic setObject:self.textView.text forKey:@"content"];
     MyLog(@"%@",KUserLocation.addr);
     [MBProgressHUD showMessag:@"上传中..." toView:self.view];
@@ -287,7 +302,7 @@ static NSString *kPhotoCellIdentifier = @"kPhotoCellIdentifier";
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         UIImage  *img = [UIImage imageNamed:@"pic_add"];
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15, 200+64, CGRectGetWidth(self.view.frame)-30 - img.size.width - 10, 80) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15, 200, CGRectGetWidth(self.view.frame)-30 - img.size.width - 10, 80) collectionViewLayout:layout];
         _collectionView.backgroundColor = [UIColor clearColor];
         [_collectionView registerClass:[PhotoCell class] forCellWithReuseIdentifier:kPhotoCellIdentifier];
         _collectionView.delegate = self;

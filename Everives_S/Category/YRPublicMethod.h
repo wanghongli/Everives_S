@@ -53,4 +53,16 @@
 
 
 + (NSString *)getDetailLearnTimeWith:(NSInteger)time;
+
+/**
+ *  保存成绩
+ */
++(void)saveMsgWithDic:(NSDictionary *)dic withMenuTag:(NSInteger)menuTag;
+
+/**
+ *  获取成绩
+ *
+ *  @param menuTag 1为科目一，2为科目四
+ */
++(NSArray *)readMsgWithMenu:(NSInteger)menuTag;
 @end

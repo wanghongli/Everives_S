@@ -482,7 +482,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 }
 -(YRFillterBtnView *)schoolFillterView{
     if (!_schoolFillterView) {
-        _schoolFillterView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 44, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式"]];
+        _schoolFillterView = [[YRFillterBtnView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44) titleArray:@[@"地区",@"排序方式"]];
         _schoolFillterView.itemArrs = @[@[@[@"重庆"],@[@"不限",@"南岸",@"江北",@"渝北",@"渝中",@"北碚",@"巴南",@"沙坪坝"]],
                                         @[@[@"综合排序",@"人气最高",@"距离最近",@"评价最好"]]];
         _schoolFillterView.tag = 1;

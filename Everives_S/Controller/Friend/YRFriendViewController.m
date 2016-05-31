@@ -86,7 +86,7 @@ static BOOL addViewIsHidden = YES;
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"menu_icon"] highImage:[UIImage imageNamed:@"menu_icon"] target:(YRYJNavigationController *)self.navigationController action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *findItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"Friend_Search"] highImage:[UIImage imageNamed:@"Friend_Search"] target:self action:@selector(findBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *addItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"Friend_AddFri-1"] highImage:[UIImage imageNamed:@"Friend_AddFri-1"] target:self action:@selector(addBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *addItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"Friend_AddFri2"] highImage:[UIImage imageNamed:@"Friend_AddFri2"] target:self action:@selector(addBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *contactItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"Friend_PhoneBook"] highImage:[UIImage imageNamed:@"Friend_PhoneBook"] target:self action:@selector(contactBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.rightBarButtonItems = @[contactItem,addItem,findItem];

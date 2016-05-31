@@ -36,6 +36,7 @@
         }
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
         self.layer.borderWidth = 1;
+        self.backgroundColor = [UIColor whiteColor];
         [self addMyObserver];
     }
     return self;

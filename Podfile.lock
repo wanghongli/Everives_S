@@ -20,9 +20,11 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AMap3DMap (3.3.1)
-  - AMapSearch (3.2.0)
-  - HappyDNS (0.2.3)
+  - AMap3DMap (4.0.0)
+  - AMapFoundation (1.0.0)
+  - AMapSearch (4.0.0):
+    - AMapFoundation (= 1.0.0)
+  - HappyDNS (0.3.3.1)
   - MBProgressHUD (0.9.2)
   - MJExtension (3.0.10)
   - MJRefresh (3.1.0)
@@ -31,14 +33,14 @@ PODS:
   - Pingpp/Core (2.1.4)
   - Pingpp/Wx (2.1.4):
     - Pingpp/Core
-  - Qiniu (7.0.16):
+  - Qiniu (7.0.19.1):
     - AFNetworking (~> 2.0)
     - HappyDNS (~> 0.2)
-  - RongCloudIMKit (2.4.9)
-  - SDAutoLayout (1.31)
-  - SDWebImage (3.7.5):
-    - SDWebImage/Core (= 3.7.5)
-  - SDWebImage/Core (3.7.5)
+  - RongCloudIMKit (2.5.2)
+  - SDAutoLayout (2.1.1)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
 
 DEPENDENCIES:
   - AFNetworking
@@ -50,24 +52,25 @@ DEPENDENCIES:
   - Pingpp/Alipay (~> 2.1.0)
   - Pingpp/Wx (~> 2.1.0)
   - Qiniu (~> 7.0)
-  - RongCloudIMKit
+  - RongCloudIMKit (~> 2.5.2)
   - SDAutoLayout
   - SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  AMap3DMap: 3962358ac36d17b3aaf03975ab534690f8af066f
-  AMapSearch: a885f0702578a441a22cb66fa74f8918c6d19e6f
-  HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
+  AMap3DMap: bc98ab5194776d155864fc2c2246c17f384c91a4
+  AMapFoundation: af861f5d299a4f17a1a8b50fd91242933bb352f3
+  AMapSearch: 867e89123c927436713372803156ac9848d9868a
+  HappyDNS: 816fceb07c964675bba4ffe668a7c5fc4ffdfe7e
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   Pingpp: 08415163eb1791bc07d7d939f1648d2e36a30eda
-  Qiniu: 51a8702cddc02b50867e10cef99291b9a8a006b1
-  RongCloudIMKit: e670867836deef44c0157f05b4a88107f1f5f8e6
-  SDAutoLayout: 79b8977f863ba4722bb8f8f6f92981d0b8ae932a
-  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  Qiniu: ceb88a496d556bdb8f8e0bddd83a1639dfe5f84b
+  RongCloudIMKit: cce0a68e8e5d0baaecb99ec5685048ca8800a27d
+  SDAutoLayout: c18678b6ae28c67d89cb132e770cfbac9ee20d25
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
 
-PODFILE CHECKSUM: b9bf2ded1f56e0f702088afcc7b228eb0694e77f
+PODFILE CHECKSUM: 99d75811fb37cb6b99f66c98e93573a07599c02b
 
 COCOAPODS: 1.0.0.beta.1

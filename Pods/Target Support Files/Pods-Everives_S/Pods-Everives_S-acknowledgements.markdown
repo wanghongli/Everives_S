@@ -29,6 +29,11 @@ THE SOFTWARE.
 Copyright © 2014 AutoNavi. All Rights Reserved.
 
 
+## AMapFoundation
+
+Copyright © 2014 AutoNavi. All Rights Reserved.
+
+
 ## AMapSearch
 
 Copyright © 2014 AutoNavi. All Rights Reserved.
@@ -38,7 +43,7 @@ Copyright © 2014 AutoNavi. All Rights Reserved.
 
 The MIT License (MIT)
 
-Copyright (c) 2012-2015 qiniu.com
+Copyright (c) 2012-2016 qiniu.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -184,7 +189,7 @@ SOFTWARE.
 
 ## SDWebImage
 
-Copyright (c) 2009 Olivier Poitrey <rs@dailymotion.com>
+Copyright (c) 2016 Olivier Poitrey rs@dailymotion.com
  
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

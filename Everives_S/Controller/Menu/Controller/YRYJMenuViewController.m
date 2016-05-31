@@ -104,10 +104,6 @@
 {
     _selectedIndexPath = indexPath;
     if (indexPath.section == 0 ) {
-//        YRYJLearnToDriveController *homeViewController = [[YRYJLearnToDriveController alloc] init];
-//        YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:homeViewController];
-//        self.frostedViewController.contentViewController = navigationController;
-//    } else if(indexPath.section == 1){
         if (indexPath.row == 0) {
             YRYJLearnToDriveController *homeViewController = [[YRYJLearnToDriveController alloc] init];
             YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:homeViewController];
@@ -218,16 +214,13 @@
         cell.textLabel.textColor = kYRBlackTextColor;
     }
     if (indexPath.section == 0) {
-//        NSArray *titles = @[@"学车"];
-//        cell.menuText.text = titles[indexPath.row];
-//        cell.leftImg.image = [UIImage imageNamed:@"Neighborhood_Field_DriSch"];
-//    }else if (indexPath.section == 1) {
+
         NSArray *titles = @[@"学车",@"驾友", @"驾友圈", @"附近",@"个人"];
         NSArray *imgArray = @[@"Neighborhood_Field_DriSch",@"Drawer_Navigation_Friend",@"Drawer_Navigation_SNS",@"Drawer_Navigation_Neighborhood",@"Drawer_Navigation_Personal"];
         cell.menuText.text = titles[indexPath.row];
         cell.leftImg.image = [UIImage imageNamed:imgArray[indexPath.row]];
         if (indexPath.row == 1) {
-            _messagePoint = [[UIImageView alloc] initWithFrame:CGRectMake(68, 12, 8, 8)];
+            _messagePoint = [[UIImageView alloc] initWithFrame:CGRectMake(85, 12, 8, 8)];
             _messagePoint.image = [UIImage imageNamed:@"Menu_Icon_Message_Point"];
             _messagePoint.hidden = YES;
             [cell.contentView addSubview:_messagePoint];
@@ -239,7 +232,6 @@
         cell.menuText.text = titles[indexPath.row];
         cell.leftImg.image = [UIImage imageNamed:imgArray[indexPath.row]];
     }
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 #pragma mark - 消息中心

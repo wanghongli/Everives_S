@@ -62,12 +62,16 @@
 -(NSArray *)tables{
     if (!_tables.count) {
         for (NSInteger i = 0; i < _tableNum; i++) {
-            UITableView *table = [[UITableView alloc] initWithFrame:CGRectMake(i*_tableWidth, 0, _tableWidth, _tableHeight)];
+            UITableView *table = [[UITableView alloc] initWithFrame:CGRectMake(i*_tableWidth, 0, _tableWidth+1, _tableHeight)];
+            table.backgroundColor = [UIColor clearColor];
             table.rowHeight = _cellHeight;
             table.tag = i;
             table.dataSource = self;
             table.delegate = self;
-            table.tableFooterView = [[UIView alloc] init];
+            UIView *tableFooter = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _tableWidth, kScreenHeight)];
+//            tableFooter.backgroundColor = kCOLOR(50, 50, 50);
+            tableFooter.alpha = 0.3;
+            table.tableFooterView = tableFooter;
             [_tables addObject:table];
         }
     }

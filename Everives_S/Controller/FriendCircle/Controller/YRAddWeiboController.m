@@ -15,6 +15,7 @@
 #import "YRFriendCircleController.h"
 #import "SDImageCache.h"
 #import "YRShaHeObjct.h"
+#import "AppDelegate.h"
 @interface YRAddWeiboController ()<JKImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UITextViewDelegate>
 {
     NSMutableDictionary *_bodyDic;
@@ -151,13 +152,14 @@
         }];
         return;
     }
-
+    NSMutableArray *imgArray = [NSMutableArray array];
     for (int i = 0; i<self.assetsArray.count; i++) {
         JKAssets *jkasset = self.assetsArray[i];
         ALAssetsLibrary   *lib = [[ALAssetsLibrary alloc] init];
         [lib assetForURL:jkasset.assetPropertyURL resultBlock:^(ALAsset *asset) {
             if (asset) {
                 UIImage *img=[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
+                [imgArray addObject:img];
                 NSData *uploadData = UIImageJPEGRepresentation(img, 1);
                 NSString *imageName = [[uploadData.description md5] addString:@".jpg"];
                 [_imgNameArray addObject:imageName];
@@ -167,7 +169,7 @@
                     [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName];
                     MyLog(@"time-------addimg");
                 });
-                
+                [appDelegate.circleCacheDic setObject:imgArray forKey:_publishImgArray[0]];
                 if (_imgNameArray.count == self.assetsArray.count) {
                     NSString *imgArray = [_publishImgArray mj_JSONString];
                     [_bodyDic setObject:imgArray forKey:@"pics"];
@@ -192,7 +194,8 @@
 }
 -(void)goBackVC
 {
-    [self performSelector:@selector(goBackVC1) withObject:nil afterDelay:_imgNameArray.count];
+//    [self performSelector:@selector(goBackVC1) withObject:nil afterDelay:_imgNameArray.count];
+    [self goBackVC1];
     
 }
 -(void)goBackVC1
@@ -222,11 +225,9 @@
                                   NSLog(@"%@\n---%@\n %@",info,resp,key);
                                   if (resp) {
                                       if (i == self.assetsArray.count-1) {
-//                                          [MBProgressHUD showSuccess:@"上传成功" toView:self.navigationController.view];
-                                          
+                                          [appDelegate.circleCacheDic removeAllObjects];
                                       }
                                   }
-                                  
                               } option:nil];
                 }
             } failureBlock:^(NSError *error) {

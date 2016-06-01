@@ -123,6 +123,7 @@
  *  获取window
  */
 #define GET_WINDOW [[UIApplication sharedApplication].delegate window]
+#define appDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
 /**
  *  距离顶部高度

@@ -12,6 +12,7 @@
 #import "MJPhoto.h"
 #import "SDImageCache.h"
 #import "YRShaHeObjct.h"
+#import "AppDelegate.h"
 #define kQiniuThumbnailParam(scale) ([NSString stringWithFormat:@"?imageMogr2/thumbnail/!%dp", scale])
 
 @implementation YRCirclePhoto
@@ -91,13 +92,16 @@
             UIImage *imgMsg;
             //四分钟以内的进行加载
             if ([KUserManager.id isEqualToString:circleModel.uid]) {
-                imgMsg = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:photo];
-                [[SDImageCache sharedImageCache]removeImageForKey:photo];
+//                imgMsg = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:photo];
+//                [[SDImageCache sharedImageCache]removeImageForKey:photo];
+                if (appDelegate.circleCacheDic.count) {
+                    if ([pic_urls containsObject:[appDelegate.circleCacheDic allKeys][0]]) {
+                        NSArray *imgArray = appDelegate.circleCacheDic[[appDelegate.circleCacheDic allKeys][0]];
+                        imgMsg = imgArray[i];
+                    }
+                }
             }
             
-                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                
-            MyLog(@"%@",[paths objectAtIndex:0]);
             if ([photo containsString:@"qiniucdn"]) {
                 if (pic_urls.count == 1) {
                     photo = [photo addString:kQiniuThumbnailParam(60)];

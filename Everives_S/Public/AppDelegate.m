@@ -333,5 +333,11 @@ didReceiveLocalNotification:(UILocalNotification *)notification{
     //收到融云消息
     [[NSNotificationCenter defaultCenter] postNotificationName:kReceivedRCIMMessage object:nil];
 }
-
+-(NSMutableDictionary *)circleCacheDic
+{
+    if (_circleCacheDic==nil) {
+        _circleCacheDic = [NSMutableDictionary dictionary];
+    }
+    return _circleCacheDic;
+}
 @end

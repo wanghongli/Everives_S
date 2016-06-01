@@ -10,9 +10,7 @@
 #import "REFrostedViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,REFrostedViewControllerDelegate>
-
 @property (strong, nonatomic) UIWindow *window;
-
-
+@property (nonatomic, strong) NSMutableDictionary *circleCacheDic;
 @end
 

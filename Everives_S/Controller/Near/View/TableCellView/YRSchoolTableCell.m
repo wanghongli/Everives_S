@@ -29,8 +29,8 @@
     _intro.text = model.intro;
     _distance.textColor = kTextlightGrayColor;
     _addr.textColor = kTextlightGrayColor;
-    _distance.text = [NSString stringWithFormat:@"%.2f%@",([model.distance integerValue]/1000.0),@"km"];
-    YRStarsView *star = [[YRStarsView alloc] initWithFrame:CGRectMake(_name.frame.origin.x, 26, 100, 30) score:[model.grade integerValue] starWidth:16 intervel:3 needLabel:YES];
+    _distance.text = [NSString stringWithFormat:@"距离%.1f%@",([model.distance integerValue]/1000.0),@"km"];
+    YRStarsView *star = [[YRStarsView alloc] initWithFrame:CGRectMake(_name.frame.origin.x, 36, 100, 30) score:[model.grade integerValue] starWidth:16 intervel:3 needLabel:YES];
     [self addSubview:star];
 }
 @end

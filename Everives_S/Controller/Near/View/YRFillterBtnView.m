@@ -35,7 +35,7 @@
             [self addSubview:self.btns[i]];
         }
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        self.layer.borderWidth = 1;
+        self.layer.borderWidth = 0.5;
         self.backgroundColor = [UIColor whiteColor];
         [self addMyObserver];
     }

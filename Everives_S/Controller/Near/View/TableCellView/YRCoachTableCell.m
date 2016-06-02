@@ -27,10 +27,19 @@
     _name.text = model.name;
     _teachAge.text = [NSString stringWithFormat:@"教龄 %@年",model.year];
     _stuNum.text = [NSString stringWithFormat:@"学员 %@个",model.student];
-    _distance.text = [NSString stringWithFormat:@"%.2f%@",([model.distance integerValue]/1000.0),@"km"];
+    if (([model.distance integerValue]/1000.0)>10000) {
+        _distance.text = @"距离未知";
+    }else{
+        _distance.text = [NSString stringWithFormat:@"距离%.1f%@",([model.distance integerValue]/1000.0),@"km"];
+    }
     _distance.textColor = kTextlightGrayColor;
-    _course.text = [model.kind isEqualToString:@"0"]?@"科目二":@"科目三";
-    YRStarsView *star = [[YRStarsView alloc] initWithFrame:CGRectMake(_name.frame.origin.x, 26, 100, 30) score:[model.grade integerValue] starWidth:16 intervel:3 needLabel:YES];
+    _course.text = [model.kind isEqualToString:@"0"]?@" 科目二 ":@" 科目三 ";
+    _course.textColor = kCOLOR(185, 97, 167);
+    _course.layer.cornerRadius = 10.5;
+    _course.layer.masksToBounds = YES;
+    _course.layer.borderColor = kCOLOR(180, 80, 163).CGColor;
+    _course.layer.borderWidth = 1;
+    YRStarsView *star = [[YRStarsView alloc] initWithFrame:CGRectMake(_name.frame.origin.x, 36, 100, 30) score:[model.grade integerValue] starWidth:16 intervel:3 needLabel:YES];
     [self addSubview:star];
 }
 @end

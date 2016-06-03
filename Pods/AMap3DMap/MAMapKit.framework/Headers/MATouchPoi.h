@@ -11,18 +11,18 @@
 
 @interface MATouchPoi : NSObject
 
-/**
-*  名称
-*/
+/*!
+ @brief 名称
+ */
 @property (nonatomic, copy, readonly) NSString *name;
 
-/**
- *  经纬度坐标
+/*!
+ @brief 经纬度坐标
  */
 @property (nonatomic, assign, readonly) CLLocationCoordinate2D coordinate;
 
-/**
- *  poi的ID
+/*!
+ @brief poi的ID
  */
 @property (nonatomic, copy, readonly) NSString *uid;
 

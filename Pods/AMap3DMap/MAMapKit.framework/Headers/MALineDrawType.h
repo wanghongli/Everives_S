@@ -11,18 +11,18 @@
 
 enum MALineJoinType
 {
-    kMALineJoinBevel,   //!< 斜面连接点
-    kMALineJoinMiter,   //!< 斜接连接点
-    kMALineJoinRound    //!< 圆角连接点
+    kMALineJoinBevel,
+    kMALineJoinMiter,
+    kMALineJoinRound
 };
 typedef enum MALineJoinType MALineJoinType;
 
 enum MALineCapType
 {
-    kMALineCapButt,     //!< 普通头
-    kMALineCapSquare,   //!< 扩展头
-    kMALineCapArrow,    //!< 箭头
-    kMALineCapRound     //!< 圆形头
+    kMALineCapButt,
+    kMALineCapSquare,
+    kMALineCapArrow,
+    kMALineCapRound
 };
 typedef enum MALineCapType MALineCapType;
 

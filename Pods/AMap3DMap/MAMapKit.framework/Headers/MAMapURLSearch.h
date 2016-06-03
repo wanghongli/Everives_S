@@ -1,16 +1,16 @@
 //
-//  AMapURLSearch.h
-//  AMapFoundation
+//  MAMapURLSearch.h
+//  MAMapKitNew
 //
-//  Created by xiaoming han on 15/10/28.
-//  Copyright © 2015年 AutoNavi. All rights reserved.
+//  Created by xiaoming han on 15/5/25.
+//  Copyright (c) 2015年 xiaoming han. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "AMapURLSearchConfig.h"
+#import "MAMapURLSearchConfig.h"
 
 /// 调起高德地图URL进行搜索，若是调起失败，可使用`+ (void)getLatestAMapApp;`方法获取最新版高德地图app.
-@interface AMapURLSearch : NSObject
+@interface MAMapURLSearch : NSObject
 
 /// 打开高德地图AppStore页面
 + (void)getLatestAMapApp;
@@ -22,7 +22,7 @@
  *
  *  @return 是否成功.若为YES则成功调起，若为NO则无法调起.
  */
-+ (BOOL)openAMapNavigation:(AMapNaviConfig *)config;
++ (BOOL)openAMapNavigation:(MANaviConfig *)config;
 
 /**
  *  调起高德地图app进行路径规划.
@@ -31,7 +31,7 @@
  *
  *  @return 是否成功.
  */
-+ (BOOL)openAMapRouteSearch:(AMapRouteConfig *)config;
++ (BOOL)openAMapRouteSearch:(MARouteConfig *)config;
 
 /**
  *  调起高德地图app进行POI搜索.
@@ -40,6 +40,6 @@
  *
  *  @return 是否成功.
  */
-+ (BOOL)openAMapPOISearch:(AMapPOIConfig *)config;
++ (BOOL)openAMapPOISearch:(MAPOIConfig *)config;
 
 @end

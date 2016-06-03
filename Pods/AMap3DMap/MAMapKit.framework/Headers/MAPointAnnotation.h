@@ -9,14 +9,14 @@
 #import "MAShape.h"
 #import <CoreLocation/CLLocation.h>
 
-/**
- *  点标注数据
+/*!
+ @brief 点标注数据
  */
 @interface MAPointAnnotation : MAShape
 
-/**
-*  经纬度
-*/
+/*!
+ @brief 经纬度
+ */
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 
 @end

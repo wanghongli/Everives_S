@@ -10,7 +10,6 @@
 #import <AMapSearchKit/AMapSearchObj.h>
 #import <AMapSearchKit/AMapCommonObj.h>
 #import <AMapSearchKit/AMapSearchError.h>
+#import <AMapSearchKit/AMapSearchServices.h>
 #import <AMapSearchKit/AMapNearbySearchManager.h>
 #import <AMapSearchKit/AMapNearbyUploadInfo.h>
-
-#import <AMapSearchKit/AMapSearchVersion.h>

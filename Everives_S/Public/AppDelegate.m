@@ -41,9 +41,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    //高德地图 4.0不再需要appkey
-//    [MAMapServices sharedServices].apiKey = kAMapAppKey;
-//    [AMapSearchServices sharedServices].apiKey = kAMapAppKey;
+    
+    [MAMapServices sharedServices].apiKey = kAMapAppKey;
+    [AMapSearchServices sharedServices].apiKey = kAMapAppKey;
     [SharedMapView sharedInstance];
     //友盟分享
     [UMSocialData setAppKey:kUMengShareAppkey];

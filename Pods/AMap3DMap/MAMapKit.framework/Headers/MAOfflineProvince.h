@@ -11,9 +11,7 @@
 
 @interface MAOfflineProvince : MAOfflineItem
 
-/**
-*  包含的城市数组(都是MAOfflineItemCommonCity类型)
-*/
+/* 包含的城市数组(都是MAOfflineItemCommonCity类型). */
 @property (nonatomic, strong, readonly) NSArray *cities;
 
 @end

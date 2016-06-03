@@ -29,11 +29,6 @@ THE SOFTWARE.
 Copyright © 2014 AutoNavi. All Rights Reserved.
 
 
-## AMapFoundation
-
-Copyright © 2014 AutoNavi. All Rights Reserved.
-
-
 ## AMapSearch
 
 Copyright © 2014 AutoNavi. All Rights Reserved.

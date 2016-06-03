@@ -8,14 +8,13 @@
 
 #import "MAOfflineCity.h"
 
-/**
- *  普通城市
- */
+/* 普通城市. */
 @interface MAOfflineItemCommonCity : MAOfflineCity
 
-/**
-*  所属省份
-*/
+/*!
+ @brief 所属省份
+ */
 @property (nonatomic, weak) MAOfflineItem *province;
+
 
 @end

@@ -13,8 +13,7 @@
 @interface YRSettingPrivacyCell ()
 
 @property (nonatomic, weak) UILabel *titleLabel;
-@property (nonatomic, weak) UIView *backView;
-@property (nonatomic, weak) UIView *centerView;
+@property (nonatomic, weak) UIImageView *showSelectedView;
 
 @end
 @implementation YRSettingPrivacyCell
@@ -37,35 +36,22 @@
     [self addSubview:titlelabel];
     _titleLabel = titlelabel;
     
-    UIView *backview = [[UIView alloc]init];
+    UIImageView *backview = [[UIImageView alloc]init];
     [self addSubview:backview];
-    _backView = backview;
-    
-    UIView *centerview = [[UIView alloc]init];
-    centerview.backgroundColor = [UIColor lightGrayColor];
-    [_backView addSubview:centerview];
-    _centerView = centerview;
+    _showSelectedView = backview;
     
 }
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    _backView.frame = CGRectMake(kScreenWidth - kDistace - kDistace, self.height/2-kDistace/2, kDistace, kDistace);
-    _centerView.frame = CGRectMake(kDistace/2-kDistace/4, kDistace/2-kDistace/4, kDistace/2, kDistace/2);
-    _backView.layer.masksToBounds = YES;
-    _backView.layer.cornerRadius = _backView.height/2;
-    _backView.layer.borderWidth = 1;
+    _showSelectedView.frame = CGRectMake(kScreenWidth - kDistace - kDistace, self.height/2-kDistace/2, kDistace, kDistace);
+    _showSelectedView.layer.masksToBounds = YES;
+    _showSelectedView.layer.cornerRadius = _showSelectedView.height/2;
     if (_selectBool) {
-        _backView.layer.borderColor = kCOLOR(53, 117, 173).CGColor;
-        _centerView.backgroundColor = kCOLOR(53, 117, 173);
+        _showSelectedView.image = [UIImage imageNamed:@"Pay_Selected"];
     }else{
-        _backView.layer.borderColor = kCOLOR(220, 220, 220).CGColor;
-        _centerView.backgroundColor = [UIColor lightGrayColor];
+        _showSelectedView.image = [UIImage imageNamed:@"Pay_NotSelected"];
     }
-    
-    _centerView.layer.masksToBounds = YES;
-    _centerView.layer.cornerRadius = _centerView.height/2;
-    
     _titleLabel.frame = CGRectMake(kDistace, 0, kScreenWidth-4*kDistace, self.height);
     
     

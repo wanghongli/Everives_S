@@ -35,15 +35,15 @@
     _avatar.layer.masksToBounds = YES;
     _avatar.layer.cornerRadius = 45;
     _avatar.layer.borderColor = kCOLOR(203, 204, 205).CGColor;
-    _avatar.layer.borderWidth = 1;
+    _avatar.layer.borderWidth = 1.5;
     _partnerAvatar.layer.masksToBounds = YES;
     _partnerAvatar.layer.borderColor = kCOLOR(203, 204, 205).CGColor;
-    _partnerAvatar.layer.borderWidth = 1;
+    _partnerAvatar.layer.borderWidth = 1.5;
     _partnerAvatar.layer.cornerRadius = 22.5;
     _myAvatar.layer.masksToBounds = YES;
     _myAvatar.layer.cornerRadius = 22.5;
     _myAvatar.layer.borderColor = kCOLOR(203, 204, 205).CGColor;
-    _myAvatar.layer.borderWidth = 1;
+    _myAvatar.layer.borderWidth = 1.5;
     _time.backgroundColor = [UIColor colorWithRed:0.748 green:0.720 blue:0.739 alpha:1.000];
     _time.textColor = [UIColor whiteColor];
     _time.layer.cornerRadius = 10;
@@ -53,6 +53,7 @@
     _coach.textColor = [UIColor colorWithRed:118/255.0 green:119/255.0 blue:121/255.0 alpha:1];
     _date.textColor = KDarkColor;
     _place.textColor = KDarkColor;
+    _weekday.textColor = KDarkColor;
     _times = @[@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"14:00-15:00",@"15:00-16:00",@"16:00-17:00",@"17:00-18:00"];
     _statusArr = @[@"未支付" ,@"已支付",@"已支付", @"已完成" ,@"已评价",@"已取消"];
 }

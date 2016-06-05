@@ -156,6 +156,7 @@
     UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionHeaderID];
     if (!header) {
         header = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:sectionHeaderID];
+        header.contentView.backgroundColor = kCOLOR(250, 250, 250);
     }
     return header;
 }

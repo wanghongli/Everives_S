@@ -75,6 +75,7 @@
         {
             UILabel *titleL = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, 100, 50)];
             titleL.text = @"充值金额";
+            titleL.textColor = KDarkColor;
             _numberInput = [[UITextField alloc] initWithFrame:CGRectMake(120, 16, kScreenWidth-200, 35)];
             _numberInput.leftView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, 16, 16)];
             _numberInput.leftViewMode = UITextFieldViewModeAlways;
@@ -91,6 +92,7 @@
         case 1:
         {
             cell.textLabel.text = @"支付方式";
+            cell.textLabel.textColor = KDarkColor;
             break;
         }
         case 2:
@@ -99,6 +101,7 @@
             leftImage.image = [UIImage imageNamed:@"MyWallet_WechatPayment"];
             UILabel *titleL = [[UILabel alloc] initWithFrame:CGRectMake(71, 0, 200, 60)];
             titleL.text = @"微信钱包支付";
+            titleL.textColor = KDarkColor;
             _wechatRightImage = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - 40, 17.5, 25, 25)];
             _wechatRightImage.image = [UIImage imageNamed:@"Pay_Selected"];
             [cell.contentView addSubview:leftImage];
@@ -113,6 +116,7 @@
             leftImage.image = [UIImage imageNamed:@"MyWallet_Alipay"];
             UILabel *titleL = [[UILabel alloc] initWithFrame:CGRectMake(71, 0, 200, 60)];
             titleL.text = @"微信钱包支付";
+            titleL.textColor = KDarkColor;
             _aliRightImage = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - 40, 17.5, 25, 25)];
             _aliRightImage.image = [UIImage imageNamed:@"Pay_NotSelected"];
             [cell.contentView addSubview:leftImage];
@@ -131,7 +135,7 @@
     UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionHeaderID];
     if (!header) {
         header = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:sectionHeaderID];
-        header.backgroundView.backgroundColor = [UIColor lightGrayColor];
+        header.contentView.backgroundColor = kCOLOR(250, 250, 250);
     }
     return header;
 }

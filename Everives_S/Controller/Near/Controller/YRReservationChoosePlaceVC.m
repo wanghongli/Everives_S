@@ -84,7 +84,7 @@ static NSString *HeaderID = @"headerID";
     
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return _modelArrays.count;
@@ -95,7 +95,7 @@ static NSString *HeaderID = @"headerID";
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 80;
+    return 70;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
@@ -113,14 +113,12 @@ static NSString *HeaderID = @"headerID";
     [astr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16] range:NSMakeRange(17+_coachModel.name.length+date.length, time.length)];
     UIFont *font = kFontOfLetterBig;
     CGSize size = [str sizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(kScreenWidth-40, 100)];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, (80-size.height)/2, kScreenWidth-40, size.height)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, (70-size.height)/2, kScreenWidth-40, size.height)];
     label.font = font;
     label.attributedText = astr;
     label.lineBreakMode = NSLineBreakByCharWrapping;
     label.numberOfLines = 0;
-    
-    
-    
+    header.contentView.backgroundColor = [UIColor whiteColor];
     [header.contentView addSubview:label];
     return header;
 }

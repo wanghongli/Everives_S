@@ -73,21 +73,33 @@ static NSString *cellID = @"cellID";
     return section?:5;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return section?10:0;
+    return 10;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerID"];
+    if(!header){
+        header = [[UITableViewHeaderFooterView alloc]initWithReuseIdentifier:@"headerID"];
+        header.contentView.backgroundColor = kCOLOR(250, 250, 250);
+    }
+    return header;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.layer.borderWidth = 0.4;
+        cell.layer.borderColor = kCOLOR(240, 240, 240).CGColor;
     }
     UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(30, 20, 40, 30)];
+    titleLab.textColor = kYRBlackTextColor;
     switch (indexPath.section*5+indexPath.row) {
         case 0:
         {
             titleLab.text = @"合拼";
-            UILabel *contentLab = [[UILabel alloc] initWithFrame:CGRectMake(90, 20, 100, 30)];
+            UILabel *contentLab = [[UILabel alloc] initWithFrame:CGRectMake(90, 20, 250, 30)];
             contentLab.text = _partnerModel.name;
+            contentLab.textColor = kYRBlackTextColor;
             [cell.contentView addSubview:titleLab];
             [cell.contentView addSubview:contentLab];
             return  cell;
@@ -96,6 +108,7 @@ static NSString *cellID = @"cellID";
         {
             titleLab.text = @"驾校";
             UILabel *contentLab = [[UILabel alloc] initWithFrame:CGRectMake(90, 20, 100, 30)];
+            contentLab.textColor = kYRBlackTextColor;
             contentLab.text = @"玉祥驾校";
             [cell.contentView addSubview:titleLab];
             [cell.contentView addSubview:contentLab];
@@ -105,9 +118,10 @@ static NSString *cellID = @"cellID";
         {
             titleLab.text = @"项目";
             UILabel *contentLab = [[UILabel alloc] initWithFrame:CGRectMake(90, 20, 70, 30)];
+            contentLab.textColor = [UIColor whiteColor];
             contentLab.text = _coachModel.kind?@"科目三":@"科目二";
             contentLab.textAlignment = NSTextAlignmentCenter;
-            contentLab.backgroundColor = [UIColor colorWithRed:43/255.0 green:162/255.0 blue:238/255.0 alpha:1.0];
+            contentLab.backgroundColor = kCOLOR(43, 162, 238);
             contentLab.layer.cornerRadius = 15;
             contentLab.layer.masksToBounds = YES;
             [cell.contentView addSubview:titleLab];
@@ -119,6 +133,7 @@ static NSString *cellID = @"cellID";
             titleLab.text = @"时段";
             [_DateTimeArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 UILabel *contentLab = [[UILabel alloc] initWithFrame:CGRectMake(90, 20+30*idx, kScreenWidth -60, 30)];
+                contentLab.textColor = kYRBlackTextColor;
                 contentLab.text = [NSString stringWithFormat:@"%@ %@ %@",obj[@"date"],[NSString getTheDayInWeek:obj[@"date"]],_times[[obj[@"time"] integerValue]-1]];
                 [cell.contentView addSubview:contentLab];
             }];
@@ -163,13 +178,18 @@ static NSString *cellID = @"cellID";
 #pragma mark - Getters
 -(UIView *)coachView{
     if (!_coachView) {
-        _coachView.backgroundColor = [UIColor colorWithWhite:0.748 alpha:1.000];
-        _coachView = [[UIView alloc] initWithFrame:CGRectMake(90, 10, kScreenWidth - 60, 80)];
+        _coachView = [[UIView alloc] initWithFrame:CGRectMake(90, 10, kScreenWidth - 140, 80)];
+        _coachView.layer.cornerRadius = 10;
+        _coachView.layer.masksToBounds = YES;
+        _coachView.backgroundColor = kCOLOR(246, 247, 248);
         UIImageView *avatar = [[UIImageView alloc] initWithFrame:CGRectMake(20, 5, 70, 70)];
         avatar.layer.cornerRadius = 35;
+        avatar.layer.masksToBounds = YES;
         [avatar sd_setImageWithURL:[NSURL URLWithString:_coachModel.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
         UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(110, 15, kScreenWidth - 200, 30)];
         name.text = _coachModel.name;
+        name.font = kFontOfLetterBig;
+        name.textColor = kCOLOR(50, 50, 50);
         YRStarsView * stars = [[YRStarsView alloc] initWithFrame:CGRectMake(110, 35, 120, 30) score:[_coachModel.grade integerValue]  starWidth:20 intervel:3 needLabel:YES];
         [_coachView addSubview:avatar];
         [_coachView addSubview:name];
@@ -181,7 +201,7 @@ static NSString *cellID = @"cellID";
 
 -(UIButton *)commitFooterBtn{
     if (!_commitFooterBtn) {
-        _commitFooterBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, 30, kScreenWidth-60, 30)];
+        _commitFooterBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, 30, kScreenWidth-60, 40)];
         [_commitFooterBtn setTitle:@"确认合拼" forState:UIControlStateNormal];
         [_commitFooterBtn setTitleColor:kTextBlackColor forState:UIControlStateNormal];
         [_commitFooterBtn addTarget:self action:@selector(commitBtnClick:) forControlEvents:UIControlEventTouchUpInside];

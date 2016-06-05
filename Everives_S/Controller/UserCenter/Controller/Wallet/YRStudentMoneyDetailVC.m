@@ -21,6 +21,7 @@ static NSString *cellID = @"cellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"学车币明细";
     self.clearsSelectionOnViewWillAppear = NO;
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.rowHeight = 50;

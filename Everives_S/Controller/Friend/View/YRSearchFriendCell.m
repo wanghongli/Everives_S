@@ -13,7 +13,7 @@
 - (void)awakeFromNib {
     // Initialization code
     _avatar.layer.masksToBounds = YES;
-    _avatar.layer.cornerRadius = 25;
+    _avatar.layer.cornerRadius = 20;
 }
 -(void)configureCellWithAvatar:(NSString *)avatar name:(NSString *)name{
     [_avatar sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];

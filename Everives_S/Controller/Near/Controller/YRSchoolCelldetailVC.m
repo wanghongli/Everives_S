@@ -146,6 +146,7 @@ static CGFloat cellHeight = 60;
     if (indexPath.row != 5 &&indexPath.row!=6) {
         cell.imageView.image = [UIImage imageNamed:_icons[indexPath.row]];
         cell.textLabel.textColor = kYRBlackTextColor;
+        cell.textLabel.font = kFontOfLetterBig;
     }
     return cell;
 }

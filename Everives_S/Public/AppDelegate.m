@@ -41,7 +41,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    
     [MAMapServices sharedServices].apiKey = kAMapAppKey;
     [AMapSearchServices sharedServices].apiKey = kAMapAppKey;
     [SharedMapView sharedInstance];

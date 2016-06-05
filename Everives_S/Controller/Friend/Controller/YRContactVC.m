@@ -14,13 +14,17 @@
 #import "RequestData.h"
 #import "YRChatViewController.h"
 #import "YRMyGroupVC.h"
+#import "YRSearchBar.h"
+
 static NSString *cellID = @"cellID";
 
-@interface YRContactVC(){
+@interface YRContactVC()<UISearchBarDelegate>{
     NSArray *_ret;//服务器返回的好友列表
     NSMutableArray *_selectedArray;
+    NSMutableArray *_searchRes;
 }
 
+@property(nonatomic,strong)YRSearchBar *searchBar;
 @property(nonatomic,strong)UIButton *myGroup;
 @property(nonatomic,strong)UIButton *myCoach;
 @property(nonatomic,strong)UIView *headerView;
@@ -34,8 +38,9 @@ static NSString *cellID = @"cellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"驾友";
+    self.title = @"通讯录";
     _selectedArray = @[].mutableCopy;
+    _searchRes = @[].mutableCopy;
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.rowHeight = 60;
     self.tableView.tableHeaderView = self.headerView;
@@ -133,11 +138,20 @@ static NSString *cellID = @"cellID";
     return [[self.letterResultArr objectAtIndex:section]count];
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return self.indexArray[section];
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerID"];
+    if(!header){
+        header = [[UITableViewHeaderFooterView alloc]initWithReuseIdentifier:@"headerID"];
+        header.contentView.backgroundColor = [UIColor whiteColor];
+        header.layer.borderColor = kCOLOR(240, 240, 240).CGColor;
+        header.layer.borderWidth = 1;
+        
+    }
+    header.textLabel.text = [NSString stringWithFormat:@"   %@",self.indexArray[section]];
+    return header;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30;
+    return 50;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -200,39 +214,84 @@ static NSString *cellID = @"cellID";
     
 }
 #pragma mark - UISearchBarDelegate
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [_searchRes removeAllObjects];
+    [searchBar resignFirstResponder];
+    if (searchBar.text.length == 0) {
+        return;
+    }
+    [_ret enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        YRUserStatus *user = (YRUserStatus*)obj;
+        if ([user.name containsString:searchBar.text]||[user.tel containsString:searchBar.text]) {
+            [_searchRes addObject:obj];
+        }
+    }];
+    if (_searchRes.count == 0) {
+        [MBProgressHUD showSuccess:@"没有找到符合条件的用户~" toView:self.view];
+    }else{
+        self.indexArray = [ChineseString IndexArray:_searchRes];
+        self.letterResultArr = [ChineseString LetterSortArray:_searchRes];
+        [self.tableView reloadData];
+    }
+}
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    searchBar.text = @"";
+}
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    if (searchBar.text.length == 0) {
+        searchBar.text = @"搜索";
+        if (_ret) {
+            self.indexArray = [ChineseString IndexArray:_ret];
+            self.letterResultArr = [ChineseString LetterSortArray:_ret];
+            [self.tableView  reloadData];
+        }
+    }
+}
+#pragma mark - Getters
+
+-(YRSearchBar *)searchBar{
+    if (!_searchBar) {
+        _searchBar = [[YRSearchBar alloc] initWithFrame:CGRectMake(13, 8, kScreenWidth-28, 44)];
+        _searchBar.searchBar.delegate = self;
+        
+    }
+    return _searchBar;
+}
 
 -(UIButton *)myGroup{
     if (!_myGroup) {
-        _myGroup = [[UIButton alloc] initWithFrame:CGRectMake(8, 4, kScreenWidth - 23, 50)];
-        [_myGroup setTitle:@"我的群组" forState:UIControlStateNormal];
+        _myGroup = [[UIButton alloc] initWithFrame:CGRectMake(-1, 64, kScreenWidth+2, 60)];
+        [_myGroup setTitle:@"我的群聊" forState:UIControlStateNormal];
+        [_myGroup setTitleEdgeInsets:UIEdgeInsetsMake(0, -40, 0, 0)];
         [_myGroup setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_myGroup addTarget:self action:@selector(myGroupBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        _myGroup.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        _myGroup.layer.borderWidth = 0.5;
-        _myGroup.layer.cornerRadius = 10;
-        [_myGroup setImage:[UIImage imageNamed:@"Friend_GroCha"] forState:UIControlStateNormal];
-        [_myGroup setImageEdgeInsets:UIEdgeInsetsMake(0, -kScreenWidth/2-20, 0, 0)];
+        _myGroup.layer.borderColor = kCOLOR(240, 240, 240).CGColor;
+        _myGroup.layer.borderWidth = 1;
+        [_myGroup setImage:[UIImage imageNamed:@"Friend_PhoneBook_GroCha"] forState:UIControlStateNormal];
+        [_myGroup setImageEdgeInsets:UIEdgeInsetsMake(0, -kScreenWidth/2-50, 0, 0)];
+        
     }
     return _myGroup;
 }
 -(UIButton *)myCoach{
     if (!_myCoach) {
-        _myCoach = [[UIButton alloc] initWithFrame:CGRectMake(8, 58, kScreenWidth - 23, 50)];
+        _myCoach = [[UIButton alloc] initWithFrame:CGRectMake(-1, 118, kScreenWidth+2, 60)];
         [_myCoach setTitle:@"我的教练" forState:UIControlStateNormal];
         [_myCoach setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_myCoach setTitleEdgeInsets:UIEdgeInsetsMake(0, -40, 0, 0)];
         [_myCoach addTarget:self action:@selector(myCoachBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        _myCoach.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        _myCoach.layer.borderWidth = 0.5;
-        _myCoach.layer.cornerRadius = 10;
-        [_myCoach setImage:[UIImage imageNamed:@"Friend_GroCha"] forState:UIControlStateNormal];
-        [_myCoach setImageEdgeInsets:UIEdgeInsetsMake(0, -kScreenWidth/2-20, 0, 0)];
+        _myCoach.layer.borderColor = kCOLOR(240, 240, 240).CGColor;
+        _myCoach.layer.borderWidth = 1;
+        [_myCoach setImage:[UIImage imageNamed:@"Friend_PhoneBook_Coach"] forState:UIControlStateNormal];
+        [_myCoach setImageEdgeInsets:UIEdgeInsetsMake(5, -kScreenWidth/2-50, 0, 0)];
     }
     return _myCoach;
 }
 
 -(UIView *)headerView{
     if (!_headerView) {
-        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 112)];
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 178)];
+        [_headerView addSubview:self.searchBar];
         [_headerView addSubview:self.myGroup];
         [_headerView addSubview:self.myCoach];
     }

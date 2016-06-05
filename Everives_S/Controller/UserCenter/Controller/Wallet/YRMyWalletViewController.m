@@ -27,16 +27,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的钱包";
-    _recharge.layer.borderWidth = 0.5;
-    _recharge.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _recharge.layer.cornerRadius = 10;
-    _withDrawal.layer.borderWidth = 0.5;
-    _withDrawal.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _withDrawal.layer.cornerRadius = 10;
+    _recharge.layer.borderWidth = 1;
+    _recharge.layer.borderColor = kCOLOR(166, 167, 168).CGColor;
+    _recharge.layer.cornerRadius = 22.5;
+    _withDrawal.layer.borderWidth = 1;
+    _withDrawal.layer.borderColor = kCOLOR(166, 167, 168).CGColor;
+    _withDrawal.layer.cornerRadius = 22.5;
+    [self getMoney];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self getMoney];
 }
 -(void)getMoney{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -45,9 +45,9 @@
         KUserManager.frozenMoney = responseDic[@"frozenMoney"];
         _money.text = [NSString stringWithFormat:@"%li",[KUserManager.money integerValue]];
         _frozenMoney.text = [NSString stringWithFormat:@"%li",[KUserManager.frozenMoney integerValue]];
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failed:^(NSError *error) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 - (IBAction)moneyDetailCilck:(UIButton *)sender {

@@ -46,9 +46,9 @@
     [SharedMapView sharedInstance];
     //友盟分享
     [UMSocialData setAppKey:kUMengShareAppkey];
-    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:kSinaAppkey secret:kSinaAppSecret RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-    [UMSocialQQHandler setQQWithAppId:kAppID appKey:kTencentAppkey url:@"http://www.umeng.com/social"];
-    [UMSocialWechatHandler setWXAppId:kWeChatID appSecret:kWeChatSecret url:@"http://www.umeng.com/social"];
+//    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:kSinaAppkey secret:kSinaAppSecret RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    [UMSocialQQHandler setQQWithAppId:kAppID appKey:kTencentAppkey url:@"https://itunes.apple.com/us/app/yi-zhong-yue-jia-xue-yuan/id1116337160?l=zh&ls=1&mt=8"];
+    [UMSocialWechatHandler setWXAppId:kWeChatID appSecret:kWeChatSecret url:@"https://itunes.apple.com/us/app/yi-zhong-yue-jia-xue-yuan/id1116337160?l=zh&ls=1&mt=8"];
     
     //友盟推送
     [UMessage startWithAppkey:kUMengAppKey launchOptions:launchOptions];

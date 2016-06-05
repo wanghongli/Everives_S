@@ -74,6 +74,8 @@
     _headImg.center = CGPointMake(kScreenWidth/2, _headImg.center.y);
     _headImg.layer.masksToBounds = YES;
     _headImg.layer.cornerRadius = _headImg.height/2;
+    _headImg.layer.borderWidth = 1;
+    _headImg.layer.borderColor = kCOLOR(108, 85, 122).CGColor;
     
     _menuView.frame = CGRectMake(0, CGRectGetMaxY(_starView.frame)+5, kScreenWidth, 20);
     NSString *kindString;

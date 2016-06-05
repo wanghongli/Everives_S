@@ -8,7 +8,7 @@
 
 #import "YRFeedBackController.h"
 
-@interface YRFeedBackController ()
+@interface YRFeedBackController ()<UITextViewDelegate>
 
 @end
 
@@ -22,7 +22,13 @@
     }
     self.sendBtn.layer.masksToBounds = YES;
     self.sendBtn.layer.cornerRadius = self.sendBtn.height/2;
-    [self.textView becomeFirstResponder];
+    _textView.textColor = [UIColor lightGrayColor];
+    _textView.text = @"给点建议吧";
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 138, kScreenWidth-40, 1)];
+    line.backgroundColor = kCOLOR(216, 216, 216);
+    [_textView addSubview:line];
+    _textView.delegate =self;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,5 +46,17 @@
     } failed:^(NSError *error) {
         
     }];
+}
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    if ([textView.text isEqualToString:@"给点建议吧"]) {
+        textView.text = @"";
+    }
+    textView.textColor = KDarkColor;
+}
+-(void)textViewDidEndEditing:(UITextView *)textView{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"给点建议吧";
+        textView.textColor = [UIColor lightGrayColor];
+    }
 }
 @end

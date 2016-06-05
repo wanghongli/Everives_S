@@ -35,12 +35,15 @@ static CGFloat cellHeight = 60;
 }
 
 -(void)getData{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [RequestData GET:[NSString stringWithFormat:@"%@/%@",STUDENT_PLACES,_placeID] parameters:nil complete:^(NSDictionary *responseDic) {
         _model = [YRSchoolModel mj_objectWithKeyValues:responseDic];
+        self.title = _model.name;
         [self.tableView reloadData];
         _headerView.models = _model.pics;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failed:^(NSError *error) {
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 
@@ -69,10 +72,12 @@ static CGFloat cellHeight = 60;
         }
         case 1:{
             cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"地址 : ",_model.address];
+            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
             break;
         }
         case 2:{
             cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"联系方式 : ",_model.tel];
+            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
             break;
         }
         case 3:{
@@ -158,7 +163,13 @@ static CGFloat cellHeight = 60;
         NSString *urlString = [[NSString stringWithFormat:@"http://maps.apple.com/?daddr=%@,%@&saddr=slat,slng",_model.lat, _model.lng] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
     }
-        
+    //打开拨号键盘
+    if(indexPath.row  == 2){
+        if (_model.tel.length>6) {
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", _model.tel]];
+            [[UIApplication sharedApplication] openURL:url];
+        }
+    }
     //金牌教练
     if (indexPath.row == 7) {
         YRGoldenTeacherVC *goldenTeacherVC = [[YRGoldenTeacherVC alloc] init];

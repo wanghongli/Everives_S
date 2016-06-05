@@ -33,8 +33,16 @@
         _distance.text = [NSString stringWithFormat:@"距离%.1f%@",([model.distance integerValue]/1000.0),@"km"];
     }
     _distance.textColor = kTextlightGrayColor;
-    _course.text = [model.kind isEqualToString:@"0"]?@" 科目二 ":@" 科目三 ";
-    _course.textColor = kCOLOR(185, 97, 167);
+    if ([model.kind isEqualToString:@"0"]) {
+        _course.text = @" 科目二 ";
+        _course.textColor = kCOLOR(185, 97, 167);
+    }else if([model.kind isEqualToString:@"1"]){
+        _course.text = @" 科目三 ";
+        _course.textColor = kCOLOR(60, 90, 167);
+    }else{
+        _course.text = @"陪练陪驾";
+        _course.textColor = kCOLOR(60, 90, 150);
+    }
     _course.layer.cornerRadius = 10.5;
     _course.layer.masksToBounds = YES;
     _course.layer.borderColor = kCOLOR(180, 80, 163).CGColor;

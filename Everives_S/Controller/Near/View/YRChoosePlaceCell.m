@@ -18,7 +18,8 @@
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
+        self.layer.borderColor = kCOLOR(240, 240, 240).CGColor;
+        self.layer.borderWidth = 0.4;
     }
     return self;
 }

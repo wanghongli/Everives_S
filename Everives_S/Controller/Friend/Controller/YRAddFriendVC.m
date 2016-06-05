@@ -117,10 +117,16 @@ static NSString *cellID = @"cellID";
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [searchBar resignFirstResponder];
     
-    if (searchBar.text.length == 0) {
+    if (searchBar.text.length != 11) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"手机号不正确" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
         return;
     }
-    
+    if ([searchBar.text isEqualToString:KUserManager.tel]) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"不能添加自己为好友" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
     [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_SEARCH_USER,[_searchBar.searchBar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]  parameters:@{@"relation":@"0"} complete:^(NSDictionary *responseDic) {
         _resArray = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
         if (_resArray.count == 0) {
@@ -179,7 +185,7 @@ static NSString *cellID = @"cellID";
         [_phoneContact addTarget:self action:@selector(phoneContactBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         _phoneContact.layer.masksToBounds = YES;
         _phoneContact.layer.cornerRadius = 22;
-        _phoneContact.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _phoneContact.layer.borderColor = [UIColor blackColor].CGColor;
         _phoneContact.layer.borderWidth = 0.5;
     }
     return _phoneContact;

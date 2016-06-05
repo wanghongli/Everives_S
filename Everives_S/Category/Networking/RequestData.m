@@ -17,6 +17,15 @@
    complete:(void (^)(NSDictionary *responseDic))complete
      failed:(void (^)(NSError *error))failed
 {
+    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager sharedManager];
+    [reachabilityManager startMonitoring];
+    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (status == AFNetworkReachabilityStatusNotReachable) {
+            //网络无连接的提示
+            [MBProgressHUD showError:@"无网络连接" toView:GET_WINDOW];
+            return ;
+        }
+    }];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     if (KUserManager.id) {
         [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@",KUserManager.id] forHTTPHeaderField:@"uid"];
@@ -35,13 +44,25 @@
         if (failed) {
             failed(error);
             NSDictionary *dic = [operation.responseData mj_JSONObject];
-            [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
+            if ([dic[@"info"] length]>0) {
+                [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
+            }
         }
     }];
 }
 
 + (void)POST:(NSString *)URLString parameters:(id)parameters complete:(void (^)(NSDictionary *))complete failed:(void (^)(NSError *))failed
 {
+    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager sharedManager];
+    [reachabilityManager startMonitoring];
+    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (status == AFNetworkReachabilityStatusNotReachable) {
+            //网络无连接的提示
+            [MBProgressHUD showError:@"无网络连接" toView:GET_WINDOW];
+            return ;
+        }
+    }];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     if (KUserManager.id) {
         [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@",KUserManager.id] forHTTPHeaderField:@"uid"];
@@ -62,7 +83,9 @@
         if (failed) {
             failed(error);
             NSDictionary *dic = [operation.responseData mj_JSONObject];
-            [MBProgressHUD showError:dic[@"info"]?:@"未知错误" toView:GET_WINDOW];
+            if ([dic[@"info"] length]>0) {
+                [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
+            }
         }
     }];
 }
@@ -71,6 +94,16 @@
    complete:(void (^)(NSDictionary *responseDic))complete
      failed:(void (^)(NSError *error))failed
 {
+    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager sharedManager];
+    [reachabilityManager startMonitoring];
+    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (status == AFNetworkReachabilityStatusNotReachable) {
+            //网络无连接的提示
+            [MBProgressHUD showError:@"无网络连接" toView:GET_WINDOW];
+            return ;
+        }
+    }];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     if (KUserManager.id) {
         [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@",KUserManager.id] forHTTPHeaderField:@"uid"];
@@ -89,13 +122,25 @@
         if (failed) {
             failed(error);
             NSDictionary *dic = [operation.responseData mj_JSONObject];
-            [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
+            if ([dic[@"info"] length]>0) {
+                [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
+            }
 
         }
     }];
 }
 +(void)DELETE:(NSString *)URLString parameters:(id)parameters complete:(void (^)(NSDictionary *))complete failed:(void (^)(NSError *))failed
 {
+    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager sharedManager];
+    [reachabilityManager startMonitoring];
+    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (status == AFNetworkReachabilityStatusNotReachable) {
+            //网络无连接的提示
+            [MBProgressHUD showError:@"无网络连接" toView:GET_WINDOW];
+            return ;
+        }
+    }];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     if (KUserManager.id) {
         [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@",KUserManager.id] forHTTPHeaderField:@"uid"];
@@ -115,7 +160,9 @@
         if (failed) {
             failed(error);
             NSDictionary *dic = [operation.responseData mj_JSONObject];
-            [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
+            if ([dic[@"info"] length]>0) {
+                [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
+            }
 
         }
     }];
@@ -126,6 +173,16 @@
                complete:(void (^)(NSDictionary *responseDic))complete
                  failed:(void (^)(NSError *error))failed
 {
+    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager sharedManager];
+    [reachabilityManager startMonitoring];
+    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (status == AFNetworkReachabilityStatusNotReachable) {
+            //网络无连接的提示
+            [MBProgressHUD showError:@"无网络连接" toView:GET_WINDOW];
+            return ;
+        }
+    }];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     if (KUserManager.id) {
         [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@",KUserManager.id] forHTTPHeaderField:@"uid"];

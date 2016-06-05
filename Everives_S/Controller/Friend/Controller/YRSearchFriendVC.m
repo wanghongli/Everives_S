@@ -25,6 +25,7 @@ static NSString *cellID = @"cellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"搜索";
     self.view.backgroundColor = [UIColor whiteColor];
     self.clearsSelectionOnViewWillAppear = NO;
     self.tableView.rowHeight = 60;

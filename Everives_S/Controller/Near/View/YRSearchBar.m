@@ -13,7 +13,7 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.layer.borderWidth = 0.5;
-        self.layer.borderColor = kCOLOR(165, 165, 165).CGColor;
+        self.layer.borderColor = kCOLOR(200, 200, 200).CGColor;
         self.layer.cornerRadius = 22;
         [self addSubview:self.searchBar];
     }

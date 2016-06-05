@@ -34,7 +34,7 @@ static NSString *cellID = @"cellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"驾友";
+    self.title = @"通讯录";
     _selectedArray = @[].mutableCopy;
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.rowHeight = 60;
@@ -133,11 +133,20 @@ static NSString *cellID = @"cellID";
     return [[self.letterResultArr objectAtIndex:section]count];
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return self.indexArray[section];
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerID"];
+    if(!header){
+        header = [[UITableViewHeaderFooterView alloc]initWithReuseIdentifier:@"headerID"];
+        header.contentView.backgroundColor = [UIColor whiteColor];
+        header.layer.borderColor = kCOLOR(240, 240, 240).CGColor;
+        header.layer.borderWidth = 1;
+        
+    }
+    header.textLabel.text = [NSString stringWithFormat:@"   %@",self.indexArray[section]];
+    return header;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30;
+    return 50;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -203,36 +212,37 @@ static NSString *cellID = @"cellID";
 
 -(UIButton *)myGroup{
     if (!_myGroup) {
-        _myGroup = [[UIButton alloc] initWithFrame:CGRectMake(8, 4, kScreenWidth - 23, 50)];
-        [_myGroup setTitle:@"我的群组" forState:UIControlStateNormal];
+        _myGroup = [[UIButton alloc] initWithFrame:CGRectMake(-1, 4, kScreenWidth+2, 60)];
+        [_myGroup setTitle:@"我的群聊" forState:UIControlStateNormal];
+        [_myGroup setTitleEdgeInsets:UIEdgeInsetsMake(0, -40, 0, 0)];
         [_myGroup setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_myGroup addTarget:self action:@selector(myGroupBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        _myGroup.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        _myGroup.layer.borderWidth = 0.5;
-        _myGroup.layer.cornerRadius = 10;
-        [_myGroup setImage:[UIImage imageNamed:@"Friend_GroCha"] forState:UIControlStateNormal];
-        [_myGroup setImageEdgeInsets:UIEdgeInsetsMake(0, -kScreenWidth/2-20, 0, 0)];
+        _myGroup.layer.borderColor = kCOLOR(240, 240, 240).CGColor;
+        _myGroup.layer.borderWidth = 1;
+        [_myGroup setImage:[UIImage imageNamed:@"Friend_PhoneBook_GroCha"] forState:UIControlStateNormal];
+        [_myGroup setImageEdgeInsets:UIEdgeInsetsMake(0, -kScreenWidth/2-50, 0, 0)];
+        
     }
     return _myGroup;
 }
 -(UIButton *)myCoach{
     if (!_myCoach) {
-        _myCoach = [[UIButton alloc] initWithFrame:CGRectMake(8, 58, kScreenWidth - 23, 50)];
+        _myCoach = [[UIButton alloc] initWithFrame:CGRectMake(-1, 58, kScreenWidth+2, 60)];
         [_myCoach setTitle:@"我的教练" forState:UIControlStateNormal];
         [_myCoach setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_myCoach setTitleEdgeInsets:UIEdgeInsetsMake(0, -40, 0, 0)];
         [_myCoach addTarget:self action:@selector(myCoachBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        _myCoach.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        _myCoach.layer.borderWidth = 0.5;
-        _myCoach.layer.cornerRadius = 10;
-        [_myCoach setImage:[UIImage imageNamed:@"Friend_GroCha"] forState:UIControlStateNormal];
-        [_myCoach setImageEdgeInsets:UIEdgeInsetsMake(0, -kScreenWidth/2-20, 0, 0)];
+        _myCoach.layer.borderColor = kCOLOR(240, 240, 240).CGColor;
+        _myCoach.layer.borderWidth = 1;
+        [_myCoach setImage:[UIImage imageNamed:@"Friend_PhoneBook_Coach"] forState:UIControlStateNormal];
+        [_myCoach setImageEdgeInsets:UIEdgeInsetsMake(5, -kScreenWidth/2-50, 0, 0)];
     }
     return _myCoach;
 }
 
 -(UIView *)headerView{
     if (!_headerView) {
-        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 112)];
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 132)];
         [_headerView addSubview:self.myGroup];
         [_headerView addSubview:self.myCoach];
     }

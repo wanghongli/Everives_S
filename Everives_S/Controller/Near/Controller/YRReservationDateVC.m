@@ -20,7 +20,7 @@
 
 static NSInteger sectionNum = 7;//竖着的那种
 static NSInteger rowNum = 8; //横着的那种
-#define kcellHeight ((kScreenHeight-64-50)/(rowNum-1)-1)
+#define kcellHeight ((kScreenHeight-64-50)/(rowNum-1)-0.5)
 #define kcellWidth 62.5
 
 @interface YRReservationDateVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDataSource,UITableViewDelegate>{
@@ -287,8 +287,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        layout.itemSize = CGSizeMake(kcellWidth, kcellHeight);
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(kcellWidth, 0, kcellWidth*5, kScreenHeight-64) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(kcellWidth, 0, kScreenWidth-kcellWidth, kScreenHeight-64) collectionViewLayout:layout];
         [_collectionView registerClass:[YRDateCell class] forCellWithReuseIdentifier:kCellIdentifier];
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;

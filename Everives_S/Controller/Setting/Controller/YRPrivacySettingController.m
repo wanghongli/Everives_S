@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"隐私设置";
-    titleArray = @[@"在附近中显示",@"出现在附件中，不显示距离",@"不出现在附近"];
+    titleArray = @[@"在附近中显示距离",@"出现在附件中，不显示距离",@"不出现在附近"];
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.tableView.rowHeight = 55;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -30,7 +30,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -69,5 +69,16 @@
     } failed:^(NSError *error) {
         
     }];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 10;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerID"];
+    if (!header) {
+        header = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"headerID"];
+    }
+    header.contentView.backgroundColor = [UIColor whiteColor];
+    return header;
 }
 @end

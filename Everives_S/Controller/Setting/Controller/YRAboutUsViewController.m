@@ -33,6 +33,7 @@
 }
 
 -(void)shareBtnClick:(UIButton*)sender{
+    [UMSocialData defaultData].extConfig.title = @"蚁众约驾";
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:kUMengShareAppkey
                                       shareText:@"蚁众约驾，开启预约学车新模式"

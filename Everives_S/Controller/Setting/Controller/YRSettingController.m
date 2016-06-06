@@ -151,6 +151,15 @@
     }
     return 10;
 }
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UITableViewHeaderFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerID"];
+    if(!footer){
+        footer = [[UITableViewHeaderFooterView alloc]initWithReuseIdentifier:@"headerID"];
+        footer.contentView.backgroundColor = kCOLOR(250, 250, 250);
+    }
+    return footer;
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 0.1;

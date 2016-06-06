@@ -33,19 +33,18 @@
     UILabel *headtitle = [[UILabel alloc]init];
     headtitle.font = kFontOfLetterBig;
     headtitle.textAlignment = NSTextAlignmentLeft;
+    headtitle.textColor = kCOLOR(86, 86, 86);
     [self addSubview:headtitle];
     _headTitle = headtitle;
     
     UIButton *allmsgbtn = [[UIButton alloc]init];
     [allmsgbtn addTarget:self action:@selector(allMsgBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [allmsgbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [allmsgbtn setTitleColor:kCOLOR(133, 134, 135) forState:UIControlStateNormal];
     allmsgbtn.titleLabel.font = kFontOfLetterMedium;
     allmsgbtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     allmsgbtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     [self addSubview:allmsgbtn];
     _allMsgBtn = allmsgbtn;
-    
-    
 }
 
 - (void)setTitleString:(NSString *)titleString

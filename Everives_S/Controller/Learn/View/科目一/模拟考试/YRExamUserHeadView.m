@@ -68,7 +68,7 @@
     _headImg.layer.masksToBounds = YES;
     _headImg.layer.cornerRadius = _headImg.height/2;
     _headImg.layer.borderWidth = 1;
-    _headImg.layer.borderColor = kCOLOR(241, 241, 241).CGColor;
+    _headImg.layer.borderColor = kCOLOR(235, 236, 237).CGColor;
     if (KUserManager.id) {
         _nameLabel.text = KUserManager.name;
         [_headImg sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:@"User_Placeholder"]];

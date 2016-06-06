@@ -31,8 +31,8 @@
 {
     //收藏
     UIButton *collectbtn = [[UIButton alloc]init];
-    [collectbtn setImage:[UIImage imageNamed:@"Neig_Coach_StaGre"] forState:UIControlStateNormal];
-    [collectbtn setImage:[UIImage imageNamed:@"Neig_Coach_StaOrg"] forState:UIControlStateSelected];
+    [collectbtn setImage:[UIImage imageNamed:@"Learn_CollectionHollow"] forState:UIControlStateNormal];
+    [collectbtn setImage:[UIImage imageNamed:@"Learn_CollectionBlack"] forState:UIControlStateSelected];
     [collectbtn addTarget:self action:@selector(downViewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     collectbtn.tag = 11;
     [self addSubview:collectbtn];

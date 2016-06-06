@@ -74,6 +74,7 @@
         self.descriLabel.text = @"不要灰心，继续努力!";
     self.scorePercentView.headString = @"您的排名为";
     self.scorePercentView.scoreString = @"88";
+    self.scorePercentView.hidden = YES;
 }
 -(void)backClick
 {

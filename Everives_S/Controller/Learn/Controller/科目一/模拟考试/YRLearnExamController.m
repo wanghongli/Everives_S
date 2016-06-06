@@ -45,7 +45,7 @@
     self.tableView.tableHeaderView = _headView;
     
     UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 80)];
-    UIButton *startBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, footView.height-40, kScreenWidth-40, 40)];
+    UIButton *startBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, footView.height-40, kScreenWidth-40, 45)];
     [startBtn setTitle:@"开始考试" forState:UIControlStateNormal];
     [startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     startBtn.backgroundColor = kCOLOR(50, 51, 52);
@@ -96,6 +96,7 @@
     }
     cell.textLabel.text = _titleArray[indexPath.row];
     cell.detailTextLabel.text = _menuArray[indexPath.row];
+    cell.detailTextLabel.textColor = [UIColor blackColor];
     return cell;
 }
 #pragma mark - YRLearnNoMsgViewDelegate 去认证

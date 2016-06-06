@@ -30,6 +30,7 @@
 {
     UILabel *starnum = [[UILabel alloc]init];
     starnum.font = kFontOfLetterMedium;
+    starnum.textColor = [UIColor whiteColor];
     [self addSubview:starnum];
     _starNum = starnum;
     
@@ -66,7 +67,7 @@
         if (i<starNu) {
             [img setImage:[UIImage imageNamed:@"Neig_Coach_StaOrg"]];
         }else
-            [img setImage:[UIImage imageNamed:@"Neig_Coach_StaGre"]];
+            [img setImage:[UIImage imageNamed:@"Neig_Coach_StaWit-1"]];
         maxX = CGRectGetMaxX(img.frame);
     
     }

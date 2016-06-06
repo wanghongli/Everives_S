@@ -12,8 +12,12 @@
 #import "SDProgressView.h"
 #import "SDDemoItemView.h"
 #import "YRFMDBObj.h"
+
+#import "YRCircleBtn.h"
 @interface YRLearnOrderController ()
 @property (nonatomic ,strong) SDDemoItemView *itemView;
+@property (nonatomic, strong) YRCircleBtn *circleBtn;
+@property (nonatomic, strong) UILabel *percentLabel;
 @property (nonatomic, strong) UILabel *currentProgress;
 @end
 
@@ -44,13 +48,27 @@
     self.startAnswerQues.layer.borderWidth = 1;
     self.startAnswerQues.layer.borderColor = kCOLOR(51, 51, 51).CGColor;
     
-    self.itemView = [SDDemoItemView demoItemViewWithClass:[SDLoopProgressView class]];
-    self.itemView.frame = CGRectMake(0, 0, self.headView.height*0.6, self.headView.height*0.6);
-    self.itemView.userInteractionEnabled = NO;
-    self.itemView.center = CGPointMake(kScreenWidth/2, self.headView.height/2+20);
-    [self.headView addSubview:self.itemView];
+//    self.itemView = [SDDemoItemView demoItemViewWithClass:[SDLoopProgressView class]];
+//    self.itemView.frame = CGRectMake(0, 0, self.headView.height*0.6, self.headView.height*0.6);
+//    self.itemView.userInteractionEnabled = NO;
+//    self.itemView.backgroundColor = [UIColor redColor];
+//    self.itemView.center = CGPointMake(kScreenWidth/2, self.headView.height/2+20);
+//    [self.headView addSubview:self.itemView];
     
-    self.currentProgress = [[UILabel alloc]initWithFrame:CGRectMake(0, self.itemView.y-20, kScreenWidth, 20)];
+    self.circleBtn = [[YRCircleBtn alloc]initWithFrame:CGRectMake(0, 0, self.headView.height*0.6, self.headView.height*0.6)];    [self.circleBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.circleBtn.center = CGPointMake(kScreenWidth/2, self.headView.height/2+20);
+//    self.circleBtn.backgroundColor = [UIColor redColor];
+    self.circleBtn.lineW = 4;
+    [self.headView addSubview:self.circleBtn];
+    
+    self.percentLabel = [[UILabel alloc]initWithFrame:self.circleBtn.frame];
+    self.percentLabel.backgroundColor = [UIColor clearColor];
+    self.percentLabel.textColor = [UIColor blackColor];
+    self.percentLabel.textAlignment = NSTextAlignmentCenter;
+    self.percentLabel.font = [UIFont systemFontOfSize:30];
+    [self.headView addSubview:self.percentLabel];
+
+    self.currentProgress = [[UILabel alloc]initWithFrame:CGRectMake(0, self.circleBtn.y-30, kScreenWidth, 20)];
     self.currentProgress.textAlignment = NSTextAlignmentCenter;
     self.currentProgress.text = @"当前进度";
     self.currentProgress.font = kFontOfLetterMedium;
@@ -79,7 +97,10 @@
     self.errorNum.text = array[1];
     self.completeNum.text = array[2];
     CGFloat percent = [array[2] floatValue]/[array[0] floatValue];
-    self.itemView.progressView.progress = percent;
+//    self.itemView.progressView.progress = percent;
+    
+    [self.circleBtn initCircleRangeFloat:percent];
+    self.percentLabel.text = [NSString stringWithFormat:@"%.1f%%",percent*100];
 }
 - (void)progressSimulation
 {

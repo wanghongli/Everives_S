@@ -53,7 +53,7 @@
     arcLayer.path=path.CGPath;//46,169,230
     arcLayer.fillColor=[UIColor clearColor].CGColor;
     arcLayer.strokeColor=[UIColor colorWithRed:52/255.0 green:53/255.0 blue:54/255.0 alpha:1].CGColor;
-    arcLayer.lineWidth=kWight;
+    arcLayer.lineWidth=self.lineW ? self.lineW:kWight;
     arcLayer.frame=CGRectMake(0, 0, rect.size.width, rect.size.height);
     [self.layer addSublayer:arcLayer];
     [self drawLineAnimation:arcLayer];

@@ -10,4 +10,5 @@
 
 @interface YRCircleBtn : UIButton
 -(void)initCircleRangeFloat:(CGFloat)rangeFloat;
+@property (nonatomic, assign) NSInteger lineW;
 @end

@@ -36,12 +36,15 @@
     if ([model.kind isEqualToString:@"0"]) {
         _course.text = @" 科目二 ";
         _course.textColor = kCOLOR(185, 97, 167);
+        _course.layer.borderColor = kCOLOR(185, 97, 167).CGColor;
     }else if([model.kind isEqualToString:@"1"]){
         _course.text = @" 科目三 ";
         _course.textColor = kCOLOR(60, 90, 167);
+        _course.layer.borderColor = kCOLOR(60, 90, 167).CGColor;
     }else{
         _course.text = @"陪练陪驾";
         _course.textColor = kCOLOR(60, 90, 150);
+        _course.layer.borderColor = kCOLOR(60, 90, 150).CGColor;
     }
     _course.layer.cornerRadius = 10.5;
     _course.layer.masksToBounds = YES;

@@ -127,9 +127,9 @@
     // 1    0
     NSString *imgName;
     if (collectBool) {
-        imgName = @"Neig_Coach_StaOrg";
+        imgName = @"Learn_CollectionBlack";
     }else
-        imgName = @"Neig_Coach_StaGre";
+        imgName = @"Learn_CollectionHollow";
     //收藏
 //    UIBarButtonItem *searchPlaceBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:imgName] style:UIBarButtonItemStyleBordered target:self action:@selector(collectionClick)];
     UIBarButtonItem *searchPlaceBtn = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:imgName] highImage:[UIImage imageNamed:imgName] target:self action:@selector(collectionClick) forControlEvents:UIControlEventTouchUpInside];

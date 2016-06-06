@@ -9,7 +9,7 @@
 #import "YRCircleCommentCell.h"
 #import "YRCircleComment.h"
 
-
+#define kMsgX 75
 #define kFont [UIFont systemFontOfSize:15]
 @interface YRCircleCommentCell ()
 
@@ -72,13 +72,13 @@
         NSRange range1=[string rangeOfString:comment.name];
         
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:string];
-        [str addAttribute:NSForegroundColorAttributeName value:kCOLOR(31, 158, 240) range:NSMakeRange(range1.location,range1.length)];
+        [str addAttribute:NSForegroundColorAttributeName value:kCOLOR(0, 111, 184) range:NSMakeRange(range1.location,range1.length)];
         
         _commentMsg.attributedText = str;
-        CGSize size = [string sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-55, MAXFLOAT)];
-        _commentMsg.frame = CGRectMake(55, 5, kSizeOfScreen.width-10-55, size.height);
+        CGSize size = [string sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-kMsgX, MAXFLOAT)];
+        _commentMsg.frame = CGRectMake(kMsgX, 5, kSizeOfScreen.width-10-kMsgX, size.height);
         
-        CGSize size1 = [comment.name sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-55, MAXFLOAT)];
+        CGSize size1 = [comment.name sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-kMsgX, MAXFLOAT)];
         _fisrtUserBtn.frame = CGRectMake(_commentMsg.x, 0, size1.width, size1.height+5);
     }else if(array.count == 2){
         
@@ -90,19 +90,19 @@
         NSRange range2=[string rangeOfString:[NSString stringWithFormat:@"%@:",comment1.name]];
         
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:string];
-        [str addAttribute:NSForegroundColorAttributeName value:kCOLOR(31, 158, 240) range:NSMakeRange(range1.location,range1.length)];
-        [str addAttribute:NSForegroundColorAttributeName value:kCOLOR(31, 158, 240) range:NSMakeRange(range2.location,range2.length-1)];
+        [str addAttribute:NSForegroundColorAttributeName value:kCOLOR(0, 111, 184) range:NSMakeRange(range1.location,range1.length)];
+        [str addAttribute:NSForegroundColorAttributeName value:kCOLOR(0, 111, 184) range:NSMakeRange(range2.location,range2.length-1)];
         _commentMsg.attributedText = str;
-        CGSize size = [string sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-55, MAXFLOAT)];
-        _commentMsg.frame = CGRectMake(55, 5, kSizeOfScreen.width-10-55, size.height);
+        CGSize size = [string sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-kMsgX, MAXFLOAT)];
+        _commentMsg.frame = CGRectMake(kMsgX, 5, kSizeOfScreen.width-10-kMsgX, size.height);
         
         
-        CGSize size1 = [comment2.name sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-55, MAXFLOAT)];
+        CGSize size1 = [comment2.name sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-kMsgX, MAXFLOAT)];
         _fisrtUserBtn.frame = CGRectMake(_commentMsg.x, 0, size1.width, size1.height+5);
         
         NSString *string2 = [NSString stringWithFormat:@"%@回复",comment2.name];
-        CGSize size2 = [string2 sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-55, MAXFLOAT)];
-        CGSize size3 = [comment1.name sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-55, MAXFLOAT)];
+        CGSize size2 = [string2 sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-kMsgX, MAXFLOAT)];
+        CGSize size3 = [comment1.name sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-kMsgX, MAXFLOAT)];
         _secondUserBtn.frame = CGRectMake(_commentMsg.x+size2.width, 0, size3.width, size3.height+5);
     }
 }
@@ -112,14 +112,14 @@
     if (commentArray.count == 1) {
         YRCircleComment *comment = commentArray[0];
         NSString *string = [NSString stringWithFormat:@"%@:%@",comment.name,comment.content];
-        CGSize size = [string sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-55, MAXFLOAT)];
+        CGSize size = [string sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-kMsgX, MAXFLOAT)];
         height+=size.height;
     }else if(commentArray.count == 2){
         
         YRCircleComment *comment1 = commentArray[0];
         YRCircleComment *comment2 = commentArray[1];
         NSString *string = [NSString stringWithFormat:@"%@回复%@:%@",comment2.name,comment1.name,comment2.content];
-        CGSize size = [string sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-55, MAXFLOAT)];
+        CGSize size = [string sizeWithFont:kFont maxSize:CGSizeMake(kSizeOfScreen.width-10-kMsgX, MAXFLOAT)];
         height+=size.height;
     }
     height+=5;

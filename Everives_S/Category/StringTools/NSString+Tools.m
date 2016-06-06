@@ -172,13 +172,13 @@
         timeString = [timeString substringToIndex:timeString.length-7];
         timeString=[NSString stringWithFormat:@"%@小时前", timeString];
     }
-    //发表在24以上10天以内
-    else if(cha/86400>1&&cha/(86400*3)<1)
-    {
-        timeString = [NSString stringWithFormat:@"%f", cha/86400];
-        timeString = [timeString substringToIndex:timeString.length-7];
-        timeString=[NSString stringWithFormat:@"%@天前", timeString];
-    }
+//    //发表在24以上10天以内
+//    else if(cha/86400>1&&cha/(86400*3)<1)
+//    {
+//        timeString = [NSString stringWithFormat:@"%f", cha/86400];
+//        timeString = [timeString substringToIndex:timeString.length-7];
+//        timeString=[NSString stringWithFormat:@"%@天前", timeString];
+//    }
     
     //发表时间大于3天
     else

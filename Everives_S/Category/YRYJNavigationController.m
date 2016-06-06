@@ -24,7 +24,6 @@
 {
     //获取当前类下面的UIBbarButtonItem
     UIBarButtonItem *item = [UIBarButtonItem appearanceWhenContainedIn:self, nil];
-    
     //设置导航按钮的文字颜色
     NSMutableDictionary *titleAttr = [NSMutableDictionary dictionary];
     titleAttr[NSForegroundColorAttributeName] = [UIColor blackColor];
@@ -35,7 +34,8 @@
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)]];
     _popDelegate = self.interactivePopGestureRecognizer.delegate;
     self.delegate = self;
-    [self.navigationBar setBackgroundImage:[UIImage imageWithColor:kCOLOR(247, 247, 247)] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
+    self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kCOLOR(41, 43, 47), NSFontAttributeName : [UIFont boldSystemFontOfSize:18]};
 }
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {

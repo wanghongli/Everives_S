@@ -45,18 +45,20 @@
 -(void)buildUI
 {
     UIView *backview = [[UIView alloc]init];
-    backview.backgroundColor = kCOLOR(250, 250, 250);
+    backview.backgroundColor = kCOLOR(250, 251, 251);
     [self addSubview:backview];
     _backView = backview;
     
     UILabel *anaylabel = [[UILabel alloc]init];
     anaylabel.numberOfLines = 0;
+    anaylabel.textColor = kCOLOR(60, 61, 62);
     anaylabel.font = kFontOfLetterBig;
     [_backView addSubview:anaylabel];
     _anayLabel = anaylabel;
     
     UILabel *answerlabel = [[UILabel alloc]init];
     answerlabel.font = kFontOfLetterBig;
+    answerlabel.textColor = kCOLOR(60, 61, 62);
     [_backView addSubview:answerlabel];
     _answerLabel = answerlabel;
 }
@@ -75,8 +77,8 @@
     
     _backView.frame = CGRectMake(kDistance, 0, kScreenWidth-2*kDistance, CGRectGetMaxY(_anayLabel.frame)+kDistance);
     _backView.layer.masksToBounds = YES;
-    _backView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _backView.layer.borderWidth = 1;
+    _backView.layer.borderColor = kCOLOR(204, 204, 206).CGColor;
+    _backView.layer.borderWidth = 0.7;
 }
 +(CGFloat)examDownViewGetHeight:(NSString *)analyseString
 {
@@ -111,7 +113,7 @@
     
     _backView.frame = CGRectMake(kDistance, 0, kScreenWidth-2*kDistance, CGRectGetMaxY(_anayLabel.frame)+kDistance);
     _backView.layer.masksToBounds = YES;
-    _backView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    _backView.layer.borderColor = kCOLOR(220, 221, 222).CGColor;
     _backView.layer.borderWidth = 1;
     
     

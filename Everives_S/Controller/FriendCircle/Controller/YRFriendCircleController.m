@@ -16,6 +16,8 @@
 #import "YRCircleDetailController.h"
 #import "YRCircleHeadView.h"
 #import "YRUserDetailController.h"
+#import "YRPraiseMem.h"
+#import "YRCircleZanListController.h"
 @interface YRFriendCircleController ()<UIAlertViewDelegate>
 {
     NSInteger _page;
@@ -149,15 +151,50 @@
     [cell setCommentOrAttentClickBlock:^(NSInteger zan) {//点赞和消息
         if (zan == 1){//消息
             return;
+        }else if (zan == 2) {
+            if ([statusF.status.praised boolValue]) {//取消点赞
+                statusF.status.praise = [NSString stringWithFormat:@"%ld",[statusF.status.praise integerValue]-1];
+            }else//点赞
+                statusF.status.praise = [NSString stringWithFormat:@"%ld",[statusF.status.praise integerValue]+1];
+            //更新数据源
+            statusF.status.praised = [NSString stringWithFormat:@"%d",![statusF.status.praised boolValue]];
+            [_blogs replaceObjectAtIndex:indexPath.section withObject:statusF];
+            [self.tableView reloadData];
+            return;
+        }else{//头像点击
+            CGFloat w = (kScreenWidth - 10) / 6;
+            CGFloat ViewW = kScreenWidth-20-2*w-5;
+            int num = ViewW/30;
+            MyLog(@"%ld",zan);
+            if (num>statusF.status.praiseMem.count) {
+                if (zan-100 == statusF.status.praiseMem.count) {//更多
+                    YRCircleZanListController *zanListVC = [[YRCircleZanListController alloc]init];
+                    zanListVC.weiboID = statusF.status.id;
+                    [self.navigationController pushViewController:zanListVC animated:YES];
+                }else{
+                    YRPraiseMem *praise = statusF.status.praiseMem[zan-100];
+                    YRUserDetailController *userVC = [[YRUserDetailController alloc]init];
+                    if (![KUserManager.id isEqualToString:statusF.status.uid]) {//用户自己
+                        userVC.userID = praise.id;
+                    }
+                    [self.navigationController pushViewController:userVC animated:YES];
+                }
+            }else{
+                if (zan-100<num-1) {
+                    YRPraiseMem *praise = statusF.status.praiseMem[zan-100];
+                    YRUserDetailController *userVC = [[YRUserDetailController alloc]init];
+                    if (![KUserManager.id isEqualToString:statusF.status.uid]) {//用户自己
+                        userVC.userID = praise.id;
+                    }
+                    [self.navigationController pushViewController:userVC animated:YES];
+                }else{//更多
+                    YRCircleZanListController *zanListVC = [[YRCircleZanListController alloc]init];
+                    zanListVC.weiboID = statusF.status.id;
+                    [self.navigationController pushViewController:zanListVC animated:YES];
+                }
+            }
         }
-        if ([statusF.status.praised boolValue]) {//取消点赞
-            statusF.status.praise = [NSString stringWithFormat:@"%ld",[statusF.status.praise integerValue]-1];
-        }else//点赞
-            statusF.status.praise = [NSString stringWithFormat:@"%ld",[statusF.status.praise integerValue]+1];
-        //更新数据源
-        statusF.status.praised = [NSString stringWithFormat:@"%d",![statusF.status.praised boolValue]];
-        [_blogs replaceObjectAtIndex:indexPath.section withObject:statusF];
-        [self.tableView reloadData];
+        
     }];
     //点击头像事件
     [cell setIconClickBlock:^(BOOL userBool) {

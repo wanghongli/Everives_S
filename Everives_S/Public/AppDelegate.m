@@ -245,8 +245,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
      withString:@""];
     
     [[RCIMClient sharedRCIMClient] setDeviceToken:token];
-    
-    
 }
 
 /**

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YREditUserController">
@@ -37,7 +37,7 @@
                     <rect key="frame" x="20" y="24" width="34" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.19832826749999999" green="0.2336151216" blue="0.28138060409999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backImg" id="Xws-Dx-RTV">
@@ -64,12 +64,13 @@
                     <rect key="frame" x="20" y="82" width="34" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.19832826749999999" green="0.2336151216" blue="0.28138060409999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入昵称" textAlignment="natural" minimumFontSize="17" id="Rqd-Yc-VLA">
                     <rect key="frame" x="70" y="77" width="230" height="30"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="textColor" red="0.19832826749999999" green="0.2336151216" blue="0.28138060409999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
@@ -85,7 +86,7 @@
                     <rect key="frame" x="20" y="126" width="34" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.19832826749999999" green="0.2336151216" blue="0.28138060409999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" id="v1w-LJ-beY">
@@ -97,12 +98,13 @@
                     <rect key="frame" x="20" y="170" width="34" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.19832826749999999" green="0.2336151216" blue="0.28138060409999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入年龄" textAlignment="natural" minimumFontSize="17" id="qDf-MT-aga">
                     <rect key="frame" x="70" y="165" width="230" height="30"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="textColor" red="0.19832826749999999" green="0.2336151216" blue="0.28138060409999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
@@ -123,7 +125,7 @@
                     <rect key="frame" x="20" y="214" width="34" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.19832826749999999" green="0.2336151216" blue="0.28138060409999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="w72-oh-pX4">
@@ -193,6 +195,7 @@
                     <rect key="frame" x="70" y="207" width="230" height="79"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="0.19832826747720364" green="0.23361512156595746" blue="0.28138060410334348" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     <connections>

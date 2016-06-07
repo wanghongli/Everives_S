@@ -60,6 +60,7 @@
         //头像
         [_headImg sd_setImageWithURL:[NSURL URLWithString:_userMsg.avatar] placeholderImage:[UIImage imageNamed:@"Login_addAvatar"]];
         //昵称
+        _nickNameText.text = @"";
         _nickNameText.text = _userMsg.name;
         //性别
         self.manCenter.hidden = [_userMsg.gender boolValue];
@@ -69,7 +70,7 @@
         self.ageText.text = _userMsg.age;
         //简介
         if (_userMsg.sign.length) {
-            self.signText.textColor = [UIColor blackColor];
+            self.signText.text = @"";
             self.signText.text = _userMsg.sign;
         }else{
             self.signText.text = @"请输入个人简介";

@@ -29,14 +29,14 @@
 {
     UILabel *mainlabel = [[UILabel alloc]init];
     mainlabel.textAlignment = NSTextAlignmentLeft;
-    mainlabel.textColor = kTitleColor;
+    mainlabel.textColor = KDarkColor;
     mainlabel.font = kFontOfLetterBig;
     [self addSubview:mainlabel];
     _mainLabel = mainlabel;
     
     UILabel *descrilabel = [[UILabel alloc]init];
     descrilabel.textAlignment = NSTextAlignmentCenter;
-    descrilabel.textColor = kTitleColor;
+    descrilabel.textColor = KDarkColor;
     descrilabel.font = kFontOfLetterMedium;
     descrilabel.numberOfLines = 0;
     [self addSubview:descrilabel];
@@ -75,7 +75,7 @@
             _descriLabel.layer.cornerRadius = _descriLabel.height/2;
         }else{
             _descriLabel.frame = CGRectMake(CGRectGetMaxX(_mainLabel.frame)+kdistance, _mainLabel.y, labelWidth, descriSize.height);
-            _descriLabel.textColor = kTitleColor;
+            _descriLabel.textColor = KDarkColor;
             _descriLabel.backgroundColor = [UIColor clearColor];
         }
         _descriLabel.text = descriString;

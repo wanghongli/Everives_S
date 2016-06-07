@@ -20,9 +20,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"信息认证";
     self.selectBtn.layer.masksToBounds = YES;
     self.selectBtn.layer.borderColor = kCOLOR(224, 225, 225).CGColor;
     self.selectBtn.layer.borderWidth = 1;
+    _doneClick.layer.cornerRadius = 22;
     
     if (self.scrollView.height<CGRectGetMaxY(self.doneClick.frame)+10) {
         self.scrollView.contentSize = CGSizeMake(kScreenWidth, CGRectGetMaxY(self.doneClick.frame)+10);

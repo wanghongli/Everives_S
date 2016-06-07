@@ -16,6 +16,7 @@
 #import "REFrostedViewController.h"
 #import "YRUserDetailController.h"
 #import "YRCertificationController.h"
+#import "YRUserCertificationController.h"
 @interface YRUserCenterViewController (){
     NSArray *cellNmaes;
     NSArray *cellImgs;
@@ -29,7 +30,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"个人中心";
-    self.frostedViewController.panGestureEnabled = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.separatorColor = kCOLOR(230, 230, 230);
@@ -40,13 +40,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear: animated];
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    self.frostedViewController.panGestureEnabled = YES;
 }
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    self.frostedViewController.panGestureEnabled = NO;
-}
+
 - (void)backBtnClick:(UIBarButtonItem*)sender{
     [self.frostedViewController presentMenuViewController];
 }
@@ -89,6 +84,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.textLabel.textColor = KDarkColor;
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.indentationLevel = 1.5;
@@ -102,13 +98,16 @@
         avatar.layer.borderWidth = 0.5;
         [avatar sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
         
-        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(105, 12, 150, 30)];
+        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(105, 18, 150, 30)];
+        name.text = @"";
         name.text = KUserManager.name;
-        name.font = [UIFont systemFontOfSize:16];
+        name.font = [UIFont fontWithName:@"Helvetica Neue" size:17];
+        name.textColor = KDarkColor;
         
-        UILabel *sign = [[UILabel alloc] initWithFrame:CGRectMake(105, 50, kScreenWidth-110, 30)];
+        UILabel *sign = [[UILabel alloc] initWithFrame:CGRectMake(105, 47, kScreenWidth-110, 30)];
+        sign.text = @"";
         sign.text = KUserManager.sign;
-        sign.font = [UIFont systemFontOfSize:14];
+        sign.font = kFontOfLetterMedium;
         sign.textColor = [UIColor lightGrayColor];
         
         [cell addSubview:avatar];
@@ -154,7 +153,7 @@
         case 4:
         {
             [self.navigationController pushViewController:
-             [[YRCertificationController alloc] init] animated:YES] ;
+             [[YRUserCertificationController alloc] init] animated:YES] ;
             break;
         }
             

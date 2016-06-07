@@ -30,8 +30,7 @@
 @property (nonatomic, strong) YRCircleHeadView *headView;
 @property (nonatomic, strong) YRUserDownView *downView;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) UIButton *backBtn;
-@property (nonatomic, strong) UILabel *titleLabel;
+
 @end
 
 @implementation YRUserDetailController
@@ -39,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"驾友资料";
+    self.title = self.userID?@"驾友资料":@"个人资料";
     if (self.userID) {
         _msgArray = @[@[@"年龄",@"介绍"],@[@"TA的驾友圈"]];
 
@@ -48,7 +47,11 @@
         self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"SNS_AddContent"] highImage:[UIImage imageNamed:@"SNS_AddContent"] target:self action:@selector(editClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     [self buildUI];
-//    [self getData];
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getData];
 }
 -(void)editClick:(UIBarButtonItem *)sender
 {
@@ -79,12 +82,7 @@
         
     }];
 }
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-//    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [self getData];
-}
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -103,20 +101,6 @@
         _downView.delegate = self;
         self.tableView.tableFooterView = _downView;
     }
-    
-    self.backBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 20, 80, 44)];
-    [self.backBtn setImage:[UIImage imageNamed:@"navigationbar_back"] forState:UIControlStateNormal];
-    [self.view addSubview:self.backBtn];
-    [self.view bringSubviewToFront:self.backBtn];
-    [self.backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.backBtn.width, 20, kScreenWidth-2*self.backBtn.width, self.backBtn.height)];
-    self.titleLabel.text = @"驾友资料";
-    [self.view addSubview:self.titleLabel];
-    [self.view bringSubviewToFront:self.titleLabel];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.font = [UIFont systemFontOfSize:16];
-    self.titleLabel.textColor = [UIColor whiteColor];
 }
 -(void)backClick
 {

@@ -16,6 +16,7 @@
 #import "REFrostedViewController.h"
 #import "YRUserDetailController.h"
 #import "YRCertificationController.h"
+#import "YRUserCertificationController.h"
 @interface YRUserCenterViewController (){
     NSArray *cellNmaes;
     NSArray *cellImgs;
@@ -154,7 +155,7 @@
         case 4:
         {
             [self.navigationController pushViewController:
-             [[YRCertificationController alloc] init] animated:YES] ;
+             [[YRUserCertificationController alloc] init] animated:YES] ;
             break;
         }
             

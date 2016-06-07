@@ -16,6 +16,7 @@
 #import "KGFreshCatchDetailZanView.h"
 #import "YRPraiseMem.h"
 #import "YRUserDetailController.h"
+#import "YRCircleZanListController.h"
 @interface YRCircleDetailController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,KGFreshCatchDetailZanViewDelegate>
 {
     BOOL _wasKeyboardManagerEnabled;
@@ -194,7 +195,7 @@
         [cell setCommentOrAttentClickBlock:^(NSInteger zan) {//点赞和消息
             if (zan == 1){//消息
                 return;
-            }
+            }else if (zan == 2) {
             if ([statusF.status.praised boolValue]) {//取消点赞
                 statusF.status.praise = [NSString stringWithFormat:@"%ld",[statusF.status.praise integerValue]-1];
             }else//点赞
@@ -203,6 +204,39 @@
             statusF.status.praised = [NSString stringWithFormat:@"%d",![statusF.status.praised boolValue]];
             _cellFrameMsg = statusF;
             [self.tableView reloadData];
+            }else{
+                CGFloat w = (kScreenWidth - 10) / 6;
+                CGFloat ViewW = kScreenWidth-20-2*w-5;
+                int num = ViewW/30;
+                MyLog(@"%ld",zan);
+                if (num>statusF.status.praiseMem.count) {
+                    if (zan-100 == statusF.status.praiseMem.count) {//更多
+                        YRCircleZanListController *zanListVC = [[YRCircleZanListController alloc]init];
+                        zanListVC.weiboID = statusF.status.id;
+                        [self.navigationController pushViewController:zanListVC animated:YES];
+                    }else{
+                        YRPraiseMem *praise = statusF.status.praiseMem[zan-100];
+                        YRUserDetailController *userVC = [[YRUserDetailController alloc]init];
+                        if (![KUserManager.id isEqualToString:statusF.status.uid]) {//用户自己
+                            userVC.userID = praise.id;
+                        }
+                        [self.navigationController pushViewController:userVC animated:YES];
+                    }
+                }else{
+                    if (zan-100<num-1) {
+                        YRPraiseMem *praise = statusF.status.praiseMem[zan-100];
+                        YRUserDetailController *userVC = [[YRUserDetailController alloc]init];
+                        if (![KUserManager.id isEqualToString:statusF.status.uid]) {//用户自己
+                            userVC.userID = praise.id;
+                        }
+                        [self.navigationController pushViewController:userVC animated:YES];
+                    }else{//更多
+                        YRCircleZanListController *zanListVC = [[YRCircleZanListController alloc]init];
+                        zanListVC.weiboID = statusF.status.id;
+                        [self.navigationController pushViewController:zanListVC animated:YES];
+                    }
+                }
+            }
         }];
         //点击头像事件
         [cell setIconClickBlock:^(BOOL userBool) {

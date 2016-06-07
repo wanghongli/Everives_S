@@ -27,13 +27,14 @@
 @property (nonatomic, strong) UIButton *publishBtn;
 @property (nonatomic, strong) NSMutableArray   *assetsArray;
 @property (nonatomic, strong) UIButton *showAddr;//显示位置
+@property (nonatomic, strong) UIButton *button;
 @end
 
 @implementation YRAddWeiboController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"发布";
+    self.title = @"发布驾友圈";
     self.view.backgroundColor = [UIColor whiteColor];
     [self buildUI];
 }
@@ -44,13 +45,15 @@
     _imgNameArray = [NSMutableArray array];
     _publishImgArray = [NSMutableArray array];
     
-    UIImage  *img = [UIImage imageNamed:@"pic_add"];
-    UIButton   *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(CGRectGetWidth(self.view.frame)-15-img.size.width, 200+(80-img.size.height)/2, img.size.width, img.size.height);
-    [button setBackgroundImage:img forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
-    [button addTarget:self action:@selector(composePicAdd) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    UIImage  *img = [UIImage imageNamed:@"tianjia"];
+    self.button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    button.frame = CGRectMake(CGRectGetWidth(self.view.frame)-15-img.size.width, 200+(80-img.size.height)/2, img.size.width, img.size.height);
+    self.button.frame = CGRectMake(self.collectionView.x, 200+(80-img.size.height)/2, img.size.width, img.size.height);
+
+    [self.button setBackgroundImage:img forState:UIControlStateNormal];
+    [self.button setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
+    [self.button addTarget:self action:@selector(composePicAdd) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.button];
     
     self.textView = [[UITextView alloc]initWithFrame:CGRectMake(15, 15, kSizeOfScreen.width-30, 170)];
     self.textView.delegate = self;
@@ -66,8 +69,9 @@
     UIView *downLine = [[UIView alloc]initWithFrame:CGRectMake(0, 200+84, kSizeOfScreen.width, 1)];
     downLine.backgroundColor = kCOLOR(241, 241, 241);
     [self.view addSubview:downLine];
+    downLine.hidden = YES;
     
-    self.showAddr = [[UIButton alloc]initWithFrame:CGRectMake(self.collectionView.x, CGRectGetMaxY(downLine.frame)+10, 80, 20)];
+    self.showAddr = [[UIButton alloc]initWithFrame:CGRectMake(self.collectionView.x, CGRectGetMaxY(downLine.frame), 80, 20)];
     [self.showAddr setTitle:@" 显示位置" forState:UIControlStateNormal];
     [self.showAddr setTitle:@" 不显示" forState:UIControlStateSelected];
     [self.showAddr setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -83,11 +87,13 @@
     self.showAddr.selected = NO;
     [self.view addSubview:self.showAddr];
     
-    self.publishBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.showAddr.frame)+30, kSizeOfScreen.width, 44)];
-    self.publishBtn.backgroundColor = kMainColor;
+    self.publishBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(self.showAddr.frame)+20, kSizeOfScreen.width-40, 44)];
+    self.publishBtn.backgroundColor = kCOLOR(50, 51, 52);
     [self.publishBtn setTitle:@"发布" forState:UIControlStateNormal];
     [self.publishBtn addTarget:self action:@selector(publishClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.publishBtn];
+    self.publishBtn.layer.masksToBounds = YES;
+    self.publishBtn.layer.cornerRadius = self.publishBtn.height/2;
 }
 -(void)showAddrClick:(UIButton *)sender
 {
@@ -164,11 +170,11 @@
                 NSString *imageName = [[uploadData.description md5] addString:@".jpg"];
                 [_imgNameArray addObject:imageName];
                 [_publishImgArray addObject:[NSString stringWithFormat:@"%@%@",QINIU_SERVER_URL,imageName]];
-                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [YRShaHeObjct saveNSDictionaryForDocument:uploadData FileUrl:imageName];
-                    [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName];
-                    MyLog(@"time-------addimg");
-                });
+//                dispatch_async(dispatch_get_main_queue(), ^{
+////                    [YRShaHeObjct saveNSDictionaryForDocument:uploadData FileUrl:imageName];
+//                    [[SDImageCache sharedImageCache] storeImage:[UIImage imageWithData:uploadData] forKey:imageName];
+//                    MyLog(@"time-------addimg");
+//                });
                 [appDelegate.circleCacheDic setObject:imgArray forKey:_publishImgArray[0]];
                 if (_imgNameArray.count == self.assetsArray.count) {
                     NSString *imgArray = [_publishImgArray mj_JSONString];
@@ -255,6 +261,13 @@
     
     [imagePicker dismissViewControllerAnimated:YES completion:^{
         [self.collectionView reloadData];
+        UIImage  *img = [UIImage imageNamed:@"tianjia"];
+
+        if (self.assetsArray.count*(self.collectionView.height+5)>self.collectionView.width) {
+            self.button.frame = CGRectMake(CGRectGetWidth(self.view.frame)-15-img.size.width, 200+(80-img.size.height)/2, img.size.width, img.size.height);
+        }else{
+            self.button.frame = CGRectMake(self.assetsArray.count*(self.collectionView.height+5)+self.collectionView.x, 200+(80-img.size.height)/2, img.size.width, img.size.height);
+        }
     }];
 }
 
@@ -301,7 +314,7 @@ static NSString *kPhotoCellIdentifier = @"kPhotoCellIdentifier";
         layout.minimumLineSpacing = 5.0;
         layout.minimumInteritemSpacing = 5.0;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        UIImage  *img = [UIImage imageNamed:@"pic_add"];
+        UIImage  *img = [UIImage imageNamed:@"tianjia"];
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15, 200, CGRectGetWidth(self.view.frame)-30 - img.size.width - 10, 80) collectionViewLayout:layout];
         _collectionView.backgroundColor = [UIColor clearColor];

@@ -98,6 +98,9 @@
                     if ([pic_urls containsObject:[appDelegate.circleCacheDic allKeys][0]]) {
                         NSArray *imgArray = appDelegate.circleCacheDic[[appDelegate.circleCacheDic allKeys][0]];
                         imgMsg = imgArray[i];
+                        if (i == imgArray.count-1) {
+                            appDelegate.circleCacheDic = [NSMutableDictionary dictionary];
+                        }
                     }
                 }
             }

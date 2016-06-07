@@ -9,12 +9,15 @@
 #import "YRCircleToolBar.h"
 #import "YRWeibo.h"
 #import "RequestData.h"
+#import "YRPraiseMem.h"
+#import "UIImageView+WebCache.h"
 #define CZStatusCellMargin 10
 #define CZNameFont [UIFont systemFontOfSize:13]
 #define CZTimeFont [UIFont systemFontOfSize:12]
 #define CZSourceFont CZTimeFont
 #define CZTextFont [UIFont systemFontOfSize:15]
 #define CZScreenW [UIScreen mainScreen].bounds.size.width
+#define kQiniuThumbnailParam(scale) ([NSString stringWithFormat:@"?imageMogr2/thumbnail/!%dp", scale])
 @interface YRCircleToolBar ()
 
 @property (nonatomic, strong) NSMutableArray *btns;
@@ -48,12 +51,9 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        
         // 添加所有子控件
         [self setUpAllChildView];
         self.userInteractionEnabled = YES;
-        //        self.image = [UIImage imageWithStretchableName:@"timeline_card_bottom_background"];
-//                self.backgroundColor = [UIColor redColor];
     }
     return self;
 }
@@ -78,6 +78,35 @@
     [unlike addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     unlike.tag = 22;
     _unlike = unlike;
+    
+    
+    CGFloat w = (CZScreenW - CZStatusCellMargin) / 6;
+    CGFloat ViewW = kScreenWidth-2*CZStatusCellMargin-2*w-5;
+    int num = ViewW/30;
+    NSLog(@"%d",num);
+    for (int i = 0; i<num; i++) {
+        CGFloat x = CZStatusCellMargin+i*30+5;
+        CGFloat y = 5;
+        CGFloat w = 25;
+        CGFloat h = 25;
+        UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(x, y, w, h)];
+        [self addSubview:img];
+        img.layer.masksToBounds = YES;
+        img.layer.cornerRadius = img.height/2;
+        img.hidden = YES;
+        img.clipsToBounds = YES;
+        img.userInteractionEnabled = YES;
+        img.tag = 100+i;
+        // 添加点按手势
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick:)];
+        [img addGestureRecognizer:tap];
+    }
+}
+#pragma mark - 点击图片的时候调用
+- (void)headClick:(UITapGestureRecognizer *)tap
+{
+    UIImageView *tapView = (UIImageView*)tap.view;
+    [self.delegate commentOrAttentTouch:tapView.tag];
 }
 - (UIButton *)setUpOneButtonWithTitle:(NSString *)title image:(UIImage *)image
 {
@@ -104,13 +133,15 @@
     self.address.frame = CGRectMake(addressX, addressY, addressW, addressH);
     
     // 设置按钮的frame
-    CGFloat w = (CZScreenW - 2*CZStatusCellMargin) / 5;
+    CGFloat w = (CZScreenW - 2*CZStatusCellMargin) / 6;
     CGFloat h = self.height;
     CGFloat x = CGRectGetMaxX(self.address.frame);
     CGFloat y = 0;
     
-    self.unlike.frame = CGRectMake(x+2*CZStatusCellMargin, y, w, h);
+    self.unlike.frame = CGRectMake(kScreenWidth-CZStatusCellMargin-2*w, y, w, h);
+    self.unlike.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     self.comment.frame = CGRectMake(CGRectGetMaxX(self.unlike.frame), y, w, h);
+    self.comment.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
 }
 -(void)setStatus:(YRWeibo *)status
 {
@@ -126,6 +157,38 @@
     [self setBtn:_unlike title:[status.praise intValue]];
     
     self.unlike.selected = [status.praised boolValue];
+    CGFloat w = (CZScreenW - CZStatusCellMargin) / 6;
+    CGFloat ViewW = kScreenWidth-2*CZStatusCellMargin-2*w;
+    int num = ViewW/30;
+    NSLog(@"%d",num);
+    for (int i = 0; i<num; i++) {
+        if (status.address.length || [status.address containsString:@"暂无"]) {
+            _address.hidden = YES;
+        }else{
+            _address.hidden = NO;
+            return;
+        }
+        UIImageView *img = (UIImageView *)[self viewWithTag:i+100];
+        if (i<status.praiseMem.count) {
+            if ((status.praiseMem.count == num) && i == num-1) {
+                img.image = [UIImage imageNamed:@"未标题-1三个点"];
+            }else{
+                img.hidden = NO;
+                YRPraiseMem *prObj = status.praiseMem[i];
+                NSString *photo = prObj.avatar;
+                photo = [photo addString:kQiniuThumbnailParam(30)];
+                [img sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
+            }
+        }else{
+            if (i == status.praiseMem.count && status.praiseMem.count<num) {
+//                UIImageView *img1 = (UIImageView *)[self viewWithTag:i+1+100];
+                img.image = [UIImage imageNamed:@"未标题-1三个点"];
+                img.hidden = NO;
+                
+            }else
+                img.hidden = YES;
+        }
+    }
 }
 // 设置按钮的标题
 - (void)setBtn:(UIButton *)btn title:(int)count

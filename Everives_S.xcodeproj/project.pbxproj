@@ -106,6 +106,9 @@
 		0362493E1CFD97E000968CA7 /* YRScroeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362493D1CFD97E000968CA7 /* YRScroeDetailViewController.m */; };
 		036249411CFDCA7200968CA7 /* YRScroeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036249401CFDCA7200968CA7 /* YRScroeHeadView.m */; };
 		036249441CFDCA8000968CA7 /* YRScroeDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036249431CFDCA8000968CA7 /* YRScroeDownView.m */; };
+		0362E6681D06768D001E4C42 /* YRCircleZanListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362E6671D06768D001E4C42 /* YRCircleZanListController.m */; };
+		0362E66C1D068CB4001E4C42 /* YRCircleZanListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362E66A1D068CB4001E4C42 /* YRCircleZanListCell.m */; };
+		0362E66D1D068CB4001E4C42 /* YRCircleZanListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0362E66B1D068CB4001E4C42 /* YRCircleZanListCell.xib */; };
 		036FF4691CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 036FF4681CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m */; };
 		037C92991C8FB94F005B41BF /* YRCircleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C92981C8FB94F005B41BF /* YRCircleCommentCell.m */; };
 		037C929C1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 037C929B1C8FBC4A005B41BF /* KGFreshCatchDetailCommentView.m */; };
@@ -535,6 +538,11 @@
 		036249401CFDCA7200968CA7 /* YRScroeHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRScroeHeadView.m; sourceTree = "<group>"; };
 		036249421CFDCA8000968CA7 /* YRScroeDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRScroeDownView.h; sourceTree = "<group>"; };
 		036249431CFDCA8000968CA7 /* YRScroeDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRScroeDownView.m; sourceTree = "<group>"; };
+		0362E6661D06768D001E4C42 /* YRCircleZanListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleZanListController.h; sourceTree = "<group>"; };
+		0362E6671D06768D001E4C42 /* YRCircleZanListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCircleZanListController.m; sourceTree = "<group>"; };
+		0362E6691D068CB4001E4C42 /* YRCircleZanListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleZanListCell.h; sourceTree = "<group>"; };
+		0362E66A1D068CB4001E4C42 /* YRCircleZanListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCircleZanListCell.m; sourceTree = "<group>"; };
+		0362E66B1D068CB4001E4C42 /* YRCircleZanListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRCircleZanListCell.xib; sourceTree = "<group>"; };
 		036FF4671CCF06AC00F9ECD3 /* UIBarButtonItem+Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Item.h"; sourceTree = "<group>"; };
 		036FF4681CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Item.m"; sourceTree = "<group>"; };
 		037C92971C8FB94F005B41BF /* YRCircleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCircleCommentCell.h; sourceTree = "<group>"; };
@@ -1464,6 +1472,8 @@
 				031515341C9A3D7400A2A2F1 /* YREditUserController.h */,
 				031515351C9A3D7400A2A2F1 /* YREditUserController.m */,
 				031515361C9A3D7400A2A2F1 /* YREditUserController.xib */,
+				0362E6661D06768D001E4C42 /* YRCircleZanListController.h */,
+				0362E6671D06768D001E4C42 /* YRCircleZanListController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1512,6 +1522,9 @@
 				03019D1F1C994E6300895C77 /* YRUserDownView.m */,
 				03019D211C9954B900895C77 /* YRUserDetailCell.h */,
 				03019D221C9954B900895C77 /* YRUserDetailCell.m */,
+				0362E6691D068CB4001E4C42 /* YRCircleZanListCell.h */,
+				0362E66A1D068CB4001E4C42 /* YRCircleZanListCell.m */,
+				0362E66B1D068CB4001E4C42 /* YRCircleZanListCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2653,6 +2666,7 @@
 				162EAD431D04132E002565AA /* UMShareEditViewController.xib in Resources */,
 				1672A6601C8FE61200AF6272 /* YRStudentTableCell.xib in Resources */,
 				1672A65B1C8FE60300AF6272 /* YRCoachTableCell.xib in Resources */,
+				0362E66D1D068CB4001E4C42 /* YRCircleZanListCell.xib in Resources */,
 				031D50361CA1374D000E1303 /* YRAppointmentDetailController.xib in Resources */,
 				162EAD481D04132E002565AA /* UMSocialSDKResourcesNew.bundle in Resources */,
 			);
@@ -2905,6 +2919,7 @@
 				03FF14781C9FCA0900AEBB75 /* YRPracticeDownView.m in Sources */,
 				16271AAB1CB360830082F7CB /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				03228D311CA4D38700890DC6 /* SDBallProgressView.m in Sources */,
+				0362E6681D06768D001E4C42 /* YRCircleZanListController.m in Sources */,
 				03FF14701C9F861600AEBB75 /* YRLearnOrderController.m in Sources */,
 				032C44141CAE58440022C2F9 /* FMResultSet.m in Sources */,
 				03A8CA4B1CA25463007AB152 /* YRTeacherPlaceCell.m in Sources */,
@@ -2931,6 +2946,7 @@
 				032C464D1CBB74E30022C2F9 /* YRStarLevelDetailView.m in Sources */,
 				164A8C921C8D1DCF00857638 /* YRMyWalletViewController.m in Sources */,
 				16271AA51CB360830082F7CB /* MASConstraint.m in Sources */,
+				0362E66C1D068CB4001E4C42 /* YRCircleZanListCell.m in Sources */,
 				032C464E1CBB74E30022C2F9 /* YRTeacherStarLevelView.m in Sources */,
 				1672A6501C8FC6A600AF6272 /* YRMapSelectView.m in Sources */,
 				032C44251CB272650022C2F9 /* YRMyErrorController.m in Sources */,

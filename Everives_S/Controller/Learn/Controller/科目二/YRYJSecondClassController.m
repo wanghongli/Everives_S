@@ -163,6 +163,7 @@
         self.frostedViewController.contentViewController = navigationController;
     }else if (btnTag == 1){//未审核
         YRUserCertificationController *certificationVC = [[YRUserCertificationController alloc]initWithNibName:@"YRUserCertificationController" bundle:nil];
+        certificationVC.title = @"审核资料";
         [self.navigationController pushViewController:certificationVC animated:YES];
     }else{//失败
         YRUserCertificationController *certificationVC = [[YRUserCertificationController alloc]initWithNibName:@"YRUserCertificationController" bundle:nil];

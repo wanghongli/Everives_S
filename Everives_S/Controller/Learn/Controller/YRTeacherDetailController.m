@@ -203,6 +203,15 @@
             } failed:^(NSError *error) {
                 
             }];
+        }else{
+            [RequestData DELETE:[NSString stringWithFormat:@"/student/teacher/%@",self.teacherID] parameters:nil complete:^(NSDictionary *responseDic) {
+                MyLog(@"%@",responseDic);
+                [MBProgressHUD showSuccess:@"取消关注" toView:self.view];
+                self.teacherDetail.cared = 0;
+                _downView.attentionBool = 0;
+            } failed:^(NSError *error) {
+                
+            }];
         }
     }else{//预约
 //        KUserManager.checked = 1;//测试 假设全部通过审核

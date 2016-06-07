@@ -8,13 +8,14 @@
 
 #import "YRDateCell.h"
 #import "UIColor+Tool.h"
+
 @implementation YRDateCell
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self.contentView addSubview:self.priceLabel];
         self.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
-        self.layer.borderColor = [UIColor whiteColor].CGColor;
-        self.layer.borderWidth = 1;
+        self.layer.borderColor = kCOLOR(203, 204, 205).CGColor;
+        self.layer.borderWidth = 0.5;
         self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.contentView.frame];
         self.selectedBackgroundView.backgroundColor = [UIColor colorWithRGB:0x5fabef];
     }

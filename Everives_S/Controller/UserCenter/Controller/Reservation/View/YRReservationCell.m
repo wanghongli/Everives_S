@@ -44,7 +44,7 @@
     _myAvatar.layer.cornerRadius = 22.5;
     _myAvatar.layer.borderColor = kCOLOR(203, 204, 205).CGColor;
     _myAvatar.layer.borderWidth = 1.5;
-    _time.backgroundColor = [UIColor colorWithRed:0.748 green:0.720 blue:0.739 alpha:1.000];
+    _time.backgroundColor = kCOLOR(204, 204, 204);
     _time.textColor = [UIColor whiteColor];
     _time.layer.cornerRadius = 10;
     _time.layer.masksToBounds = YES;

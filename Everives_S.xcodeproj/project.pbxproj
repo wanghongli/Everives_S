@@ -348,6 +348,7 @@
 		16E22FB31CCA1A8000ED439A /* YRActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E22FB21CCA1A8000ED439A /* YRActivityModel.m */; };
 		16E22FB61CCA2FBD00ED439A /* YROrderPartnerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E22FB51CCA2FBD00ED439A /* YROrderPartnerModel.m */; };
 		16F8A8BA1CBF8630004EBC57 /* YRSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F8A8B91CBF8630004EBC57 /* YRSliderView.m */; };
+		16FC2DD91D068ECB00125C5A /* GBPathImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16FC2DD81D068ECB00125C5A /* GBPathImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1015,6 +1016,8 @@
 		16E22FB51CCA2FBD00ED439A /* YROrderPartnerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YROrderPartnerModel.m; sourceTree = "<group>"; };
 		16F8A8B81CBF8630004EBC57 /* YRSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRSliderView.h; sourceTree = "<group>"; };
 		16F8A8B91CBF8630004EBC57 /* YRSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRSliderView.m; sourceTree = "<group>"; };
+		16FC2DD71D068ECB00125C5A /* GBPathImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBPathImageView.h; sourceTree = "<group>"; };
+		16FC2DD81D068ECB00125C5A /* GBPathImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBPathImageView.m; sourceTree = "<group>"; };
 		621122004B2292969E50D2A7 /* Pods-Everives_S.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Everives_S.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Everives_S/Pods-Everives_S.debug.xcconfig"; sourceTree = "<group>"; };
 		9C1B4F44C4007BA6DEB3211B /* libPods-Everives_S.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Everives_S.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5E178DEA66014562365CC94 /* Pods-Everives_S.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Everives_S.release.xcconfig"; path = "Pods/Target Support Files/Pods-Everives_S/Pods-Everives_S.release.xcconfig"; sourceTree = "<group>"; };
@@ -1935,6 +1938,8 @@
 		1600EB9E1C87E8A5001919EB /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				16FC2DD71D068ECB00125C5A /* GBPathImageView.h */,
+				16FC2DD81D068ECB00125C5A /* GBPathImageView.m */,
 				036FF4671CCF06AC00F9ECD3 /* UIBarButtonItem+Item.h */,
 				036FF4681CCF06AC00F9ECD3 /* UIBarButtonItem+Item.m */,
 				166939F71C9A3E9A00C7ECF2 /* Pinyin */,
@@ -2759,6 +2764,7 @@
 				1694F5831CA25DF4009A4C21 /* YRReservationChoosePlaceVC.m in Sources */,
 				037D7C061C911F4A00273703 /* YRPerfectUserMsgController.m in Sources */,
 				03A25F241C92AF17000196A6 /* YRDriveLawCell.m in Sources */,
+				16FC2DD91D068ECB00125C5A /* GBPathImageView.m in Sources */,
 				032C46461CBB749A0022C2F9 /* YRTeacherMakeCommentController.m in Sources */,
 				03A8CA5D1CA29B79007AB152 /* YRTeacherDownView.m in Sources */,
 				032C441A1CAE73490022C2F9 /* YRFMDBObj.m in Sources */,

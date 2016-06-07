@@ -14,10 +14,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="107.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backImg" id="mzc-HD-e2b">
-                        <rect key="frame" x="8" y="8" width="90" height="90"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016年03月21日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uIs-LE-yrT">
                         <rect key="frame" x="106" y="11" width="121" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -67,32 +63,16 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Qou-tF-AYF">
-                        <rect key="frame" x="55" y="54" width="45" height="45"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="uba-nr-gtf">
-                        <rect key="frame" x="6" y="54" width="45" height="45"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="class_three" id="hbs-eV-HmF">
                         <rect key="frame" x="192" y="78" width="35" height="15"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BespeakDetail_Arrow" id="ShR-T7-bTc">
-                        <rect key="frame" x="43" y="68" width="20" height="15.5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="arrowhead" destination="ShR-T7-bTc" id="Fa7-MJ-qaH"/>
-                <outlet property="avatar" destination="mzc-HD-e2b" id="0A7-YQ-d0L"/>
                 <outlet property="coach" destination="uT6-Gi-5U8" id="ILW-zC-KER"/>
                 <outlet property="course" destination="hbs-eV-HmF" id="WgN-Ik-Gkd"/>
                 <outlet property="date" destination="uIs-LE-yrT" id="VXi-VC-IlK"/>
-                <outlet property="myAvatar" destination="uba-nr-gtf" id="Nbd-g3-2If"/>
-                <outlet property="partnerAvatar" destination="Qou-tF-AYF" id="x2E-b8-T5x"/>
                 <outlet property="place" destination="DVf-OV-xic" id="bFe-Gm-vRl"/>
                 <outlet property="price" destination="jd7-yy-hQ6" id="bbf-rw-mTy"/>
                 <outlet property="status" destination="qpY-46-eE4" id="Jov-VX-Xn7"/>
@@ -103,8 +83,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="BespeakDetail_Arrow" width="20" height="15"/>
-        <image name="backImg" width="280" height="244"/>
         <image name="class_three" width="48" height="20"/>
     </resources>
 </document>

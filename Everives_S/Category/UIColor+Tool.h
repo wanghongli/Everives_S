@@ -19,5 +19,5 @@
  */
 + (UIColor *)colorWithRGB:(uint32_t)rgbValue;
 
-
++ (UIColor *)colorWithHexString: (NSString *) stringToConvert;
 @end

@@ -10,14 +10,18 @@
 #import "YROrderedPlaceModel.h"
 #import <UIImageView+WebCache.h>
 #import "NSString+Tools.h"
+#import "UIColor+Tool.h"
+#import "GBPathImageView.h"
+
 @interface YRReservationCell(){
     NSArray *_times;
     NSArray *_statusArr;
+    NSArray *_statusColor;
 }
 
-@property (weak, nonatomic) IBOutlet UIImageView *avatar;
-@property (weak, nonatomic) IBOutlet UIImageView *partnerAvatar;
-@property (weak, nonatomic) IBOutlet UIImageView *myAvatar;
+@property (strong, nonatomic) GBPathImageView *avatar;
+@property (strong, nonatomic) GBPathImageView *partnerAvatar;
+@property (strong, nonatomic) GBPathImageView *myAvatar;
 @property (weak, nonatomic) IBOutlet UILabel *date;
 @property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet UILabel *place;
@@ -26,24 +30,16 @@
 @property (weak, nonatomic) IBOutlet UIImageView *course;
 @property (weak, nonatomic) IBOutlet UILabel *price;
 @property (weak, nonatomic) IBOutlet UILabel *weekday;
-@property (weak, nonatomic) IBOutlet UIImageView *arrowhead;
+@property (strong, nonatomic) UIImageView *arrowHead;
+
 
 @end
 @implementation YRReservationCell
 
 - (void)awakeFromNib {
-    _avatar.layer.masksToBounds = YES;
-    _avatar.layer.cornerRadius = 45;
-    _avatar.layer.borderColor = kCOLOR(203, 204, 205).CGColor;
-    _avatar.layer.borderWidth = 1.5;
-    _partnerAvatar.layer.masksToBounds = YES;
-    _partnerAvatar.layer.borderColor = kCOLOR(203, 204, 205).CGColor;
-    _partnerAvatar.layer.borderWidth = 1.5;
-    _partnerAvatar.layer.cornerRadius = 22.5;
-    _myAvatar.layer.masksToBounds = YES;
-    _myAvatar.layer.cornerRadius = 22.5;
-    _myAvatar.layer.borderColor = kCOLOR(203, 204, 205).CGColor;
-    _myAvatar.layer.borderWidth = 1.5;
+    
+    
+
     _time.backgroundColor = kCOLOR(204, 204, 204);
     _time.textColor = [UIColor whiteColor];
     _time.layer.cornerRadius = 10;
@@ -56,6 +52,9 @@
     _weekday.textColor = KDarkColor;
     _times = @[@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"14:00-15:00",@"15:00-16:00",@"16:00-17:00",@"17:00-18:00"];
     _statusArr = @[@"未支付" ,@"已支付",@"已支付", @"已完成" ,@"已评价",@"已取消"];
+    _statusColor = @[@"F82119",@"FA8038",@"FA8038",@"FA8038",@"8B8C8D",@"8B8C8D"];
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -64,15 +63,48 @@
     // Configure the view for the selected state
 }
 -(void)configCellWithModel:(YROrderedPlaceModel *)model{
-    [_avatar sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
-    if (model.partner) {
-        [_partnerAvatar sd_setImageWithURL:[NSURL URLWithString:model.partner.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
-        [_myAvatar sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
-    }else{
-        _partnerAvatar.hidden = YES;
-        _myAvatar.hidden = YES;
-        _arrowhead.hidden = YES;
-    }
+    
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    [manager downloadImageWithURL:[NSURL URLWithString:model.avatar]
+                             options:0
+                            progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                            }
+                           completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                               if (image && finished) {
+                                   _avatar = [[GBPathImageView alloc] initWithFrame:CGRectMake(8, 8, 90, 90) image:image pathType:GBPathImageViewTypeCircle pathColor:kCOLOR(230, 230, 230) borderColor:[UIColor whiteColor] pathWidth:4.0];
+                                   [self.contentView addSubview:_avatar];
+                               }
+                               if (model.partner) {
+
+                                   [manager downloadImageWithURL:[NSURL URLWithString:model.partner.avatar]
+                                                         options:0
+                                                        progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                                        }
+                                                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                                           if (image && finished) {
+                                                               _partnerAvatar = [[GBPathImageView alloc] initWithFrame:CGRectMake(6, 54, 45, 45) image:image pathType:GBPathImageViewTypeCircle pathColor:kCOLOR(230, 230, 230) borderColor:[UIColor whiteColor] pathWidth:4.0];
+                                                               [self.contentView addSubview:_partnerAvatar];
+                                                           }
+                                                           [manager downloadImageWithURL:[NSURL URLWithString:KUserManager.avatar]
+                                                                                 options:0
+                                                                                progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                                                                }
+                                                                               completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                                                                   if (image && finished) {
+                                                                                       _myAvatar = [[GBPathImageView alloc] initWithFrame:CGRectMake(55, 54, 45, 45) image:image pathType:GBPathImageViewTypeCircle pathColor:kCOLOR(230, 230, 230) borderColor:[UIColor whiteColor] pathWidth:4.0];
+                                                                                       [self.contentView addSubview:_myAvatar];
+                                                                                   }
+                                                                                   _arrowHead = [[UIImageView alloc] initWithFrame:CGRectMake(42, 68.5, 22, 15.5)];
+                                                                                   _arrowHead.image = [UIImage imageNamed:@"BespeakDetail_Arrow"];
+                                                                                   [self.contentView addSubview:_arrowHead];
+                                                                               }
+                                                            ];
+                                                       }
+                                    ];
+                                   
+                               }
+                           }
+     ];
     NSString *datey = [model.date substringToIndex:4];
     NSString *datem = [model.date substringWithRange:NSMakeRange(5, 2)];
     NSString *dated = [model.date substringFromIndex:8];
@@ -84,8 +116,11 @@
     _place.text = model.pname;
     _coach.text= model.tname;
     _status.text = _statusArr[[model.status integerValue]];
+    _status.textColor = [UIColor colorWithHexString:_statusColor[[model.status integerValue]]];
     _course.image = [UIImage imageNamed:[model.kind isEqualToString:@"0"]?@"class_two":@"class_three"];
     _price.text = [NSString stringWithFormat:@"￥%@",model.price];
     _weekday.text = [NSString getTheDayInWeek:model.date];
+    
+    
 }
 @end

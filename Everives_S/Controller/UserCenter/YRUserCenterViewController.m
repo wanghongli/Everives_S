@@ -23,6 +23,9 @@
     NSArray *cellClick;
 }
 @property(nonatomic,strong) UIView *tableHeader;
+@property(nonatomic,strong) UILabel *nameL;
+@property(nonatomic,strong) UILabel *signL;
+@property(nonatomic,strong) UIImageView *avatarImage;
 @end
 
 @implementation YRUserCenterViewController
@@ -91,28 +94,13 @@
     cell.indentationWidth = 10;
     //个人资料
     if (indexPath.section == 0) {
-        UIImageView *avatar = [[UIImageView alloc] initWithFrame:CGRectMake(18, 8, 74, 74)];
-        avatar.layer.masksToBounds = YES;
-        avatar.layer.cornerRadius = 37;
-        avatar.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        avatar.layer.borderWidth = 0.5;
-        [avatar sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
         
-        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(105, 18, 150, 30)];
-        name.text = @"";
-        name.text = KUserManager.name;
-        name.font = [UIFont fontWithName:@"Helvetica Neue" size:17];
-        name.textColor = KDarkColor;
-        
-        UILabel *sign = [[UILabel alloc] initWithFrame:CGRectMake(105, 47, kScreenWidth-110, 30)];
-        sign.text = @"";
-        sign.text = KUserManager.sign;
-        sign.font = kFontOfLetterMedium;
-        sign.textColor = [UIColor lightGrayColor];
-        
-        [cell addSubview:avatar];
-        [cell addSubview:name];
-        [cell addSubview:sign];
+        [self.avatarImage sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
+        self.signL.text = KUserManager.sign;
+        self.nameL.text = KUserManager.name;
+        [cell addSubview:self.avatarImage];
+        [cell addSubview:self.nameL];
+        [cell addSubview:self.signL];
         return cell;
     }
     cell.textLabel.text = cellNmaes[(indexPath.section-1)*3+indexPath.row];
@@ -160,5 +148,32 @@
         default:
             break;
     }
+}
+#pragma maark - Getters
+-(UILabel *)nameL{
+    if (!_nameL) {
+        _nameL = [[UILabel alloc] initWithFrame:CGRectMake(105, 18, 150, 30)];
+        _nameL.font = [UIFont fontWithName:@"Helvetica Neue" size:17];
+        _nameL.textColor = KDarkColor;
+    }
+    return _nameL;
+}
+-(UILabel *)signL{
+    if (!_signL) {
+        _signL = [[UILabel alloc] initWithFrame:CGRectMake(105, 47, kScreenWidth-110, 30)];
+        _signL.font = kFontOfLetterMedium;
+        _signL.textColor = [UIColor lightGrayColor];
+    }
+    return _signL;
+}
+-(UIImageView *)avatarImage{
+    if (!_avatarImage) {
+        _avatarImage = [[UIImageView alloc] initWithFrame:CGRectMake(18, 8, 74, 74)];
+        _avatarImage.layer.masksToBounds = YES;
+        _avatarImage.layer.cornerRadius = 37;
+        _avatarImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _avatarImage.layer.borderWidth = 0.5;
+    }
+    return _avatarImage;
 }
 @end

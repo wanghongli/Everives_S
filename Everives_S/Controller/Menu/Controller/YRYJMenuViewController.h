@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "REFrostedViewController.h"
-@interface YRYJMenuViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
+@interface YRYJMenuViewController : UITableViewController
 
 @end

@@ -36,14 +36,16 @@
     _headImg = headview;
     
     UILabel *namelabel = [[UILabel alloc]init];
-    namelabel.font = [UIFont systemFontOfSize:18];
+    namelabel.font = [UIFont boldSystemFontOfSize:16];
     namelabel.textAlignment = NSTextAlignmentLeft;
+    namelabel.textColor = [UIColor whiteColor];
     [self addSubview:namelabel];
     _nameLabel = namelabel;
     
     UILabel *signlabel = [[UILabel alloc]init];
-    signlabel.font = [UIFont systemFontOfSize:14];
+    signlabel.font = kFontOfLetterMedium;
     signlabel.textAlignment = NSTextAlignmentLeft;
+    signlabel.textColor = [UIColor whiteColor];
     [self addSubview:signlabel];
     _signLabel = signlabel;
     

@@ -33,8 +33,6 @@
     [super viewDidLoad];
     _selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     self.tableView.separatorColor = [UIColor colorWithRed:150/255.0f green:161/255.0f blue:177/255.0f alpha:1.0f];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
     self.tableView.opaque = NO;
     self.tableView.backgroundColor = [UIColor clearColor];
     _headView = [[YRMenuHeadView alloc]initWithFrame:CGRectMake(0, 0, 0, 130.0f)];
@@ -84,8 +82,11 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)sectionIndex
 {
-    if (sectionIndex == 0)
-        return nil;
+    if (sectionIndex == 0){
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 10)];
+        view.backgroundColor = [UIColor whiteColor];
+        return view;
+    }
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 2)];
     view.backgroundColor = [UIColor colorWithRed:238/255.0f green:240/255.0f blue:241/255.0f alpha:0.6f];
@@ -95,7 +96,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)sectionIndex
 {
     if (sectionIndex == 0)
-        return 0;
+        return 10;
     
     return 2;
 }

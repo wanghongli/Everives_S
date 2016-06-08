@@ -8,6 +8,8 @@
 
 #import "YRAppointmentHeadView.h"
 #import "YRLearnPartnerObj.h"
+#import "UIColor+Tool.h"
+
 #define kHeadImgHeight 90
 #define kLOrRImgHeight 45
 #define kCenterImgW 25
@@ -75,14 +77,15 @@
     _centerImg = centerimg;
     
     UILabel *namelabel = [[UILabel alloc]init];
-    namelabel.font = [UIFont systemFontOfSize:15];
+    namelabel.font = kFontOfLetterBig;
     namelabel.textAlignment = NSTextAlignmentCenter;
     namelabel.text = @"罗拉尔多";
+    namelabel.textColor = KDarkColor;
     [self addSubview:namelabel];
     _nameLabel = namelabel;
     
     UILabel *detaillabel = [[UILabel alloc]init];
-    detaillabel.font = [UIFont systemFontOfSize:15];
+    detaillabel.font = kFontOfLetterMedium;
     detaillabel.textAlignment = NSTextAlignmentCenter;
     detaillabel.text = @"(每个人支付总费用的一半)";
     [self addSubview:detaillabel];
@@ -115,6 +118,8 @@
         self.centerImg.hidden = YES;
     }
     self.detailLabel.text = [YRPublicMethod getOrderStatusWith:orderDetail.status];
+    NSArray *statusColor = @[@"F82119",@"FA8038",@"FA8038",@"FA8038",@"8B8C8D",@"8B8C8D"];
+    self.detailLabel.textColor = [UIColor colorWithHexString:statusColor[orderDetail.status]];
 }
 -(void)layoutSubviews
 {

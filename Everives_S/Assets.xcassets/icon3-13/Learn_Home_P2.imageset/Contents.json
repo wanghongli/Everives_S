@@ -2,17 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "Learn_Home_P2.png"
+      "filename" : "Learn_Home_P2.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Learn_Home_P2@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Learn_Home_P2@3x.png",
       "scale" : "3x"
     }
   ],

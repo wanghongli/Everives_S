@@ -58,10 +58,10 @@
     [_certificationBtn addTarget:self action:@selector(certificationClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_certificationBtn];
     MyLog(@"%ld",KUserManager.checked);
-    if (KUserManager.checked) {//提交过
+    if (KUserManager.status) {//提交过
         _nameTF.text = KUserManager.realname;
         _idCardTF.text = KUserManager.peopleId;
-        BOOL btnHidden = KUserManager.checked-1 ? NO:YES;
+        BOOL btnHidden = KUserManager.status-1 ? NO:YES;
         _sureBtn.hidden = btnHidden;
     }
 }
@@ -73,7 +73,7 @@
         [RequestData POST:STUDENT_IDENTIFY parameters:@{@"realname":self.nameTF.text,@"peopleId":self.idCardTF.text} complete:^(NSDictionary *responseDic) {
             [MBProgressHUD showSuccess:@"信息已提交，正在等待审核" toView:GET_WINDOW];
             [self.navigationController popViewControllerAnimated:YES];
-            KUserManager.checked = 0;
+            KUserManager.status = 0;
             KUserManager.peopleId = self.idCardTF.text;
             KUserManager.realname = self.nameTF.text;
             [YRPublicMethod changeUserMsgWithKeys:@[@"checked",@"peopleId",@"realname"] values:@[@(0),self.idCardTF.text,self.nameTF.text]];

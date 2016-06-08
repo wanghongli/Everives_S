@@ -54,7 +54,7 @@
     _certificationBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [_certificationBtn addTarget:self action:@selector(certificationClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_certificationBtn];
-    MyLog(@"%ld",KUserManager.checked);
+    MyLog(@"%ld",KUserManager.status);
     if (KUserManager.status) {//提交过
         _nameTF.text = KUserManager.realname;
         _idCardTF.text = KUserManager.peopleId;

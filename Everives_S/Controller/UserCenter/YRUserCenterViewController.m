@@ -15,8 +15,8 @@
 #import "RequestData.h"
 #import "REFrostedViewController.h"
 #import "YRUserDetailController.h"
-#import "YRCertificationController.h"
 #import "YRUserCertificationController.h"
+#import "YRCertificationController.h"
 @interface YRUserCenterViewController (){
     NSArray *cellNmaes;
     NSArray *cellImgs;
@@ -138,10 +138,16 @@
              [[YRNotificationViewController alloc] init] animated:YES] ;
             break;
         }
-        case 4:
+        case 4://信息认证
         {
-            [self.navigationController pushViewController:
-             [[YRUserCertificationController alloc] init] animated:YES] ;
+            if(KUserManager.status == 2){
+                [self.navigationController pushViewController:
+                 [[YRCertificationController alloc] init] animated:YES];
+            }else{
+                [self.navigationController pushViewController:
+                 [[YRUserCertificationController alloc] init] animated:YES];
+            }
+            
             break;
         }
             

@@ -25,7 +25,7 @@
 #import "YRSchoolCelldetailVC.h"
 #import "YRTeacherAllPicsController.h"
 #import "MJRefresh/MJRefresh.h"
-#import "YRCertificationController.h"
+#import "YRUserCertificationController.h"
 @interface YRTeacherDetailController () <UITableViewDelegate,UITableViewDataSource,YRTeacherDownViewDelegate,UIAlertViewDelegate>
 {
     YRTeacherDetailObject *_teacherObj;
@@ -215,7 +215,7 @@
         }
     }else{//预约
 //        KUserManager.checked = 1;//测试 假设全部通过审核
-        if (KUserManager.checked == 0) {//未提交或正在审核
+        if (KUserManager.status == 0) {//未提交或正在审核
             if (KUserManager.peopleId.length) {//正在审核
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的信息正在审核当中" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
                 alertView.tag = 20;
@@ -225,14 +225,14 @@
                 alertView.tag = 21;
                 [alertView show];
             }
-        }else if (KUserManager.checked == 1){//审核通过
+        }else if (KUserManager.status == 1){//审核通过
             YRReservationDateVC *chooseDateVC = [[YRReservationDateVC alloc] init];
             chooseDateVC.isShareOrder = _isShareOrder;
             self.teacherDetail.kind = [_kind integerValue];
             chooseDateVC.coachModel = self.teacherDetail;
             chooseDateVC.partnerModel = _partnerModel;
             [self.navigationController pushViewController:chooseDateVC animated:YES];
-        }else if (KUserManager.checked == 2){//审核失败
+        }else if (KUserManager.status == 2){//审核失败
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"审核失败" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"重新认证", nil];
             alertView.tag = 22;
             [alertView show];
@@ -246,7 +246,7 @@
         MyLog(@"aaaaaa");
         if (alertView.tag == 20) {
         }else{
-            YRCertificationController *certificationVC = [[YRCertificationController alloc]init];
+            YRUserCertificationController *certificationVC = [[YRUserCertificationController alloc]init];
             [self.navigationController pushViewController:certificationVC animated:YES];
         }
     }

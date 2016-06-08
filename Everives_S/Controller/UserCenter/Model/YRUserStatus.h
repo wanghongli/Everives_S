@@ -29,7 +29,8 @@
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *sign;
 @property (nonatomic, assign) NSString *frozenMoney;
-@property (nonatomic, assign) NSInteger checked; //0  1 完成 2 失败
+@property (nonatomic, assign) NSInteger status; //0正在审核  1 完成 2 失败
+@property (nonatomic, assign) NSString *checkInfo;//审核失败原因
 @property (nonatomic, assign) NSInteger push;//设置中通知状态
 @property (nonatomic, assign) NSInteger show;//'隐私设置 0显示 1不显示距离 2不显示',
 @property (nonatomic, assign) NSInteger first;  //第一个数为第一次分享  第二个数表示第一次充值； 3都操作过    3分享过  1充值过  0没有分享

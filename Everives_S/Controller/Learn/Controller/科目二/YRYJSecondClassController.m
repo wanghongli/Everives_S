@@ -73,16 +73,16 @@
 {
 //    KUserManager.checked = 1; //这行代码用于测试
     [super viewWillAppear:animated];
-    if (KUserManager.checked == 0) {//未提交或正在审核
+    if (KUserManager.status == 0) {//未提交或正在审核
         if (KUserManager.peopleId.length) {//正在审核
             [self showMsgWithMst:@"您的信息正在审核当中" withHidden:NO];
         }else{//未提交
             [self showMsgWithMst:@"抱歉，您还未进行信息认证" withHidden:NO];
         }
-    }else if (KUserManager.checked == 1){//审核通过
+    }else if (KUserManager.status == 1){//审核通过
         //获取数据
         [self getData];
-    }else if (KUserManager.checked == 2){//审核失败
+    }else if (KUserManager.status == 2){//审核失败
         [self showMsgWithMst:@"审核失败" withHidden:NO];
     }
 }

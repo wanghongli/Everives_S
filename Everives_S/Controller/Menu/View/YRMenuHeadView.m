@@ -70,6 +70,8 @@
     _headImg.frame = CGRectMake(kDistace, wh/4+20, wh, wh);
     _headImg.layer.masksToBounds = YES;
     _headImg.layer.cornerRadius = wh/2;
+    _headImg.layer.borderColor = [UIColor whiteColor].CGColor;
+    _headImg.layer.borderWidth = 1;
     _headImg.image = [UIImage imageNamed:KUSER_HEAD_IMG];
     
     NSString *nameString = @"玉祥驾校";
@@ -94,8 +96,7 @@
     if (KUserManager.id) {
         _nameLabel.text = KUserManager.name;
         [_headImg sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:KUSER_HEAD_IMG]];
-        _signLabel.text = KUserManager.sign;
-        
+        _signLabel.text = [KUserManager.sign stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet].length == 0?@"一句话简单介绍一下自己吧":KUserManager.sign;
     }
 }
 -(void)setLoginBool:(BOOL)loginBool
@@ -104,6 +105,7 @@
     
     if (loginBool) {//已经登陆
         _nameLabel.text = KUserManager.name;
+        _signLabel.text = [KUserManager.sign stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet].length == 0?@"一句话简单介绍一下自己吧":KUserManager.sign;
         _loginBtn.hidden = YES;
         _signLabel.hidden = NO;
         _nameLabel.hidden = NO;

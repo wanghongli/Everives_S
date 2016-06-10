@@ -13,7 +13,6 @@
 #define kImgWHPercent 0.24
 #define kDistance 5
 @interface YRCircleHeadView ()
-@property (nonatomic, strong) UIImageView *imgView;
 
 @property (nonatomic, strong) YRNameSexView *nameSexView;
 @property (nonatomic, strong) UILabel *signLabel;

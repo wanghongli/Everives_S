@@ -97,7 +97,7 @@
         ((YRSchoolAnnotationCalloutView*)_calloutView).addrstr = school.address;
         double dis = [DistanceToolFuc calculateDistanceWithLongitude1:[school.lng doubleValue] Laititude1:[school.lat doubleValue] Longitude2:[KUserLocation.longitude doubleValue] Laititude2:[KUserLocation.latitude doubleValue]];
         if(dis>1000){
-            ((YRSchoolAnnotationCalloutView*)_calloutView).distancestr = [NSString stringWithFormat:@"%.2fkm",dis/1000];
+            ((YRSchoolAnnotationCalloutView*)_calloutView).distancestr = [NSString stringWithFormat:@"%.1fkm",dis/1000];
         }else{
             ((YRSchoolAnnotationCalloutView*)_calloutView).distancestr = [NSString stringWithFormat:@"%.0fm",dis];
         }

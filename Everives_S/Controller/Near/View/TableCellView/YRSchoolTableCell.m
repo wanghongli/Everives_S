@@ -16,6 +16,7 @@
 - (void)awakeFromNib {
     _intro.frame = CGRectMake(113, 93, kScreenWidth-129, 12);
     _addr.frame = CGRectMake(113, 67, kScreenWidth-129, 12);
+    _name.font = kFontOfLetterBig;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

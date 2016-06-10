@@ -63,7 +63,7 @@
                 <outlet property="stuNum" destination="YUx-qD-MhN" id="zeI-eq-1G8"/>
                 <outlet property="teachAge" destination="jP2-iH-Pjb" id="qWn-wQ-0E5"/>
             </connections>
-            <point key="canvasLocation" x="265" y="195"/>
+            <point key="canvasLocation" x="33" y="347"/>
         </tableViewCell>
     </objects>
 </document>

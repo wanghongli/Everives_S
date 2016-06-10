@@ -45,7 +45,7 @@
     UILabel *signlabel = [[UILabel alloc]init];
     signlabel.font = kFontOfLetterMedium;
     signlabel.textAlignment = NSTextAlignmentLeft;
-    signlabel.textColor = [UIColor whiteColor];
+    signlabel.textColor = kCOLOR(238, 224, 242);
     [self addSubview:signlabel];
     _signLabel = signlabel;
     

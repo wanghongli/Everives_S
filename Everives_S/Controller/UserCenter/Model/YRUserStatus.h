@@ -21,7 +21,7 @@
 @property (nonatomic, strong) NSString *lng;
 @property (nonatomic, strong) NSString *money;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *peopleId;//身份证
+@property (nonatomic, strong) NSString *peopleId;//身份证 是否为空可以判断有没有提交第一次审核
 @property (nonatomic, strong) NSString *realname;//真实姓名
 @property (nonatomic, strong) NSString *rongToken;
 @property (nonatomic, strong) NSString *tel;

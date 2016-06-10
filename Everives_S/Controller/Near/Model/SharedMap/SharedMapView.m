@@ -109,7 +109,7 @@ updatingLocation:(BOOL)updatingLocation
     if(updatingLocation)
     {
 //        取出当前位置的坐标
-        NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+//        NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
         CLLocationCoordinate2D center = CLLocationCoordinate2DMake(userLocation.coordinate.latitude,userLocation.coordinate.longitude);
         KUserLocation.longitude = [NSString stringWithFormat:@"%f",userLocation.coordinate.longitude];
         KUserLocation.latitude = [NSString stringWithFormat:@"%f",userLocation.coordinate.latitude];
@@ -136,7 +136,7 @@ updatingLocation:(BOOL)updatingLocation
 
 -(void)mapView:(MAMapView *)mapView didFailToLocateUserWithError:(NSError *)error{
     NSString *errorString;
-    NSLog(@"Error: %@",[error localizedDescription]);
+//    NSLog(@"Error: %@",[error localizedDescription]);
     switch([error code]) {
         case kCLErrorDenied:
         {

@@ -17,6 +17,7 @@
     _course.layer.cornerRadius = 10.5;
     _course.layer.masksToBounds = YES;
     _course.layer.borderWidth = 1;
+    _name.font = kFontOfLetterBig;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

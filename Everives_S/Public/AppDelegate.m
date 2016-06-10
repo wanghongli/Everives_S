@@ -147,6 +147,7 @@
 -(void)registerUMessageRemoteNotification{
     //友盟推送
     [UMessage setAlias:KUserManager.id type:@"STU" response:nil];
+    [UMessage setAlias:@"STU" type:@"TYPE" response:nil];
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
     if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
     {

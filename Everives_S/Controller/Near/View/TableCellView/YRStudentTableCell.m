@@ -14,6 +14,9 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    _name.font = kFontOfLetterBig;
+    _distance.textColor = kTextlightGrayColor;
+    _sign.textColor = kTextlightGrayColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -34,8 +37,6 @@
     }else{
         _distance.text = [NSString stringWithFormat:@"距离%.0fm",dis];
     }
-    _distance.textColor = kTextlightGrayColor;
-    _sign.textColor = kTextlightGrayColor;
     if ([model.gender isEqualToString:@"0"]) {
         _gender.image = [UIImage imageNamed:@"Neighborhood_Coach_male"];
     }else{

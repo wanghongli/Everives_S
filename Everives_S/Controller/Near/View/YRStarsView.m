@@ -21,9 +21,9 @@
         for (NSInteger i = 0; i<5; i++) {
             UIImageView *star = [[UIImageView alloc] initWithFrame:CGRectMake(starWidth*i+(i!=0?intervel:0), (frame.size.height-starWidth)/2, starWidth, starWidth)];
             if (i<score) {
-                star.image = [UIImage imageNamed:@"Neig_Coach_StaOrg"];
+                star.image = [UIImage imageNamed:@"bigStarOrg"];
             }else{
-                star.image = [UIImage imageNamed:@"Neig_Coach_StaGre"];
+                star.image = [UIImage imageNamed:@"SmallStarGray"];
             }
             [self addSubview:star];
         }
@@ -46,9 +46,9 @@
     for (NSInteger i = 0; i<5; i++) {
         UIImageView *star = [[UIImageView alloc] initWithFrame:CGRectMake(_starWidth*i+(i!=0?_intervel:0), (self.frame.size.height-_starWidth)/2, _starWidth, _starWidth)];
         if (i<score) {
-            star.image = [UIImage imageNamed:@"Neig_Coach_StaOrg"];
+            star.image = [UIImage imageNamed:@"bigStarOrg"];
         }else{
-            star.image = [UIImage imageNamed:@"Neig_Coach_StaGre"];
+            star.image = [UIImage imageNamed:@"SmallStarGray"];
         }
         [self addSubview:star];
     }

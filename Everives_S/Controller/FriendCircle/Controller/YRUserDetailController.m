@@ -41,7 +41,6 @@
     self.title = self.userID?@"驾友资料":@"个人资料";
     if (self.userID) {
         _msgArray = @[@[@"年龄",@"介绍"],@[@"TA的驾友圈"]];
-
     }else{
         _msgArray = @[@[@"年龄",@"介绍"],@[@"我的驾友圈"]];
         self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"SNS_AddContent"] highImage:[UIImage imageNamed:@"SNS_AddContent"] target:self action:@selector(editClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -71,6 +70,12 @@
         _userMsg = [YRUserStatus mj_objectWithKeyValues:responseDic];
         [_headView sd_setImageWithURL:[NSURL URLWithString:_userMsg.bg] placeholderImage:[UIImage imageNamed:@"background_1"]];
         [_headView setUserMsgWithName:_userMsg.name gender:[_userMsg.gender boolValue] sign:_userMsg.sign];
+        if (self.userID) {
+            _headView.imgView.layer.borderColor = kCOLOR(98, 123, 157).CGColor;
+        }else{
+            _headView.imgView.layer.borderColor = kCOLOR(103, 113, 156).CGColor;
+        }
+        _headView.imgView.layer.borderWidth = 2;
         _headView.headImgUrl = _userMsg.avatar;
         _userArray = @[@[_userMsg.age,_userMsg.sign],@[@""]];
 
@@ -106,6 +111,7 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+#pragma mark - UITableView
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return _msgArray.count;
@@ -137,7 +143,14 @@
 {
     return 10;
 }
-
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerID"];
+    if(!header){
+        header = [[UITableViewHeaderFooterView alloc]initWithReuseIdentifier:@"headerID"];
+        header.contentView.backgroundColor = kCOLOR(250, 250, 250);
+    }
+    return header;
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 0.1;

@@ -11,4 +11,5 @@
 @interface YRCircleHeadView : UIImageView
 -(void)setUserMsgWithName:(NSString *)name gender:(BOOL)gender sign:(NSString *)sign;
 @property (nonatomic, strong) NSString *headImgUrl;
+@property (nonatomic, strong) UIImageView *imgView;
 @end

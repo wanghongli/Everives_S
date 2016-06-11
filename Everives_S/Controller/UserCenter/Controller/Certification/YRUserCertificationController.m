@@ -41,6 +41,7 @@
     [self.view endEditing:YES];
 }
 - (IBAction)addCarIDImg:(UIButton *)sender {
+    [self.view endEditing:YES];
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"请选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"相册" otherButtonTitles:@"拍照", nil];
     [actionSheet showInView:self.view];
     
@@ -65,11 +66,12 @@
                       complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                           NSLog(@"%@\n---%@\n %@",info,resp,key);
                           if (resp) {
+                              NSLog(@"%@,%@,%@",self.nameText.text,self.carIDtext.text,imageName);
                               [RequestData POST:STUDENT_IDENTIFY parameters:@{@"realname":self.nameText.text,@"peopleId":self.carIDtext.text,@"peoplePic":imageName} complete:^(NSDictionary *responseDic) {
                                   [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                                   [MBProgressHUD showSuccess:@"信息已提交，正在等待审核" toView:GET_WINDOW];
                                   [self.navigationController popViewControllerAnimated:YES];
-                                  KUserManager.checked = 0;
+                                  KUserManager.status = 0;
                                   KUserManager.peopleId = self.carIDtext.text;
                                   KUserManager.realname = self.nameText.text;
                                   [YRPublicMethod changeUserMsgWithKeys:@[@"checked",@"peopleId",@"realname"] values:@[@(0),self.carIDtext.text,self.nameText.text]];
@@ -98,6 +100,8 @@
             type=CorePhotoPickerVCMangerTypeSinglePhoto;
         } else if (buttonIndex == 1){
             type=CorePhotoPickerVCMangerTypeCamera;
+        }else{
+            return;
         }
         CorePhotoPickerVCManager *manager=[CorePhotoPickerVCManager sharedCorePhotoPickerVCManager];
         //设置类型

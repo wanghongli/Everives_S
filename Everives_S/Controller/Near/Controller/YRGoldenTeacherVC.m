@@ -22,7 +22,7 @@ static NSString *cellReuseID = @"cellReuseID";
     self.clearsSelectionOnViewWillAppear = NO;
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64)];
     [self.tableView registerNib:[UINib nibWithNibName:@"YRCoachTableCell" bundle:nil] forCellReuseIdentifier:cellReuseID];
-    self.tableView.rowHeight = 100;
+    self.tableView.rowHeight = 120;
     self.tableView.tableFooterView = [[UIView alloc]init];
     [self getData];
     

@@ -10,13 +10,13 @@
 #import "YRLearnSecondCell.h"
 #import "YRAppointmentDetailController.h"
 #import "YRLearnNoMsgView.h"//没认证界面
-#import "YRCertificationController.h" //信息认证
 #import "YRFriendCircleController.h"
 #import "YRTeacherOrder.h"
 #import "UIViewController+YRCommonController.h"
 #import "YRYJNavigationController.h"
 #import "REFrostedViewController.h"
 #import "YRNearViewController.h"
+#import "YRUserCertificationController.h"
 @interface YRYJThirdClassController ()<UITableViewDelegate,UITableViewDataSource,YRLearnNoMsgViewDelegate>
 {
     NSArray *msgArray;
@@ -46,16 +46,16 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (KUserManager.checked == 0) {//未提交或正在审核
+    if (KUserManager.status == 0) {//未提交或正在审核
         if (KUserManager.peopleId.length) {//正在审核
             [self showMsgWithMst:@"您的信息正在审核当中" withHidden:NO];
         }else{//未提交
             [self showMsgWithMst:@"抱歉，您还未进行信息认证" withHidden:NO];
         }
-    }else if (KUserManager.checked == 1){//审核通过
+    }else if (KUserManager.status == 1){//审核通过
         //获取数据
         [self getData];
-    }else if (KUserManager.checked == 2){//审核失败
+    }else if (KUserManager.status == 2){//审核失败
         [self showMsgWithMst:@"审核失败" withHidden:NO];
     }
 }
@@ -169,10 +169,10 @@
         YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:nearViewController];
         self.frostedViewController.contentViewController = navigationController;
     }else if (btnTag == 1){//未审核
-        YRCertificationController *certificationVC = [[YRCertificationController alloc]init];
+        YRUserCertificationController *certificationVC = [[YRUserCertificationController alloc]init];
         [self.navigationController pushViewController:certificationVC animated:YES];
     }else{//失败
-        YRCertificationController *certificationVC = [[YRCertificationController alloc]init];
+        YRUserCertificationController *certificationVC = [[YRUserCertificationController alloc]init];
         [self.navigationController pushViewController:certificationVC animated:YES];
     }
 }

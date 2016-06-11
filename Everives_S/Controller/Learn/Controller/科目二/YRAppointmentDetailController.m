@@ -205,9 +205,14 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     }
     cell.textLabel.text = _titleArray[indexPath.row];
+    cell.indentationLevel = 2;
     NSArray *array = _totalMenu[indexPath.section];
-    cell.detailTextLabel.text = array[indexPath.row];
+    //机智...UILabel会自动清空末尾的空格，而且cell的textlabel都是不能移动的，就用了这个方法
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@       .",array[indexPath.row]]];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:NSMakeRange(0,str.length-1)];
     
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor clearColor] range:NSMakeRange(str.length-1,1)];
+    cell.detailTextLabel.attributedText =str;
     return cell;
 }
 

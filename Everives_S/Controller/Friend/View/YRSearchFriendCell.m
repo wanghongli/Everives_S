@@ -14,6 +14,9 @@
     // Initialization code
     _avatar.layer.masksToBounds = YES;
     _avatar.layer.cornerRadius = 20;
+    _avatar.layer.borderColor = kCOLOR(220, 220, 220).CGColor;
+    _avatar.layer.borderWidth = 1;
+    _name.textColor = KDarkColor;
 }
 -(void)configureCellWithAvatar:(NSString *)avatar name:(NSString *)name{
     [_avatar sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];

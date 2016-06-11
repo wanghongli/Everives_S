@@ -263,34 +263,37 @@ static NSString *cellID = @"cellID";
         _myGroup = [[UIButton alloc] initWithFrame:CGRectMake(-1, 64, kScreenWidth+2, 60)];
         [_myGroup setTitle:@"我的群聊" forState:UIControlStateNormal];
         [_myGroup setTitleEdgeInsets:UIEdgeInsetsMake(0, -40, 0, 0)];
-        [_myGroup setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_myGroup setTitleColor:KDarkColor forState:UIControlStateNormal];
         [_myGroup addTarget:self action:@selector(myGroupBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         _myGroup.layer.borderColor = kCOLOR(240, 240, 240).CGColor;
         _myGroup.layer.borderWidth = 1;
         [_myGroup setImage:[UIImage imageNamed:@"Friend_PhoneBook_GroCha"] forState:UIControlStateNormal];
-        [_myGroup setImageEdgeInsets:UIEdgeInsetsMake(0, -kScreenWidth/2-50, 0, 0)];
+        NSLog(@"%f",kScreenWidth);
+        CGFloat leftInset = kScreenWidth>400?-257:(kScreenWidth>330?-225:-165);
+        [_myGroup setImageEdgeInsets:UIEdgeInsetsMake(0, leftInset, 0, 0)];
         
     }
     return _myGroup;
 }
 -(UIButton *)myCoach{
     if (!_myCoach) {
-        _myCoach = [[UIButton alloc] initWithFrame:CGRectMake(-1, 118, kScreenWidth+2, 60)];
+        _myCoach = [[UIButton alloc] initWithFrame:CGRectMake(-1, 124, kScreenWidth+2, 60)];
         [_myCoach setTitle:@"我的教练" forState:UIControlStateNormal];
-        [_myCoach setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_myCoach setTitleColor:KDarkColor forState:UIControlStateNormal];
         [_myCoach setTitleEdgeInsets:UIEdgeInsetsMake(0, -40, 0, 0)];
         [_myCoach addTarget:self action:@selector(myCoachBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         _myCoach.layer.borderColor = kCOLOR(240, 240, 240).CGColor;
         _myCoach.layer.borderWidth = 1;
         [_myCoach setImage:[UIImage imageNamed:@"Friend_PhoneBook_Coach"] forState:UIControlStateNormal];
-        [_myCoach setImageEdgeInsets:UIEdgeInsetsMake(5, -kScreenWidth/2-50, 0, 0)];
+        CGFloat leftInset = kScreenWidth>400?-257:(kScreenWidth>330?-225:-165);
+        [_myCoach setImageEdgeInsets:UIEdgeInsetsMake(5, leftInset, 0, 0)];
     }
     return _myCoach;
 }
 
 -(UIView *)headerView{
     if (!_headerView) {
-        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 178)];
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 184)];
         [_headerView addSubview:self.searchBar];
         [_headerView addSubview:self.myGroup];
         [_headerView addSubview:self.myCoach];

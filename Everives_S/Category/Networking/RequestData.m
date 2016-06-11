@@ -45,6 +45,10 @@
             failed(error);
             NSDictionary *dic = [operation.responseData mj_JSONObject];
             if ([dic[@"info"] length]>0) {
+                NSLog(@"%@",dic[@"info"]);
+                if ([dic[@"info"] containsString:@"身份验证失败"]) {
+                    return ;
+                }
                 [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
             }
         }
@@ -84,6 +88,9 @@
             failed(error);
             NSDictionary *dic = [operation.responseData mj_JSONObject];
             if ([dic[@"info"] length]>0) {
+                if ([dic[@"info"] containsString:@"身份验证失败"]) {
+                    return ;
+                }
                 [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
             }
         }
@@ -123,6 +130,9 @@
             failed(error);
             NSDictionary *dic = [operation.responseData mj_JSONObject];
             if ([dic[@"info"] length]>0) {
+                if ([dic[@"info"] containsString:@"身份验证失败"]) {
+                    return ;
+                }
                 [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
             }
 
@@ -161,6 +171,9 @@
             failed(error);
             NSDictionary *dic = [operation.responseData mj_JSONObject];
             if ([dic[@"info"] length]>0) {
+                if ([dic[@"info"] containsString:@"身份验证失败"]) {
+                    return ;
+                }
                 [MBProgressHUD showError:dic[@"info"] toView:GET_WINDOW];
             }
 

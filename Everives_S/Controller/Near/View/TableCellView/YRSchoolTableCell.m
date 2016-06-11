@@ -16,6 +16,7 @@
 - (void)awakeFromNib {
     _intro.frame = CGRectMake(113, 93, kScreenWidth-129, 12);
     _addr.frame = CGRectMake(113, 67, kScreenWidth-129, 12);
+    _name.font = kFontOfLetterBig;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -28,8 +29,12 @@
     _name.text = model.name;
     _addr.text = model.address;
     _intro.text = model.intro;
-    _distance.text = [NSString stringWithFormat:@"距离%.1f%@",([model.distance integerValue]/1000.0),@"km"];
-    YRStarsView *star = [[YRStarsView alloc] initWithFrame:CGRectMake(_name.frame.origin.x, 36, 100, 30) score:[model.grade integerValue] starWidth:16 intervel:3 needLabel:YES];
+    if (([model.distance integerValue]/1000.0)>10000) {
+        _distance.text = @"距离未知";
+    }else{
+        _distance.text = [NSString stringWithFormat:@"距离%.1f%@",([model.distance integerValue]/1000.0),@"km"];
+    }
+    YRStarsView *star = [[YRStarsView alloc] initWithFrame:CGRectMake(_name.frame.origin.x-3, 34, 100, 30) score:[model.grade integerValue] starWidth:23 intervel:3 needLabel:YES];
     [self addSubview:star];
 }
 @end

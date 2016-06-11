@@ -13,7 +13,6 @@
 #define kImgWHPercent 0.24
 #define kDistance 5
 @interface YRCircleHeadView ()
-@property (nonatomic, strong) UIImageView *imgView;
 
 @property (nonatomic, strong) YRNameSexView *nameSexView;
 @property (nonatomic, strong) UILabel *signLabel;
@@ -61,7 +60,7 @@
     CGFloat x = 0;
     CGFloat y = self.height*0.3;
     CGFloat h = w;
-    _imgView = [[UIImageView alloc]initWithFrame:CGRectMake(x, y, w, h)];
+    _imgView = _imgView?:[[UIImageView alloc]initWithFrame:CGRectMake(x, y, w, h)];
     [self addSubview:_imgView];
 //    _imgView.center = CGPointMake(kScreenWidth/2, (self.frame.size.height-w)/3+w/2);
     _imgView.center = CGPointMake(kScreenWidth/2, _imgView.center.y);
@@ -70,11 +69,11 @@
     _imgView.layer.masksToBounds = YES;
     _imgView.layer.cornerRadius = w/2;
     
-    _nameSexView = [[YRNameSexView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_imgView.frame)+kDistance, kScreenWidth, [KUserManager.name sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(kScreenWidth/2, MAXFLOAT)].height)];
+    _nameSexView = _nameSexView?:[[YRNameSexView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_imgView.frame)+kDistance, kScreenWidth, [KUserManager.name sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(kScreenWidth/2, MAXFLOAT)].height)];
     [self addSubview:_nameSexView];
     [_nameSexView nameWith:name sex:gender];
     
-    _signLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_nameSexView.frame)+kDistance, kScreenWidth, 20)];
+    _signLabel = _signLabel?:[[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_nameSexView.frame)+kDistance, kScreenWidth, 20)];
 //    _signLabel.text = @"玉祥驾校学车就是好，有实惠又快又好。";
     _signLabel.text = sign;
     _signLabel.textAlignment = NSTextAlignmentCenter;

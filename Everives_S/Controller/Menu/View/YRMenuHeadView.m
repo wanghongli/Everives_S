@@ -36,14 +36,16 @@
     _headImg = headview;
     
     UILabel *namelabel = [[UILabel alloc]init];
-    namelabel.font = [UIFont systemFontOfSize:18];
+    namelabel.font = [UIFont boldSystemFontOfSize:16];
     namelabel.textAlignment = NSTextAlignmentLeft;
+    namelabel.textColor = [UIColor whiteColor];
     [self addSubview:namelabel];
     _nameLabel = namelabel;
     
     UILabel *signlabel = [[UILabel alloc]init];
-    signlabel.font = [UIFont systemFontOfSize:14];
+    signlabel.font = kFontOfLetterMedium;
     signlabel.textAlignment = NSTextAlignmentLeft;
+    signlabel.textColor = kCOLOR(238, 224, 242);
     [self addSubview:signlabel];
     _signLabel = signlabel;
     
@@ -68,6 +70,8 @@
     _headImg.frame = CGRectMake(kDistace, wh/4+20, wh, wh);
     _headImg.layer.masksToBounds = YES;
     _headImg.layer.cornerRadius = wh/2;
+    _headImg.layer.borderColor = [UIColor whiteColor].CGColor;
+    _headImg.layer.borderWidth = 1;
     _headImg.image = [UIImage imageNamed:KUSER_HEAD_IMG];
     
     NSString *nameString = @"玉祥驾校";
@@ -92,8 +96,7 @@
     if (KUserManager.id) {
         _nameLabel.text = KUserManager.name;
         [_headImg sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:KUSER_HEAD_IMG]];
-        _signLabel.text = KUserManager.sign;
-        
+        _signLabel.text = [KUserManager.sign stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet].length == 0?@"一句话简单介绍一下自己吧":KUserManager.sign;
     }
 }
 -(void)setLoginBool:(BOOL)loginBool
@@ -102,6 +105,7 @@
     
     if (loginBool) {//已经登陆
         _nameLabel.text = KUserManager.name;
+        _signLabel.text = [KUserManager.sign stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet].length == 0?@"一句话简单介绍一下自己吧":KUserManager.sign;
         _loginBtn.hidden = YES;
         _signLabel.hidden = NO;
         _nameLabel.hidden = NO;

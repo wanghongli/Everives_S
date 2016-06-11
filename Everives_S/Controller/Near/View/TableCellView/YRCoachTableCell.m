@@ -14,6 +14,10 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    _course.layer.cornerRadius = 10.5;
+    _course.layer.masksToBounds = YES;
+    _course.layer.borderWidth = 1;
+    _name.font = kFontOfLetterBig;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -46,11 +50,8 @@
         _course.textColor = kCOLOR(60, 90, 150);
         _course.layer.borderColor = kCOLOR(60, 90, 150).CGColor;
     }
-    _course.layer.cornerRadius = 10.5;
-    _course.layer.masksToBounds = YES;
-    _course.layer.borderColor = kCOLOR(180, 80, 163).CGColor;
-    _course.layer.borderWidth = 1;
-    YRStarsView *star = [[YRStarsView alloc] initWithFrame:CGRectMake(_name.frame.origin.x, 36, 100, 30) score:[model.grade integerValue] starWidth:16 intervel:3 needLabel:YES];
+   
+    YRStarsView *star = [[YRStarsView alloc] initWithFrame:CGRectMake(_name.frame.origin.x-3, 34, 100, 30) score:[model.grade integerValue] starWidth:23 intervel:3 needLabel:YES];
     [self addSubview:star];
 }
 @end

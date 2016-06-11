@@ -80,5 +80,4 @@
     bas.toValue=[NSNumber numberWithInteger:1];
     [layer addAnimation:bas forKey:@"key"];
 }
-
 @end

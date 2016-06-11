@@ -10,7 +10,7 @@
 
 @interface NSString (Tools)
 
--(BOOL)isValid;
+- (BOOL)isValid;
 
 - (NSString *)moneyString;
 - (NSString *)removeMoneyFormat;
@@ -19,11 +19,11 @@
 
 - (BOOL)isVAlidPhoneNumber;
 - (BOOL)isVAlidPosetCode;
-+ (NSString *)intervalSinceNow:(NSString*) theDate;
+- (CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize;
+- (NSString *)MD5String;
 
++ (NSString *)intervalSinceNow:(NSString*) theDate;
 + (NSString *)dateStringWithInterval:(NSString *)interval;
 + (NSString *)dateStringWithAllInterval:(NSString *)interval;
-+(NSString*)getTheDayInWeek:(NSString*) dateyyyyMMdd;
--(CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize;
-
++ (NSString*)getTheDayInWeek:(NSString*) dateyyyyMMdd;
 @end

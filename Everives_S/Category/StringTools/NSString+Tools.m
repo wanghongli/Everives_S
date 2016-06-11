@@ -7,6 +7,7 @@
 //
 
 #import "NSString+Tools.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation NSString (Tools)
 
@@ -141,6 +142,25 @@
     }
 }
 
+
+-(CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize
+{
+    NSDictionary *attrs = @{NSFontAttributeName : font};
+    return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+}
+- (NSString *)MD5String {
+    const char * pointer = [self UTF8String];
+    unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
+    
+    CC_MD5(pointer, (CC_LONG)strlen(pointer), md5Buffer);
+    
+    NSMutableString *string = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [string appendFormat:@"%02x",md5Buffer[i]];
+    
+    return string;
+}
+
 + (NSString*)intervalSinceNow:(NSString*) theDate
 {
     NSDateFormatter*date=[[NSDateFormatter alloc] init];
@@ -172,13 +192,13 @@
         timeString = [timeString substringToIndex:timeString.length-7];
         timeString=[NSString stringWithFormat:@"%@小时前", timeString];
     }
-//    //发表在24以上10天以内
-//    else if(cha/86400>1&&cha/(86400*3)<1)
-//    {
-//        timeString = [NSString stringWithFormat:@"%f", cha/86400];
-//        timeString = [timeString substringToIndex:timeString.length-7];
-//        timeString=[NSString stringWithFormat:@"%@天前", timeString];
-//    }
+    //    //发表在24以上10天以内
+    //    else if(cha/86400>1&&cha/(86400*3)<1)
+    //    {
+    //        timeString = [NSString stringWithFormat:@"%f", cha/86400];
+    //        timeString = [timeString substringToIndex:timeString.length-7];
+    //        timeString=[NSString stringWithFormat:@"%@天前", timeString];
+    //    }
     
     //发表时间大于3天
     else
@@ -211,7 +231,7 @@
     
     NSString* dateString = [formatter stringFromDate:date];
     return dateString;
-
+    
 }
 
 + (NSString *)dateStringWithAllInterval:(NSString *)interval
@@ -245,9 +265,4 @@
     return weekDay;
 }
 
--(CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize
-{
-    NSDictionary *attrs = @{NSFontAttributeName : font};
-    return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
-}
 @end

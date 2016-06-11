@@ -169,24 +169,28 @@
             return;
         }
         UIImageView *img = (UIImageView *)[self viewWithTag:i+100];
-        if (i<status.praiseMem.count) {
-            if ((status.praiseMem.count == num) && i == num-1) {
-                img.image = [UIImage imageNamed:@"未标题-1三个点"];
-            }else{
-                img.hidden = NO;
-                YRPraiseMem *prObj = status.praiseMem[i];
-                NSString *photo = prObj.avatar;
-                photo = [photo addString:kQiniuThumbnailParam(30)];
-                [img sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
-            }
+        if (status.praiseMem.count==0) {
+            img.hidden = YES;
         }else{
-            if (i == status.praiseMem.count && status.praiseMem.count<num) {
-//                UIImageView *img1 = (UIImageView *)[self viewWithTag:i+1+100];
-                img.image = [UIImage imageNamed:@"未标题-1三个点"];
-                img.hidden = NO;
-                
-            }else
-                img.hidden = YES;
+            if (i<status.praiseMem.count) {
+                if ((status.praiseMem.count == num) && i == num-1) {
+                    img.image = [UIImage imageNamed:@"未标题-1三个点"];
+                }else{
+                    img.hidden = NO;
+                    YRPraiseMem *prObj = status.praiseMem[i];
+                    NSString *photo = prObj.avatar;
+                    photo = [photo addString:kQiniuThumbnailParam(30)];
+                    [img sd_setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
+                }
+            }else{
+                if (i == status.praiseMem.count && status.praiseMem.count<num) {
+                    //                UIImageView *img1 = (UIImageView *)[self viewWithTag:i+1+100];
+                    img.image = [UIImage imageNamed:@"未标题-1三个点"];
+                    img.hidden = NO;
+                    
+                }else
+                    img.hidden = YES;
+            }
         }
     }
 }

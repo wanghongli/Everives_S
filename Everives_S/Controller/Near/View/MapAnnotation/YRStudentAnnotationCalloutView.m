@@ -41,7 +41,7 @@
     
     [self drawInContext:UIGraphicsGetCurrentContext()];
     
-    self.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    self.layer.shadowColor = [[UIColor lightGrayColor] CGColor];
     self.layer.shadowOpacity = 1.0;
     self.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     
@@ -81,14 +81,14 @@
 #pragma mark  - Getters
 -(UIImageView *)imageView{
     if (!_imageView) {
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(4, 4, 90, 90)];
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(8.5, 7, 90, 90)];
         [_imageView sd_setImageWithURL:[NSURL URLWithString:_imageurl] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
     }
     return _imageView;
 }
 -(UILabel *)name{
     if (!_name) {
-        _name = [[UILabel alloc] initWithFrame:CGRectMake(98, 24, 110, 20)];
+        _name = [[UILabel alloc] initWithFrame:CGRectMake(106, 27, 110, 20)];
         _name.font = kFontOfLetterBig;
         _name.text = _namestr;
     }
@@ -105,7 +105,7 @@
         _introLabel.text = _intro;
         _introLabel.numberOfLines = 0;
         _introLabel.lineBreakMode = NSLineBreakByCharWrapping;
-        _introLabel.frame = CGRectMake(98, 50, size.width, 40);
+        _introLabel.frame = CGRectMake(106, 53, size.width, 40);
         _introLabel.textColor = kTextlightGrayColor;
     }
     return _introLabel;

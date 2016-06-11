@@ -113,7 +113,8 @@ updatingLocation:(BOOL)updatingLocation
         CLLocationCoordinate2D center = CLLocationCoordinate2DMake(userLocation.coordinate.latitude,userLocation.coordinate.longitude);
         KUserLocation.longitude = [NSString stringWithFormat:@"%f",userLocation.coordinate.longitude];
         KUserLocation.latitude = [NSString stringWithFormat:@"%f",userLocation.coordinate.latitude];
-        
+        KUserManager.lat = KUserLocation.latitude;
+        KUserManager.lng = KUserLocation.longitude;
         //设置地图中心
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{

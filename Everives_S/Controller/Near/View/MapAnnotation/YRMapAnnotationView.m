@@ -23,8 +23,8 @@
 
 @implementation YRMapAnnotationView
 
-#define kCalloutWidth       216.0
-#define kCalloutHeight      110.0
+#define kCalloutWidth       230.0
+#define kCalloutHeight      116.0
 
 #pragma mark - Handle Action
 

@@ -88,15 +88,15 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.textLabel.textColor = KDarkColor;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.indentationLevel = 2;
+        cell.indentationWidth = 10;
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.indentationLevel = 1.5;
-    cell.indentationWidth = 10;
     //个人资料
     if (indexPath.section == 0) {
         
         [self.avatarImage sd_setImageWithURL:[NSURL URLWithString:KUserManager.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
-        self.signL.text = KUserManager.sign;
+        self.signL.text = KUserManager.sign.length == 0?@"一句话简单介绍一下自己吧":KUserManager.sign;
         self.nameL.text = KUserManager.name;
         [cell addSubview:self.avatarImage];
         [cell addSubview:self.nameL];

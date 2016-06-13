@@ -9,6 +9,7 @@
 #import "YRChatViewController.h"
 #import "YRUserDetailController.h"
 #import "YRContactVC.h"
+#import "REFrostedViewController.h"
 @interface YRChatViewController ()
 
 @end
@@ -25,6 +26,8 @@
         }
     }];
     self.navigationController.viewControllers = allViewControllers;
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGetureHandle:)];
+    [self.view addGestureRecognizer:panGestureRecognizer];
     
 }
 
@@ -41,5 +44,10 @@
     userDetailVC.userID = idStr;
     [self.navigationController pushViewController:userDetailVC animated:YES];
 }
-
+#pragma mark - 处理语音手势、本来是由融云SDK完成，由于和侧滑框架手势冲突，所以重新做手势监听
+- (void)panGetureHandle:(UIPanGestureRecognizer*)gesture{
+    if(gesture.state == UIGestureRecognizerStateEnded){
+        [super onEndRecordEvent];
+    }
+}
 @end

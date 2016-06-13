@@ -26,6 +26,7 @@
 #define USER_TEACHER_DETAIL @"/account/teacher/" //获取教练详情
 #define PLACE_TEACHER @"/info/placeTeacher/" //金牌教练
 #define USER_ADDRESS @"/Account/Address"  //更新位置信息
+#define CAN_ORDER_TIME @"/info/time" //后台设置的可以预约的时间
 
 //学员模块
 #define STUDENT_INFO @"/student/info"  //修改个人信息

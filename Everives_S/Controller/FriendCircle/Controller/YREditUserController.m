@@ -143,6 +143,7 @@
 }
 #pragma mark - 修改头像
 - (IBAction)headBtn:(id)sender {
+    [self.view endEditing:YES];
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"请选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"相册" otherButtonTitles:@"拍照", nil];
     actionSheet.tag = 100;
     [actionSheet showInView:self.view];
@@ -157,6 +158,8 @@
         type=CorePhotoPickerVCMangerTypeSinglePhoto;
     } else if (buttonIndex == 1){
         type=CorePhotoPickerVCMangerTypeCamera;
+    }else{
+        return;
     }
     CorePhotoPickerVCManager *manager=[CorePhotoPickerVCManager sharedCorePhotoPickerVCManager];
     //设置类型

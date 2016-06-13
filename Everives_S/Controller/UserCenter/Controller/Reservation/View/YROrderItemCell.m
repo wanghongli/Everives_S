@@ -8,6 +8,7 @@
 
 #import "YROrderItemCell.h"
 #import "YRReservationModel.h"
+#import "YRSharedDateArray.h"
 @interface YROrderItemCell(){
     NSArray *_times;
 }
@@ -23,7 +24,7 @@
     [super awakeFromNib];
     
     // Initialization code
-    _times = @[@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"14:00-15:00",@"15:00-16:00",@"16:00-17:00",@"17:00-18:00"];
+    _times = [YRSharedDateArray sharedInstance].timeArrayAllFact;
 }
 
 -(void)configCellWithModel:(YRReservationModel *)model{

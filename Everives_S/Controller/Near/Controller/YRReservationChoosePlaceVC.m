@@ -15,6 +15,7 @@
 #import "YROrderConfirmViewController.h"
 #import "YRTeacherDetailObj.h"
 #import "YRShareOrderConfirmViewController.h"
+#import "YRSharedDateArray.h"
 static NSString *HeaderID = @"headerID";
 
 @interface YRReservationChoosePlaceVC (){
@@ -33,7 +34,7 @@ static NSString *HeaderID = @"headerID";
     _selectedDic = @{}.mutableCopy;
     _modelArrays = @[].mutableCopy;
     _parameterArr = @[].mutableCopy;
-    _times = @[@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"14:00-15:00",@"15:00-16:00",@"16:00-17:00",@"17:00-18:00"];
+    _times = [YRSharedDateArray sharedInstance].timeArrayAllFact;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(commitBtnClick:)];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     self.tableView.tableFooterView = [[UIView alloc] init];
@@ -104,7 +105,7 @@ static NSString *HeaderID = @"headerID";
         header = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:HeaderID];
     }
     NSString *date = _timeArray[section][@"date"];
-    NSString *time = _times[[_timeArray[section][@"time"] integerValue]-1];
+    NSString *time = _times[[_timeArray[section][@"time"] integerValue]];
     NSString *str =[NSString stringWithFormat:@"您已预约 %@ 教练 %@，时间 %@,%@,请选择本次学车场地",_coachModel.name,_coachModel.kind == 0?@"科目二":@"科目三",date,time];
     NSMutableAttributedString *astr = [[NSMutableAttributedString alloc] initWithString:str];
     [astr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16] range:NSMakeRange(5, _coachModel.name.length)];

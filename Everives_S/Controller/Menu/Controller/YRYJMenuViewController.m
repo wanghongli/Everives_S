@@ -216,12 +216,12 @@
     }
     if (indexPath.section == 0) {
 
-        NSArray *titles = @[@"学车",@"驾友", @"驾友圈", @"附近",@"个人"];
+        NSArray *titles = @[@"学车",@"驾友", @"驾友圈", @"预约",@"个人"];
         NSArray *imgArray = @[@"Neighborhood_Field_DriSch",@"Drawer_Navigation_Friend",@"Drawer_Navigation_SNS",@"Drawer_Navigation_Neighborhood",@"Drawer_Navigation_Personal"];
         cell.menuText.text = titles[indexPath.row];
         cell.leftImg.image = [UIImage imageNamed:imgArray[indexPath.row]];
         if (indexPath.row == 1) {
-            _messagePoint = [[UIImageView alloc] initWithFrame:CGRectMake(85, 12, 8, 8)];
+            _messagePoint = [[UIImageView alloc] initWithFrame:CGRectMake(105, 12, 8, 8)];
             _messagePoint.image = [UIImage imageNamed:@"Menu_Icon_Message_Point"];
             _messagePoint.hidden = YES;
             [cell.contentView addSubview:_messagePoint];

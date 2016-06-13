@@ -13,6 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleL;
 @property (weak, nonatomic) IBOutlet UILabel *contentL;
 @property (weak, nonatomic) IBOutlet UILabel *dateL;
-
+@property(nonatomic,strong) UIView *shadowview;
 @property(nonatomic,strong) YRActivityModel *model;
 @end

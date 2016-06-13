@@ -17,10 +17,14 @@
 #import "YRShareOrderConfirmViewController.h"
 #import "YRLineView.h"
 #import "UIColor+Tool.h"
+#import "YRTimeCell.h"
+#import "YRDatesCollectionView.h"
+#import "YRSharedDateArray.h"
 
 static NSInteger sectionNum = 7;//竖着的那种
-static NSInteger rowNum = 8; //横着的那种
-#define kcellHeight ((kScreenHeight-64-50)/(rowNum-1)-0.5)
+static NSInteger rowNum = 13; //横着的那种
+#define kdateHeight 50
+#define kcellHeight ((kScreenHeight-64-kdateHeight-5)/7)
 #define kcellWidth 62.5
 
 @interface YRReservationDateVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDataSource,UITableViewDelegate>{
@@ -28,6 +32,7 @@ static NSInteger rowNum = 8; //横着的那种
     NSArray *_dateAyyayWithYear;//带年份
     NSArray *_timeStartArray;
     NSArray *_timeEndArray;
+    NSArray *_timeNumArray;
     NSArray *_modelArray;
     NSMutableArray *_result;//元素是indexpath
     NSMutableArray *_cannotSelected;////元素是indexpath
@@ -35,6 +40,7 @@ static NSInteger rowNum = 8; //横着的那种
 }
 @property(nonatomic,strong) UICollectionView *collectionView;
 @property(nonatomic,strong) UITableView *timeView;
+@property(nonatomic,strong) YRDatesCollectionView *dateView;
 @end
 @implementation YRReservationDateVC
 -(void)viewDidLoad{
@@ -43,10 +49,12 @@ static NSInteger rowNum = 8; //横着的那种
     self.view.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(commitBtnClick:)];
     self.navigationItem.rightBarButtonItem.enabled = NO;
-    [self.view addSubview:self.timeView];
-    [self.view addSubview:self.collectionView];
+    [[YRSharedDateArray sharedInstance] setTimeArraysByArray:@[@"8",@"9",@"10",@"11",@"15.5",@"16.5",@"17.5",@"18.5",@"20",@"21"]];
     [self initSome];
     [self getData];
+    [self.view addSubview:self.timeView];
+    [self.view addSubview:self.collectionView];
+    [self.view addSubview:self.dateView];
     
 }
 -(void)initSome{
@@ -64,8 +72,10 @@ static NSInteger rowNum = 8; //横着的那种
     days[0] = @"今天";
     _dateArray = days.copy;
     _dateAyyayWithYear = days2.copy;
-    _timeStartArray = @[@"09:00",@"10:00",@"11:00",@"14:00",@"15:00",@"16:00",@"17:00"];
-    _timeEndArray = @[@"10:00",@"11:00",@"12:00",@"15:00",@"16:00",@"17:00",@"18:00"];
+    _timeStartArray = [YRSharedDateArray sharedInstance].timeStartArray;
+    _timeEndArray = [YRSharedDateArray sharedInstance].timeEndArray;
+    _timeNumArray = [YRSharedDateArray sharedInstance].timeNumArray;
+    rowNum = [YRSharedDateArray sharedInstance].timeArray.count;
 }
 
 -(void)getData{
@@ -73,12 +83,8 @@ static NSInteger rowNum = 8; //横着的那种
         _modelArray = [YRCanOrderPlacesModel mj_objectArrayWithKeyValuesArray:responseDic];
         [_modelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YRCanOrderPlacesModel *model = (YRCanOrderPlacesModel*)obj;
-            [_dateAyyayWithYear enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if([model.date isEqualToString:_dateAyyayWithYear[idx]]){
-                    model.section = idx;
-                }
-            }];
-            model.row = [model.time integerValue];
+            model.section = [_dateAyyayWithYear indexOfObject:model.date];
+            model.row = [_timeNumArray indexOfObject:model.time];
         }];
         [_cannotSelected removeAllObjects];
         [self.collectionView reloadData];
@@ -112,7 +118,7 @@ static NSInteger rowNum = 8; //横着的那种
     __block NSInteger totalPrice = 0;
     [_result enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSIndexPath *indexPath = obj;
-        NSDictionary *dic = @{@"date":_dateAyyayWithYear[indexPath.section],@"time":[NSString stringWithFormat:@"%ld",(long)indexPath.row],@"place":@"0"};
+        NSDictionary *dic = @{@"date":_dateAyyayWithYear[indexPath.section],@"time":[_timeNumArray objectAtIndex:indexPath.row],@"place":@"0"};
         [resultDate addObject:dic];
         [_modelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YRCanOrderPlacesModel *model = obj;
@@ -150,10 +156,70 @@ static NSInteger rowNum = 8; //横着的那种
         choosePlace.totalPrice = totalPrice;
         choosePlace.isShareOrder = _isShareOrder;
         choosePlace.partnerModel = _partnerModel;
+        NSLog(@"%@",resultDate);
         [self.navigationController pushViewController:choosePlace animated:YES];
     }
 }
-
+#pragma mark - panGestureHandle
+-(void)panGestureHandle:(UIPanGestureRecognizer*)gesture{
+    static CGFloat x = 0;
+    static CGFloat y = 0;
+    static NSInteger direction;//1左右  2上下
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        CGPoint movedPoint = [gesture translationInView:self.view];
+        CGFloat changeX = movedPoint.x;
+        CGFloat changeY = movedPoint.y;
+        if (fabs(changeX)>fabs(changeY)) {
+            direction = 1;
+        }else{
+            direction = 2;
+        }
+        
+    }
+    if (gesture.state == UIGestureRecognizerStateChanged) {
+        CGFloat changeX = 0;
+        CGFloat changeY = 0;
+        CGPoint movedPoint = [gesture translationInView:self.view];
+        changeX = movedPoint.x - x;
+        changeY = movedPoint.y -y;
+        if (direction == 1) {
+            x = movedPoint.x;
+            changeY = 0;
+        }else{
+            y = movedPoint.y;
+            changeX = 0;
+        }
+        CGPoint contentOffset = _collectionView.contentOffset;
+        [_collectionView setContentOffset:CGPointMake(contentOffset.x-changeX, contentOffset.y-changeY) animated:NO];
+        
+    }
+    
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        x = 0;
+        y = 0;
+    }
+}
+#pragma mark - UIScrollViewDelegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGPoint point = scrollView.contentOffset;
+    //限制_colloctionView的左右滑动范围
+    if (point.x>2*kcellWidth) {
+        point.x =2*kcellWidth;
+    }else if(point.x<0){
+        point.x = 0;
+    }
+    //_collectionView只影响dateView的X  不影响它的Y
+    [self.dateView.collectionView setContentOffset:CGPointMake(point.x, 0) animated:NO];
+    //限制_colloctionView的上下滑动范围
+    if (point.y<0) {
+        point.y = 0;
+    }else if(point.y> (rowNum-7)*kcellHeight){
+        point.y = (rowNum-7)*kcellHeight;
+    }
+    //_collectionView只影响timeView的Y  不影响它的X
+    [self.timeView setContentOffset:CGPointMake(0, point.y) animated:NO];
+    [_collectionView setContentOffset:point];
+}
 static NSString *kCellIdentifier = @"kCellIdentifier";
 #pragma mark -UICollectionView
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -167,38 +233,21 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     YRDateCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
     cell.priceLabel.text = @"";
     cell.priceLabel.textColor = [UIColor blackColor];
-    cell.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
-    if (indexPath.row == 0) { //第一行
-        CGRect rec = cell.priceLabel.frame;
-        cell.priceLabel.frame = CGRectMake(rec.origin.x,15,rec.size.width,rec.size.height);
-        cell.priceLabel.text = _dateArray[indexPath.section];
-        cell.priceLabel.textColor = [UIColor colorWithRed:65/255.0 green:65/255.0 blue:65/255.0 alpha:1];
-        cell.backgroundColor = [UIColor colorWithRGB:0xefefef];
-    }else{
-        cell.priceLabel.frame = CGRectMake(0,kcellHeight/2-10,kcellWidth,20);
-        [_modelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            YRCanOrderPlacesModel *model = (YRCanOrderPlacesModel*)obj;
-            if (model.section == indexPath.section && model.row == indexPath.row) {
-                if ([model.price isEqualToString:@"-1"]) {
-                    cell.priceLabel.text = @"已被预约";
-                    cell.backgroundColor = [UIColor colorWithRGB:0x79c5c2];
-                }else{
-                    cell.priceLabel.text = [NSString stringWithFormat:@"￥%@",model.price];
-                }
+    [_modelArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        YRCanOrderPlacesModel *model = (YRCanOrderPlacesModel*)obj;
+        if (model.section == indexPath.section && model.row == indexPath.row) {
+            if ([model.price isEqualToString:@"-1"]) {
+                cell.priceLabel.text = @"已被预约";
+                cell.backgroundColor = [UIColor colorWithRGB:0x79c5c2];
+            }else{
+                cell.priceLabel.text = [NSString stringWithFormat:@"￥%@",model.price];
             }
-        }];
-    }
-    if (indexPath.section == 0||indexPath.row == 0||[cell.priceLabel.text isEqualToString:@"已被预约"]||[cell.priceLabel.text isEqualToString:@""]) {
+        }
+    }];
+    if ([cell.priceLabel.text isEqualToString:@"已被预约"]||[cell.priceLabel.text isEqualToString:@""]) {
         [_cannotSelected addObject:indexPath];
     }
     return cell;
-}
-
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        return CGSizeMake(kcellWidth, 50);
-    }
-    return CGSizeMake(kcellWidth, kcellHeight);
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if ([_cannotSelected containsObject:indexPath]) {
@@ -209,6 +258,19 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     
 }
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+    //判断 今天必须提前两小时安排预约
+    if (indexPath.section == 0) {
+        NSDate *now = [NSDate date];
+        NSString *nowTimeStr = [NSString dateStringWithAllInterval:[NSString stringWithFormat:@"%f",now.timeIntervalSince1970]];
+        NSString *hour = [nowTimeStr substringWithRange:NSMakeRange(11, 2)];
+        NSInteger hourInt = [hour integerValue];
+        NSInteger selectedHour = [_timeNumArray[indexPath.row] integerValue];
+        if (selectedHour - hourInt <2) {
+            return;
+        }
+        NSLog(@"%li  %li",hourInt,selectedHour);
+    }
+
     if ([_cannotSelected containsObject:indexPath]) {
         return;
     }
@@ -223,62 +285,49 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     }
     return YES;
 }
-#pragma mark - UITableViewDelegate
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return indexPath.row?kcellHeight:50;
-}
+
 #pragma mark - UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 8;
+    return rowNum;
 }
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"tableCellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    YRTimeCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
+        cell = [[YRTimeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.layer.borderColor = kCOLOR(206, 206, 206).CGColor;
+        cell.layer.borderWidth = 0.3;
     }
-    //表头
-    if (indexPath.row == 0) {
-        YRLineView *line = [[YRLineView alloc] initWithFrame:CGRectMake(0, 0, kcellWidth, 50)];
-        line.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
-        
-        UILabel *timeL = [[UILabel alloc] initWithFrame:CGRectMake(kcellWidth/2, 12, kcellWidth, 15)];
-        timeL.text = @"日期";
-        timeL.font = kFontOfLetterMedium;
-        UILabel *dateL = [[UILabel alloc] initWithFrame:CGRectMake(6, 27, kcellWidth, 15)];
-        dateL.text = @"时段";
-        dateL.font = kFontOfLetterMedium;
-        [cell.contentView addSubview:line];
-        [cell.contentView addSubview:timeL];
-        [cell.contentView addSubview:dateL];
-    }else{
-        UILabel *startTime = [[UILabel alloc] initWithFrame:CGRectMake(0, kcellHeight/2-20, kcellWidth, 20)];
-        startTime.font = kFontOfLetterMedium;
-        startTime.text = _timeStartArray[indexPath.row-1];
-        startTime.textAlignment = NSTextAlignmentCenter;
-        startTime.textColor = [UIColor colorWithRed:54/255.0 green:93/255.0 blue:178/255.0 alpha:1];
-        UILabel *endTime = [[UILabel alloc] initWithFrame:CGRectMake(0, kcellHeight/2, kcellWidth, 20)];
-        endTime.font = kFontOfLetterMedium;
-        endTime.text = _timeEndArray[indexPath.row-1];
-        endTime.textAlignment = NSTextAlignmentCenter;
-        endTime.textColor = [UIColor colorWithRed:54/255.0 green:93/255.0 blue:178/255.0 alpha:1];
-        UILabel *centerL = [[UILabel alloc] initWithFrame:CGRectMake(0, kcellHeight/2-2, kcellWidth, 4)];
-        centerL.font = kFontOfLetterMedium;
-        centerL.text = @"-";
-        centerL.textAlignment = NSTextAlignmentCenter;
-        centerL.textColor = [UIColor colorWithRed:54/255.0 green:93/255.0 blue:178/255.0 alpha:1];
-        
-        [cell.contentView addSubview:startTime];
-        [cell.contentView addSubview:endTime];
-        [cell.contentView addSubview:centerL];
-    }
+    [cell configCellWithStratTime:_timeStartArray[indexPath.row] endTime:_timeEndArray[indexPath.row]];
     return cell;
+}
+#pragma mark - UITableViewDelegate
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    static NSString *sectionHeaderID = @"sectionHeader";
+    UITableViewHeaderFooterView *headr = [tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionHeaderID];
+    if (!headr) {
+        headr = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:sectionHeaderID];
+    }
+    YRLineView *line = [[YRLineView alloc] initWithFrame:CGRectMake(0, 0, kcellWidth, 50)];
+    line.backgroundColor = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
+    
+    UILabel *timeL = [[UILabel alloc] initWithFrame:CGRectMake(kcellWidth/2, 12, kcellWidth, 15)];
+    timeL.text = @"日期";
+    timeL.font = kFontOfLetterMedium;
+    UILabel *dateL = [[UILabel alloc] initWithFrame:CGRectMake(6, 27, kcellWidth, 15)];
+    dateL.text = @"时段";
+    dateL.font = kFontOfLetterMedium;
+    [headr.contentView addSubview:line];
+    [headr.contentView addSubview:timeL];
+    [headr.contentView addSubview:dateL];
+    
+    return headr;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return kdateHeight;
 }
 #pragma mark - Getters
 -(UICollectionView *)collectionView{
@@ -287,13 +336,15 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(kcellWidth, 0, kScreenWidth-kcellWidth, kScreenHeight-64) collectionViewLayout:layout];
+        layout.itemSize = CGSizeMake(kcellWidth, kcellHeight);
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(kcellWidth, kdateHeight, kScreenWidth-kcellWidth, rowNum*kcellHeight) collectionViewLayout:layout];
         [_collectionView registerClass:[YRDateCell class] forCellWithReuseIdentifier:kCellIdentifier];
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.allowsMultipleSelection = YES;
-        
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureHandle:)];
+        [_collectionView addGestureRecognizer:pan];
     }
     return _collectionView;
 }
@@ -303,8 +354,15 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         _timeView.dataSource = self;
         _timeView.delegate = self;
         _timeView.scrollEnabled = NO;
+        _timeView.rowHeight = kcellHeight;
     }
     return _timeView;
+}
+-(YRDatesCollectionView *)dateView{
+    if (!_dateView) {
+        _dateView = [[YRDatesCollectionView alloc] initWithFrame:CGRectMake(kcellWidth, 0, kScreenWidth-kcellWidth, kdateHeight)];
+    }
+    return _dateView;
 }
 
 @end

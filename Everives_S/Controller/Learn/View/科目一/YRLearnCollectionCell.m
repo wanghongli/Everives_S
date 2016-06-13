@@ -57,7 +57,7 @@
 -(void)setQuestionOb:(YRQuestionObj *)questionOb
 {
     _questionOb = questionOb;
-
+    [answerArray removeAllObjects];
     //判断是否显示多选确定按钮
     if (![menuArray containsObject:[NSString stringWithFormat:@"%ld",_questionOb.answer]] && _questionOb.currentError==0) {
         showSectionFooter = YES;
@@ -149,11 +149,10 @@
     if (!showSectionFooter) {
         view.backgroundColor = [UIColor clearColor];
     }else{
-//        view.backgroundColor = [UIColor redColor];
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(100, 3, kScreenWidth-200, 44)];
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(100, 6, kScreenWidth-200, 44)];
         [btn setTitle:@"确认答案" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btn.backgroundColor = [UIColor blueColor];
+        btn.backgroundColor = kCOLOR(51, 51, 51);
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = btn.height/2;
         [btn addTarget:self action:@selector(sureAnswerClick) forControlEvents:UIControlEventTouchUpInside];

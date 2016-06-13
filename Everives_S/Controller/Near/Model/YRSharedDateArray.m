@@ -52,23 +52,26 @@
     NSMutableArray *te = @[].mutableCopy;
     NSMutableArray *t = @[].mutableCopy;
     NSMutableArray *ta = _timeArrayAll.mutableCopy;
+    NSMutableArray *tn = @[].mutableCopy;
     [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (fabs([obj doubleValue]-[obj integerValue])>0.4) {//2.5  3.5之类 浮点数的比较不能直接用相等
             [ts addObject:_timeStartArrayAllFloat[[obj integerValue]]];
             [te addObject:_timeEndArrayAllFloat[[obj integerValue]]];
             [t addObject:_timeArrayAllFloat[[obj integerValue]]];
             ta[[obj integerValue]] = _timeArrayAllFloat[[obj integerValue]];
+            [tn addObject:[NSString stringWithFormat:@"%.1f",[obj doubleValue]]];
         }else{//1  2  3之类
             [ts addObject:_timeStartArrayAll[[obj integerValue]]];
             [te addObject:_timeEndArrayAll[[obj integerValue]]];
             [t addObject:_timeArrayAll[[obj integerValue]]];
+            [tn addObject:[NSString stringWithFormat:@"%li",[obj integerValue]]];
         }
     }];
     
     _timeStartArray = ts.copy;
     _timeEndArray = te.copy;
     _timeArray = t.copy;
-    _timeNumArray = array;
+    _timeNumArray = tn.copy;
     _timeArrayAllFact = ta.copy;
 }
 @end

@@ -369,21 +369,22 @@ static NSString *studentCellID = @"YRStudentTableCellID";
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [searchBar resignFirstResponder];
-    if (searchBar.text.length == 0) {
+    NSString *searchStr = [_searchBar.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (searchStr.length == 0) {
         return;
     }
     NSMutableArray *searchRes = @[].mutableCopy;
     //当前是驾校
     if (_selectView.selectedBtnNum == 1) {
         [_schoolForMap enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if([[obj name] containsString:searchBar.text]){
+            if([[obj name] containsString:searchStr]){
                 [searchRes addObject:obj];
             }
         }];
         [_mapView removeAnnotations:_schoolForMap];
     }else{//当前是教练
         [_coachForMap enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if([[obj name] containsString:searchBar.text]){
+            if([[obj name] containsString:searchStr]){
                 [searchRes addObject:obj];
             }
         }];
@@ -393,11 +394,21 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     
 }
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    searchBar.text = @"";
+    NSString *searchStr = [_searchBar.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (searchStr.length != 0) {
+        return;
+    }
+    searchBar.text = @"    ";
 }
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    if (searchBar.text.length == 0) {
-        searchBar.text = @"搜索";
+    if ([searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0) {
+        searchBar.text = @"";
+    }
+}
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    NSString *searchStr = [_searchBar.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (searchStr.length == 0) {
+        searchBar.text = @"    ";
     }
 }
 #pragma mark - CallOutViewDelegate
@@ -476,6 +487,7 @@ static NSString *studentCellID = @"YRStudentTableCellID";
     if (!_searchBar) {
         _searchBar = [[YRSearchBar alloc] initWithFrame:CGRectMake(20, 48, kScreenWidth-40, 44)];
         _searchBar.searchBar.delegate = self;
+        _searchBar.searchBar.placeholder = @"搜素";
     }
     return _searchBar;
 

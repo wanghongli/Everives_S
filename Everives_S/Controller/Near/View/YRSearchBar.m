@@ -26,7 +26,7 @@
         _searchBar.showsScopeBar = YES;
         _searchBar.layer.cornerRadius = 22;
         _searchBar.layer.masksToBounds = YES;
-        _searchBar.text = @"搜索";
+//        _searchBar.text = @"搜索";
         UIImage *image = [UIImage imageNamed:@"NearMap_Search"];
         [_searchBar setSearchFieldBackgroundImage:image forState:UIControlStateNormal];
         UIImageView *left = [[UIImageView alloc] initWithFrame:CGRectMake(-10, 0, 22, 44)];

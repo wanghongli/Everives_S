@@ -64,10 +64,11 @@ static NSString *cellID = @"cellID";
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [searchBar resignFirstResponder];
-    if (searchBar.text.length == 0) {
+    NSString *searchStr = [_searchBar.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (searchStr.length == 0) {
         return;
     }
-    [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_SEARCH_USER,[_searchBar.searchBar.text  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] parameters:@{@"relation":@"1"} complete:^(NSDictionary *responseDic) {
+    [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_SEARCH_USER,[searchStr  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] parameters:@{@"relation":@"1"} complete:^(NSDictionary *responseDic) {
         _searchRes = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
         if (_searchRes.count == 0) {
             [MBProgressHUD showSuccess:@"没有找到符合条件的用户~" toView:self.view];
@@ -78,19 +79,30 @@ static NSString *cellID = @"cellID";
     }];
 }
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    searchBar.text = @"";
+    NSString *searchStr = [_searchBar.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (searchStr.length != 0) {
+        return;
+    }
+    searchBar.text = @"    ";
 }
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    if (searchBar.text.length == 0) {
-        searchBar.text = @"请输入驾友用户名或手机号码";
+    if ([searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0) {
+        searchBar.text = @"";
     }
 }
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    NSString *searchStr = [_searchBar.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (searchStr.length == 0) {
+        searchBar.text = @"    ";
+    }
+}
+
 #pragma mark - Getters
 -(YRSearchBar *)searchBar{
     if (!_searchBar) {
         _searchBar = [[YRSearchBar alloc] initWithFrame:CGRectMake(16, 8, kScreenWidth-32, 44)];
         _searchBar.searchBar.delegate = self;
-
+        _searchBar.searchBar.placeholder = @"请输入驾友用户名或手机号码";
     }
     return _searchBar;
 }

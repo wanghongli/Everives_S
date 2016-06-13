@@ -217,12 +217,13 @@ static NSString *cellID = @"cellID";
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [_searchRes removeAllObjects];
     [searchBar resignFirstResponder];
-    if (searchBar.text.length == 0) {
+    NSString *searchStr = [_searchBar.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (searchStr.length == 0) {
         return;
     }
     [_ret enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YRUserStatus *user = (YRUserStatus*)obj;
-        if ([user.name containsString:searchBar.text]||[user.tel containsString:searchBar.text]) {
+        if ([user.name containsString:searchStr]||[user.tel containsString:searchStr]) {
             [_searchRes addObject:obj];
         }
     }];
@@ -235,16 +236,27 @@ static NSString *cellID = @"cellID";
     }
 }
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    searchBar.text = @"";
+    NSString *searchStr = [_searchBar.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (searchStr.length != 0) {
+        return;
+    }
+    searchBar.text = @"    ";
 }
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    if (searchBar.text.length == 0) {
-        searchBar.text = @"搜索";
+    NSString *searchStr = [_searchBar.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (searchStr.length == 0) {
         if (_ret) {
             self.indexArray = [ChineseString IndexArray:_ret];
             self.letterResultArr = [ChineseString LetterSortArray:_ret];
             [self.tableView  reloadData];
         }
+        searchBar.text =@"";
+    }
+}
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    NSString *searchStr = [_searchBar.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (searchStr.length == 0) {
+        searchBar.text = @"    ";
     }
 }
 #pragma mark - Getters
@@ -253,7 +265,7 @@ static NSString *cellID = @"cellID";
     if (!_searchBar) {
         _searchBar = [[YRSearchBar alloc] initWithFrame:CGRectMake(13, 8, kScreenWidth-28, 44)];
         _searchBar.searchBar.delegate = self;
-        
+        _searchBar.searchBar.placeholder = @"请输入驾友用户名或手机号码";
     }
     return _searchBar;
 }

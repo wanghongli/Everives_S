@@ -43,7 +43,7 @@
     
     [self drawInContext:UIGraphicsGetCurrentContext()];
     
-    self.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    self.layer.shadowColor = [[UIColor lightGrayColor] CGColor];
     self.layer.shadowOpacity = 1.0;
     self.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     
@@ -83,14 +83,14 @@
 #pragma mark  - Getters
 -(UIImageView *)imageView{
     if (!_imageView) {
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(4, 4, 90, 90)];
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(8.5, 7, 90, 90)];
         [_imageView sd_setImageWithURL:[NSURL URLWithString:_imageurl] placeholderImage:[UIImage imageNamed:kPLACEHHOLD_IMG]];
     }
     return _imageView;
 }
 -(UILabel *)name{
     if (!_name) {
-        _name = [[UILabel alloc] initWithFrame:CGRectMake(98, 24, 110, 20)];
+        _name = [[UILabel alloc] initWithFrame:CGRectMake(106, 27, 110, 20)];
         _name.font = kFontOfLetterBig;
         _name.text = _namestr;
     }
@@ -98,13 +98,14 @@
 }
 -(YRStarsView *)stars{
     if (!_stars) {
-        _stars = [[YRStarsView alloc] initWithFrame:CGRectMake(98, 50, 100, 30) score:[_scorestr integerValue] starWidth:16 intervel:3 needLabel:YES];
+        _stars = [[YRStarsView alloc] initWithFrame:CGRectMake(103, 53, 100, 30) score:[_scorestr integerValue] starWidth:21 intervel:0 needLabel:YES];
+        _stars.label.textColor = kCOLOR(177, 178, 179);
     }
     return _stars;
 }
 -(UILabel *)memberOfTeachAgeLabel:(NSString *)object{
     if (!_teachAgeLabel) {
-        _teachAgeLabel = [[UILabel alloc] initWithFrame:CGRectMake(98, 56, 110, 20)];
+        _teachAgeLabel = [[UILabel alloc] initWithFrame:CGRectMake(106, 58, 110, 20)];
         _teachAgeLabel.text = [NSString stringWithFormat:@"%@年",_teachAge];
         _teachAgeLabel.font = kFontOfLetterMedium;
     }

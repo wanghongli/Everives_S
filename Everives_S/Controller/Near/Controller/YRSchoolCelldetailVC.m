@@ -160,7 +160,7 @@ static CGFloat cellHeight = 60;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     //打开地图
     if(indexPath.row == 1){
-        NSString *urlString = [[NSString stringWithFormat:@"http://maps.apple.com/?daddr=%@,%@&saddr=%@,%@",_model.lat, _model.lng,KUserManager.lat,KUserManager.lng] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *urlString = [[NSString stringWithFormat:@"http://maps.apple.com/?daddr=%@,%@&saddr=%@,%@",_model.lat, _model.lng,KUserLocation.latitude,KUserLocation.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
     }
     //打开拨号键盘

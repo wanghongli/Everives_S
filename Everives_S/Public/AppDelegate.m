@@ -116,9 +116,9 @@
     if (!dicUser) {
         return;
     }
-    NSDictionary *account = [userDefaults objectForKey:@"loginCount"];
-    [RequestData POST:USER_LOGIN parameters:@{@"tel":account[@"tel"],@"password":[account objectForKey:@"psw"],@"kind":@"0",@"type":@"1"} complete:^(NSDictionary *responseDic) {
-        MyLog(@"%@",responseDic);
+    YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:dicUser];
+    KUserManager = user;
+    [RequestData GET:STUDENT_INFO parameters:nil complete:^(NSDictionary *responseDic) {
         YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:responseDic];
         NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];
         [userDefaults setObject:responseDic forKey:@"user"];
@@ -126,10 +126,9 @@
         KUserManager = user;
         [self connectRongCloud];
         [self registerUMessageRemoteNotification];
-
     } failed:^(NSError *error) {
+        
     }];
-
 }
 -(void)connectRongCloud{
     //连接融云服务器

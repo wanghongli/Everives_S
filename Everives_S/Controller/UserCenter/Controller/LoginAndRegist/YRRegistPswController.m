@@ -97,8 +97,8 @@
             [MBProgressHUD showMessag:@"修改中..." toView:self.view];
 
 //            [_bodyDic setObject:self.passwordTextField.text forKey:@"password"];
-            
-            [RequestData POST:USER_FIND_PSW parameters:@{@"tel":self.tellNum,@"password":self.passwordTextField.text} complete:^(NSDictionary *responseDic) {
+            NSString *md5Psw = [[NSString stringWithFormat:@"%@%@",self.tellNum,self.passwordTextField.text] MD5String];
+            [RequestData POST:USER_FIND_PSW parameters:@{@"tel":self.tellNum,@"password":md5Psw,@"kind":@"0"} complete:^(NSDictionary *responseDic) {
                 [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                 [MBProgressHUD showSuccess:@"密码修改成功" toView:GET_WINDOW];
                 [self.navigationController popToRootViewControllerAnimated:YES];
@@ -110,7 +110,8 @@
         }else{//注册界面跳转而来
             [MBProgressHUD showMessag:@"注册中..." toView:self.view];
             
-            [_bodyDic setObject:[NSString stringWithFormat:@"%@",self.passwordTextField.text] forKey:@"password"];
+            NSString *md5Psw = [[NSString stringWithFormat:@"%@%@",self.tellNum,self.passwordTextField.text] MD5String];
+            [_bodyDic setObject:[NSString stringWithFormat:@"%@",md5Psw] forKey:@"password"];
         MyLog(@"%@",_bodyDic);
             [RequestData POST:USER_REGIST parameters:_bodyDic complete:^(NSDictionary *responseDic) {
                 MyLog(@"%@",responseDic);

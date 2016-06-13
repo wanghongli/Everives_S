@@ -106,7 +106,8 @@
     MyLog(@"%s",__func__);
     [PublicCheckMsgModel loginMsgCheckTell:self.phoneTF.text psw:self.passwordTF.text complete:^(BOOL isSuccess) {
         [MBProgressHUD showMessag:@"正在登陆" toView:self.view];
-        [RequestData POST:USER_LOGIN parameters:@{@"tel":self.phoneTF.text,@"password":self.passwordTF.text,@"kind":@"0",@"type":@"1"} complete:^(NSDictionary *responseDic) {
+        NSString *md5Psw = [[NSString stringWithFormat:@"%@%@",self.phoneTF.text,self.passwordTF.text] MD5String];
+        [RequestData POST:USER_LOGIN parameters:@{@"tel":self.phoneTF.text,@"password":md5Psw,@"kind":@"0",@"type":@"1"} complete:^(NSDictionary *responseDic) {
             NSLog(@"%@",responseDic);
             YRUserStatus *user = [YRUserStatus mj_objectWithKeyValues:responseDic];
             NSUserDefaults*userDefaults=[[NSUserDefaults alloc]init];

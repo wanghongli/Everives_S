@@ -101,6 +101,7 @@
 #pragma mark - 选择头像
 -(void)perfectHeadViewChooseImg
 {
+    [self.view endEditing:YES];
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"请选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"相册" otherButtonTitles:@"拍照", nil];
     actionSheet.tag = 100;
     [actionSheet showInView:self.view];

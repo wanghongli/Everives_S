@@ -14,7 +14,7 @@
 #import "YRTeacherMakeCommentController.h"
 #import "YRChatViewController.h"
 #import "YRLearnPartnerObj.h"
-
+#import "YRSharedDateArray.h"
 @interface YRAppointmentDetailController () <YRAppointmentHeadViewDelegate,UIAlertViewDelegate>
 {
     NSArray *_titleArray;
@@ -53,7 +53,7 @@
         for (int i = 0 ; i<self.orderDetail.info.count; i++) {
             YRLearnOrderDetailInfo *detailInfo = self.orderDetail.info[i];
             NSString *orderTime = [YRPublicMethod getDateAndWeekWith:detailInfo.date];;
-            NSString *string = [YRPublicMethod getDetailLearnTimeWith:detailInfo.time];
+            NSString *string = [YRSharedDateArray sharedInstance].timeArrayAllFact[detailInfo.time];
             NSString *price = [NSString stringWithFormat:@"￥%ld",detailInfo.price];
             _menuArray = @[orderTime,string,detailInfo.place,price];
             [_totalMenu addObject:_menuArray];

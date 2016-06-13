@@ -79,9 +79,12 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     }
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     cell.textLabel.text = _titleArray[indexPath.row];
+    cell.textLabel.textColor = kCOLOR(60, 63, 62);
     NSArray *array = _totalMenu[indexPath.section];
     cell.detailTextLabel.text = array[indexPath.row];
+    cell.detailTextLabel.textColor = kCOLOR(60, 63, 62);
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -107,7 +110,6 @@
 {
     if (_commentDetailHeadView == nil) {
         _commentDetailHeadView = [[YRTeacherCommentDetailHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth*0.43)];
-        _commentDetailHeadView.backgroundColor = kCOLOR(241, 241, 241);
         [self.view addSubview:_commentDetailHeadView];
     }
     return _commentDetailHeadView;

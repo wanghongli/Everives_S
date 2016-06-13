@@ -29,7 +29,7 @@
 {
     UILabel *contentLabel = [[UILabel alloc]init];
     contentLabel.font = kFontOfLetterBig;
-    contentLabel.textColor = [UIColor blackColor];
+    contentLabel.textColor = kCOLOR(60, 63, 62);
     contentLabel.numberOfLines = 0;
     contentLabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:contentLabel];
@@ -37,7 +37,7 @@
     
     UILabel *timeLabel = [[UILabel alloc]init];
     timeLabel.font = kFontOfLetterMedium;
-    timeLabel.textColor = [UIColor blackColor];
+    timeLabel.textColor = kCOLOR(60, 63, 62);
     timeLabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:timeLabel];
     _timeLabel = timeLabel;

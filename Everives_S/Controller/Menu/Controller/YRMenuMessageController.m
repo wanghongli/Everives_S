@@ -13,6 +13,7 @@
 #import "YRMyFriendsObject.h"
 #import "YRYJNavigationController.h"
 #import "YRAppointmentDetailController.h"
+
 @interface YRMenuMessageController ()
 {
     NSInteger _page;
@@ -113,9 +114,19 @@
     [cell setFriendsStautsChange:^(BOOL btnTag) {
         [self getFriend];
     }];
+    if(notiMsg.type == 201){//驾友圈评论
+        cell.headImg.image = [UIImage imageNamed:@"Message_BespeakRemainder"];
+    }else if (notiMsg.type == 400){//拼教练
+        cell.headImg.image = [UIImage imageNamed:@"Message_CoachpoolReminder"];
+    }else{
+        cell.headImg.image = [UIImage imageNamed:@"Message_AddFriRem"];
+    }
     return cell;
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     YRMessageObject *notiMsg = _arrayMsg[indexPath.row];

@@ -38,7 +38,7 @@
 {
     for (int i = 0; i<5; i++) {
         UIButton *btn = (UIButton *)[self viewWithTag:i+10];
-        CGFloat x = self.height*2*i;
+        CGFloat x = self.height*1.5*i;
         CGFloat y = 0;
         CGFloat wh = self.height;
         btn.frame = CGRectMake(x, y, wh, wh);

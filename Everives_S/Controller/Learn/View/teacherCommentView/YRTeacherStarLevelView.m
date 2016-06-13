@@ -33,9 +33,7 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        
         [self buildUI];
-        
     }
     return self;
 }
@@ -46,6 +44,7 @@
     firstlabel.text = @"车容车貌";
     firstlabel.textAlignment = NSTextAlignmentCenter;
     firstlabel.font = kFontOfSize(14);
+    firstlabel.textColor = kCOLOR(60, 63, 62);
     [self addSubview:firstlabel];
     _firstLabel = firstlabel;
     
@@ -57,6 +56,7 @@
     
     UILabel *secondlabel = [[UILabel alloc]init];
     secondlabel.text = @"教学质量";
+    secondlabel.textColor = kCOLOR(60, 63, 62);
     secondlabel.textAlignment = NSTextAlignmentCenter;
     secondlabel.font = kFontOfSize(14);
     [self addSubview:secondlabel];
@@ -69,6 +69,7 @@
     
     UILabel *thirdlabel = [[UILabel alloc]init];
     thirdlabel.text = @"服务态度";
+    thirdlabel.textColor = kCOLOR(60, 63, 62);
     thirdlabel.textAlignment = NSTextAlignmentCenter;
     thirdlabel.font = kFontOfSize(14);
     [self addSubview:thirdlabel];
@@ -81,6 +82,7 @@
     
     UILabel *fourlabel = [[UILabel alloc]init];
     fourlabel.text = @"满时教学";
+    fourlabel.textColor = kCOLOR(60, 63, 62);
     fourlabel.textAlignment = NSTextAlignmentCenter;
     fourlabel.font = kFontOfSize(14);
     [self addSubview:fourlabel];
@@ -95,18 +97,18 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    CGFloat height = self.height/9;
+    CGFloat height = self.height/6.5;
     CGSize titleSize = [@"服务态度" sizeWithFont:kFontOfSize(14) maxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
-    _firstLabel.frame = CGRectMake(kDistace, height, titleSize.width, height);
+    _firstLabel.frame = CGRectMake(kDistace, height/2, titleSize.width, height);
     _starView.frame = CGRectMake(CGRectGetMaxX(_firstLabel.frame)+kDistace, _firstLabel.y, kScreenWidth - CGRectGetMaxX(_firstLabel.frame) - 2*kDistace, height);
 
-    _secondLabel.frame = CGRectMake(kDistace, height*3, titleSize.width, height);
+    _secondLabel.frame = CGRectMake(kDistace, height*2, titleSize.width, height);
     _starView1.frame = CGRectMake(CGRectGetMaxX(_firstLabel.frame)+kDistace, _secondLabel.y, kScreenWidth - CGRectGetMaxX(_firstLabel.frame) - 2*kDistace, height);
 
-    _thirdLabel.frame = CGRectMake(kDistace, height*5, titleSize.width, height);
+    _thirdLabel.frame = CGRectMake(kDistace, height*3.5, titleSize.width, height);
     _starView2.frame = CGRectMake(CGRectGetMaxX(_firstLabel.frame)+kDistace, _thirdLabel.y, kScreenWidth - CGRectGetMaxX(_firstLabel.frame) - 2*kDistace, height);
     
-    _fourLabel.frame = CGRectMake(kDistace, height*7, titleSize.width, height);
+    _fourLabel.frame = CGRectMake(kDistace, height*5, titleSize.width, height);
     _starView3.frame = CGRectMake(CGRectGetMaxX(_firstLabel.frame)+kDistace, _fourLabel.y, kScreenWidth - CGRectGetMaxX(_firstLabel.frame) - 2*kDistace, height);
 
 }

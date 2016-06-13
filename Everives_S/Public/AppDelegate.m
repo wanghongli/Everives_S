@@ -27,6 +27,7 @@
 #import "YRFriendViewController.h"
 #import "YRMenuMessageController.h"
 #import <Pingpp.h>
+#import "YRSharedDateArray.h"
 
 //友盟推送
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
@@ -86,10 +87,13 @@
     }
     //获取登陆信息
     [self login];
- 
+    [self getTimesInfo];
+    
+    return YES;
+}
+- (void)buildWindow{
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    
     YRYJNavigationController *navigationController = [[YRYJNavigationController alloc] initWithRootViewController:[[YRYJLearnToDriveController alloc] init]];
     YRYJMenuViewController *menuController = [[YRYJMenuViewController alloc] initWithStyle:UITableViewStylePlain];
     
@@ -105,9 +109,18 @@
     
     [self.window makeKeyAndVisible];
     
-    return YES;
 }
 
+#pragma mark - 获取时间段信息
+-(void)getTimesInfo{
+    [RequestData GET:CAN_ORDER_TIME parameters:nil complete:^(NSDictionary *responseDic) {
+        NSArray *arr = responseDic[@"time"];
+        [[YRSharedDateArray sharedInstance] setTimeArraysByArray:arr];
+        [self buildWindow];
+    } failed:^(NSError *error) {
+        
+    }];
+}
 #pragma mark - 获取登陆信息
 -(void)login
 {

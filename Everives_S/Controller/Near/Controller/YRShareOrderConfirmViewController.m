@@ -11,6 +11,7 @@
 #import "YRStarsView.h"
 #import "YRReservationDateVC.h"
 #import "YRReservationChoosePlaceVC.h"
+#import "YRSharedDateArray.h"
 static NSString *cellID = @"cellID";
 @interface YRShareOrderConfirmViewController ()<UIAlertViewDelegate>{
     NSArray *_times;
@@ -25,7 +26,7 @@ static NSString *cellID = @"cellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"确认合拼";
-    _times = @[@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"14:00-15:00",@"15:00-16:00",@"16:00-17:00",@"17:00-18:00"];
+    _times = [YRSharedDateArray sharedInstance].timeArrayAllFact;
     self.tableView.tableFooterView = self.footerView;
 }
 
@@ -134,7 +135,7 @@ static NSString *cellID = @"cellID";
             [_DateTimeArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 UILabel *contentLab = [[UILabel alloc] initWithFrame:CGRectMake(90, 20+30*idx, kScreenWidth -60, 30)];
                 contentLab.textColor = kYRBlackTextColor;
-                contentLab.text = [NSString stringWithFormat:@"%@ %@ %@",obj[@"date"],[NSString getTheDayInWeek:obj[@"date"]],_times[[obj[@"time"] integerValue]-1]];
+                contentLab.text = [NSString stringWithFormat:@"%@ %@ %@",obj[@"date"],[NSString getTheDayInWeek:obj[@"date"]],_times[[obj[@"time"] integerValue]]];
                 [cell.contentView addSubview:contentLab];
             }];
             [cell.contentView addSubview:titleLab];
@@ -178,7 +179,7 @@ static NSString *cellID = @"cellID";
 #pragma mark - Getters
 -(UIView *)coachView{
     if (!_coachView) {
-        _coachView = [[UIView alloc] initWithFrame:CGRectMake(90, 10, kScreenWidth - 140, 80)];
+        _coachView = [[UIView alloc] initWithFrame:CGRectMake(90, 10, kScreenWidth - 130, 80)];
         _coachView.layer.cornerRadius = 10;
         _coachView.layer.masksToBounds = YES;
         _coachView.backgroundColor = kCOLOR(246, 247, 248);
@@ -186,11 +187,11 @@ static NSString *cellID = @"cellID";
         avatar.layer.cornerRadius = 35;
         avatar.layer.masksToBounds = YES;
         [avatar sd_setImageWithURL:[NSURL URLWithString:_coachModel.avatar] placeholderImage:[UIImage imageNamed:kUSERAVATAR_PLACEHOLDR]];
-        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(110, 15, kScreenWidth - 200, 30)];
+        UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(105, 15, kScreenWidth - 200, 30)];
         name.text = _coachModel.name;
         name.font = kFontOfLetterBig;
         name.textColor = kCOLOR(50, 50, 50);
-        YRStarsView * stars = [[YRStarsView alloc] initWithFrame:CGRectMake(110, 35, 120, 30) score:[_coachModel.grade integerValue]  starWidth:20 intervel:3 needLabel:YES];
+        YRStarsView * stars = [[YRStarsView alloc] initWithFrame:CGRectMake(102, 35, 120, 30) score:[_coachModel.grade integerValue]  starWidth:23 intervel:0 needLabel:YES];
         [_coachView addSubview:avatar];
         [_coachView addSubview:name];
         [_coachView addSubview:stars];

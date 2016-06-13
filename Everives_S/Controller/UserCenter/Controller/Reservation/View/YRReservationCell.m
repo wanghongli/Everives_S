@@ -12,6 +12,7 @@
 #import "NSString+Tools.h"
 #import "UIColor+Tool.h"
 #import "GBPathImageView.h"
+#import "YRSharedDateArray.h"
 
 @interface YRReservationCell(){
     NSArray *_times;
@@ -50,7 +51,7 @@
     _date.textColor = KDarkColor;
     _place.textColor = KDarkColor;
     _weekday.textColor = KDarkColor;
-    _times = @[@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"14:00-15:00",@"15:00-16:00",@"16:00-17:00",@"17:00-18:00"];
+    _times = [YRSharedDateArray sharedInstance].timeArrayAllFact;
     _statusArr = @[@"未支付" ,@"已支付",@"已支付", @"已完成" ,@"已评价",@"已取消"];
     _statusColor = @[@"F82119",@"FA8038",@"FA8038",@"FA8038",@"8B8C8D",@"8B8C8D"];
     

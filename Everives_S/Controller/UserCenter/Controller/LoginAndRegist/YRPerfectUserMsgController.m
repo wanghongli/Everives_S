@@ -174,6 +174,8 @@
         type=CorePhotoPickerVCMangerTypeSinglePhoto;
     } else if (buttonIndex == 1){
         type=CorePhotoPickerVCMangerTypeCamera;
+    }else{
+        return;
     }
     CorePhotoPickerVCManager *manager=[CorePhotoPickerVCManager sharedCorePhotoPickerVCManager];
     //设置类型

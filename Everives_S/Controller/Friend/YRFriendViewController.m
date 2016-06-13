@@ -26,7 +26,6 @@ static BOOL addViewIsHidden = YES;
     [super viewDidLoad];
     self.title = @"驾友";
     self.emptyConversationView = self.emptyView;
-    self.frostedViewController.panGestureEnabled = YES;
     //设置需要显示哪些类型的会话
     [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE),
                                         @(ConversationType_GROUP),]];
@@ -42,12 +41,10 @@ static BOOL addViewIsHidden = YES;
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self.addView removeFromSuperview];
-    self.frostedViewController.panGestureEnabled = NO;
 }
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.frostedViewController.panGestureEnabled = YES;
 }
 -(void)addFriendBtnClick:(UIButton*)sender{
     [self.navigationController pushViewController:[[YRAddFriendVC alloc] init] animated:YES];

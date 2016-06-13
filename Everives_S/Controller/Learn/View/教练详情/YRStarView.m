@@ -67,9 +67,8 @@
         if (i<starNu) {
             [img setImage:[UIImage imageNamed:@"Neig_Coach_StaOrg"]];
         }else
-            [img setImage:[UIImage imageNamed:@"Neig_Coach_StaWit-1"]];
+            [img setImage:[UIImage imageNamed:@"Neig_Coach_StaGre"]];
         maxX = CGRectGetMaxX(img.frame);
-    
     }
 }
 

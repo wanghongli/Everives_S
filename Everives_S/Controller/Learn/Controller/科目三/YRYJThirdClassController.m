@@ -110,11 +110,11 @@
             [self.tableView reloadData];
             self.noMsgView.hidden = YES;
         }else{
-            //            [MBProgressHUD showError:@"暂无数据" toView:GET_WINDOW];
-            self.noMsgView.btnTitle = @"安排学车计划";
-            self.noMsgView.hidden = NO;
-            //无数据的时候展示
-            [self.view bringSubviewToFront:self.noMsgView];
+            [MBProgressHUD showError:@"暂无数据" toView:GET_WINDOW];
+//            self.noMsgView.btnTitle = @"安排学车计划";
+//            self.noMsgView.hidden = NO;
+//            //无数据的时候展示
+//            [self.view bringSubviewToFront:self.noMsgView];
         }
     } failed:^(NSError *error) {
         [MBProgressHUD hideAllHUDsForView:GET_WINDOW animated:YES];

@@ -14,7 +14,7 @@
 #import "YRTeacherMakeCommentController.h"
 #import "YRChatViewController.h"
 #import "YRLearnPartnerObj.h"
-
+#import "YRSharedDateArray.h"
 @interface YRAppointmentDetailController () <YRAppointmentHeadViewDelegate,UIAlertViewDelegate>
 {
     NSArray *_titleArray;
@@ -53,16 +53,15 @@
         for (int i = 0 ; i<self.orderDetail.info.count; i++) {
             YRLearnOrderDetailInfo *detailInfo = self.orderDetail.info[i];
             NSString *orderTime = [YRPublicMethod getDateAndWeekWith:detailInfo.date];;
-            NSString *string = [YRPublicMethod getDetailLearnTimeWith:detailInfo.time];
+            NSString *string = [YRSharedDateArray sharedInstance].timeArrayAllFact[detailInfo.time];
             NSString *price = [NSString stringWithFormat:@"￥%ld",detailInfo.price];
             _menuArray = @[orderTime,string,detailInfo.place,price];
             [_totalMenu addObject:_menuArray];
         }
         
-        [self setStarBtnTitle:[YRPublicMethod getOrderStatusWith:self.orderDetail.status]];
-        
         [self.tableView reloadData];
         [self addFooterView];
+        [self setStarBtnTitle:[YRPublicMethod getOrderStatusWith:self.orderDetail.status]];
     } failed:^(NSError *error) {
         [MBProgressHUD hideAllHUDsForView:GET_WINDOW animated:YES];
     }];
@@ -205,11 +204,12 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     }
     cell.textLabel.text = _titleArray[indexPath.row];
+    cell.textLabel.textColor = kCOLOR(34, 36, 38);
     cell.indentationLevel = 2;
     NSArray *array = _totalMenu[indexPath.section];
     //机智...UILabel会自动清空末尾的空格，而且cell的textlabel都是不能移动的，就用了这个方法
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@       .",array[indexPath.row]]];
-    [str addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:NSMakeRange(0,str.length-1)];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0,str.length-1)];
     
     [str addAttribute:NSForegroundColorAttributeName value:[UIColor clearColor] range:NSMakeRange(str.length-1,1)];
     cell.detailTextLabel.attributedText =str;

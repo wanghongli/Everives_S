@@ -11,6 +11,7 @@
 #import "YRTeacherCommentDetailObj.h"
 #import "YRLearnOrderDetailInfo.h"
 #import "YRTeacherCommentDownView.h"
+#import "YRSharedDateArray.h"
 @interface YRTeacherCommentDetailController ()
 {
     NSArray *_titleArray;
@@ -46,7 +47,7 @@
         for (int i = 0 ; i<self.detailObj.info.count; i++) {
             YRLearnOrderDetailInfo *detailInfo = self.detailObj.info[i];
             NSString *orderTime = [YRPublicMethod getDateAndWeekWith:detailInfo.date];;
-            NSString *string = [YRPublicMethod getDetailLearnTimeWith:detailInfo.time];
+            NSString *string = [YRSharedDateArray sharedInstance].timeArrayAllFact[detailInfo.time];
             NSString *price = [NSString stringWithFormat:@"￥%ld",detailInfo.price];
             _menuArray = @[orderTime,string,detailInfo.place,price];
             [_totalMenu addObject:_menuArray];
@@ -79,9 +80,12 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     }
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     cell.textLabel.text = _titleArray[indexPath.row];
+    cell.textLabel.textColor = kCOLOR(60, 63, 62);
     NSArray *array = _totalMenu[indexPath.section];
     cell.detailTextLabel.text = array[indexPath.row];
+    cell.detailTextLabel.textColor = kCOLOR(60, 63, 62);
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -107,7 +111,6 @@
 {
     if (_commentDetailHeadView == nil) {
         _commentDetailHeadView = [[YRTeacherCommentDetailHeadView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth*0.43)];
-        _commentDetailHeadView.backgroundColor = kCOLOR(241, 241, 241);
         [self.view addSubview:_commentDetailHeadView];
     }
     return _commentDetailHeadView;

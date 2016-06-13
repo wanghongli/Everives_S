@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 - (IBAction)btnClick:(UIButton *)sender;
 
+@property (weak, nonatomic) IBOutlet UIImageView *headImg;
 @property (nonatomic, strong) NSArray *friendsArray;
 @property (nonatomic, strong) YRMessageObject *messageObj;
 @property (nonatomic, strong) void (^friendsStautsChange)(BOOL isSuccess);

@@ -17,6 +17,7 @@
 @property (nonatomic, weak) UILabel *nameLabel;
 
 @property (nonatomic, weak) UILabel *levelLabel;
+@property (nonatomic, weak) UIView *downLine;
 
 @end
 @implementation YRTeacherCommentDetailHeadView
@@ -45,7 +46,7 @@
     _nameLabel = namelabel;
     
     UILabel *levellabel = [[UILabel alloc]init];
-    levellabel.font = kFontOfLetterBig;
+    levellabel.font = kFontOfSize(22);
     levellabel.textColor = [UIColor blackColor];
     levellabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:levellabel];
@@ -65,7 +66,8 @@
     _imgView.image = [UIImage imageNamed:@"head_jiaolian"];
     _imgView.layer.masksToBounds = YES;
     _imgView.layer.cornerRadius = _imgView.height/2;
-    
+    _imgView.layer.borderWidth = 1;
+    _imgView.layer.borderColor = kCOLOR(197, 197, 197).CGColor;
 //    CGSize nameSize = [@"罗纳尔多" sizeWithFont:kFontOfLetterBig maxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
 //    _nameLabel.frame = CGRectMake(CGRectGetMaxX(_imgView.frame)+kdistace, _imgView.y, nameSize.width, nameSize.height);
 //    _nameLabel.text = @"罗纳尔多";
@@ -91,7 +93,9 @@
     _nameLabel.frame = CGRectMake(CGRectGetMaxX(_imgView.frame)+kdistace, _imgView.y, nameSize.width, nameSize.height);
     _nameLabel.text = nameString;
     
-    _levelLabel.frame = CGRectMake(CGRectGetMaxX(_nameLabel.frame)+kdistace, _imgView.y, nameSize.width, nameSize.height);
+    CGSize levelSize = [@"4.0" sizeWithFont:kFontOfSize(22) maxSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+
+    _levelLabel.frame = CGRectMake(CGRectGetMaxX(_nameLabel.frame)+kdistace, _imgView.y+nameSize.height-levelSize.height, nameSize.width, levelSize.height);
     _levelLabel.text = detailObj.grade;
     
     

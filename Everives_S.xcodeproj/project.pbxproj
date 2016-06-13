@@ -16,6 +16,8 @@
 		03019D201C994E6300895C77 /* YRUserDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03019D1F1C994E6300895C77 /* YRUserDownView.m */; };
 		03019D231C9954B900895C77 /* YRUserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03019D221C9954B900895C77 /* YRUserDetailCell.m */; };
 		0302232D1CC601F70079DDA3 /* YRQuestionObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 0302232C1CC601F70079DDA3 /* YRQuestionObj.m */; };
+		030C61051D0E998200F85458 /* YRMessageCenterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 030C61031D0E998200F85458 /* YRMessageCenterViewCell.m */; };
+		030C61061D0E998200F85458 /* YRMessageCenterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 030C61041D0E998200F85458 /* YRMessageCenterViewCell.xib */; };
 		031515371C9A3D7400A2A2F1 /* YREditUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031515351C9A3D7400A2A2F1 /* YREditUserController.m */; };
 		031515381C9A3D7400A2A2F1 /* YREditUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031515361C9A3D7400A2A2F1 /* YREditUserController.xib */; };
 		0315153F1C9A71FC00A2A2F1 /* YRSequencePracticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0315153E1C9A71FC00A2A2F1 /* YRSequencePracticeController.m */; };
@@ -374,6 +376,9 @@
 		03019D221C9954B900895C77 /* YRUserDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRUserDetailCell.m; sourceTree = "<group>"; };
 		0302232B1CC601F70079DDA3 /* YRQuestionObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRQuestionObj.h; sourceTree = "<group>"; };
 		0302232C1CC601F70079DDA3 /* YRQuestionObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRQuestionObj.m; sourceTree = "<group>"; };
+		030C61021D0E998200F85458 /* YRMessageCenterViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRMessageCenterViewCell.h; sourceTree = "<group>"; };
+		030C61031D0E998200F85458 /* YRMessageCenterViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRMessageCenterViewCell.m; sourceTree = "<group>"; };
+		030C61041D0E998200F85458 /* YRMessageCenterViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRMessageCenterViewCell.xib; sourceTree = "<group>"; };
 		031515341C9A3D7400A2A2F1 /* YREditUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YREditUserController.h; sourceTree = "<group>"; };
 		031515351C9A3D7400A2A2F1 /* YREditUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YREditUserController.m; sourceTree = "<group>"; };
 		031515361C9A3D7400A2A2F1 /* YREditUserController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YREditUserController.xib; sourceTree = "<group>"; };
@@ -1799,6 +1804,9 @@
 				032FADE01CBDFE82006A7AA4 /* YRMenuCell.h */,
 				032FADE11CBDFE82006A7AA4 /* YRMenuCell.m */,
 				032FADE21CBDFE82006A7AA4 /* YRMenuCell.xib */,
+				030C61021D0E998200F85458 /* YRMessageCenterViewCell.h */,
+				030C61031D0E998200F85458 /* YRMessageCenterViewCell.m */,
+				030C61041D0E998200F85458 /* YRMessageCenterViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2673,6 +2681,7 @@
 				164A8C931C8D1DCF00857638 /* YRMyWalletViewController.xib in Resources */,
 				03FF147D1C9FEB9F00AEBB75 /* YRLearnSecondCell.xib in Resources */,
 				037F8E6A1C8D5FC50057BF6C /* ImagesPicker.xcassets in Resources */,
+				030C61061D0E998200F85458 /* YRMessageCenterViewCell.xib in Resources */,
 				0340DF9D1CC718BF00CF9884 /* YRTeacherAllPicsCell.xib in Resources */,
 				16271AA31CB360830082F7CB /* Info.plist in Resources */,
 				1624E29E1C8E7543009F4E20 /* YRCommentDetailVC.xib in Resources */,
@@ -2915,6 +2924,7 @@
 				16D4DB1F1CCDEA9B0006B10A /* UIColor+Tool.m in Sources */,
 				160868431CC5C74100E7CC6D /* YRAboutUsViewController.m in Sources */,
 				03F59B8F1C8EC1FF009D5EA2 /* YRCircleDetailController.m in Sources */,
+				030C61051D0E998200F85458 /* YRMessageCenterViewCell.m in Sources */,
 				037F8E1D1C8826750057BF6C /* UIButton+titleFrame.m in Sources */,
 				166939FD1C9A3F1D00C7ECF2 /* ChineseString.m in Sources */,
 				037D7C251C916AE600273703 /* CorePhoto.m in Sources */,

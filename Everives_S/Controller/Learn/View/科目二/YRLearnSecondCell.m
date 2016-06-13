@@ -9,6 +9,7 @@
 #import "YRLearnSecondCell.h"
 #import "UIImageView+WebCache.h"
 #import "YRLearnPartnerObj.h"
+#import "YRSharedDateArray.h"
 @implementation YRLearnSecondCell
 
 
@@ -70,8 +71,9 @@
     NSString *weekString = [NSString getTheDayInWeek:teacherOrder.date];
     self.calendarLabel.text = [NSString stringWithFormat:@"%@ %@",calendarString,weekString];
     
-    NSArray *times = @[@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"14:00-15:00",@"15:00-16:00",@"16:00-17:00",@"17:00-18:00"];
-    self.timeLabel.text = times[teacherOrder.time];;
+//    NSArray *times = @[@"09:00-10:00",@"10:00-11:00",@"11:00-12:00",@"14:00-15:00",@"15:00-16:00",@"16:00-17:00",@"17:00-18:00"];
+//    NSArray *timeAllre
+    self.timeLabel.text = [YRSharedDateArray sharedInstance].timeArrayAllFact[teacherOrder.time];
     [self setCornerRadiusWith:self.timeLabel];
 
     self.addressLabel.text = teacherOrder.pname;

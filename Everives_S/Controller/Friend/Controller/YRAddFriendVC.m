@@ -116,18 +116,21 @@ static NSString *cellID = @"cellID";
 #pragma mark - UISearchBarDelegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [searchBar resignFirstResponder];
+    NSString *searchStr = [_searchBar.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
-    if (searchBar.text.length != 11) {
+    if (searchStr.length != 11) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"手机号不正确" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
         return;
     }
-    if ([searchBar.text isEqualToString:KUserManager.tel]) {
+    if ([searchStr isEqualToString:KUserManager.tel]) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"不能添加自己为好友" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
         return;
     }
-    [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_SEARCH_USER,[_searchBar.searchBar.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]  parameters:@{@"relation":@"0"} complete:^(NSDictionary *responseDic) {
+    NSString *s = [NSString stringWithFormat:@"%@%@",STUDENT_SEARCH_USER,[searchStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSLog(@"%@",s);
+    [RequestData GET:[NSString stringWithFormat:@"%@%@",STUDENT_SEARCH_USER,[searchStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]  parameters:@{@"relation":@"0"} complete:^(NSDictionary *responseDic) {
         _resArray = [YRUserStatus mj_objectArrayWithKeyValuesArray:responseDic];
         if (_resArray.count == 0) {
             [MBProgressHUD showSuccess:@"没有找到符合条件的用户~" toView:self.view];
@@ -139,11 +142,22 @@ static NSString *cellID = @"cellID";
     }];
 }
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    searchBar.text = @"";
+    NSString *searchStr = [_searchBar.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (searchStr.length != 0) {
+        return;
+    }
+    searchBar.text = @"    ";
 }
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    if (searchBar.text.length == 0) {
-        searchBar.text = @"请输入驾友用户名或手机号码";
+    NSString *searchStr = [_searchBar.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (searchStr.length == 0) {
+        searchBar.text =@"";
+    }
+}
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    NSString *searchStr = [_searchBar.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (searchStr.length == 0) {
+        searchBar.text = @"    ";
     }
 }
 #pragma mark - UItableView
@@ -172,6 +186,7 @@ static NSString *cellID = @"cellID";
     if (!_searchBar) {
         _searchBar = [[YRSearchBar alloc] initWithFrame:CGRectMake(16, 8, kScreenWidth-32, 44)];
         _searchBar.searchBar.delegate = self;
+        _searchBar.searchBar.placeholder = @"请输入驾友用户名或手机号码";
 
     }
     return _searchBar;

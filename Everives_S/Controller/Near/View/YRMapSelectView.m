@@ -27,7 +27,7 @@
 -(UIButton *)schoolBtn{
     if (!_schoolBtn) {
         _schoolBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2-110, 0, 60, 44)];
-        [_schoolBtn setTitle:@"驾校" forState:UIControlStateNormal];
+        [_schoolBtn setTitle:@"场地" forState:UIControlStateNormal];
         _schoolBtn.titleLabel.font = kFontOfLetterBig;
         [_schoolBtn setTitleColor:_selectedBtnNum==1?[UIColor blackColor]:kTextlightGrayColor forState:UIControlStateNormal];
         [_schoolBtn addTarget:self action:@selector(schoolBtnClick:) forControlEvents:UIControlEventTouchUpInside];

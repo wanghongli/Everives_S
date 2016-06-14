@@ -17,7 +17,7 @@
 
 static CGFloat headerHeight = 213;
 static CGFloat cellHeight = 60;
-@interface YRSchoolCelldetailVC (){
+@interface YRSchoolCelldetailVC ()<UIAlertViewDelegate>{
     NSArray *_icons;
 }
 @property(nonatomic,strong) YRSchoolModel *model;
@@ -31,7 +31,7 @@ static CGFloat cellHeight = 60;
     self.title =  @"驾校详情";
     self.tableView.tableHeaderView = self.headerView;
     [self getData];
-    _icons = @[@"Neighborhood_Field_DriSch",@"Neighborhood_Field_Add",@"Neig_Coach_Bespeak",@"Neighborhood_Field_Contacts",@"Neighborhood_Field_Area",@"neighborhood_Field_Facility",@"Neighborhood_Field_More",@"Neighborhood_Field_Coach"];
+    _icons = @[@"Neighborhood_Field_DriSch",@"Neighborhood_Field_Add",@"Friend_AddFri_Contacts",@"Neighborhood_Field_Contacts",@"Neighborhood_Field_Area",@"neighborhood_Field_Facility",@"Neighborhood_Field_More",@"Neighborhood_Field_Coach"];
 }
 
 -(void)getData{
@@ -166,8 +166,12 @@ static CGFloat cellHeight = 60;
     //打开拨号键盘
     if(indexPath.row  == 2){
         if (_model.tel.length>6) {
-            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", _model.tel]];
-            [[UIApplication sharedApplication] openURL:url];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"是否拨打电话" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"是", nil];
+            alert.tag = 2333;
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+            [alert show];
         }
     }
     //金牌教练
@@ -177,7 +181,13 @@ static CGFloat cellHeight = 60;
         [self.navigationController pushViewController:goldenTeacherVC animated:YES];
     }
 }
-
+#pragma mark - UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 2333 && buttonIndex == 1) {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", _model.tel]];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
 #pragma mark - Getters
 -(ZHScrollImageView *)headerView{
     if (!_headerView) {

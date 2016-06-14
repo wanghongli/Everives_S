@@ -11,10 +11,12 @@
 #import "YRMyErrorController.h"
 #import "YRPublicMethod.h"
 #import "UIBarButtonItem+Item.h"
+#import "UMSocial.h"
+
 #define kImgW 120
 #define kImgH 160
 #define kToTopDestace 20
-@interface YRGotScoreController ()
+@interface YRGotScoreController ()<UMSocialUIDelegate>
 
 @property (nonatomic, strong) UIImageView *scoreBackImg;
 @property (nonatomic, strong) UILabel *yourScore;
@@ -86,9 +88,26 @@
         YRMyErrorController *errorVC = [[YRMyErrorController alloc]init];
         [self.navigationController pushViewController:errorVC animated:YES];
     }else{//分享
-    
+        [UMSocialData defaultData].extConfig.title = @"蚁众约驾";
+        [UMSocialSnsService presentSnsIconSheetView:self
+                                             appKey:kUMengShareAppkey
+                                          shareText:@"我在本次驾照模拟考试中取得了不错成绩哦你也来试试吧"
+                                         shareImage:[UIImage imageNamed:@"logo圆角版1"]
+                                    shareToSnsNames:@[UMShareToQQ,UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite]//UMShareToSina,取消分享到新浪微博，避免审核通不过
+                                           delegate:self];
     }
 }
+#pragma mark - UMSocialDelegate
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+    }
+}
+#pragma mark - Getters
 -(UILabel *)yourScore
 {
     if (!_yourScore) {
